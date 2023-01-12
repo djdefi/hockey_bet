@@ -222,7 +222,7 @@ end
 # Output to file a nice HTML table of the sorted array of fan team stats by wins
 def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
     sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
-    File.open("index.html", "w") do |f|
+    File.open("_site/index.html", "w") do |f|
         f.write("<html><head><title>Fan Team Stats</title></head><body><table border='1'>")
         f.write("<tr><th>Team Name</th><th>Fan Name</th><th>Wins</th><th>Losses</th><th>Overtime Losses</th><th>Points</th><th>Point Percentage</th></tr>")
         sorted_team_stats_array.each do |team|
