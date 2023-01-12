@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 # Function to get the team IDs from the NHL API https://statsapi.web.nhl.com/api/v1/teams
 # Example response:
 # {
