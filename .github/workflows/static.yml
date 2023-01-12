@@ -36,7 +36,7 @@ jobs:
           bundler-cache: true
       - name: Run script
         run: | 
-          bundle install
+          gem install httparty
           ruby script.rb    
       - name: Setup Pages
         uses: actions/configure-pages@v2
