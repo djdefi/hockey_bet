@@ -233,3 +233,7 @@ def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
 end
 
 print_sorted_fan_team_stats_by_wins(fan_team_hash)
+
+if File.file?(_site/index.html")
+    puts "File created at: #{File.absolute_path("_site/index.html")}"
+end
