@@ -236,10 +236,25 @@
             puts " "
         end
     end
+
+    # Function to get a hash of the name, description html object, and imageUrl for id 1 of https://records.nhl.com/site/api/trophy for use in the output html
+    def get_trophy_info
+        trophy_info = {}
+        response = HTTParty.get('https://records.nhl.com/site/api/trophy')
+        response.parsed_response['data'].each do |trophy|
+            if trophy['id'] == 1
+                trophy_info['name'] = trophy['name']
+                trophy_info['description'] = trophy['description']
+                trophy_info['imageUrl'] = trophy['imageUrl']
+            end
+        end
+        return trophy_info
+    end
     
     # Output to file a primer css styled HTML table of the sorted array of fan team stats by wins
     def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
         sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
+        trophy_info = get_trophy_info
         File.open("_site/index.html", "w") do |f|
             f.write("<!DOCTYPE html>
     <html>
@@ -279,6 +294,11 @@
             end
             f.write("</tbody>
         </table>
+        <div class='border-top border-bottom border-gray-light mt-3 pt-3'>
+        <h2 class='color-fg-success'>#{trophy_info['name']}</h2>
+        <img src='#{trophy_info['imageUrl']}' alt='#{trophy_info['name']}' style='width: 200px;'>
+        <p class='color-fg-muted'>#{trophy_info['description']}</p>
+        </div>
     </body>
     </html>")
         end
