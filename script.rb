@@ -128,113 +128,165 @@
     #   "active" : true
     # },
 
-require 'csv'
-require 'httparty'
-
-# Read in the fan and team names from csv file
-fan_team_hash = {}
-CSV.foreach('fan_team.csv', headers: true) do |row|
-    fan_team_hash[row['fan']] = row['team']
-end
-
-# Function to get array of team ids from the https://statsapi.web.nhl.com/api/v1/teams endpoint using a fuzzy search against the results based on team names from the fan_team_hash
-def get_team_ids(fan_team_hash)
-    team_ids = []
-    fan_team_hash.each do |fan, team|
-        response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams')
-        response.parsed_response['teams'].each do |team|
-            if team['name'].include? fan_team_hash[fan]
-                team_ids.push(team['id'])
-                #puts "Team ID: #{team['id']} for #{fan_team_hash[fan]}"
-            end
-        end
+    require 'csv'
+    require 'httparty'
+    
+    # Read in the fan and team names from csv file
+    fan_team_hash = {}
+    CSV.foreach('fan_team.csv', headers: true) do |row|
+        fan_team_hash[row['fan']] = row['team']
     end
-    return team_ids
-end
-
-# Get stats for a team id
-def get_team_stats(team_id)
-    response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams/' + team_id.to_s + '?expand=team.stats')
-    response.parsed_response['teams'].each do |team|
-        puts "Team Name: #{team['name']}"
-        puts "Team ID: #{team['id']}"
-        puts "Wins: #{team['teamStats'][0]['splits'][0]['stat']['wins']}"
-        puts "Losses: #{team['teamStats'][0]['splits'][0]['stat']['losses']}"
-        puts "Overtime Losses: #{team['teamStats'][0]['splits'][0]['stat']['ot']}"
-        puts "Points: #{team['teamStats'][0]['splits'][0]['stat']['pts']}"
-        puts "Point Percentage: #{team['teamStats'][0]['splits'][0]['stat']['ptPctg']}"
-        puts " "
+    
+    # function to write HTML footer
+    def write_footer(f)
+        f.write("</body></html>")
     end
-end
 
-# Get stats for each of the fan teams
-def get_fan_team_stats(fan_team_hash)
-    team_ids = get_team_ids(fan_team_hash)
-    team_ids.each do |team_id|
-        get_team_stats(team_id)
+    # function to write HTML header
+    def write_header(f)
+        f.write("<html><head><link href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css' rel='stylesheet' /><title>Hockey Bet Stats</title></head><body>")
     end
-end
 
-#get_fan_team_stats(fan_team_hash)
-
-# Get stats for each of the fan teams, and load into an array
-def get_fan_team_stats_array(fan_team_hash)
-    team_ids = get_team_ids(fan_team_hash)
-    team_stats_array = []
-    team_ids.each do |team_id|
-        response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams/' + team_id.to_s + '?expand=team.stats')
-        response.parsed_response['teams'].each do |team|
-            team_stats_array.push(team['teamStats'][0]['splits'][0]['stat'])
-            team_stats_array.last['name'] = team['name']
-            # Add fan name to the team stats hash
-            fan_team_hash.each do |fan, team|
-                if team_stats_array.last['name'].include? fan_team_hash[fan]
-                    team_stats_array.last['fan'] = fan
+    # Function to get array of team ids from the https://statsapi.web.nhl.com/api/v1/teams endpoint using a fuzzy search against the results based on team names from the fan_team_hash
+    def get_team_ids(fan_team_hash)
+        team_ids = []
+        fan_team_hash.each do |fan, team|
+            response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams')
+            response.parsed_response['teams'].each do |team|
+                if team['name'].include? fan_team_hash[fan]
+                    team_ids.push(team['id'])
+                    #puts "Team ID: #{team['id']} for #{fan_team_hash[fan]}"
                 end
             end
         end
+        return team_ids
     end
-    return team_stats_array
-end
 
-# Sort the array of fan team stats by wins
-def sort_fan_team_stats_by_wins(fan_team_hash)
-    team_stats_array = get_fan_team_stats_array(fan_team_hash)
-    sorted_team_stats_array = team_stats_array.sort_by { |hsh| hsh['wins'] }.reverse
-    return sorted_team_stats_array
-end
-
-# Print the sorted array of fan team stats by wins
-def print_sorted_fan_team_stats_by_wins(fan_team_hash)
-    sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
-    sorted_team_stats_array.each do |team|
-        puts "Team Name: #{team['name']}"
-        puts "Fan Name: #{team['fan']}"
-        puts "Wins: #{team['wins']}"
-        puts "Losses: #{team['losses']}"
-        puts "Overtime Losses: #{team['ot']}"
-        puts "Points: #{team['pts']}"
-        puts "Point Percentage: #{team['ptPctg']}"
-        puts " "
-    end
-end
-
-# Output to file a nice HTML table of the sorted array of fan team stats by wins
-def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
-    sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
-    File.open("_site/index.html", "w") do |f|
-        f.write("<html><head><title>Fan Team Stats</title></head><body><table border='1'>")
-        f.write("<tr><th>Team Name</th><th>Fan Name</th><th>Wins</th><th>Losses</th><th>Overtime Losses</th><th>Points</th><th>Point Percentage</th></tr>")
-        sorted_team_stats_array.each do |team|
-            f.write("<tr><td>#{team['name']}</td><td>#{team['fan']}</td><td>#{team['wins']}</td><td>#{team['losses']}</td><td>#{team['ot']}</td><td>#{team['pts']}</td><td>#{team['ptPctg']}</td></tr>")
+    # Get stats for a team id
+    def get_team_stats(team_id)
+        response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams/' + team_id.to_s + '?expand=team.stats')
+        response.parsed_response['teams'].each do |team|
+            puts "Team Name: #{team['name']}"
+            puts "Team ID: #{team['id']}"
+            puts "Wins: #{team['teamStats'][0]['splits'][0]['stat']['wins']}"
+            puts "Losses: #{team['teamStats'][0]['splits'][0]['stat']['losses']}"
+            puts "Overtime Losses: #{team['teamStats'][0]['splits'][0]['stat']['ot']}"
+            puts "Points: #{team['teamStats'][0]['splits'][0]['stat']['pts']}"
+            puts "Point Percentage: #{team['teamStats'][0]['splits'][0]['stat']['ptPctg']}"
+            puts " "
         end
-        f.write("</table></body></html>")
     end
-end
-
-print_sorted_fan_team_stats_by_wins(fan_team_hash)
-output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
-
-if File.file?("_site/index.html")
-    puts "File created at: #{File.absolute_path("_site/index.html")}"
-end
+    
+    # Get stats for each of the fan teams
+    def get_fan_team_stats(fan_team_hash)
+        team_ids = get_team_ids(fan_team_hash)
+        team_ids.each do |team_id|
+            get_team_stats(team_id)
+        end
+    end
+    
+    # Get stats for each of the fan teams, and load into an array
+    def get_fan_team_stats_array(fan_team_hash)
+        team_ids = get_team_ids(fan_team_hash)
+        team_stats_array = []
+        team_ids.each do |team_id|
+            response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams/' + team_id.to_s + '?expand=team.stats&expand=team.schedule.next')
+            response.parsed_response['teams'].each do |team|
+                team_stats_array.push(team['teamStats'][0]['splits'][0]['stat'])
+                team_stats_array.last['name'] = team['name']
+                # Add fan name to the team stats hash
+                fan_team_hash.each do |fan, team|
+                    if team_stats_array.last['name'].include? fan_team_hash[fan]
+                        team_stats_array.last['fan'] = fan
+                    end
+                end
+                # Add next game date and opponent to the team stats hash
+                team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
+                team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['away']['team']['name']
+                # If the next game is against the fan's team, then change the opponent to the home team
+                if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
+                    team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
+                end
+            end
+        end
+        return team_stats_array
+    end
+    
+    # Sort the array of fan team stats by wins
+    def sort_fan_team_stats_by_wins(fan_team_hash)
+        team_stats_array = get_fan_team_stats_array(fan_team_hash)
+        sorted_team_stats_array = team_stats_array.sort_by { |hsh| hsh['wins'] }.reverse
+        return sorted_team_stats_array
+    end
+    
+    # Print the sorted array of fan team stats by wins
+    def print_sorted_fan_team_stats_by_wins(fan_team_hash)
+        sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
+        sorted_team_stats_array.each do |team|
+            puts "Team Name: #{team['name']}"
+            puts "Fan Name: #{team['fan']}"
+            puts "Wins: #{team['wins']}"
+            puts "Losses: #{team['losses']}"
+            puts "Points: #{team['pts']}"
+            puts "Point Percentage: #{team['ptPctg']}"
+            puts "Goals per Game: #{team['goalsPerGame']}"
+            puts "Goals Against per Game: #{team['goalsAgainstPerGame']}"
+            puts "Next Game Date: #{team['nextGameDate']}"
+            puts "Next Game Opponent: #{team['nextGameOpponent']}"
+            puts " "
+        end
+    end
+    
+    # Output to file a primer css styled HTML table of the sorted array of fan team stats by wins
+    def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
+        sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
+        File.open("_site/index.html", "w") do |f|
+            f.write("<!DOCTYPE html>
+    <html>
+    <head>
+    <title>NHL Standings</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    </head>
+    <body class='m-2'>
+    <h1 class='color-fg-success'>Hockey Team Standings</h1>
+      <table>
+        <thead>
+                <th scope='col' class='p-2 border'>Team Name</th>
+                <th scope='col' class='p-2 border'>Fan Name</th>
+                <th scope='col' class='p-2 border'>Wins</th>
+                <th scope='col' class='p-2 border'>Losses</th>
+                <th scope='col' class='p-2 border'>Points</th>
+                <th scope='col' class='p-2 border'>Point Percentage</th>
+                <th scope='col' class='p-2 border'>Goals per Game</th>
+                <th scope='col' class='p-2 border'>Goals Against per Game</th>
+                <th scope='col' class='p-2 border'>Next Game Date</th>
+                <th scope='col' class='p-2 border'>Next Game Opponent</th>
+        </thead>
+        <tbody>")
+            sorted_team_stats_array.each do |team|
+                f.write("<tr>
+                    <td class='p-2 border'>#{team['name']}</td>
+                    <td class='p-2 border'>#{team['fan']}</td>
+                    <td class='p-2 border'>#{team['wins']}</td>
+                    <td class='p-2 border'>#{team['losses']}</td>
+                    <td class='p-2 border'>#{team['pts']}</td>
+                    <td class='p-2 border'>#{team['ptPctg']}</td>
+                    <td class='p-2 border'>#{team['goalsPerGame']}</td>
+                    <td class='p-2 border'>#{team['goalsAgainstPerGame']}</td>
+                    <td class='p-2 border'>#{team['nextGameDate']}</td>
+                    <td class='p-2 border'>#{team['nextGameOpponent']}</td>
+                </tr>")
+            end
+            f.write("</tbody>
+        </table>
+    </body>
+    </html>")
+        end
+    end
+   
+    print_sorted_fan_team_stats_by_wins(fan_team_hash)
+    output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
+    
+    if File.file?("_site/index.html")
+        puts "File created at: #{File.absolute_path("_site/index.html")}"
+    end
