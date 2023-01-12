@@ -170,7 +170,7 @@ def get_fan_team_stats(fan_team_hash)
     end
 end
 
-get_fan_team_stats(fan_team_hash)
+#get_fan_team_stats(fan_team_hash)
 
 # Get stats for each of the fan teams, and load into an array
 def get_fan_team_stats_array(fan_team_hash)
@@ -226,3 +226,5 @@ def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
         f.write("</table></body></html>")
     end
 end
+
+print_sorted_fan_team_stats_by_wins(fan_team_hash)
