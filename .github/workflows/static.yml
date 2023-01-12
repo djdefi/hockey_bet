@@ -28,10 +28,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.133.2
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.133.2
       - name: Run script
         run: ruby script.rb    
       - name: Setup Pages
