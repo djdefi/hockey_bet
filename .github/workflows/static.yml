@@ -38,7 +38,6 @@ jobs:
         run: | 
           gem install httparty
           pwd
-          mkdir _site
           ruby script.rb
           ls -la *
           ls -la _site/*
