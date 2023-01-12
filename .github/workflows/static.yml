@@ -35,7 +35,9 @@ jobs:
         with:
           bundler-cache: true
       - name: Run script
-        run: ruby script.rb    
+        run: | 
+          bundle install
+          ruby script.rb    
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
