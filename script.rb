@@ -126,6 +126,9 @@
     #   "active" : true
     # },
 
+require 'csv'
+require 'httparty'
+
 # Read in the fan and team names from csv file
 fan_team_hash = {}
 CSV.foreach('fan_team.csv', headers: true) do |row|
