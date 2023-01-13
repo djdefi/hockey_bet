@@ -282,7 +282,7 @@
     <title>NHL Standings</title>
     <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
     </head>
-    <body class='m-2'>
+    <body class='m-2'  data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>Hockey Team Standings</h1>
       <table>
         <thead>
