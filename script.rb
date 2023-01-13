@@ -230,10 +230,17 @@
         sorted_team_stats_array = team_stats_array.sort_by { |hsh| hsh['wins'] }.reverse
         return sorted_team_stats_array
     end
+
+    # Sort the array of fan team stats by league rank
+    def sort_fan_team_stats_by_league_rank(fan_team_hash)
+        team_stats_array = get_fan_team_stats_array(fan_team_hash)
+        sorted_team_stats_array = team_stats_array.sort_by { |hsh| hsh['leagueRank'] }
+        return sorted_team_stats_array
+    end
     
-    # Print the sorted array of fan team stats by wins
-    def print_sorted_fan_team_stats_by_wins(fan_team_hash)
-        sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
+    # Print the sorted array of fan team stats by league rank
+    def print_sorted_fan_team_stats_by_league_rank(fan_team_hash)
+        sorted_team_stats_array = sort_fan_team_stats_by_league_rank(fan_team_hash)
         sorted_team_stats_array.each do |team|
             puts "Team Name: #{team['name']}"
             puts "Fan Name: #{team['fan']}"
@@ -264,9 +271,9 @@
         return trophy_info
     end
     
-    # Output to file a primer css styled HTML table of the sorted array of fan team stats by wins
-    def output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
-        sorted_team_stats_array = sort_fan_team_stats_by_wins(fan_team_hash)
+    # Output to file a primer css styled HTML table of the sorted array of fan team stats by league rank
+    def output_sorted_fan_team_stats_by_league_rank(fan_team_hash)
+        sorted_team_stats_array = sort_fan_team_stats_by_league_rank(fan_team_hash)
         trophy_info = get_trophy_info
         File.open("_site/index.html", "w") do |f|
             f.write("<!DOCTYPE html>
@@ -319,8 +326,8 @@
         end
     end
    
-    print_sorted_fan_team_stats_by_wins(fan_team_hash)
-    output_sorted_fan_team_stats_by_wins_to_file(fan_team_hash)
+    print_sorted_fan_team_stats_by_league_rank(fan_team_hash)
+    output_sorted_fan_team_stats_by_league_rank(fan_team_hash)
     
     if File.file?("_site/index.html")
         puts "File created at: #{File.absolute_path("_site/index.html")}"
