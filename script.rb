@@ -294,7 +294,7 @@
                 <th scope='col' class='p-2 border'>Point Percentage</th>
                 <th scope='col' class='p-2 border'>Goals per Game</th>
                 <th scope='col' class='p-2 border'>Goals Against per Game</th>
-                <th scope='col' class='p-2 border'>League Rankgit -c commit.gpgsign=false commit</th>
+                <th scope='col' class='p-2 border'>League Rank</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
                 <th scope='col' class='p-2 border'>Next Game Opponent</th>
         </thead>
