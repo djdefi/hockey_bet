@@ -184,6 +184,11 @@
             get_team_stats(team_id)
         end
     end
+
+    # Get standings response from https://statsapi.web.nhl.com/api/v1/standings and save as global variable
+    def get_standings_response
+        $standings_response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/standings')
+    end
     
     # Get stats for each of the fan teams, and load into an array
     def get_fan_team_stats_array(fan_team_hash)
@@ -207,6 +212,15 @@
                 if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
                     team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
                 end
+
+                # Add team league standing to the team stats hash
+                $standings_response.parsed_response['records'].each do |record|
+                    if record['teamRecords'][0]['team']['name'].include? team_stats_array.last['name']
+                        team_stats_array.last['standing'] = record['teamRecords'][0]['leagueRank']
+                    end
+                end
+
+
             end
         end
         return team_stats_array
@@ -233,6 +247,7 @@
             puts "Goals Against per Game: #{team['goalsAgainstPerGame']}"
             puts "Next Game Date: #{team['nextGameDate']}"
             puts "Next Game Opponent: #{team['nextGameOpponent']}"
+            puts "Standing: #{team['standing']}"
             puts " "
         end
     end
@@ -274,6 +289,7 @@
                 <th scope='col' class='p-2 border'>Point Percentage</th>
                 <th scope='col' class='p-2 border'>Goals per Game</th>
                 <th scope='col' class='p-2 border'>Goals Against per Game</th>
+                <th scope='col' class='p-2 border'>Standing</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
                 <th scope='col' class='p-2 border'>Next Game Opponent</th>
         </thead>
@@ -288,6 +304,7 @@
                     <td class='p-2 border'>#{team['ptPctg']}</td>
                     <td class='p-2 border'>#{team['goalsPerGame']}</td>
                     <td class='p-2 border'>#{team['goalsAgainstPerGame']}</td>
+                    <td class='p-2 border'>#{team['standing']}</td>
                     <td class='p-2 border'>#{team['nextGameDate']}</td>
                     <td class='p-2 border'>#{team['nextGameOpponent']}</td>
                 </tr>")
