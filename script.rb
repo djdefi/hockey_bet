@@ -300,19 +300,25 @@
         </thead>
         <tbody>")
             sorted_team_stats_array.each do |team|
-                f.write("<tr>
-                    <td class='p-2 border'>#{team['name']}</td>
-                    <td class='p-2 border'>#{team['fan']}</td>
-                    <td class='p-2 border'>#{team['wins']}</td>
-                    <td class='p-2 border'>#{team['losses']}</td>
-                    <td class='p-2 border'>#{team['pts']}</td>
-                    <td class='p-2 border'>#{team['ptPctg']}</td>
-                    <td class='p-2 border'>#{team['goalsPerGame']}</td>
-                    <td class='p-2 border'>#{team['goalsAgainstPerGame']}</td>
-                    <td class='p-2 border'>#{team['leagueRank']}</td>
-                    <td class='p-2 border'>#{team['nextGameDate']}</td>
-                    <td class='p-2 border'>#{team['nextGameOpponent']}</td>
-                </tr>")
+                # If team league rank is 16 or lower, color the row green with 'color-bg-success'
+                if team['leagueRank'].to_i <= 16
+                    f.write("<tr class='color-bg-success'>")
+                # If team league rank is 17 or higher, do not color the row
+                else
+                    f.write("<tr>")
+                end
+                    f.write("<td class='p-2 border'>#{team['name']}</td>
+                        <td class='p-2 border'>#{team['fan']}</td>
+                        <td class='p-2 border'>#{team['wins']}</td>
+                        <td class='p-2 border'>#{team['losses']}</td>
+                        <td class='p-2 border'>#{team['pts']}</td>
+                        <td class='p-2 border'>#{team['ptPctg']}</td>
+                        <td class='p-2 border'>#{team['goalsPerGame']}</td>
+                        <td class='p-2 border'>#{team['goalsAgainstPerGame']}</td>
+                        <td class='p-2 border'>#{team['leagueRank']}</td>
+                        <td class='p-2 border'>#{team['nextGameDate']}</td>
+                        <td class='p-2 border'>#{team['nextGameOpponent']}</td>
+                    </tr>")
             end
             f.write("</tbody>
         </table>
