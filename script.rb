@@ -305,7 +305,6 @@
                     f.write("<tr class='color-bg-success'>")
                 # If team league rank is 17 or higher, do not color the row
                 else
-                    f.write("<tr>")
                 end
                     f.write("<td class='p-2 border'>#{team['name']}</td>
                         <td class='p-2 border'>#{team['fan']}</td>
