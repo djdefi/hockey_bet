@@ -322,10 +322,12 @@
         </thead>
         <tbody>")
             sorted_team_stats_array.each do |team|
-                # If team league rank is 16 or lower, color the row green with 'color-bg-success'
-                if team['leagueRank'].to_i <= 16
+                # The top three teams in each division will make up the first 12 teams in the playoffs. 
+                # The remaining four spots will be filled by the next two highest-placed finishers in each conference, based on regular-season record and regardless of division.
+                # If team division rank is 3 or lower, color the row green with 'color-bg-success'
+                if team['divisionRank'].to_i <= 3
                     f.write("<tr class='color-bg-success'>")
-                # If team league rank is 17 or higher, do not color the row
+                # If team divisionRank rank is 3 or higher, do not color the row
                 else
                 end
                     f.write("<td class='p-2 border'>#{team['name']}</td>
