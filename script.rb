@@ -254,7 +254,7 @@
             puts "Fan Name: #{team['fan']}"
             puts "Wins: #{team['wins']}"
             puts "Losses: #{team['losses']}"
-            puts "Overtime Losses: #{team['ot']}"
+            puts "OT Losses: #{team['ot']}"
             puts "Points: #{team['pts']}"
             puts "Point Percentage: #{team['ptPctg']}"
             puts "Goals per Game: #{team['goalsPerGame']}"
@@ -305,10 +305,10 @@
                 <th scope='col' class='p-2 border'>Fan Name</th>
                 <th scope='col' class='p-2 border'>Wins</th>
                 <th scope='col' class='p-2 border'>Losses</th>
-                <th scope='col' class='p-2 border'>Overtime Losses</th>
+                <th scope='col' class='p-2 border'>OT Losses</th>
                 <th scope='col' class='p-2 border'>Streak</th>
                 <th scope='col' class='p-2 border'>Points</th>
-                <th scope='col' class='p-2 border'>Point Percentage</th>
+                <th scope='col' class='p-2 border'>Point %</th>
                 <th scope='col' class='p-2 border'>Goals per Game</th>
                 <th scope='col' class='p-2 border'>Goals Against per Game</th>
                 <th scope='col' class='p-2 border'>League Rank</th>
