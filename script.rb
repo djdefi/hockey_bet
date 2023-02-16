@@ -208,13 +208,21 @@
                     team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
                 end
 
-                # Add team's leagueRank from https://statsapi.web.nhl.com/api/v1/standings to the team stats hash for the team
+                # Add team's leagueRank, conference name, conference rank, division name, division rank, wildcard rank, streakCode from https://statsapi.web.nhl.com/api/v1/standings to the team stats hash for the team
                 response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/standings')
                 response.parsed_response['records'].each do |record|
-                    record['teamRecords'].each do |team_record|
-                        if team_record['team']['name'].include? team_stats_array.last['name']
-                            team_stats_array.last['leagueRank'] = team_record['leagueRank']
-                        end
+                    if record['teamRecords'].any? { |h| h['team']['id'] == team_id }
+                        team_stats_array.last['leagueRank'] = record['teamRecords'].find { |h| h['team']['id'] == team_id }['leagueRank']
+                        #team_stats_array.last['conferenceName'] = record['conference']['name']
+                        team_stats_array.last['conferenceRank'] = record['teamRecords'].find { |h| h['team']['id'] == team_id }['conferenceRank']
+                        #team_stats_array.last['divisionName'] = record['division']['name']
+                        team_stats_array.last['divisionRank'] = record['teamRecords'].find { |h| h['team']['id'] == team_id }['divisionRank']
+                        team_stats_array.last['wildCardRank'] = record['teamRecords'].find { |h| h['team']['id'] == team_id }['wildCardRank']
+                        team_stats_array.last['streakCode'] = record['teamRecords'].find { |h| h['team']['id'] == team_id }['streak']['streakCode']
+                        # Lookup the conference name and division name from the team id separately and add to the team stats hash
+                        response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/teams/' + team_id.to_s + '?expand=team.stats')
+                        team_stats_array.last['conferenceName'] = response.parsed_response['teams'][0]['conference']['name']
+                        team_stats_array.last['divisionName'] = response.parsed_response['teams'][0]['division']['name']
                     end
                 end
                 
@@ -254,6 +262,12 @@
             puts "Next Game Date: #{team['nextGameDate']}"
             puts "Next Game Opponent: #{team['nextGameOpponent']}"
             puts "League Rank: #{team['leagueRank']}"
+            puts "Conference Name: #{team['conferenceName']}"
+            puts "Conference Rank: #{team['conferenceRank']}"
+            puts "Division Name: #{team['divisionName']}"
+            puts "Division Rank: #{team['divisionRank']}"
+            puts "Wildcard Rank: #{team['wildCardRank']}"
+            puts "Streak: #{team['streakCode']}"
             puts " "
         end
     end
@@ -292,11 +306,17 @@
                 <th scope='col' class='p-2 border'>Wins</th>
                 <th scope='col' class='p-2 border'>Losses</th>
                 <th scope='col' class='p-2 border'>Overtime Losses</th>
+                <th scope='col' class='p-2 border'>Streak</th>
                 <th scope='col' class='p-2 border'>Points</th>
                 <th scope='col' class='p-2 border'>Point Percentage</th>
                 <th scope='col' class='p-2 border'>Goals per Game</th>
                 <th scope='col' class='p-2 border'>Goals Against per Game</th>
                 <th scope='col' class='p-2 border'>League Rank</th>
+                <th scope='col' class='p-2 border'>Conference Name</th>
+                <th scope='col' class='p-2 border'>Conference Rank</th>
+                <th scope='col' class='p-2 border'>Division Name</th>
+                <th scope='col' class='p-2 border'>Division Rank</th>
+                <th scope='col' class='p-2 border'>Wildcard Rank</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
                 <th scope='col' class='p-2 border'>Next Game Opponent</th>
         </thead>
@@ -313,11 +333,17 @@
                         <td class='p-2 border'>#{team['wins']}</td>
                         <td class='p-2 border'>#{team['losses']}</td>
                         <td class='p-2 border'>#{team['ot']}</td>
+                        <td class='p-2 border'>#{team['streakCode']}</td>
                         <td class='p-2 border'>#{team['pts']}</td>
                         <td class='p-2 border'>#{team['ptPctg']}</td>
                         <td class='p-2 border'>#{team['goalsPerGame']}</td>
                         <td class='p-2 border'>#{team['goalsAgainstPerGame']}</td>
                         <td class='p-2 border'>#{team['leagueRank']}</td>
+                        <td class='p-2 border'>#{team['conferenceName']}</td>
+                        <td class='p-2 border'>#{team['conferenceRank']}</td>
+                        <td class='p-2 border'>#{team['divisionName']}</td>
+                        <td class='p-2 border'>#{team['divisionRank']}</td>
+                        <td class='p-2 border'>#{team['wildCardRank']}</td>
                         <td class='p-2 border'>#{team['nextGameDate']}</td>
                         <td class='p-2 border'>#{team['nextGameOpponent']}</td>
                     </tr>")
