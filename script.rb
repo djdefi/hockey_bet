@@ -305,17 +305,17 @@
                 <th scope='col' class='p-2 border'>Fan Name</th>
                 <th scope='col' class='p-2 border'>Wins</th>
                 <th scope='col' class='p-2 border'>Losses</th>
-                <th scope='col' class='p-2 border'>OT Losses</th>
+                <th scope='col' class='p-2 border'>OTL</th>
                 <th scope='col' class='p-2 border'>Streak</th>
                 <th scope='col' class='p-2 border'>Points</th>
                 <th scope='col' class='p-2 border'>Point %</th>
-                <th scope='col' class='p-2 border'>Goals per Game</th>
-                <th scope='col' class='p-2 border'>Goals Against per Game</th>
+                <th scope='col' class='p-2 border'>GPG</th>
+                <th scope='col' class='p-2 border'>GA</th>
                 <th scope='col' class='p-2 border'>League Rank</th>
-                <th scope='col' class='p-2 border'>Conference Name</th>
-                <th scope='col' class='p-2 border'>Conference Rank</th>
-                <th scope='col' class='p-2 border'>Division Name</th>
-                <th scope='col' class='p-2 border'>Division Rank</th>
+                <th scope='col' class='p-2 border'>Conf. Name</th>
+                <th scope='col' class='p-2 border'>Conf. Rank</th>
+                <th scope='col' class='p-2 border'>Div. Name</th>
+                <th scope='col' class='p-2 border'>Div. Rank</th>
                 <th scope='col' class='p-2 border'>Wildcard Rank</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
                 <th scope='col' class='p-2 border'>Next Game Opponent</th>
