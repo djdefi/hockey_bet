@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
-  deploy:
+  brakeman:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.137.2
+        uses: ruby/setup-ruby@v1.138.0
         with:
           bundler-cache: true
       - name: Run script
