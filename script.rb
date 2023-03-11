@@ -239,11 +239,10 @@
         return sorted_team_stats_array
     end
 
-    # Sort the array of fan team stats by division rank then wildcard rank
+    # Sort the array of fan team stats by league rank, conference rank, division rank, then wildcard rank
     def sort_fan_team_stats_by_league_rank(fan_team_hash)
         team_stats_array = get_fan_team_stats_array(fan_team_hash)
-        sorted_team_stats_array = team_stats_array.sort_by { |hsh| hsh['divisionRank'].to_i }
-        sorted_team_stats_array = sorted_team_stats_array.sort_by { |hsh| hsh['wildCardRank'].to_i }
+        sorted_team_stats_array = team_stats_array.sort_by { |hsh| [ hsh['leagueRank'].to_i, hsh['conferenceRank'].to_i, hsh['divisionRank'].to_i, hsh['wildCardRank'].to_i ] }
         return sorted_team_stats_array
     end
     
