@@ -335,7 +335,7 @@
                     f.write("<tr class='color-bg-attention'>")
                 # If a team is not eliminated from playoff contention, and is not one of the next two highest-placed finishers in each conference, color the row orange with 'color-fg-severe'
                 elsif team['wildCardRank'].to_i > 2
-                    f.write("<tr class='color-fg-severe'>")
+                    f.write("<tr class='color-bg-severe'>")
                 # If a team is eliminated from playoff contention, color the row red with 'color-bg-danger'
                 elsif team['wildCardRank'].to_i > 4
                     f.write("<tr class='color-bg-danger'>")
