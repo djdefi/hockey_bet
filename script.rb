@@ -329,16 +329,16 @@
                 # The remaining four spots will be filled by the next two highest-placed finishers in each conference, based on regular-season record and regardless of division.
                 # If team division rank is 3 or lower, color the row green with 'color-bg-success'
                 if team['divisionRank'].to_i <= 3
-                    f.write("<tr class='color-bg-success'>")
+                    f.write("<tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1'>")
                 # If a team is one of the next two highest-placed finishers in each conference, color the row yellow with 'color-bg-warning'
                 elsif team['wildCardRank'].to_i <= 2
-                    f.write("<tr class='color-bg-attention'>")
+                    f.write("<tr class='color-bg-attention-emphasis color-fg-on-emphasis mr-1'>")
                 # If a team is not eliminated from playoff contention, and is not one of the next two highest-placed finishers in each conference, color the row orange with 'color-fg-severe'
                 elsif team['wildCardRank'].to_i > 2
-                    f.write("<tr class='color-bg-severe'>")
+                    f.write("<tr class='color-bg-severe-emphasis color-fg-on-emphasis mr-1'>")
                 # If a team is eliminated from playoff contention, color the row red with 'color-bg-danger'
                 elsif team['wildCardRank'].to_i > 4
-                    f.write("<tr class='color-bg-danger'>")
+                    f.write("<tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1'>")
                 else
                 end
                     f.write("<td class='p-2 border'>#{team['name']}</td>
