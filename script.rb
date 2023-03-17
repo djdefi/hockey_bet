@@ -331,6 +331,12 @@
                 if team['divisionRank'].to_i <= 3
                     f.write("<tr class='color-bg-success'>")
                 # If team divisionRank rank is 3 or higher, do not color the row
+                # If a team is eliminated from playoff contention, color the row red with 'color-bg-danger'
+                elsif team['wildCardRank'].to_i > 4
+                    f.write("<tr class='color-bg-danger'>")
+                # If a team is one of the next two highest-placed finishers in each conference, color the row yellow with 'color-bg-warning'
+                elsif team['wildCardRank'].to_i <= 2
+                    f.write("<tr class='color-bg-warning'>")
                 else
                 end
                     f.write("<td class='p-2 border'>#{team['name']}</td>
