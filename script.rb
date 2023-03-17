@@ -362,7 +362,11 @@
                     </tr>")
             end
             f.write("</tbody>
-        </table>
+        </table>         
+        <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">Playoff bound</span>
+        <span class="IssueLabel color-bg-attention-emphasis color-fg-on-emphasis mr-1">Playoff Contender</span>
+        <span class="IssueLabel color-bg-severe-emphasis color-fg-on-emphasis mr-1">Wildcard hopeful</span>
+        <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">Not in playoff contention</span>
         <div class='border-top border-bottom border-gray-light mt-3 pt-3'>
         <h2 class='color-fg-success'>#{trophy_info['name']}</h2>
         <img src='#{trophy_info['imageUrl']}' alt='#{trophy_info['name']}' style='width: 200px;'>
