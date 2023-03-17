@@ -303,7 +303,7 @@
     <body class='m-2'  data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>Hockey Team Standings</h1>
       <table class='color-shadow-large'>
-        <thead>
+        <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
                 <th scope='col' class='p-2 border'>Team Name</th>
                 <th scope='col' class='p-2 border'>Fan Name</th>
                 <th scope='col' class='p-2 border'>Wins</th>
