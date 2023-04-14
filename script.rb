@@ -200,9 +200,14 @@
                         team_stats_array.last['fan'] = fan
                     end
                 end
-                # Add next game date and opponent to the team stats hash
-                team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
-                team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['away']['team']['name']
+                # Add next game date and opponent to the team stats hash - if there is no game scheduled, then set the date to "No Game Scheduled" and the opponent to "No Game Scheduled". 
+                if team['nextGameSchedule']['dates'].empty?
+                    team_stats_array.last['nextGameDate'] = "No Game Scheduled"
+                    team_stats_array.last['nextGameOpponent'] = "No Game Scheduled"
+                else
+                    team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
+                    team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['away']['team']['name']
+                end
                 # If the next game is against the fan's team, then change the opponent to the home team
                 if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
                     team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
