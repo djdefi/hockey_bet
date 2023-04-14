@@ -201,7 +201,7 @@
                     end
                 end
                 # Add next game date and opponent to the team stats hash - if there is no game scheduled, then set the date to "No Game Scheduled" and the opponent to "No Game Scheduled". 
-                if team['nextGameSchedule']['dates'].empty?
+                if team['nextGameSchedule'].empty?
                     team_stats_array.last['nextGameDate'] = "No Game Scheduled"
                     team_stats_array.last['nextGameOpponent'] = "No Game Scheduled"
                 else
