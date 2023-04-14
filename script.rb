@@ -207,12 +207,11 @@
                 else
                     team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
                     team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['away']['team']['name']
+                    # If the next game is against the fan's team, then change the opponent to the home team
+                    if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
+                        team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
+                    end
                 end
-                # If the next game is against the fan's team, then change the opponent to the home team
-                if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
-                    team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
-                end
-
                 # Add team's leagueRank, conference name, conference rank, division name, division rank, wildcard rank, streakCode from https://statsapi.web.nhl.com/api/v1/standings to the team stats hash for the team
                 response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/standings')
                 response.parsed_response['records'].each do |record|
