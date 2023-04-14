@@ -144,7 +144,7 @@
 
     # function to write HTML header
     def write_header(f)
-        f.write("<html><head><link href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css' rel='stylesheet' /><title>Hockey Bet Stats</title></head><body>")
+        f.write("<html><head><link href='https://unpkg.com/@primer/css@20.8.3/dist/primer.css' rel='stylesheet' /><title>Hockey Bet Stats</title></head><body>")
     end
 
     # Function to get array of team ids from the https://statsapi.web.nhl.com/api/v1/teams endpoint using a fuzzy search against the results based on team names from the fan_team_hash
