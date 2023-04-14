@@ -201,16 +201,18 @@
                     end
                 end
                 # Add next game date and opponent to the team stats hash - if there is no game scheduled, then set the date to "No Game Scheduled" and the opponent to "No Game Scheduled". 
-                if team['nextGameSchedule'].empty?
-                    team_stats_array.last['nextGameDate'] = "No Game Scheduled"
-                    team_stats_array.last['nextGameOpponent'] = "No Game Scheduled"
-                else
+                if team.key?('nextGameSchedule') && !team['nextGameSchedule'].nil? && team['nextGameSchedule'].key?('dates') && !team['nextGameSchedule']['dates'].empty?
+                    team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
+
                     team_stats_array.last['nextGameDate'] = team['nextGameSchedule']['dates'][0]['date']
                     team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['away']['team']['name']
                     # If the next game is against the fan's team, then change the opponent to the home team
                     if team_stats_array.last['nextGameOpponent'].include? fan_team_hash[team_stats_array.last['fan']]
                         team_stats_array.last['nextGameOpponent'] = team['nextGameSchedule']['dates'][0]['games'][0]['teams']['home']['team']['name']
                     end
+                else
+                    team_stats_array.last['nextGameDate'] = "No Game Scheduled"
+                    team_stats_array.last['nextGameOpponent'] = "No Game Scheduled"
                 end
                 # Add team's leagueRank, conference name, conference rank, division name, division rank, wildcard rank, streakCode from https://statsapi.web.nhl.com/api/v1/standings to the team stats hash for the team
                 response = HTTParty.get('https://statsapi.web.nhl.com/api/v1/standings')
