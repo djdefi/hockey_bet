@@ -426,12 +426,12 @@
       
         def generate_series_html(series)
           <<-HTML
-            <div class="series mb-3">
-              <h3 class="color-fg-success">#{series["names"]["matchupName"]}</h3>
-              <p>Series Status: #{series["currentGame"]["seriesSummary"]["seriesStatus"]}</p>
-              <p>Game Number: #{series["currentGame"]["seriesSummary"]["gameNumber"]}</p>
-              <p>Game Time: #{series["currentGame"]["seriesSummary"]["gameTime"]}</p>
-            </div>
+            <tr>
+              <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
+              <td class='p-2 border'>Series Status: #{series["currentGame"]["seriesSummary"]["seriesStatus"]}</td>
+              <td class='p-2 border'>Game Number: #{series["currentGame"]["seriesSummary"]["gameNumber"]}</td>
+              <td class='p-2 border'>Game Time: #{series["currentGame"]["seriesSummary"]["gameTime"]}</td>
+            </tr>
           HTML
         end
       
@@ -440,7 +440,19 @@
           <<-HTML
             <div class="round mb-5">
               <h2 class="color-fg-success">#{round["names"]["name"]}</h2>
-              #{series_html}
+              <table class='color-shadow-large table table-striped'>
+                <thead>
+                  <tr>
+                    <th scope='col' class='p-2 border'>Matchup</th>
+                    <th scope='col' class='p-2 border'>Series Status</th>
+                    <th scope='col' class='p-2 border'>Game Number</th>
+                    <th scope='col' class='p-2 border'>Game Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  #{series_html}
+                </tbody>
+              </table>
             </div>
           HTML
         end
@@ -454,6 +466,11 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <title>NHL Playoff Standings</title>
         <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+        <style>
+          th, td {
+            padding: 10px;
+          }
+        </style>
       </head>
       <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
         <div class='container-xl px-3 px-md-4 px-lg-5 mt-3'>
@@ -468,8 +485,6 @@
         end
       end
       
-      
-
     current_season = current_season_years
     output_playoff_standings(current_season)
 
