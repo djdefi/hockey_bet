@@ -488,7 +488,7 @@
       <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
         <div class='container-xl px-3 px-md-4 px-lg-5 mt-3'>
           <h1 class='color-fg-success'>NHL Playoff Standings</h1>
-          <h2 class='color-fg-success'>#{current_season.value.insert(4, '-')}</h2>
+          <h2 class='color-fg-success'>#{current_season.insert(4, '-')}</h2>
           #{playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")}
           <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
         </div>
