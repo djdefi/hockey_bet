@@ -433,7 +433,11 @@
             if series["currentGame"]["seriesSummary"]["gameTime"]
             series["currentGame"]["seriesSummary"]["gameTime"] = tz.utc_to_local(Time.parse(series["currentGame"]["seriesSummary"]["gameTime"])).strftime("%A, %b %d %Y %I:%M %p")
             end
-
+            
+            # If the matchupName is blank, set it to TBD
+            if series["names"]["matchupName"] == ""
+            series["names"]["matchupName"] = "TBD"
+            end
           <<-HTML
             <tr>
               <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
