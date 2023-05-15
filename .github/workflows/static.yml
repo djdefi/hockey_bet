@@ -40,7 +40,7 @@ jobs:
           bundler-cache: true
       - name: Run script
         run: | 
-          gem install httparty
+          gem install httparty tzinfo
           pwd
           ruby script.rb
           ls -la *
