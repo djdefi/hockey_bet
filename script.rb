@@ -429,7 +429,7 @@
         def generate_series_html(series)
             # Convert the gameTime from UTC to pacific time
             tz = TZInfo::Timezone.get('America/Los_Angeles')
-            series["currentGame"]["seriesSummary"]["gameTime"] = Time.parse(series["currentGame"]["seriesSummary"]["gameTime"]).utc_to_local(tz).strftime("%A, %b %d %Y %I:%M %p")
+            series["currentGame"]["seriesSummary"]["gameTime"] = tz.utc_to_local(Time.parse(series["currentGame"]["seriesSummary"]["gameTime"])).strftime("%A, %b %d %Y %I:%M %p")
           <<-HTML
             <tr>
               <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
