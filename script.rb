@@ -425,6 +425,8 @@
         playoff_standings = get_playoff_standings(current_season)
       
         def generate_series_html(series)
+            # Convert the gameTime from UTC to pacific time
+            series["currentGame"]["seriesSummary"]["gameTime"] = Time.parse(series["currentGame"]["seriesSummary"]["gameTime"]).in_time_zone("Pacific Time (US & Canada)").strftime("%A, %B %d, %Y %l:%M %p %Z")
           <<-HTML
             <tr>
               <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
@@ -477,8 +479,8 @@
           <h1 class='color-fg-success'>NHL Playoff Standings</h1>
           <h2 class='color-fg-success'>#{current_season}</h2>
           #{playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")}
+          <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
         </div>
-        <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
       </body>
       </html>
           HTML
