@@ -130,6 +130,8 @@
 
     require 'csv'
     require 'httparty'
+    require 'time'
+    require 'tzinfo'
     
     # Read in the fan and team names from csv file
     fan_team_hash = {}
@@ -426,7 +428,8 @@
       
         def generate_series_html(series)
             # Convert the gameTime from UTC to pacific time
-            series["currentGame"]["seriesSummary"]["gameTime"] = Time.parse(series["currentGame"]["seriesSummary"]["gameTime"]).in_time_zone("Pacific Time (US & Canada)").strftime("%A, %B %d, %Y %l:%M %p %Z")
+            tz = TZInfo::Timezone.get('America/Los_Angeles')
+            series["currentGame"]["seriesSummary"]["gameTime"] = Time.parse(series["currentGame"]["seriesSummary"]["gameTime"]).utc_to_local(tz).strftime("%A, %b %d %Y %I:%M %p")
           <<-HTML
             <tr>
               <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
