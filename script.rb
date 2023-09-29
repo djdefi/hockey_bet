@@ -471,17 +471,41 @@ end
 
 def generate_playoff_page(current_season, playoff_standings)
   formatted_season = current_season ? current_season.insert(4, '-') : "Unknown Season"
-  rounds_section = playoff_standings && !playoff_standings["rounds"].nil? ? playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n") : "<h1 class='color-fg-success'>Playoffs have not started!</h1>"
+  
+  rounds_section = if playoff_standings && !playoff_standings["rounds"].nil?
+    playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")
+  else
+    "<h1 class='color-fg-success'>Playoffs have not started!</h1>"
+  end
   
   File.open("_site/playoffs.html", "w") do |f|
     f.write(<<-HTML)
-      <!DOCTYPE html>
-      ...
-      # Rest of your HTML goes here
-      ...
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>NHL Playoff Standings</title>
+  <link rel='stylesheet' href='https://unpkg.com/@primer/css@20.2.4/dist/primer.css'>
+  <style>
+    th, td {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+  <div class='container-xl px-3 px-md-4 px-lg-5 mt-3'>
+    <h1 class='color-fg-success'>NHL Playoff Standings</h1>
+    <h2 class='color-fg-success'>#{formatted_season}</h2>
+    #{rounds_section}
+    <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
+  </div>
+</body>
+</html>
     HTML
   end
 end
+
 
 current_season = current_season_years
 output_playoff_standings(current_season)
