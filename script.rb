@@ -489,7 +489,11 @@
         <div class='container-xl px-3 px-md-4 px-lg-5 mt-3'>
           <h1 class='color-fg-success'>NHL Playoff Standings</h1>
           <h2 class='color-fg-success'>#{current_season.insert(4, '-')}</h2>
-          #{playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")}
+          if playoff_standings["rounds"].nil?
+              <h1 class='color-fg-success'>Playoff have not started!</h1>
+            else
+              playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")
+          end
           <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
         </div>
       </body>
