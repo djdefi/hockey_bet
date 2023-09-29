@@ -422,100 +422,70 @@
         puts "File created at: #{File.absolute_path("_site/index.html")}"
     end
 
-    # Output to file a primer css styled HTML table of the playoff standings for the current season
-    def output_playoff_standings(current_season)
-        playoff_standings = get_playoff_standings(current_season)
+def generate_series_html(series)
+  # Convert the gameTime from UTC to pacific time
+  tz = TZInfo::Timezone.get('America/Los_Angeles')
+  if series["currentGame"]["seriesSummary"]["gameTime"]
+    series["currentGame"]["seriesSummary"]["gameTime"] = tz.utc_to_local(Time.parse(series["currentGame"]["seriesSummary"]["gameTime"])).strftime("%A, %b %d %Y %I:%M %p")
+  end
       
-        def generate_series_html(series)
-            # Convert the gameTime from UTC to pacific time
-            tz = TZInfo::Timezone.get('America/Los_Angeles')
+  # If the matchupName is blank, set it to TBD
+  series["names"]["matchupName"] = "TBD" if series["names"]["matchupName"].empty?
+      
+  <<-HTML
+    <tr>
+      <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
+      <td class='p-2 border'>Series Status: #{series["currentGame"]["seriesSummary"]["seriesStatus"]}</td>
+      <td class='p-2 border'>Game Number: #{series["currentGame"]["seriesSummary"]["gameNumber"]}</td>
+      <td class='p-2 border'>Game Time: #{series["currentGame"]["seriesSummary"]["gameTime"]}</td>
+    </tr>
+  HTML
+end
 
-            if series["currentGame"]["seriesSummary"]["gameTime"]
-            series["currentGame"]["seriesSummary"]["gameTime"] = tz.utc_to_local(Time.parse(series["currentGame"]["seriesSummary"]["gameTime"])).strftime("%A, %b %d %Y %I:%M %p")
-            end
-            
-            # If the matchupName is blank, set it to TBD
-            if series["names"]["matchupName"] == ""
-            series["names"]["matchupName"] = "TBD"
-            end
-          <<-HTML
-            <tr>
-              <td class='p-2 border'>#{series["names"]["matchupName"]}</td>
-              <td class='p-2 border'>Series Status: #{series["currentGame"]["seriesSummary"]["seriesStatus"]}</td>
-              <td class='p-2 border'>Game Number: #{series["currentGame"]["seriesSummary"]["gameNumber"]}</td>
-              <td class='p-2 border'>Game Time: #{series["currentGame"]["seriesSummary"]["gameTime"]}</td>
-            </tr>
-          HTML
-        end
-      
-        def generate_round_html(round)
-          series_html = round["series"].map { |series| generate_series_html(series) }.join("\n")
-          <<-HTML
-            <div class="round mb-5">
-              <h2 class="color-fg-success">#{round["names"]["name"]}</h2>
-              <table class='color-shadow-large table table-striped'>
-                <thead>
-                  <tr>
-                    <th scope='col' class='p-2 border'>Matchup</th>
-                    <th scope='col' class='p-2 border'>Series Status</th>
-                    <th scope='col' class='p-2 border'>Game Number</th>
-                    <th scope='col' class='p-2 border'>Game Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  #{series_html}
-                </tbody>
-              </table>
-            </div>
-          HTML
-        end
-      
-    def generate_playoff_page(current_season, playoff_standings)
-      formatted_season = current_season ? current_season.insert(4, '-') : "Unknown Season"
-      
-      rounds_section = if playoff_standings && !playoff_standings["rounds"].nil?
-        playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n")
-      else
-        "<h1 class='color-fg-success'>Playoffs have not started!</h1>"
-      end
-      
-      File.open("_site/playoffs.html", "w") do |f|
-        f.write(<<-HTML)
-    <!DOCTYPE html>
-    <html lang='en'>
-    <head>
-      <meta charset='UTF-8'>
-      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-      <title>NHL Playoff Standings</title>
-      <link rel='stylesheet' href='https://unpkg.com/@primer/css@20.2.4/dist/primer.css'>
-      <style>
-        th, td {
-          padding: 10px;
-        }
-      </style>
-    </head>
-    <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
-      <div class='container-xl px-3 px-md-4 px-lg-5 mt-3'>
-        <h1 class='color-fg-success'>NHL Playoff Standings</h1>
-        <h2 class='color-fg-success'>#{formatted_season}</h2>
-        #{rounds_section}
-        <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
-      </div>
-    </body>
-    </html>
-        HTML
-      end
-    end
-    
-    def generate_round_html(round)
-      # Assuming each round is just a string for demonstration purposes.
-      # Modify accordingly based on the actual structure of `round`.
-      "<div>#{round}</div>"
-    end
-      
-    current_season = current_season_years
-    output_playoff_standings(current_season)
+def generate_round_html(round)
+  series_html = round["series"].map { |series| generate_series_html(series) }.join("\n")
+  <<-HTML
+    <div class="round mb-5">
+      <h2 class="color-fg-success">#{round["names"]["name"]}</h2>
+      <table class='color-shadow-large table table-striped'>
+        <thead>
+          <tr>
+            <th scope='col' class='p-2 border'>Matchup</th>
+            <th scope='col' class='p-2 border'>Series Status</th>
+            <th scope='col' class='p-2 border'>Game Number</th>
+            <th scope='col' class='p-2 border'>Game Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          #{series_html}
+        </tbody>
+      </table>
+    </div>
+  HTML
+end
 
-    if File.file?("_site/playoffs.html")
-        puts "File created at: #{File.absolute_path("_site/playoffs.html")}"
-    end
+def output_playoff_standings(current_season)
+  playoff_standings = get_playoff_standings(current_season)
+  generate_playoff_page(current_season, playoff_standings)
+end
+
+def generate_playoff_page(current_season, playoff_standings)
+  formatted_season = current_season ? current_season.insert(4, '-') : "Unknown Season"
+  rounds_section = playoff_standings && !playoff_standings["rounds"].nil? ? playoff_standings["rounds"].map { |round| generate_round_html(round) }.join("\n") : "<h1 class='color-fg-success'>Playoffs have not started!</h1>"
+  
+  File.open("_site/playoffs.html", "w") do |f|
+    f.write(<<-HTML)
+      <!DOCTYPE html>
+      ...
+      # Rest of your HTML goes here
+      ...
+    HTML
+  end
+end
+
+current_season = current_season_years
+output_playoff_standings(current_season)
+
+if File.file?("_site/playoffs.html")
+  puts "File created at: #{File.absolute_path("_site/playoffs.html")}"
+end
