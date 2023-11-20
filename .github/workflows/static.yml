@@ -42,7 +42,7 @@ jobs:
         run: | 
           gem install httparty tzinfo
           pwd
-          ruby script.rb
+          ruby script-new.rb
           ls -la *
       - name: Setup Pages
         uses: actions/configure-pages@v3
