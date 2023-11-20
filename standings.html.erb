@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NHL Standings</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+    <h1 class='color-fg-success'>Hockey Team Standings</h1>
+    <table class='color-shadow-large'>
+        <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+            <th scope='col' class='p-2 border'>Team Name</th>
+            <th scope='col' class='p-2 border'>Fan Name</th>
+            <th scope='col' class='p-2 border'>Wins</th>
+            <th scope='col' class='p-2 border'>Losses</th>
+            <th scope='col' class='p-2 border'>OTL</th>
+            <th scope='col' class='p-2 border'>Streak</th>
+            <th scope='col' class='p-2 border'>Points</th>
+            <th scope='col' class='p-2 border'>Point %</th>
+            <th scope='col' class='p-2 border'>GPG</th>
+            <th scope='col' class='p-2 border'>GA</th>
+            <th scope='col' class='p-2 border'>League Rank</th>
+            <th scope='col' class='p-2 border'>Conf. Name</th>
+            <th scope='col' class='p-2 border'>Conf. Rank</th>
+            <th scope='col' class='p-2 border'>Div. Name</th>
+            <th scope='col' class='p-2 border'>Div. Rank</th>
+            <th scope='col' class='p-2 border'>Wildcard Rank</th>
+            <th scope='col' class='p-2 border'>Next Game Date</th>
+            <th scope='col' class='p-2 border'>Next Game Opponent</th>
+        </thead>
+        <tbody>
+            <% teams.each do |team| %>
+                <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1'>
+                    <td class='p-2 border'><%= team['teamName']['default'] %></td>
+                    <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>
+                    <td class='p-2 border'><%= team['wins'] %></td>
+                    <td class='p-2 border'><%= team['losses'] %></td>
+                    <td class='p-2 border'><%= team['otLosses'] %></td>
+                    <td class='p-2 border'><%= team['streakCode'] %></td>
+                    <td class='p-2 border'><%= team['points'] %></td>
+                    <td class='p-2 border'><%= '%.2f' % (team['pointPctg'] * 100) %>%</td>
+                    <!-- Placeholder for GPG -->
+                    <td class='p-2 border'>Placeholder for GPG</td>
+                    <td class='p-2 border'><%= team['goalAgainst'] %></td>
+                    <!-- Placeholder for League Rank, Conf. Rank, Div. Rank, Wildcard Rank -->
+                    <td class='p-2 border'>Placeholder for League Rank</td>
+                    <td class='p-2 border'><%= team['conferenceName'] %></td>
+                    <td class='p-2 border'>Placeholder for Conf. Rank</td>
+                    <td class='p-2 border'><%= team['divisionName'] %></td>
+                    <td class='p-2 border'>Placeholder for Div. Rank</td>
+                    <td class='p-2 border'>Placeholder for Wildcard Rank</td>
+                    <!-- Placeholder for Next Game Date and Opponent -->
+                    <td class='p-2 border'>Placeholder for Next Game Date</td>
+                    <td class='p-2 border'>Placeholder for Next Game Opponent</td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</body>
+</html>
