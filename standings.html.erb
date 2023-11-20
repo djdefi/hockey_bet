@@ -31,7 +31,7 @@
             <% teams.each do |team| %>
                 <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1'>
                     <td class='p-2 border'><%= team['teamName']['default'] %></td>
-                    <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>
+                    <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>git config --global commit.gpgsign false
                     <td class='p-2 border'><%= team['wins'] %></td>
                     <td class='p-2 border'><%= team['losses'] %></td>
                     <td class='p-2 border'><%= team['otLosses'] %></td>
