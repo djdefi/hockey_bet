@@ -8,28 +8,43 @@
     <h1 class='color-fg-success'>Hockey Team Standings</h1>
     <table class='color-shadow-large'>
         <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
-            <th scope='col' class='p-2 border'>Team Name</th>
-            <th scope='col' class='p-2 border'>Fan Name</th>
-            <th scope='col' class='p-2 border'>Wins</th>
-            <th scope='col' class='p-2 border'>Losses</th>
-            <th scope='col' class='p-2 border'>OTL</th>
-            <th scope='col' class='p-2 border'>Streak</th>
-            <th scope='col' class='p-2 border'>Points</th>
-            <th scope='col' class='p-2 border'>Point %</th>
-            <th scope='col' class='p-2 border'>GPG</th>
-            <th scope='col' class='p-2 border'>GA</th>
-            <th scope='col' class='p-2 border'>League Rank</th>
-            <th scope='col' class='p-2 border'>Conf. Name</th>
-            <th scope='col' class='p-2 border'>Conf. Rank</th>
-            <th scope='col' class='p-2 border'>Div. Name</th>
-            <th scope='col' class='p-2 border'>Div. Rank</th>
-            <th scope='col' class='p-2 border'>Wildcard Rank</th>
-            <th scope='col' class='p-2 border'>Next Game Date</th>
-            <th scope='col' class='p-2 border'>Next Game Opponent</th>
+            <tr>
+                <th scope='col' class='p-2 border'>Team Name</th>
+                <th scope='col' class='p-2 border'>Fan Name</th>
+                <th scope='col' class='p-2 border'>Wins</th>
+                <th scope='col' class='p-2 border'>Losses</th>
+                <th scope='col' class='p-2 border'>OTL</th>
+                <th scope='col' class='p-2 border'>Streak</th>
+                <th scope='col' class='p-2 border'>Points</th>
+                <th scope='col' class='p-2 border'>Point %</th>
+                <th scope='col' class='p-2 border'>GPG</th>
+                <th scope='col' class='p-2 border'>GA</th>
+                <th scope='col' class='p-2 border'>League Rank</th>
+                <th scope='col' class='p-2 border'>Conf. Name</th>
+                <th scope='col' class='p-2 border'>Conf. Rank</th>
+                <th scope='col' class='p-2 border'>Div. Name</th>
+                <th scope='col' class='p-2 border'>Div. Rank</th>
+                <th scope='col' class='p-2 border'>Wildcard Rank</th>
+                <th scope='col' class='p-2 border'>Next Game Date</th>
+                <th scope='col' class='p-2 border'>Next Game Opponent</th>
+            </tr>
         </thead>
         <tbody>
             <% teams.each do |team| %>
-                <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1'>
+                <% 
+                row_class = if team['divisionSequence'].to_i <= 3
+                              'color-bg-success-emphasis color-fg-on-emphasis mr-1'
+                            elsif team['wildcardSequence'].to_i.between?(1, 2)
+                              'color-bg-attention-emphasis color-fg-on-emphasis mr-1'
+                            elsif team['wildcardSequence'].to_i.between?(3, 4)
+                              'color-bg-severe-emphasis color-fg-on-emphasis mr-1'
+                            else
+                              'color-bg-danger-emphasis color-fg-on-emphasis mr-1'
+                            end
+                next_game_utc = next_games[team['teamAbbrev']['default']] ? next_games[team['teamAbbrev']['default']]['startTimeUTC'] : nil
+                next_game_pacific = next_game_utc ? convert_utc_to_pacific(next_game_utc) : 'TBD'
+                %>
+                <tr class='<%= row_class %>'>
                     <td class='p-2 border'><%= team['teamName']['default'] %></td>
                     <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>
                     <td class='p-2 border'><%= team['wins'] %></td>
@@ -38,22 +53,24 @@
                     <td class='p-2 border'><%= team['streakCode'] %></td>
                     <td class='p-2 border'><%= team['points'] %></td>
                     <td class='p-2 border'><%= '%.2f' % (team['pointPctg'] * 100) %>%</td>
-                    <!-- Placeholder for GPG -->
-                    <td class='p-2 border'>Placeholder for GPG</td>
+                    <td class='p-2 border'><%= team['goalsForPctg'] %></td>
                     <td class='p-2 border'><%= team['goalAgainst'] %></td>
-                    <!-- Placeholder for League Rank, Conf. Rank, Div. Rank, Wildcard Rank -->
-                    <td class='p-2 border'>Placeholder for League Rank</td>
+                    <td class='p-2 border'><%= team['leagueSequence'] %></td>
                     <td class='p-2 border'><%= team['conferenceName'] %></td>
-                    <td class='p-2 border'>Placeholder for Conf. Rank</td>
+                    <td class='p-2 border'><%= team['conferenceSequence'] %></td>
                     <td class='p-2 border'><%= team['divisionName'] %></td>
-                    <td class='p-2 border'>Placeholder for Div. Rank</td>
-                    <td class='p-2 border'>Placeholder for Wildcard Rank</td>
-                    <!-- Placeholder for Next Game Date and Opponent -->
-                    <td class='p-2 border'>Placeholder for Next Game Date</td>
-                    <td class='p-2 border'>Placeholder for Next Game Opponent</td>
+                    <td class='p-2 border'><%= team['divisionSequence'] %></td>
+                    <td class='p-2 border'><%= team['wildcardSequence'] %></td>
+                    <td class='p-2 border'><%= next_game_pacific %></td>
+                    <td class='p-2 border'><%= next_games[team['teamAbbrev']['default']] ? (next_games[team['teamAbbrev']['default']]['awayTeam']['abbrev'] == team['teamAbbrev']['default'] ? next_games[team['teamAbbrev']['default']]['homeTeam']['placeName']['default'] : next_games[team['teamAbbrev']['default']]['awayTeam']['placeName']['default']) : 'TBD' %></td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+    <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">Playoff bound</span>
+    <span class="IssueLabel color-bg-attention-emphasis color-fg-on-emphasis mr-1">Playoff Contender</span>
+    <span class="IssueLabel color-bg-severe-emphasis color-fg-on-emphasis mr-1">Wildcard hopeful</span>
+    <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">Not in playoff contention</span>
+    <div class="border-top border-bottom border-gray-light mt-3 pt-3">
 </body>
 </html>
