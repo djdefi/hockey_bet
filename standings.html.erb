@@ -44,7 +44,7 @@
                 next_game_utc = next_games[team['teamAbbrev']['default']] ? next_games[team['teamAbbrev']['default']]['startTimeUTC'] : nil
                 next_game_pacific = next_game_utc ? convert_utc_to_pacific(next_game_utc) : 'TBD'
                 %>
-                <tr class='<%= row_class %>'>
+                <tr class='<%= row_class %> <%= manager_team_map[team['teamName']['default']].nil? ? 'no-fan-name' : '' %>'>
                     <td class='p-2 border'><%= team['teamName']['default'] %></td>
                     <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>
                     <td class='p-2 border'><%= team['wins'] %></td>
@@ -72,5 +72,15 @@
     <span class="IssueLabel color-bg-severe-emphasis color-fg-on-emphasis mr-1">Wildcard hopeful</span>
     <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">Not in playoff contention</span>
     <div class="border-top border-bottom border-gray-light mt-3 pt-3">
+    <button id='toggleButton'>Toggle Teams Without Fans</button>
+
+<script>
+    document.getElementById('toggleButton').addEventListener('click', function () {
+        var noFanRows = document.querySelectorAll('.no-fan-name');
+        noFanRows.forEach(function (row) {
+            row.style.display = (row.style.display === 'none') ? 'table-row' : 'none';
+        });
+    });
+</script>
 </body>
 </html>
