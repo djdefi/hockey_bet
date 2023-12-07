@@ -3,6 +3,13 @@
 <head>
     <title>NHL Standings</title>
     <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+   <style>
+      @media screen and (max-width: 600px) {
+         .mobile-hidden {
+            display: none;
+         }
+      }
+   </style>
 </head>
 <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>Hockey Team Standings</h1>
@@ -14,17 +21,17 @@
                 <th scope='col' class='p-2 border'>Wins</th>
                 <th scope='col' class='p-2 border'>Losses</th>
                 <th scope='col' class='p-2 border'>OTL</th>
-                <th scope='col' class='p-2 border'>Streak</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
                 <th scope='col' class='p-2 border'>Points</th>
-                <th scope='col' class='p-2 border'>Point %</th>
-                <th scope='col' class='p-2 border'>GPG</th>
-                <th scope='col' class='p-2 border'>GA</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Point %</th>
+                <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
+                <th scope='col' class='p-2 border mobile-hidden'>GA</th>
                 <th scope='col' class='p-2 border'>League Rank</th>
-                <th scope='col' class='p-2 border'>Conf. Name</th>
-                <th scope='col' class='p-2 border'>Conf. Rank</th>
-                <th scope='col' class='p-2 border'>Div. Name</th>
-                <th scope='col' class='p-2 border'>Div. Rank</th>
-                <th scope='col' class='p-2 border'>Wildcard Rank</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Conf. Name</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Div. Name</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Wildcard Rank</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
                 <th scope='col' class='p-2 border'>Next Game Opponent</th>
             </tr>
@@ -73,12 +80,20 @@
     <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">Not in playoff contention</span>
     <div class="border-top border-bottom border-gray-light mt-3 pt-3">
     <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Teams Without Fans</button>
+    <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Extended Stats</button>
 
 <script>
     document.getElementById('toggleButton').addEventListener('click', function () {
         var noFanRows = document.querySelectorAll('.no-fan-name');
         noFanRows.forEach(function (row) {
             row.style.display = (row.style.display === 'none') ? 'table-row' : 'none';
+        });
+    });
+
+    document.getElementById('toggleStatsButton').addEventListener('click', function () {
+    var statColumns = document.querySelectorAll('.mobile-hidden');
+    statColumns.forEach(function (column) {
+        column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
         });
     });
 </script>
