@@ -16,8 +16,8 @@
     <table class='color-shadow-large'>
         <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
             <tr>
-                <th scope='col' class='p-2 border'>Team Name</th>
-                <th scope='col' class='p-2 border'>Fan Name</th>
+                <th scope='col' class='p-2 border'>Team</th>
+                <th scope='col' class='p-2 border'>Fan</th>
                 <th scope='col' class='p-2 border'>Wins</th>
                 <th scope='col' class='p-2 border'>Losses</th>
                 <th scope='col' class='p-2 border'>OTL</th>
@@ -31,9 +31,9 @@
                 <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
                 <th scope='col' class='p-2 border mobile-hidden'>Div. Name</th>
                 <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Wildcard Rank</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
                 <th scope='col' class='p-2 border'>Next Game Date</th>
-                <th scope='col' class='p-2 border'>Next Game Opponent</th>
+                <th scope='col' class='p-2 border'>Next Game vs.</th>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@
                     <td class='p-2 border mobile-hidden'><%= team['divisionName'] %></td>
                     <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] %></td>
                     <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] %></td>
-                    <td class='p-2 border'><%= next_game_pacific %></td>
+                    <td class='p-2 border'><%= next_game_pacific ? next_game_pacific.strftime('%-m/%-d %H:%M') : 'TBD' %></td>
                     <td class='p-2 border'><%= next_games[team['teamAbbrev']['default']] ? (next_games[team['teamAbbrev']['default']]['awayTeam']['abbrev'] == team['teamAbbrev']['default'] ? next_games[team['teamAbbrev']['default']]['homeTeam']['placeName']['default'] : next_games[team['teamAbbrev']['default']]['awayTeam']['placeName']['default']) : 'TBD' %></td>
                 </tr>
             <% end %>
