@@ -57,17 +57,17 @@
                     <td class='p-2 border'><%= team['wins'] %></td>
                     <td class='p-2 border'><%= team['losses'] %></td>
                     <td class='p-2 border'><%= team['otLosses'] %></td>
-                    <td class='p-2 border'><%= team['streakCode'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['streakCode'] %></td>
                     <td class='p-2 border'><%= team['points'] %></td>
-                    <td class='p-2 border'><%= '%.2f' % (team['pointPctg'] * 100) %>%</td>
-                    <td class='p-2 border'><%= team['goalsForPctg'] %></td>
-                    <td class='p-2 border'><%= team['goalAgainst'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= '%.2f' % (team['pointPctg'] * 100) %>%</td>
+                    <td class='p-2 border mobile-hidden'><%= team['goalsForPctg'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['goalAgainst'] %></td>
                     <td class='p-2 border'><%= team['leagueSequence'] %></td>
-                    <td class='p-2 border'><%= team['conferenceName'] %></td>
-                    <td class='p-2 border'><%= team['conferenceSequence'] %></td>
-                    <td class='p-2 border'><%= team['divisionName'] %></td>
-                    <td class='p-2 border'><%= team['divisionSequence'] %></td>
-                    <td class='p-2 border'><%= team['wildcardSequence'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['conferenceName'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['conferenceSequence'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['divisionName'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] %></td>
                     <td class='p-2 border'><%= next_game_pacific %></td>
                     <td class='p-2 border'><%= next_games[team['teamAbbrev']['default']] ? (next_games[team['teamAbbrev']['default']]['awayTeam']['abbrev'] == team['teamAbbrev']['default'] ? next_games[team['teamAbbrev']['default']]['homeTeam']['placeName']['default'] : next_games[team['teamAbbrev']['default']]['awayTeam']['placeName']['default']) : 'TBD' %></td>
                 </tr>
