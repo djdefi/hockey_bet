@@ -12,11 +12,20 @@ def fetch_team_info
   response.code == 200 ? JSON.parse(response.body)["standings"] : []
 end
 
-# Fetch Schedule Information
+# Fetch Schedule Information with Redirect Handling
 def fetch_schedule_info
   url = "https://api-web.nhle.com/v1/schedule/now"
-  response = HTTParty.get(url)
-  response.code == 200 ? JSON.parse(response.body)["gameWeek"] : []
+  response = HTTParty.get(url, follow_redirects: true)
+  if response.code == 200
+    schedule_data = JSON.parse(response.body)
+    if schedule_data["gameWeek"].any?
+      schedule_data["gameWeek"]
+    else
+      []
+    end
+  else
+    []
+  end
 end
 
 # Map Managers to Teams

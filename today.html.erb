@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Today's NHL Games</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+    <h1 class='color-fg-success'>Today's NHL Games</h1>
+    <table class='color-shadow-large'>
+        <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+            <tr>
+                <th scope='col' class='p-2 border'>Game</th>
+                <th scope='col' class='p-2 border'>Time</th>
+                <th scope='col' class='p-2 border'>Teams</th>
+                <th scope='col' class='p-2 border'>Venue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @today_games.each do |game| %>
+                <tr>
+                    <td class='p-2 border'><%= game[:id] %></td>
+                    <td class='p-2 border'><%= game[:startTimeUTC] %></td>
+                    <td class='p-2 border'><%= game[:awayTeam][:placeName][:default] %> vs <%= game[:homeTeam][:placeName][:default] %></td>
+                    <td class='p-2 border'><%= game[:venue][:default] %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</body>
+</html>
