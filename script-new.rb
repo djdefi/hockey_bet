@@ -51,7 +51,7 @@ def convert_utc_to_pacific(utc_time_str)
 end
 
 # Render ERB Template
-def render_template(manager_team_map, teams, next_games)
+def render_template(manager_team_map, teams, next_games, last_updated)
   template = File.read("standings.html.erb")
   
   # Validate presence of variables
@@ -83,15 +83,19 @@ schedule = fetch_schedule_info
 next_games = find_next_games(teams, schedule)
 manager_team_map = map_managers_to_teams("fan_team.csv", teams)
 
+# Fetch the current time and store it in a variable
+last_updated = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+
 # Debugging output
 puts "Teams: #{teams.inspect}"
 puts "Schedule: #{schedule.inspect}"
 puts "Next Games: #{next_games.inspect}"
 puts "Manager Team Map: #{manager_team_map.inspect}"
+puts "Last Updated: #{last_updated}"
 
 # Ensure the output directory exists
 Dir.mkdir('_site') unless Dir.exist?('_site')
-html_content = render_template(manager_team_map, teams, next_games)
+html_content = render_template(manager_team_map, teams, next_games, last_updated)
 
 # Output to file
 File.write("_site/index.html", html_content)
