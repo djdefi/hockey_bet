@@ -53,6 +53,27 @@ end
 # Render ERB Template
 def render_template(manager_team_map, teams, next_games)
   template = File.read("standings.html.erb")
+  
+  # Validate presence of variables
+  missing_values = []
+  teams.each do |team|
+    missing_values << "team['teamName']['default']" unless team['teamName'] && team['teamName']['default']
+    missing_values << "manager_team_map[team['teamName']['default']]" unless manager_team_map[team['teamName']['default']]
+    missing_values << "next_games[team['teamAbbrev']['default']]" unless next_games[team['teamAbbrev']['default']]
+  end
+  
+  # Log missing values
+  unless missing_values.empty?
+    puts "Missing values: #{missing_values.join(', ')}"
+  end
+  
+  # Insert placeholder/null values
+  teams.each do |team|
+    team['teamName']['default'] ||= 'N/A'
+    manager_team_map[team['teamName']['default']] ||= 'N/A'
+    next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD', 'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } } }
+  end
+  
   ERB.new(template).result(binding)
 end
 
