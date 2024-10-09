@@ -62,6 +62,12 @@ schedule = fetch_schedule_info
 next_games = find_next_games(teams, schedule)
 manager_team_map = map_managers_to_teams("fan_team.csv", teams)
 
+# Debugging output
+puts "Teams: #{teams.inspect}"
+puts "Schedule: #{schedule.inspect}"
+puts "Next Games: #{next_games.inspect}"
+puts "Manager Team Map: #{manager_team_map.inspect}"
+
 # Ensure the output directory exists
 Dir.mkdir('_site') unless Dir.exist?('_site')
 html_content = render_template(manager_team_map, teams, next_games)
