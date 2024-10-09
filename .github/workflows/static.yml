@@ -44,6 +44,8 @@ jobs:
           pwd
           ruby script-new.rb
           ls -la *
+      - name: Copy favicon
+        run: cp /favicon.ico _site/
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
