@@ -84,7 +84,7 @@ next_games = find_next_games(teams, schedule)
 manager_team_map = map_managers_to_teams("fan_team.csv", teams)
 
 # Fetch the current time and store it in a variable
-last_updated = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+last_updated = Time.now.utc.strftime("%Y-%m-%d %H:%M:%S")
 
 # Debugging output
 puts "Teams: #{teams.inspect}"
