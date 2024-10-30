@@ -47,7 +47,8 @@ def check_fan_team_opponent(next_games, manager_team_map)
   next_games.each do |team_id, game|
     if game
       opponent_id = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['abbrev'] : game['awayTeam']['abbrev']
-      game['isFanTeamOpponent'] = manager_team_map.values.include?(opponent_id)
+      opponent_team_name = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
+      game['isFanTeamOpponent'] = manager_team_map.keys.include?(opponent_team_name)
     else
       game['isFanTeamOpponent'] = false
     end
