@@ -42,6 +42,18 @@ def find_next_games(teams, schedule)
   next_games
 end
 
+# Check if Next Opponent is a Fan Team
+def check_fan_team_opponent(next_games, manager_team_map)
+  next_games.each do |team_id, game|
+    if game
+      opponent_id = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['abbrev'] : game['awayTeam']['abbrev']
+      game['isFanTeamOpponent'] = manager_team_map.values.include?(opponent_id)
+    else
+      game['isFanTeamOpponent'] = false
+    end
+  end
+end
+
 # Time Conversion
 def convert_utc_to_pacific(utc_time_str)
   utc_time = Time.parse(utc_time_str.to_s)
@@ -71,7 +83,7 @@ def render_template(manager_team_map, teams, next_games, last_updated)
   teams.each do |team|
     team['teamName']['default'] ||= 'N/A'
     manager_team_map[team['teamName']['default']] ||= 'N/A'
-    next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD', 'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } } }
+    next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD', 'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } }, 'isFanTeamOpponent' => false }
   end
   
   ERB.new(template).result(binding)
@@ -82,6 +94,9 @@ teams = fetch_team_info
 schedule = fetch_schedule_info
 next_games = find_next_games(teams, schedule)
 manager_team_map = map_managers_to_teams("fan_team.csv", teams)
+
+# Check if next opponent is a fan team
+check_fan_team_opponent(next_games, manager_team_map)
 
 # Fetch the current time and store it in a variable
 last_updated = convert_utc_to_pacific(Time.now.utc.strftime("%Y-%m-%d %H:%M:%S"))
