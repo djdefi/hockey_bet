@@ -44,7 +44,7 @@ end
 
 # Time Conversion
 def convert_utc_to_pacific(utc_time_str)
-  utc_time = Time.parse(utc_time_str)
+  utc_time = Time.parse(utc_time_str.to_s)
   tz = TZInfo::Timezone.get('America/Los_Angeles')
   pacific_time = tz.utc_to_local(utc_time)
   pacific_time
