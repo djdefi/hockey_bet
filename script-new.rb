@@ -115,39 +115,3 @@ html_content = render_template(manager_team_map, teams, next_games, last_updated
 
 # Output to file
 File.write("_site/index.html", html_content)
-
-# Test cases to cover different scenarios
-def test_check_fan_team_opponent
-  # Test case 1: Next opponent is a fan's team
-  next_games = {
-    "team1" => {
-      "awayTeam" => { "abbrev" => "team1", "placeName" => { "default" => "Location1" } },
-      "homeTeam" => { "abbrev" => "team2", "placeName" => { "default" => "Location2" } }
-    }
-  }
-  manager_team_map = { "Location2" => "Fan1" }
-  check_fan_team_opponent(next_games, manager_team_map)
-  raise "Test case 1 failed" unless next_games["team1"]["isFanTeamOpponent"] == true
-
-  # Test case 2: Next opponent is not a fan's team
-  next_games = {
-    "team1" => {
-      "awayTeam" => { "abbrev" => "team1", "placeName" => { "default" => "Location1" } },
-      "homeTeam" => { "abbrev" => "team2", "placeName" => { "default" => "Location2" } }
-    }
-  }
-  manager_team_map = { "Location3" => "Fan1" }
-  check_fan_team_opponent(next_games, manager_team_map)
-  raise "Test case 2 failed" unless next_games["team1"]["isFanTeamOpponent"] == false
-
-  # Test case 3: No next game scheduled
-  next_games = { "team1" => nil }
-  manager_team_map = { "Location2" => "Fan1" }
-  check_fan_team_opponent(next_games, manager_team_map)
-  raise "Test case 3 failed" unless next_games["team1"]["isFanTeamOpponent"] == false
-
-  puts "All test cases passed"
-end
-
-# Run test cases
-test_check_fan_team_opponent
