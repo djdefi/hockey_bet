@@ -24,9 +24,9 @@ def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
   CSV.foreach(csv_file, headers: true) do |row|
     manager = row['fan']
-    fuzzy_team_location = row['team'].strip.downcase
-    matched_team = teams.find { |team| team['placeName']['default'].downcase.include?(fuzzy_team_location) }
-    manager_team_map[matched_team ? matched_team['placeName']['default'] : "Team Not Found"] = manager
+    fuzzy_team_name = row['team'].strip.downcase
+    matched_team = teams.find { |team| team['teamName']['default'].downcase.include?(fuzzy_team_name) }
+    manager_team_map[matched_team ? matched_team['teamName']['default'] : "Team Not Found"] = manager
   end
   manager_team_map
 end
@@ -47,8 +47,8 @@ def check_fan_team_opponent(next_games, manager_team_map)
   next_games.each do |team_id, game|
     if game
       opponent_id = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['abbrev'] : game['awayTeam']['abbrev']
-      opponent_team_location = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
-      game['isFanTeamOpponent'] = manager_team_map.keys.include?(opponent_team_location)
+      opponent_team_name = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
+      game['isFanTeamOpponent'] = manager_team_map.keys.include?(opponent_team_name)
     else
       game['isFanTeamOpponent'] = false if game
     end
