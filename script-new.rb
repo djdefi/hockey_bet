@@ -50,7 +50,7 @@ def check_fan_team_opponent(next_games, manager_team_map)
       opponent_team_location = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
       game['isFanTeamOpponent'] = manager_team_map.keys.include?(opponent_team_location)
     else
-      game['isFanTeamOpponent'] = false
+      game['isFanTeamOpponent'] = false if game
     end
   end
 end
