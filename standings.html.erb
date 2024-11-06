@@ -59,7 +59,7 @@
                 %>
                 <tr class='<%= row_class %> <%= manager_team_map[team['teamName']['default']] == "N/A" ? 'no-fan-name' : '' %>'>
                     <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= manager_team_map[team['teamName']['default']] || 'N/A' %></td>
+                    <td class='p-2 border'><%= manager_team_map[team['teamAbbrev']['default']] || 'N/A' %></td>
                     <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
                     <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
                     <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
