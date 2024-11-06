@@ -20,6 +20,7 @@ def fetch_schedule_info
 end
 
 # Map Managers to Teams using team name matching
+# Ensure team abbreviations are used for matching
 def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
   CSV.foreach(csv_file, headers: true) do |row|
@@ -27,12 +28,11 @@ def map_managers_to_teams(csv_file, teams)
     fuzzy_team_name = row['team'].strip.downcase
 
     matched_team = teams.find do |team|
-      team_full_name = team['teamName']['default'].downcase
+      team_name = team['teamName']['default'].downcase
       team_abbrev = team['teamAbbrev']['default'].downcase
 
-      # Match based on full or partial team names
-      team_full_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_full_name) ||
-      team_abbrev.include?(fuzzy_team_name)
+      team_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_name) ||
+      team_abbrev.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_abbrev)
     end
 
     if matched_team
