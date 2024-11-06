@@ -44,19 +44,22 @@ end
 
 # Check if Next Opponent is a Fan Team
 def check_fan_team_opponent(next_games, manager_team_map)
+  # Create a set of fan-owned team abbreviations for quick lookup
+  fan_team_ids = manager_team_map.keys.map do |team_name|
+    matching_team = manager_team_map.find { |key, _| key.downcase.include?(team_name.downcase) }
+    matching_team ? matching_team.first.downcase : nil
+  end.compact.to_set
+
   next_games.each do |team_id, game|
     if game
-      opponent_id = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['abbrev'] : game['awayTeam']['abbrev']
+      opponent_id = game['awayTeam']['abbrev'].downcase == team_id.downcase ? game['homeTeam']['abbrev'].downcase : game['awayTeam']['abbrev'].downcase
 
-      # Match the opponent ID to the manager_team_map keys
-      opponent_team = manager_team_map.keys.find { |key| key.downcase.include?(opponent_id.downcase) }
-      
       # Debugging output
       puts "Team ID: #{team_id}"
       puts "Opponent ID: #{opponent_id}"
-      puts "Is Fan Team Opponent: #{!opponent_team.nil?}"
-      
-      game['isFanTeamOpponent'] = !opponent_team.nil?
+      puts "Is Fan Team Opponent: #{fan_team_ids.include?(opponent_id)}"
+
+      game['isFanTeamOpponent'] = fan_team_ids.include?(opponent_id)
     else
       # Debugging output for nil game
       puts "Team ID: #{team_id} has no game scheduled."
@@ -64,7 +67,6 @@ def check_fan_team_opponent(next_games, manager_team_map)
     end
   end
 end
-
 
 # Time Conversion
 def convert_utc_to_pacific(utc_time_str)
