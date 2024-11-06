@@ -48,9 +48,19 @@ def check_fan_team_opponent(next_games, manager_team_map)
     if game
       opponent_id = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['abbrev'] : game['awayTeam']['abbrev']
       opponent_team_name = game['awayTeam']['abbrev'] == team_id ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
+      
+      # Debugging output
+      puts "Team ID: #{team_id}"
+      puts "Opponent ID: #{opponent_id}"
+      puts "Opponent Team Name: #{opponent_team_name}"
+      puts "Is Fan Team Opponent: #{manager_team_map.keys.include?(opponent_team_name)}"
+      
       game['isFanTeamOpponent'] = manager_team_map.keys.include?(opponent_team_name)
     else
       game['isFanTeamOpponent'] = false if game
+
+      # Debugging output for nil game
+      puts "Team ID: #{team_id} has no game scheduled."
     end
   end
 end
