@@ -19,14 +19,25 @@ def fetch_schedule_info
   response.code == 200 ? JSON.parse(response.body)["gameWeek"] : []
 end
 
-# Map Managers to Teams
+# Map Managers to Teams using abbreviations
 def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
   CSV.foreach(csv_file, headers: true) do |row|
     manager = row['fan']
     fuzzy_team_name = row['team'].strip.downcase
-    matched_team = teams.find { |team| team['teamName']['default'].downcase.include?(fuzzy_team_name) }
-    manager_team_map[matched_team ? matched_team['teamName']['default'] : "Team Not Found"] = manager
+
+    matched_team = teams.find do |team|
+      team_abbrev = team['teamAbbrev']['default'].downcase
+      team_name = team['teamName']['default'].downcase
+      team_abbrev.include?(fuzzy_team_name) || team_name.include?(fuzzy_team_name)
+    end
+
+    if matched_team
+      abbreviation = matched_team['teamAbbrev']['default']
+      manager_team_map[abbreviation] = manager
+    else
+      manager_team_map["Team Not Found"] = manager
+    end
   end
   manager_team_map
 end
@@ -44,11 +55,7 @@ end
 
 # Check if Next Opponent is a Fan Team
 def check_fan_team_opponent(next_games, manager_team_map)
-  # Create a set of fan-owned team abbreviations for quick lookup
-  fan_team_ids = manager_team_map.keys.map do |team_name|
-    matching_team = manager_team_map.find { |key, _| key.downcase.include?(team_name.downcase) }
-    matching_team ? matching_team.first.downcase : nil
-  end.compact.to_set
+  fan_team_ids = manager_team_map.keys.map(&:downcase).to_set
 
   next_games.each do |team_id, game|
     if game
