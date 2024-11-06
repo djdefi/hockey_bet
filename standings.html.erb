@@ -95,7 +95,7 @@
     document.getElementById('toggleButton').addEventListener('click', function () {
         var noFanRows = document.querySelectorAll('.no-fan-name');
         noFanRows.forEach(function (row) {
-            row.style.display = (row.style.display === 'none') ? 'table-row' : 'none';
+            row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
         });
     });
 
