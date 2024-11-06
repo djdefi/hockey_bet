@@ -19,7 +19,7 @@ def fetch_schedule_info
   response.code == 200 ? JSON.parse(response.body)["gameWeek"] : []
 end
 
-# Map Managers to Teams using abbreviations
+# Map Managers to Teams using team name matching
 def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
   CSV.foreach(csv_file, headers: true) do |row|
@@ -27,16 +27,19 @@ def map_managers_to_teams(csv_file, teams)
     fuzzy_team_name = row['team'].strip.downcase
 
     matched_team = teams.find do |team|
+      team_full_name = team['teamName']['default'].downcase
       team_abbrev = team['teamAbbrev']['default'].downcase
-      team_name = team['teamName']['default'].downcase
-      team_abbrev.include?(fuzzy_team_name) || team_name.include?(fuzzy_team_name)
+
+      # Match based on full or partial team names
+      team_full_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_full_name) ||
+      team_abbrev.include?(fuzzy_team_name)
     end
 
     if matched_team
       abbreviation = matched_team['teamAbbrev']['default']
       manager_team_map[abbreviation] = manager
     else
-      manager_team_map["Team Not Found"] = manager
+      manager_team_map["N/A"] = manager
     end
   end
   manager_team_map
