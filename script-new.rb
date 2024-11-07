@@ -42,13 +42,6 @@ def map_managers_to_teams(csv_file, teams)
       manager_team_map["N/A"] = manager
     end
   end
-
-  # Include all teams in the manager_team_map
-  teams.each do |team|
-    abbreviation = team['teamAbbrev']['default']
-    manager_team_map[abbreviation] ||= "N/A"
-  end
-
   manager_team_map
 end
 
