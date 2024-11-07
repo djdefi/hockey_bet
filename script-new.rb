@@ -39,7 +39,7 @@ def map_managers_to_teams(csv_file, teams)
       abbreviation = matched_team['teamAbbrev']['default']
       manager_team_map[abbreviation] = manager
     else
-      manager_team_map["N/A"] = manager
+      manager_team_map[manager] = "N/A"
     end
   end
   puts "Manager Team Map: #{manager_team_map.inspect}"
