@@ -42,6 +42,7 @@ def map_managers_to_teams(csv_file, teams)
       manager_team_map["N/A"] = manager
     end
   end
+  puts "Manager Team Map: #{manager_team_map.inspect}"
   manager_team_map
 end
 
@@ -110,6 +111,7 @@ def render_template(manager_team_map, teams, next_games, last_updated)
     next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD', 'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } }, 'isFanTeamOpponent' => false }
   end
   
+  puts "Manager Team Map before rendering: #{manager_team_map.inspect}"
   ERB.new(template).result(binding)
 end
 
