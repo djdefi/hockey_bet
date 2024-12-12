@@ -25,14 +25,13 @@ def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
   CSV.foreach(csv_file, headers: true) do |row|
     manager = row['fan']
-    fuzzy_team_name = row['team'].strip.downcase
+    exact_team_name = row['team'].strip.downcase
 
     matched_team = teams.find do |team|
       team_name = team['teamName']['default'].downcase
       team_abbrev = team['teamAbbrev']['default'].downcase
 
-      team_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_name) ||
-      team_abbrev.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_abbrev)
+      team_name == exact_team_name || team_abbrev == exact_team_name
     end
 
     if matched_team
