@@ -93,7 +93,7 @@
 
 <script>
     document.getElementById('toggleButton').addEventListener('click', function () {
-        var noFanRows = document.querySelectorAll('.no-fan-name');
+        var noFanRows = document.querySelectorAll('tr.no-fan-name');
         noFanRows.forEach(function (row) {
             row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
         });
