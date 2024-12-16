@@ -106,6 +106,10 @@
         });
     });
 
+    document.querySelectorAll('tr').forEach(function (row) {
+        console.log('Row classes:', row.className);
+    });
+
     document.getElementById('toggleStatsButton').addEventListener('click', function () {
         var statColumns = document.querySelectorAll('.mobile-hidden');
         console.log('Toggle Stats Button Clicked');
