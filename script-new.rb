@@ -27,9 +27,15 @@ def map_managers_to_teams(csv_file, teams)
     manager = row['fan']
     fuzzy_team_name = row['team'].strip.downcase
 
+    # Debugging output
+    puts "Processing manager: #{manager}, team: #{fuzzy_team_name}"
+
     matched_team = teams.find do |team|
       team_name = team['teamName']['default'].downcase
       team_abbrev = team['teamAbbrev']['default'].downcase
+
+      # Debugging output
+      puts "Checking against team: #{team_name}, abbreviation: #{team_abbrev}"
 
       team_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_name) ||
       team_abbrev.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_abbrev)
@@ -38,8 +44,12 @@ def map_managers_to_teams(csv_file, teams)
     if matched_team
       abbreviation = matched_team['teamAbbrev']['default']
       manager_team_map[abbreviation] = manager
+      # Debugging output
+      puts "Matched team: #{matched_team['teamName']['default']} (#{abbreviation}) to manager: #{manager}"
     else
       manager_team_map[manager] = "N/A"
+      # Debugging output
+      puts "No match found for manager: #{manager}, team: #{fuzzy_team_name}"
     end
   end
   puts "Manager Team Map: #{manager_team_map.inspect}"
