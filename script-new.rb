@@ -23,6 +23,7 @@ end
 # Ensure team abbreviations are used for matching
 def map_managers_to_teams(csv_file, teams)
   manager_team_map = {}
+  team_abbrevs = teams.map { |team| team['teamAbbrev']['default'] }
   CSV.foreach(csv_file, headers: true) do |row|
     manager = row['fan']
     fuzzy_team_name = row['team'].strip.downcase
@@ -52,6 +53,12 @@ def map_managers_to_teams(csv_file, teams)
       puts "No match found for manager: #{manager}, team: #{fuzzy_team_name}"
     end
   end
+
+  # Add teams without a fan to the map
+  team_abbrevs.each do |abbrev|
+    manager_team_map[abbrev] ||= "N/A"
+  end
+
   puts "Manager Team Map: #{manager_team_map.inspect}"
   manager_team_map
 end
