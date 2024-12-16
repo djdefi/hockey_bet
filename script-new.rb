@@ -37,8 +37,8 @@ def map_managers_to_teams(csv_file, teams)
       # Debugging output
       puts "Checking against team: #{team_name}, abbreviation: #{team_abbrev}"
 
-      team_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_name) ||
-      team_abbrev.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_abbrev)
+      (team_name.include?(fuzzy_team_name) || fuzzy_team_name.include?(team_name)) ||
+      (team_abbrev == fuzzy_team_name)
     end
 
     if matched_team
