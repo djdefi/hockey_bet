@@ -110,6 +110,8 @@
         console.log('Row classes:', row.className);
     });
 
+    console.log('Manager Team Map:', <%= manager_team_map.to_json.html_safe %>);
+
     document.getElementById('toggleStatsButton').addEventListener('click', function () {
         var statColumns = document.querySelectorAll('.mobile-hidden');
         console.log('Toggle Stats Button Clicked');
