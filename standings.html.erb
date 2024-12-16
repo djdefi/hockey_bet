@@ -98,26 +98,14 @@
 <script>
     document.getElementById('toggleButton').addEventListener('click', function () {
         var noFanRows = document.querySelectorAll('tr.no-fan-name');
-        console.log('Toggle Button Clicked');
-        console.log('Number of rows without fans:', noFanRows.length);
         noFanRows.forEach(function (row) {
-            console.log('Toggling row:', row);
             row.classList.toggle('hidden');
         });
     });
 
-    document.querySelectorAll('tr').forEach(function (row) {
-        console.log('Row classes:', row.className);
-    });
-
-    console.log('Manager Team Map:', <%= manager_team_map.to_json.html_safe %>);
-
     document.getElementById('toggleStatsButton').addEventListener('click', function () {
         var statColumns = document.querySelectorAll('.mobile-hidden');
-        console.log('Toggle Stats Button Clicked');
-        console.log('Number of stat columns:', statColumns.length);
         statColumns.forEach(function (column) {
-            console.log('Toggling column:', column);
             column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
         });
     });
