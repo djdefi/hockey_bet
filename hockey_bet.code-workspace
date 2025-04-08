@@ -1,0 +1,95 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "files.associations": {
+      "*.erb": "erb"
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "bash",
+        "icon": "terminal-bash"
+      }
+    },
+    "ruby.rubocop.executePath": "/usr/local/bin/",
+    "ruby.rubocop.configFilePath": ".rubocop.yml",
+    "ruby.rubocop.onSave": true,
+    "ruby.useBundler": true,
+    "ruby.intellisense": "rubyLocate",
+    "ruby.useLanguageServer": true,
+    "editor.formatOnSave": true,
+    "task.quickOpen.history": 15,
+    "task.quickOpen.showAll": true
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Update NHL Standings",
+        "type": "shell",
+        "command": "./update_standings.rb",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Run Tests",
+        "type": "shell",
+        "command": "bundle exec rspec",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Run API Tests",
+        "type": "shell",
+        "command": "ruby .github/scripts/check_api.rb",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        }
+      },
+      {
+        "label": "Update Ruby to Latest Version",
+        "type": "shell",
+        "command": "if command -v rbenv &> /dev/null; then rbenv install $(rbenv install -l | grep -v - | tail -1) && rbenv global $(rbenv install -l | grep -v - | tail -1); elif command -v rvm &> /dev/null; then rvm get stable && rvm install ruby --latest; else echo 'No Ruby version manager found'; fi",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug NHL Standings",
+        "type": "Ruby",
+        "request": "launch",
+        "program": "${workspaceFolder}/update_standings.rb",
+        "args": []
+      }
+    ]
+  }
+}
