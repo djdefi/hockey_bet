@@ -22,8 +22,9 @@ jobs:
   build-and-deploy-preview:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: github-pages-pr-${{ github.event.pull_request.number }}
       url: ${{ steps.deployment.outputs.page_url }}
+      deployment_target: preview
 
     steps:
       - name: Checkout code
@@ -65,6 +66,6 @@ jobs:
           PREVIEW_URL="${{ steps.deployment.outputs.page_url }}"
           gh pr comment ${{ github.event.pull_request.number }} --body "📊 **Preview Environment Deployed!**
 
-You can view the preview at: ${PREVIEW_URL}
+          You can view the preview at: ${PREVIEW_URL}
 
-This preview will be updated automatically when you make changes to this PR."
+          This preview will be updated automatically when you make changes to this PR."
