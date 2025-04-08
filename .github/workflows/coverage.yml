@@ -2,6 +2,10 @@
 
 name: Test Coverage
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   push:
     branches: [ main ]
@@ -18,11 +22,13 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1.229.0
       with:
-        ruby-version: head
-        bundler-cache: true
+        ruby-version: '3.2.2'
 
     - name: Install dependencies
-      run: bundle install
+      run: |
+        bundle config unset deployment
+        bundle config set --local path 'vendor/bundle'
+        bundle install
 
     - name: Run tests with coverage
       run: bundle exec rspec
