@@ -17,12 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Tests with Coverage
     steps:
-    - uses: actions/checkout@v4 # v3.5.0      - name: Set up Ruby
+    - uses: actions/checkout@v4 # v3.5.0
+
+    - name: Set up Ruby
       uses: ruby/setup-ruby@v1.229.0
       with:
         ruby-version: '3.4.0'
-        bundler-cache: false      - name: Install dependencies
-        run: |
+        bundler-cache: false
+
+    - name: Install dependencies
+      run: |
           gem update --system
           gem install bundler:2.4.3
           bundle config set --local path 'vendor/bundle'
