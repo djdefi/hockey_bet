@@ -29,7 +29,7 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     ice_nine (0.11.2)
-    mini_mime (1.1.2)
+    mini_mime (1.1.5)
     mini_portile2 (2.8.8)
     multi_xml (0.6.0)
     nokogiri (1.15.7)
