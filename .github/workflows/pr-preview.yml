@@ -36,10 +36,8 @@ jobs:
 
       - name: Generate standings page
         run: |
-          gem install bundler:2.4.3
-          bundle config set --local without 'development test'
           mkdir -p _site
-          ruby update_standings.rb
+          bundle exec ruby update_standings.rb
           # Create a simple index file that indicates this is a preview
           echo "<p>This is a preview environment for PR #${{ github.event.pull_request.number }}</p>" >> _site/index.html
           echo "<p>Preview generated at $(date)</p>" >> _site/index.html
