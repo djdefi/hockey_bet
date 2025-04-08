@@ -1,0 +1,10 @@
+# Ignore vendored gems
+/vendor/bundle
+
+# Ignore other common files
+*.log
+*.tmp
+*.swp
+.DS_Store
+coverage/
+_site/

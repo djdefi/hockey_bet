@@ -1,0 +1,73 @@
+name: PR Preview Deployment
+
+# Add required permissions for Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy-preview:
+    runs-on: ubuntu-latest
+    environment:
+      name: preview-${{ github.event.pull_request.number }}
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1.229.0
+        with:
+          ruby-version: '3.2.2'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler:2.4.3
+          bundle config set --local path 'vendor/bundle'
+          bundle config set --local without 'development test'
+          bundle install --jobs 4 --retry 3
+
+      - name: Generate standings page
+        run: |
+          mkdir -p _site
+          bundle exec ruby update_standings.rb
+          # Create a simple index file that indicates this is a preview
+          echo "<p>This is a preview environment for PR #${{ github.event.pull_request.number }}</p>" >> _site/index.html
+          echo "<p>Preview generated at $(date)</p>" >> _site/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          preview: true
+          artifact_name: github-pages
+
+      - name: Comment on PR with preview URL
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PREVIEW_URL="${{ steps.deployment.outputs.page_url }}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "📊 **Preview Environment Deployed!**
+
+          You can view the preview at: ${PREVIEW_URL}
+
+          This preview will be updated automatically when you make changes to this PR."

@@ -1,0 +1,1168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NHL Standings</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        @media screen and (max-width: 768px) {
+            .mobile-hidden {
+                display: none;
+            }
+            .no-fan-name {
+                display: none;
+            }
+            .responsive-table {
+                font-size: 0.85em;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .status-icon {
+            padding: 0 2px;
+        }
+        .status-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+        .fan-team-indicator {
+            font-weight: bold;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+    <h1 class='color-fg-success'>NHL Team Standings</h1>
+    <p>Last updated at: 2025-04-07 23:02:59 Pacific Time</p>
+    
+    <div class="status-legend">
+        
+            <div class="status-item color-bg-success-emphasis color-fg-on-emphasis">
+                <span class="status-icon" aria-hidden="true">✔️</span>
+                <span>Clinched</span>
+            </div>
+        
+            <div class="status-item color-bg-attention-emphasis color-fg-on-emphasis">
+                <span class="status-icon" aria-hidden="true">⚠️</span>
+                <span>Contending</span>
+            </div>
+        
+            <div class="status-item color-bg-danger-emphasis color-fg-on-emphasis">
+                <span class="status-icon" aria-hidden="true">❌</span>
+                <span>Eliminated</span>
+            </div>
+        
+        <div class="status-item">
+            <span class="status-icon" aria-hidden="true">🔥</span>
+            <span>Playing against a fan-owned team</span>
+        </div>
+    </div>
+    
+    <div class="responsive-table overflow-auto">
+        <table class='color-shadow-large'>
+            <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+                <tr>
+                    <th scope='col' class='p-2 border'>Team</th>
+                    <th scope='col' class='p-2 border'>Fan</th>
+                    <th scope='col' class='p-2 border'>Status</th>
+                    <th scope='col' class='p-2 border'>W</th>
+                    <th scope='col' class='p-2 border'>L</th>
+                    <th scope='col' class='p-2 border'>OTL</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
+                    <th scope='col' class='p-2 border'>Pts</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Pt %</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GA</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>League Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conference</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Division</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
+                    <th scope='col' class='p-2 border'>Next Game</th>
+                    <th scope='col' class='p-2 border'>Next Opponent</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Winnipeg Jets</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Dan R.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>53</td>
+                        <td class='p-2 border'>21</td>
+                        <td class='p-2 border'>4</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>110</td>
+                        <td class='p-2 border mobile-hidden'>70.51%</td>
+                        <td class='p-2 border mobile-hidden'>3.397436</td>
+                        <td class='p-2 border mobile-hidden'>182</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/7 16:30</td>
+                        <td class='p-2 border'>
+                            St. Louis
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Washington Capitals</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Mike M.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>49</td>
+                        <td class='p-2 border'>19</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>107</td>
+                        <td class='p-2 border mobile-hidden'>69.48%</td>
+                        <td class='p-2 border mobile-hidden'>3.597403</td>
+                        <td class='p-2 border mobile-hidden'>211</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/10 16:30</td>
+                        <td class='p-2 border'>
+                            Carolina
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Dallas Stars</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>50</td>
+                        <td class='p-2 border'>22</td>
+                        <td class='p-2 border'>5</td>
+                        <td class='p-2 border mobile-hidden'>OT</td>
+                        <td class='p-2 border'>105</td>
+                        <td class='p-2 border mobile-hidden'>68.18%</td>
+                        <td class='p-2 border mobile-hidden'>3.428571</td>
+                        <td class='p-2 border mobile-hidden'>198</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 17:00</td>
+                        <td class='p-2 border'>
+                            Vancouver
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Vegas Golden Knights</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Zak S.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>47</td>
+                        <td class='p-2 border'>22</td>
+                        <td class='p-2 border'>8</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>102</td>
+                        <td class='p-2 border mobile-hidden'>66.23%</td>
+                        <td class='p-2 border mobile-hidden'>3.350649</td>
+                        <td class='p-2 border mobile-hidden'>206</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 18:30</td>
+                        <td class='p-2 border'>
+                            Colorado
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Toronto Maple Leafs</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>47</td>
+                        <td class='p-2 border'>25</td>
+                        <td class='p-2 border'>4</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>98</td>
+                        <td class='p-2 border mobile-hidden'>64.47%</td>
+                        <td class='p-2 border mobile-hidden'>3.289474</td>
+                        <td class='p-2 border mobile-hidden'>221</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Florida
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Colorado Avalanche</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Jeff C.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>47</td>
+                        <td class='p-2 border'>27</td>
+                        <td class='p-2 border'>4</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>98</td>
+                        <td class='p-2 border mobile-hidden'>62.82%</td>
+                        <td class='p-2 border mobile-hidden'>3.397436</td>
+                        <td class='p-2 border mobile-hidden'>221</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 18:30</td>
+                        <td class='p-2 border'>
+                            Vegas
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Los Angeles Kings</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Sean R.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>44</td>
+                        <td class='p-2 border'>24</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>97</td>
+                        <td class='p-2 border mobile-hidden'>62.99%</td>
+                        <td class='p-2 border mobile-hidden'>2.948052</td>
+                        <td class='p-2 border mobile-hidden'>191</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            Seattle
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Carolina Hurricanes</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>46</td>
+                        <td class='p-2 border'>26</td>
+                        <td class='p-2 border'>4</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>96</td>
+                        <td class='p-2 border mobile-hidden'>63.16%</td>
+                        <td class='p-2 border mobile-hidden'>3.25</td>
+                        <td class='p-2 border mobile-hidden'>207</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Buffalo
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Tampa Bay Lightning</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>45</td>
+                        <td class='p-2 border'>26</td>
+                        <td class='p-2 border'>6</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>96</td>
+                        <td class='p-2 border mobile-hidden'>62.34%</td>
+                        <td class='p-2 border mobile-hidden'>3.584416</td>
+                        <td class='p-2 border mobile-hidden'>202</td>
+                        <td class='p-2 border mobile-hidden'>9</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/7 16:00</td>
+                        <td class='p-2 border'>
+                            New York
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Edmonton Oilers</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>44</td>
+                        <td class='p-2 border'>28</td>
+                        <td class='p-2 border'>5</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>93</td>
+                        <td class='p-2 border mobile-hidden'>60.39%</td>
+                        <td class='p-2 border mobile-hidden'>3.168831</td>
+                        <td class='p-2 border mobile-hidden'>225</td>
+                        <td class='p-2 border mobile-hidden'>10</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            Anaheim
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-attention-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>St. Louis Blues</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team is still eligible via wild card standings" role="img">
+                                ⚠️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>43</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>7</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>93</td>
+                        <td class='p-2 border mobile-hidden'>58.86%</td>
+                        <td class='p-2 border mobile-hidden'>3.063291</td>
+                        <td class='p-2 border mobile-hidden'>224</td>
+                        <td class='p-2 border mobile-hidden'>11</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border'>4/7 16:30</td>
+                        <td class='p-2 border'>
+                            Winnipeg
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Florida Panthers</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>44</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>4</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>92</td>
+                        <td class='p-2 border mobile-hidden'>59.74%</td>
+                        <td class='p-2 border mobile-hidden'>3.090909</td>
+                        <td class='p-2 border mobile-hidden'>209</td>
+                        <td class='p-2 border mobile-hidden'>12</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Toronto
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-attention-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Minnesota Wild</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Ryan T.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team is still eligible via wild card standings" role="img">
+                                ⚠️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>42</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>7</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>91</td>
+                        <td class='p-2 border mobile-hidden'>58.33%</td>
+                        <td class='p-2 border mobile-hidden'>2.717949</td>
+                        <td class='p-2 border mobile-hidden'>224</td>
+                        <td class='p-2 border mobile-hidden'>13</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border'>4/9 17:00</td>
+                        <td class='p-2 border'>
+                            San Jose
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-attention-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Ottawa Senators</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team is still eligible via wild card standings" role="img">
+                                ⚠️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>42</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>6</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>90</td>
+                        <td class='p-2 border mobile-hidden'>58.44%</td>
+                        <td class='p-2 border mobile-hidden'>2.883117</td>
+                        <td class='p-2 border mobile-hidden'>215</td>
+                        <td class='p-2 border mobile-hidden'>14</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>1</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Columbus
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-success-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>New Jersey Devils</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Travis R.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team has secured a playoff berth" role="img">
+                                ✔️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>41</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>7</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>89</td>
+                        <td class='p-2 border mobile-hidden'>57.79%</td>
+                        <td class='p-2 border mobile-hidden'>3.0</td>
+                        <td class='p-2 border mobile-hidden'>201</td>
+                        <td class='p-2 border mobile-hidden'>15</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border mobile-hidden'>0</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Boston
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Calgary Flames</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>37</td>
+                        <td class='p-2 border'>27</td>
+                        <td class='p-2 border'>13</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>87</td>
+                        <td class='p-2 border mobile-hidden'>56.49%</td>
+                        <td class='p-2 border mobile-hidden'>2.636364</td>
+                        <td class='p-2 border mobile-hidden'>225</td>
+                        <td class='p-2 border mobile-hidden'>16</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>9</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            San Jose
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-attention-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Montréal Canadiens</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team is still eligible via wild card standings" role="img">
+                                ⚠️
+                            </span>
+                        </td>
+                        <td class='p-2 border'>38</td>
+                        <td class='p-2 border'>30</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>85</td>
+                        <td class='p-2 border mobile-hidden'>55.19%</td>
+                        <td class='p-2 border mobile-hidden'>3.012987</td>
+                        <td class='p-2 border mobile-hidden'>252</td>
+                        <td class='p-2 border mobile-hidden'>17</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>2</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Detroit
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Vancouver Canucks</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>35</td>
+                        <td class='p-2 border'>29</td>
+                        <td class='p-2 border'>13</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>83</td>
+                        <td class='p-2 border mobile-hidden'>53.90%</td>
+                        <td class='p-2 border mobile-hidden'>2.87013</td>
+                        <td class='p-2 border mobile-hidden'>239</td>
+                        <td class='p-2 border mobile-hidden'>18</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>10</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border'>4/8 17:00</td>
+                        <td class='p-2 border'>
+                            Dallas
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Utah Hockey Club</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Tyler F.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>35</td>
+                        <td class='p-2 border'>30</td>
+                        <td class='p-2 border'>12</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>82</td>
+                        <td class='p-2 border mobile-hidden'>53.25%</td>
+                        <td class='p-2 border mobile-hidden'>2.831169</td>
+                        <td class='p-2 border mobile-hidden'>234</td>
+                        <td class='p-2 border mobile-hidden'>19</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>11</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border'>4/8 18:00</td>
+                        <td class='p-2 border'>
+                            Seattle
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Detroit Red Wings</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>36</td>
+                        <td class='p-2 border'>33</td>
+                        <td class='p-2 border'>7</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>79</td>
+                        <td class='p-2 border mobile-hidden'>51.97%</td>
+                        <td class='p-2 border mobile-hidden'>2.868421</td>
+                        <td class='p-2 border mobile-hidden'>238</td>
+                        <td class='p-2 border mobile-hidden'>20</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>9</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>3</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Montréal
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>New York Rangers</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>36</td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>7</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>79</td>
+                        <td class='p-2 border mobile-hidden'>51.30%</td>
+                        <td class='p-2 border mobile-hidden'>2.987013</td>
+                        <td class='p-2 border mobile-hidden'>235</td>
+                        <td class='p-2 border mobile-hidden'>21</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>10</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border mobile-hidden'>4</td>
+                        <td class='p-2 border'>4/7 16:00</td>
+                        <td class='p-2 border'>
+                            Tampa Bay
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>New York Islanders</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>32</td>
+                        <td class='p-2 border'>10</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>78</td>
+                        <td class='p-2 border mobile-hidden'>51.32%</td>
+                        <td class='p-2 border mobile-hidden'>2.763158</td>
+                        <td class='p-2 border mobile-hidden'>231</td>
+                        <td class='p-2 border mobile-hidden'>22</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>11</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border mobile-hidden'>5</td>
+                        <td class='p-2 border'>4/8 17:00</td>
+                        <td class='p-2 border'>
+                            Nashville
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Columbus Blue Jackets</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>33</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>77</td>
+                        <td class='p-2 border mobile-hidden'>50.66%</td>
+                        <td class='p-2 border mobile-hidden'>3.223684</td>
+                        <td class='p-2 border mobile-hidden'>262</td>
+                        <td class='p-2 border mobile-hidden'>23</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>12</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Ottawa
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Anaheim Ducks</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Keith R.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>35</td>
+                        <td class='p-2 border'>8</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>76</td>
+                        <td class='p-2 border mobile-hidden'>49.35%</td>
+                        <td class='p-2 border mobile-hidden'>2.74026</td>
+                        <td class='p-2 border mobile-hidden'>245</td>
+                        <td class='p-2 border mobile-hidden'>24</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>12</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border mobile-hidden'>6</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            Edmonton
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Buffalo Sabres</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Ryan B.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>36</td>
+                        <td class='p-2 border'>6</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>74</td>
+                        <td class='p-2 border mobile-hidden'>48.68%</td>
+                        <td class='p-2 border mobile-hidden'>3.328947</td>
+                        <td class='p-2 border mobile-hidden'>268</td>
+                        <td class='p-2 border mobile-hidden'>25</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>13</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Carolina
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Seattle Kraken</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Trevor R.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>34</td>
+                        <td class='p-2 border'>38</td>
+                        <td class='p-2 border'>6</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>74</td>
+                        <td class='p-2 border mobile-hidden'>47.44%</td>
+                        <td class='p-2 border mobile-hidden'>3.025641</td>
+                        <td class='p-2 border mobile-hidden'>247</td>
+                        <td class='p-2 border mobile-hidden'>26</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>13</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            Los Angeles
+                            
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Pittsburgh Penguins</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>31</td>
+                        <td class='p-2 border'>35</td>
+                        <td class='p-2 border'>12</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>74</td>
+                        <td class='p-2 border mobile-hidden'>47.44%</td>
+                        <td class='p-2 border mobile-hidden'>2.923077</td>
+                        <td class='p-2 border mobile-hidden'>285</td>
+                        <td class='p-2 border mobile-hidden'>27</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>14</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Chicago
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Philadelphia Flyers</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>31</td>
+                        <td class='p-2 border'>37</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>71</td>
+                        <td class='p-2 border mobile-hidden'>46.10%</td>
+                        <td class='p-2 border mobile-hidden'>2.844156</td>
+                        <td class='p-2 border mobile-hidden'>266</td>
+                        <td class='p-2 border mobile-hidden'>28</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>15</td>
+                        <td class='p-2 border mobile-hidden'>Metropolitan</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>9</td>
+                        <td class='p-2 border'>4/9 16:30</td>
+                        <td class='p-2 border'>
+                            New York
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Boston Bruins</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>31</td>
+                        <td class='p-2 border'>38</td>
+                        <td class='p-2 border'>9</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>71</td>
+                        <td class='p-2 border mobile-hidden'>45.51%</td>
+                        <td class='p-2 border mobile-hidden'>2.628205</td>
+                        <td class='p-2 border mobile-hidden'>259</td>
+                        <td class='p-2 border mobile-hidden'>29</td>
+                        <td class='p-2 border mobile-hidden'>Eastern</td>
+                        <td class='p-2 border mobile-hidden'>16</td>
+                        <td class='p-2 border mobile-hidden'>Atlantic</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>10</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            New Jersey
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>Nashville Predators</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            David K.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>27</td>
+                        <td class='p-2 border'>42</td>
+                        <td class='p-2 border'>8</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>62</td>
+                        <td class='p-2 border mobile-hidden'>40.26%</td>
+                        <td class='p-2 border mobile-hidden'>2.493506</td>
+                        <td class='p-2 border mobile-hidden'>252</td>
+                        <td class='p-2 border mobile-hidden'>30</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>14</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>7</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border'>4/8 17:00</td>
+                        <td class='p-2 border'>
+                            New York
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 no-fan-name'>
+                        <td class='p-2 border'>Chicago Blackhawks</td>
+                        <td class='p-2 border '>
+                            N/A
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>22</td>
+                        <td class='p-2 border'>45</td>
+                        <td class='p-2 border'>10</td>
+                        <td class='p-2 border mobile-hidden'>W</td>
+                        <td class='p-2 border'>54</td>
+                        <td class='p-2 border mobile-hidden'>35.06%</td>
+                        <td class='p-2 border mobile-hidden'>2.714286</td>
+                        <td class='p-2 border mobile-hidden'>278</td>
+                        <td class='p-2 border mobile-hidden'>31</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>15</td>
+                        <td class='p-2 border mobile-hidden'>Central</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>9</td>
+                        <td class='p-2 border'>4/8 16:00</td>
+                        <td class='p-2 border'>
+                            Pittsburgh
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr class='color-bg-danger-emphasis color-fg-on-emphasis mr-1 '>
+                        <td class='p-2 border'>San Jose Sharks</td>
+                        <td class='p-2 border fan-team-indicator'>
+                            Brian D.
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="Team cannot qualify for playoffs" role="img">
+                                ❌
+                            </span>
+                        </td>
+                        <td class='p-2 border'>20</td>
+                        <td class='p-2 border'>47</td>
+                        <td class='p-2 border'>10</td>
+                        <td class='p-2 border mobile-hidden'>L</td>
+                        <td class='p-2 border'>50</td>
+                        <td class='p-2 border mobile-hidden'>32.47%</td>
+                        <td class='p-2 border mobile-hidden'>2.571429</td>
+                        <td class='p-2 border mobile-hidden'>293</td>
+                        <td class='p-2 border mobile-hidden'>32</td>
+                        <td class='p-2 border mobile-hidden'>Western</td>
+                        <td class='p-2 border mobile-hidden'>16</td>
+                        <td class='p-2 border mobile-hidden'>Pacific</td>
+                        <td class='p-2 border mobile-hidden'>8</td>
+                        <td class='p-2 border mobile-hidden'>10</td>
+                        <td class='p-2 border'>4/7 19:30</td>
+                        <td class='p-2 border'>
+                            Calgary
+                            
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="border-top border-bottom border-gray-light mt-3 pt-3 pb-3">
+        <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing teams without fans">
+            Toggle Teams Without Fans
+        </button>
+        <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing extended statistics">
+            Toggle Extended Stats
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            var noFanRows = document.querySelectorAll('tr.no-fan-name');
+            noFanRows.forEach(function (row) {
+                row.classList.toggle('hidden');
+            });
+        });
+
+        document.getElementById('toggleStatsButton').addEventListener('click', function () {
+            var statColumns = document.querySelectorAll('.mobile-hidden');
+            statColumns.forEach(function (column) {
+                column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

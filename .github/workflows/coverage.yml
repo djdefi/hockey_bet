@@ -1,0 +1,69 @@
+# GitHub Action to run tests and display coverage
+
+name: Test Coverage
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Run Tests with Coverage
+    steps:
+    - uses: actions/checkout@v4 # v3.5.0
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1.229.0
+      with:
+        ruby-version: '3.4.0'
+        bundler-cache: false
+
+    - name: Install dependencies
+      run: |
+          gem update --system
+          gem install bundler:2.4.3
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
+
+    - name: Run tests with coverage
+      run: bundle exec rspec
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4 # v3.1.2
+      with:
+        name: coverage-report
+        path: coverage/
+
+    - name: Comment coverage on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          try {
+            const coverage = fs.readFileSync('./coverage/.last_run.json', 'utf8');
+            const coverageData = JSON.parse(coverage);
+            const coveragePercent = coverageData.result.line.toFixed(2);
+
+            const comment = `## Code Coverage Report
+
+            Total coverage: ${coveragePercent}%
+
+            [View full coverage report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          } catch (error) {
+            console.error('Error posting coverage comment:', error);
+          }

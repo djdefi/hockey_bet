@@ -1,0 +1,40 @@
+{
+  "name": "Hockey Bet Ruby Development",
+  "image": "mcr.microsoft.com/devcontainers/ruby:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.ruby",
+        "wingrunr21.vscode-ruby",
+        "connorshea.vscode-ruby-test-adapter",
+        "kaiwood.endwise",
+        "misogi.ruby-rubocop",
+        "castwide.solargraph",
+        "editorconfig.editorconfig",
+        "formulahendry.code-runner"
+      ],
+      "settings": {
+        "ruby.useBundler": true,
+        "ruby.useLanguageServer": true,
+        "ruby.lint": {
+          "rubocop": {
+            "useBundler": true
+          }
+        },
+        "ruby.format": "rubocop",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      }
+    }
+  },
+  "postCreateCommand": "bundle install",
+  "remoteUser": "vscode"
+}

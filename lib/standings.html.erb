@@ -1,0 +1,177 @@
+<%# filepath: /workspaces/hockey_bet/lib/standings.html.erb %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NHL Standings</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Home Screen App Icons and Meta -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NHL Standings">
+    <meta name="theme-color" content="#041E42">
+    
+    <style>
+        @media screen and (max-width: 768px) {
+            .mobile-hidden {
+                display: none;
+            }
+            .no-fan-name {
+                display: none;
+            }
+            .responsive-table {
+                font-size: 0.85em;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .status-icon {
+            padding: 0 2px;
+        }
+        .status-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+        .fan-team-indicator {
+            font-weight: bold;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+    <h1 class='color-fg-success'>NHL Team Standings</h1>
+    <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
+    
+    <div class="status-legend">
+        <% PLAYOFF_STATUS.each do |key, status| %>
+            <div class="status-item <%= status[:class] %> color-fg-on-emphasis">
+                <span class="status-icon" aria-hidden="true"><%= status[:icon] %></span>
+                <span><%= status[:label] %></span>
+            </div>
+        <% end %>
+        <div class="status-item">
+            <span class="status-icon" aria-hidden="true">🔥</span>
+            <span>Playing against a fan-owned team</span>
+        </div>
+    </div>
+    
+    <div class="responsive-table overflow-auto">
+        <table class='color-shadow-large'>
+            <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+                <tr>
+                    <th scope='col' class='p-2 border'>Team</th>
+                    <th scope='col' class='p-2 border'>Fan</th>
+                    <th scope='col' class='p-2 border'>Status</th>
+                    <th scope='col' class='p-2 border'>W</th>
+                    <th scope='col' class='p-2 border'>L</th>
+                    <th scope='col' class='p-2 border'>OTL</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
+                    <th scope='col' class='p-2 border'>Pts</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Pt %</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GA</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>League Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conference</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Division</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
+                    <th scope='col' class='p-2 border'>Next Game</th>
+                    <th scope='col' class='p-2 border'>Next Opponent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% teams.each do |team| %>
+                    <% 
+                    status = playoff_status_for(team)
+                    status_info = PLAYOFF_STATUS[status]
+                    no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
+                    team_abbrev = team['teamAbbrev']['default']
+                    next_game = next_games[team_abbrev]
+                    next_game_utc = next_game ? next_game['startTimeUTC'] : 'TBD'
+                    next_game_pacific = next_game_utc != 'TBD' ? convert_utc_to_pacific(next_game_utc) : 'TBD'
+                    opponent_name = get_opponent_name(next_game, team_abbrev)
+                    is_fan_team_opponent = next_game && next_game['isFanTeamOpponent']
+                    %>
+                    <tr class='<%= "#{status_info[:class]} color-fg-on-emphasis mr-1 #{no_fan_class}" %>'>
+                        <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
+                        <td class='p-2 border <%= manager_team_map[team_abbrev] != "N/A" ? "fan-team-indicator" : "" %>'>
+                            <%= manager_team_map[team_abbrev] || 'N/A' %>
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="<%= status_info[:aria_label] %>" role="img">
+                                <%= status_info[:icon] %>
+                            </span>
+                        </td>
+                        <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['streakCode'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['points'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['pointPctg'] ? '%.2f' % (team['pointPctg'] * 100) : 'N/A' %>%</td>
+                        <td class='p-2 border mobile-hidden'><%= team['goalsForPctg'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['goalAgainst'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['leagueSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['conferenceName'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['conferenceSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['divisionName'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= format_game_time(next_game_pacific) %></td>
+                        <td class='p-2 border'>
+                            <%= opponent_name %>
+                            <% if is_fan_team_opponent %>
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="border-top border-bottom border-gray-light mt-3 pt-3 pb-3">
+        <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing teams without fans">
+            Toggle Teams Without Fans
+        </button>
+        <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing extended statistics">
+            Toggle Extended Stats
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            var noFanRows = document.querySelectorAll('tr.no-fan-name');
+            noFanRows.forEach(function (row) {
+                row.classList.toggle('hidden');
+            });
+        });
+
+        document.getElementById('toggleStatsButton').addEventListener('click', function () {
+            var statColumns = document.querySelectorAll('.mobile-hidden');
+            statColumns.forEach(function (column) {
+                column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
