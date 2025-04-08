@@ -9,8 +9,38 @@ require 'bigdecimal' # Ensure bigdecimal is loaded for dependencies like multi_x
 # Load our production code before tests to avoid multiple definitions
 require_relative '../lib/standings_processor'
 
+# Create a module with the helper methods
+module StandingsHelpers
+  def find_next_games(teams, schedule)
+    @processor ||= StandingsProcessor.new
+    @processor.send(:find_next_games, teams, schedule)
+  end
+
+  def check_fan_team_opponent(next_games, manager_team_map)
+    @processor ||= StandingsProcessor.new
+    @processor.send(:check_fan_team_opponent, next_games, manager_team_map)
+  end
+
+  def get_opponent_name(game, team_id)
+    @processor ||= StandingsProcessor.new
+    @processor.send(:get_opponent_name, game, team_id)
+  end
+
+  def format_game_time(time)
+    @processor ||= StandingsProcessor.new
+    @processor.send(:format_game_time, time)
+  end
+
+  def convert_utc_to_pacific(utc_time_str)
+    @processor ||= StandingsProcessor.new
+    @processor.send(:convert_utc_to_pacific, utc_time_str)
+  end
+end
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Include the helpers in all test contexts
+  config.include StandingsHelpers
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
