@@ -13,29 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Tests with Coverage
     steps:
-    - uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # v3.5.0
-    
+    - uses: actions/checkout@4 # v3.5.0
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1.229.0
       with:
         ruby-version: head
         bundler-cache: true
-    
+
     - name: Install dependencies
       run: bundle install
-    
+
     - name: Run tests with coverage
       run: bundle exec rspec
-    
+
     - name: Upload coverage report
-      uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      uses: actions/upload-artifact@v3 # v3.1.2
       with:
         name: coverage-report
         path: coverage/
-    
+
     - name: Comment coverage on PR
       if: github.event_name == 'pull_request'
-      uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+      uses: actions/github-script@6 # v6.4.1
       with:
         script: |
           const fs = require('fs');
@@ -43,13 +43,13 @@ jobs:
             const coverage = fs.readFileSync('./coverage/.last_run.json', 'utf8');
             const coverageData = JSON.parse(coverage);
             const coveragePercent = coverageData.result.line.toFixed(2);
-            
+
             const comment = `## Code Coverage Report
-            
+
             Total coverage: ${coveragePercent}%
-            
+
             [View full coverage report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
