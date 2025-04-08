@@ -29,12 +29,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          bundle config unset deployment
+          gem install bundler:2.4.3
           bundle config set --local path 'vendor/bundle'
-          bundle install
+          bundle config set --local without 'development test'
+          bundle install --jobs 4 --retry 3
 
       - name: Generate standings page
         run: |
+          gem install bundler:2.4.3
+          bundle config set --local without 'development test'
           mkdir -p _site
           ruby update_standings.rb
           # Create a simple index file that indicates this is a preview

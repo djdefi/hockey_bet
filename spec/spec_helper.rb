@@ -5,7 +5,6 @@ SimpleCov.start do
 end
 
 require 'bigdecimal' # Ensure bigdecimal is loaded for dependencies like multi_xml
-require_relative 'bigdecimal' # Explicitly load bigdecimal using require_relative
 
 # Load our production code before tests to avoid multiple definitions
 require_relative '../lib/standings_processor'
@@ -15,6 +14,29 @@ RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  # Include StandingsProcessor methods globally for tests
+  config.include Module.new {
+    def find_next_games(teams, schedule)
+      StandingsProcessor.new.send(:find_next_games, teams, schedule)
+    end
+
+    def check_fan_team_opponent(next_games, manager_team_map)
+      StandingsProcessor.new.send(:check_fan_team_opponent, next_games, manager_team_map)
+    end
+
+    def get_opponent_name(game, team_id)
+      StandingsProcessor.new.send(:get_opponent_name, game, team_id)
+    end
+
+    def format_game_time(time)
+      StandingsProcessor.new.send(:format_game_time, time)
+    end
+
+    def convert_utc_to_pacific(utc_time_str)
+      StandingsProcessor.new.send(:convert_utc_to_pacific, utc_time_str)
+    end
+  }
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
