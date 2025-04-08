@@ -4,6 +4,9 @@ SimpleCov.start do
   add_group 'Core', 'lib'
 end
 
+require 'bigdecimal' # Ensure bigdecimal is loaded for dependencies like multi_xml
+require_relative 'bigdecimal' # Explicitly load bigdecimal using require_relative
+
 # Load our production code before tests to avoid multiple definitions
 require_relative '../lib/standings_processor'
 

@@ -7,6 +7,7 @@ require 'tzinfo'
 require 'time'
 require_relative 'api_validator'
 require_relative 'team_mapping'
+require_relative 'playoff_processor'
 
 # Playoff Status Helper Structure
 PLAYOFF_STATUS = {
@@ -16,11 +17,12 @@ PLAYOFF_STATUS = {
 }
 
 class StandingsProcessor
-  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated
+  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor
   
   def initialize(fallback_path = 'spec/fixtures')
     @validator = ApiValidator.new
     @fallback_path = fallback_path
+    @playoff_processor = PlayoffProcessor.new(fallback_path)
     @teams = []
     @schedule = []
     @next_games = {}
@@ -42,6 +44,9 @@ class StandingsProcessor
     
     # Fetch schedule information
     @schedule = fetch_schedule_info
+    
+    # Fetch playoff data
+    @playoff_processor.fetch_playoff_data
     
     # Update last updated timestamp
     @last_updated = convert_utc_to_pacific(Time.now.utc.strftime("%Y-%m-%d %H:%M:%S"))

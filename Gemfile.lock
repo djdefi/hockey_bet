@@ -14,6 +14,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    base64 (0.2.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.2.2)
@@ -21,14 +22,17 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.6.1)
+    docile (1.4.1)
     dumb_delegator (1.1.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     ice_nine (0.11.2)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.8)
     multi_xml (0.6.0)
-    nokogiri (1.15.7-x86_64-linux)
+    nokogiri (1.15.7)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     ostruct (0.6.1)
     racc (1.8.1)
@@ -45,6 +49,12 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     thread_safe (0.3.6)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -58,10 +68,12 @@ PLATFORMS
 
 DEPENDENCIES
   axe-core-rspec
+  base64 (~> 0.2.0)
   csv
   httparty
   nokogiri
   rspec
+  simplecov
   tzinfo
 
 BUNDLED WITH

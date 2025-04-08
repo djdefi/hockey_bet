@@ -1,11 +1,11 @@
-require 'rspec'
+require 'spec_helper'
 require 'tzinfo'
 require 'time'
 require 'json'
 require 'erb'
 
 # Load the refactored script
-require_relative '../script-refactored'
+require_relative '../lib/standings_processor'
 
 RSpec.describe 'NHL Standings Table' do
   before do
