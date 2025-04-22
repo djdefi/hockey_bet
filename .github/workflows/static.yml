@@ -42,7 +42,7 @@ jobs:
         run: |
           gem install httparty tzinfo
           pwd
-          ruby script-new.rb
+          ruby update_standings.rb
           ls -la *
       - name: Copy favicon
         run: cp favicon.ico _site/
