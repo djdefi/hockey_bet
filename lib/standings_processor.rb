@@ -11,10 +11,13 @@ require_relative 'playoff_processor'
 
 # Playoff Status Helper Structure
 PLAYOFF_STATUS = {
-  clinched: { class: 'color-bg-success-emphasis', icon: '✔️', label: 'Clinched', aria_label: 'Team has secured a playoff berth' },
-  contending: { class: 'color-bg-attention-emphasis', icon: '⚠️', label: 'Contending', aria_label: 'Team is still eligible via wild card standings' },
-  eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label: 'Eliminated', aria_label: 'Team cannot qualify for playoffs' }
-}
+  clinched: { class: 'color-bg-success-emphasis', icon: '✔️', label: 'Clinched',
+              aria_label: 'Team has secured a playoff berth' },
+  contending: { class: 'color-bg-attention-emphasis', icon: '⚠️', label: 'Contending',
+                aria_label: 'Team is still eligible via wild card standings' },
+  eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label: 'Eliminated',
+                aria_label: 'Team cannot qualify for playoffs' }
+}.freeze
 
 class StandingsProcessor
   attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor
@@ -49,7 +52,7 @@ class StandingsProcessor
     @playoff_processor.fetch_playoff_data
 
     # Update last updated timestamp
-    @last_updated = convert_utc_to_pacific(Time.now.utc.strftime("%Y-%m-%d %H:%M:%S"))
+    @last_updated = convert_utc_to_pacific(Time.now.utc.strftime('%Y-%m-%d %H:%M:%S'))
   end
 
   # Process the fetched data
@@ -68,7 +71,7 @@ class StandingsProcessor
   def render_output(output_path)
     # Ensure the output directory exists
     output_dir = File.dirname(output_path)
-    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
+    FileUtils.mkdir_p(output_dir)
 
     # Render the template and write to file
     html_content = render_template
@@ -88,40 +91,30 @@ class StandingsProcessor
 
   # Fetch Team Information with validation and fallback
   def fetch_team_info
-    url = "https://api-web.nhle.com/v1/standings/now"
+    url = 'https://api-web.nhle.com/v1/standings/now'
     response = HTTParty.get(url)
 
     if response.code == 200
       data = JSON.parse(response.body)
-      if @validator.validate_teams_response(data)
-        return data["standings"]
-      else
-        fallback = @validator.handle_api_failure('teams', "#{@fallback_path}/teams.json")
-        return fallback["standings"] || []
-      end
-    else
-      fallback = @validator.handle_api_failure('teams', "#{@fallback_path}/teams.json")
-      return fallback["standings"] || []
+      return data['standings'] if @validator.validate_teams_response(data)
+
     end
+    fallback = @validator.handle_api_failure('teams', "#{@fallback_path}/teams.json")
+    fallback['standings'] || []
   end
 
   # Fetch Schedule Information with validation and fallback
   def fetch_schedule_info
-    url = "https://api-web.nhle.com/v1/schedule/now"
+    url = 'https://api-web.nhle.com/v1/schedule/now'
     response = HTTParty.get(url)
 
     if response.code == 200
       data = JSON.parse(response.body)
-      if @validator.validate_schedule_response(data)
-        return data["gameWeek"]
-      else
-        fallback = @validator.handle_api_failure('schedule', "#{@fallback_path}/schedule.json")
-        return fallback["gameWeek"] || []
-      end
-    else
-      fallback = @validator.handle_api_failure('schedule', "#{@fallback_path}/schedule.json")
-      return fallback["gameWeek"] || []
+      return data['gameWeek'] if @validator.validate_schedule_response(data)
+
     end
+    fallback = @validator.handle_api_failure('schedule', "#{@fallback_path}/schedule.json")
+    fallback['gameWeek'] || []
   end
 
   # Map Managers to Teams using team name mapping
@@ -131,7 +124,7 @@ class StandingsProcessor
 
     # Initialize all teams to "N/A"
     team_abbrevs.each do |abbrev|
-      manager_team_map[abbrev] = "N/A"
+      manager_team_map[abbrev] = 'N/A'
     end
 
     begin
@@ -142,11 +135,9 @@ class StandingsProcessor
         # Use our new mapping helper to find the abbreviation
         abbrev = map_team_name_to_abbrev(team_name, teams)
 
-        if abbrev && team_abbrevs.include?(abbrev)
-          manager_team_map[abbrev] = manager
-        end
+        manager_team_map[abbrev] = manager if abbrev && team_abbrevs.include?(abbrev)
       end
-    rescue => e
+    rescue StandardError => e
       puts "Error reading CSV: #{e.message}"
     end
 
@@ -158,7 +149,9 @@ class StandingsProcessor
     next_games = {}
     teams.each do |team|
       team_id = team['teamAbbrev']['default']
-      next_game = schedule.flat_map { |day| day['games'] }.find { |game| game['awayTeam']['abbrev'] == team_id || game['homeTeam']['abbrev'] == team_id }
+      next_game = schedule.flat_map do |day|
+        day['games']
+      end.find { |game| game['awayTeam']['abbrev'] == team_id || game['homeTeam']['abbrev'] == team_id }
       if next_game
         next_games[team_id] = next_game
       else
@@ -177,16 +170,17 @@ class StandingsProcessor
   # Check if Next Opponent is a Fan Team
   def check_fan_team_opponent(next_games, manager_team_map)
     # Get only team IDs where there's a fan (value is not "N/A")
-    fan_team_ids = manager_team_map.select { |_, value| value != "N/A" }.keys.map(&:downcase).to_set
+    fan_team_ids = manager_team_map.reject { |_, value| value == 'N/A' }.keys.to_set(&:downcase)
 
     next_games.each do |team_id, game|
       if game && game['awayTeam']['abbrev'] != 'None' && game['homeTeam']['abbrev'] != 'None'
         opponent_id = game['awayTeam']['abbrev'].downcase == team_id.downcase ? game['homeTeam']['abbrev'].downcase : game['awayTeam']['abbrev'].downcase
         # Only mark as fan team opponent if both teams have fans
-        game['isFanTeamOpponent'] = fan_team_ids.include?(opponent_id) && fan_team_ids.include?(team_id.downcase)
-      else
+        game['isFanTeamOpponent'] =
+          fan_team_ids.include?(opponent_id) && fan_team_ids.include?(team_id.downcase)
+      elsif game
         # Make sure isFanTeamOpponent is set to false for placeholder games
-        game['isFanTeamOpponent'] = false if game
+        game['isFanTeamOpponent'] = false
       end
     end
   end
@@ -195,16 +189,17 @@ class StandingsProcessor
   def convert_utc_to_pacific(utc_time_str)
     return 'None' if utc_time_str == 'None'
     return 'TBD' if utc_time_str == 'TBD'
+
     utc_time = Time.parse(utc_time_str.to_s)
     tz = TZInfo::Timezone.get('America/Los_Angeles')
-    pacific_time = tz.utc_to_local(utc_time)
-    pacific_time
+    tz.utc_to_local(utc_time)
   end
 
   # Format next game time in a readable format
   def format_game_time(time)
     return 'None' if time == 'None'
     return 'TBD' if time == 'TBD'
+
     time.strftime('%-m/%-d %H:%M')
   end
 
@@ -212,19 +207,21 @@ class StandingsProcessor
   def get_opponent_name(game, team_id)
     return 'None' unless game
     return 'None' if game['awayTeam']['abbrev'] == 'None' || game['homeTeam']['abbrev'] == 'None'
+
     is_away = game['awayTeam']['abbrev'] == team_id
     is_away ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
   end
 
   # Render ERB Template
   def render_template
-    template = File.read("lib/standings.html.erb")
+    template = File.read('lib/standings.html.erb')
 
     # Process teams with defaults for nil values
     @teams.each do |team|
       team['teamName']['default'] ||= 'N/A'
       @manager_team_map[team['teamAbbrev']['default']] ||= 'N/A'
-      @next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD', 'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } }, 'isFanTeamOpponent' => false }
+      @next_games[team['teamAbbrev']['default']] ||= { 'startTimeUTC' => 'TBD',
+                                                       'awayTeam' => { 'abbrev' => 'TBD' }, 'homeTeam' => { 'placeName' => { 'default' => 'TBD' } }, 'isFanTeamOpponent' => false }
     end
 
     # Create a binding to access instance variables in ERB
@@ -249,21 +246,23 @@ end
 def convert_utc_to_pacific(utc_time_str)
   return 'None' if utc_time_str == 'None'
   return 'TBD' if utc_time_str == 'TBD'
+
   utc_time = Time.parse(utc_time_str.to_s)
   tz = TZInfo::Timezone.get('America/Los_Angeles')
-  pacific_time = tz.utc_to_local(utc_time)
-  pacific_time
+  tz.utc_to_local(utc_time)
 end
 
 def format_game_time(time)
   return 'None' if time == 'None'
   return 'TBD' if time == 'TBD'
+
   time.strftime('%-m/%-d %H:%M')
 end
 
 def get_opponent_name(game, team_id)
   return 'None' unless game
   return 'None' if game['awayTeam']['abbrev'] == 'None' || game['homeTeam']['abbrev'] == 'None'
+
   is_away = game['awayTeam']['abbrev'] == team_id
   is_away ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
 end

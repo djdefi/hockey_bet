@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NHL Playoff Standings</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Home Screen App Icons and Meta -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
+    <meta name="theme-color" content="#041E42">
+
+    <style>
+        @media screen and (max-width: 768px) {
+            .mobile-hidden {
+                display: none;
+            }
+            .responsive-table {
+                font-size: 0.85em;
+            }
+        }
+        .series-status {
+            font-weight: bold;
+        }
+        .team-leading {
+            color: #238636;
+        }
+        .series-tied {
+            color: #bf8700;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
+    <div class="container-xl px-3 px-md-4 px-lg-5 mt-3">
+        <h1 class='color-fg-success'>NHL Playoff Standings</h1>
+        <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
+
+        <% if is_playoff_time && !playoff_rounds.empty? %>
+            <% playoff_rounds.each do |round| %>
+                <div class="round mb-5">
+                    <h2 class="color-fg-success"><%= round[:name] %></h2>
+                    <table class='color-shadow-large table table-striped'>
+                        <thead>
+                            <tr>
+                                <th scope='col' class='p-2 border'>Matchup</th>
+                                <th scope='col' class='p-2 border'>Series Status</th>
+                                <th scope='col' class='p-2 border'>Next Game</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% round[:series].each do |series| %>
+                                <tr>
+                                    <td class='p-2 border'>
+                                        <strong><%= series[:top_seed][:name] %></strong> vs
+                                        <strong><%= series[:bottom_seed][:name] %></strong>
+                                    </td>
+                                    <td class='p-2 border'>
+                                        <% top_wins = series[:top_seed][:wins].to_i %>
+                                        <% bottom_wins = series[:bottom_seed][:wins].to_i %>
+                                        <% if top_wins > bottom_wins %>
+                                            <span class="series-status team-leading">
+                                                <%= series[:top_seed][:abbrev] %> leads <%= top_wins %>-<%= bottom_wins %>
+                                            </span>
+                                        <% elsif bottom_wins > top_wins %>
+                                            <span class="series-status team-leading">
+                                                <%= series[:bottom_seed][:abbrev] %> leads <%= bottom_wins %>-<%= top_wins %>
+                                            </span>
+                                        <% elsif top_wins == bottom_wins && top_wins > 0 %>
+                                            <span class="series-status series-tied">
+                                                Series tied <%= top_wins %>-<%= bottom_wins %>
+                                            </span>
+                                        <% else %>
+                                            <span class="series-status">
+                                                Series starting soon
+                                            </span>
+                                        <% end %>
+                                    </td>
+                                    <td class='p-2 border'>
+                                        <% if series[:games] && !series[:games].empty? %>
+                                            <% next_game = series[:games].find { |g| g[:status] == 'Preview' || g[:status] == 'Scheduled' } %>
+                                            <% if next_game %>
+                                                Game <%= next_game[:number] || next_game[:game_number] %>:
+                                                <%= next_game[:start_time] ? Time.parse(next_game[:start_time]).strftime("%b %d, %Y") : "TBD" %>
+                                            <% else %>
+                                                TBD
+                                            <% end %>
+                                        <% else %>
+                                            TBD
+                                        <% end %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="blankslate">
+                <h3 class="blankslate-heading">Playoff data not available</h3>
+                <p>Playoff information will be available during the NHL playoff season.</p>
+            </div>
+        <% end %>
+
+        <a href='./index.html' class='btn btn-primary'>Regular Season Standings</a>
+    </div>
+</body>
+</html>

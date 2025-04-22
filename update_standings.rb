@@ -3,22 +3,22 @@
 
 require_relative 'lib/standings_processor'
 require_relative 'lib/playoff_processor'
+require 'fileutils'
 
 begin
   # Determine if we're running in PR preview mode
   pr_preview = ENV['PR_PREVIEW'] == 'true'
-  pr_number = ENV['PR_NUMBER']
+  pr_number = ENV.fetch('PR_NUMBER', nil)
 
   # Set up output directory based on environment
   if pr_preview && pr_number
     puts "Running in PR preview mode for PR ##{pr_number}"
     # Create a temporary directory for PR preview
     output_dir = '_site/original'
-    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
   else
     output_dir = '_site'
-    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
   end
+  FileUtils.mkdir_p(output_dir)
 
   # Create the standings processor with default settings
   processor = StandingsProcessor.new
@@ -37,13 +37,13 @@ begin
   begin
     playoff_processor = PlayoffProcessor.new
     playoff_processor.process("#{output_dir}/playoffs.html")
-    puts "NHL playoffs updated successfully!"
-  rescue => e
+    puts 'NHL playoffs updated successfully!'
+  rescue StandardError => e
     puts "Warning: Error updating NHL playoffs (continuing anyway): #{e.message}"
   end
 
-  puts "NHL standings updated successfully!"
-rescue => e
+  puts 'NHL standings updated successfully!'
+rescue StandardError => e
   puts "Error updating NHL standings: #{e.message}"
   puts e.backtrace
   exit 1

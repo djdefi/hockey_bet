@@ -15,8 +15,8 @@ def map_team_name_to_abbrev(team_name, teams)
   name_match = teams.find do |team|
     full_name = team['teamName']['default'].downcase
     full_name == team_name_downcase ||
-    full_name.include?(team_name_downcase) ||
-    team_name_downcase.include?(full_name)
+      full_name.include?(team_name_downcase) ||
+      team_name_downcase.include?(full_name)
   end
   return name_match['teamAbbrev']['default'] if name_match
 
@@ -24,8 +24,8 @@ def map_team_name_to_abbrev(team_name, teams)
   place_match = teams.find do |team|
     place_name = team.dig('placeName', 'default')&.downcase || ''
     place_name == team_name_downcase ||
-    place_name.include?(team_name_downcase) ||
-    team_name_downcase.include?(place_name)
+      place_name.include?(team_name_downcase) ||
+      team_name_downcase.include?(place_name)
   end
   return place_match['teamAbbrev']['default'] if place_match
 
@@ -50,7 +50,7 @@ def map_team_name_to_abbrev(team_name, teams)
     end
   end
 
-  return best_match ? best_match['teamAbbrev']['default'] : nil
+  best_match ? best_match['teamAbbrev']['default'] : nil
 end
 
 # Levenshtein distance calculation for fuzzy string matching
@@ -58,21 +58,21 @@ def levenshtein_distance(s, t)
   m = s.length
   n = t.length
 
-  return m if n == 0
-  return n if m == 0
+  return m if n.zero?
+  return n if m.zero?
 
-  d = Array.new(m+1) { Array.new(n+1) }
+  d = Array.new(m + 1) { Array.new(n + 1) }
 
   (0..m).each { |i| d[i][0] = i }
   (0..n).each { |j| d[0][j] = j }
 
   (1..n).each do |j|
     (1..m).each do |i|
-      cost = s[i-1] == t[j-1] ? 0 : 1
+      cost = s[i - 1] == t[j - 1] ? 0 : 1
       d[i][j] = [
-        d[i-1][j] + 1,      # deletion
-        d[i][j-1] + 1,      # insertion
-        d[i-1][j-1] + cost  # substitution
+        d[i - 1][j] + 1,      # deletion
+        d[i][j - 1] + 1,      # insertion
+        d[i - 1][j - 1] + cost # substitution
       ].min
     end
   end
@@ -102,4 +102,4 @@ TEAM_NAME_MAPPING = {
   'montreal' => 'MTL',
   'canadiens' => 'MTL',
   'habs' => 'MTL'
-}
+}.freeze

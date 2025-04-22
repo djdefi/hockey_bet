@@ -1,0 +1,24 @@
+#!/bin/bash
+# Test script to run the test suite
+set -e
+
+echo "==> Running tests..."
+
+# Use system Ruby if available
+export PATH="/usr/local/bin:$PATH"
+RUBY_CMD="/usr/local/bin/ruby"
+
+# Run RSpec unit tests
+echo "==> Using Ruby: $($RUBY_CMD --version)"
+echo "==> Running unit tests..."
+/usr/local/bin/bundle exec rspec
+
+# Run RSpec API integration tests
+echo "==> Running API integration tests..."
+/usr/local/bin/bundle exec rspec spec/api_integration_spec.rb --tag api_integration
+
+# Run Rubocop for code style checks
+echo "==> Running Rubocop for code style checks..."
+/usr/local/bin/bundle exec rubocop
+
+echo "==> All tests completed! 🎉"

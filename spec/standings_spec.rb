@@ -92,12 +92,12 @@ RSpec.describe 'NHL Standings Table' do
       # Set up a scenario where Boston plays Toronto
       next_games = {
         'BOS' => {
-          'awayTeam' => {'abbrev' => 'TOR'},
-          'homeTeam' => {'abbrev' => 'BOS'}
+          'awayTeam' => { 'abbrev' => 'TOR' },
+          'homeTeam' => { 'abbrev' => 'BOS' }
         },
         'TOR' => {
-          'awayTeam' => {'abbrev' => 'TOR'},
-          'homeTeam' => {'abbrev' => 'BOS'}
+          'awayTeam' => { 'abbrev' => 'TOR' },
+          'homeTeam' => { 'abbrev' => 'BOS' }
         }
       }
 
@@ -112,12 +112,12 @@ RSpec.describe 'NHL Standings Table' do
       # Set up a scenario where Boston plays Detroit
       next_games = {
         'BOS' => {
-          'awayTeam' => {'abbrev' => 'DET'},
-          'homeTeam' => {'abbrev' => 'BOS'}
+          'awayTeam' => { 'abbrev' => 'DET' },
+          'homeTeam' => { 'abbrev' => 'BOS' }
         },
         'DET' => {
-          'awayTeam' => {'abbrev' => 'DET'},
-          'homeTeam' => {'abbrev' => 'BOS'}
+          'awayTeam' => { 'abbrev' => 'DET' },
+          'homeTeam' => { 'abbrev' => 'BOS' }
         }
       }
 
@@ -132,12 +132,12 @@ RSpec.describe 'NHL Standings Table' do
       # Set up a scenario with placeholder games
       next_games = {
         'BOS' => {
-          'awayTeam' => {'abbrev' => 'TOR'},
-          'homeTeam' => {'abbrev' => 'BOS'}
+          'awayTeam' => { 'abbrev' => 'TOR' },
+          'homeTeam' => { 'abbrev' => 'BOS' }
         },
         'SEA' => {
-          'awayTeam' => {'abbrev' => 'None'},
-          'homeTeam' => {'abbrev' => 'None'},
+          'awayTeam' => { 'abbrev' => 'None' },
+          'homeTeam' => { 'abbrev' => 'None' },
           'isFanTeamOpponent' => false
         }
       }
@@ -156,8 +156,8 @@ RSpec.describe 'NHL Standings Table' do
   describe '#get_opponent_name' do
     it 'returns the correct opponent name for a home team' do
       game = {
-        'awayTeam' => {'abbrev' => 'TOR', 'placeName' => {'default' => 'Toronto'}},
-        'homeTeam' => {'abbrev' => 'BOS', 'placeName' => {'default' => 'Boston'}}
+        'awayTeam' => { 'abbrev' => 'TOR', 'placeName' => { 'default' => 'Toronto' } },
+        'homeTeam' => { 'abbrev' => 'BOS', 'placeName' => { 'default' => 'Boston' } }
       }
 
       expect(get_opponent_name(game, 'BOS')).to eq('Toronto')
@@ -165,8 +165,8 @@ RSpec.describe 'NHL Standings Table' do
 
     it 'returns the correct opponent name for an away team' do
       game = {
-        'awayTeam' => {'abbrev' => 'TOR', 'placeName' => {'default' => 'Toronto'}},
-        'homeTeam' => {'abbrev' => 'BOS', 'placeName' => {'default' => 'Boston'}}
+        'awayTeam' => { 'abbrev' => 'TOR', 'placeName' => { 'default' => 'Toronto' } },
+        'homeTeam' => { 'abbrev' => 'BOS', 'placeName' => { 'default' => 'Boston' } }
       }
 
       expect(get_opponent_name(game, 'TOR')).to eq('Boston')
@@ -178,8 +178,8 @@ RSpec.describe 'NHL Standings Table' do
 
     it 'returns None when the game has None placeholders' do
       game = {
-        'awayTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}},
-        'homeTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}}
+        'awayTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } },
+        'homeTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } }
       }
       expect(get_opponent_name(game, 'BOS')).to eq('None')
     end
@@ -211,7 +211,7 @@ RSpec.describe 'NHL Standings Table' do
       # Create a test scenario with a team that has no upcoming games
       teams_with_missing_game = @teams.dup
       teams_with_missing_game << {
-        'teamAbbrev' => { 'default' => 'SEA' }  # Seattle has no game in our fixture
+        'teamAbbrev' => { 'default' => 'SEA' } # Seattle has no game in our fixture
       }
 
       next_games = find_next_games(teams_with_missing_game, @schedule)
@@ -235,21 +235,21 @@ RSpec.describe 'NHL Standings Table' do
       next_games = {
         'BOS' => {
           'startTimeUTC' => '2025-04-09T23:00:00Z',
-          'awayTeam' => {'abbrev' => 'TOR', 'placeName' => {'default' => 'Toronto'}},
-          'homeTeam' => {'abbrev' => 'BOS', 'placeName' => {'default' => 'Boston'}},
+          'awayTeam' => { 'abbrev' => 'TOR', 'placeName' => { 'default' => 'Toronto' } },
+          'homeTeam' => { 'abbrev' => 'BOS', 'placeName' => { 'default' => 'Boston' } },
           'isFanTeamOpponent' => true
         },
         'SEA' => {
           'startTimeUTC' => 'None',
-          'awayTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}},
-          'homeTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}},
+          'awayTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } },
+          'homeTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } },
           'isFanTeamOpponent' => false
         }
       }
       processor.instance_variable_set(:@next_games, next_games)
 
       # Mock the ERB.new().result to prevent actual template rendering but verify data is set up
-      allow(ERB).to receive(:new).and_return(double(result: "HTML content"))
+      allow(ERB).to receive(:new).and_return(double(result: 'HTML content'))
 
       # We just need to make sure this doesn't raise an error when we have 'None' values
       expect { processor.render_template }.not_to raise_error
@@ -268,14 +268,14 @@ RSpec.describe 'NHL Standings Table' do
       next_games = @next_games.dup
       next_games['NYR'] = {
         'startTimeUTC' => 'None',
-        'awayTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}},
-        'homeTeam' => {'abbrev' => 'None', 'placeName' => {'default' => 'None'}},
+        'awayTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } },
+        'homeTeam' => { 'abbrev' => 'None', 'placeName' => { 'default' => 'None' } },
         'isFanTeamOpponent' => false
       }
       processor.instance_variable_set(:@next_games, next_games)
 
       # Mock the render_template method to return HTML content
-      allow(processor).to receive(:render_template).and_return("<html>Test content</html>")
+      allow(processor).to receive(:render_template).and_return('<html>Test content</html>')
 
       # Create a temporary output file
       temp_output_path = 'spec/fixtures/temp_output.html'
@@ -287,7 +287,7 @@ RSpec.describe 'NHL Standings Table' do
       expect(File.exist?(temp_output_path)).to be true
 
       # Clean up
-      File.delete(temp_output_path) if File.exist?(temp_output_path)
+      FileUtils.rm_f(temp_output_path)
     end
   end
 end
