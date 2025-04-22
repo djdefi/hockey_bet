@@ -1,0 +1,199 @@
+name: Prune Old Deployments
+
+on:
+  schedule:
+    # Run daily at midnight
+    - cron: '0 0 * * *'
+
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      days_to_keep:
+        description: 'Number of days to keep deployments'
+        required: false
+        default: '3'
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: read
+
+jobs:
+  prune-deployments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install needed packages
+        run: npm install @octokit/rest @actions/github @actions/core
+
+      - name: Get current deployments
+        id: get-deployments
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { Octokit } = require('@octokit/rest');
+            const core = require('@actions/core');
+
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Get the days to keep from inputs or use default
+            const daysToKeep = ${{ github.event.inputs.days_to_keep || 30 }};
+            console.log(`Looking for deployments older than ${daysToKeep} days`);
+
+            // Calculate the cutoff date
+            const now = new Date();
+            const cutoffDate = new Date(now.setDate(now.getDate() - daysToKeep));
+
+            try {
+              // Get all deployments
+              const deployments = await octokit.repos.listDeployments({
+                owner,
+                repo,
+                per_page: 100 // Max allowed
+              });
+
+              // Filter preview deployments that are older than cutoff and closed PRs
+              const deploymentsToDelete = [];
+
+              for (const deployment of deployments.data) {
+                // Only process preview environments
+                if (deployment.environment.startsWith('preview-')) {
+                  console.log(`Found preview deployment: ${deployment.environment}, created at ${deployment.created_at}`);
+
+                  // Extract PR number from environment name
+                  const prNumberMatch = deployment.environment.match(/preview-(\d+)/);
+                  if (!prNumberMatch) continue;
+
+                  const prNumber = parseInt(prNumberMatch[1], 10);
+
+                  try {
+                    // Check if the PR is closed or merged
+                    const { data: pr } = await octokit.pulls.get({
+                      owner,
+                      repo,
+                      pull_number: prNumber
+                    });
+
+                    const deploymentDate = new Date(deployment.created_at);
+                    const deploymentOlderThanCutoff = deploymentDate < cutoffDate;
+                    const prClosed = pr.state === 'closed';
+
+                    if (deploymentOlderThanCutoff || prClosed) {
+                      console.log(`Marking for deletion: ${deployment.environment} - PR state: ${pr.state}, Age: ${Math.floor((now - deploymentDate) / (1000 * 60 * 60 * 24))} days`);
+                      deploymentsToDelete.push({
+                        id: deployment.id,
+                        environment: deployment.environment,
+                        pr: prNumber
+                      });
+                    }
+                  } catch (error) {
+                    console.log(`Error checking PR #${prNumber}: ${error.message}`);
+                    if (error.status === 404) {
+                      // PR doesn't exist anymore, mark deployment for deletion
+                      deploymentsToDelete.push({
+                        id: deployment.id,
+                        environment: deployment.environment,
+                        pr: prNumber
+                      });
+                    }
+                  }
+                }
+              }
+
+              core.setOutput('deployments_to_delete', JSON.stringify(deploymentsToDelete));
+              console.log(`Found ${deploymentsToDelete.length} deployments to delete`);
+            } catch (error) {
+              console.error(`Error getting deployments: ${error.message}`);
+              core.setFailed(error.message);
+            }
+
+      - name: Delete old deployments
+        if: ${{ steps.get-deployments.outputs.deployments_to_delete != '[]' && steps.get-deployments.outputs.deployments_to_delete != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { Octokit } = require('@octokit/rest');
+            const core = require('@actions/core');
+
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Get deployments to delete from previous step
+            const deploymentsToDelete = JSON.parse('${{ steps.get-deployments.outputs.deployments_to_delete }}');
+
+            console.log(`Deleting ${deploymentsToDelete.length} deployments`);
+
+            for (const deployment of deploymentsToDelete) {
+              try {
+                console.log(`Deleting deployment ${deployment.environment} (ID: ${deployment.id})`);
+
+                // Set deployment to inactive
+                await octokit.repos.createDeploymentStatus({
+                  owner,
+                  repo,
+                  deployment_id: deployment.id,
+                  state: 'inactive'
+                });
+
+                // Delete the deployment
+                await octokit.repos.deleteDeployment({
+                  owner,
+                  repo,
+                  deployment_id: deployment.id
+                });
+
+                console.log(`Successfully deleted deployment for PR #${deployment.pr}`);
+              } catch (error) {
+                console.error(`Error deleting deployment ${deployment.id}: ${error.message}`);
+              }
+            }
+
+      - name: Clean up PR preview directories
+        if: ${{ steps.get-deployments.outputs.deployments_to_delete != '[]' && steps.get-deployments.outputs.deployments_to_delete != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const core = require('@actions/core');
+
+            // Get deployments to delete from previous step
+            const deploymentsToDelete = JSON.parse('${{ steps.get-deployments.outputs.deployments_to_delete }}');
+
+            console.log(`Processing ${deploymentsToDelete.length} PR directories for removal`);
+
+            // This part is informational only, since we can't directly modify GitHub Pages content
+            // In a real implementation, you would use a different storage solution with access to delete directories
+            for (const deployment of deploymentsToDelete) {
+              console.log(`PR #${deployment.pr} directory would be removed on next deployment`);
+            }
+
+            // For GitHub Pages, we'll keep track of which PRs should be removed on next deployment
+            try {
+              const fs = require('fs');
+              const pruningList = deploymentsToDelete.map(d => d.pr);
+              fs.writeFileSync('pruning_list.json', JSON.stringify(pruningList));
+
+              // Upload this as an artifact for use in the next deployment
+              console.log(`Saved PRs to prune: ${pruningList.join(', ')}`);
+            } catch (error) {
+              console.error(`Error creating pruning list: ${error.message}`);
+            }
+
+      - name: Upload pruning list artifact
+        if: ${{ steps.get-deployments.outputs.deployments_to_delete != '[]' && steps.get-deployments.outputs.deployments_to_delete != '' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: pruning-list
+          path: pruning_list.json
+          retention-days: 3
