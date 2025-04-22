@@ -46,7 +46,7 @@ RSpec.configure do |config|
   end
 
   # Include StandingsProcessor methods globally for tests
-  config.include Module.new {
+  config.include(Module.new do
     def find_next_games(teams, schedule)
       StandingsProcessor.new.send(:find_next_games, teams, schedule)
     end
@@ -66,7 +66,7 @@ RSpec.configure do |config|
     def convert_utc_to_pacific(utc_time_str)
       StandingsProcessor.new.send(:convert_utc_to_pacific, utc_time_str)
     end
-  }
+  end)
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
@@ -74,13 +74,11 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.filter_run_when_matching :focus
-  config.example_status_persistence_file_path = "spec/examples.txt"
+  config.example_status_persistence_file_path = 'spec/examples.txt'
   config.disable_monkey_patching!
   config.warnings = true
 
-  if config.files_to_run.one?
-    config.default_formatter = "doc"
-  end
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
   config.order = :random
   Kernel.srand config.seed

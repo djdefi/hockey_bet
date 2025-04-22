@@ -43,11 +43,38 @@ jobs:
 
       - name: Generate standings page
         run: |
-          mkdir -p _site
-          bundle exec ruby update_standings.rb
-          # Create a simple index file that indicates this is a preview
-          echo "<p>This is a preview environment for PR #${{ github.event.pull_request.number }}</p>" >> _site/index.html
-          echo "<p>Preview generated at $(date)</p>" >> _site/index.html
+          # Create PR-specific directory for isolation
+          mkdir -p _site/pr-${{ github.event.pull_request.number }}
+
+          # Run the standings generator
+          PR_NUMBER=${{ github.event.pull_request.number }} PR_PREVIEW=true bundle exec ruby update_standings.rb
+
+          # Move generated files to PR-specific directory
+          if [ -d "_site/original" ]; then
+            mv _site/original/* _site/pr-${{ github.event.pull_request.number }}/
+            rm -rf _site/original
+          fi
+
+          # Create indicator files for the PR preview
+          echo "<html><head><title>PR #${{ github.event.pull_request.number }} Preview</title></head><body>" > _site/pr-${{ github.event.pull_request.number }}/index.html
+          echo "<h1>PR #${{ github.event.pull_request.number }} Preview</h1>" >> _site/pr-${{ github.event.pull_request.number }}/index.html
+          echo "<p>Preview generated at $(date)</p>" >> _site/pr-${{ github.event.pull_request.number }}/index.html
+          echo "<p><a href='./standings.html'>View Standings</a></p>" >> _site/pr-${{ github.event.pull_request.number }}/index.html
+          echo "<p><a href='./playoffs.html'>View Playoffs</a></p>" >> _site/pr-${{ github.event.pull_request.number }}/index.html
+          echo "</body></html>" >> _site/pr-${{ github.event.pull_request.number }}/index.html
+
+          # Create main index to list all PR previews if it doesn't exist
+          if [ ! -f "_site/index.html" ]; then
+            echo "<html><head><title>PR Previews</title></head><body>" > _site/index.html
+            echo "<h1>PR Previews</h1>" >> _site/index.html
+            echo "<ul>" >> _site/index.html
+            echo "<li><a href='/'>Main Deployment</a></li>" >> _site/index.html
+            echo "</ul>" >> _site/index.html
+            echo "</body></html>" >> _site/index.html
+          fi
+
+          # Add this PR to the list
+          sed -i "/<\/ul>/i <li><a href='./pr-${{ github.event.pull_request.number }}/'>PR #${{ github.event.pull_request.number }}</a> - Updated $(date)</li>" _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -65,9 +92,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PREVIEW_URL="${{ steps.deployment.outputs.page_url }}"
+          BASE_URL="${{ steps.deployment.outputs.page_url }}"
+          # Ensure the URL ends with a slash for proper path joining
+          [[ "$BASE_URL" != */ ]] && BASE_URL="${BASE_URL}/"
+          PREVIEW_URL="${BASE_URL}pr-${{ github.event.pull_request.number }}/"
+
           gh pr comment ${{ github.event.pull_request.number }} --body "📊 **Preview Environment Deployed!**
 
           You can view the preview at: ${PREVIEW_URL}
+
+          * [Standings](${PREVIEW_URL}standings.html)
+          * [Playoffs](${PREVIEW_URL}playoffs.html)
 
           This preview will be updated automatically when you make changes to this PR."

@@ -1,0 +1,19 @@
+#!/bin/bash
+# Update script to refresh dependencies and data
+set -e
+
+echo "==> Updating hockey_bet..."
+
+# Pull latest changes (optional - uncomment if needed)
+# echo "==> Pulling latest changes..."
+# git pull origin main
+
+# Update dependencies
+echo "==> Updating dependencies..."
+bin/setup
+
+# Update NHL data
+echo "==> Fetching latest NHL data..."
+/usr/local/bin/ruby update_standings.rb
+
+echo "==> Update complete! 🎉"

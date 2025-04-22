@@ -1,0 +1,50 @@
+#!/bin/bash
+# Setup script for hockey_bet project
+set -e
+
+echo "==> Setting up hockey_bet..."
+
+# Check if system Ruby is installed
+if ! /usr/local/bin/ruby --version &> /dev/null; then
+  # Fall back to any Ruby
+  if ! command -v ruby &> /dev/null; then
+    echo "Ruby not found. Please install Ruby."
+    exit 1
+  fi
+  # Use whatever Ruby is in PATH
+  RUBY_CMD="ruby"
+else
+  # Use system Ruby explicitly
+  RUBY_CMD="/usr/local/bin/ruby"
+  echo "Using system Ruby: $(/usr/local/bin/ruby --version)"
+fi
+
+# Make sure we use the correct Ruby in this script
+export PATH="/usr/local/bin:$PATH"
+
+# Check Ruby version but continue anyway
+ruby_version=$($RUBY_CMD -v | cut -d ' ' -f 2 | cut -d 'p' -f 1)
+required_version=$(cat .ruby-version)
+if [[ "$ruby_version" != "$required_version"* ]]; then
+  echo "Note: Using Ruby $ruby_version, though .ruby-version specifies $required_version"
+  echo "This is OK in GitHub Codespaces which has Ruby pre-installed"
+fi
+
+# Install dependencies
+echo "==> Installing Ruby dependencies..."
+if ! command -v bundle &> /dev/null; then
+  gem install bundler
+fi
+bundle check || bundle install
+
+# Set up development environment
+echo "==> Setting up development environment..."
+mkdir -p _site
+
+echo "==> Setup complete! 🎉"
+echo ""
+echo "To run the NHL standings update:"
+echo "  $ bin/update"
+echo ""
+echo "To run the test suite:"
+echo "  $ bin/test"

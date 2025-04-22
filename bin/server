@@ -1,0 +1,13 @@
+#!/bin/bash
+# Server script to run a local HTTP server
+set -e
+
+echo "==> Starting local server..."
+
+# Make sure we have the latest NHL data
+/usr/local/bin/ruby update_standings.rb
+
+# Start a simple HTTP server in the _site directory
+echo "==> Starting HTTP server on http://localhost:8000"
+cd _site
+python3 -m http.server 8000

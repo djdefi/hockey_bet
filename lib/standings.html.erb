@@ -5,7 +5,7 @@
     <title>NHL Standings</title>
     <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
+
     <!-- Home Screen App Icons and Meta -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Standings">
     <meta name="theme-color" content="#041E42">
-    
+
     <style>
         @media screen and (max-width: 768px) {
             .mobile-hidden {
@@ -60,7 +60,7 @@
 <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>NHL Team Standings</h1>
     <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
-    
+
     <div class="status-legend">
         <% PLAYOFF_STATUS.each do |key, status| %>
             <div class="status-item <%= status[:class] %> color-fg-on-emphasis">
@@ -73,7 +73,7 @@
             <span>Playing against a fan-owned team</span>
         </div>
     </div>
-    
+
     <div class="responsive-table overflow-auto">
         <table class='color-shadow-large'>
             <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
@@ -101,7 +101,7 @@
             </thead>
             <tbody>
                 <% teams.each do |team| %>
-                    <% 
+                    <%
                     status = playoff_status_for(team)
                     status_info = PLAYOFF_STATUS[status]
                     no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
@@ -148,7 +148,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <div class="border-top border-bottom border-gray-light mt-3 pt-3 pb-3">
         <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing teams without fans">
             Toggle Teams Without Fans
@@ -156,6 +156,9 @@
         <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing extended statistics">
             Toggle Extended Stats
         </button>
+        <a href='./playoffs.html' class='btn btn-primary color-bg-success-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="View NHL playoff standings">
+            View Playoffs
+        </a>
     </div>
 
     <script>
