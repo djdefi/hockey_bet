@@ -1,12 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    axe-core-api (4.10.2)
+    axe-core-api (4.10.3)
       dumb_delegator
       ostruct
       virtus
-    axe-core-rspec (4.10.2)
-      axe-core-api (= 4.10.2)
+    axe-core-rspec (4.10.3)
+      axe-core-api (= 4.10.3)
       dumb_delegator
       ostruct
       virtus
