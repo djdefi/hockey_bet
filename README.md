@@ -83,6 +83,20 @@ bundle exec rspec
 
 Code coverage reports are automatically generated in the `coverage/` directory.
 
+### GitHub Actions Workflows
+
+This project includes several automated workflows:
+
+- **PR Preview Deployment**: Automatically deploys pull request previews to isolated paths (`/pr-{number}/`) that don't interfere with the main deployment
+- **Deployment Cleanup**: Scheduled daily job that removes old preview deployments (older than 30 days) and cleans up deployments for closed PRs
+- **Manual Cleanup**: Deployment pruning can be triggered manually with custom retention periods via workflow dispatch
+
+The preview environment system ensures that:
+- Each PR gets its own isolated preview URL
+- Main deployment remains undisturbed
+- Old deployments are automatically cleaned up
+- Manual override available for custom scenarios
+
 ## License
 
 [MIT License](LICENSE)

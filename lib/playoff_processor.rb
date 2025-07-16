@@ -2,10 +2,11 @@ require 'httparty'
 require 'json'
 require 'date'
 require 'tzinfo'
+require 'erb'
 require_relative 'api_validator'
 
 class PlayoffProcessor
-  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time
+  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated
 
   def initialize(fallback_path = 'spec/fixtures')
     @fallback_path = fallback_path
@@ -15,6 +16,31 @@ class PlayoffProcessor
     @cup_odds = {}
     @fan_cup_odds = {}
     @is_playoff_time = false
+    @last_updated = nil
+  end
+
+  # Main process method to generate playoffs HTML
+  def process(output_path, manager_team_map = {})
+    # Fetch and process playoff data
+    success = fetch_playoff_data
+    
+    # Calculate fan cup odds if we have manager team mapping
+    unless manager_team_map.empty?
+      calculate_fan_cup_odds(manager_team_map)
+    end
+    
+    # Update timestamp
+    @last_updated = Time.now.strftime("%Y-%m-%d %H:%M:%S UTC")
+    
+    # Ensure the output directory exists
+    output_dir = File.dirname(output_path)
+    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
+
+    # Render the template and write to file
+    html_content = render_template
+    File.write(output_path, html_content)
+    
+    success
   end
 
   # Fetch playoff data from NHL API
@@ -256,5 +282,71 @@ class PlayoffProcessor
   # Determine if we have valid playoff data
   def valid_playoff_data?(data)
     @validator.validate_playoffs_response(data)
+  end
+
+  private
+
+  # Render the playoffs template
+  def render_template
+    template_path = "lib/playoffs.html.erb"
+    
+    unless File.exist?(template_path)
+      # Fallback to a basic template if the file doesn't exist
+      return basic_playoffs_html
+    end
+    
+    template = File.read(template_path)
+    
+    # Determine if we're running in PR preview mode
+    pr_preview = ENV['PR_PREVIEW'] == 'true'
+    pr_number = ENV.fetch('PR_NUMBER', nil)
+
+    # Create a binding to access instance variables in ERB
+    erb_binding = binding
+    
+    ERB.new(template).result(erb_binding)
+  end
+
+  # Basic fallback HTML if template is missing
+  def basic_playoffs_html
+    pr_preview = ENV['PR_PREVIEW'] == 'true'
+    pr_number = ENV.fetch('PR_NUMBER', nil)
+    
+    <<~HTML
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <title>NHL Playoffs</title>
+          <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+      </head>
+      <body>
+          <div class="container-lg">
+              #{pr_preview && pr_number ? "<div class='flash flash-warn'>🚧 PR ##{pr_number} Preview Environment</div>" : ""}
+              <h1>NHL Playoffs</h1>
+              #{@is_playoff_time ? playoff_content_html : no_playoffs_html}
+          </div>
+      </body>
+      </html>
+    HTML
+  end
+
+  def playoff_content_html
+    return "<p>Playoff data is being processed...</p>" if @playoff_rounds.empty?
+    
+    content = "<h2>Playoff Bracket</h2>"
+    @playoff_rounds.each do |round|
+      content += "<h3>#{round[:name]}</h3>"
+      round[:series].each do |series|
+        content += "<div style='border: 1px solid #ddd; margin: 10px; padding: 10px;'>"
+        content += "<div>#{series[:home_team][:name]} (#{series[:home_wins]}) vs #{series[:away_team][:name]} (#{series[:away_wins]})</div>"
+        content += "<div>Status: #{series[:status]}</div>" if series[:status]
+        content += "</div>"
+      end
+    end
+    content
+  end
+
+  def no_playoffs_html
+    "<div style='text-align: center; padding: 2rem;'><h2>No Active Playoffs</h2><p>Check back during playoff season!</p></div>"
   end
 end
