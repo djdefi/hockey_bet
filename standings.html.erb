@@ -12,12 +12,9 @@
           .no-fan-name {
              display: none;
           }
-          .no-fan-name.visible {
-             display: table-row !important;
-          }
        }
        .hidden {
-            display: none !important;
+            display: none;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,8 +100,6 @@
         var noFanRows = document.querySelectorAll('tr.no-fan-name');
         noFanRows.forEach(function (row) {
             row.classList.toggle('hidden');
-            // For mobile compatibility, also toggle visible class
-            row.classList.toggle('visible');
         });
     });
 
