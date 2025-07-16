@@ -25,23 +25,78 @@
             display: inline-block;
         }
         .status-icon {
-            padding: 0 2px;
+            padding: 0 4px;
+            font-size: 1.2em;
+            display: inline-block;
+            min-width: 24px;
+            text-align: center;
         }
         .status-legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin: 20px 0;
+            padding: 16px;
+            background: var(--bgColor-muted, #f6f8fa);
+            border-radius: 8px;
+            border: 1px solid var(--borderColor-default, #d1d9e0);
         }
         .status-item {
             display: flex;
             align-items: center;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .status-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
         .fan-team-indicator {
             font-weight: bold;
+            color: var(--fgColor-accent, #0969da);
+            padding: 2px 6px;
+            background: var(--bgColor-accent-muted, #ddf4ff);
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .responsive-table {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        tbody tr {
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        tbody tr:hover {
+            background-color: var(--bgColor-muted, #f6f8fa) !important;
+            transform: scale(1.01);
+        }
+        th, td {
+            border: 1px solid var(--borderColor-muted, #d8dee4);
+        }
+        th {
+            background: var(--bgColor-accent-emphasis, #0969da);
+            color: var(--fgColor-onEmphasis, #ffffff);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .flame-emoji {
+            display: inline-block;
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -225,7 +280,7 @@
                         <td class='p-2 border'>
                             Colorado
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
@@ -291,7 +346,7 @@
                         <td class='p-2 border'>
                             Vegas
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
@@ -325,7 +380,7 @@
                         <td class='p-2 border'>
                             Seattle
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
@@ -519,7 +574,7 @@
                         <td class='p-2 border'>
                             San Jose
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
@@ -713,7 +768,7 @@
                         <td class='p-2 border'>
                             Seattle
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
@@ -939,7 +994,7 @@
                         <td class='p-2 border'>
                             Los Angeles
                             
-                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
                             
                         </td>
                     </tr>
