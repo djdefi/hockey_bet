@@ -494,4 +494,77 @@ RSpec.describe PlayoffProcessor do
       processor.valid_playoff_data?({ 'test' => 'data' })
     end
   end
+
+  describe '#process' do
+    let(:output_path) { '/tmp/test_playoffs.html' }
+    let(:manager_team_map) { { 'BOS' => 'TestFan', 'TOR' => 'OtherFan' } }
+
+    before do
+      # Clean up any existing test file
+      File.delete(output_path) if File.exist?(output_path)
+    end
+
+    after do
+      # Clean up test file
+      File.delete(output_path) if File.exist?(output_path)
+    end
+
+    it 'generates HTML file successfully' do
+      # Mock fetch_playoff_data to avoid external API calls
+      allow(processor).to receive(:fetch_playoff_data).and_return(true)
+      allow(processor).to receive(:render_template).and_return('<html><body>Test Playoffs</body></html>')
+
+      result = processor.process(output_path, manager_team_map)
+
+      expect(result).to be true
+      expect(File.exist?(output_path)).to be true
+      content = File.read(output_path)
+      expect(content).to include('Test Playoffs')
+    end
+
+    it 'creates output directory if it does not exist' do
+      nested_path = '/tmp/nested/test_playoffs.html'
+      
+      # Ensure directory doesn't exist
+      FileUtils.rm_rf('/tmp/nested') if Dir.exist?('/tmp/nested')
+
+      allow(processor).to receive(:fetch_playoff_data).and_return(true)
+      allow(processor).to receive(:render_template).and_return('<html><body>Test</body></html>')
+
+      processor.process(nested_path, manager_team_map)
+
+      expect(File.exist?(nested_path)).to be true
+      
+      # Clean up
+      FileUtils.rm_rf('/tmp/nested')
+    end
+
+    it 'sets last_updated timestamp' do
+      allow(processor).to receive(:fetch_playoff_data).and_return(true)
+      allow(processor).to receive(:render_template).and_return('<html><body>Test</body></html>')
+
+      expect(processor.last_updated).to be_nil
+      processor.process(output_path, manager_team_map)
+      expect(processor.last_updated).to_not be_nil
+      expect(processor.last_updated).to match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC/)
+    end
+
+    it 'calls calculate_fan_cup_odds when manager_team_map is provided' do
+      allow(processor).to receive(:fetch_playoff_data).and_return(true)
+      allow(processor).to receive(:render_template).and_return('<html><body>Test</body></html>')
+      
+      expect(processor).to receive(:calculate_fan_cup_odds).with(manager_team_map)
+      
+      processor.process(output_path, manager_team_map)
+    end
+
+    it 'does not call calculate_fan_cup_odds when manager_team_map is empty' do
+      allow(processor).to receive(:fetch_playoff_data).and_return(true)
+      allow(processor).to receive(:render_template).and_return('<html><body>Test</body></html>')
+      
+      expect(processor).to_not receive(:calculate_fan_cup_odds)
+      
+      processor.process(output_path, {})
+    end
+  end
 end

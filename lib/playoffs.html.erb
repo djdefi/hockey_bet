@@ -1,0 +1,183 @@
+<%# filepath: /workspaces/hockey_bet/lib/playoffs.html.erb %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NHL Playoffs</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Home Screen App Icons and Meta -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
+    <meta name="theme-color" content="#041E42">
+    
+    <style>
+        /* Playoff Styles */
+        <% if File.exist?("lib/playoff_styles.css") %>
+        <%= File.read("lib/playoff_styles.css") %>
+        <% end %>
+        
+        .back-link {
+            margin-bottom: 1rem;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        
+        .last-updated {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .no-playoffs {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .error-message {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-lg clearfix">
+        <div class="col-12">
+            <!-- Navigation -->
+            <div class="back-link">
+                <a href="<%= pr_preview && pr_number ? "/pr-#{pr_number}/" : "/" %>" class="btn btn-sm">&larr; Back to Standings</a>
+            </div>
+
+            <!-- Header -->
+            <div class="header-section">
+                <% if pr_preview && pr_number %>
+                    <div class="flash flash-warn mb-3">
+                        <strong>🚧 PR #<%= pr_number %> Preview Environment</strong><br>
+                        This is an isolated preview that doesn't affect the main deployment
+                    </div>
+                <% end %>
+                
+                <h1>NHL Playoffs <% if Date.today.year %>- <%= Date.today.year %><% end %></h1>
+                
+                <% if @last_updated %>
+                    <div class="last-updated">
+                        Last updated: <%= @last_updated %>
+                    </div>
+                <% end %>
+            </div>
+
+            <!-- Content -->
+            <% if @is_playoff_time && @playoff_rounds && !@playoff_rounds.empty? %>
+                <!-- Fan Cup Odds Section -->
+                <% if @fan_cup_odds && !@fan_cup_odds.empty? %>
+                    <div class="fan-rankings">
+                        <h2>Fan Stanley Cup Odds</h2>
+                        <table class="fan-odds-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Fan</th>
+                                    <th>Cup Odds (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @fan_cup_odds.each_with_index do |(fan, odds), index| %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td class="fan-name"><%= fan %></td>
+                                        <td><%= odds %>%</td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% end %>
+
+                <!-- Playoff Bracket -->
+                <div class="playoff-section">
+                    <h2>Playoff Bracket</h2>
+                    
+                    <div class="playoff-bracket">
+                        <% @playoff_rounds.each do |round| %>
+                            <div class="round">
+                                <h4><%= round[:name] %></h4>
+                                
+                                <% round[:series].each do |series| %>
+                                    <div class="series">
+                                        <!-- Home Team -->
+                                        <div class="team <%= 'leading' if series[:home_wins] > series[:away_wins] %>">
+                                            <div>
+                                                <span class="team-name"><%= series[:home_team][:name] %></span>
+                                                <span class="team-abbrev">(<%= series[:home_team][:abbrev] %>)</span>
+                                                <% if series[:home_team][:seed] && series[:home_team][:seed] != "TBD" %>
+                                                    <span class="team-seed">#<%= series[:home_team][:seed] %></span>
+                                                <% end %>
+                                            </div>
+                                            <div class="team-wins"><%= series[:home_wins] %></div>
+                                        </div>
+                                        
+                                        <div class="vs">vs</div>
+                                        
+                                        <!-- Away Team -->
+                                        <div class="team <%= 'leading' if series[:away_wins] > series[:home_wins] %>">
+                                            <div>
+                                                <span class="team-name"><%= series[:away_team][:name] %></span>
+                                                <span class="team-abbrev">(<%= series[:away_team][:abbrev] %>)</span>
+                                                <% if series[:away_team][:seed] && series[:away_team][:seed] != "TBD" %>
+                                                    <span class="team-seed">#<%= series[:away_team][:seed] %></span>
+                                                <% end %>
+                                            </div>
+                                            <div class="team-wins"><%= series[:away_wins] %></div>
+                                        </div>
+                                        
+                                        <% if series[:status] && series[:status] != "" %>
+                                            <div class="series-status"><%= series[:status] %></div>
+                                        <% end %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            <% elsif @is_playoff_time %>
+                <div class="no-playoffs">
+                    <h2>Playoffs Starting Soon</h2>
+                    <p>The NHL playoffs are approaching. Bracket information will be available once the matchups are set.</p>
+                </div>
+            <% else %>
+                <div class="no-playoffs">
+                    <h2>No Active Playoffs</h2>
+                    <p>The NHL playoffs typically run from April through June. Check back during playoff season!</p>
+                </div>
+            <% end %>
+
+            <!-- Navigation Links -->
+            <div class="mt-4 text-center">
+                <% if pr_preview && pr_number %>
+                    <a href="/pr-<%= pr_number %>/" class="btn btn-primary mr-2">View Standings</a>
+                    <a href="/pr-<%= pr_number %>/playoffs.html" class="btn btn-outline">View Playoffs</a>
+                <% else %>
+                    <a href="/" class="btn btn-primary mr-2">View Standings</a>
+                    <a href="/playoffs.html" class="btn btn-outline">View Playoffs</a>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

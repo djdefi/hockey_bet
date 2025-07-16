@@ -1,7 +1,11 @@
-require 'simplecov'
-SimpleCov.start do
-  add_filter '/spec/'
-  add_group 'Core', 'lib'
+begin
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_group 'Core', 'lib'
+  end
+rescue LoadError
+  # SimpleCov not available, skip coverage reporting
 end
 
 require 'bigdecimal' # Ensure bigdecimal is loaded for dependencies like multi_xml

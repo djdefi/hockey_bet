@@ -36,10 +36,12 @@ begin
   # Generate playoffs page
   begin
     playoff_processor = PlayoffProcessor.new
-    playoff_processor.process("#{output_dir}/playoffs.html")
+    # Pass the manager team map for fan cup odds calculation
+    playoff_processor.process("#{output_dir}/playoffs.html", processor.manager_team_map)
     puts "NHL playoffs updated successfully!"
   rescue StandardError => e
     puts "Warning: Error updating NHL playoffs (continuing anyway): #{e.message}"
+    puts "Error details: #{e.backtrace.first(3).join("\n")}" if e.backtrace
   end
 
   puts "NHL standings updated successfully!"
