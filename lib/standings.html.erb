@@ -17,200 +17,154 @@
     <meta name="theme-color" content="#041E42">
     
     <style>
-        @media screen and (max-width: 768px) {
-            .mobile-hidden {
-                display: none;
-            }
-            .no-fan-name {
-                display: none;
-            }
-            .responsive-table {
-                font-size: 0.85em;
-            }
+        @media screen and (max-width: 600px) {
+          .mobile-hidden {
+             display: none;
+          }
+          .no-fan-name {
+             display: none;
+          }
+          .no-fan-name.visible {
+             display: table-row !important;
+          }
+       }
+       .hidden {
+            display: none !important;
         }
-        .hidden {
-            display: none;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .status-icon {
-            padding: 0 4px;
-            font-size: 1.2em;
-            display: inline-block;
-            min-width: 24px;
-            text-align: center;
-        }
-        .status-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 20px 0;
-            padding: 16px;
-            background: var(--bgColor-muted, #f6f8fa);
-            border-radius: 8px;
-            border: 1px solid var(--borderColor-default, #d1d9e0);
-        }
-        .status-item {
-            display: flex;
-            align-items: center;
-            padding: 8px 16px;
+        .season-status {
+            background: #f6f8fa;
+            padding: 10px;
             border-radius: 6px;
-            font-size: 0.95em;
+            margin: 10px 0;
+            border-left: 4px solid #0969da;
+        }
+        .navigation {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f6f8fa;
+            border-radius: 6px;
+            border: 1px solid #d1d9e0;
+        }
+        .navigation h3 {
+            margin: 0 0 10px 0;
+            color: #24292f;
+        }
+        .navigation a {
+            color: #0969da;
+            text-decoration: none;
+            margin-right: 15px;
             font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
         }
-        .status-item:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        }
-        .fan-team-indicator {
-            font-weight: bold;
-            color: var(--fgColor-accent, #0969da);
-            padding: 2px 6px;
-            background: var(--bgColor-accent-muted, #ddf4ff);
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .responsive-table {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        tbody tr {
-            transition: background-color 0.2s ease, transform 0.1s ease;
-        }
-        tbody tr:hover {
-            background-color: var(--bgColor-muted, #f6f8fa) !important;
-            transform: scale(1.01);
-        }
-        th, td {
-            border: 1px solid var(--borderColor-muted, #d8dee4);
-        }
-        th {
-            background: var(--bgColor-accent-emphasis, #0969da);
-            color: var(--fgColor-onEmphasis, #ffffff);
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .flame-emoji {
-            display: inline-block;
-            animation: flicker 1.5s ease-in-out infinite alternate;
-        }
-        @keyframes flicker {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
+        .navigation a:hover {
+            text-decoration: underline;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>NHL Team Standings</h1>
+    
+    <div class="navigation">
+        <h3>Navigation</h3>
+        <a href="#standings">Current Standings</a>
+        <a href="/playoffs.html">Playoff Bracket</a>
+        <a href="/">Home</a>
+    </div>
+    
+    <div class="season-status">
+        <% current_time = Time.now %>
+        <% season_year = current_time.month >= 10 ? current_time.year + 1 : current_time.year %>
+        <% is_offseason = current_time.month >= 5 && current_time.month <= 9 %>
+        <% if is_offseason %>
+            <strong>⚠️ OFFSEASON:</strong> Showing 2023-24 final standings. Next season (<%= season_year %>-<%= (season_year + 1).to_s[2..3] %>) starts in October.
+        <% else %>
+            <strong>🏒 <%= season_year - 1 %>-<%= season_year.to_s[2..3] %> NHL SEASON:</strong> Current standings and next games.
+        <% end %>
+    </div>
+    
     <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
     
-    <div class="status-legend">
-        <% PLAYOFF_STATUS.each do |key, status| %>
-            <div class="status-item <%= status[:class] %> color-fg-on-emphasis">
-                <span class="status-icon" aria-hidden="true"><%= status[:icon] %></span>
-                <span><%= status[:label] %></span>
-            </div>
-        <% end %>
-        <div class="status-item">
-            <span class="status-icon" aria-hidden="true">🔥</span>
-            <span>Playing against a fan-owned team</span>
-        </div>
-    </div>
+    <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">✔️ Clinched</span>
+    <span class="IssueLabel color-bg-attention-emphasis color-fg-on-emphasis mr-1">⚠️ Contending</span>
+    <span class="IssueLabel color-bg-severe-emphasis color-fg-on-emphasis mr-1">Wildcard hopeful</span>
+    <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">❌ Eliminated</span>
+    <span class="IssueLabel color-bg-neutral-emphasis color-fg-on-emphasis mr-1">🔥 Playing against a fan-owned team</span>
     
-    <div class="responsive-table overflow-auto">
-        <table class='color-shadow-large'>
-            <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
-                <tr>
-                    <th scope='col' class='p-2 border'>Team</th>
-                    <th scope='col' class='p-2 border'>Fan</th>
-                    <th scope='col' class='p-2 border'>Status</th>
-                    <th scope='col' class='p-2 border'>W</th>
-                    <th scope='col' class='p-2 border'>L</th>
-                    <th scope='col' class='p-2 border'>OTL</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
-                    <th scope='col' class='p-2 border'>Pts</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Pt %</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>GA</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>League Rank</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Conference</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Division</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
-                    <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
-                    <th scope='col' class='p-2 border'>Next Game</th>
-                    <th scope='col' class='p-2 border'>Next Opponent</th>
+    <table class='color-shadow-large' id="standings">
+        <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+            <tr>
+                <th scope='col' class='p-2 border'>Team</th>
+                <th scope='col' class='p-2 border'>Fan</th>
+                <th scope='col' class='p-2 border'>Status</th>
+                <th scope='col' class='p-2 border'>W</th>
+                <th scope='col' class='p-2 border'>L</th>
+                <th scope='col' class='p-2 border'>OTL</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Pts</th>
+                <th scope='col' class='p-2 border mobile-hidden'>Rank</th>
+                <th scope='col' class='p-2 border'>Next Game</th>
+                <th scope='col' class='p-2 border'>Next Opponent</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% teams.each do |team| %>
+                <% 
+                row_class = if team['divisionSequence'].to_i <= 3
+                              'color-bg-success-emphasis color-fg-on-emphasis mr-1'
+                            elsif team['wildcardSequence'].to_i.between?(1, 2)
+                              'color-bg-attention-emphasis color-fg-on-emphasis mr-1'
+                            elsif team['wildcardSequence'].to_i.between?(3, 4)
+                              'color-bg-severe-emphasis color-fg-on-emphasis mr-1'
+                            else
+                              'color-bg-danger-emphasis color-fg-on-emphasis mr-1'
+                            end
+                no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
+                team_abbrev = team['teamAbbrev']['default']
+                next_game = next_games[team_abbrev]
+                next_game_utc = next_game ? next_game['startTimeUTC'] : 'TBD'
+                next_game_pacific = next_game_utc != 'TBD' ? convert_utc_to_pacific(next_game_utc) : 'TBD'
+                opponent_name = get_opponent_name(next_game, team_abbrev)
+                is_fan_team_opponent = next_game && next_game['isFanTeamOpponent']
+                
+                # Add year to game date for clarity
+                formatted_game_time = if next_game_pacific && next_game_pacific != 'TBD'
+                  next_game_pacific.strftime('%-m/%-d/%Y %H:%M')
+                else
+                  'TBD'
+                end
+                
+                # Determine status emoji
+                status_emoji = if team['divisionSequence'].to_i <= 3
+                  '✔️'
+                elsif team['wildcardSequence'].to_i.between?(1, 2)
+                  '⚠️'
+                elsif team['wildcardSequence'].to_i.between?(3, 4)
+                  '⚠️'
+                else
+                  '❌'
+                end
+                %>
+                <tr class='<%= "#{row_class} #{no_fan_class}" %>'>
+                    <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
+                    <td class='p-2 border'><%= manager_team_map[team_abbrev] || 'N/A' %></td>
+                    <td class='p-2 border'><%= status_emoji %></td>
+                    <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
+                    <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
+                    <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['points'] || 'N/A' %></td>
+                    <td class='p-2 border mobile-hidden'><%= team['leagueSequence'] || 'N/A' %></td>
+                    <td class='p-2 border'><%= formatted_game_time %></td>
+                    <td class='p-2 border'>
+                        <%= opponent_name %>
+                        <%= is_fan_team_opponent ? '🔥' : '' %>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <% teams.each do |team| %>
-                    <% 
-                    status = playoff_status_for(team)
-                    status_info = PLAYOFF_STATUS[status]
-                    no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
-                    team_abbrev = team['teamAbbrev']['default']
-                    next_game = next_games[team_abbrev]
-                    next_game_utc = next_game ? next_game['startTimeUTC'] : 'TBD'
-                    next_game_pacific = next_game_utc != 'TBD' ? convert_utc_to_pacific(next_game_utc) : 'TBD'
-                    opponent_name = get_opponent_name(next_game, team_abbrev)
-                    is_fan_team_opponent = next_game && next_game['isFanTeamOpponent']
-                    %>
-                    <tr class='<%= "#{status_info[:class]} color-fg-on-emphasis mr-1 #{no_fan_class}" %>'>
-                        <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
-                        <td class='p-2 border <%= manager_team_map[team_abbrev] != "N/A" ? "fan-team-indicator" : "" %>'>
-                            <%= manager_team_map[team_abbrev] || 'N/A' %>
-                        </td>
-                        <td class='p-2 border'>
-                            <span class="status-icon" aria-label="<%= status_info[:aria_label] %>" role="img">
-                                <%= status_info[:icon] %>
-                            </span>
-                        </td>
-                        <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
-                        <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
-                        <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['streakCode'] || 'N/A' %></td>
-                        <td class='p-2 border'><%= team['points'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['pointPctg'] ? '%.2f' % (team['pointPctg'] * 100) : 'N/A' %>%</td>
-                        <td class='p-2 border mobile-hidden'><%= team['goalsForPctg'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['goalAgainst'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['leagueSequence'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['conferenceName'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['conferenceSequence'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['divisionName'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] || 'N/A' %></td>
-                        <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] || 'N/A' %></td>
-                        <td class='p-2 border'><%= format_game_time(next_game_pacific) %></td>
-                        <td class='p-2 border'>
-                            <%= opponent_name %>
-                            <% if is_fan_team_opponent %>
-                                <span class="flame-emoji" aria-label="Playing against a fan-owned team" role="img">🔥</span>
-                            <% end %>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
+            <% end %>
+        </tbody>
+    </table>
     
-    <div class="border-top border-bottom border-gray-light mt-3 pt-3 pb-3">
-        <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing teams without fans">
-            Toggle Teams Without Fans
-        </button>
-        <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing extended statistics">
-            Toggle Extended Stats
-        </button>
+    <div class="border-top border-bottom border-gray-light mt-3 pt-3">
+        <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Teams Without Fans</button>
+        <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Extended Stats</button>
     </div>
 
     <script>
@@ -218,6 +172,8 @@
             var noFanRows = document.querySelectorAll('tr.no-fan-name');
             noFanRows.forEach(function (row) {
                 row.classList.toggle('hidden');
+                // For mobile compatibility, also toggle visible class
+                row.classList.toggle('visible');
             });
         });
 
