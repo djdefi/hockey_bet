@@ -256,6 +256,231 @@ RSpec.describe 'NHL Standings Table' do
     end
   end
 
+  describe 'StandingsProcessor class methods' do
+    let(:processor) { StandingsProcessor.new('spec/fixtures') }
+
+    describe '#initialize' do
+      it 'initializes with default fallback path' do
+        proc = StandingsProcessor.new
+        expect(proc.instance_variable_get(:@fallback_path)).to eq('spec/fixtures')
+      end
+
+      it 'initializes with custom fallback path' do
+        proc = StandingsProcessor.new('custom/path')
+        expect(proc.instance_variable_get(:@fallback_path)).to eq('custom/path')
+      end
+
+      it 'initializes all instance variables' do
+        expect(processor.teams).to eq([])
+        expect(processor.schedule).to eq([])
+        expect(processor.next_games).to eq({})
+        expect(processor.manager_team_map).to eq({})
+        expect(processor.last_updated).to be_nil
+      end
+    end
+
+    describe '#fetch_data' do
+      before do
+        # Mock the API methods to avoid actual HTTP calls
+        allow(processor).to receive(:fetch_team_info).and_return(@teams)
+        allow(processor).to receive(:fetch_schedule_info).and_return(@schedule)
+        allow(processor.playoff_processor).to receive(:fetch_playoff_data).and_return(true)
+        allow(processor).to receive(:convert_utc_to_pacific).and_return(Time.now)
+      end
+
+      it 'fetches all required data' do
+        expect(processor).to receive(:fetch_team_info)
+        expect(processor).to receive(:fetch_schedule_info)
+        expect(processor.playoff_processor).to receive(:fetch_playoff_data)
+        
+        processor.fetch_data
+        
+        expect(processor.teams).to eq(@teams)
+        expect(processor.schedule).to eq(@schedule)
+        expect(processor.last_updated).not_to be_nil
+      end
+    end
+
+    describe '#process_data' do
+      before do
+        processor.instance_variable_set(:@teams, @teams)
+        processor.instance_variable_set(:@schedule, @schedule)
+        
+        # Create a temporary CSV file
+        csv_content = "fan,team\nAlice,Boston\nBob,Toronto\n"
+        @temp_csv = '/tmp/test_fan_team.csv'
+        File.write(@temp_csv, csv_content)
+      end
+
+      after do
+        File.delete(@temp_csv) if File.exist?(@temp_csv)
+      end
+
+      it 'processes all data components' do
+        expect(processor).to receive(:find_next_games).with(@teams, @schedule).and_return(@next_games)
+        expect(processor).to receive(:map_managers_to_teams).with(@temp_csv, @teams).and_return(@manager_team_map)
+        expect(processor).to receive(:check_fan_team_opponent).with(@next_games, @manager_team_map)
+        
+        processor.process_data(@temp_csv)
+      end
+    end
+
+    describe '#render_output' do
+      before do
+        processor.instance_variable_set(:@teams, @teams)
+        processor.instance_variable_set(:@manager_team_map, @manager_team_map)
+        processor.instance_variable_set(:@next_games, @next_games)
+        processor.instance_variable_set(:@last_updated, Time.now)
+        
+        # Mock the render_template method
+        allow(processor).to receive(:render_template).and_return('HTML content')
+        
+        @temp_output = '/tmp/test_output.html'
+      end
+
+      after do
+        File.delete(@temp_output) if File.exist?(@temp_output)
+      end
+
+      it 'creates output directory if needed' do
+        output_path = '/tmp/subdir/test.html'
+        
+        processor.render_output(output_path)
+        
+        expect(Dir.exist?('/tmp/subdir')).to be true
+        expect(File.exist?(output_path)).to be true
+        
+        # Cleanup
+        File.delete(output_path)
+        Dir.rmdir('/tmp/subdir')
+      end
+
+      it 'writes HTML content to file' do
+        processor.render_output(@temp_output)
+        
+        expect(File.exist?(@temp_output)).to be true
+        expect(File.read(@temp_output)).to eq('HTML content')
+      end
+    end
+
+    describe '#map_managers_to_teams' do
+      before do
+        # Create a temporary CSV file
+        csv_content = "fan,team\nAlice,Boston\nBob,Toronto\nCharlie,leafs\nDave,BOS\n"
+        @temp_csv = '/tmp/test_map_managers.csv'
+        File.write(@temp_csv, csv_content)
+      end
+
+      after do
+        File.delete(@temp_csv) if File.exist?(@temp_csv)
+      end
+
+      it 'maps managers to teams correctly' do
+        result = processor.map_managers_to_teams(@temp_csv, @teams)
+        
+        # Note: Later entries in CSV can overwrite earlier ones
+        # So Dave's 'BOS' exact match will overwrite Alice's 'Boston' fuzzy match
+        expect(result['BOS']).to eq('Dave')    # Exact abbreviation match
+        expect(result['TOR']).to eq('Charlie') # 'leafs' maps to Toronto via fuzzy matching
+      end
+
+      it 'initializes all teams to N/A by default' do
+        result = processor.map_managers_to_teams(@temp_csv, @teams)
+        
+        @teams.each do |team|
+          abbrev = team['teamAbbrev']['default']
+          expect(result).to have_key(abbrev)
+        end
+      end
+
+      it 'handles missing CSV file gracefully' do
+        expect { processor.map_managers_to_teams('nonexistent.csv', @teams) }.not_to raise_error
+        
+        result = processor.map_managers_to_teams('nonexistent.csv', @teams)
+        @teams.each do |team|
+          abbrev = team['teamAbbrev']['default']
+          expect(result[abbrev]).to eq('N/A')
+        end
+      end
+    end
+
+    describe '#fetch_team_info and #fetch_schedule_info' do
+      before do
+        # Mock HTTParty to avoid actual API calls
+        @mock_response = double('response')
+        allow(HTTParty).to receive(:get).and_return(@mock_response)
+      end
+
+      describe '#fetch_team_info' do
+        it 'returns API data when successful' do
+          api_data = { 'standings' => @teams }
+          allow(@mock_response).to receive(:code).and_return(200)
+          allow(@mock_response).to receive(:body).and_return(JSON.generate(api_data))
+          allow(processor.instance_variable_get(:@validator)).to receive(:validate_teams_response).and_return(true)
+          
+          result = processor.fetch_team_info
+          expect(result).to eq(@teams)
+        end
+
+        it 'returns fallback data when API fails' do
+          allow(@mock_response).to receive(:code).and_return(500)
+          fallback_data = { 'standings' => [] }
+          allow(processor.instance_variable_get(:@validator)).to receive(:handle_api_failure).and_return(fallback_data)
+          
+          result = processor.fetch_team_info
+          expect(result).to eq([])
+        end
+
+        it 'returns fallback data when validation fails' do
+          api_data = { 'standings' => @teams }
+          allow(@mock_response).to receive(:code).and_return(200)
+          allow(@mock_response).to receive(:body).and_return(JSON.generate(api_data))
+          allow(processor.instance_variable_get(:@validator)).to receive(:validate_teams_response).and_return(false)
+          
+          fallback_data = { 'standings' => [] }
+          allow(processor.instance_variable_get(:@validator)).to receive(:handle_api_failure).and_return(fallback_data)
+          
+          result = processor.fetch_team_info
+          expect(result).to eq([])
+        end
+      end
+
+      describe '#fetch_schedule_info' do
+        it 'returns API data when successful' do
+          api_data = { 'gameWeek' => @schedule }
+          allow(@mock_response).to receive(:code).and_return(200)
+          allow(@mock_response).to receive(:body).and_return(JSON.generate(api_data))
+          allow(processor.instance_variable_get(:@validator)).to receive(:validate_schedule_response).and_return(true)
+          
+          result = processor.fetch_schedule_info
+          expect(result).to eq(@schedule)
+        end
+
+        it 'returns fallback data when API fails' do
+          allow(@mock_response).to receive(:code).and_return(500)
+          fallback_data = { 'gameWeek' => [] }
+          allow(processor.instance_variable_get(:@validator)).to receive(:handle_api_failure).and_return(fallback_data)
+          
+          result = processor.fetch_schedule_info
+          expect(result).to eq([])
+        end
+
+        it 'returns fallback data when validation fails' do
+          api_data = { 'gameWeek' => @schedule }
+          allow(@mock_response).to receive(:code).and_return(200)
+          allow(@mock_response).to receive(:body).and_return(JSON.generate(api_data))
+          allow(processor.instance_variable_get(:@validator)).to receive(:validate_schedule_response).and_return(false)
+          
+          fallback_data = { 'gameWeek' => [] }
+          allow(processor.instance_variable_get(:@validator)).to receive(:handle_api_failure).and_return(fallback_data)
+          
+          result = processor.fetch_schedule_info
+          expect(result).to eq([])
+        end
+      end
+    end
+  end
+
   describe 'StandingsProcessor rendering' do
     it 'successfully renders output with teams that have no next games' do
       # Create a mock StandingsProcessor
