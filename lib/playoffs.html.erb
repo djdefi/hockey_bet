@@ -73,7 +73,18 @@
                     </div>
                 <% end %>
                 
-                <h1>NHL Playoffs <% if Date.today.year %>- <%= Date.today.year %><% end %></h1>
+                <h1>NHL Playoffs</h1>
+                
+                <!-- Season Information -->
+                <% if @season_info && @season_info[:display_season] %>
+                    <div class="flash flash-default mb-3">
+                        <strong><%= @season_info[:display_season] %> - <%= @season_info[:status] %></strong>
+                        <br><%= @season_info[:status_description] %>
+                        <% if @season_info[:warning] %>
+                            <br><span class="color-fg-attention">⚠️ <%= @season_info[:warning] %></span>
+                        <% end %>
+                    </div>
+                <% end %>
                 
                 <% if @last_updated %>
                     <div class="last-updated">

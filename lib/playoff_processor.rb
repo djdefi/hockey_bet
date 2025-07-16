@@ -6,7 +6,8 @@ require 'erb'
 require_relative 'api_validator'
 
 class PlayoffProcessor
-  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated
+  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated, :season_info
+  attr_writer :season_info
 
   def initialize(fallback_path = 'spec/fixtures')
     @fallback_path = fallback_path
@@ -17,12 +18,18 @@ class PlayoffProcessor
     @fan_cup_odds = {}
     @is_playoff_time = false
     @last_updated = nil
+    @season_info = {}
   end
 
   # Main process method to generate playoffs HTML
   def process(output_path, manager_team_map = {})
     # Fetch and process playoff data
     success = fetch_playoff_data
+    
+    # Determine season information from playoff data if not already set
+    if @season_info.empty?
+      @season_info = determine_season_info_from_playoffs
+    end
     
     # Calculate fan cup odds if we have manager team mapping
     unless manager_team_map.empty?
@@ -97,6 +104,49 @@ class PlayoffProcessor
     end
 
     false
+  end
+
+  # Determine season information from playoff data
+  def determine_season_info_from_playoffs
+    season_info = {
+      season: 'Unknown',
+      display_season: 'Unknown Season',
+      status: 'Unknown',
+      status_description: 'Season status unclear'
+    }
+
+    # Try to extract season from playoff data
+    if @playoff_data && @playoff_data['season']
+      season_number = @playoff_data['season'].to_s
+      if season_number.length == 8
+        # Format: 20242025 -> "2024-25"
+        start_year = season_number[0..3]
+        end_year = season_number[4..7][2..3]
+        season_info[:season] = season_number
+        season_info[:display_season] = "#{start_year}-#{end_year} NHL Playoffs"
+      end
+    end
+
+    # Determine current playoff status
+    current_date = Date.today
+    current_month = current_date.month
+
+    if @is_playoff_time && !@playoff_rounds.empty?
+      season_info[:status] = 'Active Playoffs'
+      season_info[:status_description] = 'NHL Playoffs currently in progress'
+    elsif is_near_playoff_time?
+      season_info[:status] = 'Approaching Playoffs'
+      season_info[:status_description] = 'Playoff matchups will be available soon'
+    elsif current_month >= 7 && current_month <= 9
+      season_info[:status] = 'Offseason'
+      season_info[:status_description] = 'NHL Offseason - showing previous playoff results'
+      season_info[:warning] = 'Displaying previous season playoff results.'
+    else
+      season_info[:status] = 'Regular Season'
+      season_info[:status_description] = 'Regular season in progress - playoffs upcoming'
+    end
+
+    season_info
   end
 
   # Check if we're close to playoff time (April-June)

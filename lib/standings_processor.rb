@@ -17,7 +17,7 @@ PLAYOFF_STATUS = {
 }
 
 class StandingsProcessor
-  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor
+  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor, :season_info
 
   def initialize(fallback_path = 'spec/fixtures')
     @validator = ApiValidator.new
@@ -28,6 +28,7 @@ class StandingsProcessor
     @next_games = {}
     @manager_team_map = {}
     @last_updated = nil
+    @season_info = {}
   end
 
   # Main process method
@@ -54,6 +55,9 @@ class StandingsProcessor
 
   # Process the fetched data
   def process_data(input_csv)
+    # Determine season information
+    @season_info = determine_season_info(@schedule)
+
     # Find next games
     @next_games = find_next_games(@teams, @schedule)
 
@@ -75,7 +79,60 @@ class StandingsProcessor
     File.write(output_path, html_content)
   end
 
-  # Determine playoff status for a team
+  # Determine season information and current status
+  def determine_season_info(schedule)
+    season_info = {
+      season: 'Unknown',
+      display_season: 'Unknown Season',
+      status: 'Unknown',
+      status_description: 'Season status unclear'
+    }
+
+    # Extract season from schedule data
+    if schedule && !schedule.empty?
+      first_game = schedule.flat_map { |day| day['games'] }.first
+      if first_game && first_game['season']
+        season_number = first_game['season'].to_s
+        if season_number.length == 8
+          # Format: 20242025 -> "2024-25"
+          start_year = season_number[0..3]
+          end_year = season_number[4..7][2..3]
+          season_info[:season] = season_number
+          season_info[:display_season] = "#{start_year}-#{end_year} NHL Season"
+        end
+      end
+    end
+
+    # Determine current season status based on date and playoff processor
+    current_date = Date.today
+    current_month = current_date.month
+
+    # Check if playoffs are active
+    playoff_active = @playoff_processor.is_near_playoff_time?
+
+    if playoff_active && (current_month >= 4 && current_month <= 6)
+      season_info[:status] = 'Playoffs'
+      season_info[:status_description] = 'NHL Playoffs in progress'
+    elsif current_month >= 10 || current_month <= 4
+      season_info[:status] = 'Regular Season'
+      season_info[:status_description] = 'NHL Regular Season in progress'
+    elsif current_month >= 7 && current_month <= 9
+      season_info[:status] = 'Offseason'
+      season_info[:status_description] = 'NHL Offseason - showing previous season stats'
+    else
+      season_info[:status] = 'Transition'
+      season_info[:status_description] = 'Season transition period'
+    end
+
+    # Add warning if we might be showing mixed season data
+    if season_info[:status] == 'Offseason'
+      season_info[:warning] = 'Displaying previous season standings. Next games may be from upcoming season.'
+    elsif season_info[:status] == 'Transition'
+      season_info[:warning] = 'Season in transition. Data may include information from multiple seasons.'
+    end
+
+    season_info
+  end
   def playoff_status_for(team)
     if team['divisionSequence'].to_i <= 3
       :clinched

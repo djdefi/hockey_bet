@@ -59,6 +59,16 @@
 </head>
 <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
     <h1 class='color-fg-success'>NHL Team Standings</h1>
+    
+    <!-- Season Information -->
+    <div class="flash flash-default mb-3">
+        <strong><%= season_info[:display_season] %> - <%= season_info[:status] %></strong>
+        <br><%= season_info[:status_description] %>
+        <% if season_info[:warning] %>
+            <br><span class="color-fg-attention">⚠️ <%= season_info[:warning] %></span>
+        <% end %>
+    </div>
+    
     <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
     
     <div class="status-legend">

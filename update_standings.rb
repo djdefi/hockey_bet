@@ -36,6 +36,14 @@ begin
   # Generate playoffs page
   begin
     playoff_processor = PlayoffProcessor.new
+    # Pass the season information to the playoff processor if available
+    if processor.season_info && !processor.season_info.empty?
+      playoff_processor.season_info = processor.season_info.dup
+      # Update playoff-specific fields
+      if playoff_processor.season_info[:display_season]
+        playoff_processor.season_info[:display_season] = playoff_processor.season_info[:display_season].gsub('NHL Season', 'NHL Playoffs')
+      end
+    end
     # Pass the manager team map for fan cup odds calculation
     playoff_processor.process("#{output_dir}/playoffs.html", processor.manager_team_map)
     puts "NHL playoffs updated successfully!"

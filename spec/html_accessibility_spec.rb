@@ -36,6 +36,12 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     manager_team_map = @manager_team_map
     next_games = @next_games
     last_updated = @last_updated
+    season_info = {
+      season: '20242025',
+      display_season: '2024-25 NHL Season',
+      status: 'Regular Season',
+      status_description: 'NHL Regular Season in progress'
+    }
     
     html_content = ERB.new(template).result(binding)
     @doc = Nokogiri::HTML(html_content)
