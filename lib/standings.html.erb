@@ -73,12 +73,30 @@
     
     <div class="season-status">
         <% current_time = Time.now %>
-        <% season_year = current_time.month >= 10 ? current_time.year + 1 : current_time.year %>
-        <% is_offseason = current_time.month >= 5 && current_time.month <= 9 %>
-        <% if is_offseason %>
-            <strong>⚠️ OFFSEASON:</strong> Showing 2023-24 final standings. Next season (<%= season_year %>-<%= (season_year + 1).to_s[2..3] %>) starts in October.
+        <% # NHL season runs from October to June of next year %>
+        <% # If it's Oct-Dec, we're in the early part of the season (e.g., 2024-25 season starts Oct 2024) %>
+        <% # If it's Jan-June, we're in the late part of the season (e.g., still 2024-25 season in Jan 2025) %>
+        <% # If it's July-Sept, we're in offseason %>
+        <% if current_time.month >= 10 %>
+            <% season_start_year = current_time.year %>
+            <% season_end_year = current_time.year + 1 %>
+            <% is_offseason = false %>
+        <% elsif current_time.month <= 6 %>
+            <% season_start_year = current_time.year - 1 %>
+            <% season_end_year = current_time.year %>
+            <% is_offseason = false %>
         <% else %>
-            <strong>🏒 <%= season_year - 1 %>-<%= season_year.to_s[2..3] %> NHL SEASON:</strong> Current standings and next games.
+            <% season_start_year = current_time.year - 1 %>
+            <% season_end_year = current_time.year %>
+            <% next_season_start = current_time.year %>
+            <% next_season_end = current_time.year + 1 %>
+            <% is_offseason = true %>
+        <% end %>
+        
+        <% if is_offseason %>
+            <strong>⚠️ OFFSEASON:</strong> Showing <%= season_start_year %>-<%= season_end_year.to_s[2..3] %> final standings. Next season (<%= next_season_start %>-<%= next_season_end.to_s[2..3] %>) starts in October.
+        <% else %>
+            <strong>🏒 <%= season_start_year %>-<%= season_end_year.to_s[2..3] %> NHL SEASON:</strong> Current standings and next games.
         <% end %>
     </div>
     
