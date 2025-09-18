@@ -205,7 +205,7 @@ class StandingsProcessor
   def format_game_time(time)
     return 'None' if time == 'None'
     return 'TBD' if time == 'TBD'
-    time.strftime('%-m/%-d %H:%M')
+    time.strftime('%-m/%-d/%Y %H:%M')
   end
 
   # Get the opponent name for a team
@@ -258,7 +258,7 @@ end
 def format_game_time(time)
   return 'None' if time == 'None'
   return 'TBD' if time == 'TBD'
-  time.strftime('%-m/%-d %H:%M')
+  time.strftime('%-m/%-d/%Y %H:%M')
 end
 
 def get_opponent_name(game, team_id)
