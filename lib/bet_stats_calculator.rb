@@ -79,12 +79,12 @@ class BetStatsCalculator
         (m[:home_fan] == away_fan && m[:away_fan] == home_fan)
       }
       
-      # Calculate "interest score" based on team standings
+      # Calculate "interest score" based on team standings points (not goals)
       home_points = home_team['points'] || 0
       away_points = away_team['points'] || 0
       point_diff = (home_points - away_points).abs
       
-      # More interesting if teams are closer in points
+      # More interesting if teams are closer in standings points
       interest_score = 100 - point_diff
       
       matchups << {
@@ -120,7 +120,7 @@ class BetStatsCalculator
       .max_by { |stat| stat[:value] }
   end
 
-  # Calculate rivalry of the week (most interesting upcoming fan matchup based on point differential)
+  # Calculate rivalry of the week (most interesting upcoming fan matchup based on how close teams are in standings points)
   def calculate_rivalry_of_the_week
     matchups = calculate_upcoming_fan_matchups
     matchups.first
