@@ -346,6 +346,66 @@ class BetStatsCalculator
     all_stats.select { |s| s[:value] == max_value }
   end
 
+  # Calculate "Fan Crusher" - best record vs other fan teams
+  def calculate_fan_crusher
+    return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      h2h_records = @head_to_head_matrix[abbrev] || {}
+      
+      total_wins = h2h_records.values.sum { |r| r[:wins] }
+      total_losses = h2h_records.values.sum { |r| r[:losses] + r[:ot_losses] }
+      total_games = total_wins + total_losses
+      
+      next nil if total_games == 0
+      
+      win_pct = (total_wins.to_f / total_games * 100).round(1)
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: win_pct,
+        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
+  end
+
+  # Calculate "Fan Fodder" - worst record vs other fan teams
+  def calculate_fan_fodder
+    return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      h2h_records = @head_to_head_matrix[abbrev] || {}
+      
+      total_wins = h2h_records.values.sum { |r| r[:wins] }
+      total_losses = h2h_records.values.sum { |r| r[:losses] + r[:ot_losses] }
+      total_games = total_wins + total_losses
+      
+      next nil if total_games == 0
+      
+      win_pct = (total_wins.to_f / total_games * 100).round(1)
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: win_pct,
+        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    min_value = all_stats.map { |s| s[:value] }.min
+    all_stats.select { |s| s[:value] == min_value }
+  end
+
   private
 
   # Helper to create a stat hash for a fan/team
