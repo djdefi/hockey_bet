@@ -397,8 +397,11 @@ class BetStatsCalculator
       
       begin
         # Fetch season schedule from NHL API
-        # Using current season 20242025
-        season = "20242025"
+        # Determine current season based on date
+        current_year = Time.now.year
+        current_month = Time.now.month
+        # NHL season runs from October to June
+        season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
         url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
         
         response = Net::HTTP.get_response(url)
