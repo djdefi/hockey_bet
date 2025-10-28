@@ -324,13 +324,13 @@
                 <table class="table-auto width-full text-small">
                     <thead>
                         <tr class="border-bottom">
-                            <th class="p-2 text-left">Fan</th>
+                            <th scope="col" class="p-2 text-left">Fan</th>
                             <% 
                               fan_abbrevs = bet_stats[:head_to_head_matrix].keys 
                               fan_list = fan_abbrevs.map { |abbrev| @manager_team_map[abbrev] }
                             %>
                             <% fan_list.each do |fan| %>
-                                <th class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
+                                <th scope="col" class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
                             <% end %>
                         </tr>
                     </thead>
