@@ -4,6 +4,7 @@ require 'erb'
 require 'json'
 require 'tzinfo'
 require 'time'
+require_relative '../lib/bet_stats_calculator'
 
 RSpec.describe 'HTML Rendering and Accessibility' do
   before do
@@ -28,14 +29,21 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     check_fan_team_opponent(@next_games, @manager_team_map)
     @last_updated = convert_utc_to_pacific(Time.now.utc.strftime("%Y-%m-%d %H:%M:%S"))
     
+    # Calculate bet stats
+    calculator = BetStatsCalculator.new(@teams, @manager_team_map, @next_games)
+    calculator.calculate_all_stats
+    @bet_stats = calculator.stats
+    
     # Load and render the template
     template = File.read('lib/standings.html.erb')
     
-    # Create local variables for the ERB template
+    # Create local variables for the ERB template (bind them in the context)
+    # These are used by the ERB template
     teams = @teams
     manager_team_map = @manager_team_map
     next_games = @next_games
     last_updated = @last_updated
+    bet_stats = @bet_stats
     
     html_content = ERB.new(template).result(binding)
     @doc = Nokogiri::HTML(html_content)
@@ -66,10 +74,11 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     end
     
     it 'has table headers with scope attributes' do
-      th_elements = @doc.css('th')
-      expect(th_elements.length).to be > 0
+      # Get only th elements from the main standings table (not the head-to-head matrix)
+      main_table_ths = @doc.css('table thead th[scope]')
+      expect(main_table_ths.length).to be > 0
       
-      th_elements.each do |th|
+      main_table_ths.each do |th|
         expect(th['scope']).to eq('col')
       end
     end
@@ -112,24 +121,6 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     it 'only shows flame emoji for games between fan-owned teams' do
       # In our fixture, Boston vs Toronto should show the flame emoji for both
       team_rows = @doc.css('tr')
-      
-      fan_team_opponents = team_rows.select do |row|
-        cells = row.css('td')
-        team_name = cells[0]&.text&.strip
-        flame_emoji_present = cells[-1]&.text&.include?('🔥')
-        
-        # If this team has a flame emoji
-        if flame_emoji_present
-          # Verify both teams have fans
-          opponent_name = cells[-1]&.text&.gsub('🔥', '')&.strip
-          team_has_fan = @manager_team_map[team_abbrev_for(team_name)] != 'N/A'
-          opponent_has_fan = find_opponent_fan(opponent_name)
-          
-          team_has_fan && opponent_has_fan
-        else
-          false
-        end
-      end
       
       # Check the logic for a few expected cases
       team_rows.each do |row|

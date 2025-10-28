@@ -8,6 +8,7 @@ require 'time'
 require_relative 'api_validator'
 require_relative 'team_mapping'
 require_relative 'playoff_processor'
+require_relative 'bet_stats_calculator'
 
 # Playoff Status Helper Structure
 PLAYOFF_STATUS = {
@@ -17,7 +18,7 @@ PLAYOFF_STATUS = {
 }
 
 class StandingsProcessor
-  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor
+  attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor, :bet_stats
 
   def initialize(fallback_path = 'spec/fixtures')
     @validator = ApiValidator.new
@@ -28,6 +29,7 @@ class StandingsProcessor
     @next_games = {}
     @manager_team_map = {}
     @last_updated = nil
+    @bet_stats = nil
   end
 
   # Main process method
@@ -62,6 +64,11 @@ class StandingsProcessor
 
     # Check fan team opponents
     check_fan_team_opponent(@next_games, @manager_team_map)
+
+    # Calculate bet stats
+    calculator = BetStatsCalculator.new(@teams, @manager_team_map, @next_games)
+    calculator.calculate_all_stats
+    @bet_stats = calculator.stats
   end
 
   # Render the output HTML
@@ -259,6 +266,11 @@ def format_game_time(time)
   return 'None' if time == 'None'
   return 'TBD' if time == 'TBD'
   time.strftime('%-m/%-d %H:%M')
+end
+
+def format_game_time_full(time)
+  return 'TBD' if time == 'None' || time == 'TBD' || time.is_a?(String)
+  time.strftime('%A, %B %-d at %-I:%M %p Pacific')
 end
 
 def get_opponent_name(game, team_id)
