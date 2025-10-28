@@ -285,7 +285,82 @@
                 <% end %>
             </div>
             <% end %>
+
+            <!-- Fan Crusher (Best vs other fans) -->
+            <% if bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-subtle">
+                <h3 class='h4 color-fg-success'>Fan Crusher 🏆</h3>
+                <% bet_stats[:fan_crusher].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Fan Fodder (Worst vs other fans) -->
+            <% if bet_stats[:fan_fodder] && bet_stats[:fan_fodder].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-danger-subtle">
+                <h3 class='h4 color-fg-danger'>Fan Fodder 🎯</h3>
+                <% bet_stats[:fan_fodder].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
         </div>
+
+        <!-- Head-to-Head Matrix -->
+        <% if bet_stats[:head_to_head_matrix] && bet_stats[:head_to_head_matrix].any? %>
+        <div class="stat-card border rounded-2 p-3 mb-3 color-bg-accent-subtle">
+            <h3 class='h3 color-fg-accent'>📊 Head-to-Head Records 📊</h3>
+            <p class="text-small color-fg-muted mb-3">Win-Loss-OTL records for fan team matchups this season</p>
+            <div style="overflow-x: auto;">
+                <table class="table-auto width-full text-small">
+                    <thead>
+                        <tr class="border-bottom">
+                            <th class="p-2 text-left">Fan</th>
+                            <% 
+                              fan_abbrevs = bet_stats[:head_to_head_matrix].keys 
+                              fan_list = fan_abbrevs.map { |abbrev| @manager_team_map[abbrev] }
+                            %>
+                            <% fan_list.each do |fan| %>
+                                <th class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
+                            <% end %>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% fan_abbrevs.each_with_index do |team_abbrev, idx| %>
+                        <tr class="<%= 'border-bottom' if idx < fan_abbrevs.length - 1 %>">
+                            <td class="p-2 text-left"><strong><%= @manager_team_map[team_abbrev] %></strong></td>
+                            <% fan_abbrevs.each do |opp_abbrev| %>
+                                <td class="p-2 text-center">
+                                    <% if team_abbrev == opp_abbrev %>
+                                        <span class="color-fg-muted">—</span>
+                                    <% else %>
+                                        <% record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev] %>
+                                        <% if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0 %>
+                                            <span class="<%= record[:wins] > (record[:losses] + record[:ot_losses]) ? 'color-fg-success' : (record[:wins] < (record[:losses] + record[:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
+                                                <%= record[:wins] %>-<%= record[:losses] %>-<%= record[:ot_losses] %>
+                                            </span>
+                                        <% else %>
+                                            <span class="color-fg-muted">0-0-0</span>
+                                        <% end %>
+                                    <% end %>
+                                </td>
+                            <% end %>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% end %>
 
         <!-- Upcoming Fan Matchups -->
         <% if bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>

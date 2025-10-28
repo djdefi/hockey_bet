@@ -13,6 +13,9 @@ class BetStatsCalculator
 
   # Calculate all bet stats
   def calculate_all_stats
+    # Fetch head-to-head data first (needed for some stats)
+    fetch_head_to_head_records
+    
     @stats = {
       top_winners: calculate_top_winners,
       top_losers: calculate_top_losers,
@@ -25,7 +28,10 @@ class BetStatsCalculator
       glass_cannon: calculate_glass_cannon,
       comeback_kid: calculate_comeback_kid,
       overtimer: calculate_overtimer,
-      point_scrounger: calculate_point_scrounger
+      point_scrounger: calculate_point_scrounger,
+      head_to_head_matrix: @head_to_head_matrix,
+      fan_crusher: calculate_fan_crusher,
+      fan_fodder: calculate_fan_fodder
     }
   end
 
@@ -37,30 +43,48 @@ class BetStatsCalculator
     end
   end
 
-  # Calculate top 3 fans with most wins (handles ties)
+  # Calculate top 3 fans with most wins (handles ties at 3rd place only)
   def calculate_top_winners
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['wins'] || 0) }
       .sort_by { |stat| -stat[:value] }
     
-    # Get top 3 unique values, but include all teams with those values (handles ties)
     return [] if all_stats.empty?
     
-    top_values = all_stats.map { |s| s[:value] }.uniq.take(3)
-    all_stats.select { |s| top_values.include?(s[:value]) }
+    # Get top 3 positions, showing all teams tied at 3rd place
+    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
+    # but not 4th place even if only 3 unique values exist
+    result = []
+    unique_values = all_stats.map { |s| s[:value] }.uniq
+    
+    # Add teams at each of the top 3 positions
+    unique_values.take(3).each do |value|
+      result += all_stats.select { |s| s[:value] == value }
+    end
+    
+    result
   end
 
-  # Calculate top 3 fans with most losses (handles ties)
+  # Calculate top 3 fans with most losses (handles ties at 3rd place only)
   def calculate_top_losers
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['losses'] || 0) }
       .sort_by { |stat| -stat[:value] }
     
-    # Get top 3 unique values, but include all teams with those values (handles ties)
     return [] if all_stats.empty?
     
-    top_values = all_stats.map { |s| s[:value] }.uniq.take(3)
-    all_stats.select { |s| top_values.include?(s[:value]) }
+    # Get top 3 positions, showing all teams tied at 3rd place
+    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
+    # but not 4th place even if only 3 unique values exist
+    result = []
+    unique_values = all_stats.map { |s| s[:value] }.uniq
+    
+    # Add teams at each of the top 3 positions
+    unique_values.take(3).each do |value|
+      result += all_stats.select { |s| s[:value] == value }
+    end
+    
+    result
   end
 
   # Find most interesting upcoming fan vs fan matchups
@@ -339,7 +363,9 @@ class BetStatsCalculator
   def create_streak_stat(team)
     abbrev = team['teamAbbrev']['default']
     streak_code = team['streakCode']
-    streak_num = streak_code.gsub(/[^\d]/, '').to_i
+    # Extract the number from the streak code (e.g., "W3" -> 3, "L2" -> 2)
+    # If no number is present (just "W" or "L"), default to 1
+    streak_num = streak_code.scan(/\d+/).first&.to_i || 1
     streak_type = streak_code.start_with?('W') ? 'wins' : 'losses'
     
     {
@@ -353,5 +379,144 @@ class BetStatsCalculator
   # Helper to find team by abbreviation
   def find_team_by_abbrev(abbrev)
     @teams.find { |t| t['teamAbbrev']['default'] == abbrev }
+  end
+
+  # Fetch head-to-head records for all fan teams from NHL API
+  def fetch_head_to_head_records
+    require 'net/http'
+    require 'json'
+    require 'uri'
+    
+    @head_to_head_matrix = {}
+    fan_abbrevs = fan_teams.map { |t| t['teamAbbrev']['default'] }
+    
+    # For each fan team, get their season schedule and extract games vs other fan teams
+    fan_abbrevs.each do |team_abbrev|
+      @head_to_head_matrix[team_abbrev] = {}
+      
+      begin
+        # Fetch season schedule from NHL API
+        # Using current season 20242025
+        season = "20242025"
+        url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
+        
+        response = Net::HTTP.get_response(url)
+        next unless response.is_a?(Net::HTTPSuccess)
+        
+        schedule_data = JSON.parse(response.body)
+        games = schedule_data['games'] || []
+        
+        # Process each game to find matchups vs other fan teams
+        games.each do |game|
+          next unless game['gameState'] == 3 || game['gameState'] == 4 || game['gameState'] == 5 # Final, Official, or Archived
+          
+          home_abbrev = game['homeTeam']['abbrev']
+          away_abbrev = game['awayTeam']['abbrev']
+          
+          # Determine if this is a fan vs fan game
+          opponent_abbrev = nil
+          we_are_home = (home_abbrev == team_abbrev)
+          
+          if we_are_home && fan_abbrevs.include?(away_abbrev)
+            opponent_abbrev = away_abbrev
+          elsif !we_are_home && fan_abbrevs.include?(home_abbrev)
+            opponent_abbrev = home_abbrev
+          end
+          
+          next unless opponent_abbrev
+          
+          # Initialize record if needed
+          @head_to_head_matrix[team_abbrev][opponent_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
+          
+          # Determine outcome
+          home_score = game['homeTeam']['score']
+          away_score = game['awayTeam']['score']
+          
+          if we_are_home
+            if home_score > away_score
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+            elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+              # Lost in OT/SO
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+            else
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+            end
+          else
+            if away_score > home_score
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+            elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+              # Lost in OT/SO
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+            else
+              @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+            end
+          end
+        end
+      rescue StandardError => e
+        # Log error but continue with other teams
+        puts "Error fetching schedule for #{team_abbrev}: #{e.message}"
+        next
+      end
+    end
+  end
+
+  # Calculate "Fan Crusher" - best record vs other fan teams
+  def calculate_fan_crusher
+    return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      h2h_records = @head_to_head_matrix[abbrev] || {}
+      
+      total_wins = h2h_records.values.sum { |r| r[:wins] }
+      total_losses = h2h_records.values.sum { |r| r[:losses] + r[:ot_losses] }
+      total_games = total_wins + total_losses
+      
+      next nil if total_games == 0
+      
+      win_pct = (total_wins.to_f / total_games * 100).round(1)
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: win_pct,
+        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
+  end
+
+  # Calculate "Fan Fodder" - worst record vs other fan teams
+  def calculate_fan_fodder
+    return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      h2h_records = @head_to_head_matrix[abbrev] || {}
+      
+      total_wins = h2h_records.values.sum { |r| r[:wins] }
+      total_losses = h2h_records.values.sum { |r| r[:losses] + r[:ot_losses] }
+      total_games = total_wins + total_losses
+      
+      next nil if total_games == 0
+      
+      win_pct = (total_wins.to_f / total_games * 100).round(1)
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: win_pct,
+        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    min_value = all_stats.map { |s| s[:value] }.min
+    all_stats.select { |s| s[:value] == min_value }
   end
 end
