@@ -206,6 +206,23 @@ RSpec.describe BetStatsCalculator do
         expect(longest.first[:display]).to include('game')
       end
     end
+
+    it 'handles streak codes without numbers (defaults to 1)' do
+      teams_simple_streak = [
+        {
+          'teamName' => { 'default' => 'Test Team' },
+          'teamAbbrev' => { 'default' => 'TST' },
+          'streakCode' => 'W', # No number
+          'wins' => 1
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_simple_streak, { 'TST' => 'TestFan' }, {})
+      result = calc.calculate_longest_win_streak
+      
+      expect(result.first[:value]).to eq(1)
+      expect(result.first[:display]).to include('1 game wins')
+    end
   end
 
   describe '#calculate_longest_lose_streak' do
@@ -443,6 +460,146 @@ RSpec.describe BetStatsCalculator do
       result = calc.calculate_point_scrounger
       
       expect(result).to be_nil
+    end
+  end
+
+  describe '#fetch_head_to_head_records' do
+    before do
+      # Mock HTTP responses for NHL API
+      allow(Net::HTTP).to receive(:get_response).and_return(double(
+        is_a?: true,
+        body: {
+          games: [
+            {
+              'gameState' => 4,
+              'homeTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+              'awayTeam' => { 'abbrev' => 'FLA', 'score' => 2 },
+              'periodDescriptor' => { 'periodType' => 'REG' }
+            },
+            {
+              'gameState' => 4,
+              'homeTeam' => { 'abbrev' => 'TOR', 'score' => 4 },
+              'awayTeam' => { 'abbrev' => 'BOS', 'score' => 5 },
+              'periodDescriptor' => { 'periodType' => 'OT' }
+            }
+          ]
+        }.to_json
+      ))
+    end
+
+    it 'fetches head-to-head records from NHL API' do
+      calculator.send(:fetch_head_to_head_records)
+      matrix = calculator.instance_variable_get(:@head_to_head_matrix)
+      
+      expect(matrix).to be_a(Hash)
+      expect(matrix.keys).to include('BOS', 'FLA', 'TOR', 'DET')
+    end
+
+    it 'handles API errors gracefully' do
+      allow(Net::HTTP).to receive(:get_response).and_raise(StandardError.new('API Error'))
+      
+      expect { calculator.send(:fetch_head_to_head_records) }.not_to raise_error
+    end
+  end
+
+  describe '#calculate_fan_crusher' do
+    before do
+      # Set up mock head-to-head data
+      calculator.instance_variable_set(:@head_to_head_matrix, {
+        'BOS' => {
+          'FLA' => { wins: 3, losses: 1, ot_losses: 0 },
+          'TOR' => { wins: 2, losses: 1, ot_losses: 1 }
+        },
+        'FLA' => {
+          'BOS' => { wins: 1, losses: 3, ot_losses: 0 },
+          'TOR' => { wins: 2, losses: 0, ot_losses: 0 }
+        },
+        'TOR' => {
+          'BOS' => { wins: 1, losses: 2, ot_losses: 1 },
+          'FLA' => { wins: 0, losses: 2, ot_losses: 0 }
+        },
+        'DET' => {}
+      })
+    end
+
+    it 'returns fan with best record vs other fan teams' do
+      result = calculator.calculate_fan_crusher
+      
+      expect(result).to be_an(Array)
+      expect(result.first[:fan]).to eq('Alice') # BOS has best record
+      expect(result.first[:display]).to include('71.4%') # 5-2 = 71.4%
+    end
+
+    it 'handles ties correctly' do
+      # Set up a tie scenario
+      calculator.instance_variable_set(:@head_to_head_matrix, {
+        'BOS' => { 'FLA' => { wins: 2, losses: 0, ot_losses: 0 } },
+        'FLA' => { 'BOS' => { wins: 2, losses: 0, ot_losses: 0 } }
+      })
+      
+      result = calculator.calculate_fan_crusher
+      expect(result.length).to eq(2) # Both tied at 100%
+    end
+
+    it 'returns nil when no games played' do
+      calculator.instance_variable_set(:@head_to_head_matrix, {})
+      result = calculator.calculate_fan_crusher
+      expect(result).to be_nil
+    end
+  end
+
+  describe '#calculate_fan_fodder' do
+    before do
+      # Set up mock head-to-head data
+      calculator.instance_variable_set(:@head_to_head_matrix, {
+        'BOS' => {
+          'FLA' => { wins: 3, losses: 1, ot_losses: 0 },
+          'TOR' => { wins: 2, losses: 1, ot_losses: 1 }
+        },
+        'FLA' => {
+          'BOS' => { wins: 1, losses: 3, ot_losses: 0 },
+          'TOR' => { wins: 2, losses: 0, ot_losses: 0 }
+        },
+        'TOR' => {
+          'BOS' => { wins: 1, losses: 2, ot_losses: 1 },
+          'FLA' => { wins: 0, losses: 2, ot_losses: 0 }
+        },
+        'DET' => {}
+      })
+    end
+
+    it 'returns fan with worst record vs other fan teams' do
+      result = calculator.calculate_fan_fodder
+      
+      expect(result).to be_an(Array)
+      expect(result.first[:fan]).to eq('Charlie') # TOR has worst record
+      expect(result.first[:display]).to include('25.0%') # 1-4 = 25%
+    end
+
+    it 'returns nil when no games played' do
+      calculator.instance_variable_set(:@head_to_head_matrix, {})
+      result = calculator.calculate_fan_fodder
+      expect(result).to be_nil
+    end
+  end
+
+  describe '#calculate_all_stats with head-to-head' do
+    before do
+      # Mock the API call
+      allow(calculator).to receive(:fetch_head_to_head_records) do
+        calculator.instance_variable_set(:@head_to_head_matrix, {
+          'BOS' => { 'FLA' => { wins: 2, losses: 1, ot_losses: 0 } },
+          'FLA' => { 'BOS' => { wins: 1, losses: 2, ot_losses: 0 } }
+        })
+      end
+    end
+
+    it 'includes head-to-head stats in results' do
+      calculator.calculate_all_stats
+      
+      expect(calculator.stats).to include(:head_to_head_matrix)
+      expect(calculator.stats).to include(:fan_crusher)
+      expect(calculator.stats).to include(:fan_fodder)
     end
   end
 end
