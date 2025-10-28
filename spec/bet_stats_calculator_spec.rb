@@ -336,6 +336,8 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.stats).to have_key(:brick_wall)
       expect(calculator.stats).to have_key(:glass_cannon)
       expect(calculator.stats).to have_key(:comeback_kid)
+      expect(calculator.stats).to have_key(:overtimer)
+      expect(calculator.stats).to have_key(:point_scrounger)
     end
 
     it 'returns stats hash' do
@@ -387,6 +389,60 @@ RSpec.describe BetStatsCalculator do
         
         expect { calc.stats }.not_to raise_error
       end
+    end
+  end
+
+  describe '#calculate_overtimer' do
+    it 'returns team with most OT losses' do
+      result = calculator.calculate_overtimer
+      
+      expect(result).to be_an(Array)
+      expect(result.first[:fan]).to eq('Charlie')
+      expect(result.first[:team]).to eq('Toronto Maple Leafs')
+      expect(result.first[:value]).to eq(9)
+      expect(result.first[:display]).to include('9 overtime losses')
+    end
+
+    it 'returns nil when no teams have OT losses' do
+      teams_no_ot = [
+        {
+          'teamName' => { 'default' => 'Test Team' },
+          'teamAbbrev' => { 'default' => 'TST' },
+          'otLosses' => 0
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_no_ot, { 'TST' => 'TestFan' }, {})
+      result = calc.calculate_overtimer
+      
+      expect(result).to be_nil
+    end
+  end
+
+  describe '#calculate_point_scrounger' do
+    it 'returns team with most pity points from OT losses' do
+      result = calculator.calculate_point_scrounger
+      
+      expect(result).to be_an(Array)
+      expect(result.first[:fan]).to eq('Charlie')
+      expect(result.first[:team]).to eq('Toronto Maple Leafs')
+      expect(result.first[:value]).to eq(9)
+      expect(result.first[:display]).to include('9 pity points')
+    end
+
+    it 'returns nil when no teams have OT losses' do
+      teams_no_ot = [
+        {
+          'teamName' => { 'default' => 'Test Team' },
+          'teamAbbrev' => { 'default' => 'TST' },
+          'otLosses' => 0
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_no_ot, { 'TST' => 'TestFan' }, {})
+      result = calc.calculate_point_scrounger
+      
+      expect(result).to be_nil
     end
   end
 end

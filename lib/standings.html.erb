@@ -257,6 +257,34 @@
                 <% end %>
             </div>
             <% end %>
+
+            <!-- Overtimer -->
+            <% if bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-muted'>Overtimer ⏱️</h3>
+                <% bet_stats[:overtimer].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Point Scrounger -->
+            <% if bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-muted'>Point Scrounger 🪙</h3>
+                <% bet_stats[:point_scrounger].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
         </div>
 
         <!-- Upcoming Fan Matchups -->

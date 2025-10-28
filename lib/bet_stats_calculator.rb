@@ -23,7 +23,9 @@ class BetStatsCalculator
       most_dominant: calculate_most_dominant,
       brick_wall: calculate_brick_wall,
       glass_cannon: calculate_glass_cannon,
-      comeback_kid: calculate_comeback_kid
+      comeback_kid: calculate_comeback_kid,
+      overtimer: calculate_overtimer,
+      point_scrounger: calculate_point_scrounger
     }
   end
 
@@ -262,6 +264,54 @@ class BetStatsCalculator
           team: team['teamName']['default'],
           value: ot_wins,
           display: "#{ot_wins} OT/SO #{ot_wins == 1 ? 'win' : 'wins'}"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
+  end
+
+  # Calculate "Overtimer" - most overtime losses (lives dangerously, handles ties)
+  def calculate_overtimer
+    all_stats = fan_teams
+      .map do |team|
+        ot_losses = team['otLosses'] || 0
+        
+        next nil if ot_losses == 0
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: ot_losses,
+          display: "#{ot_losses} overtime #{ot_losses == 1 ? 'loss' : 'losses'} (living on the edge!)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
+  end
+
+  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, handles ties)
+  def calculate_point_scrounger
+    all_stats = fan_teams
+      .map do |team|
+        ot_losses = team['otLosses'] || 0
+        
+        next nil if ot_losses == 0
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: ot_losses,
+          display: "#{ot_losses} pity #{ot_losses == 1 ? 'point' : 'points'} from OT losses"
         }
       end
       .compact
