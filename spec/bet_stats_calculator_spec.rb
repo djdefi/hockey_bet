@@ -545,7 +545,7 @@ RSpec.describe BetStatsCalculator do
       
       expect(result).to be_an(Array)
       expect(result.first[:fan]).to eq('Alice') # BOS has best record
-      expect(result.first[:display]).to include('71.4%') # 5-2 = 71.4%
+      expect(result.first[:display]).to include('62.5%') # 5-3 (wins-losses including OT) = 62.5%
     end
 
     it 'handles ties correctly' do
@@ -591,7 +591,7 @@ RSpec.describe BetStatsCalculator do
       
       expect(result).to be_an(Array)
       expect(result.first[:fan]).to eq('Charlie') # TOR has worst record
-      expect(result.first[:display]).to include('25.0%') # 1-4 = 25%
+      expect(result.first[:display]).to include('16.7%') # 1-5 (wins-losses including OT) = 16.7%
     end
 
     it 'returns nil when no games played' do

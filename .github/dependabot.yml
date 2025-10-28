@@ -6,7 +6,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
     target-branch: "main"
     versioning-strategy: "auto"
     allow:
@@ -19,13 +19,17 @@ updates:
     commit-message:
       prefix: "deps"
       include: "scope"
+    groups:
+      bundler-dependencies:
+        patterns:
+          - "*"
     
   # GitHub Actions updates
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
     target-branch: "main"
     labels:
       - "dependencies"
@@ -33,13 +37,17 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
     
   # Node.js dependencies (if any in the future)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
     target-branch: "main"
     versioning-strategy: "auto"
     allow:
@@ -50,3 +58,7 @@ updates:
     commit-message:
       prefix: "deps"
       include: "scope"
+    groups:
+      npm-dependencies:
+        patterns:
+          - "*"
