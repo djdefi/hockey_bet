@@ -4,6 +4,7 @@ require 'erb'
 require 'json'
 require 'tzinfo'
 require 'time'
+require_relative '../lib/bet_stats_calculator'
 
 RSpec.describe 'HTML Rendering and Accessibility' do
   before do
@@ -28,6 +29,11 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     check_fan_team_opponent(@next_games, @manager_team_map)
     @last_updated = convert_utc_to_pacific(Time.now.utc.strftime("%Y-%m-%d %H:%M:%S"))
     
+    # Calculate bet stats
+    calculator = BetStatsCalculator.new(@teams, @manager_team_map, @next_games)
+    calculator.calculate_all_stats
+    @bet_stats = calculator.stats
+    
     # Load and render the template
     template = File.read('lib/standings.html.erb')
     
@@ -36,6 +42,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     manager_team_map = @manager_team_map
     next_games = @next_games
     last_updated = @last_updated
+    bet_stats = @bet_stats
     
     html_content = ERB.new(template).result(binding)
     @doc = Nokogiri::HTML(html_content)

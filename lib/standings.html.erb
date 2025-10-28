@@ -27,6 +27,9 @@
             .responsive-table {
                 font-size: 0.85em;
             }
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
         .hidden {
             display: none;
@@ -54,6 +57,32 @@
         .fan-team-indicator {
             font-weight: bold;
         }
+        .bet-stats-section {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(255, 184, 0, 0.1) 100%);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .stat-card {
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .stat-medal {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        .matchup-item {
+            padding: 12px 0;
+        }
+        .matchup-header {
+            font-size: 1.1em;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -73,6 +102,139 @@
             <span>Playing against a fan-owned team</span>
         </div>
     </div>
+
+    <!-- Bet Stats Section -->
+    <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
+    <div class="bet-stats-section border rounded-2 p-3 mb-3 color-bg-subtle">
+        <h2 class='h3 mb-3'>🏆 Fan League Stats & Trash Talk Board 🏆</h2>
+        
+        <div class="stats-grid">
+            <!-- Top Winners -->
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Top Winners</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:top_winners].each_with_index do |stat, idx| %>
+                        <li class="py-1">
+                            <span class="stat-medal"><%= ['🥇', '🥈', '🥉'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %> wins
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <!-- Top Losers -->
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-danger'>Most Losses (Wall of Shame)</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:top_losers].each_with_index do |stat, idx| %>
+                        <li class="py-1">
+                            <span class="stat-medal"><%= ['💩', '🤦', '😢'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %> losses
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <!-- Best Playoff Position -->
+            <% if bet_stats[:best_playoff_position] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>King of the Mountain 👑</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:best_playoff_position][:fan] %></strong> 
+                    (<%= bet_stats[:best_playoff_position][:team] %>): 
+                    #<%= bet_stats[:best_playoff_position][:display] %> in league
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Worst Playoff Position -->
+            <% if bet_stats[:worst_playoff_position] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-danger'>Bottom Feeder 🪱</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:worst_playoff_position][:fan] %></strong> 
+                    (<%= bet_stats[:worst_playoff_position][:team] %>): 
+                    #<%= bet_stats[:worst_playoff_position][:display] %> in league
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Longest Win Streak -->
+            <% if bet_stats[:longest_win_streak] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>On Fire 🔥</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:longest_win_streak][:fan] %></strong> 
+                    (<%= bet_stats[:longest_win_streak][:team] %>): 
+                    <%= bet_stats[:longest_win_streak][:display] %> streak
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Longest Lose Streak -->
+            <% if bet_stats[:longest_lose_streak] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-danger'>Ice Cold 🧊</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:longest_lose_streak][:fan] %></strong> 
+                    (<%= bet_stats[:longest_lose_streak][:team] %>): 
+                    <%= bet_stats[:longest_lose_streak][:display] %> streak
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Best Point Differential -->
+            <% if bet_stats[:best_point_differential] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Best Goal Differential 🎯</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:best_point_differential][:fan] %></strong> 
+                    (<%= bet_stats[:best_point_differential][:team] %>): 
+                    <%= bet_stats[:best_point_differential][:display] %>
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Biggest Underdog -->
+            <% if bet_stats[:biggest_underdog] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-attention'>Biggest Underdog 🐶</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:biggest_underdog][:fan] %></strong> 
+                    (<%= bet_stats[:biggest_underdog][:team] %>): 
+                    Ranked <%= bet_stats[:biggest_underdog][:display] %> but still in wild card!
+                </p>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Upcoming Fan Matchups -->
+        <% if bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
+        <div class="stat-card border rounded-2 p-3 mb-3 color-bg-attention-subtle">
+            <h3 class='h3 color-fg-attention'>🔥 Upcoming Fan vs Fan Battles 🔥</h3>
+            <div class="matchups-list">
+                <% bet_stats[:upcoming_fan_matchups].each_with_index do |matchup, idx| %>
+                    <div class="matchup-item border-bottom py-3 <%= 'border-bottom-0' if idx == bet_stats[:upcoming_fan_matchups].size - 1 %>">
+                        <div class="matchup-header mb-2">
+                            <strong class="h4">
+                                <%= matchup[:away_fan] %> (<%= matchup[:away_team] %>)
+                                vs 
+                                <%= matchup[:home_fan] %> (<%= matchup[:home_team] %>)
+                            </strong>
+                        </div>
+                        <div class="matchup-details">
+                            <span class="text-small">
+                                Records: <%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W | 
+                                Points: <%= matchup[:away_points] %> vs <%= matchup[:home_points] %>
+                            </span>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
     
     <div class="responsive-table overflow-auto">
         <table class='color-shadow-large'>
