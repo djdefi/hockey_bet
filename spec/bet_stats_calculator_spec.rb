@@ -223,6 +223,24 @@ RSpec.describe BetStatsCalculator do
       expect(result.first[:value]).to eq(1)
       expect(result.first[:display]).to include('1 game wins')
     end
+
+    it 'handles streak codes with 0 (defaults to 1)' do
+      teams_zero_streak = [
+        {
+          'teamName' => { 'default' => 'Test Team' },
+          'teamAbbrev' => { 'default' => 'TST' },
+          'streakCode' => 'W0', # Zero streak
+          'wins' => 1
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_zero_streak, { 'TST' => 'TestFan' }, {})
+      result = calc.calculate_longest_win_streak
+      
+      expect(result.first[:value]).to eq(1)
+      expect(result.first[:display]).to include('1 game wins')
+      expect(result.first[:display]).to include('(W0)')
+    end
   end
 
   describe '#calculate_longest_lose_streak' do

@@ -364,8 +364,9 @@ class BetStatsCalculator
     abbrev = team['teamAbbrev']['default']
     streak_code = team['streakCode']
     # Extract the number from the streak code (e.g., "W3" -> 3, "L2" -> 2)
-    # If no number is present (just "W" or "L"), default to 1
-    streak_num = streak_code.scan(/\d+/).first&.to_i || 1
+    # If no number is present (just "W" or "L") or if it's 0, default to 1
+    streak_num_raw = streak_code.scan(/\d+/).first&.to_i
+    streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
     streak_type = streak_code.start_with?('W') ? 'wins' : 'losses'
     
     {
