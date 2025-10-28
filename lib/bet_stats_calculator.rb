@@ -120,7 +120,7 @@ class BetStatsCalculator
       .max_by { |stat| stat[:value] }
   end
 
-  # Calculate rivalry of the week (fan teams playing each other most often)
+  # Calculate rivalry of the week (most interesting upcoming fan matchup based on point differential)
   def calculate_rivalry_of_the_week
     matchups = calculate_upcoming_fan_matchups
     matchups.first
@@ -133,11 +133,22 @@ class BetStatsCalculator
         games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
         next nil if games_played == 0
         
-        goals_for = (team['goalsForPctg'] || 0) * games_played
-        goals_against = (team['goalAgainst'] || 0) * games_played
-        differential = goals_for - goals_against
+        # goalsForPctg and goalAgainst are already per-game values
+        goals_for_per_game = team['goalsForPctg'] || 0
+        goals_against_per_game = team['goalAgainst'] || 0
+        differential_per_game = goals_for_per_game - goals_against_per_game
         
-        create_fan_stat(team, differential.round(1), suffix: " goals")
+        abbrev = team['teamAbbrev']['default']
+        # Format with + for positive values, clean up trailing zeros
+        formatted_value = differential_per_game.round(2)
+        display_value = formatted_value >= 0 ? "+#{formatted_value}" : formatted_value.to_s
+        
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: formatted_value,
+          display: "#{display_value} goals/game"
+        }
       end
       .compact
       .max_by { |stat| stat[:value] }
