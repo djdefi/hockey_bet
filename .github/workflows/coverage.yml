@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Tests with Coverage
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1.254.0
+      uses: ruby/setup-ruby@v1.267.0
       with:
         ruby-version: '3.4.0'
         bundler-cache: false
@@ -36,14 +36,14 @@ jobs:
       run: bundle exec rspec
 
     - name: Upload coverage report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: coverage-report
         path: coverage/
 
     - name: Comment coverage on PR
       if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
+      uses: actions/github-script@v8
       with:
         script: |
           const fs = require('fs');
