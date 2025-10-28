@@ -35,20 +35,30 @@ class BetStatsCalculator
     end
   end
 
-  # Calculate top 3 fans with most wins
+  # Calculate top 3 fans with most wins (handles ties)
   def calculate_top_winners
-    fan_teams
+    all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['wins'] || 0) }
       .sort_by { |stat| -stat[:value] }
-      .take(3)
+    
+    # Get top 3 unique values, but include all teams with those values (handles ties)
+    return [] if all_stats.empty?
+    
+    top_values = all_stats.map { |s| s[:value] }.uniq.take(3)
+    all_stats.select { |s| top_values.include?(s[:value]) }
   end
 
-  # Calculate top 3 fans with most losses
+  # Calculate top 3 fans with most losses (handles ties)
   def calculate_top_losers
-    fan_teams
+    all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['losses'] || 0) }
       .sort_by { |stat| -stat[:value] }
-      .take(3)
+    
+    # Get top 3 unique values, but include all teams with those values (handles ties)
+    return [] if all_stats.empty?
+    
+    top_values = all_stats.map { |s| s[:value] }.uniq.take(3)
+    all_stats.select { |s| top_values.include?(s[:value]) }
   end
 
   # Find most interesting upcoming fan vs fan matchups
@@ -104,25 +114,35 @@ class BetStatsCalculator
     matchups.sort_by { |m| -m[:interest_score] }.take(3)
   end
 
-  # Calculate fan with longest winning streak
+  # Calculate fan with longest winning streak (handles ties)
   def calculate_longest_win_streak
-    fan_teams
+    all_streaks = fan_teams
       .select { |team| team['streakCode'] && team['streakCode'].start_with?('W') }
       .map { |team| create_streak_stat(team) }
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_streaks.empty?
+    
+    max_value = all_streaks.map { |s| s[:value] }.max
+    # Return all teams with the max streak value (handles ties)
+    all_streaks.select { |s| s[:value] == max_value }
   end
 
-  # Calculate fan with longest losing streak
+  # Calculate fan with longest losing streak (handles ties)
   def calculate_longest_lose_streak
-    fan_teams
+    all_streaks = fan_teams
       .select { |team| team['streakCode'] && team['streakCode'].start_with?('L') }
       .map { |team| create_streak_stat(team) }
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_streaks.empty?
+    
+    max_value = all_streaks.map { |s| s[:value] }.max
+    # Return all teams with the max streak value (handles ties)
+    all_streaks.select { |s| s[:value] == max_value }
   end
 
-  # Calculate fan with best goal differential
+  # Calculate fan with best goal differential (handles ties)
   def calculate_best_point_differential
-    fan_teams
+    all_stats = fan_teams
       .map do |team|
         games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
         next nil if games_played == 0
@@ -145,12 +165,16 @@ class BetStatsCalculator
         }
       end
       .compact
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
   end
 
-  # Calculate most dominant (best win percentage)
+  # Calculate most dominant (best win percentage, handles ties)
   def calculate_most_dominant
-    fan_teams
+    all_stats = fan_teams
       .map do |team|
         games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
         next nil if games_played == 0
@@ -167,12 +191,16 @@ class BetStatsCalculator
         }
       end
       .compact
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
   end
 
-  # Calculate brick wall (best goals against per game - defensive prowess)
+  # Calculate brick wall (best goals against per game - defensive prowess, handles ties)
   def calculate_brick_wall
-    fan_teams
+    all_stats = fan_teams
       .map do |team|
         goals_against_per_game = team['goalAgainst'] || 999
         
@@ -184,12 +212,16 @@ class BetStatsCalculator
           display: "#{goals_against_per_game} goals against/game"
         }
       end
-      .min_by { |stat| stat[:value] }  # Lower is better
+    
+    return nil if all_stats.empty?
+    
+    min_value = all_stats.map { |s| s[:value] }.min
+    all_stats.select { |s| s[:value] == min_value }
   end
 
-  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing)
+  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, handles ties)
   def calculate_glass_cannon
-    fan_teams
+    all_stats = fan_teams
       .map do |team|
         goals_for = team['goalsForPctg'] || 0
         goals_against = team['goalAgainst'] || 0
@@ -207,12 +239,16 @@ class BetStatsCalculator
         }
       end
       .compact
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
   end
 
-  # Calculate comeback kid (most OT/shootout wins - clutch performance)
+  # Calculate comeback kid (most OT/shootout wins - clutch performance, handles ties)
   def calculate_comeback_kid
-    fan_teams
+    all_stats = fan_teams
       .map do |team|
         wins = team['wins'] || 0
         regulation_wins = team['regulationWins'] || wins  # Fall back to total wins if regulationWins not available
@@ -225,11 +261,15 @@ class BetStatsCalculator
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: ot_wins,
-          display: "#{ot_wins} OT/SO wins"
+          display: "#{ot_wins} OT/SO #{ot_wins == 1 ? 'win' : 'wins'}"
         }
       end
       .compact
-      .max_by { |stat| stat[:value] }
+    
+    return nil if all_stats.empty?
+    
+    max_value = all_stats.map { |s| s[:value] }.max
+    all_stats.select { |s| s[:value] == max_value }
   end
 
   private
@@ -250,12 +290,13 @@ class BetStatsCalculator
     abbrev = team['teamAbbrev']['default']
     streak_code = team['streakCode']
     streak_num = streak_code.gsub(/[^\d]/, '').to_i
+    streak_type = streak_code.start_with?('W') ? 'wins' : 'losses'
     
     {
       fan: @manager_team_map[abbrev],
       team: team['teamName']['default'],
       value: streak_num,
-      display: streak_code
+      display: "#{streak_num} game #{streak_type} (#{streak_code})"
     }
   end
 

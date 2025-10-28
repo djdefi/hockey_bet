@@ -29,6 +29,35 @@
             }
             .stats-grid {
                 grid-template-columns: 1fr !important;
+                gap: 8px;
+            }
+            .stat-card {
+                padding: 8px 12px !important;
+            }
+            .stat-card .h4 {
+                font-size: 1em !important;
+                margin-bottom: 4px !important;
+            }
+            .stat-card p {
+                font-size: 0.9em;
+                line-height: 1.3;
+            }
+            .bet-stats-section {
+                padding: 8px !important;
+                margin-bottom: 12px !important;
+            }
+            .bet-stats-section .h3 {
+                font-size: 1.1em !important;
+                margin-bottom: 8px !important;
+            }
+            .matchup-item {
+                padding: 8px 0 !important;
+            }
+            .matchup-header .h4 {
+                font-size: 0.95em !important;
+            }
+            .matchup-details {
+                font-size: 0.85em;
             }
         }
         .hidden {
@@ -136,86 +165,100 @@
             </div>
 
             <!-- Most Dominant -->
-            <% if bet_stats[:most_dominant] %>
+            <% if bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-success'>Most Dominant 👑</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:most_dominant][:fan] %></strong> 
-                    (<%= bet_stats[:most_dominant][:team] %>): 
-                    <%= bet_stats[:most_dominant][:display] %>
-                </p>
+                <% bet_stats[:most_dominant].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Brick Wall -->
-            <% if bet_stats[:brick_wall] %>
+            <% if bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-success'>Brick Wall 🧱</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:brick_wall][:fan] %></strong> 
-                    (<%= bet_stats[:brick_wall][:team] %>): 
-                    <%= bet_stats[:brick_wall][:display] %>
-                </p>
+                <% bet_stats[:brick_wall].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Longest Win Streak -->
-            <% if bet_stats[:longest_win_streak] %>
+            <% if bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-success'>On Fire 🔥</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:longest_win_streak][:fan] %></strong> 
-                    (<%= bet_stats[:longest_win_streak][:team] %>): 
-                    <%= bet_stats[:longest_win_streak][:display] %> streak
-                </p>
+                <% bet_stats[:longest_win_streak].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Longest Lose Streak -->
-            <% if bet_stats[:longest_lose_streak] %>
+            <% if bet_stats[:longest_lose_streak] && bet_stats[:longest_lose_streak].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-danger'>Ice Cold 🧊</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:longest_lose_streak][:fan] %></strong> 
-                    (<%= bet_stats[:longest_lose_streak][:team] %>): 
-                    <%= bet_stats[:longest_lose_streak][:display] %> streak
-                </p>
+                <% bet_stats[:longest_lose_streak].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Best Point Differential -->
-            <% if bet_stats[:best_point_differential] %>
+            <% if bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-success'>Best Goal Differential 🎯</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:best_point_differential][:fan] %></strong> 
-                    (<%= bet_stats[:best_point_differential][:team] %>): 
-                    <%= bet_stats[:best_point_differential][:display] %>
-                </p>
+                <% bet_stats[:best_point_differential].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Glass Cannon -->
-            <% if bet_stats[:glass_cannon] %>
+            <% if bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-attention'>Glass Cannon 💥</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:glass_cannon][:fan] %></strong> 
-                    (<%= bet_stats[:glass_cannon][:team] %>): 
-                    <%= bet_stats[:glass_cannon][:display] %>
-                </p>
+                <% bet_stats[:glass_cannon].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
 
             <!-- Comeback Kid -->
-            <% if bet_stats[:comeback_kid] %>
+            <% if bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-accent'>Comeback Kid 💪</h3>
-                <p class="mb-0">
-                    <strong><%= bet_stats[:comeback_kid][:fan] %></strong> 
-                    (<%= bet_stats[:comeback_kid][:team] %>): 
-                    <%= bet_stats[:comeback_kid][:display] %>
-                </p>
+                <% bet_stats[:comeback_kid].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
             </div>
             <% end %>
         </div>

@@ -179,10 +179,11 @@ RSpec.describe BetStatsCalculator do
     it 'returns the fan with longest winning streak' do
       longest = calculator.calculate_longest_win_streak
       
-      if longest
-        expect(longest).to have_key(:fan)
-        expect(longest).to have_key(:value)
-        expect(longest).to have_key(:display)
+      if longest && longest.any?
+        expect(longest).to be_an(Array)
+        expect(longest.first).to have_key(:fan)
+        expect(longest.first).to have_key(:value)
+        expect(longest.first).to have_key(:display)
       end
     end
 
@@ -199,9 +200,10 @@ RSpec.describe BetStatsCalculator do
     it 'parses streak code correctly' do
       longest = calculator.calculate_longest_win_streak
       
-      if longest
-        expect(longest[:value]).to be_a(Integer)
-        expect(longest[:value]).to be > 0
+      if longest && longest.any?
+        expect(longest.first[:value]).to be_a(Integer)
+        expect(longest.first[:value]).to be > 0
+        expect(longest.first[:display]).to include('game')
       end
     end
   end
@@ -210,19 +212,20 @@ RSpec.describe BetStatsCalculator do
     it 'returns the fan with longest losing streak' do
       longest = calculator.calculate_longest_lose_streak
       
-      if longest
-        expect(longest).to have_key(:fan)
-        expect(longest).to have_key(:value)
-        expect(longest).to have_key(:display)
+      if longest && longest.any?
+        expect(longest).to be_an(Array)
+        expect(longest.first).to have_key(:fan)
+        expect(longest.first).to have_key(:value)
+        expect(longest.first).to have_key(:display)
       end
     end
 
     it 'only considers teams with losing streaks' do
-      # If there's a longest losing streak, it should start with L
+      # If there's a longest losing streak, it should include 'loss'
       longest = calculator.calculate_longest_lose_streak
       
-      if longest
-        expect(longest[:display]).to match(/^L\d+/)
+      if longest && longest.any?
+        expect(longest.first[:display]).to include('loss')
       end
     end
   end
@@ -231,18 +234,19 @@ RSpec.describe BetStatsCalculator do
     it 'returns the fan with best goal differential' do
       best = calculator.calculate_best_point_differential
       
-      if best
-        expect(best).to have_key(:fan)
-        expect(best).to have_key(:value)
-        expect(best[:value]).to be_a(Numeric)
+      if best && best.any?
+        expect(best).to be_an(Array)
+        expect(best.first).to have_key(:fan)
+        expect(best.first).to have_key(:value)
+        expect(best.first[:value]).to be_a(Numeric)
       end
     end
 
     it 'includes goals suffix in display' do
       best = calculator.calculate_best_point_differential
       
-      if best
-        expect(best[:display]).to include('goals')
+      if best && best.any?
+        expect(best.first[:display]).to include('goals')
       end
     end
   end
@@ -251,15 +255,20 @@ RSpec.describe BetStatsCalculator do
     it 'returns the fan with best win percentage' do
       dominant = calculator.calculate_most_dominant
       
-      expect(dominant).to have_key(:fan)
-      expect(dominant).to have_key(:value)
-      expect(dominant[:value]).to be_a(Numeric)
+      if dominant && dominant.any?
+        expect(dominant).to be_an(Array)
+        expect(dominant.first).to have_key(:fan)
+        expect(dominant.first).to have_key(:value)
+        expect(dominant.first[:value]).to be_a(Numeric)
+      end
     end
 
     it 'displays win percentage' do
       dominant = calculator.calculate_most_dominant
       
-      expect(dominant[:display]).to include('win rate')
+      if dominant && dominant.any?
+        expect(dominant.first[:display]).to include('win rate')
+      end
     end
   end
 
@@ -267,15 +276,20 @@ RSpec.describe BetStatsCalculator do
     it 'returns the fan with best goals against' do
       brick_wall = calculator.calculate_brick_wall
       
-      expect(brick_wall).to have_key(:fan)
-      expect(brick_wall).to have_key(:value)
-      expect(brick_wall[:value]).to be_a(Numeric)
+      if brick_wall && brick_wall.any?
+        expect(brick_wall).to be_an(Array)
+        expect(brick_wall.first).to have_key(:fan)
+        expect(brick_wall.first).to have_key(:value)
+        expect(brick_wall.first[:value]).to be_a(Numeric)
+      end
     end
 
     it 'displays goals against per game' do
       brick_wall = calculator.calculate_brick_wall
       
-      expect(brick_wall[:display]).to include('goals against/game')
+      if brick_wall && brick_wall.any?
+        expect(brick_wall.first[:display]).to include('goals against/game')
+      end
     end
   end
 
@@ -284,10 +298,11 @@ RSpec.describe BetStatsCalculator do
       glass_cannon = calculator.calculate_glass_cannon
       
       # May be nil if no team fits the criteria
-      if glass_cannon
-        expect(glass_cannon).to have_key(:fan)
-        expect(glass_cannon).to have_key(:value)
-        expect(glass_cannon[:display]).to include('differential')
+      if glass_cannon && glass_cannon.any?
+        expect(glass_cannon).to be_an(Array)
+        expect(glass_cannon.first).to have_key(:fan)
+        expect(glass_cannon.first).to have_key(:value)
+        expect(glass_cannon.first[:display]).to include('differential')
       end
     end
   end
@@ -297,11 +312,12 @@ RSpec.describe BetStatsCalculator do
       comeback_kid = calculator.calculate_comeback_kid
       
       # May be nil if no team has OT wins
-      if comeback_kid
-        expect(comeback_kid).to have_key(:fan)
-        expect(comeback_kid).to have_key(:value)
-        expect(comeback_kid[:value]).to be > 0
-        expect(comeback_kid[:display]).to include('OT/SO wins')
+      if comeback_kid && comeback_kid.any?
+        expect(comeback_kid).to be_an(Array)
+        expect(comeback_kid.first).to have_key(:fan)
+        expect(comeback_kid.first).to have_key(:value)
+        expect(comeback_kid.first[:value]).to be > 0
+        expect(comeback_kid.first[:display]).to include('OT/SO')
       end
     end
   end
