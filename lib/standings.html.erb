@@ -106,7 +106,7 @@
     <!-- Bet Stats Section -->
     <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
     <div class="bet-stats-section border rounded-2 p-3 mb-3 color-bg-subtle">
-        <h2 class='h3 mb-3'>🏆 Fan League Stats & Trash Talk Board 🏆</h2>
+        <h2 class='h3 mb-3'>🏆 Fan League Stats & Bragging Rights 🏆</h2>
         
         <div class="stats-grid">
             <!-- Top Winners -->
@@ -238,6 +238,10 @@
                             <span class="text-small">
                                 Records: <%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W | 
                                 Points: <%= matchup[:away_points] %> vs <%= matchup[:home_points] %>
+                                <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
+                                    <br>
+                                    <strong>Game Time:</strong> <%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %>
+                                <% end %>
                             </span>
                         </div>
                     </div>

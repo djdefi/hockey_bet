@@ -268,6 +268,11 @@ def format_game_time(time)
   time.strftime('%-m/%-d %H:%M')
 end
 
+def format_game_time_full(time)
+  return 'TBD' if time == 'None' || time == 'TBD'
+  time.strftime('%A, %B %-d at %-I:%M %p Pacific')
+end
+
 def get_opponent_name(game, team_id)
   return 'None' unless game
   return 'None' if game['awayTeam']['abbrev'] == 'None' || game['homeTeam']['abbrev'] == 'None'
