@@ -269,7 +269,7 @@ def format_game_time(time)
 end
 
 def format_game_time_full(time)
-  return 'TBD' if time == 'None' || time == 'TBD'
+  return 'TBD' if time == 'None' || time == 'TBD' || time.is_a?(String)
   time.strftime('%A, %B %-d at %-I:%M %p Pacific')
 end
 
