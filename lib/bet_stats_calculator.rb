@@ -19,11 +19,11 @@ class BetStatsCalculator
       upcoming_fan_matchups: calculate_upcoming_fan_matchups,
       longest_win_streak: calculate_longest_win_streak,
       longest_lose_streak: calculate_longest_lose_streak,
-      rivalry_of_the_week: calculate_rivalry_of_the_week,
       best_point_differential: calculate_best_point_differential,
-      biggest_underdog: calculate_biggest_underdog,
-      best_playoff_position: calculate_best_playoff_position,
-      worst_playoff_position: calculate_worst_playoff_position
+      most_dominant: calculate_most_dominant,
+      brick_wall: calculate_brick_wall,
+      glass_cannon: calculate_glass_cannon,
+      comeback_kid: calculate_comeback_kid
     }
   end
 
@@ -120,12 +120,6 @@ class BetStatsCalculator
       .max_by { |stat| stat[:value] }
   end
 
-  # Calculate rivalry of the week (most interesting upcoming fan matchup based on how close teams are in standings points)
-  def calculate_rivalry_of_the_week
-    matchups = calculate_upcoming_fan_matchups
-    matchups.first
-  end
-
   # Calculate fan with best goal differential
   def calculate_best_point_differential
     fan_teams
@@ -154,25 +148,87 @@ class BetStatsCalculator
       .max_by { |stat| stat[:value] }
   end
 
-  # Calculate biggest underdog (lowest ranked fan team still in playoff contention)
-  def calculate_biggest_underdog
+  # Calculate most dominant (best win percentage)
+  def calculate_most_dominant
     fan_teams
-      .select { |team| team['wildcardSequence'].to_i > 0 && team['wildcardSequence'].to_i <= 2 }
-      .map { |team| create_fan_stat(team, team['leagueSequence'] || 0, suffix: " in league") }
+      .map do |team|
+        games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
+        next nil if games_played == 0
+        
+        wins = team['wins'] || 0
+        win_pct = (wins.to_f / games_played * 100).round(1)
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: win_pct,
+          display: "#{win_pct}% win rate"
+        }
+      end
+      .compact
       .max_by { |stat| stat[:value] }
   end
 
-  # Calculate best playoff position
-  def calculate_best_playoff_position
+  # Calculate brick wall (best goals against per game - defensive prowess)
+  def calculate_brick_wall
     fan_teams
-      .map { |team| create_fan_stat(team, team['leagueSequence'] || 999) }
-      .min_by { |stat| stat[:value] }
+      .map do |team|
+        goals_against_per_game = team['goalAgainst'] || 999
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: goals_against_per_game,
+          display: "#{goals_against_per_game} goals against/game"
+        }
+      end
+      .min_by { |stat| stat[:value] }  # Lower is better
   end
 
-  # Calculate worst playoff position
-  def calculate_worst_playoff_position
+  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing)
+  def calculate_glass_cannon
     fan_teams
-      .map { |team| create_fan_stat(team, team['leagueSequence'] || 999) }
+      .map do |team|
+        goals_for = team['goalsForPctg'] || 0
+        goals_against = team['goalAgainst'] || 0
+        differential = goals_for - goals_against
+        
+        # Only consider teams with negative differential but high scoring
+        next nil if differential >= 0 || goals_for < 2.5
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: goals_for,
+          display: "#{goals_for} goals/game but #{differential.round(2)} differential"
+        }
+      end
+      .compact
+      .max_by { |stat| stat[:value] }
+  end
+
+  # Calculate comeback kid (most OT/shootout wins - clutch performance)
+  def calculate_comeback_kid
+    fan_teams
+      .map do |team|
+        wins = team['wins'] || 0
+        regulation_wins = team['regulationWins'] || wins  # Fall back to total wins if regulationWins not available
+        ot_wins = wins - regulation_wins
+        
+        next nil if ot_wins <= 0
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: ot_wins,
+          display: "#{ot_wins} OT/SO wins"
+        }
+      end
+      .compact
       .max_by { |stat| stat[:value] }
   end
 

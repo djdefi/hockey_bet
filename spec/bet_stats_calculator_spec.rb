@@ -227,17 +227,6 @@ RSpec.describe BetStatsCalculator do
     end
   end
 
-  describe '#calculate_rivalry_of_the_week' do
-    it 'returns the most interesting upcoming matchup' do
-      rivalry = calculator.calculate_rivalry_of_the_week
-      
-      if rivalry
-        expect(rivalry).to have_key(:home_fan)
-        expect(rivalry).to have_key(:away_fan)
-      end
-    end
-  end
-
   describe '#calculate_best_point_differential' do
     it 'returns the fan with best goal differential' do
       best = calculator.calculate_best_point_differential
@@ -258,58 +247,62 @@ RSpec.describe BetStatsCalculator do
     end
   end
 
-  describe '#calculate_biggest_underdog' do
-    it 'returns the lowest ranked wild card team' do
-      underdog = calculator.calculate_biggest_underdog
+  describe '#calculate_most_dominant' do
+    it 'returns the fan with best win percentage' do
+      dominant = calculator.calculate_most_dominant
       
-      if underdog
-        expect(underdog).to have_key(:fan)
-        expect(underdog).to have_key(:value)
-      end
+      expect(dominant).to have_key(:fan)
+      expect(dominant).to have_key(:value)
+      expect(dominant[:value]).to be_a(Numeric)
     end
 
-    it 'only considers wild card teams' do
-      # Manually check that if there's an underdog, it should be in wild card
-      underdog = calculator.calculate_biggest_underdog
+    it 'displays win percentage' do
+      dominant = calculator.calculate_most_dominant
       
-      if underdog
-        team = teams.find { |t| t['teamName']['default'] == underdog[:team] }
-        expect(team['wildcardSequence'].to_i).to be_between(1, 2).inclusive
+      expect(dominant[:display]).to include('win rate')
+    end
+  end
+
+  describe '#calculate_brick_wall' do
+    it 'returns the fan with best goals against' do
+      brick_wall = calculator.calculate_brick_wall
+      
+      expect(brick_wall).to have_key(:fan)
+      expect(brick_wall).to have_key(:value)
+      expect(brick_wall[:value]).to be_a(Numeric)
+    end
+
+    it 'displays goals against per game' do
+      brick_wall = calculator.calculate_brick_wall
+      
+      expect(brick_wall[:display]).to include('goals against/game')
+    end
+  end
+
+  describe '#calculate_glass_cannon' do
+    it 'returns fan with high scoring but negative differential' do
+      glass_cannon = calculator.calculate_glass_cannon
+      
+      # May be nil if no team fits the criteria
+      if glass_cannon
+        expect(glass_cannon).to have_key(:fan)
+        expect(glass_cannon).to have_key(:value)
+        expect(glass_cannon[:display]).to include('differential')
       end
     end
   end
 
-  describe '#calculate_best_playoff_position' do
-    it 'returns the fan with best league ranking' do
-      best = calculator.calculate_best_playoff_position
+  describe '#calculate_comeback_kid' do
+    it 'returns fan with most OT/SO wins' do
+      comeback_kid = calculator.calculate_comeback_kid
       
-      expect(best).to have_key(:fan)
-      expect(best).to have_key(:value)
-      expect(best[:value]).to be_a(Integer)
-    end
-
-    it 'returns the lowest league sequence number' do
-      best = calculator.calculate_best_playoff_position
-      all_positions = calculator.fan_teams.map { |t| t['leagueSequence'] || 999 }
-      
-      expect(best[:value]).to eq(all_positions.min)
-    end
-  end
-
-  describe '#calculate_worst_playoff_position' do
-    it 'returns the fan with worst league ranking' do
-      worst = calculator.calculate_worst_playoff_position
-      
-      expect(worst).to have_key(:fan)
-      expect(worst).to have_key(:value)
-      expect(worst[:value]).to be_a(Integer)
-    end
-
-    it 'returns the highest league sequence number' do
-      worst = calculator.calculate_worst_playoff_position
-      all_positions = calculator.fan_teams.map { |t| t['leagueSequence'] || 999 }
-      
-      expect(worst[:value]).to eq(all_positions.max)
+      # May be nil if no team has OT wins
+      if comeback_kid
+        expect(comeback_kid).to have_key(:fan)
+        expect(comeback_kid).to have_key(:value)
+        expect(comeback_kid[:value]).to be > 0
+        expect(comeback_kid[:display]).to include('OT/SO wins')
+      end
     end
   end
 
@@ -322,11 +315,11 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.stats).to have_key(:upcoming_fan_matchups)
       expect(calculator.stats).to have_key(:longest_win_streak)
       expect(calculator.stats).to have_key(:longest_lose_streak)
-      expect(calculator.stats).to have_key(:rivalry_of_the_week)
       expect(calculator.stats).to have_key(:best_point_differential)
-      expect(calculator.stats).to have_key(:biggest_underdog)
-      expect(calculator.stats).to have_key(:best_playoff_position)
-      expect(calculator.stats).to have_key(:worst_playoff_position)
+      expect(calculator.stats).to have_key(:most_dominant)
+      expect(calculator.stats).to have_key(:brick_wall)
+      expect(calculator.stats).to have_key(:glass_cannon)
+      expect(calculator.stats).to have_key(:comeback_kid)
     end
 
     it 'returns stats hash' do

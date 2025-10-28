@@ -135,26 +135,26 @@
                 </ul>
             </div>
 
-            <!-- Best Playoff Position -->
-            <% if bet_stats[:best_playoff_position] %>
+            <!-- Most Dominant -->
+            <% if bet_stats[:most_dominant] %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
-                <h3 class='h4 color-fg-success'>King of the Mountain 👑</h3>
+                <h3 class='h4 color-fg-success'>Most Dominant 👑</h3>
                 <p class="mb-0">
-                    <strong><%= bet_stats[:best_playoff_position][:fan] %></strong> 
-                    (<%= bet_stats[:best_playoff_position][:team] %>): 
-                    #<%= bet_stats[:best_playoff_position][:display] %> in league
+                    <strong><%= bet_stats[:most_dominant][:fan] %></strong> 
+                    (<%= bet_stats[:most_dominant][:team] %>): 
+                    <%= bet_stats[:most_dominant][:display] %>
                 </p>
             </div>
             <% end %>
 
-            <!-- Worst Playoff Position -->
-            <% if bet_stats[:worst_playoff_position] %>
+            <!-- Brick Wall -->
+            <% if bet_stats[:brick_wall] %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
-                <h3 class='h4 color-fg-danger'>Bottom Feeder 🪱</h3>
+                <h3 class='h4 color-fg-success'>Brick Wall 🧱</h3>
                 <p class="mb-0">
-                    <strong><%= bet_stats[:worst_playoff_position][:fan] %></strong> 
-                    (<%= bet_stats[:worst_playoff_position][:team] %>): 
-                    #<%= bet_stats[:worst_playoff_position][:display] %> in league
+                    <strong><%= bet_stats[:brick_wall][:fan] %></strong> 
+                    (<%= bet_stats[:brick_wall][:team] %>): 
+                    <%= bet_stats[:brick_wall][:display] %>
                 </p>
             </div>
             <% end %>
@@ -195,14 +195,26 @@
             </div>
             <% end %>
 
-            <!-- Biggest Underdog -->
-            <% if bet_stats[:biggest_underdog] %>
+            <!-- Glass Cannon -->
+            <% if bet_stats[:glass_cannon] %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
-                <h3 class='h4 color-fg-attention'>Biggest Underdog 🐶</h3>
+                <h3 class='h4 color-fg-attention'>Glass Cannon 💥</h3>
                 <p class="mb-0">
-                    <strong><%= bet_stats[:biggest_underdog][:fan] %></strong> 
-                    (<%= bet_stats[:biggest_underdog][:team] %>): 
-                    Ranked <%= bet_stats[:biggest_underdog][:display] %> but still in wild card!
+                    <strong><%= bet_stats[:glass_cannon][:fan] %></strong> 
+                    (<%= bet_stats[:glass_cannon][:team] %>): 
+                    <%= bet_stats[:glass_cannon][:display] %>
+                </p>
+            </div>
+            <% end %>
+
+            <!-- Comeback Kid -->
+            <% if bet_stats[:comeback_kid] %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-accent'>Comeback Kid 💪</h3>
+                <p class="mb-0">
+                    <strong><%= bet_stats[:comeback_kid][:fan] %></strong> 
+                    (<%= bet_stats[:comeback_kid][:team] %>): 
+                    <%= bet_stats[:comeback_kid][:display] %>
                 </p>
             </div>
             <% end %>
