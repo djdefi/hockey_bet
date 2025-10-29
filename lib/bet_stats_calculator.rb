@@ -529,16 +529,27 @@ class BetStatsCalculator
           # Get unique game identifier
           game_id = game['id']
           
+          # Skip games without IDs - we can't reliably deduplicate them
+          unless game_id
+            puts "  Warning: Skipping game without ID: #{home_abbrev} vs #{away_abbrev}"
+            next
+          end
+          
           # Skip if we've already processed this game
           # (games appear in both teams' schedules)
-          if game_id && processed_game_ids.include?(game_id)
+          if processed_game_ids.include?(game_id)
             next
           end
           
           # Mark this game as processed
-          processed_game_ids.add(game_id) if game_id
+          processed_game_ids.add(game_id)
           
           fan_matchup_games += 1
+          
+          # Debug logging for specific matchups if requested
+          if ENV['DEBUG_H2H']
+            puts "    Processing game #{game_id}: #{home_abbrev} (#{game['homeTeam']['score']}) vs #{away_abbrev} (#{game['awayTeam']['score']}) on #{game_date}"
+          end
           
           # Initialize records for both teams if needed
           @head_to_head_matrix[team_abbrev][opponent_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
