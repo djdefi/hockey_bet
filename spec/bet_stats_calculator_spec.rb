@@ -1,6 +1,7 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/spec/bet_stats_calculator_spec.rb
 require_relative '../lib/bet_stats_calculator'
 require 'json'
+require 'net/http'
 
 RSpec.describe BetStatsCalculator do
   let(:teams) do
@@ -582,6 +583,44 @@ RSpec.describe BetStatsCalculator do
       allow(Net::HTTP).to receive(:get_response).and_raise(StandardError.new('API Error'))
       
       expect { calculator.send(:fetch_head_to_head_records) }.not_to raise_error
+    end
+
+    it 'handles string gameState values (OFF, FINAL)' do
+      allow(Net::HTTP).to receive(:get_response).and_return(double(
+        is_a?: true,
+        body: {
+          games: [
+            {
+              'gameState' => 'OFF',
+              'homeTeam' => { 'abbrev' => 'BOS', 'score' => 4 },
+              'awayTeam' => { 'abbrev' => 'FLA', 'score' => 3 },
+              'periodDescriptor' => { 'periodType' => 'SO' }
+            },
+            {
+              'gameState' => 'FINAL',
+              'homeTeam' => { 'abbrev' => 'TOR', 'score' => 2 },
+              'awayTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+              'periodDescriptor' => { 'periodType' => 'REG' }
+            },
+            {
+              'gameState' => 'LIVE',  # Should be skipped
+              'homeTeam' => { 'abbrev' => 'DET', 'score' => 1 },
+              'awayTeam' => { 'abbrev' => 'BOS', 'score' => 1 },
+              'periodDescriptor' => { 'periodType' => 'REG' }
+            }
+          ]
+        }.to_json
+      ))
+      
+      calculator.send(:fetch_head_to_head_records)
+      matrix = calculator.instance_variable_get(:@head_to_head_matrix)
+      
+      # BOS should have recorded the games with string gameState
+      expect(matrix['BOS']).to be_a(Hash)
+      expect(matrix['BOS']['FLA']).to eq({ wins: 1, losses: 0, ot_losses: 0 })
+      expect(matrix['BOS']['TOR']).to eq({ wins: 1, losses: 0, ot_losses: 0 })
+      # DET game should be skipped (LIVE state)
+      expect(matrix['BOS']['DET']).to be_nil
     end
   end
 

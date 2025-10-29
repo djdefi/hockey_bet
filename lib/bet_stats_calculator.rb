@@ -473,7 +473,17 @@ class BetStatsCalculator
         
         # Process each game to find matchups vs other fan teams
         games.each do |game|
-          next unless game['gameState'] == 3 || game['gameState'] == 4 || game['gameState'] == 5 # Final, Official, or Archived
+          # Check if game is completed - handle both numeric and string game states
+          game_state = game['gameState']
+          is_completed = case game_state
+                        when Integer
+                          [3, 4, 5, 6, 7].include?(game_state) # Final, Official, Archived states
+                        when String
+                          ['OFF', 'FINAL', 'OVER'].include?(game_state.upcase) # String final states
+                        else
+                          false
+                        end
+          next unless is_completed
           
           home_abbrev = game['homeTeam']['abbrev']
           away_abbrev = game['awayTeam']['abbrev']
