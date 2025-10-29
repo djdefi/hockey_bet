@@ -370,15 +370,15 @@ class BetStatsCalculator
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
-        value: win_pct,
-        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+        value: total_losses,  # Changed: use total losses instead of win %
+        display: "#{total_wins}-#{total_losses} (#{total_losses} losses vs other fans)"
       }
     end.compact
     
     return nil if all_stats.empty?
     
-    min_value = all_stats.map { |s| s[:value] }.min
-    all_stats.select { |s| s[:value] == min_value }
+    max_value = all_stats.map { |s| s[:value] }.max  # Changed: max instead of min
+    all_stats.select { |s| s[:value] == max_value }
   end
 
   private
