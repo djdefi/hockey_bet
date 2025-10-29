@@ -765,8 +765,8 @@ RSpec.describe BetStatsCalculator do
       result = calculator.calculate_fan_fodder
       
       expect(result).to be_an(Array)
-      expect(result.first[:fan]).to eq('Charlie') # TOR has worst record
-      expect(result.first[:display]).to include('16.7%') # 1-5 (wins-losses including OT) = 16.7%
+      expect(result.first[:fan]).to eq('Charlie') # TOR has most losses
+      expect(result.first[:display]).to include('5 losses vs other fans') # 1-5 record = 5 losses
     end
 
     it 'returns nil when no games played' do
