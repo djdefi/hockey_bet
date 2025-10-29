@@ -461,6 +461,7 @@ class BetStatsCalculator
     season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
     
     puts "Fetching head-to-head records for #{season} season (#{fan_abbrevs.length} teams)..."
+    puts "Current date: #{Time.now.strftime('%Y-%m-%d')}"
     
     # For each fan team, get their season schedule and extract games vs other fan teams
     fan_abbrevs.each do |team_abbrev|
@@ -479,6 +480,8 @@ class BetStatsCalculator
         # Track stats for verification
         completed_games = 0
         fan_matchup_games = 0
+        first_game_date = nil
+        last_game_date = nil
         
         # Process each game to find matchups vs other fan teams
         games.each do |game|
@@ -495,6 +498,13 @@ class BetStatsCalculator
           next unless is_completed
           
           completed_games += 1
+          
+          # Track game date range
+          game_date = game['gameDate'] || game['startTimeUTC']
+          if game_date
+            first_game_date = game_date if first_game_date.nil? || game_date < first_game_date
+            last_game_date = game_date if last_game_date.nil? || game_date > last_game_date
+          end
           
           home_abbrev = game['homeTeam']['abbrev']
           away_abbrev = game['awayTeam']['abbrev']
@@ -541,12 +551,49 @@ class BetStatsCalculator
           end
         end
         
-        puts "  #{team_abbrev}: #{completed_games} completed games, #{fan_matchup_games} vs fan teams"
+        date_range = if first_game_date && last_game_date
+                      "#{first_game_date.to_s[0..9]} to #{last_game_date.to_s[0..9]}"
+                    else
+                      "no games"
+                    end
+        puts "  #{team_abbrev}: #{completed_games} completed games (#{date_range}), #{fan_matchup_games} vs fan teams"
       rescue StandardError => e
         # Log error but continue with other teams
         puts "Error fetching schedule for #{team_abbrev}: #{e.message}"
         next
       end
+    end
+    
+    # Summary: Show matchups with high game counts for verification
+    puts "\nHead-to-Head Summary (games between fan teams):"
+    total_matchups = 0
+    matchups_with_games = []
+    
+    @head_to_head_matrix.each do |team, opponents|
+      opponents.each do |opponent, record|
+        total_games = record[:wins] + record[:losses] + record[:ot_losses]
+        if total_games > 0
+          total_matchups += total_games
+          matchups_with_games << {
+            team: team,
+            opponent: opponent,
+            total: total_games,
+            record: "#{record[:wins]}-#{record[:losses]}-#{record[:ot_losses]}"
+          }
+        end
+      end
+    end
+    
+    if matchups_with_games.any?
+      # Sort by total games descending
+      matchups_with_games.sort_by! { |m| -m[:total] }
+      puts "  Top matchups by game count:"
+      matchups_with_games.take(5).each do |m|
+        puts "    #{m[:team]} vs #{m[:opponent]}: #{m[:record]} (#{m[:total]} games)"
+      end
+      puts "  Total: #{total_matchups} games counted across all matchups"
+    else
+      puts "  No completed games between fan teams found"
     end
   end
 end
