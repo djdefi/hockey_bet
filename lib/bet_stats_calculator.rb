@@ -535,6 +535,15 @@ class BetStatsCalculator
             next
           end
           
+          # Skip preseason games (game IDs like 2025010xxx)
+          # Regular season games have IDs like 2025020xxx
+          # We only want regular season games for head-to-head records
+          game_id_str = game_id.to_s
+          if game_id_str.length >= 6 && game_id_str[4..5] != '02'
+            # This is not a regular season game (could be preseason 01 or playoffs 03)
+            next
+          end
+          
           # Skip if we've already processed this game
           # (games appear in both teams' schedules)
           if processed_game_ids.include?(game_id)
