@@ -477,7 +477,7 @@ class BetStatsCalculator
           game_state = game['gameState']
           is_completed = case game_state
                         when Integer
-                          [3, 4, 5, 6, 7].include?(game_state) # Final, Official, Archived states
+                          [3, 4, 5, 6, 7].include?(game_state) # Final (3), Official Final (4), Final (5), and other final states
                         when String
                           ['OFF', 'FINAL', 'OVER'].include?(game_state.upcase) # String final states
                         else
