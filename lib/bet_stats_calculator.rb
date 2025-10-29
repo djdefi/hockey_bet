@@ -452,17 +452,22 @@ class BetStatsCalculator
     @head_to_head_matrix = {}
     fan_abbrevs = fan_teams.map { |t| t['teamAbbrev']['default'] }
     
+    # Determine current season based on date
+    current_year = Time.now.year
+    current_month = Time.now.month
+    # NHL season runs from October to June
+    # If we're in October-December, use current year as start (e.g., Oct 2024 = 20242025 season)
+    # If we're in January-September, use previous year as start (e.g., Mar 2025 = 20242025 season)
+    season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
+    
+    puts "Fetching head-to-head records for #{season} season (#{fan_abbrevs.length} teams)..."
+    
     # For each fan team, get their season schedule and extract games vs other fan teams
     fan_abbrevs.each do |team_abbrev|
       @head_to_head_matrix[team_abbrev] = {}
       
       begin
         # Fetch season schedule from NHL API
-        # Determine current season based on date
-        current_year = Time.now.year
-        current_month = Time.now.month
-        # NHL season runs from October to June
-        season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
         url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
         
         response = Net::HTTP.get_response(url)
@@ -470,6 +475,10 @@ class BetStatsCalculator
         
         schedule_data = JSON.parse(response.body)
         games = schedule_data['games'] || []
+        
+        # Track stats for verification
+        completed_games = 0
+        fan_matchup_games = 0
         
         # Process each game to find matchups vs other fan teams
         games.each do |game|
@@ -485,6 +494,8 @@ class BetStatsCalculator
                         end
           next unless is_completed
           
+          completed_games += 1
+          
           home_abbrev = game['homeTeam']['abbrev']
           away_abbrev = game['awayTeam']['abbrev']
           
@@ -499,6 +510,8 @@ class BetStatsCalculator
           end
           
           next unless opponent_abbrev
+          
+          fan_matchup_games += 1
           
           # Initialize record if needed
           @head_to_head_matrix[team_abbrev][opponent_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
@@ -527,6 +540,8 @@ class BetStatsCalculator
             end
           end
         end
+        
+        puts "  #{team_abbrev}: #{completed_games} completed games, #{fan_matchup_games} vs fan teams"
       rescue StandardError => e
         # Log error but continue with other teams
         puts "Error fetching schedule for #{team_abbrev}: #{e.message}"

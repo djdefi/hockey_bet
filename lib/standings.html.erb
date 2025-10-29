@@ -321,45 +321,91 @@
             <h3 class='h3 color-fg-accent'>📊 Head-to-Head Records 📊</h3>
             <p class="text-small color-fg-muted mb-2">How each fan's team performed against other fan teams this season</p>
             <p class="text-small color-fg-muted mb-3"><strong>How to read:</strong> Each cell shows the row team's record vs. the column team in format <strong>Wins-Losses-OT Losses</strong> (e.g., "2-1-0" means 2 wins, 1 regulation/shootout loss, 0 overtime losses)</p>
-            <div style="overflow-x: auto;">
-                <table class="table-auto width-full text-small">
-                    <thead>
-                        <tr class="border-bottom">
-                            <th scope="col" class="p-2 text-left">Fan</th>
-                            <% 
-                              fan_abbrevs = bet_stats[:head_to_head_matrix].keys 
-                              fan_list = fan_abbrevs.map { |abbrev| manager_team_map[abbrev] }
-                            %>
-                            <% fan_list.each do |fan| %>
-                                <th scope="col" class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
-                            <% end %>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% fan_abbrevs.each_with_index do |team_abbrev, idx| %>
-                        <tr class="<%= 'border-bottom' if idx < fan_abbrevs.length - 1 %>">
-                            <td class="p-2 text-left"><strong><%= manager_team_map[team_abbrev] %></strong></td>
-                            <% fan_abbrevs.each do |opp_abbrev| %>
-                                <td class="p-2 text-center">
-                                    <% if team_abbrev == opp_abbrev %>
-                                        <span class="color-fg-muted">—</span>
-                                    <% else %>
-                                        <% record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev] %>
-                                        <% if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0 %>
-                                            <span class="<%= record[:wins] > (record[:losses] + record[:ot_losses]) ? 'color-fg-success' : (record[:wins] < (record[:losses] + record[:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
-                                                <%= record[:wins] %>-<%= record[:losses] %>-<%= record[:ot_losses] %>
-                                            </span>
-                                        <% else %>
-                                            <span class="color-fg-muted">0-0-0</span>
-                                        <% end %>
-                                    <% end %>
-                                </td>
-                            <% end %>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
+            
+            <% 
+              fan_abbrevs = bet_stats[:head_to_head_matrix].keys 
+              fan_list = fan_abbrevs.map { |abbrev| manager_team_map[abbrev] }
+              
+              # Calculate interesting matchups (teams with games played)
+              interesting_matchups = []
+              fan_abbrevs.each do |team_abbrev|
+                fan_abbrevs.each do |opp_abbrev|
+                  next if team_abbrev == opp_abbrev
+                  record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev]
+                  if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0
+                    total_games = record[:wins] + record[:losses] + record[:ot_losses]
+                    interesting_matchups << {
+                      team: manager_team_map[team_abbrev],
+                      opponent: manager_team_map[opp_abbrev],
+                      record: record,
+                      total_games: total_games
+                    }
+                  end
+                end
+              end
+              interesting_matchups.sort_by! { |m| -m[:total_games] }
+              top_matchups = interesting_matchups.take(10)
+            %>
+            
+            <!-- Summary of Top Matchups -->
+            <% if top_matchups.any? %>
+            <div class="mb-3">
+                <h4 class="h6 mb-2">🔥 Most Played Matchups</h4>
+                <div class="text-small">
+                    <% top_matchups.each do |matchup| %>
+                    <div class="mb-1">
+                        <strong><%= matchup[:team] %></strong> vs <%= matchup[:opponent] %>: 
+                        <span class="<%= matchup[:record][:wins] > (matchup[:record][:losses] + matchup[:record][:ot_losses]) ? 'color-fg-success' : (matchup[:record][:wins] < (matchup[:record][:losses] + matchup[:record][:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
+                            <%= matchup[:record][:wins] %>-<%= matchup[:record][:losses] %>-<%= matchup[:record][:ot_losses] %>
+                        </span>
+                        (<%= matchup[:total_games] %> game<%= matchup[:total_games] != 1 ? 's' : '' %>)
+                    </div>
+                    <% end %>
+                </div>
             </div>
+            <% end %>
+            
+            <!-- Collapsible Full Matrix -->
+            <details class="mb-2">
+                <summary class="text-small" style="cursor: pointer; user-select: none;">
+                    <strong>▶ Show Full Head-to-Head Matrix</strong> (<%= fan_abbrevs.length %> teams)
+                </summary>
+                <div class="mt-3" style="overflow-x: auto;">
+                    <table class="table-auto width-full text-small">
+                        <thead>
+                            <tr class="border-bottom">
+                                <th scope="col" class="p-2 text-left">Fan</th>
+                                <% fan_list.each do |fan| %>
+                                    <th scope="col" class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
+                                <% end %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% fan_abbrevs.each_with_index do |team_abbrev, idx| %>
+                            <tr class="<%= 'border-bottom' if idx < fan_abbrevs.length - 1 %>">
+                                <td class="p-2 text-left"><strong><%= manager_team_map[team_abbrev] %></strong></td>
+                                <% fan_abbrevs.each do |opp_abbrev| %>
+                                    <td class="p-2 text-center">
+                                        <% if team_abbrev == opp_abbrev %>
+                                            <span class="color-fg-muted">—</span>
+                                        <% else %>
+                                            <% record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev] %>
+                                            <% if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0 %>
+                                                <span class="<%= record[:wins] > (record[:losses] + record[:ot_losses]) ? 'color-fg-success' : (record[:wins] < (record[:losses] + record[:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
+                                                    <%= record[:wins] %>-<%= record[:losses] %>-<%= record[:ot_losses] %>
+                                                </span>
+                                            <% else %>
+                                                <span class="color-fg-muted">0-0-0</span>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                <% end %>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
         </div>
         <% end %>
 
