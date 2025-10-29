@@ -327,19 +327,30 @@
               fan_list = fan_abbrevs.map { |abbrev| manager_team_map[abbrev] }
               
               # Calculate interesting matchups (teams with games played)
+              # Use a hash to track seen matchups and avoid showing both directions
+              seen_pairs = {}
               interesting_matchups = []
+              
               fan_abbrevs.each do |team_abbrev|
                 fan_abbrevs.each do |opp_abbrev|
                   next if team_abbrev == opp_abbrev
+                  
+                  # Create a sorted pair to identify the matchup regardless of direction
+                  pair_key = [team_abbrev, opp_abbrev].sort.join('-')
+                  next if seen_pairs[pair_key]
+                  
                   record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev]
                   if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0
                     total_games = record[:wins] + record[:losses] + record[:ot_losses]
                     interesting_matchups << {
                       team: manager_team_map[team_abbrev],
+                      team_abbrev: team_abbrev,
                       opponent: manager_team_map[opp_abbrev],
+                      opponent_abbrev: opp_abbrev,
                       record: record,
                       total_games: total_games
                     }
+                    seen_pairs[pair_key] = true
                   end
                 end
               end
