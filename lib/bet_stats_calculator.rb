@@ -1,5 +1,6 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/bet_stats_calculator.rb
 require 'csv'
+require 'set'
 
 class BetStatsCalculator
   attr_reader :stats
@@ -463,9 +464,13 @@ class BetStatsCalculator
     puts "Fetching head-to-head records for #{season} season (#{fan_abbrevs.length} teams)..."
     puts "Current date: #{Time.now.strftime('%Y-%m-%d')}"
     
+    # Track processed games to avoid counting the same game twice
+    # (since each game appears in both teams' schedules)
+    processed_game_ids = Set.new
+    
     # For each fan team, get their season schedule and extract games vs other fan teams
     fan_abbrevs.each do |team_abbrev|
-      @head_to_head_matrix[team_abbrev] = {}
+      @head_to_head_matrix[team_abbrev] ||= {}
       
       begin
         # Fetch season schedule from NHL API
@@ -521,10 +526,24 @@ class BetStatsCalculator
           
           next unless opponent_abbrev
           
+          # Get unique game identifier
+          game_id = game['id']
+          
+          # Skip if we've already processed this game
+          # (games appear in both teams' schedules)
+          if game_id && processed_game_ids.include?(game_id)
+            next
+          end
+          
+          # Mark this game as processed
+          processed_game_ids.add(game_id) if game_id
+          
           fan_matchup_games += 1
           
-          # Initialize record if needed
+          # Initialize records for both teams if needed
           @head_to_head_matrix[team_abbrev][opponent_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
+          @head_to_head_matrix[opponent_abbrev] ||= {}
+          @head_to_head_matrix[opponent_abbrev][team_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
           
           # Determine outcome
           home_score = game['homeTeam']['score']
@@ -532,21 +551,45 @@ class BetStatsCalculator
           
           if we_are_home
             if home_score > away_score
+              # We (home) won
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+              # Opponent (away) lost
+              if game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:ot_losses] += 1
+              else
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:losses] += 1
+              end
             elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
-              # Lost in OT/SO
+              # We (home) lost in OT/SO
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+              # Opponent (away) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             else
+              # We (home) lost in regulation
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+              # Opponent (away) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             end
           else
             if away_score > home_score
+              # We (away) won
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+              # Opponent (home) lost
+              if game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:ot_losses] += 1
+              else
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:losses] += 1
+              end
             elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
-              # Lost in OT/SO
+              # We (away) lost in OT/SO
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+              # Opponent (home) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             else
+              # We (away) lost in regulation
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+              # Opponent (home) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             end
           end
         end
@@ -566,6 +609,7 @@ class BetStatsCalculator
     
     # Summary: Show matchups with high game counts for verification
     puts "\nHead-to-Head Summary (games between fan teams):"
+    puts "  Note: Each game is counted once (duplicates removed from team schedules)"
     total_matchups = 0
     matchups_with_games = []
     
