@@ -1,5 +1,6 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/bet_stats_calculator.rb
 require 'csv'
+require 'set'
 
 class BetStatsCalculator
   attr_reader :stats
@@ -369,15 +370,15 @@ class BetStatsCalculator
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
-        value: win_pct,
-        display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
+        value: total_losses,  # Changed: use total losses instead of win %
+        display: "#{total_wins}-#{total_losses} (#{total_losses} losses vs other fans)"
       }
     end.compact
     
     return nil if all_stats.empty?
     
-    min_value = all_stats.map { |s| s[:value] }.min
-    all_stats.select { |s| s[:value] == min_value }
+    max_value = all_stats.map { |s| s[:value] }.max  # Changed: max instead of min
+    all_stats.select { |s| s[:value] == max_value }
   end
 
   private
@@ -452,17 +453,27 @@ class BetStatsCalculator
     @head_to_head_matrix = {}
     fan_abbrevs = fan_teams.map { |t| t['teamAbbrev']['default'] }
     
+    # Determine current season based on date
+    current_year = Time.now.year
+    current_month = Time.now.month
+    # NHL season runs from October to June
+    # If we're in October-December, use current year as start (e.g., Oct 2024 = 20242025 season)
+    # If we're in January-September, use previous year as start (e.g., Mar 2025 = 20242025 season)
+    season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
+    
+    puts "Fetching head-to-head records for #{season} season (#{fan_abbrevs.length} teams)..."
+    puts "Current date: #{Time.now.strftime('%Y-%m-%d')}"
+    
+    # Track processed games to avoid counting the same game twice
+    # (since each game appears in both teams' schedules)
+    processed_game_ids = Set.new
+    
     # For each fan team, get their season schedule and extract games vs other fan teams
     fan_abbrevs.each do |team_abbrev|
-      @head_to_head_matrix[team_abbrev] = {}
+      @head_to_head_matrix[team_abbrev] ||= {}
       
       begin
         # Fetch season schedule from NHL API
-        # Determine current season based on date
-        current_year = Time.now.year
-        current_month = Time.now.month
-        # NHL season runs from October to June
-        season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
         url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
         
         response = Net::HTTP.get_response(url)
@@ -471,9 +482,34 @@ class BetStatsCalculator
         schedule_data = JSON.parse(response.body)
         games = schedule_data['games'] || []
         
+        # Track stats for verification
+        completed_games = 0
+        fan_matchup_games = 0
+        first_game_date = nil
+        last_game_date = nil
+        
         # Process each game to find matchups vs other fan teams
         games.each do |game|
-          next unless game['gameState'] == 3 || game['gameState'] == 4 || game['gameState'] == 5 # Final, Official, or Archived
+          # Check if game is completed - handle both numeric and string game states
+          game_state = game['gameState']
+          is_completed = case game_state
+                        when Integer
+                          [3, 4, 5, 6, 7].include?(game_state) # Final (3), Official Final (4), Final (5), and other final states
+                        when String
+                          ['OFF', 'FINAL', 'OVER'].include?(game_state.upcase) # String final states
+                        else
+                          false
+                        end
+          next unless is_completed
+          
+          completed_games += 1
+          
+          # Track game date range
+          game_date = game['gameDate'] || game['startTimeUTC']
+          if game_date
+            first_game_date = game_date if first_game_date.nil? || game_date < first_game_date
+            last_game_date = game_date if last_game_date.nil? || game_date > last_game_date
+          end
           
           home_abbrev = game['homeTeam']['abbrev']
           away_abbrev = game['awayTeam']['abbrev']
@@ -490,8 +526,44 @@ class BetStatsCalculator
           
           next unless opponent_abbrev
           
-          # Initialize record if needed
+          # Get unique game identifier
+          game_id = game['id']
+          
+          # Skip games without IDs - we can't reliably deduplicate them
+          unless game_id
+            puts "  Warning: Skipping game without ID: #{home_abbrev} vs #{away_abbrev}"
+            next
+          end
+          
+          # Skip preseason games (game IDs like 2025010xxx)
+          # Regular season games have IDs like 2025020xxx
+          # We only want regular season games for head-to-head records
+          game_id_str = game_id.to_s
+          if game_id_str.length >= 6 && game_id_str[4..5] != '02'
+            # This is not a regular season game (could be preseason 01 or playoffs 03)
+            next
+          end
+          
+          # Skip if we've already processed this game
+          # (games appear in both teams' schedules)
+          if processed_game_ids.include?(game_id)
+            next
+          end
+          
+          # Mark this game as processed
+          processed_game_ids.add(game_id)
+          
+          fan_matchup_games += 1
+          
+          # Debug logging for specific matchups if requested
+          if ENV['DEBUG_H2H']
+            puts "    Processing game #{game_id}: #{home_abbrev} (#{game['homeTeam']['score']}) vs #{away_abbrev} (#{game['awayTeam']['score']}) on #{game_date}"
+          end
+          
+          # Initialize records for both teams if needed
           @head_to_head_matrix[team_abbrev][opponent_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
+          @head_to_head_matrix[opponent_abbrev] ||= {}
+          @head_to_head_matrix[opponent_abbrev][team_abbrev] ||= { wins: 0, losses: 0, ot_losses: 0 }
           
           # Determine outcome
           home_score = game['homeTeam']['score']
@@ -499,29 +571,93 @@ class BetStatsCalculator
           
           if we_are_home
             if home_score > away_score
+              # We (home) won
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+              # Opponent (away) lost
+              if game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:ot_losses] += 1
+              else
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:losses] += 1
+              end
             elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
-              # Lost in OT/SO
+              # We (home) lost in OT/SO
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+              # Opponent (away) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             else
+              # We (home) lost in regulation
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+              # Opponent (away) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             end
           else
             if away_score > home_score
+              # We (away) won
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:wins] += 1
+              # Opponent (home) lost
+              if game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:ot_losses] += 1
+              else
+                @head_to_head_matrix[opponent_abbrev][team_abbrev][:losses] += 1
+              end
             elsif game['periodDescriptor'] && game['periodDescriptor']['periodType'] != 'REG'
-              # Lost in OT/SO
+              # We (away) lost in OT/SO
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:ot_losses] += 1
+              # Opponent (home) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             else
+              # We (away) lost in regulation
               @head_to_head_matrix[team_abbrev][opponent_abbrev][:losses] += 1
+              # Opponent (home) won
+              @head_to_head_matrix[opponent_abbrev][team_abbrev][:wins] += 1
             end
           end
         end
+        
+        date_range = if first_game_date && last_game_date
+                      "#{first_game_date.to_s[0..9]} to #{last_game_date.to_s[0..9]}"
+                    else
+                      "no games"
+                    end
+        puts "  #{team_abbrev}: #{completed_games} completed games (#{date_range}), #{fan_matchup_games} vs fan teams"
       rescue StandardError => e
         # Log error but continue with other teams
         puts "Error fetching schedule for #{team_abbrev}: #{e.message}"
         next
       end
+    end
+    
+    # Summary: Show matchups with high game counts for verification
+    puts "\nHead-to-Head Summary (games between fan teams):"
+    puts "  Note: Each game is counted once (duplicates removed from team schedules)"
+    total_matchups = 0
+    matchups_with_games = []
+    
+    @head_to_head_matrix.each do |team, opponents|
+      opponents.each do |opponent, record|
+        total_games = record[:wins] + record[:losses] + record[:ot_losses]
+        if total_games > 0
+          total_matchups += total_games
+          matchups_with_games << {
+            team: team,
+            opponent: opponent,
+            total: total_games,
+            record: "#{record[:wins]}-#{record[:losses]}-#{record[:ot_losses]}"
+          }
+        end
+      end
+    end
+    
+    if matchups_with_games.any?
+      # Sort by total games descending
+      matchups_with_games.sort_by! { |m| -m[:total] }
+      puts "  Top matchups by game count:"
+      matchups_with_games.take(5).each do |m|
+        puts "    #{m[:team]} vs #{m[:opponent]}: #{m[:record]} (#{m[:total]} games)"
+      end
+      puts "  Total: #{total_matchups} games counted across all matchups"
+    else
+      puts "  No completed games between fan teams found"
     end
   end
 end

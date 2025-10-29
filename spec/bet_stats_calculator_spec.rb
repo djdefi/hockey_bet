@@ -1,6 +1,7 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/spec/bet_stats_calculator_spec.rb
 require_relative '../lib/bet_stats_calculator'
 require 'json'
+require 'net/http'
 
 RSpec.describe BetStatsCalculator do
   let(:teams) do
@@ -548,26 +549,57 @@ RSpec.describe BetStatsCalculator do
 
   describe '#fetch_head_to_head_records' do
     before do
-      # Mock HTTP responses for NHL API
-      allow(Net::HTTP).to receive(:get_response).and_return(double(
-        is_a?: true,
-        body: {
-          games: [
-            {
-              'gameState' => 4,
-              'homeTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
-              'awayTeam' => { 'abbrev' => 'FLA', 'score' => 2 },
-              'periodDescriptor' => { 'periodType' => 'REG' }
-            },
-            {
-              'gameState' => 4,
-              'homeTeam' => { 'abbrev' => 'TOR', 'score' => 4 },
-              'awayTeam' => { 'abbrev' => 'BOS', 'score' => 5 },
-              'periodDescriptor' => { 'periodType' => 'OT' }
-            }
-          ]
-        }.to_json
-      ))
+      # Mock HTTP responses for NHL API with unique game IDs to prevent double-counting
+      allow(Net::HTTP).to receive(:get_response) do |uri|
+        team = uri.to_s.match(/club-schedule-season\/(\w+)\//)[1]
+        
+        games = case team
+                when 'BOS'
+                  [
+                    {
+                      'id' => 2024020101,
+                      'gameState' => 4,
+                      'homeTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+                      'awayTeam' => { 'abbrev' => 'FLA', 'score' => 2 },
+                      'periodDescriptor' => { 'periodType' => 'REG' }
+                    },
+                    {
+                      'id' => 2024020102,
+                      'gameState' => 4,
+                      'homeTeam' => { 'abbrev' => 'TOR', 'score' => 4 },
+                      'awayTeam' => { 'abbrev' => 'BOS', 'score' => 5 },
+                      'periodDescriptor' => { 'periodType' => 'OT' }
+                    }
+                  ]
+                when 'FLA'
+                  [
+                    {
+                      'id' => 2024020101,  # Same game as BOS vs FLA
+                      'gameState' => 4,
+                      'homeTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+                      'awayTeam' => { 'abbrev' => 'FLA', 'score' => 2 },
+                      'periodDescriptor' => { 'periodType' => 'REG' }
+                    }
+                  ]
+                when 'TOR'
+                  [
+                    {
+                      'id' => 2024020102,  # Same game as TOR vs BOS
+                      'gameState' => 4,
+                      'homeTeam' => { 'abbrev' => 'TOR', 'score' => 4 },
+                      'awayTeam' => { 'abbrev' => 'BOS', 'score' => 5 },
+                      'periodDescriptor' => { 'periodType' => 'OT' }
+                    }
+                  ]
+                else
+                  []
+                end
+        
+        double(
+          is_a?: true,
+          body: { games: games }.to_json
+        )
+      end
     end
 
     it 'fetches head-to-head records from NHL API' do
@@ -582,6 +614,84 @@ RSpec.describe BetStatsCalculator do
       allow(Net::HTTP).to receive(:get_response).and_raise(StandardError.new('API Error'))
       
       expect { calculator.send(:fetch_head_to_head_records) }.not_to raise_error
+    end
+
+    it 'handles string gameState values (OFF, FINAL)' do
+      # Mock different responses for different teams to simulate realistic API behavior
+      allow(Net::HTTP).to receive(:get_response) do |uri|
+        team = uri.to_s.match(/club-schedule-season\/(\w+)\//)[1]
+        
+        games = case team
+                when 'BOS'
+                  [
+                    {
+                      'id' => 2024020001,
+                      'gameState' => 'OFF',
+                      'homeTeam' => { 'abbrev' => 'BOS', 'score' => 4 },
+                      'awayTeam' => { 'abbrev' => 'FLA', 'score' => 3 },
+                      'periodDescriptor' => { 'periodType' => 'SO' }
+                    },
+                    {
+                      'id' => 2024020002,
+                      'gameState' => 'FINAL',
+                      'homeTeam' => { 'abbrev' => 'TOR', 'score' => 2 },
+                      'awayTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+                      'periodDescriptor' => { 'periodType' => 'REG' }
+                    },
+                    {
+                      'id' => 2024020003,
+                      'gameState' => 'LIVE',  # Should be skipped
+                      'homeTeam' => { 'abbrev' => 'DET', 'score' => 1 },
+                      'awayTeam' => { 'abbrev' => 'BOS', 'score' => 1 },
+                      'periodDescriptor' => { 'periodType' => 'REG' }
+                    }
+                  ]
+                when 'FLA'
+                  [
+                    {
+                      'id' => 2024020001,  # Same game ID as BOS vs FLA
+                      'gameState' => 'OFF',
+                      'homeTeam' => { 'abbrev' => 'BOS', 'score' => 4 },
+                      'awayTeam' => { 'abbrev' => 'FLA', 'score' => 3 },
+                      'periodDescriptor' => { 'periodType' => 'SO' }
+                    }
+                  ]
+                when 'TOR'
+                  [
+                    {
+                      'id' => 2024020002,  # Same game ID as TOR vs BOS
+                      'gameState' => 'FINAL',
+                      'homeTeam' => { 'abbrev' => 'TOR', 'score' => 2 },
+                      'awayTeam' => { 'abbrev' => 'BOS', 'score' => 3 },
+                      'periodDescriptor' => { 'periodType' => 'REG' }
+                    }
+                  ]
+                else
+                  []
+                end
+        
+        double(
+          is_a?: true,
+          body: { games: games }.to_json
+        )
+      end
+      
+      calculator.send(:fetch_head_to_head_records)
+      matrix = calculator.instance_variable_get(:@head_to_head_matrix)
+      
+      # BOS should have recorded wins against FLA and TOR (games counted only once)
+      expect(matrix['BOS']).to be_a(Hash)
+      expect(matrix['BOS']['FLA']).to eq({ wins: 1, losses: 0, ot_losses: 0 })
+      expect(matrix['BOS']['TOR']).to eq({ wins: 1, losses: 0, ot_losses: 0 })
+      
+      # FLA should show loss to BOS (same game, opposite perspective)
+      expect(matrix['FLA']['BOS']).to eq({ wins: 0, losses: 0, ot_losses: 1 })
+      
+      # TOR should show loss to BOS
+      expect(matrix['TOR']['BOS']).to eq({ wins: 0, losses: 1, ot_losses: 0 })
+      
+      # DET game should be skipped (LIVE state)
+      expect(matrix['BOS']['DET']).to be_nil
     end
   end
 
@@ -655,8 +765,8 @@ RSpec.describe BetStatsCalculator do
       result = calculator.calculate_fan_fodder
       
       expect(result).to be_an(Array)
-      expect(result.first[:fan]).to eq('Charlie') # TOR has worst record
-      expect(result.first[:display]).to include('16.7%') # 1-5 (wins-losses including OT) = 16.7%
+      expect(result.first[:fan]).to eq('Charlie') # TOR has most losses
+      expect(result.first[:display]).to include('5 losses vs other fans') # 1-5 record = 5 losses
     end
 
     it 'returns nil when no games played' do
