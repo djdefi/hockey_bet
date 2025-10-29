@@ -319,7 +319,8 @@
         <% if bet_stats[:head_to_head_matrix] && bet_stats[:head_to_head_matrix].any? %>
         <div class="stat-card border rounded-2 p-3 mb-3 color-bg-accent-subtle">
             <h3 class='h3 color-fg-accent'>📊 Head-to-Head Records 📊</h3>
-            <p class="text-small color-fg-muted mb-3">Win-Loss-OTL records for fan team matchups this season</p>
+            <p class="text-small color-fg-muted mb-2">How each fan's team performed against other fan teams this season</p>
+            <p class="text-small color-fg-muted mb-3"><strong>How to read:</strong> Each cell shows the row team's record vs. the column team in format <strong>Wins-Losses-OT Losses</strong> (e.g., "2-1-0" means 2 wins, 1 regulation/shootout loss, 0 overtime losses)</p>
             <div style="overflow-x: auto;">
                 <table class="table-auto width-full text-small">
                     <thead>
