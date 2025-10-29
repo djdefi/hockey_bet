@@ -94,7 +94,6 @@ RSpec.describe BetStatsCalculator do
     it 'returns top 3 fans with most wins' do
       top_winners = calculator.calculate_top_winners
       
-      expect(top_winners.size).to be <= 3
       expect(top_winners.first[:fan]).to eq('Alice')
       expect(top_winners.first[:team]).to eq('Boston Bruins')
       expect(top_winners.first[:value]).to eq(50)
@@ -115,13 +114,45 @@ RSpec.describe BetStatsCalculator do
         expect(winner[:display]).to be_a(String)
       end
     end
+
+    it 'only shows top 3 medal positions (not 4th place or lower)' do
+      # Create scenario matching the issue: wins of [8, 8, 6, 6, 5, 5, 5]
+      # Expected: Show only [8, 8, 6, 6] (top 3 positions: 1st, 2nd, 3rd)
+      # Bug: Currently shows [8, 8, 6, 6, 5, 5, 5] (top 3 unique values)
+      teams_with_ties = [
+        { 'teamName' => { 'default' => 'Team A' }, 'teamAbbrev' => { 'default' => 'AAA' }, 'wins' => 8 },
+        { 'teamName' => { 'default' => 'Team B' }, 'teamAbbrev' => { 'default' => 'BBB' }, 'wins' => 8 },
+        { 'teamName' => { 'default' => 'Team C' }, 'teamAbbrev' => { 'default' => 'CCC' }, 'wins' => 6 },
+        { 'teamName' => { 'default' => 'Team D' }, 'teamAbbrev' => { 'default' => 'DDD' }, 'wins' => 6 },
+        { 'teamName' => { 'default' => 'Team E' }, 'teamAbbrev' => { 'default' => 'EEE' }, 'wins' => 5 },
+        { 'teamName' => { 'default' => 'Team F' }, 'teamAbbrev' => { 'default' => 'FFF' }, 'wins' => 5 },
+        { 'teamName' => { 'default' => 'Team G' }, 'teamAbbrev' => { 'default' => 'GGG' }, 'wins' => 5 }
+      ]
+      
+      fan_map = {
+        'AAA' => 'Fan A', 'BBB' => 'Fan B', 'CCC' => 'Fan C', 'DDD' => 'Fan D',
+        'EEE' => 'Fan E', 'FFF' => 'Fan F', 'GGG' => 'Fan G'
+      }
+      
+      calc = BetStatsCalculator.new(teams_with_ties, fan_map, {})
+      top_winners = calc.calculate_top_winners
+      
+      # Should only show top 3 positions (medals): 1st (8 wins), 2nd (also 8 wins), 3rd (6 wins tied)
+      # Total: 4 people (2 at 1st tied, 2 at 3rd tied)
+      # Should NOT show 4th place (5 wins)
+      wins = top_winners.map { |w| w[:value] }
+      expect(wins).to eq([8, 8, 6, 6])
+      expect(top_winners.size).to eq(4)
+      
+      # Verify we don't have any with 5 wins
+      expect(wins).not_to include(5)
+    end
   end
 
   describe '#calculate_top_losers' do
     it 'returns top 3 fans with most losses' do
       top_losers = calculator.calculate_top_losers
       
-      expect(top_losers.size).to be <= 3
       expect(top_losers).to all(have_key(:fan))
       expect(top_losers).to all(have_key(:value))
     end
@@ -131,6 +162,40 @@ RSpec.describe BetStatsCalculator do
       losses = top_losers.map { |l| l[:value] }
       
       expect(losses).to eq(losses.sort.reverse)
+    end
+
+    it 'only shows top 3 medal positions (not 4th place or lower)' do
+      # Create scenario matching the issue: losses of [5, 5, 4, 4, 3, 3, 3, 3]
+      # Expected: Show only [5, 5, 4, 4] (top 3 positions: 1st, 2nd, 3rd)
+      # Bug: Currently shows [5, 5, 4, 4, 3, 3, 3, 3] (top 3 unique values)
+      teams_with_ties = [
+        { 'teamName' => { 'default' => 'Team A' }, 'teamAbbrev' => { 'default' => 'AAA' }, 'losses' => 5 },
+        { 'teamName' => { 'default' => 'Team B' }, 'teamAbbrev' => { 'default' => 'BBB' }, 'losses' => 5 },
+        { 'teamName' => { 'default' => 'Team C' }, 'teamAbbrev' => { 'default' => 'CCC' }, 'losses' => 4 },
+        { 'teamName' => { 'default' => 'Team D' }, 'teamAbbrev' => { 'default' => 'DDD' }, 'losses' => 4 },
+        { 'teamName' => { 'default' => 'Team E' }, 'teamAbbrev' => { 'default' => 'EEE' }, 'losses' => 3 },
+        { 'teamName' => { 'default' => 'Team F' }, 'teamAbbrev' => { 'default' => 'FFF' }, 'losses' => 3 },
+        { 'teamName' => { 'default' => 'Team G' }, 'teamAbbrev' => { 'default' => 'GGG' }, 'losses' => 3 },
+        { 'teamName' => { 'default' => 'Team H' }, 'teamAbbrev' => { 'default' => 'HHH' }, 'losses' => 3 }
+      ]
+      
+      fan_map = {
+        'AAA' => 'Fan A', 'BBB' => 'Fan B', 'CCC' => 'Fan C', 'DDD' => 'Fan D',
+        'EEE' => 'Fan E', 'FFF' => 'Fan F', 'GGG' => 'Fan G', 'HHH' => 'Fan H'
+      }
+      
+      calc = BetStatsCalculator.new(teams_with_ties, fan_map, {})
+      top_losers = calc.calculate_top_losers
+      
+      # Should only show top 3 positions (medals): 1st (5 losses tied), 3rd (4 losses tied)
+      # Total: 4 people (2 at 1st tied, 2 at 3rd tied)
+      # Should NOT show 4th place (3 losses)
+      losses = top_losers.map { |l| l[:value] }
+      expect(losses).to eq([5, 5, 4, 4])
+      expect(top_losers.size).to eq(4)
+      
+      # Verify we don't have any with 3 losses
+      expect(losses).not_to include(3)
     end
   end
 

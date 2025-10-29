@@ -43,48 +43,22 @@ class BetStatsCalculator
     end
   end
 
-  # Calculate top 3 fans with most wins (handles ties at 3rd place only)
+  # Calculate top 3 fans with most wins (handles ties at medal positions)
   def calculate_top_winners
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['wins'] || 0) }
       .sort_by { |stat| -stat[:value] }
     
-    return [] if all_stats.empty?
-    
-    # Get top 3 positions, showing all teams tied at 3rd place
-    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
-    # but not 4th place even if only 3 unique values exist
-    result = []
-    unique_values = all_stats.map { |s| s[:value] }.uniq
-    
-    # Add teams at each of the top 3 positions
-    unique_values.take(3).each do |value|
-      result += all_stats.select { |s| s[:value] == value }
-    end
-    
-    result
+    filter_top_positions(all_stats)
   end
 
-  # Calculate top 3 fans with most losses (handles ties at 3rd place only)
+  # Calculate top 3 fans with most losses (handles ties at medal positions)
   def calculate_top_losers
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['losses'] || 0) }
       .sort_by { |stat| -stat[:value] }
     
-    return [] if all_stats.empty?
-    
-    # Get top 3 positions, showing all teams tied at 3rd place
-    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
-    # but not 4th place even if only 3 unique values exist
-    result = []
-    unique_values = all_stats.map { |s| s[:value] }.uniq
-    
-    # Add teams at each of the top 3 positions
-    unique_values.take(3).each do |value|
-      result += all_stats.select { |s| s[:value] == value }
-    end
-    
-    result
+    filter_top_positions(all_stats)
   end
 
   # Find most interesting upcoming fan vs fan matchups
@@ -440,6 +414,33 @@ class BetStatsCalculator
   # Helper to find team by abbreviation
   def find_team_by_abbrev(abbrev)
     @teams.find { |t| t['teamAbbrev']['default'] == abbrev }
+  end
+
+  # Filter stats to only show top 3 positions (Olympic-style ranking)
+  # When there's a tie, teams share the position and the next team
+  # gets the position after accounting for the tie
+  # E.g., if 2 teams tie for 1st, the next team is in 3rd (not 2nd)
+  def filter_top_positions(all_stats)
+    return [] if all_stats.empty?
+    
+    result = []
+    position = 0
+    last_value = nil
+    
+    all_stats.each_with_index do |stat, index|
+      # Check if this is a new value
+      if stat[:value] != last_value
+        # Update position to current index + 1 (1-indexed)
+        position = index + 1
+        # Stop if we're past the top 3 positions
+        break if position > 3
+        last_value = stat[:value]
+      end
+      
+      result << stat
+    end
+    
+    result
   end
 
   # Fetch head-to-head records for all fan teams from NHL API
