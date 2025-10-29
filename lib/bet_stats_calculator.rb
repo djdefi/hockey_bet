@@ -43,7 +43,7 @@ class BetStatsCalculator
     end
   end
 
-  # Calculate top 3 fans with most wins (handles ties at 3rd place only)
+  # Calculate top 3 fans with most wins (handles ties at medal positions)
   def calculate_top_winners
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['wins'] || 0) }
@@ -51,21 +51,31 @@ class BetStatsCalculator
     
     return [] if all_stats.empty?
     
-    # Get top 3 positions, showing all teams tied at 3rd place
-    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
-    # but not 4th place even if only 3 unique values exist
+    # Only show teams in positions 1, 2, and 3 (Olympic-style ranking)
+    # When there's a tie, those teams share the position and the next team
+    # gets the position after accounting for the tie
+    # E.g., if 2 teams tie for 1st, the next team is in 3rd (not 2nd)
     result = []
-    unique_values = all_stats.map { |s| s[:value] }.uniq
+    current_rank = 0  # Will be the position of the next team
+    last_value = nil
     
-    # Add teams at each of the top 3 positions
-    unique_values.take(3).each do |value|
-      result += all_stats.select { |s| s[:value] == value }
+    all_stats.each_with_index do |stat, index|
+      # Check if this is a new value
+      if stat[:value] != last_value
+        # Update rank to current index + 1 (1-indexed)
+        current_rank = index + 1
+        # Stop if we're past the top 3 positions
+        break if current_rank > 3
+        last_value = stat[:value]
+      end
+      
+      result << stat
     end
     
     result
   end
 
-  # Calculate top 3 fans with most losses (handles ties at 3rd place only)
+  # Calculate top 3 fans with most losses (handles ties at medal positions)
   def calculate_top_losers
     all_stats = fan_teams
       .map { |team| create_fan_stat(team, team['losses'] || 0) }
@@ -73,15 +83,25 @@ class BetStatsCalculator
     
     return [] if all_stats.empty?
     
-    # Get top 3 positions, showing all teams tied at 3rd place
-    # This ensures we show at most: 1st place team(s), 2nd place team(s), and 3rd place team(s)
-    # but not 4th place even if only 3 unique values exist
+    # Only show teams in positions 1, 2, and 3 (Olympic-style ranking)
+    # When there's a tie, those teams share the position and the next team
+    # gets the position after accounting for the tie
+    # E.g., if 2 teams tie for 1st, the next team is in 3rd (not 2nd)
     result = []
-    unique_values = all_stats.map { |s| s[:value] }.uniq
+    current_rank = 0  # Will be the position of the next team
+    last_value = nil
     
-    # Add teams at each of the top 3 positions
-    unique_values.take(3).each do |value|
-      result += all_stats.select { |s| s[:value] == value }
+    all_stats.each_with_index do |stat, index|
+      # Check if this is a new value
+      if stat[:value] != last_value
+        # Update rank to current index + 1 (1-indexed)
+        current_rank = index + 1
+        # Stop if we're past the top 3 positions
+        break if current_rank > 3
+        last_value = stat[:value]
+      end
+      
+      result << stat
     end
     
     result
