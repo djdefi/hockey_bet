@@ -123,11 +123,12 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    # Sort by value descending and return top 3 (includes ties)
-    all_streaks.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_streaks.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate fan with longest losing streak (returns top 3)
+  # Calculate fan with longest losing streak (returns top 3, including ties)
   def calculate_longest_lose_streak
     all_streaks = fan_teams
       .select { |team| team['streakCode'] && team['streakCode'].start_with?('L') }
@@ -135,8 +136,9 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    # Sort by value descending and return top 3
-    all_streaks.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_streaks.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   # Calculate fan with best goal differential (returns top 3)
@@ -179,11 +181,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate most dominant (best win percentage, returns top 3)
+  # Calculate most dominant (best win percentage, returns top 3, including ties)
   def calculate_most_dominant
     all_stats = fan_teams
       .map do |team|
@@ -205,8 +208,9 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   # Calculate brick wall (best goals against per game - defensive prowess, returns top 3)
@@ -235,11 +239,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value ascending (lowest goals against is best) and return top 3
-    all_stats.sort_by { |s| s[:value] }.take(3)
+    # Sort by value ascending (lowest goals against is best) and return top 3, including ties
+    sorted = all_stats.sort_by { |s| s[:value] }
+    top_3_with_ties(sorted, descending: false)
   end
 
-  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, returns top 3)
+  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, returns top 3, including ties)
   def calculate_glass_cannon
     all_stats = fan_teams
       .map do |team|
@@ -278,8 +283,9 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   # Calculate comeback kid (most OT/shootout wins - clutch performance, returns top 3)
@@ -304,11 +310,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Overtimer" - most overtime losses (lives dangerously, returns top 3)
+  # Calculate "Overtimer" - most overtime losses (lives dangerously, returns top 3, including ties)
   def calculate_overtimer
     all_stats = fan_teams
       .map do |team|
@@ -328,11 +335,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, returns top 3)
+  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, returns top 3, including ties)
   def calculate_point_scrounger
     all_stats = fan_teams
       .map do |team|
@@ -352,8 +360,9 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   # Calculate "Fan Crusher" - best record vs other fan teams (returns top 3)
@@ -382,11 +391,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Fan Fodder" - worst record vs other fan teams (returns top 3)
+  # Calculate "Fan Fodder" - worst record vs other fan teams (returns top 3, including ties)
   def calculate_fan_fodder
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -412,11 +422,27 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    # Sort by value descending (most losses) and return top 3
-    all_stats.sort_by { |s| -s[:value] }.take(3)
+    # Sort by value descending (most losses) and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   private
+
+  # Helper to return top 3 from sorted array, including ties at 3rd place
+  def top_3_with_ties(sorted_stats, descending: true)
+    return sorted_stats if sorted_stats.size <= 3
+    
+    # Get the value of the 3rd place
+    third_value = sorted_stats[2][:value]
+    
+    # Return all with value equal to or better than 3rd place
+    if descending
+      sorted_stats.select { |s| s[:value] >= third_value }
+    else
+      sorted_stats.select { |s| s[:value] <= third_value }
+    end
+  end
 
   # Helper to create a stat hash for a fan/team
   def create_fan_stat(team, value, suffix: "")
