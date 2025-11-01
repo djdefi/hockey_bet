@@ -10,12 +10,14 @@
       "wins": 50,
       "losses": 15,
       "otLosses": 6,
+      "gamesPlayed": 71,
       "streakCode": "W",
       "streakCount": 3,
       "points": 106,
       "pointPctg": 0.747,
+      "goalFor": 250,
       "goalsForPctg": 3.52,
-      "goalAgainst": 2.37,
+      "goalAgainst": 168,
       "leagueSequence": 1,
       "conferenceName": "Eastern",
       "conferenceSequence": 1,
@@ -38,13 +40,15 @@
       "points": 100,
       "pointPctg": 0.704,
       "goalsForPctg": 3.21,
-      "goalAgainst": 2.45,
+      "goalAgainst": 174,
       "leagueSequence": 2,
       "conferenceName": "Eastern",
       "conferenceSequence": 2,
       "divisionName": "Atlantic",
       "divisionSequence": 2,
-      "wildcardSequence": 0
+      "wildcardSequence": 0,
+      "gamesPlayed": 71,
+      "goalFor": 228
     },
     {
       "teamName": {
@@ -61,13 +65,15 @@
       "points": 93,
       "pointPctg": 0.651,
       "goalsForPctg": 3.41,
-      "goalAgainst": 2.89,
+      "goalAgainst": 211,
       "leagueSequence": 7,
       "conferenceName": "Eastern",
       "conferenceSequence": 6,
       "divisionName": "Atlantic",
       "divisionSequence": 3,
-      "wildcardSequence": 0
+      "wildcardSequence": 0,
+      "gamesPlayed": 73,
+      "goalFor": 249
     },
     {
       "teamName": {
@@ -84,13 +90,15 @@
       "points": 86,
       "pointPctg": 0.606,
       "goalsForPctg": 3.14,
-      "goalAgainst": 2.91,
+      "goalAgainst": 207,
       "leagueSequence": 9,
       "conferenceName": "Eastern",
       "conferenceSequence": 7,
       "divisionName": "Atlantic",
       "divisionSequence": 4,
-      "wildcardSequence": 1
+      "wildcardSequence": 1,
+      "gamesPlayed": 71,
+      "goalFor": 223
     },
     {
       "teamName": {
@@ -107,13 +115,15 @@
       "points": 78,
       "pointPctg": 0.541,
       "goalsForPctg": 3.08,
-      "goalAgainst": 3.16,
+      "goalAgainst": 228,
       "leagueSequence": 17,
       "conferenceName": "Eastern",
       "conferenceSequence": 10,
       "divisionName": "Atlantic",
       "divisionSequence": 5,
-      "wildcardSequence": 3
+      "wildcardSequence": 3,
+      "gamesPlayed": 72,
+      "goalFor": 222
     },
     {
       "teamName": {
@@ -130,13 +140,15 @@
       "points": 71,
       "pointPctg": 0.493,
       "goalsForPctg": 2.92,
-      "goalAgainst": 3.21,
+      "goalAgainst": 231,
       "leagueSequence": 22,
       "conferenceName": "Eastern",
       "conferenceSequence": 13,
       "divisionName": "Atlantic",
       "divisionSequence": 6,
-      "wildcardSequence": 6
+      "wildcardSequence": 6,
+      "gamesPlayed": 72,
+      "goalFor": 210
     },
     {
       "teamName": {
@@ -153,13 +165,15 @@
       "points": 66,
       "pointPctg": 0.465,
       "goalsForPctg": 3.07,
-      "goalAgainst": 3.37,
+      "goalAgainst": 239,
       "leagueSequence": 25,
       "conferenceName": "Eastern",
       "conferenceSequence": 15,
       "divisionName": "Atlantic",
       "divisionSequence": 7,
-      "wildcardSequence": 8
+      "wildcardSequence": 8,
+      "gamesPlayed": 71,
+      "goalFor": 218
     },
     {
       "teamName": {
@@ -176,13 +190,15 @@
       "points": 67,
       "pointPctg": 0.465,
       "goalsForPctg": 2.79,
-      "goalAgainst": 3.47,
+      "goalAgainst": 250,
       "leagueSequence": 26,
       "conferenceName": "Eastern",
       "conferenceSequence": 16,
       "divisionName": "Atlantic",
       "divisionSequence": 8,
-      "wildcardSequence": 9
+      "wildcardSequence": 9,
+      "gamesPlayed": 72,
+      "goalFor": 201
     }
   ]
 }

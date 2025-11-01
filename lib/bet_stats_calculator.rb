@@ -145,12 +145,12 @@ class BetStatsCalculator
   def calculate_best_point_differential
     all_stats = fan_teams
       .map do |team|
-        games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
         next nil if games_played == 0
         
-        # goalsForPctg and goalAgainst are already per-game values
-        goals_for_per_game = team['goalsForPctg'] || 0
-        goals_against_per_game = team['goalAgainst'] || 0
+        # Calculate per-game averages from totals
+        goals_for_per_game = calculate_per_game_stat(team['goalFor'] || team['goalsForPctg'] || 0, games_played)
+        goals_against_per_game = calculate_per_game_stat(team['goalAgainst'], games_played)
         differential_per_game = goals_for_per_game - goals_against_per_game
         
         abbrev = team['teamAbbrev']['default']
@@ -203,16 +203,20 @@ class BetStatsCalculator
   def calculate_brick_wall
     all_stats = fan_teams
       .map do |team|
-        goals_against_per_game = team['goalAgainst'] || 999
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        goals_against_per_game = calculate_per_game_stat(team['goalAgainst'], games_played)
         
         abbrev = team['teamAbbrev']['default']
         {
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: goals_against_per_game,
-          display: "#{goals_against_per_game} goals against/game"
+          display: "#{goals_against_per_game.round(2)} goals against/game"
         }
       end
+      .compact
     
     return nil if all_stats.empty?
     
@@ -224,8 +228,11 @@ class BetStatsCalculator
   def calculate_glass_cannon
     all_stats = fan_teams
       .map do |team|
-        goals_for = team['goalsForPctg'] || 0
-        goals_against = team['goalAgainst'] || 0
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        goals_for = calculate_per_game_stat(team['goalFor'] || team['goalsForPctg'] || 0, games_played)
+        goals_against = calculate_per_game_stat(team['goalAgainst'], games_played)
         differential = goals_for - goals_against
         
         # Only consider teams with negative differential but high scoring
@@ -236,7 +243,7 @@ class BetStatsCalculator
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: goals_for,
-          display: "#{goals_for} goals/game but #{differential.round(2)} differential"
+          display: "#{goals_for.round(2)} goals/game but #{differential.round(2)} differential"
         }
       end
       .compact
@@ -392,6 +399,20 @@ class BetStatsCalculator
       value: value,
       display: "#{value}#{suffix}"
     }
+  end
+
+  # Helper to calculate per-game statistics
+  # Handles both total values (from live API) and per-game values (from test fixtures)
+  def calculate_per_game_stat(value, games_played)
+    return 0 if value.nil? || games_played == 0
+    
+    # If value is already a per-game average (< 10), return as-is
+    # Otherwise, divide by games played to get per-game average
+    if value < 10
+      value.to_f
+    else
+      value.to_f / games_played
+    end
   end
 
   # Helper to create a streak stat
