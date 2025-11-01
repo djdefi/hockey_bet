@@ -307,6 +307,32 @@ RSpec.describe BetStatsCalculator do
       expect(result.first[:display]).to include('1 game wins')
       expect(result.first[:display]).to include('(W0)')
     end
+
+    it 'uses streakCount field when available (current API format)' do
+      teams_with_streak_count = [
+        {
+          'teamName' => { 'default' => 'Test Team 1' },
+          'teamAbbrev' => { 'default' => 'TS1' },
+          'streakCode' => 'W', # No number in code
+          'streakCount' => 5,   # But count is available
+          'wins' => 5
+        },
+        {
+          'teamName' => { 'default' => 'Test Team 2' },
+          'teamAbbrev' => { 'default' => 'TS2' },
+          'streakCode' => 'W', # No number in code
+          'streakCount' => 3,   # But count is available
+          'wins' => 3
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_with_streak_count, { 'TS1' => 'Fan1', 'TS2' => 'Fan2' }, {})
+      result = calc.calculate_longest_win_streak
+      
+      expect(result.first[:value]).to eq(5)
+      expect(result.first[:display]).to include('5 game wins')
+      expect(result.first[:display]).to include('(W)')
+    end
   end
 
   describe '#calculate_longest_lose_streak' do
@@ -328,6 +354,32 @@ RSpec.describe BetStatsCalculator do
       if longest && longest.any?
         expect(longest.first[:display]).to include('loss')
       end
+    end
+
+    it 'uses streakCount field when available (current API format)' do
+      teams_with_streak_count = [
+        {
+          'teamName' => { 'default' => 'Test Team 1' },
+          'teamAbbrev' => { 'default' => 'TS1' },
+          'streakCode' => 'L', # No number in code
+          'streakCount' => 4,   # But count is available
+          'losses' => 4
+        },
+        {
+          'teamName' => { 'default' => 'Test Team 2' },
+          'teamAbbrev' => { 'default' => 'TS2' },
+          'streakCode' => 'L', # No number in code
+          'streakCount' => 2,   # But count is available
+          'losses' => 2
+        }
+      ]
+      
+      calc = BetStatsCalculator.new(teams_with_streak_count, { 'TS1' => 'Fan1', 'TS2' => 'Fan2' }, {})
+      result = calc.calculate_longest_lose_streak
+      
+      expect(result.first[:value]).to eq(4)
+      expect(result.first[:display]).to include('4 game losses')
+      expect(result.first[:display]).to include('(L)')
     end
   end
 
