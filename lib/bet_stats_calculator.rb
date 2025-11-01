@@ -123,12 +123,12 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    max_value = all_streaks.map { |s| s[:value] }.max
-    # Return all teams with the max streak value (handles ties)
-    all_streaks.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_streaks.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate fan with longest losing streak (handles ties)
+  # Calculate fan with longest losing streak (returns top 3, including ties)
   def calculate_longest_lose_streak
     all_streaks = fan_teams
       .select { |team| team['streakCode'] && team['streakCode'].start_with?('L') }
@@ -136,21 +136,33 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    max_value = all_streaks.map { |s| s[:value] }.max
-    # Return all teams with the max streak value (handles ties)
-    all_streaks.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_streaks.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate fan with best goal differential (handles ties)
+  # Calculate fan with best goal differential (returns top 3)
   def calculate_best_point_differential
     all_stats = fan_teams
       .map do |team|
-        games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
         next nil if games_played == 0
         
-        # goalsForPctg and goalAgainst are already per-game values
-        goals_for_per_game = team['goalsForPctg'] || 0
-        goals_against_per_game = team['goalAgainst'] || 0
+        # Calculate per-game averages - handle both API formats
+        goals_for_per_game = if team.key?('goalFor') && !team['goalFor'].nil?
+          team['goalFor'].to_f / games_played
+        elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
+          team['goalsForPctg'].to_f
+        else
+          0.0
+        end
+        
+        goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
+          team['goalAgainst'].to_f / games_played
+        else
+          0.0
+        end
+        
         differential_per_game = goals_for_per_game - goals_against_per_game
         
         abbrev = team['teamAbbrev']['default']
@@ -169,11 +181,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate most dominant (best win percentage, handles ties)
+  # Calculate most dominant (best win percentage, returns top 3, including ties)
   def calculate_most_dominant
     all_stats = fan_teams
       .map do |team|
@@ -195,37 +208,64 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate brick wall (best goals against per game - defensive prowess, handles ties)
+  # Calculate brick wall (best goals against per game - defensive prowess, returns top 3)
   def calculate_brick_wall
     all_stats = fan_teams
       .map do |team|
-        goals_against_per_game = team['goalAgainst'] || 999
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        # Handle both API formats: goalAgainst (total) vs already per-game average
+        goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
+          team['goalAgainst'].to_f / games_played
+        else
+          0.0
+        end
         
         abbrev = team['teamAbbrev']['default']
         {
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: goals_against_per_game,
-          display: "#{goals_against_per_game} goals against/game"
+          display: "#{goals_against_per_game.round(2)} goals against/game"
         }
       end
+      .compact
     
     return nil if all_stats.empty?
     
-    min_value = all_stats.map { |s| s[:value] }.min
-    all_stats.select { |s| s[:value] == min_value }
+    # Sort by value ascending (lowest goals against is best) and return top 3, including ties
+    sorted = all_stats.sort_by { |s| s[:value] }
+    top_3_with_ties(sorted, descending: false)
   end
 
-  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, handles ties)
+  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, returns top 3, including ties)
   def calculate_glass_cannon
     all_stats = fan_teams
       .map do |team|
-        goals_for = team['goalsForPctg'] || 0
-        goals_against = team['goalAgainst'] || 0
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        # Handle both API formats explicitly
+        goals_for = if team.key?('goalFor') && !team['goalFor'].nil?
+          team['goalFor'].to_f / games_played
+        elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
+          team['goalsForPctg'].to_f
+        else
+          0.0
+        end
+        
+        goals_against = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
+          team['goalAgainst'].to_f / games_played
+        else
+          0.0
+        end
+        
         differential = goals_for - goals_against
         
         # Only consider teams with negative differential but high scoring
@@ -236,18 +276,19 @@ class BetStatsCalculator
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: goals_for,
-          display: "#{goals_for} goals/game but #{differential.round(2)} differential"
+          display: "#{goals_for.round(2)} goals/game but #{differential.round(2)} differential"
         }
       end
       .compact
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate comeback kid (most OT/shootout wins - clutch performance, handles ties)
+  # Calculate comeback kid (most OT/shootout wins - clutch performance, returns top 3)
   def calculate_comeback_kid
     all_stats = fan_teams
       .map do |team|
@@ -269,11 +310,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Overtimer" - most overtime losses (lives dangerously, handles ties)
+  # Calculate "Overtimer" - most overtime losses (lives dangerously, returns top 3, including ties)
   def calculate_overtimer
     all_stats = fan_teams
       .map do |team|
@@ -293,11 +335,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, handles ties)
+  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, returns top 3, including ties)
   def calculate_point_scrounger
     all_stats = fan_teams
       .map do |team|
@@ -317,11 +360,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Fan Crusher" - best record vs other fan teams
+  # Calculate "Fan Crusher" - best record vs other fan teams (returns top 3)
   def calculate_fan_crusher
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -347,11 +391,12 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Fan Fodder" - worst record vs other fan teams
+  # Calculate "Fan Fodder" - worst record vs other fan teams (returns top 3, including ties)
   def calculate_fan_fodder
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -377,11 +422,27 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max  # Changed: max instead of min
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending (most losses) and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   private
+
+  # Helper to return top 3 from sorted array, including ties at 3rd place
+  def top_3_with_ties(sorted_stats, descending: true)
+    return sorted_stats if sorted_stats.size <= 3
+    
+    # Get the value of the 3rd place
+    third_value = sorted_stats[2][:value]
+    
+    # Return all with value equal to or better than 3rd place
+    if descending
+      sorted_stats.select { |s| s[:value] >= third_value }
+    else
+      sorted_stats.select { |s| s[:value] <= third_value }
+    end
+  end
 
   # Helper to create a stat hash for a fan/team
   def create_fan_stat(team, value, suffix: "")
@@ -398,10 +459,15 @@ class BetStatsCalculator
   def create_streak_stat(team)
     abbrev = team['teamAbbrev']['default']
     streak_code = team['streakCode']
-    # Extract the number from the streak code (e.g., "W3" -> 3, "L2" -> 2)
-    # If no number is present (just "W" or "L") or if it's 0, default to 1
-    streak_num_raw = streak_code.scan(/\d+/).first&.to_i
-    streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
+    # Use streakCount if available (current API format), otherwise parse from streakCode (legacy format)
+    if team['streakCount']
+      streak_num = team['streakCount']
+    else
+      # Extract the number from the streak code (e.g., "W3" -> 3, "L2" -> 2)
+      # If no number is present (just "W" or "L") or if it's 0, default to 1
+      streak_num_raw = streak_code.scan(/\d+/).first&.to_i
+      streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
+    end
     streak_type = streak_code.start_with?('W') ? 'wins' : 'losses'
     
     {
