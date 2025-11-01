@@ -123,12 +123,11 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    max_value = all_streaks.map { |s| s[:value] }.max
-    # Return all teams with the max streak value (handles ties)
-    all_streaks.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3 (includes ties)
+    all_streaks.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate fan with longest losing streak (handles ties)
+  # Calculate fan with longest losing streak (returns top 3)
   def calculate_longest_lose_streak
     all_streaks = fan_teams
       .select { |team| team['streakCode'] && team['streakCode'].start_with?('L') }
@@ -136,12 +135,11 @@ class BetStatsCalculator
     
     return nil if all_streaks.empty?
     
-    max_value = all_streaks.map { |s| s[:value] }.max
-    # Return all teams with the max streak value (handles ties)
-    all_streaks.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_streaks.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate fan with best goal differential (handles ties)
+  # Calculate fan with best goal differential (returns top 3)
   def calculate_best_point_differential
     all_stats = fan_teams
       .map do |team|
@@ -169,11 +167,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate most dominant (best win percentage, handles ties)
+  # Calculate most dominant (best win percentage, returns top 3)
   def calculate_most_dominant
     all_stats = fan_teams
       .map do |team|
@@ -195,11 +193,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate brick wall (best goals against per game - defensive prowess, handles ties)
+  # Calculate brick wall (best goals against per game - defensive prowess, returns top 3)
   def calculate_brick_wall
     all_stats = fan_teams
       .map do |team|
@@ -220,11 +218,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    min_value = all_stats.map { |s| s[:value] }.min
-    all_stats.select { |s| s[:value] == min_value }
+    # Sort by value ascending (lowest goals against is best) and return top 3
+    all_stats.sort_by { |s| s[:value] }.take(3)
   end
 
-  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, handles ties)
+  # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, returns top 3)
   def calculate_glass_cannon
     all_stats = fan_teams
       .map do |team|
@@ -250,11 +248,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate comeback kid (most OT/shootout wins - clutch performance, handles ties)
+  # Calculate comeback kid (most OT/shootout wins - clutch performance, returns top 3)
   def calculate_comeback_kid
     all_stats = fan_teams
       .map do |team|
@@ -276,11 +274,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate "Overtimer" - most overtime losses (lives dangerously, handles ties)
+  # Calculate "Overtimer" - most overtime losses (lives dangerously, returns top 3)
   def calculate_overtimer
     all_stats = fan_teams
       .map do |team|
@@ -300,11 +298,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, handles ties)
+  # Calculate "Point Scrounger" - most points from OT losses (getting points despite losing, returns top 3)
   def calculate_point_scrounger
     all_stats = fan_teams
       .map do |team|
@@ -324,11 +322,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate "Fan Crusher" - best record vs other fan teams
+  # Calculate "Fan Crusher" - best record vs other fan teams (returns top 3)
   def calculate_fan_crusher
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -354,11 +352,11 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
-  # Calculate "Fan Fodder" - worst record vs other fan teams
+  # Calculate "Fan Fodder" - worst record vs other fan teams (returns top 3)
   def calculate_fan_fodder
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -384,8 +382,8 @@ class BetStatsCalculator
     
     return nil if all_stats.empty?
     
-    max_value = all_stats.map { |s| s[:value] }.max  # Changed: max instead of min
-    all_stats.select { |s| s[:value] == max_value }
+    # Sort by value descending (most losses) and return top 3
+    all_stats.sort_by { |s| -s[:value] }.take(3)
   end
 
   private
