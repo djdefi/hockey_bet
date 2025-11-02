@@ -4,6 +4,11 @@ require 'set'
 
 class BetStatsCalculator
   attr_reader :stats
+  
+  # Constants for Stanley Cup odds calculation
+  PLAYOFF_TEAM_COUNT = 16  # Total number of playoff teams
+  CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
+  CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
 
   def initialize(teams, manager_team_map, next_games)
     @teams = teams
@@ -449,13 +454,12 @@ class BetStatsCalculator
       
       division_seq = team['divisionSequence'].to_i
       conference_seq = team['conferenceSequence'].to_i
-      wildcard_seq = team['wildcardSequence'].to_i
       point_pctg = team['pointPctg'].to_f
       league_seq = team['leagueSequence'].to_i
       
       # Calculate base odds
-      # Teams ranked 1-16 in league get decreasing odds
-      base_odds = if league_seq > 0 && league_seq <= 16
+      # Teams ranked 1-16 in league get decreasing odds (top playoff teams)
+      base_odds = if league_seq > 0 && league_seq <= PLAYOFF_TEAM_COUNT
                     100.0 / league_seq  # Higher ranking = better odds
                   else
                     0.1  # Very low odds for non-playoff teams
@@ -470,8 +474,8 @@ class BetStatsCalculator
                        end
       
       # Bonus for conference position (top 8 make playoffs in each conference)
-      conference_bonus = if conference_seq <= 8
-                          (9 - conference_seq) * 5.0
+      conference_bonus = if conference_seq <= CONFERENCE_PLAYOFF_SPOTS
+                          (CONFERENCE_PLAYOFF_SPOTS + 1 - conference_seq) * CONFERENCE_BONUS_MULTIPLIER
                         else
                           0.0
                         end
