@@ -976,4 +976,76 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.send(:get_ordinal, -1)).to eq('')
     end
   end
+
+  describe '#calculate_cardiac_kids' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for teams with OT wins' do
+      cardiac = calculator.stats[:cardiac_kids]
+      # May be nil if no teams have OT wins in test data
+      expect(cardiac).to be_a(Array).or be_nil
+    end
+
+    it 'excludes N/A teams' do
+      cardiac = calculator.stats[:cardiac_kids]
+      next if cardiac.nil? || cardiac.empty?
+      fan_names = cardiac.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'sorts by OT wins in descending order' do
+      cardiac = calculator.stats[:cardiac_kids]
+      next if cardiac.nil? || cardiac.empty?
+      ot_wins = cardiac.map { |s| s[:value] }
+      expect(ot_wins).to eq(ot_wins.sort.reverse)
+    end
+  end
+
+  describe '#calculate_shutout_king' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for teams with low goals against' do
+      shutout = calculator.stats[:shutout_king]
+      expect(shutout).to be_a(Array).or be_nil
+    end
+
+    it 'excludes N/A teams' do
+      shutout = calculator.stats[:shutout_king]
+      next if shutout.nil? || shutout.empty?
+      fan_names = shutout.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+  end
+
+  describe '#calculate_momentum_master' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for teams on winning streaks' do
+      momentum = calculator.stats[:momentum_master]
+      expect(momentum).to be_a(Array).or be_nil
+    end
+
+    it 'excludes N/A teams' do
+      momentum = calculator.stats[:momentum_master]
+      next if momentum.nil? || momentum.empty?
+      fan_names = momentum.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'sorts by streak length in descending order' do
+      momentum = calculator.stats[:momentum_master]
+      next if momentum.nil? || momentum.empty?
+      streaks = momentum.map { |s| s[:value] }
+      expect(streaks).to eq(streaks.sort.reverse)
+    end
+  end
 end

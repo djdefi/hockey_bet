@@ -42,7 +42,10 @@ class BetStatsCalculator
       fan_crusher: calculate_fan_crusher,
       fan_fodder: calculate_fan_fodder,
       best_cup_odds: calculate_best_cup_odds,
-      worst_cup_odds: calculate_worst_cup_odds
+      worst_cup_odds: calculate_worst_cup_odds,
+      cardiac_kids: calculate_cardiac_kids,
+      shutout_king: calculate_shutout_king,
+      momentum_master: calculate_momentum_master
     }
   end
 
@@ -562,6 +565,113 @@ class BetStatsCalculator
     # Sort by odds ascending (worst odds first) and return bottom 3, including ties
     sorted = all_stats.sort_by { |s| s[:value] }
     top_3_with_ties(sorted, descending: false)
+  end
+
+  # Calculate "Cardiac Kids" - most one-goal games won (exciting close victories)
+  def calculate_cardiac_kids
+    # One-goal wins need to be calculated from the head-to-head data or would require
+    # game-by-game analysis. For now, we'll use a proxy: teams with many OT wins
+    # and high win percentage in close games would be "cardiac"
+    # We'll combine OT wins with overall performance to estimate
+    all_stats = fan_teams
+      .map do |team|
+        wins = team['wins'] || 0
+        regulation_wins = team['regulationWins'] || wins
+        ot_wins = wins - regulation_wins
+        
+        # Teams with more OT wins are more "cardiac" (winning close games)
+        next nil if ot_wins == 0
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: ot_wins,
+          display: "#{ot_wins} one-goal #{ot_wins == 1 ? 'win' : 'wins'} (decided in OT/SO)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Shutout King" - most games with 0 goals against (defensive excellence)
+  def calculate_shutout_king
+    # This would require game-by-game data. As a proxy, we'll use teams with
+    # the best goals against per game and highlight the best defensive performance
+    all_stats = fan_teams
+      .map do |team|
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        goals_against = team['goalAgainst']
+        next nil unless goals_against && goals_against.is_a?(Numeric)
+        
+        # Calculate average goals against
+        ga_per_game = goals_against.to_f / games_played
+        
+        # Only include teams with exceptional defense (under 2.5 goals/game)
+        next nil if ga_per_game > 2.5
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: -ga_per_game,  # Negative so lower is better
+          display: "#{ga_per_game.round(2)} goals against/game (defensive fortress)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by value descending (least goals against) and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Momentum Master" - longest active point streak
+  def calculate_momentum_master
+    # Point streak = consecutive games earning at least 1 point (win or OT loss)
+    # This requires tracking current streak which we can infer from recent performance
+    # We'll use current streak code as a proxy for momentum
+    all_stats = fan_teams
+      .select { |team| team['streakCode'] }
+      .map do |team|
+        streak_code = team['streakCode']
+        
+        # Use streakCount if available, otherwise parse from streakCode
+        if team['streakCount']
+          streak_num = team['streakCount']
+        else
+          streak_num_raw = streak_code.scan(/\d+/).first&.to_i
+          streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
+        end
+        
+        # Point streaks include both wins (W) and OT losses (OT)
+        # We'll count win streaks as point streaks
+        is_point_streak = streak_code.start_with?('W')
+        next nil unless is_point_streak
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: streak_num,
+          display: "#{streak_num}-game point streak (riding the wave 🌊)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
   end
 
   private
