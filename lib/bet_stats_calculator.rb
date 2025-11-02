@@ -17,6 +17,9 @@ class BetStatsCalculator
     # Fetch head-to-head data first (needed for some stats)
     fetch_head_to_head_records
     
+    # Calculate Stanley Cup odds for all teams
+    calculate_stanley_cup_odds
+    
     @stats = {
       top_winners: calculate_top_winners,
       top_losers: calculate_top_losers,
@@ -32,7 +35,9 @@ class BetStatsCalculator
       point_scrounger: calculate_point_scrounger,
       head_to_head_matrix: @head_to_head_matrix,
       fan_crusher: calculate_fan_crusher,
-      fan_fodder: calculate_fan_fodder
+      fan_fodder: calculate_fan_fodder,
+      best_cup_odds: calculate_best_cup_odds,
+      worst_cup_odds: calculate_worst_cup_odds
     }
   end
 
@@ -427,6 +432,134 @@ class BetStatsCalculator
     top_3_with_ties(sorted, descending: true)
   end
 
+  # Calculate Stanley Cup odds for each team based on regular season standings
+  # Uses conference position, division position, and point percentage
+  def calculate_stanley_cup_odds
+    @cup_odds = {}
+    
+    # Calculate odds for each team
+    @teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      
+      # Base odds on multiple factors:
+      # 1. Division position (top 3 in division get playoff spots)
+      # 2. Conference position (wildcards)
+      # 3. Point percentage (overall strength)
+      # 4. League sequence (overall ranking)
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      wildcard_seq = team['wildcardSequence'].to_i
+      point_pctg = team['pointPctg'].to_f
+      league_seq = team['leagueSequence'].to_i
+      
+      # Calculate base odds
+      # Teams ranked 1-16 in league get decreasing odds
+      base_odds = if league_seq > 0 && league_seq <= 16
+                    100.0 / league_seq  # Higher ranking = better odds
+                  else
+                    0.1  # Very low odds for non-playoff teams
+                  end
+      
+      # Bonus for division leaders (top 3 in division)
+      division_bonus = case division_seq
+                       when 1 then 20.0
+                       when 2 then 15.0
+                       when 3 then 10.0
+                       else 0.0
+                       end
+      
+      # Bonus for conference position (top 8 make playoffs in each conference)
+      conference_bonus = if conference_seq <= 8
+                          (9 - conference_seq) * 5.0
+                        else
+                          0.0
+                        end
+      
+      # Point percentage bonus (max 25 points for perfect 1.000)
+      point_bonus = point_pctg * 25.0
+      
+      # Calculate total odds score
+      odds_score = base_odds + division_bonus + conference_bonus + point_bonus
+      
+      @cup_odds[abbrev] = odds_score
+    end
+    
+    # Normalize odds to sum to 100%
+    total_odds = @cup_odds.values.sum
+    if total_odds > 0
+      @cup_odds.each do |abbrev, odds|
+        @cup_odds[abbrev] = ((odds / total_odds) * 100).round(2)
+      end
+    end
+  end
+
+  # Calculate fan with best Stanley Cup odds
+  def calculate_best_cup_odds
+    return nil if @cup_odds.nil? || @cup_odds.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      odds = @cup_odds[abbrev] || 0.0
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      
+      # Include conference and division info in the display
+      position_info = []
+      position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
+      position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: odds,
+        division_sequence: division_seq,
+        conference_sequence: conference_seq,
+        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by odds descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate fan with worst Stanley Cup odds
+  def calculate_worst_cup_odds
+    return nil if @cup_odds.nil? || @cup_odds.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      odds = @cup_odds[abbrev] || 0.0
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      
+      # Include conference and division info in the display
+      position_info = []
+      position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
+      position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: odds,
+        division_sequence: division_seq,
+        conference_sequence: conference_seq,
+        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by odds ascending (worst odds first) and return bottom 3, including ties
+    sorted = all_stats.sort_by { |s| s[:value] }
+    top_3_with_ties(sorted, descending: false)
+  end
+
   private
 
   # Helper to return top 3 from sorted array, including ties at 3rd place
@@ -724,6 +857,22 @@ class BetStatsCalculator
       puts "  Total: #{total_matchups} games counted across all matchups"
     else
       puts "  No completed games between fan teams found"
+    end
+  end
+
+  # Helper method to convert a number to ordinal (1st, 2nd, 3rd, etc.)
+  def get_ordinal(number)
+    return "" if number <= 0
+    
+    case number
+    when 1 then "1st"
+    when 2 then "2nd"
+    when 3 then "3rd"
+    when 21 then "21st"
+    when 22 then "22nd"
+    when 23 then "23rd"
+    when 31 then "31st"
+    else "#{number}th"
     end
   end
 end

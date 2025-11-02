@@ -134,6 +134,36 @@
         <h2 class='h3 mb-3'>🏆 Fan League Stats & Bragging Rights 🏆</h2>
         
         <div class="stats-grid">
+            <!-- Stanley Cup Odds - Best -->
+            <% if bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>🏆 Best Stanley Cup Odds 🏆</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:best_cup_odds].each_with_index do |stat, idx| %>
+                        <li class="py-1 color-fg-on-emphasis">
+                            <span class="stat-medal"><%= ['🥇', '🥈', '🥉'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+
+            <!-- Stanley Cup Odds - Worst -->
+            <% if bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-danger-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>😔 Worst Stanley Cup Odds 😔</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:worst_cup_odds].each_with_index do |stat, idx| %>
+                        <li class="py-1 color-fg-on-emphasis">
+                            <span class="stat-medal"><%= ['🥀', '💔', '😢'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+
             <!-- Top Winners -->
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
                 <h3 class='h4 color-fg-success'>Top Winners</h3>
