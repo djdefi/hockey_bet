@@ -864,14 +864,16 @@ class BetStatsCalculator
   def get_ordinal(number)
     return "" if number <= 0
     
-    case number
-    when 1 then "1st"
-    when 2 then "2nd"
-    when 3 then "3rd"
-    when 21 then "21st"
-    when 22 then "22nd"
-    when 23 then "23rd"
-    when 31 then "31st"
+    # Special cases for 11, 12, 13 (they use 'th')
+    if [11, 12, 13].include?(number % 100)
+      return "#{number}th"
+    end
+    
+    # Check last digit for st, nd, rd
+    case number % 10
+    when 1 then "#{number}st"
+    when 2 then "#{number}nd"
+    when 3 then "#{number}rd"
     else "#{number}th"
     end
   end

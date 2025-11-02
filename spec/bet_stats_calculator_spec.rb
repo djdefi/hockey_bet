@@ -956,6 +956,21 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.send(:get_ordinal, 23)).to eq('23rd')
     end
 
+    it 'handles 11th, 12th, 13th correctly' do
+      expect(calculator.send(:get_ordinal, 11)).to eq('11th')
+      expect(calculator.send(:get_ordinal, 12)).to eq('12th')
+      expect(calculator.send(:get_ordinal, 13)).to eq('13th')
+      expect(calculator.send(:get_ordinal, 111)).to eq('111th')
+      expect(calculator.send(:get_ordinal, 112)).to eq('112th')
+      expect(calculator.send(:get_ordinal, 113)).to eq('113th')
+    end
+
+    it 'handles 41st, 42nd, 43rd correctly' do
+      expect(calculator.send(:get_ordinal, 41)).to eq('41st')
+      expect(calculator.send(:get_ordinal, 42)).to eq('42nd')
+      expect(calculator.send(:get_ordinal, 43)).to eq('43rd')
+    end
+
     it 'returns empty string for 0 or negative numbers' do
       expect(calculator.send(:get_ordinal, 0)).to eq('')
       expect(calculator.send(:get_ordinal, -1)).to eq('')
