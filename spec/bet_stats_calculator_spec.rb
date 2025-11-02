@@ -847,4 +847,118 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.stats).to include(:fan_fodder)
     end
   end
+
+  describe '#calculate_stanley_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.send(:calculate_stanley_cup_odds)
+    end
+
+    it 'calculates odds for all teams' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      expect(cup_odds).to be_a(Hash)
+      expect(cup_odds.keys).to include('BOS', 'FLA', 'TOR', 'TBL')
+    end
+
+    it 'normalizes odds to sum to approximately 100%' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      total_odds = cup_odds.values.sum
+      expect(total_odds).to be_within(0.1).of(100.0)
+    end
+
+    it 'assigns higher odds to better-positioned teams' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      # BOS is 1st in division and conference, should have higher odds than TBL (4th in division)
+      expect(cup_odds['BOS']).to be > cup_odds['TBL']
+    end
+  end
+
+  describe '#calculate_best_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for fans with best Stanley Cup odds' do
+      best_odds = calculator.stats[:best_cup_odds]
+      expect(best_odds).to be_a(Array)
+      expect(best_odds).not_to be_empty
+    end
+
+    it 'excludes N/A teams' do
+      best_odds = calculator.stats[:best_cup_odds]
+      fan_names = best_odds.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'includes conference and division information' do
+      best_odds = calculator.stats[:best_cup_odds]
+      first_stat = best_odds.first
+      expect(first_stat).to include(:division_sequence, :conference_sequence)
+      expect(first_stat[:display]).to match(/in division/)
+      expect(first_stat[:display]).to match(/in conference/)
+    end
+
+    it 'sorts by odds in descending order' do
+      best_odds = calculator.stats[:best_cup_odds]
+      odds_values = best_odds.map { |s| s[:value] }
+      expect(odds_values).to eq(odds_values.sort.reverse)
+    end
+  end
+
+  describe '#calculate_worst_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for fans with worst Stanley Cup odds' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      expect(worst_odds).to be_a(Array)
+      expect(worst_odds).not_to be_empty
+    end
+
+    it 'excludes N/A teams' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      fan_names = worst_odds.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'sorts by odds in ascending order' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      odds_values = worst_odds.map { |s| s[:value] }
+      expect(odds_values).to eq(odds_values.sort)
+    end
+  end
+
+  describe '#get_ordinal' do
+    it 'returns correct ordinal for 1st' do
+      expect(calculator.send(:get_ordinal, 1)).to eq('1st')
+    end
+
+    it 'returns correct ordinal for 2nd' do
+      expect(calculator.send(:get_ordinal, 2)).to eq('2nd')
+    end
+
+    it 'returns correct ordinal for 3rd' do
+      expect(calculator.send(:get_ordinal, 3)).to eq('3rd')
+    end
+
+    it 'returns correct ordinal for 4th-20th' do
+      expect(calculator.send(:get_ordinal, 4)).to eq('4th')
+      expect(calculator.send(:get_ordinal, 11)).to eq('11th')
+      expect(calculator.send(:get_ordinal, 20)).to eq('20th')
+    end
+
+    it 'returns correct ordinal for 21st, 22nd, 23rd' do
+      expect(calculator.send(:get_ordinal, 21)).to eq('21st')
+      expect(calculator.send(:get_ordinal, 22)).to eq('22nd')
+      expect(calculator.send(:get_ordinal, 23)).to eq('23rd')
+    end
+
+    it 'returns empty string for 0 or negative numbers' do
+      expect(calculator.send(:get_ordinal, 0)).to eq('')
+      expect(calculator.send(:get_ordinal, -1)).to eq('')
+    end
+  end
 end
