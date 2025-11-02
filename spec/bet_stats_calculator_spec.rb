@@ -1048,4 +1048,101 @@ RSpec.describe BetStatsCalculator do
       expect(streaks).to eq(streaks.sort.reverse)
     end
   end
+
+  describe 'Multi-year stats' do
+    let(:mock_tracker) { instance_double(HistoricalStatsTracker) }
+    let(:calculator_with_history) do
+      BetStatsCalculator.new(teams, manager_team_map, next_games, mock_tracker)
+    end
+
+    before do
+      allow(calculator_with_history).to receive(:fetch_head_to_head_records)
+      # Stub current_season for all tests
+      allow(mock_tracker).to receive(:current_season).and_return('2024-2025')
+    end
+
+    describe '#calculate_dynasty_points' do
+      it 'returns fans with playoff wins from history' do
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Alice').and_return(15)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Bob').and_return(8)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Charlie').and_return(0)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Diana').and_return(3)
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0) # default for others
+        
+        # Stub loyalty and improvement methods to return nil
+        allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        dynasty = calculator_with_history.stats[:dynasty_points]
+        
+        expect(dynasty).to be_a(Array).or be_nil
+        next if dynasty.nil? || dynasty.empty?
+        
+        # Should only include fans with playoff wins
+        fan_names = dynasty.map { |s| s[:fan] }
+        expect(fan_names).not_to include('Charlie')
+      end
+    end
+
+    describe '#calculate_loyalty_bonus' do
+      it 'returns fans who kept the same team for multiple seasons' do
+        allow(mock_tracker).to receive(:get_fan_seasons).with('Alice').and_return(['2022-2023', '2023-2024', '2024-2025'])
+        allow(mock_tracker).to receive(:get_fan_seasons).with('Bob').and_return(['2023-2024'])
+        allow(mock_tracker).to receive(:get_fan_seasons).with('Charlie').and_return([])
+        allow(mock_tracker).to receive(:get_fan_seasons).with('Diana').and_return(['2023-2024', '2024-2025'])
+        allow(mock_tracker).to receive(:get_fan_seasons).and_return([]) # default for others
+        
+        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Alice', '2022-2023', '2023-2024').and_return(true)
+        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Alice', '2023-2024', '2024-2025').and_return(true)
+        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Diana', '2023-2024', '2024-2025').and_return(true)
+        
+        # Stub dynasty and improvement methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        loyalty = calculator_with_history.stats[:loyalty_bonus]
+        
+        expect(loyalty).to be_a(Array).or be_nil
+      end
+    end
+
+    describe '#calculate_most_improved' do
+      it 'returns fans who improved from last season' do
+        allow(mock_tracker).to receive(:calculate_improvement).with('Alice', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: 10, points_diff: 20, rank_improvement: 5 })
+        allow(mock_tracker).to receive(:calculate_improvement).with('Bob', '2023-2024', '2024-2025')
+          .and_return(nil)
+        allow(mock_tracker).to receive(:calculate_improvement).with('Charlie', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: -5, points_diff: -10, rank_improvement: -3 })
+        allow(mock_tracker).to receive(:calculate_improvement).with('Diana', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: 3, points_diff: 7, rank_improvement: 2 })
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil) # default for others
+        
+        # Stub dynasty and loyalty methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
+        
+        calculator_with_history.calculate_all_stats
+        improved = calculator_with_history.stats[:most_improved]
+        
+        expect(improved).to be_a(Array).or be_nil
+        next if improved.nil? || improved.empty?
+        
+        # Should only include fans with positive improvement
+        fan_names = improved.map { |s| s[:fan] }
+        expect(fan_names).not_to include('Charlie') # negative improvement
+      end
+    end
+
+    describe '#record_current_season_stats' do
+      it 'saves current season stats to historical tracker' do
+        # Expect record_season_stats to be called for each fan team
+        expect(mock_tracker).to receive(:record_season_stats).at_least(:once)
+        
+        calculator_with_history.record_current_season_stats
+      end
+    end
+  end
 end

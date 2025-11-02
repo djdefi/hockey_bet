@@ -1,6 +1,7 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/bet_stats_calculator.rb
 require 'csv'
 require 'set'
+require_relative 'historical_stats_tracker'
 
 class BetStatsCalculator
   attr_reader :stats
@@ -10,11 +11,12 @@ class BetStatsCalculator
   CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
   CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
 
-  def initialize(teams, manager_team_map, next_games)
+  def initialize(teams, manager_team_map, next_games, historical_tracker = nil)
     @teams = teams
     @manager_team_map = manager_team_map
     @next_games = next_games
     @stats = {}
+    @historical_tracker = historical_tracker || HistoricalStatsTracker.new
   end
 
   # Calculate all bet stats
@@ -45,7 +47,10 @@ class BetStatsCalculator
       worst_cup_odds: calculate_worst_cup_odds,
       cardiac_kids: calculate_cardiac_kids,
       shutout_king: calculate_shutout_king,
-      momentum_master: calculate_momentum_master
+      momentum_master: calculate_momentum_master,
+      dynasty_points: calculate_dynasty_points,
+      loyalty_bonus: calculate_loyalty_bonus,
+      most_improved: calculate_most_improved
     }
   end
 
@@ -672,6 +677,153 @@ class BetStatsCalculator
     # Sort by value descending and return top 3, including ties
     sorted = all_stats.sort_by { |s| -s[:value] }
     top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Dynasty Points" - cumulative playoff wins across all seasons
+  def calculate_dynasty_points
+    all_stats = []
+    
+    # Get all fans who have teams
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Get total playoff wins from historical data
+      total_playoff_wins = @historical_tracker.total_playoff_wins(fan)
+      
+      # Only include fans with playoff wins
+      next if total_playoff_wins == 0
+      
+      all_stats << {
+        fan: fan,
+        team: team['teamName']['default'],
+        value: total_playoff_wins,
+        display: "#{total_playoff_wins} playoff #{total_playoff_wins == 1 ? 'win' : 'wins'} (all-time)"
+      }
+    end
+    
+    return nil if all_stats.empty?
+    
+    # Sort by playoff wins descending and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Loyalty Bonus" - fans who kept the same team for multiple consecutive seasons
+  def calculate_loyalty_bonus
+    all_stats = []
+    current_season = @historical_tracker.current_season
+    
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Get all seasons this fan participated in
+      seasons = @historical_tracker.get_fan_seasons(fan)
+      next if seasons.length < 2
+      
+      # Count consecutive seasons with the same team
+      max_streak = 1
+      current_streak = 1
+      
+      seasons.sort.each_cons(2) do |season1, season2|
+        if @historical_tracker.same_team_consecutive_seasons?(fan, season1, season2)
+          current_streak += 1
+          max_streak = [max_streak, current_streak].max
+        else
+          current_streak = 1
+        end
+      end
+      
+      # Only include fans with loyalty (2+ consecutive seasons with same team)
+      next if max_streak < 2
+      
+      all_stats << {
+        fan: fan,
+        team: team['teamName']['default'],
+        value: max_streak,
+        display: "#{max_streak} consecutive #{max_streak == 2 ? 'season' : 'seasons'} (team loyalty)"
+      }
+    end
+    
+    return nil if all_stats.empty?
+    
+    # Sort by loyalty streak descending and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Most Improved" - biggest improvement from previous season
+  def calculate_most_improved
+    all_stats = []
+    current_season = @historical_tracker.current_season
+    
+    # Parse current season to get previous season
+    if current_season =~ /(\d{4})-(\d{4})/
+      prev_year = $1.to_i - 1
+      current_year = $2.to_i - 1
+      previous_season = "#{prev_year}-#{current_year}"
+    else
+      return nil # Can't calculate without proper season format
+    end
+    
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Get improvement stats
+      improvement = @historical_tracker.calculate_improvement(fan, previous_season, current_season)
+      next unless improvement
+      
+      # Calculate composite improvement score
+      # Prioritize wins improvement, but also consider points and ranking
+      score = (improvement[:wins_diff] * 3) + 
+              (improvement[:points_diff] * 1) + 
+              (improvement[:rank_improvement] * 2)
+      
+      # Only show positive improvements
+      next if score <= 0
+      
+      all_stats << {
+        fan: fan,
+        team: team['teamName']['default'],
+        value: score,
+        wins_diff: improvement[:wins_diff],
+        points_diff: improvement[:points_diff],
+        display: "+#{improvement[:wins_diff]} wins, +#{improvement[:points_diff]} points vs last season"
+      }
+    end
+    
+    return nil if all_stats.empty?
+    
+    # Sort by improvement score descending and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Save current season stats to historical tracking
+  def record_current_season_stats
+    current_season = @historical_tracker.current_season
+    
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      stats = {
+        wins: team['wins'] || 0,
+        losses: team['losses'] || 0,
+        ot_losses: team['otLosses'] || 0,
+        points: team['points'] || 0,
+        goals_for: team['goalFor'] || 0,
+        goals_against: team['goalAgainst'] || 0,
+        division_rank: team['divisionSequence'] || 0,
+        conference_rank: team['conferenceSequence'] || 0,
+        league_rank: team['leagueSequence'] || 0,
+        playoff_wins: 0 # This would need to be updated separately during playoffs
+      }
+      
+      @historical_tracker.record_season_stats(current_season, fan, abbrev, stats)
+    end
   end
 
   private
