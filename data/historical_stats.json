@@ -1,0 +1,106 @@
+{
+  "2023-2024": {
+    "Jeff C.": {
+      "team": "COL",
+      "wins": 42,
+      "losses": 28,
+      "ot_losses": 12,
+      "points": 96,
+      "goals_for": 240,
+      "goals_against": 230,
+      "division_rank": 2,
+      "conference_rank": 5,
+      "league_rank": 12,
+      "playoff_wins": 8,
+      "recorded_at": "2024-04-15 12:00:00"
+    },
+    "Dan R.": {
+      "team": "WPG",
+      "wins": 45,
+      "losses": 25,
+      "ot_losses": 12,
+      "points": 102,
+      "goals_for": 250,
+      "goals_against": 220,
+      "division_rank": 1,
+      "conference_rank": 3,
+      "league_rank": 8,
+      "playoff_wins": 12,
+      "recorded_at": "2024-04-15 12:00:00"
+    },
+    "Travis R.": {
+      "team": "NJD",
+      "wins": 40,
+      "losses": 30,
+      "ot_losses": 12,
+      "points": 92,
+      "goals_for": 235,
+      "goals_against": 240,
+      "division_rank": 3,
+      "conference_rank": 7,
+      "league_rank": 15,
+      "playoff_wins": 4,
+      "recorded_at": "2024-04-15 12:00:00"
+    },
+    "Brian D.": {
+      "team": "SJS",
+      "wins": 25,
+      "losses": 45,
+      "ot_losses": 12,
+      "points": 62,
+      "goals_for": 190,
+      "goals_against": 280,
+      "division_rank": 8,
+      "conference_rank": 16,
+      "league_rank": 30,
+      "playoff_wins": 0,
+      "recorded_at": "2024-04-15 12:00:00"
+    }
+  },
+  "2022-2023": {
+    "Jeff C.": {
+      "team": "COL",
+      "wins": 48,
+      "losses": 24,
+      "ot_losses": 10,
+      "points": 106,
+      "goals_for": 260,
+      "goals_against": 210,
+      "division_rank": 1,
+      "conference_rank": 2,
+      "league_rank": 5,
+      "playoff_wins": 16,
+      "recorded_at": "2023-04-15 12:00:00"
+    },
+    "Dan R.": {
+      "team": "WPG",
+      "wins": 38,
+      "losses": 32,
+      "ot_losses": 12,
+      "points": 88,
+      "goals_for": 230,
+      "goals_against": 240,
+      "division_rank": 4,
+      "conference_rank": 9,
+      "league_rank": 18,
+      "playoff_wins": 0,
+      "recorded_at": "2023-04-15 12:00:00"
+    }
+  },
+  "2021-2022": {
+    "Zak S.": {
+      "team": "VGK",
+      "wins": 51,
+      "losses": 22,
+      "ot_losses": 9,
+      "points": 111,
+      "goals_for": 266,
+      "goals_against": 223,
+      "division_rank": 1,
+      "conference_rank": 1,
+      "league_rank": 3,
+      "playoff_wins": 16,
+      "recorded_at": "2022-06-15 12:00:00"
+    }
+  }
+}

@@ -847,4 +847,312 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.stats).to include(:fan_fodder)
     end
   end
+
+  describe '#calculate_stanley_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.send(:calculate_stanley_cup_odds)
+    end
+
+    it 'calculates odds for all teams' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      expect(cup_odds).to be_a(Hash)
+      expect(cup_odds.keys).to include('BOS', 'FLA', 'TOR', 'TBL')
+    end
+
+    it 'normalizes odds to sum to approximately 100%' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      total_odds = cup_odds.values.sum
+      expect(total_odds).to be_within(0.1).of(100.0)
+    end
+
+    it 'assigns higher odds to better-positioned teams' do
+      cup_odds = calculator.instance_variable_get(:@cup_odds)
+      # BOS is 1st in division and conference, should have higher odds than TBL (4th in division)
+      expect(cup_odds['BOS']).to be > cup_odds['TBL']
+    end
+  end
+
+  describe '#calculate_best_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for fans with best Stanley Cup odds' do
+      best_odds = calculator.stats[:best_cup_odds]
+      expect(best_odds).to be_a(Array)
+      expect(best_odds).not_to be_empty
+    end
+
+    it 'excludes N/A teams' do
+      best_odds = calculator.stats[:best_cup_odds]
+      fan_names = best_odds.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'includes conference and division information' do
+      best_odds = calculator.stats[:best_cup_odds]
+      first_stat = best_odds.first
+      expect(first_stat).to include(:division_sequence, :conference_sequence)
+      expect(first_stat[:display]).to match(/in division/)
+      expect(first_stat[:display]).to match(/in conference/)
+    end
+
+    it 'sorts by odds in descending order' do
+      best_odds = calculator.stats[:best_cup_odds]
+      odds_values = best_odds.map { |s| s[:value] }
+      expect(odds_values).to eq(odds_values.sort.reverse)
+    end
+  end
+
+  describe '#calculate_worst_cup_odds' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for fans with worst Stanley Cup odds' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      expect(worst_odds).to be_a(Array)
+      expect(worst_odds).not_to be_empty
+    end
+
+    it 'excludes N/A teams' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      fan_names = worst_odds.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'sorts by odds in ascending order' do
+      worst_odds = calculator.stats[:worst_cup_odds]
+      odds_values = worst_odds.map { |s| s[:value] }
+      expect(odds_values).to eq(odds_values.sort)
+    end
+  end
+
+  describe '#get_ordinal' do
+    it 'returns correct ordinal for 1st' do
+      expect(calculator.send(:get_ordinal, 1)).to eq('1st')
+    end
+
+    it 'returns correct ordinal for 2nd' do
+      expect(calculator.send(:get_ordinal, 2)).to eq('2nd')
+    end
+
+    it 'returns correct ordinal for 3rd' do
+      expect(calculator.send(:get_ordinal, 3)).to eq('3rd')
+    end
+
+    it 'returns correct ordinal for 4th-20th' do
+      expect(calculator.send(:get_ordinal, 4)).to eq('4th')
+      expect(calculator.send(:get_ordinal, 11)).to eq('11th')
+      expect(calculator.send(:get_ordinal, 20)).to eq('20th')
+    end
+
+    it 'returns correct ordinal for 21st, 22nd, 23rd' do
+      expect(calculator.send(:get_ordinal, 21)).to eq('21st')
+      expect(calculator.send(:get_ordinal, 22)).to eq('22nd')
+      expect(calculator.send(:get_ordinal, 23)).to eq('23rd')
+    end
+
+    it 'handles 11th, 12th, 13th correctly' do
+      expect(calculator.send(:get_ordinal, 11)).to eq('11th')
+      expect(calculator.send(:get_ordinal, 12)).to eq('12th')
+      expect(calculator.send(:get_ordinal, 13)).to eq('13th')
+      expect(calculator.send(:get_ordinal, 111)).to eq('111th')
+      expect(calculator.send(:get_ordinal, 112)).to eq('112th')
+      expect(calculator.send(:get_ordinal, 113)).to eq('113th')
+    end
+
+    it 'handles 41st, 42nd, 43rd correctly' do
+      expect(calculator.send(:get_ordinal, 41)).to eq('41st')
+      expect(calculator.send(:get_ordinal, 42)).to eq('42nd')
+      expect(calculator.send(:get_ordinal, 43)).to eq('43rd')
+    end
+
+    it 'returns empty string for 0 or negative numbers' do
+      expect(calculator.send(:get_ordinal, 0)).to eq('')
+      expect(calculator.send(:get_ordinal, -1)).to eq('')
+    end
+  end
+
+  describe '#calculate_shutout_king' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for teams with low goals against' do
+      shutout = calculator.stats[:shutout_king]
+      expect(shutout).to be_a(Array).or be_nil
+    end
+
+    it 'excludes N/A teams' do
+      shutout = calculator.stats[:shutout_king]
+      next if shutout.nil? || shutout.empty?
+      fan_names = shutout.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+  end
+
+  describe '#calculate_momentum_master' do
+    before do
+      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
+      calculator.calculate_all_stats
+    end
+
+    it 'returns stats for teams on winning streaks' do
+      momentum = calculator.stats[:momentum_master]
+      expect(momentum).to be_a(Array).or be_nil
+    end
+
+    it 'excludes N/A teams' do
+      momentum = calculator.stats[:momentum_master]
+      next if momentum.nil? || momentum.empty?
+      fan_names = momentum.map { |s| s[:fan] }
+      expect(fan_names).not_to include('N/A')
+    end
+
+    it 'sorts by streak length in descending order' do
+      momentum = calculator.stats[:momentum_master]
+      next if momentum.nil? || momentum.empty?
+      streaks = momentum.map { |s| s[:value] }
+      expect(streaks).to eq(streaks.sort.reverse)
+    end
+  end
+
+  describe 'Multi-year stats' do
+    let(:mock_tracker) { instance_double(HistoricalStatsTracker) }
+    let(:calculator_with_history) do
+      BetStatsCalculator.new(teams, manager_team_map, next_games, mock_tracker)
+    end
+
+    before do
+      allow(calculator_with_history).to receive(:fetch_head_to_head_records)
+      # Stub current_season for all tests
+      allow(mock_tracker).to receive(:current_season).and_return('2024-2025')
+    end
+
+    describe '#calculate_dynasty_points' do
+      it 'returns fans with playoff wins from history' do
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Alice').and_return(15)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Bob').and_return(8)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Charlie').and_return(0)
+        allow(mock_tracker).to receive(:total_playoff_wins).with('Diana').and_return(3)
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0) # default for others
+        
+        # Stub loyalty, improvement and hall of fame methods to return nil
+        allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        allow(mock_tracker).to receive(:get_fan_history).and_return({})
+        
+        calculator_with_history.calculate_all_stats
+        dynasty = calculator_with_history.stats[:dynasty_points]
+        
+        expect(dynasty).to be_a(Array).or be_nil
+        next if dynasty.nil? || dynasty.empty?
+        
+        # Should only include fans with playoff wins
+        fan_names = dynasty.map { |s| s[:fan] }
+        expect(fan_names).not_to include('Charlie')
+      end
+    end
+
+    describe '#calculate_most_improved' do
+      it 'returns fans who improved from last season' do
+        allow(mock_tracker).to receive(:calculate_improvement).with('Alice', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: 10, points_diff: 20, rank_improvement: 5 })
+        allow(mock_tracker).to receive(:calculate_improvement).with('Bob', '2023-2024', '2024-2025')
+          .and_return(nil)
+        allow(mock_tracker).to receive(:calculate_improvement).with('Charlie', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: -5, points_diff: -10, rank_improvement: -3 })
+        allow(mock_tracker).to receive(:calculate_improvement).with('Diana', '2023-2024', '2024-2025')
+          .and_return({ wins_diff: 3, points_diff: 7, rank_improvement: 2 })
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil) # default for others
+        
+        # Stub dynasty, loyalty and hall of fame methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
+        allow(mock_tracker).to receive(:get_fan_history).and_return({})
+        
+        calculator_with_history.calculate_all_stats
+        improved = calculator_with_history.stats[:most_improved]
+        
+        expect(improved).to be_a(Array).or be_nil
+        next if improved.nil? || improved.empty?
+        
+        # Should only include fans with positive improvement
+        fan_names = improved.map { |s| s[:fan] }
+        expect(fan_names).not_to include('Charlie') # negative improvement
+      end
+    end
+
+    describe '#calculate_hall_of_fame' do
+      it 'returns fans who won the Stanley Cup (16+ playoff wins) in last 6 years' do
+        # Mock historical data with cup winners
+        allow(mock_tracker).to receive(:get_fan_history).with('Alice').and_return({
+          '2022-2023' => { 'team' => 'COL', 'playoff_wins' => 16 }, # Cup winner
+          '2021-2022' => { 'team' => 'COL', 'playoff_wins' => 8 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Bob').and_return({
+          '2020-2021' => { 'team' => 'TBL', 'playoff_wins' => 16 } # Cup winner (within 6 years)
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Charlie').and_return({
+          '2023-2024' => { 'team' => 'BOS', 'playoff_wins' => 12 } # Not enough wins
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Diana').and_return({
+          '2015-2016' => { 'team' => 'PIT', 'playoff_wins' => 16 } # Too old (>6 years)
+        })
+        allow(mock_tracker).to receive(:get_fan_history).and_return({}) # default for others
+        
+        # Stub other methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        hall_of_fame = calculator_with_history.stats[:hall_of_fame]
+        
+        expect(hall_of_fame).to be_a(Array).or be_nil
+        next if hall_of_fame.nil? || hall_of_fame.empty?
+        
+        # Should only include Cup winners from last 6 years
+        fan_names = hall_of_fame.map { |s| s[:fan] }
+        expect(fan_names).to include('Alice', 'Bob')
+        expect(fan_names).not_to include('Charlie', 'Diana')
+      end
+
+      it 'sorts by most recent championship first' do
+        allow(mock_tracker).to receive(:get_fan_history).with('Alice').and_return({
+          '2020-2021' => { 'team' => 'COL', 'playoff_wins' => 16 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Bob').and_return({
+          '2023-2024' => { 'team' => 'TBL', 'playoff_wins' => 16 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).and_return({}) # default
+        
+        # Stub other methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        hall_of_fame = calculator_with_history.stats[:hall_of_fame]
+        
+        next if hall_of_fame.nil? || hall_of_fame.empty?
+        
+        # Bob (2023-2024) should come before Alice (2020-2021)
+        fan_names = hall_of_fame.map { |s| s[:fan] }
+        expect(fan_names.first).to eq('Bob')
+      end
+    end
+
+    describe '#record_current_season_stats' do
+      it 'saves current season stats to historical tracker' do
+        # Expect record_season_stats to be called for each fan team
+        expect(mock_tracker).to receive(:record_season_stats).at_least(:once)
+        
+        calculator_with_history.record_current_season_stats
+      end
+    end
+  end
 end

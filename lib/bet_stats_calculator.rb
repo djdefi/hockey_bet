@@ -1,21 +1,31 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/bet_stats_calculator.rb
 require 'csv'
 require 'set'
+require_relative 'historical_stats_tracker'
 
 class BetStatsCalculator
   attr_reader :stats
+  
+  # Constants for Stanley Cup odds calculation
+  PLAYOFF_TEAM_COUNT = 16  # Total number of playoff teams
+  CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
+  CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
 
-  def initialize(teams, manager_team_map, next_games)
+  def initialize(teams, manager_team_map, next_games, historical_tracker = nil)
     @teams = teams
     @manager_team_map = manager_team_map
     @next_games = next_games
     @stats = {}
+    @historical_tracker = historical_tracker || HistoricalStatsTracker.new
   end
 
   # Calculate all bet stats
   def calculate_all_stats
     # Fetch head-to-head data first (needed for some stats)
     fetch_head_to_head_records
+    
+    # Calculate Stanley Cup odds for all teams
+    calculate_stanley_cup_odds
     
     @stats = {
       top_winners: calculate_top_winners,
@@ -32,7 +42,14 @@ class BetStatsCalculator
       point_scrounger: calculate_point_scrounger,
       head_to_head_matrix: @head_to_head_matrix,
       fan_crusher: calculate_fan_crusher,
-      fan_fodder: calculate_fan_fodder
+      fan_fodder: calculate_fan_fodder,
+      best_cup_odds: calculate_best_cup_odds,
+      worst_cup_odds: calculate_worst_cup_odds,
+      shutout_king: calculate_shutout_king,
+      momentum_master: calculate_momentum_master,
+      dynasty_points: calculate_dynasty_points,
+      most_improved: calculate_most_improved,
+      hall_of_fame: calculate_hall_of_fame
     }
   end
 
@@ -427,6 +444,311 @@ class BetStatsCalculator
     top_3_with_ties(sorted, descending: true)
   end
 
+  # Calculate Stanley Cup odds for each team based on regular season standings
+  # Uses conference position, division position, and point percentage
+  def calculate_stanley_cup_odds
+    @cup_odds = {}
+    
+    # Calculate odds for each team
+    @teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      
+      # Base odds on multiple factors:
+      # 1. Division position (top 3 in division get playoff spots)
+      # 2. Conference position (wildcards)
+      # 3. Point percentage (overall strength)
+      # 4. League sequence (overall ranking)
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      point_pctg = team['pointPctg'].to_f
+      league_seq = team['leagueSequence'].to_i
+      
+      # Calculate base odds
+      # Teams ranked 1-16 in league get decreasing odds (top playoff teams)
+      base_odds = if league_seq > 0 && league_seq <= PLAYOFF_TEAM_COUNT
+                    100.0 / league_seq  # Higher ranking = better odds
+                  else
+                    0.1  # Very low odds for non-playoff teams
+                  end
+      
+      # Bonus for division leaders (top 3 in division)
+      division_bonus = case division_seq
+                       when 1 then 20.0
+                       when 2 then 15.0
+                       when 3 then 10.0
+                       else 0.0
+                       end
+      
+      # Bonus for conference position (top 8 make playoffs in each conference)
+      conference_bonus = if conference_seq <= CONFERENCE_PLAYOFF_SPOTS
+                          (CONFERENCE_PLAYOFF_SPOTS + 1 - conference_seq) * CONFERENCE_BONUS_MULTIPLIER
+                        else
+                          0.0
+                        end
+      
+      # Point percentage bonus (max 25 points for perfect 1.000)
+      point_bonus = point_pctg * 25.0
+      
+      # Calculate total odds score
+      odds_score = base_odds + division_bonus + conference_bonus + point_bonus
+      
+      @cup_odds[abbrev] = odds_score
+    end
+    
+    # Normalize odds to sum to 100%
+    total_odds = @cup_odds.values.sum
+    if total_odds > 0
+      @cup_odds.each do |abbrev, odds|
+        @cup_odds[abbrev] = ((odds / total_odds) * 100).round(2)
+      end
+    end
+  end
+
+  # Calculate fan with best Stanley Cup odds
+  def calculate_best_cup_odds
+    return nil if @cup_odds.nil? || @cup_odds.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      odds = @cup_odds[abbrev] || 0.0
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      
+      # Include conference and division info in the display
+      position_info = []
+      position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
+      position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: odds,
+        division_sequence: division_seq,
+        conference_sequence: conference_seq,
+        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by odds descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate fan with worst Stanley Cup odds
+  def calculate_worst_cup_odds
+    return nil if @cup_odds.nil? || @cup_odds.empty?
+    
+    all_stats = fan_teams.map do |team|
+      abbrev = team['teamAbbrev']['default']
+      odds = @cup_odds[abbrev] || 0.0
+      
+      division_seq = team['divisionSequence'].to_i
+      conference_seq = team['conferenceSequence'].to_i
+      
+      # Include conference and division info in the display
+      position_info = []
+      position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
+      position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
+      
+      {
+        fan: @manager_team_map[abbrev],
+        team: team['teamName']['default'],
+        value: odds,
+        division_sequence: division_seq,
+        conference_sequence: conference_seq,
+        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+      }
+    end.compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by odds ascending (worst odds first) and return bottom 3, including ties
+    sorted = all_stats.sort_by { |s| s[:value] }
+    top_3_with_ties(sorted, descending: false)
+  end
+
+  # Calculate "Shutout King" - most games with 0 goals against (defensive excellence)
+  def calculate_shutout_king
+    # This would require game-by-game data. As a proxy, we'll use teams with
+    # the best goals against per game and highlight the best defensive performance
+    all_stats = fan_teams
+      .map do |team|
+        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+        next nil if games_played == 0
+        
+        goals_against = team['goalAgainst']
+        next nil unless goals_against && goals_against.is_a?(Numeric)
+        
+        # Calculate average goals against
+        ga_per_game = goals_against.to_f / games_played
+        
+        # Only include teams with exceptional defense (under 2.5 goals/game)
+        next nil if ga_per_game > 2.5
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: -ga_per_game,  # Negative so lower is better
+          display: "#{ga_per_game.round(2)} goals against/game (defensive fortress)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by value descending (least goals against) and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Momentum Master" - longest active point streak
+  def calculate_momentum_master
+    # Point streak = consecutive games earning at least 1 point (win or OT loss)
+    # This requires tracking current streak which we can infer from recent performance
+    # We'll use current streak code as a proxy for momentum
+    all_stats = fan_teams
+      .select { |team| team['streakCode'] }
+      .map do |team|
+        streak_code = team['streakCode']
+        
+        # Use streakCount if available, otherwise parse from streakCode
+        if team['streakCount']
+          streak_num = team['streakCount']
+        else
+          streak_num_raw = streak_code.scan(/\d+/).first&.to_i
+          streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
+        end
+        
+        # Point streaks include both wins (W) and OT losses (OT)
+        # We'll count win streaks as point streaks
+        is_point_streak = streak_code.start_with?('W')
+        next nil unless is_point_streak
+        
+        abbrev = team['teamAbbrev']['default']
+        {
+          fan: @manager_team_map[abbrev],
+          team: team['teamName']['default'],
+          value: streak_num,
+          display: "#{streak_num}-game point streak (riding the wave 🌊)"
+        }
+      end
+      .compact
+    
+    return nil if all_stats.empty?
+    
+    # Sort by value descending and return top 3, including ties
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Dynasty Points" - cumulative playoff wins across all seasons
+  def calculate_dynasty_points
+    all_stats = []
+    
+    # Get all fans who have teams
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Get total playoff wins from historical data
+      total_playoff_wins = @historical_tracker.total_playoff_wins(fan)
+      
+      # Only include fans with playoff wins
+      next if total_playoff_wins == 0
+      
+      all_stats << {
+        fan: fan,
+        team: team['teamName']['default'],
+        value: total_playoff_wins,
+        display: "#{total_playoff_wins} playoff #{total_playoff_wins == 1 ? 'win' : 'wins'} (all-time)"
+      }
+    end
+    
+    return nil if all_stats.empty?
+    
+    # Sort by playoff wins descending and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Calculate "Most Improved" - biggest improvement from previous season
+  def calculate_most_improved
+    all_stats = []
+    current_season = @historical_tracker.current_season
+    
+    # Parse current season to get previous season
+    if current_season =~ /(\d{4})-(\d{4})/
+      prev_year = $1.to_i - 1
+      current_year = $2.to_i - 1
+      previous_season = "#{prev_year}-#{current_year}"
+    else
+      return nil # Can't calculate without proper season format
+    end
+    
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Get improvement stats
+      improvement = @historical_tracker.calculate_improvement(fan, previous_season, current_season)
+      next unless improvement
+      
+      # Calculate composite improvement score
+      # Prioritize wins improvement, but also consider points and ranking
+      score = (improvement[:wins_diff] * 3) + 
+              (improvement[:points_diff] * 1) + 
+              (improvement[:rank_improvement] * 2)
+      
+      # Only show positive improvements
+      next if score <= 0
+      
+      all_stats << {
+        fan: fan,
+        team: team['teamName']['default'],
+        value: score,
+        wins_diff: improvement[:wins_diff],
+        points_diff: improvement[:points_diff],
+        display: "+#{improvement[:wins_diff]} wins, +#{improvement[:points_diff]} points vs last season"
+      }
+    end
+    
+    return nil if all_stats.empty?
+    
+    # Sort by improvement score descending and return top 3
+    sorted = all_stats.sort_by { |s| -s[:value] }
+    top_3_with_ties(sorted, descending: true)
+  end
+
+  # Save current season stats to historical tracking
+  def record_current_season_stats
+    current_season = @historical_tracker.current_season
+    
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      stats = {
+        wins: team['wins'] || 0,
+        losses: team['losses'] || 0,
+        ot_losses: team['otLosses'] || 0,
+        points: team['points'] || 0,
+        goals_for: team['goalFor'] || 0,
+        goals_against: team['goalAgainst'] || 0,
+        division_rank: team['divisionSequence'] || 0,
+        conference_rank: team['conferenceSequence'] || 0,
+        league_rank: team['leagueSequence'] || 0,
+        playoff_wins: 0 # This would need to be updated separately during playoffs
+      }
+      
+      @historical_tracker.record_season_stats(current_season, fan, abbrev, stats)
+    end
+  end
+
   private
 
   # Helper to return top 3 from sorted array, including ties at 3rd place
@@ -724,6 +1046,66 @@ class BetStatsCalculator
       puts "  Total: #{total_matchups} games counted across all matchups"
     else
       puts "  No completed games between fan teams found"
+    end
+  end
+
+  # Calculate "Hall of Fame" - fans who have won the Stanley Cup in the last 6 years
+  # Winning the Stanley Cup requires 16 playoff wins
+  def calculate_hall_of_fame
+    champions = []
+    current_year = Time.now.year
+    lookback_years = 6
+    
+    # Get all seasons from the last 6 years
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Check each season in historical data
+      history = @historical_tracker.get_fan_history(fan)
+      history.each do |season, stats|
+        # Parse season year (e.g., "2022-2023" -> 2023)
+        season_end_year = season.split('-').last.to_i
+        next unless season_end_year >= (current_year - lookback_years)
+        
+        # Stanley Cup win requires 16 playoff wins (4 rounds × 4 wins)
+        playoff_wins = stats['playoff_wins'] || 0
+        if playoff_wins >= 16
+          champions << {
+            fan: fan,
+            team: team['teamName']['default'],
+            team_abbrev: abbrev,
+            season: season,
+            year: season_end_year,
+            value: playoff_wins,
+            display: "🏆 #{season} Stanley Cup Champion (#{playoff_wins} playoff wins)"
+          }
+        end
+      end
+    end
+    
+    return nil if champions.empty?
+    
+    # Sort by year (most recent first)
+    sorted = champions.sort_by { |c| -c[:year] }
+    sorted.uniq { |c| [c[:fan], c[:season]] } # Remove duplicates
+  end
+
+  # Helper method to convert a number to ordinal (1st, 2nd, 3rd, etc.)
+  def get_ordinal(number)
+    return "" if number <= 0
+    
+    # Special cases for 11, 12, 13 (they use 'th')
+    if [11, 12, 13].include?(number % 100)
+      return "#{number}th"
+    end
+    
+    # Check last digit for st, nd, rd
+    case number % 10
+    when 1 then "#{number}st"
+    when 2 then "#{number}nd"
+    when 3 then "#{number}rd"
+    else "#{number}th"
     end
   end
 end
