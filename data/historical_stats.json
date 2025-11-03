@@ -87,20 +87,20 @@
       "recorded_at": "2023-04-15 12:00:00"
     }
   },
-  "2020-2021": {
-    "Travis R.": {
-      "team": "NJD",
-      "wins": 50,
-      "losses": 21,
-      "ot_losses": 11,
+  "2021-2022": {
+    "Zak S.": {
+      "team": "VGK",
+      "wins": 51,
+      "losses": 22,
+      "ot_losses": 9,
       "points": 111,
-      "goals_for": 275,
-      "goals_against": 205,
+      "goals_for": 266,
+      "goals_against": 223,
       "division_rank": 1,
       "conference_rank": 1,
-      "league_rank": 2,
+      "league_rank": 3,
       "playoff_wins": 16,
-      "recorded_at": "2021-05-20 12:00:00"
+      "recorded_at": "2022-06-15 12:00:00"
     }
   }
 }
