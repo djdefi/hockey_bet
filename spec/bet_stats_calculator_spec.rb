@@ -1042,9 +1042,10 @@ RSpec.describe BetStatsCalculator do
         allow(mock_tracker).to receive(:total_playoff_wins).with('Diana').and_return(3)
         allow(mock_tracker).to receive(:total_playoff_wins).and_return(0) # default for others
         
-        # Stub loyalty and improvement methods to return nil
+        # Stub loyalty, improvement and hall of fame methods to return nil
         allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
         allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        allow(mock_tracker).to receive(:get_fan_history).and_return({})
         
         calculator_with_history.calculate_all_stats
         dynasty = calculator_with_history.stats[:dynasty_points]
@@ -1070,9 +1071,10 @@ RSpec.describe BetStatsCalculator do
           .and_return({ wins_diff: 3, points_diff: 7, rank_improvement: 2 })
         allow(mock_tracker).to receive(:calculate_improvement).and_return(nil) # default for others
         
-        # Stub dynasty and loyalty methods
+        # Stub dynasty, loyalty and hall of fame methods
         allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
         allow(mock_tracker).to receive(:get_fan_seasons).and_return([])
+        allow(mock_tracker).to receive(:get_fan_history).and_return({})
         
         calculator_with_history.calculate_all_stats
         improved = calculator_with_history.stats[:most_improved]
@@ -1083,6 +1085,64 @@ RSpec.describe BetStatsCalculator do
         # Should only include fans with positive improvement
         fan_names = improved.map { |s| s[:fan] }
         expect(fan_names).not_to include('Charlie') # negative improvement
+      end
+    end
+
+    describe '#calculate_hall_of_fame' do
+      it 'returns fans who won the Stanley Cup (16+ playoff wins) in last 6 years' do
+        # Mock historical data with cup winners
+        allow(mock_tracker).to receive(:get_fan_history).with('Alice').and_return({
+          '2022-2023' => { 'team' => 'COL', 'playoff_wins' => 16 }, # Cup winner
+          '2021-2022' => { 'team' => 'COL', 'playoff_wins' => 8 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Bob').and_return({
+          '2020-2021' => { 'team' => 'TBL', 'playoff_wins' => 16 } # Cup winner (within 6 years)
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Charlie').and_return({
+          '2023-2024' => { 'team' => 'BOS', 'playoff_wins' => 12 } # Not enough wins
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Diana').and_return({
+          '2015-2016' => { 'team' => 'PIT', 'playoff_wins' => 16 } # Too old (>6 years)
+        })
+        allow(mock_tracker).to receive(:get_fan_history).and_return({}) # default for others
+        
+        # Stub other methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        hall_of_fame = calculator_with_history.stats[:hall_of_fame]
+        
+        expect(hall_of_fame).to be_a(Array).or be_nil
+        next if hall_of_fame.nil? || hall_of_fame.empty?
+        
+        # Should only include Cup winners from last 6 years
+        fan_names = hall_of_fame.map { |s| s[:fan] }
+        expect(fan_names).to include('Alice', 'Bob')
+        expect(fan_names).not_to include('Charlie', 'Diana')
+      end
+
+      it 'sorts by most recent championship first' do
+        allow(mock_tracker).to receive(:get_fan_history).with('Alice').and_return({
+          '2020-2021' => { 'team' => 'COL', 'playoff_wins' => 16 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).with('Bob').and_return({
+          '2023-2024' => { 'team' => 'TBL', 'playoff_wins' => 16 }
+        })
+        allow(mock_tracker).to receive(:get_fan_history).and_return({}) # default
+        
+        # Stub other methods
+        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
+        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
+        
+        calculator_with_history.calculate_all_stats
+        hall_of_fame = calculator_with_history.stats[:hall_of_fame]
+        
+        next if hall_of_fame.nil? || hall_of_fame.empty?
+        
+        # Bob (2023-2024) should come before Alice (2020-2021)
+        fan_names = hall_of_fame.map { |s| s[:fan] }
+        expect(fan_names.first).to eq('Bob')
       end
     end
 

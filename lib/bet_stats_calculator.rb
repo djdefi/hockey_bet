@@ -48,7 +48,8 @@ class BetStatsCalculator
       shutout_king: calculate_shutout_king,
       momentum_master: calculate_momentum_master,
       dynasty_points: calculate_dynasty_points,
-      most_improved: calculate_most_improved
+      most_improved: calculate_most_improved,
+      hall_of_fame: calculate_hall_of_fame
     }
   end
 
@@ -1046,6 +1047,48 @@ class BetStatsCalculator
     else
       puts "  No completed games between fan teams found"
     end
+  end
+
+  # Calculate "Hall of Fame" - fans who have won the Stanley Cup in the last 6 years
+  # Winning the Stanley Cup requires 16 playoff wins
+  def calculate_hall_of_fame
+    champions = []
+    current_year = Time.now.year
+    lookback_years = 6
+    
+    # Get all seasons from the last 6 years
+    fan_teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      fan = @manager_team_map[abbrev]
+      
+      # Check each season in historical data
+      history = @historical_tracker.get_fan_history(fan)
+      history.each do |season, stats|
+        # Parse season year (e.g., "2022-2023" -> 2023)
+        season_end_year = season.split('-').last.to_i
+        next unless season_end_year >= (current_year - lookback_years)
+        
+        # Stanley Cup win requires 16 playoff wins (4 rounds × 4 wins)
+        playoff_wins = stats['playoff_wins'] || 0
+        if playoff_wins >= 16
+          champions << {
+            fan: fan,
+            team: team['teamName']['default'],
+            team_abbrev: abbrev,
+            season: season,
+            year: season_end_year,
+            value: playoff_wins,
+            display: "🏆 #{season} Stanley Cup Champion (#{playoff_wins} playoff wins)"
+          }
+        end
+      end
+    end
+    
+    return nil if champions.empty?
+    
+    # Sort by year (most recent first)
+    sorted = champions.sort_by { |c| -c[:year] }
+    sorted.uniq { |c| [c[:fan], c[:season]] } # Remove duplicates
   end
 
   # Helper method to convert a number to ordinal (1st, 2nd, 3rd, etc.)

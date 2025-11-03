@@ -86,5 +86,21 @@
       "playoff_wins": 0,
       "recorded_at": "2023-04-15 12:00:00"
     }
+  },
+  "2020-2021": {
+    "Travis R.": {
+      "team": "NJD",
+      "wins": 50,
+      "losses": 21,
+      "ot_losses": 11,
+      "points": 111,
+      "goals_for": 275,
+      "goals_against": 205,
+      "division_rank": 1,
+      "conference_rank": 1,
+      "league_rank": 2,
+      "playoff_wins": 16,
+      "recorded_at": "2021-05-20 12:00:00"
+    }
   }
 }

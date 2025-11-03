@@ -372,6 +372,23 @@
             </div>
             <% end %>
 
+            <!-- Hall of Fame (Stanley Cup Winners in Last 6 Years) -->
+            <% if bet_stats[:hall_of_fame] && bet_stats[:hall_of_fame].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: 3px solid #DAA520;">
+                <h3 class='h4' style="color: #000; font-weight: bold;">🏆 Stanley Cup Hall of Fame 🏆</h3>
+                <p class="text-small mb-2" style="color: #000; font-weight: 600;">Fans who have won the Stanley Cup in the last 6 years</p>
+                <% bet_stats[:hall_of_fame].each do |stat| %>
+                    <p class="mb-1" style="color: #000; font-weight: bold; font-size: 1.1em;">
+                        <%= stat[:display] %>
+                        <br>
+                        <span style="font-size: 0.9em; font-weight: normal;">
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>)
+                        </span>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
             <!-- Dynasty Points (Multi-Year: Playoff Wins) -->
             <% if bet_stats[:dynasty_points] && bet_stats[:dynasty_points].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-done-emphasis">
