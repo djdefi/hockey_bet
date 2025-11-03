@@ -977,33 +977,6 @@ RSpec.describe BetStatsCalculator do
     end
   end
 
-  describe '#calculate_cardiac_kids' do
-    before do
-      allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls
-      calculator.calculate_all_stats
-    end
-
-    it 'returns stats for teams with OT wins' do
-      cardiac = calculator.stats[:cardiac_kids]
-      # May be nil if no teams have OT wins in test data
-      expect(cardiac).to be_a(Array).or be_nil
-    end
-
-    it 'excludes N/A teams' do
-      cardiac = calculator.stats[:cardiac_kids]
-      next if cardiac.nil? || cardiac.empty?
-      fan_names = cardiac.map { |s| s[:fan] }
-      expect(fan_names).not_to include('N/A')
-    end
-
-    it 'sorts by OT wins in descending order' do
-      cardiac = calculator.stats[:cardiac_kids]
-      next if cardiac.nil? || cardiac.empty?
-      ot_wins = cardiac.map { |s| s[:value] }
-      expect(ot_wins).to eq(ot_wins.sort.reverse)
-    end
-  end
-
   describe '#calculate_shutout_king' do
     before do
       allow(calculator).to receive(:fetch_head_to_head_records) # Mock to avoid API calls

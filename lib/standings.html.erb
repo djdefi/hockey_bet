@@ -344,20 +344,6 @@
             </div>
             <% end %>
 
-            <!-- Cardiac Kids (Most one-goal wins) -->
-            <% if bet_stats[:cardiac_kids] && bet_stats[:cardiac_kids].any? %>
-            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
-                <h3 class='h4 color-fg-accent'>Cardiac Kids 💓</h3>
-                <% bet_stats[:cardiac_kids].each do |stat| %>
-                    <p class="mb-0">
-                        <strong><%= stat[:fan] %></strong> 
-                        (<%= stat[:team] %>): 
-                        <%= stat[:display] %>
-                    </p>
-                <% end %>
-            </div>
-            <% end %>
-
             <!-- Shutout King (Best defensive performance) -->
             <% if bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-subtle">

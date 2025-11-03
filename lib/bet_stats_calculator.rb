@@ -45,7 +45,6 @@ class BetStatsCalculator
       fan_fodder: calculate_fan_fodder,
       best_cup_odds: calculate_best_cup_odds,
       worst_cup_odds: calculate_worst_cup_odds,
-      cardiac_kids: calculate_cardiac_kids,
       shutout_king: calculate_shutout_king,
       momentum_master: calculate_momentum_master,
       dynasty_points: calculate_dynasty_points,
@@ -570,38 +569,6 @@ class BetStatsCalculator
     # Sort by odds ascending (worst odds first) and return bottom 3, including ties
     sorted = all_stats.sort_by { |s| s[:value] }
     top_3_with_ties(sorted, descending: false)
-  end
-
-  # Calculate "Cardiac Kids" - most one-goal games won (exciting close victories)
-  def calculate_cardiac_kids
-    # One-goal wins need to be calculated from the head-to-head data or would require
-    # game-by-game analysis. For now, we'll use a proxy: teams with many OT wins
-    # and high win percentage in close games would be "cardiac"
-    # We'll combine OT wins with overall performance to estimate
-    all_stats = fan_teams
-      .map do |team|
-        wins = team['wins'] || 0
-        regulation_wins = team['regulationWins'] || wins
-        ot_wins = wins - regulation_wins
-        
-        # Teams with more OT wins are more "cardiac" (winning close games)
-        next nil if ot_wins == 0
-        
-        abbrev = team['teamAbbrev']['default']
-        {
-          fan: @manager_team_map[abbrev],
-          team: team['teamName']['default'],
-          value: ot_wins,
-          display: "#{ot_wins} one-goal #{ot_wins == 1 ? 'win' : 'wins'} (decided in OT/SO)"
-        }
-      end
-      .compact
-    
-    return nil if all_stats.empty?
-    
-    # Sort by value descending and return top 3, including ties
-    sorted = all_stats.sort_by { |s| -s[:value] }
-    top_3_with_ties(sorted, descending: true)
   end
 
   # Calculate "Shutout King" - most games with 0 goals against (defensive excellence)
