@@ -74,15 +74,6 @@ class HistoricalStatsTracker
     history
   end
   
-  # Check if a fan kept the same team between consecutive seasons
-  def same_team_consecutive_seasons?(fan, season1, season2)
-    stats1 = get_season_stats(season1, fan)
-    stats2 = get_season_stats(season2, fan)
-    
-    return false unless stats1 && stats2
-    stats1['team'] == stats2['team']
-  end
-  
   # Calculate total playoff wins across all seasons for a fan
   def total_playoff_wins(fan)
     history = get_fan_history(fan)

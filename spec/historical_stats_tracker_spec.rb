@@ -87,32 +87,6 @@ RSpec.describe HistoricalStatsTracker do
     end
   end
   
-  describe '#same_team_consecutive_seasons?' do
-    it 'returns true when fan kept same team' do
-      stats = { wins: 50, losses: 20, ot_losses: 5, points: 105,
-               goals_for: 250, goals_against: 200, division_rank: 1,
-               conference_rank: 2, league_rank: 5 }
-      
-      tracker.record_season_stats('2022-2023', 'Alice', 'BOS', stats)
-      tracker.record_season_stats('2023-2024', 'Alice', 'BOS', stats)
-      
-      result = tracker.same_team_consecutive_seasons?('Alice', '2022-2023', '2023-2024')
-      expect(result).to be true
-    end
-    
-    it 'returns false when fan changed teams' do
-      stats = { wins: 50, losses: 20, ot_losses: 5, points: 105,
-               goals_for: 250, goals_against: 200, division_rank: 1,
-               conference_rank: 2, league_rank: 5 }
-      
-      tracker.record_season_stats('2022-2023', 'Alice', 'BOS', stats)
-      tracker.record_season_stats('2023-2024', 'Alice', 'FLA', stats)
-      
-      result = tracker.same_team_consecutive_seasons?('Alice', '2022-2023', '2023-2024')
-      expect(result).to be false
-    end
-  end
-  
   describe '#total_playoff_wins' do
     it 'returns sum of playoff wins across all seasons' do
       stats1 = { wins: 50, losses: 20, ot_losses: 5, points: 105,

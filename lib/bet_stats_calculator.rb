@@ -48,7 +48,6 @@ class BetStatsCalculator
       shutout_king: calculate_shutout_king,
       momentum_master: calculate_momentum_master,
       dynasty_points: calculate_dynasty_points,
-      loyalty_bonus: calculate_loyalty_bonus,
       most_improved: calculate_most_improved
     }
   end
@@ -672,50 +671,6 @@ class BetStatsCalculator
     return nil if all_stats.empty?
     
     # Sort by playoff wins descending and return top 3
-    sorted = all_stats.sort_by { |s| -s[:value] }
-    top_3_with_ties(sorted, descending: true)
-  end
-
-  # Calculate "Loyalty Bonus" - fans who kept the same team for multiple consecutive seasons
-  def calculate_loyalty_bonus
-    all_stats = []
-    current_season = @historical_tracker.current_season
-    
-    fan_teams.each do |team|
-      abbrev = team['teamAbbrev']['default']
-      fan = @manager_team_map[abbrev]
-      
-      # Get all seasons this fan participated in
-      seasons = @historical_tracker.get_fan_seasons(fan)
-      next if seasons.length < 2
-      
-      # Count consecutive seasons with the same team
-      max_streak = 1
-      current_streak = 1
-      
-      seasons.sort.each_cons(2) do |season1, season2|
-        if @historical_tracker.same_team_consecutive_seasons?(fan, season1, season2)
-          current_streak += 1
-          max_streak = [max_streak, current_streak].max
-        else
-          current_streak = 1
-        end
-      end
-      
-      # Only include fans with loyalty (2+ consecutive seasons with same team)
-      next if max_streak < 2
-      
-      all_stats << {
-        fan: fan,
-        team: team['teamName']['default'],
-        value: max_streak,
-        display: "#{max_streak} consecutive #{max_streak == 2 ? 'season' : 'seasons'} (team loyalty)"
-      }
-    end
-    
-    return nil if all_stats.empty?
-    
-    # Sort by loyalty streak descending and return top 3
     sorted = all_stats.sort_by { |s| -s[:value] }
     top_3_with_ties(sorted, descending: true)
   end

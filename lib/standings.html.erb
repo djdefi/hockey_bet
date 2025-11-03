@@ -387,21 +387,6 @@
             </div>
             <% end %>
 
-            <!-- Loyalty Bonus (Multi-Year: Same Team) -->
-            <% if bet_stats[:loyalty_bonus] && bet_stats[:loyalty_bonus].any? %>
-            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-accent-emphasis">
-                <h3 class='h4 color-fg-on-emphasis'>🤝 Loyalty Bonus 🤝</h3>
-                <p class="text-small color-fg-on-emphasis mb-2">Consecutive seasons with the same team</p>
-                <% bet_stats[:loyalty_bonus].each do |stat| %>
-                    <p class="mb-0 color-fg-on-emphasis">
-                        <strong><%= stat[:fan] %></strong> 
-                        (<%= stat[:team] %>): 
-                        <%= stat[:display] %>
-                    </p>
-                <% end %>
-            </div>
-            <% end %>
-
             <!-- Most Improved (Multi-Year: Season-over-Season) -->
             <% if bet_stats[:most_improved] && bet_stats[:most_improved].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-emphasis">

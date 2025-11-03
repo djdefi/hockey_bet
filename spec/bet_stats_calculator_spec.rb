@@ -1058,29 +1058,6 @@ RSpec.describe BetStatsCalculator do
       end
     end
 
-    describe '#calculate_loyalty_bonus' do
-      it 'returns fans who kept the same team for multiple seasons' do
-        allow(mock_tracker).to receive(:get_fan_seasons).with('Alice').and_return(['2022-2023', '2023-2024', '2024-2025'])
-        allow(mock_tracker).to receive(:get_fan_seasons).with('Bob').and_return(['2023-2024'])
-        allow(mock_tracker).to receive(:get_fan_seasons).with('Charlie').and_return([])
-        allow(mock_tracker).to receive(:get_fan_seasons).with('Diana').and_return(['2023-2024', '2024-2025'])
-        allow(mock_tracker).to receive(:get_fan_seasons).and_return([]) # default for others
-        
-        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Alice', '2022-2023', '2023-2024').and_return(true)
-        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Alice', '2023-2024', '2024-2025').and_return(true)
-        allow(mock_tracker).to receive(:same_team_consecutive_seasons?).with('Diana', '2023-2024', '2024-2025').and_return(true)
-        
-        # Stub dynasty and improvement methods
-        allow(mock_tracker).to receive(:total_playoff_wins).and_return(0)
-        allow(mock_tracker).to receive(:calculate_improvement).and_return(nil)
-        
-        calculator_with_history.calculate_all_stats
-        loyalty = calculator_with_history.stats[:loyalty_bonus]
-        
-        expect(loyalty).to be_a(Array).or be_nil
-      end
-    end
-
     describe '#calculate_most_improved' do
       it 'returns fans who improved from last season' do
         allow(mock_tracker).to receive(:calculate_improvement).with('Alice', '2023-2024', '2024-2025')
