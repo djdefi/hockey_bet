@@ -344,6 +344,23 @@
             </div>
             <% end %>
 
+            <!-- Sharks Victims (Teams that lost to Sharks) -->
+            <% if bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-severe-subtle">
+                <h3 class='h4 color-fg-severe'>🦈 Sharks Victims 🦈</h3>
+                <p class="text-small mb-2">Fans who have fallen prey to the Sharks this season</p>
+                <ul class="list-style-none">
+                    <% bet_stats[:sharks_victims].each do |stat| %>
+                        <li class="py-1">
+                            <strong><%= stat[:fan] %></strong> 
+                            (<%= stat[:team] %>): 
+                            <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+
             <!-- Shutout King (Best defensive performance) -->
             <% if bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
             <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-subtle">

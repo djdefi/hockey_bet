@@ -49,7 +49,8 @@ class BetStatsCalculator
       momentum_master: calculate_momentum_master,
       dynasty_points: calculate_dynasty_points,
       most_improved: calculate_most_improved,
-      hall_of_fame: calculate_hall_of_fame
+      hall_of_fame: calculate_hall_of_fame,
+      sharks_victims: calculate_sharks_victims
     }
   end
 
@@ -1089,6 +1090,134 @@ class BetStatsCalculator
     # Sort by year (most recent first)
     sorted = champions.sort_by { |c| -c[:year] }
     sorted.uniq { |c| [c[:fan], c[:season]] } # Remove duplicates
+  end
+
+  # Calculate "Sharks Victims" - fans who have lost to the Sharks this season
+  # Shows how many times and by how many total points (goal differential)
+  def calculate_sharks_victims
+    return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
+    
+    # Find the Sharks abbreviation
+    sharks_abbrev = 'SJS'
+    
+    # Check if Sharks exist in our data
+    return nil unless @head_to_head_matrix.key?(sharks_abbrev)
+    
+    victims = []
+    
+    # Look at all opponents the Sharks have faced
+    sharks_record = @head_to_head_matrix[sharks_abbrev]
+    
+    sharks_record.each do |opponent_abbrev, record|
+      # Skip if opponent is not a fan team
+      next unless @manager_team_map[opponent_abbrev] && @manager_team_map[opponent_abbrev] != 'N/A'
+      
+      # Get the losses from the opponent's perspective (which are Sharks wins)
+      opponent_record = @head_to_head_matrix[opponent_abbrev]
+      next unless opponent_record && opponent_record[sharks_abbrev]
+      
+      opponent_stats = opponent_record[sharks_abbrev]
+      total_losses = opponent_stats[:losses] + opponent_stats[:ot_losses]
+      
+      # Only include if they've actually lost to the Sharks
+      next if total_losses == 0
+      
+      # Find the opponent team info
+      opponent_team = find_team_by_abbrev(opponent_abbrev)
+      next unless opponent_team
+      
+      # Calculate approximate goal differential
+      # Since we don't have exact game scores in the matrix, we'll fetch them
+      goal_differential = calculate_goal_differential_vs_sharks(opponent_abbrev, sharks_abbrev)
+      
+      victims << {
+        fan: @manager_team_map[opponent_abbrev],
+        team: opponent_team['teamName']['default'],
+        team_abbrev: opponent_abbrev,
+        losses: total_losses,
+        ot_losses: opponent_stats[:ot_losses],
+        reg_losses: opponent_stats[:losses],
+        goal_differential: goal_differential,
+        value: total_losses, # For sorting
+        display: "#{total_losses} #{total_losses == 1 ? 'loss' : 'losses'} (#{goal_differential > 0 ? '+' : ''}#{goal_differential} goal diff)"
+      }
+    end
+    
+    return nil if victims.empty?
+    
+    # Sort by most losses descending, then by worst goal differential
+    sorted = victims.sort_by { |v| [-v[:losses], v[:goal_differential]] }
+    sorted
+  end
+  
+  # Calculate goal differential for a team against the Sharks
+  # Negative means they were outscored by the Sharks
+  def calculate_goal_differential_vs_sharks(team_abbrev, sharks_abbrev)
+    require 'net/http'
+    require 'json'
+    require 'uri'
+    
+    # Determine current season
+    current_year = Time.now.year
+    current_month = Time.now.month
+    season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
+    
+    total_goals_for = 0
+    total_goals_against = 0
+    
+    begin
+      # Fetch season schedule for the team
+      url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
+      response = Net::HTTP.get_response(url)
+      return 0 unless response.is_a?(Net::HTTPSuccess)
+      
+      schedule_data = JSON.parse(response.body)
+      games = schedule_data['games'] || []
+      
+      # Process each game against the Sharks
+      games.each do |game|
+        # Check if game is completed
+        game_state = game['gameState']
+        is_completed = case game_state
+                      when Integer
+                        [3, 4, 5, 6, 7].include?(game_state)
+                      when String
+                        ['OFF', 'FINAL', 'OVER'].include?(game_state.upcase)
+                      else
+                        false
+                      end
+        next unless is_completed
+        
+        home_abbrev = game['homeTeam']['abbrev']
+        away_abbrev = game['awayTeam']['abbrev']
+        
+        # Check if this is a game vs Sharks (regular season only)
+        game_id_str = game['id'].to_s
+        next if game_id_str.length >= 6 && game_id_str[4..5] != '02'
+        
+        is_vs_sharks = (home_abbrev == sharks_abbrev && away_abbrev == team_abbrev) ||
+                       (away_abbrev == sharks_abbrev && home_abbrev == team_abbrev)
+        next unless is_vs_sharks
+        
+        home_score = game['homeTeam']['score']
+        away_score = game['awayTeam']['score']
+        
+        if home_abbrev == team_abbrev
+          # Team is home
+          total_goals_for += home_score
+          total_goals_against += away_score
+        else
+          # Team is away
+          total_goals_for += away_score
+          total_goals_against += home_score
+        end
+      end
+    rescue StandardError => e
+      # Return 0 if we can't fetch the data
+      return 0
+    end
+    
+    total_goals_for - total_goals_against
   end
 
   # Helper method to convert a number to ordinal (1st, 2nd, 3rd, etc.)
