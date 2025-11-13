@@ -383,7 +383,7 @@ class BetStatsCalculator
     top_3_with_ties(sorted, descending: true)
   end
 
-  # Calculate "Fan Crusher" - best record vs other fan teams (returns top 3)
+  # Calculate "Fan Crusher" - most wins vs other fan teams (returns top 3)
   def calculate_fan_crusher
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
@@ -402,15 +402,18 @@ class BetStatsCalculator
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
-        value: win_pct,
+        value: total_wins,  # Changed: sort by total wins instead of win %
+        wins: total_wins,
+        losses: total_losses,
+        win_pct: win_pct,
         display: "#{total_wins}-#{total_losses} (#{win_pct}% vs other fans)"
       }
     end.compact
     
     return nil if all_stats.empty?
     
-    # Sort by value descending and return top 3, including ties
-    sorted = all_stats.sort_by { |s| -s[:value] }
+    # Sort by total wins descending, then by win % as tiebreaker
+    sorted = all_stats.sort_by { |s| [-s[:value], -s[:win_pct]] }
     top_3_with_ties(sorted, descending: true)
   end
 
