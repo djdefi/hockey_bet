@@ -91,7 +91,7 @@ class StandingsBackfill
           puts "Failed (HTTP #{response.code})"
           all_games[team_abbrev] = []
         end
-      rescue => e
+      rescue HTTParty::Error, Timeout::Error, StandardError => e
         puts "Error: #{e.message}"
         all_games[team_abbrev] = []
       end
@@ -125,7 +125,6 @@ class StandingsBackfill
         when 'REG'
           # Check if we won or lost
           home_team = game['homeTeam']['abbrev']
-          away_team = game['awayTeam']['abbrev']
           our_score = home_team == team_abbrev ? game['homeTeam']['score'] : game['awayTeam']['score']
           their_score = home_team == team_abbrev ? game['awayTeam']['score'] : game['homeTeam']['score']
           
@@ -137,7 +136,6 @@ class StandingsBackfill
         when 'OT', 'SO'
           # Overtime/Shootout
           home_team = game['homeTeam']['abbrev']
-          away_team = game['awayTeam']['abbrev']
           our_score = home_team == team_abbrev ? game['homeTeam']['score'] : game['awayTeam']['score']
           their_score = home_team == team_abbrev ? game['awayTeam']['score'] : game['homeTeam']['score']
           
