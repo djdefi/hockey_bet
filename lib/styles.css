@@ -1,0 +1,572 @@
+/* Sleeper-Style Design System */
+
+/* Import Modern Sans-Serif Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+    /* Sleeper Color Palette - Dark Mode */
+    --bg-primary: #0b162a;
+    --bg-card: #1a253a;
+    --bg-card-hover: #212d47;
+    --text-primary: #ffffff;
+    --text-secondary: #8da1b9;
+    --accent-green: #21d19f;
+    --accent-red: #e74c3c;
+    --accent-blue: #2980b9;
+    --border-color: #2a3a52;
+    
+    /* Touch target minimum */
+    --min-touch-target: 44px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 80px; /* Space for bottom nav */
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Container */
+.app-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 1200px;
+        padding: 2rem;
+    }
+}
+
+/* Fixed Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--min-touch-target);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 8px;
+}
+
+.nav-item:hover,
+.nav-item:focus {
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    color: var(--accent-green);
+}
+
+.nav-item-icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.nav-item-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Tab Content Sections */
+.tab-section {
+    display: none;
+}
+
+.tab-section.active {
+    display: block;
+}
+
+/* Card System */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Horizontal Scrolling Carousel */
+.carousel-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    margin: 0 -1rem 1rem;
+    padding: 0 1rem;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.carousel {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.stat-card-square {
+    flex: 0 0 140px;
+    width: 140px;
+    height: 140px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.2s ease;
+}
+
+.stat-card-square:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stat-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-fan-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+}
+
+/* Matchup Cards */
+.matchup-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.matchup-teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.matchup-team {
+    flex: 1;
+    text-align: center;
+}
+
+.matchup-team-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.matchup-fan-name {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.matchup-vs {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin: 0 1rem;
+}
+
+.matchup-details {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.matchup-stat {
+    text-align: center;
+}
+
+.matchup-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.matchup-stat-value {
+    display: block;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Team Cards (Standings) */
+.team-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: var(--min-touch-target);
+}
+
+.team-card:hover {
+    background-color: var(--bg-card-hover);
+    transform: translateX(4px);
+}
+
+.team-card-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.team-card-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.team-rank {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    min-width: 40px;
+    text-align: center;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.team-fan {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.team-card-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.team-points {
+    text-align: right;
+}
+
+.team-points-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.team-points-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.team-trend {
+    font-size: 1.5rem;
+}
+
+.trend-up {
+    color: var(--accent-green);
+}
+
+.trend-down {
+    color: var(--accent-red);
+}
+
+/* Expandable Details */
+.team-card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.team-card.expanded .team-card-details {
+    max-height: 500px;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Status Indicators */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    gap: 4px;
+}
+
+.status-clinched {
+    background-color: rgba(33, 209, 159, 0.2);
+    color: var(--accent-green);
+}
+
+.status-contending {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.status-eliminated {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--accent-red);
+}
+
+/* Loading Skeleton */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-card) 0%,
+        var(--bg-card-hover) 50%,
+        var(--bg-card) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-card {
+    height: 100px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+/* Color Utilities */
+.text-green {
+    color: var(--accent-green);
+}
+
+.text-red {
+    color: var(--accent-red);
+}
+
+.text-blue {
+    color: var(--accent-blue);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+/* Desktop Adjustments */
+@media (min-width: 768px) {
+    .bottom-nav {
+        display: none;
+    }
+    
+    body {
+        padding-bottom: 2rem;
+    }
+    
+    .desktop-tabs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid var(--border-color);
+    }
+    
+    .desktop-tab {
+        padding: 1rem 1.5rem;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+    }
+    
+    .desktop-tab:hover {
+        color: var(--text-primary);
+    }
+    
+    .desktop-tab.active {
+        color: var(--accent-green);
+        border-bottom-color: var(--accent-green);
+    }
+    
+    .stat-card-square {
+        flex: 0 0 160px;
+        width: 160px;
+        height: 160px;
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Hide old Primer-based styles on mobile */
+@media (max-width: 767px) {
+    .old-table-view {
+        display: none;
+    }
+}
+
+/* Chart styling */
+.chart-container {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Utility classes */
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.hidden {
+    display: none !important;
+}

@@ -103,6 +103,11 @@ class StandingsProcessor
       dest = File.join(vendor_dest_dir, file)
       FileUtils.cp(src, dest) if File.exist?(src)
     end
+    
+    # Copy styles.css from lib to output directory
+    styles_src = File.join(File.dirname(__FILE__), 'styles.css')
+    styles_dest = "#{output_dir}/styles.css"
+    FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
   end
 
   # Determine playoff status for a team
