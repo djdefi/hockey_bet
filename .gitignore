@@ -1,6 +1,9 @@
 # Ignore vendored gems
 /vendor/bundle
 
+# Ignore node modules
+node_modules/
+
 # Ignore other common files
 *.log
 *.tmp
