@@ -16,6 +16,9 @@
     <meta name="apple-mobile-web-app-title" content="NHL Standings">
     <meta name="theme-color" content="#041E42">
     
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
     <style>
         @media screen and (max-width: 768px) {
             .mobile-hidden {
@@ -111,6 +114,21 @@
         }
         .matchup-header {
             font-size: 1.1em;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--color-canvas-default);
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        @media screen and (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                padding: 8px;
+            }
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -574,6 +592,12 @@
     </div>
     <% end %>
     
+    <!-- Fan League Standings Trend Chart -->
+    <div class="chart-container border rounded-2 mb-3">
+        <h2 class='h3 mb-3'>📈 Fan League Standings Trend 📈</h2>
+        <canvas id="leagueTrendChart"></canvas>
+    </div>
+    
     <div class="responsive-table overflow-auto">
         <table class='color-shadow-large'>
             <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
@@ -672,6 +696,125 @@
                 column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
             });
         });
+
+        // Fan League Standings Trend Chart
+        async function loadStandingsTrendChart() {
+            try {
+                // Fetch standings history and fan team colors
+                const [historyResponse, colorsResponse] = await Promise.all([
+                    fetch('/standings_history.json'),
+                    fetch('/fan_team_colors.json')
+                ]);
+                
+                const history = await historyResponse.json();
+                const fanColors = await colorsResponse.json();
+                
+                if (!history || history.length === 0) {
+                    console.log('No standings history data available yet');
+                    return;
+                }
+                
+                // Prepare data for Chart.js
+                const dates = history.map(entry => entry.date);
+                
+                // Get all fan names from the most recent entry
+                const latestStandings = history[history.length - 1].standings;
+                const fanNames = Object.keys(latestStandings).sort();
+                
+                // Create datasets for each fan
+                const datasets = fanNames.map(fanName => {
+                    const data = history.map(entry => entry.standings[fanName] || null);
+                    const color = fanColors[fanName] || '#888888';
+                    
+                    return {
+                        label: fanName,
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: color + '33', // Add transparency
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    };
+                });
+                
+                // Create the chart
+                const ctx = document.getElementById('leagueTrendChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: false
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 10,
+                                    font: {
+                                        size: 11
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    title: function(context) {
+                                        return 'Date: ' + context[0].label;
+                                    },
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y + ' points';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Points'
+                                },
+                                beginAtZero: true
+                            }
+                        },
+                        interaction: {
+                            mode: 'nearest',
+                            axis: 'x',
+                            intersect: false
+                        }
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading standings trend chart:', error);
+            }
+        }
+        
+        // Load the chart when the page is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadStandingsTrendChart);
+        } else {
+            loadStandingsTrendChart();
+        }
     </script>
 </body>
 </html>

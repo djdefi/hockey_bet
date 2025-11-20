@@ -9,6 +9,8 @@ require_relative 'api_validator'
 require_relative 'team_mapping'
 require_relative 'playoff_processor'
 require_relative 'bet_stats_calculator'
+require_relative 'standings_history_tracker'
+require_relative 'team_colors'
 
 # Playoff Status Helper Structure
 PLAYOFF_STATUS = {
@@ -80,6 +82,15 @@ class StandingsProcessor
     # Render the template and write to file
     html_content = render_template
     File.write(output_path, html_content)
+    
+    # Update standings history - use same directory as output
+    history_path = "#{output_dir}/standings_history.json"
+    history_tracker = StandingsHistoryTracker.new(history_path)
+    history_tracker.record_current_standings(@manager_team_map, @teams)
+    
+    # Export fan team colors to JSON for frontend
+    colors_path = "#{output_dir}/fan_team_colors.json"
+    File.write(colors_path, JSON.pretty_generate(FAN_TEAM_COLORS))
   end
 
   # Determine playoff status for a team
