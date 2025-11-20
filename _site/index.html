@@ -17,7 +17,7 @@
     <meta name="theme-color" content="#041E42">
     
     <!-- Chart.js - Vendored -->
-    <script src="/vendor/chart.umd.js"></script>
+    <script src="vendor/chart.umd.js"></script>
     
     <style>
         @media screen and (max-width: 768px) {
@@ -3784,8 +3784,8 @@
             try {
                 // Fetch standings history and fan team colors
                 const [historyResponse, colorsResponse] = await Promise.all([
-                    fetch('/standings_history.json'),
-                    fetch('/fan_team_colors.json')
+                    fetch('standings_history.json'),
+                    fetch('fan_team_colors.json')
                 ]);
                 
                 const history = await historyResponse.json();
