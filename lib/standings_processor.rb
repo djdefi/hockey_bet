@@ -83,8 +83,9 @@ class StandingsProcessor
     html_content = render_template
     File.write(output_path, html_content)
     
-    # Update standings history
-    history_tracker = StandingsHistoryTracker.new
+    # Update standings history - use same directory as output
+    history_path = "#{output_dir}/standings_history.json"
+    history_tracker = StandingsHistoryTracker.new(history_path)
     history_tracker.record_current_standings(@manager_team_map, @teams)
     
     # Export fan team colors to JSON for frontend
