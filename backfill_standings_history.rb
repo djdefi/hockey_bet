@@ -2,7 +2,7 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/backfill_standings_history.rb
 #
 # Script to backfill standings history from the start of the season
-# This fetches historical standings data for each game day and populates standings_history.json
+# This fetches historical game data and reconstructs standings for each date
 
 require_relative 'lib/standings_history_tracker'
 require 'httparty'
@@ -14,6 +14,7 @@ class StandingsBackfill
   def initialize
     @tracker = StandingsHistoryTracker.new
     @fan_teams = load_fan_teams
+    @season = '20242025'
   end
   
   def load_fan_teams
@@ -47,95 +48,177 @@ class StandingsBackfill
   end
   
   def backfill
-    # NHL season 2024-2025 started October 8, 2024
-    # We'll fetch standings for every 2-3 days from season start to now
-    season_start = Date.new(2024, 10, 8)
-    today = Date.today
-    
-    puts "Backfilling standings history from #{season_start} to #{today}"
+    puts "Backfilling standings history for #{@season} season"
     puts "Fan teams: #{@fan_teams.keys.join(', ')}"
     
-    # Generate dates to backfill (every 3 days)
-    dates = []
-    current_date = season_start
-    while current_date <= today
-      dates << current_date
-      current_date += 3
-    end
+    # Fetch all games for all fan teams
+    puts "\nFetching game schedules for all teams..."
+    all_games = fetch_all_team_games
     
-    # Make sure today is included
-    dates << today unless dates.include?(today)
-    dates = dates.sort.uniq
+    # Build points timeline
+    puts "\nCalculating historical points..."
+    points_by_date = calculate_points_timeline(all_games)
     
-    puts "Will fetch #{dates.length} historical standings snapshots"
-    
-    dates.each do |date|
-      begin
-        fetch_and_record_standings(date)
-        sleep 1  # Be nice to the API
-      rescue => e
-        puts "Error fetching standings for #{date}: #{e.message}"
-      end
-    end
+    # Create snapshots every 3 days
+    puts "\nCreating historical snapshots..."
+    create_snapshots(points_by_date)
     
     puts "\nBackfill complete!"
     puts "Total entries in history: #{@tracker.load_history.length}"
   end
   
-  def fetch_and_record_standings(date)
-    # Format date for API (YYYY-MM-DD)
-    date_str = date.to_s
+  def fetch_all_team_games
+    all_games = {}
     
-    # Fetch standings for this date
-    # Note: The NHL API doesn't have historical by-date lookups easily available
-    # So we'll need to use the current standings and manually adjust
-    # For a proper implementation, you'd need historical game data
-    
-    url = "https://api-web.nhle.com/v1/standings/now"
-    response = HTTParty.get(url)
-    
-    if response.code != 200
-      puts "Failed to fetch standings for #{date_str}: HTTP #{response.code}"
-      return
+    @fan_teams.keys.each do |team_abbrev|
+      print "Fetching #{team_abbrev}... "
+      url = "https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{@season}"
+      
+      begin
+        response = HTTParty.get(url, timeout: 10)
+        
+        if response.code == 200
+          data = JSON.parse(response.body)
+          # Regular season only, and only completed games
+          games = data['games'].select do |g|
+            g['gameType'] == 2 && 
+            g['gameState'] == 'OFF' &&  # Game is over
+            g['gameOutcome']  # Has an outcome
+          end
+          all_games[team_abbrev] = games
+          puts "#{games.length} completed games"
+        else
+          puts "Failed (HTTP #{response.code})"
+          all_games[team_abbrev] = []
+        end
+      rescue => e
+        puts "Error: #{e.message}"
+        all_games[team_abbrev] = []
+      end
+      
+      sleep 0.5  # Be nice to the API
     end
     
-    data = JSON.parse(response.body)
-    teams = data["standings"]
+    all_games
+  end
+  
+  def calculate_points_timeline(all_games)
+    # Build a timeline of points for each team
+    points_by_date = {}
+    today = Date.today
     
-    # Build standings for this date
-    fan_standings = {}
-    @fan_teams.each do |abbrev, fan|
-      team = teams.find { |t| t['teamAbbrev']['default'] == abbrev }
-      if team
-        # For backfill, we need actual historical data
-        # This is a simplified version that uses current standings
-        # In production, you'd need to calculate based on game logs
-        points = team['points'] || 0
-        fan_standings[fan] = points
+    @fan_teams.each do |team_abbrev, fan_name|
+      games = all_games[team_abbrev] || []
+      cumulative_points = 0
+      
+      games.sort_by { |g| g['gameDate'] }.each do |game|
+        next unless game['gameOutcome']
+        
+        game_date = Date.parse(game['gameDate'])
+        
+        # Skip future games (API might have test data)
+        next if game_date > today
+        
+        # Calculate points from this game
+        outcome = game['gameOutcome']['lastPeriodType']
+        points_earned = case outcome
+        when 'REG'
+          # Check if we won or lost
+          home_team = game['homeTeam']['abbrev']
+          away_team = game['awayTeam']['abbrev']
+          our_score = home_team == team_abbrev ? game['homeTeam']['score'] : game['awayTeam']['score']
+          their_score = home_team == team_abbrev ? game['awayTeam']['score'] : game['homeTeam']['score']
+          
+          if our_score > their_score
+            2  # Win in regulation
+          else
+            0  # Loss in regulation
+          end
+        when 'OT', 'SO'
+          # Overtime/Shootout
+          home_team = game['homeTeam']['abbrev']
+          away_team = game['awayTeam']['abbrev']
+          our_score = home_team == team_abbrev ? game['homeTeam']['score'] : game['awayTeam']['score']
+          their_score = home_team == team_abbrev ? game['awayTeam']['score'] : game['homeTeam']['score']
+          
+          if our_score > their_score
+            2  # Win in OT/SO
+          else
+            1  # Loss in OT/SO (loser point)
+          end
+        else
+          0
+        end
+        
+        cumulative_points += points_earned
+        
+        # Store points for this date
+        points_by_date[game_date] ||= {}
+        points_by_date[game_date][fan_name] = cumulative_points
       end
     end
     
-    if fan_standings.any?
-      # Record this snapshot
-      history = @tracker.load_history
+    points_by_date
+  end
+  
+  def create_snapshots(points_by_date)
+    return if points_by_date.empty?
+    
+    # Get all dates and sort them
+    all_dates = points_by_date.keys.sort
+    season_start = all_dates.first
+    today = Date.today
+    season_end = [all_dates.last, today].min  # Don't go past today
+    
+    puts "Season date range: #{season_start} to #{season_end}"
+    
+    # Create snapshots every 3 days
+    history = []
+    current_points = {}  # Track latest known points for each fan
+    
+    snapshot_date = season_start
+    while snapshot_date <= season_end
+      # Update current points with any games played up to this date
+      points_by_date.each do |game_date, fan_points|
+        if game_date <= snapshot_date
+          fan_points.each do |fan, points|
+            current_points[fan] = points
+          end
+        end
+      end
       
-      # Check if we already have this date
-      existing = history.find { |entry| entry['date'] == date_str }
-      if existing
-        puts "Updating existing entry for #{date_str}"
-        existing['standings'] = fan_standings
-      else
-        puts "Adding new entry for #{date_str}"
+      # Only create snapshot if we have data
+      if current_points.any?
         history << {
-          'date' => date_str,
-          'standings' => fan_standings
+          'date' => snapshot_date.to_s,
+          'standings' => current_points.dup
         }
+        puts "  #{snapshot_date}: #{current_points.values.max || 0} max points"
       end
       
-      # Sort by date and save
-      history.sort_by! { |entry| entry['date'] }
-      @tracker.save_history(history)
+      snapshot_date += 3
     end
+    
+    # Add final snapshot for today if not already included
+    if !history.empty? && history.last['date'] != today.to_s
+      # Update with all games up to today
+      points_by_date.each do |game_date, fan_points|
+        if game_date <= today
+          fan_points.each do |fan, points|
+            current_points[fan] = points
+          end
+        end
+      end
+      
+      history << {
+        'date' => today.to_s,
+        'standings' => current_points.dup
+      }
+      puts "  #{today}: #{current_points.values.max || 0} max points (today)"
+    end
+    
+    # Save to file
+    @tracker.save_history(history)
   end
 end
 
