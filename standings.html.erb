@@ -1,114 +1,890 @@
+<%# filepath: /workspaces/hockey_bet/lib/standings.html.erb %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>NHL Standings</title>
-    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='vendor/primer.css'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Home Screen App Icons and Meta -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NHL Standings">
+    <meta name="theme-color" content="#041E42">
+    
+    <!-- Chart.js - Vendored -->
+    <script src="vendor/chart.umd.js"></script>
+    
     <style>
-        @media screen and (max-width: 600px) {
-          .mobile-hidden {
-             display: none;
-          }
-          .no-fan-name {
-             display: none;
-          }
-       }
-       .hidden {
+        @media screen and (max-width: 768px) {
+            /* Hide less important columns on mobile */
+            .mobile-hidden {
+                display: none;
+            }
+            .no-fan-name {
+                display: none;
+            }
+            
+            /* Body and container adjustments */
+            body {
+                margin: 0.5rem !important;
+            }
+            
+            /* Header text sizing */
+            h1 {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            h2 {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Status legend - make it wrap better */
+            .status-legend {
+                gap: 4px !important;
+            }
+            
+            .status-item {
+                padding: 4px 8px !important;
+                font-size: 0.85rem;
+            }
+            
+            /* Table responsiveness */
+            .responsive-table {
+                font-size: 0.75em;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .responsive-table table {
+                min-width: 600px; /* Ensure horizontal scroll for table */
+            }
+            
+            .responsive-table th,
+            .responsive-table td {
+                padding: 4px !important;
+                white-space: nowrap;
+            }
+            
+            /* Stats grid - single column on mobile */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px;
+            }
+            
+            /* Stat cards - more compact */
+            .stat-card {
+                padding: 8px 12px !important;
+            }
+            
+            .stat-card .h4 {
+                font-size: 0.95em !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .stat-card p,
+            .stat-card li {
+                font-size: 0.85em !important;
+                line-height: 1.3;
+                margin-bottom: 4px !important;
+            }
+            
+            .stat-card ul {
+                padding-left: 0 !important;
+            }
+            
+            /* Stats section */
+            .bet-stats-section {
+                padding: 8px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .bet-stats-section .h3 {
+                font-size: 1.1em !important;
+                margin-bottom: 8px !important;
+            }
+            
+            /* Matchups */
+            .matchup-item {
+                padding: 8px 0 !important;
+            }
+            
+            .matchup-header {
+                font-size: 0.9em !important;
+            }
+            
+            .matchup-header .h4 {
+                font-size: 0.9em !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .matchup-details {
+                font-size: 0.8em;
+                line-height: 1.4;
+            }
+            
+            /* Medal/emoji sizing */
+            .stat-medal {
+                font-size: 1em !important;
+            }
+        }
+        .hidden {
             display: none;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .status-icon {
+            padding: 0 2px;
+        }
+        .status-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+        .fan-team-indicator {
+            font-weight: bold;
+        }
+        .bet-stats-section {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(255, 184, 0, 0.1) 100%);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .stat-card {
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .stat-medal {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        .matchup-item {
+            padding: 12px 0;
+        }
+        .matchup-header {
+            font-size: 1.1em;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--color-canvas-default);
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        @media screen and (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                padding: 8px;
+            }
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
-    <h1 class='color-fg-success'>Hockey Team Standings</h1>
-    <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %></p>
-    <table class='color-shadow-large'>
-        <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
-            <tr>
-                <th scope='col' class='p-2 border'>Team</th>
-                <th scope='col' class='p-2 border'>Fan</th>
-                <th scope='col' class='p-2 border'>Wins</th>
-                <th scope='col' class='p-2 border'>Losses</th>
-                <th scope='col' class='p-2 border'>OTL</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
-                <th scope='col' class='p-2 border'>Points</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Point %</th>
-                <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
-                <th scope='col' class='p-2 border mobile-hidden'>GA</th>
-                <th scope='col' class='p-2 border'>Rank</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Conf. Name</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Div. Name</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
-                <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
-                <th scope='col' class='p-2 border'>Next Game</th>
-                <th scope='col' class='p-2 border'>Next Opponent</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% teams.each do |team| %>
-                <% 
-                row_class = if team['divisionSequence'].to_i <= 3
-                              'color-bg-success-emphasis color-fg-on-emphasis mr-1'
-                            elsif team['wildcardSequence'].to_i.between?(1, 2)
-                              'color-bg-attention-emphasis color-fg-on-emphasis mr-1'
-                            elsif team['wildcardSequence'].to_i.between?(3, 4)
-                              'color-bg-severe-emphasis color-fg-on-emphasis mr-1'
-                            else
-                              'color-bg-danger-emphasis color-fg-on-emphasis mr-1'
-                            end
-                no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
-                next_game_utc = next_games[team['teamAbbrev']['default']] ? next_games[team['teamAbbrev']['default']]['startTimeUTC'] : nil
-                next_game_pacific = next_game_utc ? convert_utc_to_pacific(next_game_utc) : 'TBD'
-                %>
-                    <tr class='<%= "#{row_class} #{no_fan_class}" %>'>
-                    <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= manager_team_map[team['teamAbbrev']['default']] || 'N/A' %></td>
-                    <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['streakCode'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= team['points'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['pointPctg'] ? '%.2f' % (team['pointPctg'] * 100) : 'N/A' %>%</td>
-                    <td class='p-2 border mobile-hidden'><%= team['goalsForPctg'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['goalAgainst'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= team['leagueSequence'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['conferenceName'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['conferenceSequence'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['divisionName'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] || 'N/A' %></td>
-                    <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] || 'N/A' %></td>
-                    <td class='p-2 border'><%= next_game_pacific && next_game_pacific != 'TBD' ? next_game_pacific.strftime('%-m/%-d %H:%M') : 'TBD' %></td>
-                    <td class='p-2 border'>
-                        <%= next_games[team['teamAbbrev']['default']] ? (next_games[team['teamAbbrev']['default']]['awayTeam']['abbrev'] == team['teamAbbrev']['default'] ? next_games[team['teamAbbrev']['default']]['homeTeam']['placeName']['default'] : next_games[team['teamAbbrev']['default']]['awayTeam']['placeName']['default']) : 'TBD' %>
-                        <%= next_games[team['teamAbbrev']['default']] && next_games[team['teamAbbrev']['default']]['isFanTeamOpponent'] ? '🔥' : '' %>
-                    </td>
-                </tr>
+    <h1 class='color-fg-success'>NHL Team Standings</h1>
+    <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
+    
+    <div class="status-legend">
+        <% PLAYOFF_STATUS.each do |key, status| %>
+            <div class="status-item <%= status[:class] %> color-fg-on-emphasis">
+                <span class="status-icon" aria-hidden="true"><%= status[:icon] %></span>
+                <span><%= status[:label] %></span>
+            </div>
+        <% end %>
+    </div>
+
+    <!-- Bet Stats Section -->
+    <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
+    <div class="bet-stats-section border rounded-2 p-3 mb-3 color-bg-subtle">
+        <h2 class='h3 mb-3'>🏆 Fan League Stats & Bragging Rights 🏆</h2>
+        
+        <div class="stats-grid">
+            <!-- Stanley Cup Odds - Best -->
+            <% if bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>🏆 Best Stanley Cup Odds 🏆</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:best_cup_odds].each_with_index do |stat, idx| %>
+                        <li class="py-1 color-fg-on-emphasis">
+                            <span class="stat-medal"><%= ['🥇', '🥈', '🥉'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
             <% end %>
-        </tbody>
-    </table>
-    <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">Playoff bound</span>
-    <span class="IssueLabel color-bg-attention-emphasis color-fg-on-emphasis mr-1">Playoff Contender</span>
-    <span class="IssueLabel color-bg-severe-emphasis color-fg-on-emphasis mr-1">Wildcard hopeful</span>
-    <span class="IssueLabel color-bg-danger-emphasis color-fg-on-emphasis mr-1">Not in playoff contention</span>
-    <div class="border-top border-bottom border-gray-light mt-3 pt-3">
-    <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Teams Without Fans</button>
-    <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1'>Toggle Extended Stats</button>
 
-<script>
-    document.getElementById('toggleButton').addEventListener('click', function () {
-        var noFanRows = document.querySelectorAll('tr.no-fan-name');
-        noFanRows.forEach(function (row) {
-            row.classList.toggle('hidden');
-        });
-    });
+            <!-- Stanley Cup Odds - Worst -->
+            <% if bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-danger-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>😔 Worst Stanley Cup Odds 😔</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:worst_cup_odds].each_with_index do |stat, idx| %>
+                        <li class="py-1 color-fg-on-emphasis">
+                            <span class="stat-medal"><%= ['🥀', '💔', '😢'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
 
-    document.getElementById('toggleStatsButton').addEventListener('click', function () {
-        var statColumns = document.querySelectorAll('.mobile-hidden');
-        statColumns.forEach(function (column) {
-            column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
+            <!-- Top Winners -->
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Top Winners</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:top_winners].each_with_index do |stat, idx| %>
+                        <li class="py-1">
+                            <span class="stat-medal"><%= ['🥇', '🥈', '🥉'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %> wins
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <!-- Top Losers -->
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-danger'>Most Losses (Wall of Shame)</h3>
+                <ul class="list-style-none">
+                    <% bet_stats[:top_losers].each_with_index do |stat, idx| %>
+                        <li class="py-1">
+                            <span class="stat-medal"><%= ['💩', '🤦', '😢'][idx] %></span>
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>): <%= stat[:display] %> losses
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <!-- Most Dominant -->
+            <% if bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Most Dominant 👑</h3>
+                <% bet_stats[:most_dominant].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Brick Wall -->
+            <% if bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Brick Wall 🧱</h3>
+                <% bet_stats[:brick_wall].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Longest Win Streak -->
+            <% if bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>On Fire 🔥</h3>
+                <% bet_stats[:longest_win_streak].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Longest Lose Streak -->
+            <% if bet_stats[:longest_lose_streak] && bet_stats[:longest_lose_streak].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-danger'>Ice Cold 🧊</h3>
+                <% bet_stats[:longest_lose_streak].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Best Point Differential -->
+            <% if bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-success'>Best Goal Differential 🎯</h3>
+                <% bet_stats[:best_point_differential].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Glass Cannon -->
+            <% if bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-attention'>Glass Cannon 💥</h3>
+                <% bet_stats[:glass_cannon].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Comeback Kid -->
+            <% if bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-accent'>Comeback Kid 💪</h3>
+                <% bet_stats[:comeback_kid].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Overtimer -->
+            <% if bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-muted'>Overtimer ⏱️</h3>
+                <% bet_stats[:overtimer].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Point Scrounger -->
+            <% if bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-default">
+                <h3 class='h4 color-fg-muted'>Point Scrounger 🪙</h3>
+                <% bet_stats[:point_scrounger].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Fan Crusher (Best vs other fans) -->
+            <% if bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-subtle">
+                <h3 class='h4 color-fg-success'>Fan Crusher 🏆</h3>
+                <% bet_stats[:fan_crusher].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Fan Fodder (Worst vs other fans) -->
+            <% if bet_stats[:fan_fodder] && bet_stats[:fan_fodder].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-danger-subtle">
+                <h3 class='h4 color-fg-danger'>Fan Fodder 🎯</h3>
+                <% bet_stats[:fan_fodder].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Sharks Victims (Teams that lost to Sharks) -->
+            <% if bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-severe-subtle">
+                <h3 class='h4 color-fg-severe'>🦈 Sharks Victims 🦈</h3>
+                <p class="text-small mb-2">Fans who have fallen prey to the Sharks this season</p>
+                <ul class="list-style-none">
+                    <% bet_stats[:sharks_victims].each do |stat| %>
+                        <li class="py-1">
+                            <strong><%= stat[:fan] %></strong> 
+                            (<%= stat[:team] %>): 
+                            <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+
+            <!-- Shutout King (Best defensive performance) -->
+            <% if bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-subtle">
+                <h3 class='h4 color-fg-success'>Shutout King 🛡️</h3>
+                <% bet_stats[:shutout_king].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Momentum Master (Longest active point streak) -->
+            <% if bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-accent-subtle">
+                <h3 class='h4 color-fg-accent'>Momentum Master 🌊</h3>
+                <% bet_stats[:momentum_master].each do |stat| %>
+                    <p class="mb-0">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Hall of Fame (Stanley Cup Winners in Last 6 Years) -->
+            <% if bet_stats[:hall_of_fame] && bet_stats[:hall_of_fame].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: 3px solid #DAA520;">
+                <h3 class='h4' style="color: #000; font-weight: bold;">🏆 Stanley Cup Hall of Fame 🏆</h3>
+                <p class="text-small mb-2" style="color: #000; font-weight: 600;">Fans who have won the Stanley Cup in the last 6 years</p>
+                <% bet_stats[:hall_of_fame].each do |stat| %>
+                    <p class="mb-1" style="color: #000; font-weight: bold; font-size: 1.1em;">
+                        <%= stat[:display] %>
+                        <br>
+                        <span style="font-size: 0.9em; font-weight: normal;">
+                            <strong><%= stat[:fan] %></strong> (<%= stat[:team] %>)
+                        </span>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Dynasty Points (Multi-Year: Playoff Wins) -->
+            <% if bet_stats[:dynasty_points] && bet_stats[:dynasty_points].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-done-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>👑 Dynasty Points 👑</h3>
+                <p class="text-small color-fg-on-emphasis mb-2">Cumulative playoff wins across all seasons</p>
+                <% bet_stats[:dynasty_points].each do |stat| %>
+                    <p class="mb-0 color-fg-on-emphasis">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+
+            <!-- Most Improved (Multi-Year: Season-over-Season) -->
+            <% if bet_stats[:most_improved] && bet_stats[:most_improved].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-success-emphasis">
+                <h3 class='h4 color-fg-on-emphasis'>📈 Most Improved 📈</h3>
+                <p class="text-small color-fg-on-emphasis mb-2">Biggest improvement from last season</p>
+                <% bet_stats[:most_improved].each do |stat| %>
+                    <p class="mb-0 color-fg-on-emphasis">
+                        <strong><%= stat[:fan] %></strong> 
+                        (<%= stat[:team] %>): 
+                        <%= stat[:display] %>
+                    </p>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Head-to-Head Matrix -->
+        <% if bet_stats[:head_to_head_matrix] && bet_stats[:head_to_head_matrix].any? %>
+        <div class="stat-card border rounded-2 p-3 mb-3 color-bg-accent-subtle">
+            <h3 class='h3 color-fg-accent'>📊 Head-to-Head Records 📊</h3>
+            <p class="text-small color-fg-muted mb-2">How each fan's team performed against other fan teams this season</p>
+            <p class="text-small color-fg-muted mb-3"><strong>How to read:</strong> Each cell shows the row team's record vs. the column team in format <strong>Wins-Losses-OT Losses</strong> (e.g., "2-1-0" means 2 wins, 1 regulation/shootout loss, 0 overtime losses)</p>
+            
+            <% 
+              fan_abbrevs = bet_stats[:head_to_head_matrix].keys 
+              fan_list = fan_abbrevs.map { |abbrev| manager_team_map[abbrev] }
+              
+              # Calculate interesting matchups (teams with games played)
+              # Use a hash to track seen matchups and avoid showing both directions
+              seen_pairs = {}
+              interesting_matchups = []
+              
+              fan_abbrevs.each do |team_abbrev|
+                fan_abbrevs.each do |opp_abbrev|
+                  next if team_abbrev == opp_abbrev
+                  
+                  # Create a sorted pair to identify the matchup regardless of direction
+                  pair_key = [team_abbrev, opp_abbrev].sort.join('-')
+                  next if seen_pairs[pair_key]
+                  
+                  record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev]
+                  if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0
+                    total_games = record[:wins] + record[:losses] + record[:ot_losses]
+                    interesting_matchups << {
+                      team: manager_team_map[team_abbrev],
+                      team_abbrev: team_abbrev,
+                      opponent: manager_team_map[opp_abbrev],
+                      opponent_abbrev: opp_abbrev,
+                      record: record,
+                      total_games: total_games
+                    }
+                    seen_pairs[pair_key] = true
+                  end
+                end
+              end
+              interesting_matchups.sort_by! { |m| -m[:total_games] }
+              top_matchups = interesting_matchups.take(10)
+            %>
+            
+            <!-- Summary of Top Matchups -->
+            <% if top_matchups.any? %>
+            <div class="mb-3">
+                <h4 class="h6 mb-2">🔥 Most Played Matchups</h4>
+                <div class="text-small">
+                    <% top_matchups.each do |matchup| %>
+                    <div class="mb-1">
+                        <strong><%= matchup[:team] %></strong> vs <%= matchup[:opponent] %>: 
+                        <span class="<%= matchup[:record][:wins] > (matchup[:record][:losses] + matchup[:record][:ot_losses]) ? 'color-fg-success' : (matchup[:record][:wins] < (matchup[:record][:losses] + matchup[:record][:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
+                            <%= matchup[:record][:wins] %>-<%= matchup[:record][:losses] %>-<%= matchup[:record][:ot_losses] %>
+                        </span>
+                        (<%= matchup[:total_games] %> game<%= matchup[:total_games] != 1 ? 's' : '' %>)
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+            
+            <!-- Collapsible Full Matrix -->
+            <details class="mb-2">
+                <summary class="text-small" style="cursor: pointer; user-select: none;">
+                    <strong>▶ Show Full Head-to-Head Matrix</strong> (<%= fan_abbrevs.length %> teams)
+                </summary>
+                <div class="mt-3" style="overflow-x: auto;">
+                    <table class="table-auto width-full text-small">
+                        <thead>
+                            <tr class="border-bottom">
+                                <th scope="col" class="p-2 text-left">Fan</th>
+                                <% fan_list.each do |fan| %>
+                                    <th scope="col" class="p-2 text-center" style="min-width: 60px;"><%= fan %></th>
+                                <% end %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% fan_abbrevs.each_with_index do |team_abbrev, idx| %>
+                            <tr class="<%= 'border-bottom' if idx < fan_abbrevs.length - 1 %>">
+                                <td class="p-2 text-left"><strong><%= manager_team_map[team_abbrev] %></strong></td>
+                                <% fan_abbrevs.each do |opp_abbrev| %>
+                                    <td class="p-2 text-center">
+                                        <% if team_abbrev == opp_abbrev %>
+                                            <span class="color-fg-muted">—</span>
+                                        <% else %>
+                                            <% record = bet_stats[:head_to_head_matrix][team_abbrev][opp_abbrev] %>
+                                            <% if record && (record[:wins] + record[:losses] + record[:ot_losses]) > 0 %>
+                                                <span class="<%= record[:wins] > (record[:losses] + record[:ot_losses]) ? 'color-fg-success' : (record[:wins] < (record[:losses] + record[:ot_losses]) ? 'color-fg-danger' : 'color-fg-muted') %>">
+                                                    <%= record[:wins] %>-<%= record[:losses] %>-<%= record[:ot_losses] %>
+                                                </span>
+                                            <% else %>
+                                                <span class="color-fg-muted">0-0-0</span>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                <% end %>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+        <% end %>
+
+        <!-- Upcoming Fan Matchups -->
+        <% if bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
+        <div class="stat-card border rounded-2 p-3 mb-3 color-bg-attention-subtle">
+            <h3 class='h3 color-fg-attention'>🔥 Upcoming Fan vs Fan Battles 🔥</h3>
+            <div class="matchups-list">
+                <% bet_stats[:upcoming_fan_matchups].each_with_index do |matchup, idx| %>
+                    <div class="matchup-item border-bottom py-3 <%= 'border-bottom-0' if idx == bet_stats[:upcoming_fan_matchups].size - 1 %>">
+                        <div class="matchup-header mb-2">
+                            <strong class="h4">
+                                <%= matchup[:away_fan] %> (<%= matchup[:away_team] %>)
+                                vs 
+                                <%= matchup[:home_fan] %> (<%= matchup[:home_team] %>)
+                            </strong>
+                        </div>
+                        <div class="matchup-details">
+                            <span class="text-small">
+                                Records: <%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W | 
+                                Points: <%= matchup[:away_points] %> vs <%= matchup[:home_points] %>
+                                <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
+                                    <br>
+                                    <strong>Game Time:</strong> <%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %>
+                                <% end %>
+                            </span>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
+    
+    <!-- Fan League Standings Trend Chart -->
+    <div class="chart-container border rounded-2 mb-3">
+        <h2 class='h3 mb-3'>📈 Fan League Standings Trend 📈</h2>
+        <canvas id="leagueTrendChart"></canvas>
+    </div>
+    
+    <div class="responsive-table overflow-auto">
+        <table class='color-shadow-large'>
+            <thead class='color-bg-accent-emphasis color-fg-on-emphasis mr-1'>
+                <tr>
+                    <th scope='col' class='p-2 border'>Team</th>
+                    <th scope='col' class='p-2 border'>Fan</th>
+                    <th scope='col' class='p-2 border'>Status</th>
+                    <th scope='col' class='p-2 border'>W</th>
+                    <th scope='col' class='p-2 border'>L</th>
+                    <th scope='col' class='p-2 border'>OTL</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Streak</th>
+                    <th scope='col' class='p-2 border'>Pts</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Pt %</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GPG</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>GA</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>League Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conference</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Conf. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Division</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Div. Rank</th>
+                    <th scope='col' class='p-2 border mobile-hidden'>Wildcard</th>
+                    <th scope='col' class='p-2 border'>Next Game</th>
+                    <th scope='col' class='p-2 border'>Next Opponent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% teams.each do |team| %>
+                    <% 
+                    status = playoff_status_for(team)
+                    status_info = PLAYOFF_STATUS[status]
+                    no_fan_class = manager_team_map[team['teamAbbrev']['default']] == "N/A" ? 'no-fan-name' : ''
+                    team_abbrev = team['teamAbbrev']['default']
+                    next_game = next_games[team_abbrev]
+                    next_game_utc = next_game ? next_game['startTimeUTC'] : 'TBD'
+                    next_game_pacific = next_game_utc != 'TBD' ? convert_utc_to_pacific(next_game_utc) : 'TBD'
+                    opponent_name = get_opponent_name(next_game, team_abbrev)
+                    is_fan_team_opponent = next_game && next_game['isFanTeamOpponent']
+                    %>
+                    <tr class='<%= "#{status_info[:class]} color-fg-on-emphasis mr-1 #{no_fan_class}" %>'>
+                        <td class='p-2 border'><%= team['teamName']['default'] || 'N/A' %></td>
+                        <td class='p-2 border <%= manager_team_map[team_abbrev] != "N/A" ? "fan-team-indicator" : "" %>'>
+                            <%= manager_team_map[team_abbrev] || 'N/A' %>
+                        </td>
+                        <td class='p-2 border'>
+                            <span class="status-icon" aria-label="<%= status_info[:aria_label] %>" role="img">
+                                <%= status_info[:icon] %>
+                            </span>
+                        </td>
+                        <td class='p-2 border'><%= team['wins'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['losses'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['otLosses'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['streakCode'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= team['points'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['pointPctg'] ? '%.2f' % (team['pointPctg'] * 100) : 'N/A' %>%</td>
+                        <td class='p-2 border mobile-hidden'><%= team['goalsForPctg'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['goalAgainst'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['leagueSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['conferenceName'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['conferenceSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['divisionName'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['divisionSequence'] || 'N/A' %></td>
+                        <td class='p-2 border mobile-hidden'><%= team['wildcardSequence'] || 'N/A' %></td>
+                        <td class='p-2 border'><%= format_game_time(next_game_pacific) %></td>
+                        <td class='p-2 border'>
+                            <%= opponent_name %>
+                            <% if is_fan_team_opponent %>
+                                <span aria-label="Playing against a fan-owned team" role="img">🔥</span>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="border-top border-bottom border-gray-light mt-3 pt-3 pb-3">
+        <button id='toggleButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing teams without fans">
+            Toggle Teams Without Fans
+        </button>
+        <button id='toggleStatsButton' class='btn btn-primary color-bg-accent-emphasis color-fg-on-emphasis mr-1 mb-1' aria-label="Toggle showing extended statistics">
+            Toggle Extended Stats
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            var noFanRows = document.querySelectorAll('tr.no-fan-name');
+            noFanRows.forEach(function (row) {
+                row.classList.toggle('hidden');
+            });
         });
-    });
-</script>
+
+        document.getElementById('toggleStatsButton').addEventListener('click', function () {
+            var statColumns = document.querySelectorAll('.mobile-hidden');
+            statColumns.forEach(function (column) {
+                column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
+            });
+        });
+
+        // Fan League Standings Trend Chart
+        async function loadStandingsTrendChart() {
+            try {
+                // Fetch standings history and fan team colors
+                const [historyResponse, colorsResponse] = await Promise.all([
+                    fetch('standings_history.json'),
+                    fetch('fan_team_colors.json')
+                ]);
+                
+                const history = await historyResponse.json();
+                const fanColors = await colorsResponse.json();
+                
+                if (!history || history.length === 0) {
+                    console.log('No standings history data available yet');
+                    return;
+                }
+                
+                // Prepare data for Chart.js
+                const dates = history.map(entry => entry.date);
+                
+                // Get all fan names from the most recent entry
+                const latestStandings = history[history.length - 1].standings;
+                const fanNames = Object.keys(latestStandings).sort();
+                
+                // Create datasets for each fan
+                const datasets = fanNames.map(fanName => {
+                    const data = history.map(entry => entry.standings[fanName] || null);
+                    const color = fanColors[fanName] || '#888888';
+                    
+                    return {
+                        label: fanName,
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: color + '33', // Add transparency
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    };
+                });
+                
+                // Create the chart
+                const ctx = document.getElementById('leagueTrendChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: false
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 10,
+                                    font: {
+                                        size: 11
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    title: function(context) {
+                                        return 'Date: ' + context[0].label;
+                                    },
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y + ' points';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Points'
+                                },
+                                beginAtZero: true
+                            }
+                        },
+                        interaction: {
+                            mode: 'nearest',
+                            axis: 'x',
+                            intersect: false
+                        }
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading standings trend chart:', error);
+            }
+        }
+        
+        // Load the chart when the page is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadStandingsTrendChart);
+        } else {
+            loadStandingsTrendChart();
+        }
+    </script>
 </body>
 </html>
