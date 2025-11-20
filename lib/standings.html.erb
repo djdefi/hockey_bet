@@ -48,7 +48,7 @@
                             <div class="stat-emoji">🏆</div>
                             <div class="stat-label">Best Cup Odds</div>
                             <div class="stat-fan-name"><%= stat[:fan] %></div>
-                            <div class="stat-value"><%= stat[:cup_odds] %>%</div>
+                            <div class="stat-value"><%= stat[:display].split(' ').first %></div>
                         </div>
                         <% end %>
                     <% end %>
@@ -58,7 +58,7 @@
                             <div class="stat-emoji">💪</div>
                             <div class="stat-label">Fan Crusher</div>
                             <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:fan_crusher].first[:win_pct] %>%</div>
+                            <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
                         </div>
                     <% end %>
                     
@@ -67,7 +67,7 @@
                             <div class="stat-emoji">👑</div>
                             <div class="stat-label">Most Dominant</div>
                             <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:most_dominant].first[:win_rate] %>%</div>
+                            <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
                         </div>
                     <% end %>
                     
@@ -76,7 +76,7 @@
                             <div class="stat-emoji">🧱</div>
                             <div class="stat-label">Brick Wall</div>
                             <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:brick_wall].first[:goals_against] %> GA/G</div>
+                            <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
                         </div>
                     <% end %>
                     
@@ -85,7 +85,7 @@
                             <div class="stat-emoji">🔥</div>
                             <div class="stat-label">On Fire</div>
                             <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:streak] %>W</div>
+                            <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
                         </div>
                     <% end %>
                     
@@ -94,7 +94,7 @@
                             <div class="stat-emoji">😢</div>
                             <div class="stat-label">Needs Help</div>
                             <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:cup_odds] %>%</div>
+                            <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
                         </div>
                     <% end %>
                 </div>
@@ -110,7 +110,6 @@
                     <% end %>
                 </div>
             </div>
-        </div>
         </div>
 
         <!-- Tab: Matchups -->
