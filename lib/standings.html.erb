@@ -3,64 +3,134 @@
 <html lang="en">
 <head>
     <title>NHL Standings</title>
-    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='vendor/primer.css'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Home Screen App Icons and Meta -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Standings">
     <meta name="theme-color" content="#041E42">
     
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Chart.js - Vendored -->
+    <script src="vendor/chart.umd.js"></script>
     
     <style>
         @media screen and (max-width: 768px) {
+            /* Hide less important columns on mobile */
             .mobile-hidden {
                 display: none;
             }
             .no-fan-name {
                 display: none;
             }
-            .responsive-table {
-                font-size: 0.85em;
+            
+            /* Body and container adjustments */
+            body {
+                margin: 0.5rem !important;
             }
+            
+            /* Header text sizing */
+            h1 {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            h2 {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Status legend - make it wrap better */
+            .status-legend {
+                gap: 4px !important;
+            }
+            
+            .status-item {
+                padding: 4px 8px !important;
+                font-size: 0.85rem;
+            }
+            
+            /* Table responsiveness */
+            .responsive-table {
+                font-size: 0.75em;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .responsive-table table {
+                min-width: 600px; /* Ensure horizontal scroll for table */
+            }
+            
+            .responsive-table th,
+            .responsive-table td {
+                padding: 4px !important;
+                white-space: nowrap;
+            }
+            
+            /* Stats grid - single column on mobile */
             .stats-grid {
                 grid-template-columns: 1fr !important;
                 gap: 8px;
             }
+            
+            /* Stat cards - more compact */
             .stat-card {
                 padding: 8px 12px !important;
             }
+            
             .stat-card .h4 {
-                font-size: 1em !important;
+                font-size: 0.95em !important;
                 margin-bottom: 4px !important;
             }
-            .stat-card p {
-                font-size: 0.9em;
+            
+            .stat-card p,
+            .stat-card li {
+                font-size: 0.85em !important;
                 line-height: 1.3;
+                margin-bottom: 4px !important;
             }
+            
+            .stat-card ul {
+                padding-left: 0 !important;
+            }
+            
+            /* Stats section */
             .bet-stats-section {
                 padding: 8px !important;
                 margin-bottom: 12px !important;
             }
+            
             .bet-stats-section .h3 {
                 font-size: 1.1em !important;
                 margin-bottom: 8px !important;
             }
+            
+            /* Matchups */
             .matchup-item {
                 padding: 8px 0 !important;
             }
-            .matchup-header .h4 {
-                font-size: 0.95em !important;
+            
+            .matchup-header {
+                font-size: 0.9em !important;
             }
+            
+            .matchup-header .h4 {
+                font-size: 0.9em !important;
+                margin-bottom: 4px !important;
+            }
+            
             .matchup-details {
-                font-size: 0.85em;
+                font-size: 0.8em;
+                line-height: 1.4;
+            }
+            
+            /* Medal/emoji sizing */
+            .stat-medal {
+                font-size: 1em !important;
             }
         }
         .hidden {
@@ -702,8 +772,8 @@
             try {
                 // Fetch standings history and fan team colors
                 const [historyResponse, colorsResponse] = await Promise.all([
-                    fetch('/standings_history.json'),
-                    fetch('/fan_team_colors.json')
+                    fetch('standings_history.json'),
+                    fetch('fan_team_colors.json')
                 ]);
                 
                 const history = await historyResponse.json();

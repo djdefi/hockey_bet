@@ -354,6 +354,7 @@ RSpec.describe 'NHL Standings Table' do
         File.delete(output_path)
         File.delete('/tmp/subdir/standings_history.json') if File.exist?('/tmp/subdir/standings_history.json')
         File.delete('/tmp/subdir/fan_team_colors.json') if File.exist?('/tmp/subdir/fan_team_colors.json')
+        FileUtils.rm_rf('/tmp/subdir/vendor') if Dir.exist?('/tmp/subdir/vendor')
         Dir.rmdir('/tmp/subdir')
       end
 
