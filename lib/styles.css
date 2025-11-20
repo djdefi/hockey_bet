@@ -257,6 +257,20 @@ h3 {
     object-fit: contain;
 }
 
+.team-logo-fallback {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-card-hover);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+}
+
 .matchup-team-name {
     font-weight: 700;
     font-size: 0.95rem;
@@ -520,8 +534,8 @@ h3 {
         padding-bottom: 2rem;
     }
     
-    .desktop-tabs {
-        display: flex !important; /* Override inline style */
+    .app-container .desktop-tabs {
+        display: flex; /* More specific selector instead of !important */
         gap: 1rem;
         margin-bottom: 2rem;
         border-bottom: 2px solid var(--border-color);
@@ -570,8 +584,8 @@ h3 {
 
 /* Hide desktop tabs on mobile */
 @media (max-width: 767px) {
-    .desktop-tabs {
-        display: none !important;
+    .app-container .desktop-tabs {
+        display: none; /* More specific selector instead of !important */
     }
 }
 

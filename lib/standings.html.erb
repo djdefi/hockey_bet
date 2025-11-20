@@ -124,7 +124,8 @@
                                     <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
                                          alt="<%= matchup[:away_team] %> logo" 
                                          class="team-logo"
-                                         onerror="this.style.display='none'">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div class="matchup-team-name"><%= matchup[:away_team] %></div>
                                 <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
@@ -135,7 +136,8 @@
                                     <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
                                          alt="<%= matchup[:home_team] %> logo" 
                                          class="team-logo"
-                                         onerror="this.style.display='none'">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div class="matchup-team-name"><%= matchup[:home_team] %></div>
                                 <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
@@ -197,7 +199,8 @@
                                  alt="<%= team['teamName']['default'] %> logo" 
                                  class="team-logo"
                                  style="width: 40px; height: 40px; object-fit: contain; margin-right: 0.75rem;"
-                                 onerror="this.style.display='none'">
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback" style="display:none; width: 40px; height: 40px; margin-right: 0.75rem; font-size: 0.7rem;"><%= team_abbrev %></div>
                             <div class="team-info">
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
                                 <div class="team-fan"><%= fan_name %></div>
