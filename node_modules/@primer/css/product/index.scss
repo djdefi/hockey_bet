@@ -1,0 +1,20 @@
+/*!
+ * @primer/css/product
+ * http://primer.style/css
+ *
+ * Released under MIT license. Copyright (c) 2019 GitHub Inc.
+ */
+
+// Global requirements
+@import '../support/index.scss';
+
+// Product specific css modules
+@import '../autocomplete/index.scss';
+@import '../avatars/index.scss';
+@import '../branch-name/index.scss';
+@import '../header/index.scss';
+@import '../labels/index.scss';
+@import '../loaders/index.scss';
+@import '../markdown/index.scss';
+@import '../select-menu/index.scss';
+@import '../toasts/index.scss';

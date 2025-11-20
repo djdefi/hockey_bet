@@ -1,0 +1,19 @@
+{
+  "name": "hockey_bet",
+  "version": "1.0.0",
+  "description": "A live NHL standings tracker with playoff status indicators, fan ownership tracking, and upcoming game information. This project provides a clean, responsive interface for tracking teams as they advance toward the NHL Finals.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@primer/css": "^22.0.2",
+    "chart.js": "^4.5.1"
+  }
+}

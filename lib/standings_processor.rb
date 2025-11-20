@@ -91,6 +91,18 @@ class StandingsProcessor
     # Export fan team colors to JSON for frontend
     colors_path = "#{output_dir}/fan_team_colors.json"
     File.write(colors_path, JSON.pretty_generate(FAN_TEAM_COLORS))
+    
+    # Copy vendored assets to output directory
+    vendor_src_dir = File.join(File.dirname(__FILE__), '..', 'vendor')
+    vendor_dest_dir = "#{output_dir}/vendor"
+    FileUtils.mkdir_p(vendor_dest_dir)
+    
+    # Copy Chart.js and Primer CSS if they exist
+    ['chart.umd.js', 'primer.css'].each do |file|
+      src = File.join(vendor_src_dir, file)
+      dest = File.join(vendor_dest_dir, file)
+      FileUtils.cp(src, dest) if File.exist?(src)
+    end
   end
 
   # Determine playoff status for a team
