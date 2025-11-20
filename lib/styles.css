@@ -60,12 +60,14 @@ h3 {
     max-width: 100%;
     margin: 0 auto;
     padding: 1rem;
+    padding-bottom: 100px; /* Extra space for bottom nav on mobile */
 }
 
 @media (min-width: 768px) {
     .app-container {
         max-width: 1200px;
         padding: 2rem;
+        padding-bottom: 2rem; /* No bottom nav on desktop */
     }
 }
 
@@ -104,6 +106,12 @@ h3 {
 .nav-item:hover,
 .nav-item:focus {
     color: var(--text-primary);
+    outline: none;
+}
+
+.nav-item:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: -2px;
 }
 
 .nav-item.active {
@@ -157,7 +165,7 @@ h3 {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
-    margin: 0 -1rem 1rem;
+    margin: 0 -1rem 1.5rem;
     padding: 0 1rem;
 }
 
@@ -169,6 +177,7 @@ h3 {
     display: flex;
     gap: 1rem;
     padding-bottom: 0.5rem;
+    min-height: 160px; /* Prevent collapse */
 }
 
 .stat-card-square {
@@ -183,7 +192,7 @@ h3 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem;
+    padding: 0.75rem;
     transition: all 0.2s ease;
 }
 
@@ -195,25 +204,29 @@ h3 {
 .stat-emoji {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    line-height: 1;
 }
 
 .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
+    line-height: 1.2;
 }
 
 .stat-value {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1;
 }
 
 .stat-fan-name {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-top: 0.25rem;
+    line-height: 1.2;
 }
 
 /* Matchup Cards */
@@ -237,9 +250,16 @@ h3 {
     text-align: center;
 }
 
+.team-logo {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.5rem;
+    object-fit: contain;
+}
+
 .matchup-team-name {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 0.25rem;
 }
 
@@ -255,7 +275,8 @@ h3 {
     border-radius: 20px;
     font-weight: 700;
     font-size: 0.9rem;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+    flex-shrink: 0;
 }
 
 .matchup-details {
@@ -298,6 +319,16 @@ h3 {
 .team-card:hover {
     background-color: var(--bg-card-hover);
     transform: translateX(4px);
+}
+
+.team-card:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-green);
+}
+
+.team-card:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
 }
 
 .team-card-main {
@@ -411,11 +442,13 @@ h3 {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-radius: 12px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     gap: 4px;
+    white-space: nowrap;
+    margin-top: 0.25rem;
 }
 
 .status-clinched {
@@ -488,7 +521,7 @@ h3 {
     }
     
     .desktop-tabs {
-        display: flex;
+        display: flex !important; /* Override inline style */
         gap: 1rem;
         margin-bottom: 2rem;
         border-bottom: 2px solid var(--border-color);
@@ -510,6 +543,15 @@ h3 {
         color: var(--text-primary);
     }
     
+    .desktop-tab:focus {
+        outline: none;
+    }
+    
+    .desktop-tab:focus-visible {
+        outline: 2px solid var(--accent-green);
+        outline-offset: -2px;
+    }
+    
     .desktop-tab.active {
         color: var(--accent-green);
         border-bottom-color: var(--accent-green);
@@ -523,6 +565,13 @@ h3 {
     
     .details-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Hide desktop tabs on mobile */
+@media (max-width: 767px) {
+    .desktop-tabs {
+        display: none !important;
     }
 }
 

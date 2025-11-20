@@ -307,3 +307,10 @@ def get_opponent_name(game, team_id)
   is_away = game['awayTeam']['abbrev'] == team_id
   is_away ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
 end
+
+def get_team_logo_url(team_abbrev)
+  # NHL provides team logos via their CDN
+  # Using the official NHL team logo URL pattern
+  return '' if team_abbrev.nil? || team_abbrev == 'N/A'
+  "https://assets.nhle.com/logos/nhl/svg/#{team_abbrev}_light.svg"
+end

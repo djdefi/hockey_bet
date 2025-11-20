@@ -23,29 +23,29 @@
 <body>
     <div class="app-container">
         <!-- Header -->
-        <header class="mb-3">
+        <header class="mb-3" role="banner">
             <h1>🏒 NHL Fan League</h1>
             <p class="text-secondary" style="font-size: 0.9rem;">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
         </header>
 
         <!-- Desktop Tabs (hidden on mobile) -->
-        <div class="desktop-tabs" style="display: none;">
-            <button class="desktop-tab active" data-tab="league">League</button>
-            <button class="desktop-tab" data-tab="matchups">Matchups</button>
-            <button class="desktop-tab" data-tab="standings">Standings</button>
-            <button class="desktop-tab" data-tab="trends">Trends</button>
-        </div>
+        <nav class="desktop-tabs" style="display: none;" role="navigation" aria-label="Main navigation">
+            <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
+            <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
+            <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
+            <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
+        </nav>
 
         <!-- Tab: League (Fan Stats Dashboard) -->
-        <div id="league-tab" class="tab-section active">
+        <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
             <!-- Horizontal Scrolling Stat Cards -->
             <h2>Top Performers</h2>
-            <div class="carousel-container">
+            <div class="carousel-container" role="region" aria-label="Top performer statistics carousel">
                 <div class="carousel">
                     <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
-                        <% bet_stats[:best_cup_odds].first(3).each do |stat| %>
-                        <div class="stat-card-square">
-                            <div class="stat-emoji">🏆</div>
+                        <% bet_stats[:best_cup_odds].first(3).each_with_index do |stat, idx| %>
+                        <div class="stat-card-square" role="article" aria-label="<%= stat[:fan] %> has best cup odds at <%= stat[:display].split(' ').first %>">
+                            <div class="stat-emoji" aria-hidden="true">🏆</div>
                             <div class="stat-label">Best Cup Odds</div>
                             <div class="stat-fan-name"><%= stat[:fan] %></div>
                             <div class="stat-value"><%= stat[:display].split(' ').first %></div>
@@ -54,8 +54,8 @@
                     <% end %>
                     
                     <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
-                        <div class="stat-card-square">
-                            <div class="stat-emoji">💪</div>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher with <%= bet_stats[:fan_crusher].first[:display].split(' ').first %>">
+                            <div class="stat-emoji" aria-hidden="true">💪</div>
                             <div class="stat-label">Fan Crusher</div>
                             <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
                             <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
@@ -63,8 +63,8 @@
                     <% end %>
                     
                     <% if bet_stats && bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
-                        <div class="stat-card-square">
-                            <div class="stat-emoji">👑</div>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:most_dominant].first[:fan] %> is most dominant with <%= bet_stats[:most_dominant].first[:display] %>">
+                            <div class="stat-emoji" aria-hidden="true">👑</div>
                             <div class="stat-label">Most Dominant</div>
                             <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
                             <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
@@ -113,18 +113,30 @@
         </div>
 
         <!-- Tab: Matchups -->
-        <div id="matchups-tab" class="tab-section">
+        <div id="matchups-tab" class="tab-section" role="tabpanel" aria-label="Upcoming matchups">
             <h2>Upcoming Battles</h2>
             <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
                 <% bet_stats[:upcoming_fan_matchups].each do |matchup| %>
-                    <div class="matchup-card">
+                    <div class="matchup-card" role="article" aria-label="Matchup between <%= matchup[:away_fan] %> and <%= matchup[:home_fan] %>">
                         <div class="matchup-teams">
                             <div class="matchup-team">
+                                <% if matchup[:away_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
+                                         alt="<%= matchup[:away_team] %> logo" 
+                                         class="team-logo"
+                                         onerror="this.style.display='none'">
+                                <% end %>
                                 <div class="matchup-team-name"><%= matchup[:away_team] %></div>
                                 <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
                             </div>
-                            <div class="matchup-vs">VS</div>
+                            <div class="matchup-vs" aria-label="versus">VS</div>
                             <div class="matchup-team">
+                                <% if matchup[:home_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
+                                         alt="<%= matchup[:home_team] %> logo" 
+                                         class="team-logo"
+                                         onerror="this.style.display='none'">
+                                <% end %>
                                 <div class="matchup-team-name"><%= matchup[:home_team] %></div>
                                 <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
                             </div>
@@ -155,7 +167,7 @@
         </div>
 
         <!-- Tab: Standings -->
-        <div id="standings-tab" class="tab-section">
+        <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Team standings">
             <h2>Team Standings</h2>
             <% teams.each_with_index do |team, index| %>
                 <% 
@@ -177,15 +189,20 @@
                 
                 <% next if !is_fan_team %>
                 
-                <div class="team-card" data-team-id="<%= team_abbrev %>">
+                <div class="team-card" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
                     <div class="team-card-main">
                         <div class="team-card-left">
-                            <div class="team-rank"><%= index + 1 %></div>
+                            <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
+                            <img src="<%= get_team_logo_url(team_abbrev) %>" 
+                                 alt="<%= team['teamName']['default'] %> logo" 
+                                 class="team-logo"
+                                 style="width: 40px; height: 40px; object-fit: contain; margin-right: 0.75rem;"
+                                 onerror="this.style.display='none'">
                             <div class="team-info">
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
                                 <div class="team-fan"><%= fan_name %></div>
-                                <span class="status-badge status-<%= status.to_s.gsub('_', '-') %>">
-                                    <%= status_info[:icon] %> <%= status_info[:label] %>
+                                <span class="status-badge status-<%= status.to_s.gsub('_', '-') %>" role="status" aria-label="<%= status_info[:aria_label] %>">
+                                    <span aria-hidden="true"><%= status_info[:icon] %></span> <%= status_info[:label] %>
                                 </span>
                             </div>
                         </div>
@@ -194,7 +211,7 @@
                                 <div class="team-points-value"><%= team['points'] || 'N/A' %></div>
                                 <div class="team-points-label">PTS</div>
                             </div>
-                            <div class="team-trend <%= trend_class %>"><%= trend_icon %></div>
+                            <div class="team-trend <%= trend_class %>" aria-hidden="true"><%= trend_icon %></div>
                         </div>
                     </div>
                     <div class="team-card-details">
@@ -238,31 +255,31 @@
         </div>
 
         <!-- Tab: Trends (Chart) -->
-        <div id="trends-tab" class="tab-section">
+        <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
             <div class="chart-container">
                 <h2>Fan League Standings Trend</h2>
-                <canvas id="leagueTrendChart"></canvas>
+                <canvas id="leagueTrendChart" role="img" aria-label="Line chart showing fan league standings trend over time"></canvas>
             </div>
         </div>
 
     </div>
 
     <!-- Fixed Bottom Navigation (Mobile Only) -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" data-tab="league">
-            <div class="nav-item-icon">🏠</div>
+    <nav class="bottom-nav" role="navigation" aria-label="Mobile navigation">
+        <button class="nav-item active" data-tab="league" aria-label="View League tab" aria-current="page">
+            <div class="nav-item-icon" aria-hidden="true">🏠</div>
             <div class="nav-item-label">League</div>
         </button>
-        <button class="nav-item" data-tab="matchups">
-            <div class="nav-item-icon">⚔️</div>
+        <button class="nav-item" data-tab="matchups" aria-label="View Matchups tab">
+            <div class="nav-item-icon" aria-hidden="true">⚔️</div>
             <div class="nav-item-label">Matchups</div>
         </button>
-        <button class="nav-item" data-tab="standings">
-            <div class="nav-item-icon">📊</div>
+        <button class="nav-item" data-tab="standings" aria-label="View Standings tab">
+            <div class="nav-item-icon" aria-hidden="true">📊</div>
             <div class="nav-item-label">Standings</div>
         </button>
-        <button class="nav-item" data-tab="trends">
-            <div class="nav-item-icon">📈</div>
+        <button class="nav-item" data-tab="trends" aria-label="View Trends tab">
+            <div class="nav-item-icon" aria-hidden="true">📈</div>
             <div class="nav-item-label">Trends</div>
         </button>
     </nav>
@@ -825,17 +842,21 @@
             // Update nav item active states (mobile)
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
+                item.removeAttribute('aria-current');
             });
             document.querySelectorAll(`.nav-item[data-tab="${tabName}"]`).forEach(item => {
                 item.classList.add('active');
+                item.setAttribute('aria-current', 'page');
             });
             
             // Update desktop tab active states
             document.querySelectorAll('.desktop-tab').forEach(tab => {
                 tab.classList.remove('active');
+                tab.removeAttribute('aria-current');
             });
             document.querySelectorAll(`.desktop-tab[data-tab="${tabName}"]`).forEach(tab => {
                 tab.classList.add('active');
+                tab.setAttribute('aria-current', 'page');
             });
         }
         
@@ -845,12 +866,34 @@
                 const tabName = this.getAttribute('data-tab');
                 switchTab(tabName);
             });
+            
+            // Add keyboard support (Enter and Space)
+            item.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const tabName = this.getAttribute('data-tab');
+                    switchTab(tabName);
+                }
+            });
         });
         
-        // Team card expand/collapse functionality
+        // Team card expand/collapse functionality with keyboard support
         document.querySelectorAll('.team-card').forEach(card => {
             card.addEventListener('click', function() {
                 this.classList.toggle('expanded');
+                // Update aria-expanded
+                const isExpanded = this.classList.contains('expanded');
+                this.setAttribute('aria-expanded', isExpanded);
+            });
+            
+            // Add keyboard support
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.classList.toggle('expanded');
+                    const isExpanded = this.classList.contains('expanded');
+                    this.setAttribute('aria-expanded', isExpanded);
+                }
             });
         });
         

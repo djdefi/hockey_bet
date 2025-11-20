@@ -121,6 +121,8 @@ class BetStatsCalculator
         away_fan: away_fan,
         home_team: home_team['teamName']['default'],
         away_team: away_team['teamName']['default'],
+        home_abbrev: home_abbrev,
+        away_abbrev: away_abbrev,
         home_wins: home_team['wins'] || 0,
         away_wins: away_team['wins'] || 0,
         home_points: home_points,
