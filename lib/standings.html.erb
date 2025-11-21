@@ -72,8 +72,8 @@
                     <% end %>
                     
                     <% if bet_stats && bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
-                        <div class="stat-card-square">
-                            <div class="stat-emoji">🧱</div>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:brick_wall].first[:fan] %> is the brick wall with <%= bet_stats[:brick_wall].first[:display] %>">
+                            <div class="stat-emoji" aria-hidden="true">🧱</div>
                             <div class="stat-label">Brick Wall</div>
                             <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
                             <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
@@ -81,8 +81,8 @@
                     <% end %>
                     
                     <% if bet_stats && bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
-                        <div class="stat-card-square">
-                            <div class="stat-emoji">🔥</div>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:longest_win_streak].first[:fan] %> is on fire with <%= bet_stats[:longest_win_streak].first[:display] %>">
+                            <div class="stat-emoji" aria-hidden="true">🔥</div>
                             <div class="stat-label">On Fire</div>
                             <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
                             <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
@@ -90,23 +90,84 @@
                     <% end %>
                     
                     <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                        <div class="stat-card-square" style="background-color: rgba(231, 76, 60, 0.1);">
-                            <div class="stat-emoji">😢</div>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help with <%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %>" style="background-color: rgba(231, 76, 60, 0.1);">
+                            <div class="stat-emoji" aria-hidden="true">😢</div>
                             <div class="stat-label">Needs Help</div>
                             <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
                             <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
                         </div>
                     <% end %>
-                </div>
-            </div>
-            
-            <!-- Playoff Status Legend -->
-            <div class="card mb-2">
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <% PLAYOFF_STATUS.each do |key, status| %>
-                        <span class="status-badge status-<%= key.to_s.gsub('_', '-') %>">
-                            <%= status[:icon] %> <%= status[:label] %>
-                        </span>
+                    
+                    <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:glass_cannon].first[:fan] %> is a glass cannon">
+                            <div class="stat-emoji" aria-hidden="true">💥</div>
+                            <div class="stat-label">Glass Cannon</div>
+                            <div class="stat-fan-name"><%= bet_stats[:glass_cannon].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:glass_cannon].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:comeback_kid].first[:fan] %> is the comeback kid">
+                            <div class="stat-emoji" aria-hidden="true">🎯</div>
+                            <div class="stat-label">Comeback Kid</div>
+                            <div class="stat-fan-name"><%= bet_stats[:comeback_kid].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:comeback_kid].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:overtimer].first[:fan] %> is the overtimer">
+                            <div class="stat-emoji" aria-hidden="true">⏱️</div>
+                            <div class="stat-label">Overtimer</div>
+                            <div class="stat-fan-name"><%= bet_stats[:overtimer].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:overtimer].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:point_scrounger].first[:fan] %> is the point scrounger">
+                            <div class="stat-emoji" aria-hidden="true">📌</div>
+                            <div class="stat-label">Point Scrounger</div>
+                            <div class="stat-fan-name"><%= bet_stats[:point_scrounger].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:point_scrounger].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:shutout_king].first[:fan] %> is the shutout king">
+                            <div class="stat-emoji" aria-hidden="true">🚫</div>
+                            <div class="stat-label">Shutout King</div>
+                            <div class="stat-fan-name"><%= bet_stats[:shutout_king].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:shutout_king].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:momentum_master].first[:fan] %> is the momentum master">
+                            <div class="stat-emoji" aria-hidden="true">⚡</div>
+                            <div class="stat-label">Momentum Master</div>
+                            <div class="stat-fan-name"><%= bet_stats[:momentum_master].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:momentum_master].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:top_winners].first[:fan] %> has most wins">
+                            <div class="stat-emoji" aria-hidden="true">🥇</div>
+                            <div class="stat-label">Top Winner</div>
+                            <div class="stat-fan-name"><%= bet_stats[:top_winners].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:top_winners].first[:display] %></div>
+                        </div>
+                    <% end %>
+                    
+                    <% if bet_stats && bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
+                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:best_point_differential].first[:fan] %> has best goal differential">
+                            <div class="stat-emoji" aria-hidden="true">➕</div>
+                            <div class="stat-label">Goal Diff Leader</div>
+                            <div class="stat-fan-name"><%= bet_stats[:best_point_differential].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
+                        </div>
                     <% end %>
                 </div>
             </div>
@@ -861,6 +922,11 @@
                 tab.classList.add('active');
                 tab.setAttribute('aria-current', 'page');
             });
+            
+            // Load chart if switching to trends tab
+            if (tabName === 'trends' && !window.chartLoaded) {
+                loadStandingsTrendChart();
+            }
         }
         
         // Add click event listeners to all nav items and tabs
@@ -922,6 +988,8 @@
 
         // Fan League Standings Trend Chart
         async function loadStandingsTrendChart() {
+            if (window.chartLoaded) return; // Prevent double loading
+            
             try {
                 // Fetch standings history and fan team colors
                 const [historyResponse, colorsResponse] = await Promise.all([
@@ -934,6 +1002,10 @@
                 
                 if (!history || history.length === 0) {
                     console.log('No standings history data available yet');
+                    const canvas = document.getElementById('leagueTrendChart');
+                    if (canvas && canvas.parentElement) {
+                        canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">No trend data available yet. Check back after a few days of tracking.</p>';
+                    }
                     return;
                 }
                 
@@ -984,12 +1056,18 @@
                                     padding: 10,
                                     font: {
                                         size: 11
-                                    }
+                                    },
+                                    color: '#8da1b9' // Match secondary text color
                                 }
                             },
                             tooltip: {
                                 mode: 'index',
                                 intersect: false,
+                                backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                                titleColor: '#ffffff',
+                                bodyColor: '#8da1b9',
+                                borderColor: '#2a3a52',
+                                borderWidth: 1,
                                 callbacks: {
                                     title: function(context) {
                                         return 'Date: ' + context[0].label;
@@ -1004,19 +1082,31 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Date'
+                                    text: 'Date',
+                                    color: '#8da1b9'
                                 },
                                 ticks: {
                                     maxRotation: 45,
-                                    minRotation: 45
+                                    minRotation: 45,
+                                    color: '#8da1b9'
+                                },
+                                grid: {
+                                    color: 'rgba(42, 58, 82, 0.5)'
                                 }
                             },
                             y: {
                                 title: {
                                     display: true,
-                                    text: 'Points'
+                                    text: 'Points',
+                                    color: '#8da1b9'
                                 },
-                                beginAtZero: true
+                                ticks: {
+                                    color: '#8da1b9'
+                                },
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(42, 58, 82, 0.5)'
+                                }
                             }
                         },
                         interaction: {
@@ -1027,17 +1117,19 @@
                     }
                 });
                 
+                window.chartLoaded = true;
+                
             } catch (error) {
                 console.error('Error loading standings trend chart:', error);
+                const canvas = document.getElementById('leagueTrendChart');
+                if (canvas && canvas.parentElement) {
+                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Unable to load trend chart. Please try again later.</p>';
+                }
             }
         }
         
-        // Load the chart when the page is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadStandingsTrendChart);
-        } else {
-            loadStandingsTrendChart();
-        }
+        // Don't load chart on page load - only when trends tab is clicked
+        // Chart will be loaded by switchTab function
     </script>
 </body>
 </html>
