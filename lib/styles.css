@@ -160,6 +160,176 @@ h3 {
 }
 
 /* Horizontal Scrolling Carousel */
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #2a3a52 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-fan-name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.hero-team-name {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.hero-stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.75rem;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-green);
+}
+
+.hero-stat-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+/* Featured Matchup */
+.featured-matchup {
+    margin-bottom: 1.5rem;
+}
+
+.featured-matchup-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.featured-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.featured-team-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.featured-fallback {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.featured-team-info {
+    text-align: center;
+}
+
+.featured-fan-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.featured-record {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.featured-vs {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.voting-placeholder {
+    background-color: rgba(33, 209, 159, 0.1);
+    border: 2px dashed var(--accent-green);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.voting-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-green);
+}
+
+/* Section Headings */
+.section-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.section-heading:first-of-type {
+    margin-top: 0;
+}
+
+/* Stats Grid (replaces horizontal carousel) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
 .carousel-container {
     overflow-x: auto;
     overflow-y: hidden;
@@ -660,8 +830,38 @@ h3 {
         height: 160px;
     }
     
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
     .details-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .hero-section {
+        padding: 2rem;
+    }
+    
+    .hero-fan-name {
+        font-size: 2.5rem;
+    }
+    
+    .hero-team-name {
+        font-size: 1.25rem;
+    }
+    
+    .featured-matchup-card {
+        padding: 1.5rem 2rem;
+    }
+    
+    .featured-team-logo {
+        width: 72px;
+        height: 72px;
+    }
+    
+    .featured-fallback {
+        width: 72px;
+        height: 72px;
     }
 }
 

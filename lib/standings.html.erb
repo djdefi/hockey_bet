@@ -38,147 +38,206 @@
 
         <!-- Tab: League (Fan Stats Dashboard) -->
         <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
-            <!-- Horizontal Scrolling Stat Cards -->
-            <h2>Top Performers</h2>
-            <div class="carousel-container" role="region" aria-label="Top performer statistics carousel">
-                <div class="carousel">
-                    <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
-                        <% bet_stats[:best_cup_odds].first(3).each_with_index do |stat, idx| %>
-                        <div class="stat-card-square" role="article" aria-label="<%= stat[:fan] %> has best cup odds at <%= stat[:display].split(' ').first %>">
-                            <div class="stat-emoji" aria-hidden="true">🏆</div>
-                            <div class="stat-label">Best Cup Odds</div>
-                            <div class="stat-fan-name"><%= stat[:fan] %></div>
-                            <div class="stat-value"><%= stat[:display].split(' ').first %></div>
+            
+            <!-- Hero Section: Current Leader -->
+            <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
+            <div class="hero-section" role="region" aria-label="Current league leader">
+                <div class="hero-content">
+                    <div class="hero-label">🏆 League Leader</div>
+                    <div class="hero-fan-name"><%= bet_stats[:best_cup_odds].first[:fan] %></div>
+                    <div class="hero-team-name"><%= bet_stats[:best_cup_odds].first[:team] %></div>
+                    <div class="hero-stats-row">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:display].split(' ').first %></div>
+                            <div class="hero-stat-label">Cup Odds</div>
+                        </div>
+                        <% if bet_stats[:best_cup_odds].first[:points] %>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:points] %></div>
+                            <div class="hero-stat-label">Points</div>
                         </div>
                         <% end %>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher with <%= bet_stats[:fan_crusher].first[:display].split(' ').first %>">
-                            <div class="stat-emoji" aria-hidden="true">💪</div>
-                            <div class="stat-label">Fan Crusher</div>
-                            <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:most_dominant].first[:fan] %> is most dominant with <%= bet_stats[:most_dominant].first[:display] %>">
-                            <div class="stat-emoji" aria-hidden="true">👑</div>
-                            <div class="stat-label">Most Dominant</div>
-                            <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:brick_wall].first[:fan] %> is the brick wall with <%= bet_stats[:brick_wall].first[:display] %>">
-                            <div class="stat-emoji" aria-hidden="true">🧱</div>
-                            <div class="stat-label">Brick Wall</div>
-                            <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:longest_win_streak].first[:fan] %> is on fire with <%= bet_stats[:longest_win_streak].first[:display] %>">
-                            <div class="stat-emoji" aria-hidden="true">🔥</div>
-                            <div class="stat-label">On Fire</div>
-                            <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help with <%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %>" style="background-color: rgba(231, 76, 60, 0.1);">
-                            <div class="stat-emoji" aria-hidden="true">😢</div>
-                            <div class="stat-label">Needs Help</div>
-                            <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:glass_cannon].first[:fan] %> is a glass cannon">
-                            <div class="stat-emoji" aria-hidden="true">💥</div>
-                            <div class="stat-label">Glass Cannon</div>
-                            <div class="stat-fan-name"><%= bet_stats[:glass_cannon].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:glass_cannon].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:comeback_kid].first[:fan] %> is the comeback kid">
-                            <div class="stat-emoji" aria-hidden="true">🎯</div>
-                            <div class="stat-label">Comeback Kid</div>
-                            <div class="stat-fan-name"><%= bet_stats[:comeback_kid].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:comeback_kid].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:overtimer].first[:fan] %> is the overtimer">
-                            <div class="stat-emoji" aria-hidden="true">⏱️</div>
-                            <div class="stat-label">Overtimer</div>
-                            <div class="stat-fan-name"><%= bet_stats[:overtimer].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:overtimer].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:point_scrounger].first[:fan] %> is the point scrounger">
-                            <div class="stat-emoji" aria-hidden="true">📌</div>
-                            <div class="stat-label">Point Scrounger</div>
-                            <div class="stat-fan-name"><%= bet_stats[:point_scrounger].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:point_scrounger].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:shutout_king].first[:fan] %> is the shutout king">
-                            <div class="stat-emoji" aria-hidden="true">🚫</div>
-                            <div class="stat-label">Shutout King</div>
-                            <div class="stat-fan-name"><%= bet_stats[:shutout_king].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:shutout_king].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:momentum_master].first[:fan] %> is the momentum master">
-                            <div class="stat-emoji" aria-hidden="true">⚡</div>
-                            <div class="stat-label">Momentum Master</div>
-                            <div class="stat-fan-name"><%= bet_stats[:momentum_master].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:momentum_master].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:top_winners].first[:fan] %> has most wins">
-                            <div class="stat-emoji" aria-hidden="true">🥇</div>
-                            <div class="stat-label">Top Winner</div>
-                            <div class="stat-fan-name"><%= bet_stats[:top_winners].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:top_winners].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
-                        <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:best_point_differential].first[:fan] %> has best goal differential">
-                            <div class="stat-emoji" aria-hidden="true">➕</div>
-                            <div class="stat-label">Goal Diff Leader</div>
-                            <div class="stat-fan-name"><%= bet_stats[:best_point_differential].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
-                        </div>
-                    <% end %>
-                    
-                    <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
-                        <div class="stat-card-square" role="article" aria-label="Most losses to Sharks" style="background-color: rgba(0, 128, 128, 0.15);">
-                            <div class="stat-emoji" aria-hidden="true">🦈</div>
-                            <div class="stat-label">Sharks Victims</div>
-                            <div class="stat-fan-name"><%= bet_stats[:sharks_victims].first[:fan] %></div>
-                            <div class="stat-value"><%= bet_stats[:sharks_victims].first[:display] %></div>
-                        </div>
-                    <% end %>
+                    </div>
                 </div>
+            </div>
+            <% end %>
+            
+            <!-- Featured Matchup / Voting Section (Placeholder for future betting feature) -->
+            <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
+            <div class="featured-matchup" role="region" aria-label="Featured upcoming matchup">
+                <h3 class="section-heading">⚡ Featured Matchup</h3>
+                <% matchup = bet_stats[:upcoming_fan_matchups].first %>
+                <div class="featured-matchup-card">
+                    <div class="featured-team">
+                        <% if matchup[:away_abbrev] %>
+                            <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
+                                 alt="<%= matchup[:away_team] %> logo" 
+                                 class="featured-team-logo"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                        <% end %>
+                        <div class="featured-team-info">
+                            <div class="featured-fan-name"><%= matchup[:away_fan] %></div>
+                            <div class="featured-record"><%= matchup[:away_wins] %>W</div>
+                        </div>
+                    </div>
+                    <div class="featured-vs">VS</div>
+                    <div class="featured-team">
+                        <% if matchup[:home_abbrev] %>
+                            <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
+                                 alt="<%= matchup[:home_team] %> logo" 
+                                 class="featured-team-logo"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                        <% end %>
+                        <div class="featured-team-info">
+                            <div class="featured-fan-name"><%= matchup[:home_fan] %></div>
+                            <div class="featured-record"><%= matchup[:home_wins] %>W</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voting-placeholder">
+                    <div class="voting-text">🗳️ Voting opens soon!</div>
+                </div>
+            </div>
+            <% end %>
+            
+            <!-- Excellence Awards -->
+            <h3 class="section-heading">🌟 Excellence Awards</h3>
+            <div class="stats-grid" role="region" aria-label="Excellence awards">
+                <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher">
+                        <div class="stat-emoji" aria-hidden="true">💪</div>
+                        <div class="stat-label">Fan Crusher</div>
+                        <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:most_dominant].first[:fan] %> is most dominant">
+                        <div class="stat-emoji" aria-hidden="true">👑</div>
+                        <div class="stat-label">Most Dominant</div>
+                        <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:top_winners].first[:fan] %> has most wins">
+                        <div class="stat-emoji" aria-hidden="true">🥇</div>
+                        <div class="stat-label">Top Winner</div>
+                        <div class="stat-fan-name"><%= bet_stats[:top_winners].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:top_winners].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:best_point_differential].first[:fan] %> has best goal differential">
+                        <div class="stat-emoji" aria-hidden="true">➕</div>
+                        <div class="stat-label">Goal Diff Leader</div>
+                        <div class="stat-fan-name"><%= bet_stats[:best_point_differential].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
+                    </div>
+                <% end %>
+            </div>
+            
+            <!-- Defense & Momentum -->
+            <h3 class="section-heading">🛡️ Defense & Momentum</h3>
+            <div class="stats-grid" role="region" aria-label="Defense and momentum statistics">
+                <% if bet_stats && bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:brick_wall].first[:fan] %> is the brick wall">
+                        <div class="stat-emoji" aria-hidden="true">🧱</div>
+                        <div class="stat-label">Brick Wall</div>
+                        <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:shutout_king].first[:fan] %> is the shutout king">
+                        <div class="stat-emoji" aria-hidden="true">🚫</div>
+                        <div class="stat-label">Shutout King</div>
+                        <div class="stat-fan-name"><%= bet_stats[:shutout_king].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:shutout_king].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:longest_win_streak].first[:fan] %> is on fire">
+                        <div class="stat-emoji" aria-hidden="true">🔥</div>
+                        <div class="stat-label">On Fire</div>
+                        <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:momentum_master].first[:fan] %> is the momentum master">
+                        <div class="stat-emoji" aria-hidden="true">⚡</div>
+                        <div class="stat-label">Momentum Master</div>
+                        <div class="stat-fan-name"><%= bet_stats[:momentum_master].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:momentum_master].first[:display] %></div>
+                    </div>
+                <% end %>
+            </div>
+            
+            <!-- Special Achievements -->
+            <h3 class="section-heading">🎯 Special Achievements</h3>
+            <div class="stats-grid" role="region" aria-label="Special achievements">
+                <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:glass_cannon].first[:fan] %> is a glass cannon">
+                        <div class="stat-emoji" aria-hidden="true">💥</div>
+                        <div class="stat-label">Glass Cannon</div>
+                        <div class="stat-fan-name"><%= bet_stats[:glass_cannon].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:glass_cannon].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:comeback_kid].first[:fan] %> is the comeback kid">
+                        <div class="stat-emoji" aria-hidden="true">🎯</div>
+                        <div class="stat-label">Comeback Kid</div>
+                        <div class="stat-fan-name"><%= bet_stats[:comeback_kid].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:comeback_kid].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:overtimer].first[:fan] %> is the overtimer">
+                        <div class="stat-emoji" aria-hidden="true">⏱️</div>
+                        <div class="stat-label">Overtimer</div>
+                        <div class="stat-fan-name"><%= bet_stats[:overtimer].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:overtimer].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:point_scrounger].first[:fan] %> is the point scrounger">
+                        <div class="stat-emoji" aria-hidden="true">📌</div>
+                        <div class="stat-label">Point Scrounger</div>
+                        <div class="stat-fan-name"><%= bet_stats[:point_scrounger].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:point_scrounger].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
+                    <div class="stat-card-square" role="article" aria-label="Most losses to Sharks" style="background-color: rgba(0, 128, 128, 0.15);">
+                        <div class="stat-emoji" aria-hidden="true">🦈</div>
+                        <div class="stat-label">Sharks Victims</div>
+                        <div class="stat-fan-name"><%= bet_stats[:sharks_victims].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:sharks_victims].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help" style="background-color: rgba(231, 76, 60, 0.1);">
+                        <div class="stat-emoji" aria-hidden="true">😢</div>
+                        <div class="stat-label">Needs Help</div>
+                        <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
+                    </div>
+                <% end %>
             </div>
         </div>
 
