@@ -169,6 +169,15 @@
                             <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
                         </div>
                     <% end %>
+                    
+                    <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
+                        <div class="stat-card-square" role="article" aria-label="Most losses to Sharks" style="background-color: rgba(0, 128, 128, 0.15);">
+                            <div class="stat-emoji" aria-hidden="true">🦈</div>
+                            <div class="stat-label">Sharks Victims</div>
+                            <div class="stat-fan-name"><%= bet_stats[:sharks_victims].first[:fan] %></div>
+                            <div class="stat-value"><%= bet_stats[:sharks_victims].first[:display] %></div>
+                        </div>
+                    <% end %>
                 </div>
             </div>
         </div>
@@ -279,6 +288,94 @@
                         </div>
                     </div>
                     <div class="team-card-details">
+                        <%
+                        # Get team-specific achievements and badges
+                        team_badges = []
+                        team_stats_list = []
+                        
+                        # Check if this team appears in any stat categories
+                        if bet_stats
+                            # Check for sharks victim
+                            if bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any?
+                                sharks_victim = bet_stats[:sharks_victims].find { |sv| sv[:team_abbrev] == team_abbrev }
+                                if sharks_victim
+                                    team_badges << { emoji: '🦈', label: 'Sharks Victim', value: sharks_victim[:display], color: 'rgba(0, 128, 128, 0.2)' }
+                                end
+                            end
+                            
+                            # Check for best cup odds
+                            if bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any?
+                                top_odds = bet_stats[:best_cup_odds].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if top_odds
+                                    team_badges << { emoji: '🏆', label: 'Cup Contender', value: top_odds[:display].split(' ').first, color: 'rgba(255, 215, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for longest win streak
+                            if bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any?
+                                streak = bet_stats[:longest_win_streak].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if streak
+                                    team_badges << { emoji: '🔥', label: 'Hot Streak', value: streak[:display], color: 'rgba(255, 69, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for brick wall (best defense)
+                            if bet_stats[:brick_wall] && bet_stats[:brick_wall].any?
+                                brick = bet_stats[:brick_wall].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if brick
+                                    team_badges << { emoji: '🧱', label: 'Brick Wall', value: brick[:display], color: 'rgba(100, 149, 237, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for glass cannon (high scoring but leaky defense)
+                            if bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any?
+                                cannon = bet_stats[:glass_cannon].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if cannon
+                                    team_badges << { emoji: '💥', label: 'Glass Cannon', value: cannon[:display], color: 'rgba(255, 140, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for shutout king
+                            if bet_stats[:shutout_king] && bet_stats[:shutout_king].any?
+                                shutout = bet_stats[:shutout_king].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if shutout
+                                    team_badges << { emoji: '🚫', label: 'Shutout King', value: shutout[:display], color: 'rgba(128, 128, 128, 0.15)' }
+                                end
+                            end
+                        end
+                        
+                        # Get head-to-head records vs other fans
+                        h2h_records = []
+                        if bet_stats && bet_stats[:head_to_head_matrix] && bet_stats[:head_to_head_matrix][team_abbrev]
+                            bet_stats[:head_to_head_matrix][team_abbrev].each do |opp_abbrev, record|
+                                opp_fan = manager_team_map[opp_abbrev]
+                                next if opp_fan.nil? || opp_fan == 'N/A'
+                                total_games = record[:wins] + record[:losses] + record[:ot_losses]
+                                next if total_games == 0
+                                
+                                h2h_records << {
+                                    opponent: opp_fan,
+                                    wins: record[:wins],
+                                    losses: record[:losses],
+                                    ot_losses: record[:ot_losses],
+                                    total: total_games
+                                }
+                            end
+                        end
+                        %>
+                        
+                        <% if team_badges.any? %>
+                        <div class="team-badges">
+                            <% team_badges.each do |badge| %>
+                                <div class="achievement-badge" style="background-color: <%= badge[:color] %>;">
+                                    <span class="badge-emoji"><%= badge[:emoji] %></span>
+                                    <span class="badge-label"><%= badge[:label] %></span>
+                                    <span class="badge-value"><%= badge[:value] %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% end %>
+                        
                         <div class="details-grid">
                             <div class="detail-item">
                                 <span class="detail-label">Record</span>
@@ -313,6 +410,22 @@
                                 <span class="detail-value"><%= format_game_time(next_game_pacific) %> vs <%= opponent_name %></span>
                             </div>
                         </div>
+                        
+                        <% if h2h_records.any? %>
+                        <div class="h2h-section">
+                            <h4 class="h2h-title">🎯 Head-to-Head vs Fans</h4>
+                            <div class="h2h-grid">
+                                <% h2h_records.sort_by { |r| -r[:wins] }.each do |h2h| %>
+                                    <div class="h2h-item">
+                                        <span class="h2h-opponent"><%= h2h[:opponent] %></span>
+                                        <span class="h2h-record <%= h2h[:wins] > (h2h[:losses] + h2h[:ot_losses]) ? 'winning' : 'losing' %>">
+                                            <%= h2h[:wins] %>-<%= h2h[:losses] %>-<%= h2h[:ot_losses] %>
+                                        </span>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        <% end %>
                     </div>
                 </div>
             <% end %>

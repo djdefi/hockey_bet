@@ -423,10 +423,45 @@ h3 {
 }
 
 .team-card.expanded .team-card-details {
-    max-height: 500px;
+    max-height: 800px;
     padding-top: 1rem;
     margin-top: 1rem;
     border-top: 1px solid var(--border-color);
+}
+
+/* Achievement badges */
+.team-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+}
+
+.badge-emoji {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.badge-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.badge-value {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
 }
 
 .details-grid {
@@ -450,6 +485,54 @@ h3 {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
+}
+
+/* Head-to-head section */
+.h2h-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.h2h-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.h2h-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.h2h-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--bg-card-hover);
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.h2h-opponent {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.h2h-record {
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.h2h-record.winning {
+    color: var(--accent-green);
+}
+
+.h2h-record.losing {
+    color: var(--accent-red);
 }
 
 /* Status Indicators */
