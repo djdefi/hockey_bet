@@ -1,7 +1,7 @@
 # Hockey Bet - Product Roadmap
 
 > **Last Updated:** November 21, 2025  
-> **Review Date:** After reviewing https://djdefi.github.io/hockey_bet/
+> **Next Review:** December 21, 2025
 
 This roadmap outlines high-value improvements prioritized by impact and implementation effort.
 

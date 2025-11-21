@@ -269,4 +269,4 @@ You've got this! 🚀🏒
 
 ---
 
-*For detailed implementation guides, see the full [ROADMAP.md](./ROADMAP.md)*
+*For detailed implementation guides, see the full [ROADMAP.md](ROADMAP.md)*
