@@ -103,6 +103,11 @@ class StandingsProcessor
       dest = File.join(vendor_dest_dir, file)
       FileUtils.cp(src, dest) if File.exist?(src)
     end
+    
+    # Copy styles.css from lib to output directory
+    styles_src = File.join(File.dirname(__FILE__), 'styles.css')
+    styles_dest = "#{output_dir}/styles.css"
+    FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
   end
 
   # Determine playoff status for a team
@@ -301,4 +306,35 @@ def get_opponent_name(game, team_id)
   return 'None' if game['awayTeam']['abbrev'] == 'None' || game['homeTeam']['abbrev'] == 'None'
   is_away = game['awayTeam']['abbrev'] == team_id
   is_away ? game['homeTeam']['placeName']['default'] : game['awayTeam']['placeName']['default']
+end
+
+def get_team_logo_url(team_abbrev)
+  # NHL provides team logos via their CDN
+  # Using the official NHL team logo URL pattern
+  return '' if team_abbrev.nil? || team_abbrev == 'N/A'
+  "https://assets.nhle.com/logos/nhl/svg/#{team_abbrev}_light.svg"
+end
+
+def get_fan_achievement(fan, bet_stats)
+  # Priority order of achievements (most impressive first)
+  checks = [
+    { key: :best_cup_odds, emoji: '🏆', label: 'Cup Contender' },
+    { key: :fan_crusher, emoji: '💪', label: 'Fan Crusher' },
+    { key: :most_dominant, emoji: '👑', label: 'Most Dominant' },
+    { key: :on_fire, emoji: '🔥', label: 'On Fire' },
+    { key: :brick_wall, emoji: '🧱', label: 'Brick Wall' },
+    { key: :top_winners, emoji: '🥇', label: 'Top Winner' },
+    { key: :shutout_king, emoji: '🚫', label: 'Shutout King' },
+    { key: :glass_cannon, emoji: '💥', label: 'Glass Cannon' },
+    { key: :comeback_kid, emoji: '🎯', label: 'Comeback Kid' },
+    { key: :overtimer, emoji: '⏱️', label: 'Overtimer' }
+  ]
+  
+  checks.each do |check|
+    stat = bet_stats[check[:key]]
+    if stat && stat.any? && stat.first[:fan] == fan
+      return { emoji: check[:emoji], label: check[:label], value: stat.first[:display] }
+    end
+  end
+  nil
 end

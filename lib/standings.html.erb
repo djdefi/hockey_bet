@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NHL Standings</title>
-    <link rel='stylesheet' href='vendor/primer.css'>
+    <title>NHL Fan League</title>
+    <link rel='stylesheet' href='styles.css'>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Home Screen App Icons and Meta -->
@@ -13,208 +13,554 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="NHL Standings">
-    <meta name="theme-color" content="#041E42">
+    <meta name="apple-mobile-web-app-title" content="NHL Fan League">
+    <meta name="theme-color" content="#0b162a">
     
     <!-- Chart.js - Vendored -->
     <script src="vendor/chart.umd.js"></script>
-    
-    <style>
-        @media screen and (max-width: 768px) {
-            /* Hide less important columns on mobile */
-            .mobile-hidden {
-                display: none;
-            }
-            .no-fan-name {
-                display: none;
-            }
-            
-            /* Body and container adjustments */
-            body {
-                margin: 0.5rem !important;
-            }
-            
-            /* Header text sizing */
-            h1 {
-                font-size: 1.5rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-            
-            h2 {
-                font-size: 1.25rem !important;
-            }
-            
-            /* Status legend - make it wrap better */
-            .status-legend {
-                gap: 4px !important;
-            }
-            
-            .status-item {
-                padding: 4px 8px !important;
-                font-size: 0.85rem;
-            }
-            
-            /* Table responsiveness */
-            .responsive-table {
-                font-size: 0.75em;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .responsive-table table {
-                min-width: 600px; /* Ensure horizontal scroll for table */
-            }
-            
-            .responsive-table th,
-            .responsive-table td {
-                padding: 4px !important;
-                white-space: nowrap;
-            }
-            
-            /* Stats grid - single column on mobile */
-            .stats-grid {
-                grid-template-columns: 1fr !important;
-                gap: 8px;
-            }
-            
-            /* Stat cards - more compact */
-            .stat-card {
-                padding: 8px 12px !important;
-            }
-            
-            .stat-card .h4 {
-                font-size: 0.95em !important;
-                margin-bottom: 4px !important;
-            }
-            
-            .stat-card p,
-            .stat-card li {
-                font-size: 0.85em !important;
-                line-height: 1.3;
-                margin-bottom: 4px !important;
-            }
-            
-            .stat-card ul {
-                padding-left: 0 !important;
-            }
-            
-            /* Stats section */
-            .bet-stats-section {
-                padding: 8px !important;
-                margin-bottom: 12px !important;
-            }
-            
-            .bet-stats-section .h3 {
-                font-size: 1.1em !important;
-                margin-bottom: 8px !important;
-            }
-            
-            /* Matchups */
-            .matchup-item {
-                padding: 8px 0 !important;
-            }
-            
-            .matchup-header {
-                font-size: 0.9em !important;
-            }
-            
-            .matchup-header .h4 {
-                font-size: 0.9em !important;
-                margin-bottom: 4px !important;
-            }
-            
-            .matchup-details {
-                font-size: 0.8em;
-                line-height: 1.4;
-            }
-            
-            /* Medal/emoji sizing */
-            .stat-medal {
-                font-size: 1em !important;
-            }
-        }
-        .hidden {
-            display: none;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        .status-icon {
-            padding: 0 2px;
-        }
-        .status-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-            margin-bottom: 16px;
-        }
-        .status-item {
-            display: flex;
-            align-items: center;
-            padding: 6px 12px;
-            border-radius: 4px;
-        }
-        .fan-team-indicator {
-            font-weight: bold;
-        }
-        .bet-stats-section {
-            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(255, 184, 0, 0.1) 100%);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        .stat-card {
-            transition: transform 0.2s;
-        }
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .stat-medal {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
-        .matchup-item {
-            padding: 12px 0;
-        }
-        .matchup-header {
-            font-size: 1.1em;
-        }
-        .chart-container {
-            position: relative;
-            height: 400px;
-            margin-bottom: 24px;
-            padding: 16px;
-            background: var(--color-canvas-default);
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        }
-        @media screen and (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-                padding: 8px;
-            }
-        }
-    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body class='m-2' data-color-mode='auto' data-light-theme='light' data-dark-theme='dark_dimmed'>
-    <h1 class='color-fg-success'>NHL Team Standings</h1>
-    <p>Last updated at: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> Pacific Time</p>
-    
-    <div class="status-legend">
-        <% PLAYOFF_STATUS.each do |key, status| %>
-            <div class="status-item <%= status[:class] %> color-fg-on-emphasis">
-                <span class="status-icon" aria-hidden="true"><%= status[:icon] %></span>
-                <span><%= status[:label] %></span>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="mb-3" role="banner">
+            <h1>🏒 NHL Fan League</h1>
+            <p class="text-secondary" style="font-size: 0.9rem;">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
+        </header>
+
+        <!-- Desktop Tabs (hidden on mobile) -->
+        <nav class="desktop-tabs" style="display: none;" role="navigation" aria-label="Main navigation">
+            <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
+            <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
+            <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
+            <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
+        </nav>
+
+        <!-- Tab: League (Fan Stats Dashboard) -->
+        <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
+            
+            <!-- Hero Section: Current Leader -->
+            <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
+            <div class="hero-section" role="region" aria-label="Current league leader">
+                <div class="hero-content">
+                    <div class="hero-label">🏆 League Leader</div>
+                    <div class="hero-fan-name"><%= bet_stats[:best_cup_odds].first[:fan] %></div>
+                    <div class="hero-team-name"><%= bet_stats[:best_cup_odds].first[:team] %></div>
+                    <div class="hero-stats-row">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:display].split(' ').first %></div>
+                            <div class="hero-stat-label">Cup Odds</div>
+                        </div>
+                        <% if bet_stats[:best_cup_odds].first[:points] %>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:points] %></div>
+                            <div class="hero-stat-label">Points</div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
             </div>
-        <% end %>
+            <% end %>
+            
+            <!-- Featured Matchup / Voting Section (Placeholder for future betting feature) -->
+            <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
+            <div class="featured-matchup" role="region" aria-label="Featured upcoming matchup">
+                <h3 class="section-heading">⚡ Featured Matchup</h3>
+                <% matchup = bet_stats[:upcoming_fan_matchups].first %>
+                <% 
+                away_achievement = get_fan_achievement(matchup[:away_fan], bet_stats)
+                home_achievement = get_fan_achievement(matchup[:home_fan], bet_stats)
+                
+                # Format game time
+                game_time_formatted = ''
+                if matchup[:game_time]
+                  begin
+                    game_time = Time.parse(matchup[:game_time])
+                    game_time_pst = game_time.getlocal('-08:00')
+                    game_time_formatted = game_time_pst.strftime("%a %b %-d • %-I:%M %p PT")
+                  rescue
+                    game_time_formatted = 'TBD'
+                  end
+                end
+                %>
+                
+                <!-- Game Time Header -->
+                <% if game_time_formatted && !game_time_formatted.empty? %>
+                <div class="featured-matchup-time">
+                    <span class="time-icon">📅</span>
+                    <span class="time-text"><%= game_time_formatted %></span>
+                </div>
+                <% end %>
+                
+                <div class="featured-matchup-card">
+                    <div class="featured-team">
+                        <% if matchup[:away_abbrev] %>
+                            <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
+                                 alt="<%= matchup[:away_team] %> logo" 
+                                 class="featured-team-logo"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                        <% end %>
+                        <div class="featured-team-info">
+                            <div class="featured-fan-name"><%= matchup[:away_fan] %></div>
+                            <div class="featured-team-name"><%= matchup[:away_team] %></div>
+                            <div class="featured-record"><%= matchup[:away_wins] %>W - <%= matchup[:away_points] %>pts</div>
+                            <% if away_achievement %>
+                            <div class="featured-achievement">
+                                <span class="achievement-emoji"><%= away_achievement[:emoji] %></span>
+                                <span class="achievement-label"><%= away_achievement[:label] %></span>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="featured-vs">VS</div>
+                    <div class="featured-team">
+                        <% if matchup[:home_abbrev] %>
+                            <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
+                                 alt="<%= matchup[:home_team] %> logo" 
+                                 class="featured-team-logo"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                        <% end %>
+                        <div class="featured-team-info">
+                            <div class="featured-fan-name"><%= matchup[:home_fan] %></div>
+                            <div class="featured-team-name"><%= matchup[:home_team] %></div>
+                            <div class="featured-record"><%= matchup[:home_wins] %>W - <%= matchup[:home_points] %>pts</div>
+                            <% if home_achievement %>
+                            <div class="featured-achievement">
+                                <span class="achievement-emoji"><%= home_achievement[:emoji] %></span>
+                                <span class="achievement-label"><%= home_achievement[:label] %></span>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <div class="voting-placeholder">
+                    <div class="voting-text">🗳️ Voting opens soon!</div>
+                </div>
+            </div>
+            <% end %>
+            
+            <!-- Excellence Awards -->
+            <h3 class="section-heading">🌟 Excellence Awards</h3>
+            <div class="stats-grid" role="region" aria-label="Excellence awards">
+                <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher">
+                        <div class="stat-emoji" aria-hidden="true">💪</div>
+                        <div class="stat-label">Fan Crusher</div>
+                        <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:most_dominant].first[:fan] %> is most dominant">
+                        <div class="stat-emoji" aria-hidden="true">👑</div>
+                        <div class="stat-label">Most Dominant</div>
+                        <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:top_winners].first[:fan] %> has most wins">
+                        <div class="stat-emoji" aria-hidden="true">🥇</div>
+                        <div class="stat-label">Top Winner</div>
+                        <div class="stat-fan-name"><%= bet_stats[:top_winners].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:top_winners].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:best_point_differential].first[:fan] %> has best goal differential">
+                        <div class="stat-emoji" aria-hidden="true">➕</div>
+                        <div class="stat-label">Goal Diff Leader</div>
+                        <div class="stat-fan-name"><%= bet_stats[:best_point_differential].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
+                    </div>
+                <% end %>
+            </div>
+            
+            <!-- Defense & Momentum -->
+            <h3 class="section-heading">🛡️ Defense & Momentum</h3>
+            <div class="stats-grid" role="region" aria-label="Defense and momentum statistics">
+                <% if bet_stats && bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:brick_wall].first[:fan] %> is the brick wall">
+                        <div class="stat-emoji" aria-hidden="true">🧱</div>
+                        <div class="stat-label">Brick Wall</div>
+                        <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:shutout_king].first[:fan] %> is the shutout king">
+                        <div class="stat-emoji" aria-hidden="true">🚫</div>
+                        <div class="stat-label">Shutout King</div>
+                        <div class="stat-fan-name"><%= bet_stats[:shutout_king].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:shutout_king].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:longest_win_streak].first[:fan] %> is on fire">
+                        <div class="stat-emoji" aria-hidden="true">🔥</div>
+                        <div class="stat-label">On Fire</div>
+                        <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:momentum_master].first[:fan] %> is the momentum master">
+                        <div class="stat-emoji" aria-hidden="true">⚡</div>
+                        <div class="stat-label">Momentum Master</div>
+                        <div class="stat-fan-name"><%= bet_stats[:momentum_master].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:momentum_master].first[:display] %></div>
+                    </div>
+                <% end %>
+            </div>
+            
+            <!-- Special Achievements -->
+            <h3 class="section-heading">🎯 Special Achievements</h3>
+            <div class="stats-grid" role="region" aria-label="Special achievements">
+                <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:glass_cannon].first[:fan] %> is a glass cannon">
+                        <div class="stat-emoji" aria-hidden="true">💥</div>
+                        <div class="stat-label">Glass Cannon</div>
+                        <div class="stat-fan-name"><%= bet_stats[:glass_cannon].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:glass_cannon].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:comeback_kid].first[:fan] %> is the comeback kid">
+                        <div class="stat-emoji" aria-hidden="true">🎯</div>
+                        <div class="stat-label">Comeback Kid</div>
+                        <div class="stat-fan-name"><%= bet_stats[:comeback_kid].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:comeback_kid].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:overtimer].first[:fan] %> is the overtimer">
+                        <div class="stat-emoji" aria-hidden="true">⏱️</div>
+                        <div class="stat-label">Overtimer</div>
+                        <div class="stat-fan-name"><%= bet_stats[:overtimer].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:overtimer].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:point_scrounger].first[:fan] %> is the point scrounger">
+                        <div class="stat-emoji" aria-hidden="true">📌</div>
+                        <div class="stat-label">Point Scrounger</div>
+                        <div class="stat-fan-name"><%= bet_stats[:point_scrounger].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:point_scrounger].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
+                    <div class="stat-card-square" role="article" aria-label="Most losses to Sharks" style="background-color: rgba(0, 128, 128, 0.15);">
+                        <div class="stat-emoji" aria-hidden="true">🦈</div>
+                        <div class="stat-label">Sharks Victims</div>
+                        <div class="stat-fan-name"><%= bet_stats[:sharks_victims].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:sharks_victims].first[:display] %></div>
+                    </div>
+                <% end %>
+                
+                <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
+                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help" style="background-color: rgba(231, 76, 60, 0.1);">
+                        <div class="stat-emoji" aria-hidden="true">😢</div>
+                        <div class="stat-label">Needs Help</div>
+                        <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- Tab: Matchups -->
+        <div id="matchups-tab" class="tab-section" role="tabpanel" aria-label="Upcoming matchups">
+            <h2>Upcoming Battles</h2>
+            <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
+                <% bet_stats[:upcoming_fan_matchups].each do |matchup| %>
+                    <div class="matchup-card" role="article" aria-label="Matchup between <%= matchup[:away_fan] %> and <%= matchup[:home_fan] %>">
+                        <div class="matchup-teams">
+                            <div class="matchup-team">
+                                <% if matchup[:away_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
+                                         alt="<%= matchup[:away_team] %> logo" 
+                                         class="team-logo"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                                <% end %>
+                                <div class="matchup-team-name"><%= matchup[:away_team] %></div>
+                                <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
+                            </div>
+                            <div class="matchup-vs" aria-label="versus">VS</div>
+                            <div class="matchup-team">
+                                <% if matchup[:home_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
+                                         alt="<%= matchup[:home_team] %> logo" 
+                                         class="team-logo"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                                <% end %>
+                                <div class="matchup-team-name"><%= matchup[:home_team] %></div>
+                                <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
+                            </div>
+                        </div>
+                        <div class="matchup-details">
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">Record</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W</span>
+                            </div>
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">Points</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_points] %> vs <%= matchup[:home_points] %></span>
+                            </div>
+                            <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">Game Time</span>
+                                <span class="matchup-stat-value"><%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %></span>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="card">
+                    <p class="text-secondary">No upcoming fan matchups scheduled</p>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- Tab: Standings -->
+        <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Team standings">
+            <h2>Team Standings</h2>
+            <% teams.each_with_index do |team, index| %>
+                <% 
+                status = playoff_status_for(team)
+                status_info = PLAYOFF_STATUS[status]
+                team_abbrev = team['teamAbbrev']['default']
+                fan_name = manager_team_map[team_abbrev] || 'N/A'
+                next_game = next_games[team_abbrev]
+                next_game_utc = next_game ? next_game['startTimeUTC'] : 'TBD'
+                next_game_pacific = next_game_utc != 'TBD' ? convert_utc_to_pacific(next_game_utc) : 'TBD'
+                opponent_name = get_opponent_name(next_game, team_abbrev)
+                is_fan_team = fan_name != 'N/A'
+                
+                # Determine trend based on streak
+                streak_code = team['streakCode'] || ''
+                trend_class = streak_code.start_with?('W') ? 'trend-up' : (streak_code.start_with?('L') ? 'trend-down' : '')
+                trend_icon = streak_code.start_with?('W') ? '📈' : (streak_code.start_with?('L') ? '📉' : '➖')
+                %>
+                
+                <% next if !is_fan_team %>
+                
+                <div class="team-card" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
+                    <div class="team-card-main">
+                        <div class="team-card-left">
+                            <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
+                            <img src="<%= get_team_logo_url(team_abbrev) %>" 
+                                 alt="<%= team['teamName']['default'] %> logo" 
+                                 class="team-logo"
+                                 style="width: 40px; height: 40px; object-fit: contain; margin-right: 0.75rem;"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-logo-fallback" style="display:none; width: 40px; height: 40px; margin-right: 0.75rem; font-size: 0.7rem;"><%= team_abbrev %></div>
+                            <div class="team-info">
+                                <div class="team-name"><%= team['teamName']['default'] %></div>
+                                <div class="team-fan"><%= fan_name %></div>
+                                <span class="status-badge status-<%= status.to_s.gsub('_', '-') %>" role="status" aria-label="<%= status_info[:aria_label] %>">
+                                    <span aria-hidden="true"><%= status_info[:icon] %></span> <%= status_info[:label] %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="team-card-right">
+                            <div class="team-points">
+                                <div class="team-points-value"><%= team['points'] || 'N/A' %></div>
+                                <div class="team-points-label">PTS</div>
+                            </div>
+                            <div class="team-trend <%= trend_class %>" aria-hidden="true"><%= trend_icon %></div>
+                        </div>
+                    </div>
+                    <div class="team-card-details">
+                        <%
+                        # Get team-specific achievements and badges
+                        team_badges = []
+                        team_stats_list = []
+                        
+                        # Check if this team appears in any stat categories
+                        if bet_stats
+                            # Check for sharks victim
+                            if bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any?
+                                sharks_victim = bet_stats[:sharks_victims].find { |sv| sv[:team_abbrev] == team_abbrev }
+                                if sharks_victim
+                                    team_badges << { emoji: '🦈', label: 'Sharks Victim', value: sharks_victim[:display], color: 'rgba(0, 128, 128, 0.2)' }
+                                end
+                            end
+                            
+                            # Check for best cup odds
+                            if bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any?
+                                top_odds = bet_stats[:best_cup_odds].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if top_odds
+                                    team_badges << { emoji: '🏆', label: 'Cup Contender', value: top_odds[:display].split(' ').first, color: 'rgba(255, 215, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for longest win streak
+                            if bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any?
+                                streak = bet_stats[:longest_win_streak].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if streak
+                                    team_badges << { emoji: '🔥', label: 'Hot Streak', value: streak[:display], color: 'rgba(255, 69, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for brick wall (best defense)
+                            if bet_stats[:brick_wall] && bet_stats[:brick_wall].any?
+                                brick = bet_stats[:brick_wall].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if brick
+                                    team_badges << { emoji: '🧱', label: 'Brick Wall', value: brick[:display], color: 'rgba(100, 149, 237, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for glass cannon (high scoring but leaky defense)
+                            if bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any?
+                                cannon = bet_stats[:glass_cannon].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if cannon
+                                    team_badges << { emoji: '💥', label: 'Glass Cannon', value: cannon[:display], color: 'rgba(255, 140, 0, 0.15)' }
+                                end
+                            end
+                            
+                            # Check for shutout king
+                            if bet_stats[:shutout_king] && bet_stats[:shutout_king].any?
+                                shutout = bet_stats[:shutout_king].find { |stat| stat[:team_abbrev] == team_abbrev }
+                                if shutout
+                                    team_badges << { emoji: '🚫', label: 'Shutout King', value: shutout[:display], color: 'rgba(128, 128, 128, 0.15)' }
+                                end
+                            end
+                        end
+                        
+                        # Get head-to-head records vs other fans
+                        h2h_records = []
+                        if bet_stats && bet_stats[:head_to_head_matrix] && bet_stats[:head_to_head_matrix][team_abbrev]
+                            bet_stats[:head_to_head_matrix][team_abbrev].each do |opp_abbrev, record|
+                                opp_fan = manager_team_map[opp_abbrev]
+                                next if opp_fan.nil? || opp_fan == 'N/A'
+                                total_games = record[:wins] + record[:losses] + record[:ot_losses]
+                                next if total_games == 0
+                                
+                                h2h_records << {
+                                    opponent: opp_fan,
+                                    wins: record[:wins],
+                                    losses: record[:losses],
+                                    ot_losses: record[:ot_losses],
+                                    total: total_games
+                                }
+                            end
+                        end
+                        %>
+                        
+                        <% if team_badges.any? %>
+                        <div class="team-badges">
+                            <% team_badges.each do |badge| %>
+                                <div class="achievement-badge" style="background-color: <%= badge[:color] %>;">
+                                    <span class="badge-emoji"><%= badge[:emoji] %></span>
+                                    <span class="badge-label"><%= badge[:label] %></span>
+                                    <span class="badge-value"><%= badge[:value] %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% end %>
+                        
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Record</span>
+                                <span class="detail-value"><%= team['wins'] %>-<%= team['losses'] %>-<%= team['otLosses'] %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Point %</span>
+                                <span class="detail-value"><%= team['pointPctg'] ? '%.1f' % (team['pointPctg'] * 100) : 'N/A' %>%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Goals/Game</span>
+                                <span class="detail-value"><%= team['goalsForPctg'] || 'N/A' %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Goals Against</span>
+                                <span class="detail-value"><%= team['goalAgainst'] || 'N/A' %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Streak</span>
+                                <span class="detail-value"><%= team['streakCode'] || 'N/A' %></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Division</span>
+                                <span class="detail-value"><%= team['divisionName'] %> (<%= team['divisionSequence'] %>)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Conference</span>
+                                <span class="detail-value"><%= team['conferenceName'] %> (<%= team['conferenceSequence'] %>)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Next Game</span>
+                                <span class="detail-value"><%= format_game_time(next_game_pacific) %> vs <%= opponent_name %></span>
+                            </div>
+                        </div>
+                        
+                        <% if h2h_records.any? %>
+                        <div class="h2h-section">
+                            <h4 class="h2h-title">🎯 Head-to-Head vs Fans</h4>
+                            <div class="h2h-grid">
+                                <% h2h_records.sort_by { |r| -r[:wins] }.each do |h2h| %>
+                                    <div class="h2h-item">
+                                        <span class="h2h-opponent"><%= h2h[:opponent] %></span>
+                                        <span class="h2h-record <%= h2h[:wins] > (h2h[:losses] + h2h[:ot_losses]) ? 'winning' : 'losing' %>">
+                                            <%= h2h[:wins] %>-<%= h2h[:losses] %>-<%= h2h[:ot_losses] %>
+                                        </span>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- Tab: Trends (Chart) -->
+        <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
+            <div class="chart-container">
+                <h2>Fan League Standings Trend</h2>
+                <canvas id="leagueTrendChart" role="img" aria-label="Line chart showing fan league standings trend over time"></canvas>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Fixed Bottom Navigation (Mobile Only) -->
+    <nav class="bottom-nav" role="navigation" aria-label="Mobile navigation">
+        <button class="nav-item active" data-tab="league" aria-label="View League tab" aria-current="page">
+            <div class="nav-item-icon" aria-hidden="true">🏠</div>
+            <div class="nav-item-label">League</div>
+        </button>
+        <button class="nav-item" data-tab="matchups" aria-label="View Matchups tab">
+            <div class="nav-item-icon" aria-hidden="true">⚔️</div>
+            <div class="nav-item-label">Matchups</div>
+        </button>
+        <button class="nav-item" data-tab="standings" aria-label="View Standings tab">
+            <div class="nav-item-icon" aria-hidden="true">📊</div>
+            <div class="nav-item-label">Standings</div>
+        </button>
+        <button class="nav-item" data-tab="trends" aria-label="View Trends tab">
+            <div class="nav-item-icon" aria-hidden="true">📈</div>
+            <div class="nav-item-label">Trends</div>
+        </button>
+    </nav>
+
+    <!-- Original bet stats and table (hidden on mobile, shown on desktop as fallback) -->
+    <div class="old-table-view">
 
     <!-- Bet Stats Section -->
     <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
@@ -751,16 +1097,100 @@
             Toggle Extended Stats
         </button>
     </div>
+    </div>
+    <!-- End old table view -->
 
     <script>
-        document.getElementById('toggleButton').addEventListener('click', function () {
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab sections
+            document.querySelectorAll('.tab-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected tab section
+            const selectedTab = document.getElementById(tabName + '-tab');
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // Update nav item active states (mobile)
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                item.removeAttribute('aria-current');
+            });
+            document.querySelectorAll(`.nav-item[data-tab="${tabName}"]`).forEach(item => {
+                item.classList.add('active');
+                item.setAttribute('aria-current', 'page');
+            });
+            
+            // Update desktop tab active states
+            document.querySelectorAll('.desktop-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.removeAttribute('aria-current');
+            });
+            document.querySelectorAll(`.desktop-tab[data-tab="${tabName}"]`).forEach(tab => {
+                tab.classList.add('active');
+                tab.setAttribute('aria-current', 'page');
+            });
+            
+            // Load chart if switching to trends tab
+            if (tabName === 'trends' && !window.chartLoaded) {
+                loadStandingsTrendChart();
+            }
+        }
+        
+        // Add click event listeners to all nav items and tabs
+        document.querySelectorAll('.nav-item, .desktop-tab').forEach(item => {
+            item.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+            });
+            
+            // Add keyboard support (Enter and Space)
+            item.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const tabName = this.getAttribute('data-tab');
+                    switchTab(tabName);
+                }
+            });
+        });
+        
+        // Team card expand/collapse functionality with keyboard support
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+                // Update aria-expanded
+                const isExpanded = this.classList.contains('expanded');
+                this.setAttribute('aria-expanded', isExpanded);
+            });
+            
+            // Add keyboard support
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.classList.toggle('expanded');
+                    const isExpanded = this.classList.contains('expanded');
+                    this.setAttribute('aria-expanded', isExpanded);
+                }
+            });
+        });
+        
+        // Show desktop tabs on larger screens
+        if (window.innerWidth >= 768) {
+            document.querySelector('.desktop-tabs').style.display = 'flex';
+        }
+        
+        // Original toggle functions for old table view
+        document.getElementById('toggleButton')?.addEventListener('click', function () {
             var noFanRows = document.querySelectorAll('tr.no-fan-name');
             noFanRows.forEach(function (row) {
                 row.classList.toggle('hidden');
             });
         });
 
-        document.getElementById('toggleStatsButton').addEventListener('click', function () {
+        document.getElementById('toggleStatsButton')?.addEventListener('click', function () {
             var statColumns = document.querySelectorAll('.mobile-hidden');
             statColumns.forEach(function (column) {
                 column.style.display = (column.style.display === 'none') ? 'table-cell' : 'none';
@@ -769,6 +1199,8 @@
 
         // Fan League Standings Trend Chart
         async function loadStandingsTrendChart() {
+            if (window.chartLoaded) return; // Prevent double loading
+            
             try {
                 // Fetch standings history and fan team colors
                 const [historyResponse, colorsResponse] = await Promise.all([
@@ -781,6 +1213,10 @@
                 
                 if (!history || history.length === 0) {
                     console.log('No standings history data available yet');
+                    const canvas = document.getElementById('leagueTrendChart');
+                    if (canvas && canvas.parentElement) {
+                        canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">No trend data available yet. Check back after a few days of tracking.</p>';
+                    }
                     return;
                 }
                 
@@ -831,12 +1267,18 @@
                                     padding: 10,
                                     font: {
                                         size: 11
-                                    }
+                                    },
+                                    color: '#8da1b9' // Match secondary text color
                                 }
                             },
                             tooltip: {
                                 mode: 'index',
                                 intersect: false,
+                                backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                                titleColor: '#ffffff',
+                                bodyColor: '#8da1b9',
+                                borderColor: '#2a3a52',
+                                borderWidth: 1,
                                 callbacks: {
                                     title: function(context) {
                                         return 'Date: ' + context[0].label;
@@ -851,19 +1293,31 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Date'
+                                    text: 'Date',
+                                    color: '#8da1b9'
                                 },
                                 ticks: {
                                     maxRotation: 45,
-                                    minRotation: 45
+                                    minRotation: 45,
+                                    color: '#8da1b9'
+                                },
+                                grid: {
+                                    color: 'rgba(42, 58, 82, 0.5)'
                                 }
                             },
                             y: {
                                 title: {
                                     display: true,
-                                    text: 'Points'
+                                    text: 'Points',
+                                    color: '#8da1b9'
                                 },
-                                beginAtZero: true
+                                ticks: {
+                                    color: '#8da1b9'
+                                },
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(42, 58, 82, 0.5)'
+                                }
                             }
                         },
                         interaction: {
@@ -874,17 +1328,19 @@
                     }
                 });
                 
+                window.chartLoaded = true;
+                
             } catch (error) {
                 console.error('Error loading standings trend chart:', error);
+                const canvas = document.getElementById('leagueTrendChart');
+                if (canvas && canvas.parentElement) {
+                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Unable to load trend chart. Please try again later.</p>';
+                }
             }
         }
         
-        // Load the chart when the page is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadStandingsTrendChart);
-        } else {
-            loadStandingsTrendChart();
-        }
+        // Don't load chart on page load - only when trends tab is clicked
+        // Chart will be loaded by switchTab function
     </script>
 </body>
 </html>
