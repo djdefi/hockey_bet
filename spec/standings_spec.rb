@@ -350,12 +350,8 @@ RSpec.describe 'NHL Standings Table' do
         expect(Dir.exist?('/tmp/subdir')).to be true
         expect(File.exist?(output_path)).to be true
         
-        # Cleanup
-        File.delete(output_path)
-        File.delete('/tmp/subdir/standings_history.json') if File.exist?('/tmp/subdir/standings_history.json')
-        File.delete('/tmp/subdir/fan_team_colors.json') if File.exist?('/tmp/subdir/fan_team_colors.json')
-        FileUtils.rm_rf('/tmp/subdir/vendor') if Dir.exist?('/tmp/subdir/vendor')
-        Dir.rmdir('/tmp/subdir')
+        # Cleanup - use rm_rf to remove directory and all contents
+        FileUtils.rm_rf('/tmp/subdir')
       end
 
       it 'writes HTML content to file' do

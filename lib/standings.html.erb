@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NHL Fan League</title>
+    <title>NHL Standings</title>
     <link rel='stylesheet' href='styles.css'>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
@@ -339,6 +339,23 @@
         <!-- Tab: Standings -->
         <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Team standings">
             <h2>Team Standings</h2>
+            
+            <!-- Legend for playoff status indicators -->
+            <div class="playoff-status-legend" role="region" aria-label="Playoff status legend">
+                <span class="status-item">
+                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:clinched][:aria_label] %>"><%= PLAYOFF_STATUS[:clinched][:icon] %></span>
+                    <%= PLAYOFF_STATUS[:clinched][:label] %>
+                </span>
+                <span class="status-item">
+                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:contending][:aria_label] %>"><%= PLAYOFF_STATUS[:contending][:icon] %></span>
+                    <%= PLAYOFF_STATUS[:contending][:label] %>
+                </span>
+                <span class="status-item">
+                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:eliminated][:aria_label] %>"><%= PLAYOFF_STATUS[:eliminated][:icon] %></span>
+                    <%= PLAYOFF_STATUS[:eliminated][:label] %>
+                </span>
+            </div>
+            
             <% teams.each_with_index do |team, index| %>
                 <% 
                 status = playoff_status_for(team)
