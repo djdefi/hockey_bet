@@ -314,3 +314,27 @@ def get_team_logo_url(team_abbrev)
   return '' if team_abbrev.nil? || team_abbrev == 'N/A'
   "https://assets.nhle.com/logos/nhl/svg/#{team_abbrev}_light.svg"
 end
+
+def get_fan_achievement(fan, bet_stats)
+  # Priority order of achievements (most impressive first)
+  checks = [
+    { key: :best_cup_odds, emoji: '🏆', label: 'Cup Contender' },
+    { key: :fan_crusher, emoji: '💪', label: 'Fan Crusher' },
+    { key: :most_dominant, emoji: '👑', label: 'Most Dominant' },
+    { key: :on_fire, emoji: '🔥', label: 'On Fire' },
+    { key: :brick_wall, emoji: '🧱', label: 'Brick Wall' },
+    { key: :top_winners, emoji: '🥇', label: 'Top Winner' },
+    { key: :shutout_king, emoji: '🚫', label: 'Shutout King' },
+    { key: :glass_cannon, emoji: '💥', label: 'Glass Cannon' },
+    { key: :comeback_kid, emoji: '🎯', label: 'Comeback Kid' },
+    { key: :overtimer, emoji: '⏱️', label: 'Overtimer' }
+  ]
+  
+  checks.each do |check|
+    stat = bet_stats[check[:key]]
+    if stat && stat.any? && stat.first[:fan] == fan
+      return { emoji: check[:emoji], label: check[:label], value: stat.first[:display] }
+    end
+  end
+  nil
+end

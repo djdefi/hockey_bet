@@ -67,6 +67,31 @@
             <div class="featured-matchup" role="region" aria-label="Featured upcoming matchup">
                 <h3 class="section-heading">⚡ Featured Matchup</h3>
                 <% matchup = bet_stats[:upcoming_fan_matchups].first %>
+                <% 
+                away_achievement = get_fan_achievement(matchup[:away_fan], bet_stats)
+                home_achievement = get_fan_achievement(matchup[:home_fan], bet_stats)
+                
+                # Format game time
+                game_time_formatted = ''
+                if matchup[:game_time]
+                  begin
+                    game_time = Time.parse(matchup[:game_time])
+                    game_time_pst = game_time.getlocal('-08:00')
+                    game_time_formatted = game_time_pst.strftime("%a %b %-d • %-I:%M %p PT")
+                  rescue
+                    game_time_formatted = 'TBD'
+                  end
+                end
+                %>
+                
+                <!-- Game Time Header -->
+                <% if game_time_formatted && !game_time_formatted.empty? %>
+                <div class="featured-matchup-time">
+                    <span class="time-icon">📅</span>
+                    <span class="time-text"><%= game_time_formatted %></span>
+                </div>
+                <% end %>
+                
                 <div class="featured-matchup-card">
                     <div class="featured-team">
                         <% if matchup[:away_abbrev] %>
@@ -78,7 +103,14 @@
                         <% end %>
                         <div class="featured-team-info">
                             <div class="featured-fan-name"><%= matchup[:away_fan] %></div>
-                            <div class="featured-record"><%= matchup[:away_wins] %>W</div>
+                            <div class="featured-team-name"><%= matchup[:away_team] %></div>
+                            <div class="featured-record"><%= matchup[:away_wins] %>W - <%= matchup[:away_points] %>pts</div>
+                            <% if away_achievement %>
+                            <div class="featured-achievement">
+                                <span class="achievement-emoji"><%= away_achievement[:emoji] %></span>
+                                <span class="achievement-label"><%= away_achievement[:label] %></span>
+                            </div>
+                            <% end %>
                         </div>
                     </div>
                     <div class="featured-vs">VS</div>
@@ -92,7 +124,14 @@
                         <% end %>
                         <div class="featured-team-info">
                             <div class="featured-fan-name"><%= matchup[:home_fan] %></div>
-                            <div class="featured-record"><%= matchup[:home_wins] %>W</div>
+                            <div class="featured-team-name"><%= matchup[:home_team] %></div>
+                            <div class="featured-record"><%= matchup[:home_wins] %>W - <%= matchup[:home_points] %>pts</div>
+                            <% if home_achievement %>
+                            <div class="featured-achievement">
+                                <span class="achievement-emoji"><%= home_achievement[:emoji] %></span>
+                                <span class="achievement-label"><%= home_achievement[:label] %></span>
+                            </div>
+                            <% end %>
                         </div>
                     </div>
                 </div>
