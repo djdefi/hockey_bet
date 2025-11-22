@@ -1245,7 +1245,8 @@
                 const fanNames = Object.keys(latestStandings).sort();
                 
                 // Detect mobile for responsive styling
-                const isMobileDevice = window.innerWidth < 768;
+                const MOBILE_BREAKPOINT = 768;
+                const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
                 
                 // Create datasets for each fan
                 const datasets = fanNames.map(fanName => {
@@ -1257,17 +1258,16 @@
                         data: data,
                         borderColor: color,
                         backgroundColor: color + '33', // Add transparency
-                        borderWidth: isMobileDevice ? 1.5 : 2,
+                        borderWidth: isMobile ? 1.5 : 2,
                         tension: 0.1,
-                        pointRadius: isMobileDevice ? 2 : 3,
-                        pointHoverRadius: isMobileDevice ? 4 : 5,
-                        pointHitRadius: isMobileDevice ? 10 : 8
+                        pointRadius: isMobile ? 2 : 3,
+                        pointHoverRadius: isMobile ? 4 : 5,
+                        pointHitRadius: isMobile ? 10 : 8
                     };
                 });
                 
                 // Create the chart with mobile-responsive configuration
                 const ctx = document.getElementById('leagueTrendChart').getContext('2d');
-                const isMobile = window.innerWidth < 768;
                 
                 new Chart(ctx, {
                     type: 'line',
@@ -1316,7 +1316,8 @@
                                         return 'Date: ' + context[0].label;
                                     },
                                     label: function(context) {
-                                        return context.dataset.label + ': ' + context.parsed.y + ' pts';
+                                        const suffix = isMobile ? ' pts' : ' points';
+                                        return context.dataset.label + ': ' + context.parsed.y + suffix;
                                     }
                                 }
                             }
