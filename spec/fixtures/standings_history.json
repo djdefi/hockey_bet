@@ -16,5 +16,14 @@
       "Charlie": 100,
       "Dave": 86
     }
+  },
+  {
+    "date": "2025-11-22",
+    "standings": {
+      "Alice": 106,
+      "Bob": 93,
+      "Charlie": 100,
+      "Dave": 86
+    }
   }
 ]

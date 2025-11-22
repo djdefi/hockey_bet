@@ -360,6 +360,35 @@ RSpec.describe 'NHL Standings Table' do
         expect(File.exist?(@temp_output)).to be true
         expect(File.read(@temp_output)).to eq('HTML content')
       end
+
+      it 'copies styles.css to output directory' do
+        processor.render_output(@temp_output)
+        
+        output_dir = File.dirname(@temp_output)
+        styles_path = File.join(output_dir, 'styles.css')
+        
+        expect(File.exist?(styles_path)).to be true
+        # Verify it's the actual CSS file, not empty (should be ~18KB)
+        min_expected_css_size = 1000  # bytes - actual file is much larger
+        expect(File.size(styles_path)).to be > min_expected_css_size
+        
+        # Cleanup
+        File.delete(styles_path) if File.exist?(styles_path)
+      end
+
+      it 'copies vendor assets to output directory' do
+        processor.render_output(@temp_output)
+        
+        output_dir = File.dirname(@temp_output)
+        vendor_dir = File.join(output_dir, 'vendor')
+        
+        expect(Dir.exist?(vendor_dir)).to be true
+        expect(File.exist?(File.join(vendor_dir, 'chart.umd.js'))).to be true
+        expect(File.exist?(File.join(vendor_dir, 'primer.css'))).to be true
+        
+        # Cleanup
+        FileUtils.rm_rf(vendor_dir) if Dir.exist?(vendor_dir)
+      end
     end
 
     describe '#map_managers_to_teams' do
