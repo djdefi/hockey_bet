@@ -1237,6 +1237,27 @@
                     return;
                 }
                 
+                // Check if we have enough data points to show meaningful trends
+                if (history.length === 1) {
+                    console.log('Only one data point available - need more days for trend visualization');
+                    const canvas = document.getElementById('leagueTrendChart');
+                    if (canvas && canvas.parentElement) {
+                        const date = history[0].date;
+                        canvas.parentElement.innerHTML = `
+                            <div style="text-align: center; padding: 2rem;">
+                                <p class="text-secondary" style="margin-bottom: 1rem;">
+                                    <strong>Trend tracking started on ${date}</strong>
+                                </p>
+                                <p class="text-secondary" style="font-size: 0.9rem;">
+                                    Trends will appear once data from multiple days is collected.<br>
+                                    Check back tomorrow to see the standings trend chart!
+                                </p>
+                            </div>
+                        `;
+                    }
+                    return;
+                }
+                
                 // Prepare data for Chart.js
                 const dates = history.map(entry => entry.date);
                 
