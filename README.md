@@ -101,8 +101,11 @@ The preview environment system ensures that:
 
 **Context:** This is a **private 13-person fan league**, not a public product. The roadmap focuses on keeping these specific fans engaged throughout the season.
 
+**Infrastructure:** All features work with existing GitHub Pages + Actions. **No replatforming or external services required.** See [INFRASTRUCTURE.md](./INFRASTRUCTURE.md) for details.
+
 Want to see what's next? Check out our improvement roadmap:
 
+- **[INFRASTRUCTURE.md](./INFRASTRUCTURE.md)** - **Infrastructure Q&A:** No replatforming needed, all features use existing GitHub setup
 - **[ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md)** - Target audience, methodology, and projection rationale
 - **[ROADMAP.md](./ROADMAP.md)** - Comprehensive roadmap with detailed implementation guides
 - **[ROADMAP_EXECUTIVE_SUMMARY.md](./ROADMAP_EXECUTIVE_SUMMARY.md)** - TL;DR version with 90-day action plan
