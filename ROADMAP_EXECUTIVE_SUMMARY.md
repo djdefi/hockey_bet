@@ -269,4 +269,17 @@ You've got this! 🚀🏒
 
 ---
 
+## 📊 Track Your Progress
+
+Use **[ROADMAP_TRACKING.md](ROADMAP_TRACKING.md)** to track implementation progress:
+- Check off tasks as you complete them
+- Update status indicators (🔴 Not Started → 🟡 In Progress → 🟢 Completed)
+- Record branch names and PR links
+- Track metrics before and after each feature
+- Monitor overall progress with the summary table
+
+**Keep it updated to maintain visibility and celebrate wins!**
+
+---
+
 *For detailed implementation guides, see the full [ROADMAP.md](ROADMAP.md)*

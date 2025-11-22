@@ -575,6 +575,19 @@ This roadmap should be reviewed and updated:
 
 ---
 
+## 📊 Implementation Tracking
+
+As features are implemented, track progress in **[ROADMAP_TRACKING.md](./ROADMAP_TRACKING.md)**. This document provides:
+- Checkboxes for each feature and subtask
+- Status indicators (Not Started, In Progress, Completed)
+- Branch and PR links
+- Metrics tracking (baseline and results)
+- Completion dates
+
+**Update the tracking document as you work to maintain visibility on progress.**
+
+---
+
 ## 💬 Feedback & Contributions
 
 This roadmap is a living document. Suggestions welcome!

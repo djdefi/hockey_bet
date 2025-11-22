@@ -103,13 +103,14 @@ Want to see what's next? Check out our improvement roadmap:
 
 - **[ROADMAP.md](./ROADMAP.md)** - Comprehensive roadmap with detailed implementation guides
 - **[ROADMAP_EXECUTIVE_SUMMARY.md](./ROADMAP_EXECUTIVE_SUMMARY.md)** - TL;DR version with 90-day action plan
+- **[ROADMAP_TRACKING.md](./ROADMAP_TRACKING.md)** - Track implementation progress as features are completed
 
 **Quick Overview:**
 - 🔥 **P0 Priority:** Game predictions, enhanced charts, real-time updates
 - ⭐ **P1 Priority:** Push notifications, player stats, league chat  
 - 📌 **P2 Priority:** Advanced analytics, historical views, PWA enhancements
 
-See the roadmap for ROI analysis, implementation guides, and success metrics.
+See the roadmap for ROI analysis, implementation guides, and success metrics. Use the tracking document to monitor progress.
 
 ## License
 
