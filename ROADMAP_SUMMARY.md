@@ -338,13 +338,21 @@ README.md
   │     ├─► Testing Checklist
   │     └─► Troubleshooting
   │
-  └─► ROADMAP_TRACKING.md ◄── TRACK PROGRESS HERE
+  ├─► ROADMAP_TRACKING.md ◄── TRACK PROGRESS HERE
+  │     │
+  │     ├─► Task Checklists
+  │     ├─► Status Indicators
+  │     ├─► Branch/PR Links
+  │     ├─► Metrics Tracking
+  │     └─► Completion Dates
+  │
+  └─► TASKS.md ◄── AI AGENTS START HERE
         │
-        ├─► Task Checklists
-        ├─► Status Indicators
-        ├─► Branch/PR Links
-        ├─► Metrics Tracking
-        └─► Completion Dates
+        ├─► 45+ Bite-Sized Tasks (1-4 hours)
+        ├─► Acceptance Criteria
+        ├─► File Locations
+        ├─► Dependency Chains
+        └─► Ready-to-Pick-Up Work
 ```
 
 ---
