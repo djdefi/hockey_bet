@@ -368,8 +368,9 @@ RSpec.describe 'NHL Standings Table' do
         styles_path = File.join(output_dir, 'styles.css')
         
         expect(File.exist?(styles_path)).to be true
-        # Verify it's the actual CSS file, not empty
-        expect(File.size(styles_path)).to be > 1000
+        # Verify it's the actual CSS file, not empty (should be ~18KB)
+        min_expected_css_size = 1000  # bytes - actual file is much larger
+        expect(File.size(styles_path)).to be > min_expected_css_size
         
         # Cleanup
         File.delete(styles_path) if File.exist?(styles_path)

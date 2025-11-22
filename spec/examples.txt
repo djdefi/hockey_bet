@@ -198,7 +198,7 @@ example_id                                      | status | run_time        |
 ./spec/standings_spec.rb[1:9:3:1]               | passed | 1.01 seconds    |
 ./spec/standings_spec.rb[1:9:4:1]               | passed | 0.0026 seconds  |
 ./spec/standings_spec.rb[1:9:4:2]               | passed | 0.00158 seconds |
-./spec/standings_spec.rb[1:9:4:3]               | passed | 0.00205 seconds |
+./spec/standings_spec.rb[1:9:4:3]               | passed | 0.00702 seconds |
 ./spec/standings_spec.rb[1:9:4:4]               | passed | 0.00255 seconds |
 ./spec/standings_spec.rb[1:9:5:1]               | passed | 0.00162 seconds |
 ./spec/standings_spec.rb[1:9:5:2]               | passed | 0.00141 seconds |
