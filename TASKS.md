@@ -68,7 +68,8 @@ These tasks unblock everything else. **Start here.**
 
 **[CRITICAL] Create PredictionTracker Class** 🔴
 - **Why Critical:** Blocks entire prediction voting system
-- **Impact:** Enables +300% DAU through daily engagement
+- **Impact:** Enables ~2-3x DAU through daily engagement
+- **NO AUTHENTICATION:** Uses 13 hardcoded fan names (dropdown selection, honor system)
 - **Description:** Create Ruby class to manage prediction storage and retrieval
 - **Files:** `lib/prediction_tracker.rb`, `spec/prediction_tracker_spec.rb`
 - **Acceptance Criteria:**
@@ -76,6 +77,7 @@ These tasks unblock everything else. **Start here.**
   - `get_predictions(game_id)` returns all predictions for a game
   - `get_fan_predictions(fan_name)` returns all predictions by a fan
   - Stores in `data/predictions.json` with proper structure
+  - **No user IDs or authentication** - just fan names from dropdown
   - Tests pass with 100% coverage
   - Handles edge cases (duplicate predictions, invalid data)
 - **Dependencies:** None
@@ -174,15 +176,19 @@ These directly contribute to engagement metrics. **Do these after Critical Path.
 
 **[Predictions] Add Voting UI to Featured Matchup** 🟡
 - **Impact:** VERY HIGH - Core engagement mechanic
-- **Description:** Add vote buttons to the featured matchup card
+- **NO SIGNUP REQUIRED:** Dropdown with 13 hardcoded fan names
+- **Description:** Add vote form to the featured matchup card
 - **Files:** `lib/standings.html.erb`, `lib/styles.css`
 - **Acceptance Criteria:**
-  - Two vote buttons (one per team)
+  - Dropdown with 13 fan names (Brian D., David K., etc.)
+  - Two team buttons to pick winner
+  - Simple form submission (no authentication)
   - Buttons disabled after voting (localStorage)
   - Vote count shows total votes per team
   - Voting deadline shown (e.g., "Vote closes at 7:00 PM")
   - Mobile responsive
   - Accessible (ARIA labels, keyboard nav)
+  - **Honor system** - no password verification needed
 - **Dependencies:** PredictionTracker created
 - **Status:** Ready
 - **Estimated Impact:** Creates daily habit of visiting site

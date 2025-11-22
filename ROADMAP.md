@@ -8,6 +8,8 @@ This roadmap outlines high-value improvements prioritized by impact and implemen
 
 **Important:** This roadmap is designed for a **private 13-person fan league**, not a public product. Success is measured by keeping these specific fans engaged throughout the season.
 
+**Critical Constraint:** **NO user registration, accounts, or authentication.** All features use the 13 hardcoded fan names with honor system (dropdown selection). See [INFRASTRUCTURE.md](./INFRASTRUCTURE.md) for details.
+
 ---
 
 ## 🎯 Executive Summary
@@ -17,11 +19,12 @@ The Hockey Bet project is a well-built NHL fantasy league tracker with strong fu
 - ✅ Automated data updates via GitHub Actions
 - ✅ Responsive, accessible UI
 - ✅ Real-time NHL API integration
+- ✅ **No replatforming needed** - All features work with existing GitHub Pages + Actions
 
 **Target Audience:** Private league of 13 specific fans (not a public product)
 
 **Key Opportunities:**
-1. **User Engagement** - Add interactive betting/prediction features
+1. **User Engagement** - Add interactive betting/prediction features (no signup required)
 2. **Data Insights** - Deeper analytics and visualizations
 3. **Social Features** - League communication and competition
 4. **Mobile Experience** - Enhanced PWA capabilities
@@ -58,27 +61,50 @@ The Hockey Bet project is a well-built NHL fantasy league tracker with strong fu
 - See prediction accuracy stats
 - View league-wide prediction trends
 
+**Critical:** **NO user registration or authentication needed**
+- Dropdown shows 13 hardcoded fan names (Brian D., David K., etc.)
+- User picks their name → selects winner → submits
+- Honor system for small private group
+- Same trust model Sleeper uses
+
 **Implementation:**
 ```ruby
 # lib/prediction_tracker.rb
 class PredictionTracker
   # Store predictions in data/predictions.json
-  # Track accuracy per fan
+  # Track accuracy per fan (identified by name in dropdown)
   # Update after games complete
+  # No authentication - honor system
 end
+```
+
+**How Voting UI Works:**
+```html
+<!-- Simple form, no login -->
+<select name="fan_name">
+  <option>Brian D.</option>
+  <option>David K.</option>
+  <!-- ... all 13 fans ... -->
+</select>
+<select name="winner">
+  <option>Sharks</option>
+  <option>Predators</option>
+</select>
+<button>Submit Prediction</button>
 ```
 
 **Files to Create:**
 - `lib/prediction_tracker.rb` - Core prediction logic
 - `lib/prediction_processor.rb` - Process game results
 - `spec/prediction_tracker_spec.rb` - Tests
-- Update `lib/standings.html.erb` - Add voting UI
+- Update `lib/standings.html.erb` - Add voting UI (no auth)
 - Update GitHub Action to process predictions
 
 **Value:**
-- Increases user engagement 10x
+- Increases user engagement ~2-3x
 - Creates reason to visit multiple times per day
 - Adds competitive element beyond team performance
+- Zero friction (no signup) = higher adoption
 
 **Effort:** Medium (2-3 weeks)
 - Backend: 40 hours

@@ -5,6 +5,22 @@
 
 ---
 
+## 🚫 NO USER REGISTRATION OR ACCOUNTS NEEDED
+
+**The #1 constraint:** Nobody is going to sign up or register for anything.
+
+**How it works instead:**
+- All 13 fan names are **hardcoded** in the site (already there)
+- Predictions use a **dropdown with 13 names** (Brian D., David K., etc.)
+- User picks their name → makes prediction → submits
+- **No passwords, no login, no authentication, no signup**
+- Honor system works for 13 people who all know each other
+- Same trust model Sleeper uses for private leagues
+
+**This is fundamental to the design.** Every feature works without any user accounts.
+
+---
+
 ## ✅ No Replatforming Required
 
 **Good news:** All P0 features can be implemented using the **existing GitHub Pages + GitHub Actions** infrastructure. No cloud databases, external services, or replatforming needed.
@@ -54,27 +70,32 @@ GitHub Actions (every 3h)
 
 **Storage:** New `data/predictions.json` file (same pattern as standings_history.json)
 
+**❌ NO USER ACCOUNTS OR REGISTRATION NEEDED**
+- No signup, no login, no authentication required
+- Uses fan names from existing `data/fans.json` (13 hardcoded people)
+- Simple dropdown: "Pick your fan name → Select winner → Submit"
+- Zero friction for the 13 people who already use the site
+
 **Implementation:**
 - Ruby classes store predictions in JSON files
 - GitHub Actions process predictions every hour
 - UI reads/writes via localStorage and JSON files
 - No database needed
 
-**How Voting Works:**
-1. User votes in browser → stored in localStorage (temporary)
-2. GitHub Action runs → reads votes from localStorage backups or form submissions
-3. Ruby script writes to `data/predictions.json`
-4. Commits to repo
-5. GitHub Pages serves updated predictions
+**How Voting Works (No Registration):**
+1. User opens page → sees dropdown of 13 fan names (Brian D., David K., etc.)
+2. Selects their name + prediction → clicks submit
+3. JavaScript writes to `data/predictions.json` via simple form
+4. GitHub Action commits the change
+5. Prediction appears on leaderboard immediately
 
-**Alternative (Simpler):**
-Use GitHub Issues API for vote storage:
-- Each game = one GitHub Issue
-- Votes = comments on that issue
-- Free, no database, no external service
-- GitHub provides the API for free
+**Why No Authentication:**
+- 13 people who all know each other (private league)
+- Honor system works for small groups
+- Same pattern as Sleeper uses for private leagues
+- If someone cheats, everyone will know (group accountability)
 
-**Cost:** $0 (uses existing infrastructure or GitHub Issues)
+**Cost:** $0 (uses existing infrastructure)
 
 ---
 
@@ -222,12 +243,22 @@ end
 ❌ Cloud hosting (AWS, Azure, GCP)  
 ❌ External APIs (paid services)  
 ❌ Replatforming  
+❌ **User accounts, registration, or authentication** ← NO SIGNUP REQUIRED
 
 ### What You DO Need (Already Have):
 ✅ GitHub Pages (free, already using)  
 ✅ GitHub Actions (free tier sufficient)  
 ✅ JSON file storage (already working)  
 ✅ NHL API (free, already using)  
+✅ **13 hardcoded fan names** (already in the site)
+
+### How Authentication Works:
+**It doesn't.** Honor system for 13 people who know each other.
+- Dropdown shows 13 fan names (Brian D., David K., etc.)
+- User picks their name and makes prediction
+- No passwords, no signup, no login
+- Same trust model Sleeper uses for private leagues
+- Group accountability prevents cheating (everyone knows everyone)
 
 ### Optional (Free):
 - GitHub Issues API (for predictions storage)
