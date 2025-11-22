@@ -944,8 +944,18 @@ h3 {
 
 @media (max-width: 767px) {
     .chart-container {
-        min-height: 300px;
-        padding: 1rem;
+        min-height: 500px;
+        padding: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .chart-container h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .chart-container canvas {
+        max-height: 450px;
     }
 }
 
