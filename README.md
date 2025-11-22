@@ -49,6 +49,11 @@ The simplest way to deploy is using GitHub Pages:
 2. Enable GitHub Pages on your repository
 3. Set the build directory to `_site`
 
+**Note:** The `_site/` directory is gitignored, but specific files required for deployment must be force-added with `git add -f`. If you add new static assets (CSS, JS, images) that need to be deployed, make sure to:
+- Copy them to `_site/` via the build script
+- Force-add them: `git add -f _site/your-file.css`
+- Commit and push them
+
 ## Configuration
 
 ### Fan Team Mapping
