@@ -5927,6 +5927,7 @@
                 const fanNames = Object.keys(latestStandings).sort();
                 
                 // Detect mobile for responsive styling
+                // Note: Uses < 768px to match CSS media query @media (max-width: 767px)
                 const MOBILE_BREAKPOINT = 768;
                 const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
                 
