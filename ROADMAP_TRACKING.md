@@ -2,7 +2,7 @@
 
 > **Purpose:** Track progress on roadmap features as they are implemented  
 > **Last Updated:** November 22, 2025  
-> **AI Agent Tasks:** See [TASKS.md](./TASKS.md) for bite-sized tasks (1-4 hours each)
+> **AI Agent Tasks:** See [TASKS.md](./TASKS.md) for **HIGH-IMPACT FOCUS** - 17 critical/P0 tasks only
 
 This document tracks the implementation status of features from the [ROADMAP.md](./ROADMAP.md).
 

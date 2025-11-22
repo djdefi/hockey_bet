@@ -1,675 +1,465 @@
-# AI Agent Task Backlog
+# AI Agent Task Backlog - HIGH IMPACT FOCUS
 
-> **Purpose:** Bite-sized tasks that AI agents can pick up and complete independently  
-> **Last Updated:** November 22, 2025
+> **Purpose:** High-impact tasks that AI agents can pick up to deliver maximum value  
+> **Last Updated:** November 22, 2025  
+> **Focus:** P0 features that drive 3x DAU, 5x engagement during games
 
-This document breaks down roadmap features into small, independent tasks that can be completed by AI agents in 1-4 hours each.
+This document focuses on **high-impact tasks** that directly contribute to the roadmap's success metrics.
+
+---
+
+## 🎯 Impact-Driven Prioritization
+
+### What Makes a Task High Impact?
+✅ **Directly increases engagement** (DAU, time on site, return rate)  
+✅ **Enables P0 features** (predictions, real-time, enhanced charts)  
+✅ **Creates user retention** (notifications, daily habits)  
+✅ **Provides competitive advantage** (unique features)
+
+### What We're De-prioritizing
+❌ **Nice-to-have polish** without measurable impact  
+❌ **Developer convenience** that doesn't affect users  
+❌ **Features users didn't ask for**  
+❌ **Incremental improvements** to existing features
 
 ---
 
 ## 📋 How to Use This Document
 
 ### For AI Agents
-1. **Pick a task** from the "Ready" section
-2. **Update status** to "In Progress" with your name
-3. **Complete the task** following the acceptance criteria
-4. **Move to "Done"** when merged to main
-5. **Update ROADMAP_TRACKING.md** to check off the parent task
+1. **Start with CRITICAL PATH** tasks - these unlock everything else
+2. **Pick P0 High-Impact tasks** - directly drive engagement metrics
+3. **Avoid "Maybe Later" section** unless P0 work is blocked
+4. **Update status** and **move to "Done"** when complete
 
 ### Task Sizing
-- 🟢 **Small (1-2 hours)** - Single file changes, CSS updates, simple logic
-- 🟡 **Medium (2-4 hours)** - Multiple file changes, new components, moderate complexity
-- 🔴 **Large (4+ hours)** - Should be broken down further
-
-### Task Format
-```markdown
-**[Feature Name] - Task Title** 🟢
-- **Description:** What needs to be done
-- **Files:** Which files to modify
-- **Acceptance Criteria:** How to verify it's complete
-- **Dependencies:** What must be done first (if any)
-- **Status:** Ready / In Progress / Done
-```
+- 🔴 **Critical (2-4 hours)** - Blocks other high-impact work
+- 🟡 **High Impact (2-4 hours)** - Directly drives metrics
+- 🟢 **Supporting (1-2 hours)** - Enables high-impact work
 
 ---
 
-## 🚀 Quick Wins (< 2 hours each)
+## 🔥 CRITICAL PATH - Do These First
 
-### ✅ Ready to Start
+These tasks unblock everything else. **Start here.**
 
-**[UI] Add Search/Filter Bar** 🟢
-- **Description:** Add a search bar to filter teams/fans in the standings table
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Search box appears above standings table
-  - Filters teams by name or fan name as user types
-  - Works on mobile (responsive)
-  - No JavaScript errors in console
-- **Dependencies:** None
-- **Status:** Ready
+### Enhanced Charts Foundation
 
-**[UI] Add Keyboard Shortcuts** 🟢
-- **Description:** Implement keyboard shortcuts for navigation (? for help, t for trends, etc.)
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Press `?` to show keyboard shortcuts modal
-  - Press `l` to go to League tab
-  - Press `m` to go to Matchups tab
-  - Press `s` to go to Standings tab
-  - Press `t` to go to Trends tab
-  - Press `Esc` to close modals
-  - Works without conflicting with browser shortcuts
-- **Dependencies:** None
-- **Status:** Ready
-
-**[UI] Improve Loading States** 🟢
-- **Description:** Add skeleton screens for loading charts and data
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Skeleton screens show while data loads
-  - Smooth transition from skeleton to content
-  - Matches site's design aesthetic
-  - Works for all tabs
-- **Dependencies:** None
-- **Status:** Ready
-
-**[UI] Add Print Stylesheet** 🟢
-- **Description:** Create print-friendly version of standings
-- **Files:** `lib/styles.css`
-- **Acceptance Criteria:**
-  - Print layout is clean and readable
-  - Hides navigation and decorative elements
-  - Fits on standard letter/A4 paper
-  - Shows all important standings info
-  - Test with Chrome and Firefox print preview
-- **Dependencies:** None
-- **Status:** Ready
-
-**[Meta] Add Social Share Cards** 🟢
-- **Description:** Add Open Graph and Twitter Card meta tags for better link previews
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - og:title, og:description, og:image tags added
-  - twitter:card, twitter:title, twitter:description tags added
-  - Use favicon or create simple og:image
-  - Test with Facebook Debugger and Twitter Card Validator
-- **Dependencies:** None
-- **Status:** Ready
-
-**[UI] Add Mobile Bottom Navigation** 🟢
-- **Description:** Add a fixed bottom nav bar for mobile devices (< 768px)
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Bottom nav shows on mobile only
-  - Icons for League, Matchups, Standings, Trends
-  - Active tab highlighted
-  - Doesn't overlap content
-  - Smooth transitions
-- **Dependencies:** None
-- **Status:** Ready
-
-**[Data] Add Color-Coded Streaks** 🟢
-- **Description:** Color code win/loss streaks in standings (green for W, red for L)
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - W streaks show in green
-  - L streaks show in red
-  - OT streaks show in orange
-  - Maintains accessibility (WCAG AA contrast)
-  - Works in dark mode
-- **Dependencies:** None
-- **Status:** Ready
-
----
-
-## 📈 P0 Feature: Enhanced Trend Charts
-
-### ✅ Ready to Start
-
-**[Charts] Enhance StandingsHistoryTracker to Store Additional Stats** 🟡
-- **Description:** Modify tracker to store W/L/OTL, goals for/against, games played
+**[CRITICAL] Enhance StandingsHistoryTracker to Store Additional Stats** 🔴
+- **Why Critical:** Blocks all 4 new chart visualizations
+- **Impact:** Enables +30% time on site through better data viz
+- **Description:** Modify tracker to store W/L/OTL, goals for/against, games played in `details` object
 - **Files:** `lib/standings_history_tracker.rb`, `spec/standings_history_tracker_spec.rb`
 - **Acceptance Criteria:**
-  - `standings_history.json` includes new fields in `details` object
-  - Existing functionality still works
-  - Tests pass
+  - `standings_history.json` includes new fields: `wins`, `losses`, `ot_losses`, `goals_for`, `goals_against`, `goal_diff`, `games_played`
   - Backward compatible (handles old data format)
-  - Run `ruby update_standings.rb` to verify
+  - All tests pass
+  - Run `ruby update_standings.rb` successfully
 - **Dependencies:** None
 - **Status:** Ready
-
-**[Charts] Add Win/Loss Distribution Chart** 🟡
-- **Description:** Create stacked bar chart showing W/L/OTL for each fan
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Chart displays in Trends tab
-  - Uses Chart.js with stacked bars
-  - Shows Wins (green), Losses (red), OT Losses (orange)
-  - Responsive on mobile
-  - Has loading and error states
-  - Matches site color scheme
-- **Dependencies:** Enhanced StandingsHistoryTracker
-- **Status:** Ready
-
-**[Charts] Add Goal Differential Trend Chart** 🟡
-- **Description:** Create line chart showing goal differential over time per fan
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Chart displays in Trends tab
-  - Uses Chart.js line chart
-  - One line per fan (team colors)
-  - X-axis: dates, Y-axis: goal differential
-  - Tooltips show date and value
-  - Responsive on mobile
-- **Dependencies:** Enhanced StandingsHistoryTracker
-- **Status:** Ready
-
-**[Charts] Add Points Per Game Efficiency Chart** 🟡
-- **Description:** Create line chart showing points earned per game over time
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Chart displays in Trends tab
-  - Shows points/game efficiency metric
-  - One line per fan
-  - Highlights most efficient teams
-  - Responsive on mobile
-- **Dependencies:** Enhanced StandingsHistoryTracker
-- **Status:** Ready
-
-**[Charts] Add Division Rankings Over Time Chart** 🟡
-- **Description:** Create animated line chart showing division rank changes
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Chart displays in Trends tab
-  - Shows division rank (1st, 2nd, 3rd, etc.)
-  - Y-axis inverted (1st place at top)
-  - One line per fan
-  - Responsive on mobile
-- **Dependencies:** Enhanced StandingsHistoryTracker (with division rank)
-- **Status:** Ready
-
-**[Charts] Add Chart Export Functionality** 🟢
-- **Description:** Add "Export as PNG" button to each chart
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Button appears on each chart
-  - Clicking downloads chart as PNG image
-  - Filename includes chart name and date
-  - Works in Chrome, Firefox, Safari
-- **Dependencies:** At least one new chart implemented
-- **Status:** Ready
+- **Estimated Value:** Unlocks 4 charts = 6-8 hours of additional work
 
 ---
 
-## 🎯 P0 Feature: Game Predictions System
+### Game Predictions Foundation
 
-### ✅ Ready to Start
-
-**[Predictions] Create PredictionTracker Class** 🟡
+**[CRITICAL] Create PredictionTracker Class** 🔴
+- **Why Critical:** Blocks entire prediction voting system
+- **Impact:** Enables +300% DAU through daily engagement
 - **Description:** Create Ruby class to manage prediction storage and retrieval
 - **Files:** `lib/prediction_tracker.rb`, `spec/prediction_tracker_spec.rb`
 - **Acceptance Criteria:**
   - `store_prediction(fan_name, game_id, predicted_winner)` method
-  - `get_predictions(game_id)` method
-  - `calculate_accuracy(fan_name)` method
-  - Stores in `data/predictions.json`
+  - `get_predictions(game_id)` returns all predictions for a game
+  - `get_fan_predictions(fan_name)` returns all predictions by a fan
+  - Stores in `data/predictions.json` with proper structure
   - Tests pass with 100% coverage
   - Handles edge cases (duplicate predictions, invalid data)
 - **Dependencies:** None
 - **Status:** Ready
+- **Estimated Value:** Unlocks voting UI + leaderboard = 4-6 hours of work
 
-**[Predictions] Create PredictionProcessor Class** 🟡
+**[CRITICAL] Create PredictionProcessor Class** 🔴
+- **Why Critical:** Needed to calculate accuracy and complete prediction loop
+- **Impact:** Enables prediction leaderboards and gamification
 - **Description:** Create class to process game results and update prediction accuracy
 - **Files:** `lib/prediction_processor.rb`, `spec/prediction_processor_spec.rb`
 - **Acceptance Criteria:**
-  - `process_completed_game(game_id, winner)` method
-  - Updates prediction records with correct/incorrect
-  - Calculates running accuracy percentages
+  - `process_completed_game(game_id, winner)` updates predictions
+  - `calculate_accuracy(fan_name)` returns correct/total and percentage
+  - `get_leaderboard()` returns fans sorted by accuracy
   - Tests pass with 100% coverage
-  - Handles games with no predictions
+  - Handles games with no predictions gracefully
 - **Dependencies:** PredictionTracker created
 - **Status:** Ready
-
-**[Predictions] Add Voting UI to Featured Matchup** 🟡
-- **Description:** Add vote buttons to the featured matchup card
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Two vote buttons (one per team) appear
-  - Buttons disabled after voting
-  - Vote count shows total votes per team
-  - Voting deadline shown (e.g., "Vote before 7:00 PM")
-  - Mobile responsive
-  - Accessible (ARIA labels, keyboard navigation)
-- **Dependencies:** PredictionTracker created
-- **Status:** Ready
-
-**[Predictions] Create Prediction Leaderboard** 🟢
-- **Description:** Add a leaderboard showing prediction accuracy for all fans
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Displays in League tab or new Predictions tab
-  - Shows fan name, total predictions, correct predictions, accuracy %
-  - Sorted by accuracy (ties broken by total predictions)
-  - Shows badges for top predictors
-  - Updates after each game
-- **Dependencies:** PredictionProcessor created
-- **Status:** Ready
-
-**[Predictions] Add GitHub Action for Prediction Processing** 🟡
-- **Description:** Create workflow to process predictions after games complete
-- **Files:** `.github/workflows/process-predictions.yml`
-- **Acceptance Criteria:**
-  - Runs every hour during season
-  - Fetches completed games from NHL API
-  - Processes predictions via PredictionProcessor
-  - Updates predictions.json
-  - Commits changes back to repo
-  - Handles API errors gracefully
-- **Dependencies:** PredictionProcessor created
-- **Status:** Ready
+- **Estimated Value:** Completes prediction feature = high engagement driver
 
 ---
 
-## ⚡ P0 Feature: Real-Time Score Updates
+### Real-Time Updates Foundation
 
-### ✅ Ready to Start
-
-**[Live] Create LiveGameTracker Class** 🟡
+**[CRITICAL] Create LiveGameTracker Class** 🔴
+- **Why Critical:** Blocks entire real-time feature
+- **Impact:** Enables +500% engagement during games
 - **Description:** Create Ruby class to fetch live game data from NHL API
 - **Files:** `lib/live_game_tracker.rb`, `spec/live_game_tracker_spec.rb`
 - **Acceptance Criteria:**
-  - `fetch_live_games()` method returns active games
-  - `get_game_state(game_id)` returns current score, period, time
-  - Handles NHL API rate limits
+  - `fetch_live_games()` returns currently active games
+  - `get_game_state(game_id)` returns score, period, time remaining
+  - Handles NHL API rate limits properly
+  - Caches data appropriately
   - Tests pass with mocked API responses
   - Error handling for API failures
 - **Dependencies:** None
 - **Status:** Ready
+- **Estimated Value:** Unlocks live scores + real-time standings = game-changing feature
+
+---
+
+## ⭐ P0 HIGH-IMPACT TASKS
+
+These directly contribute to engagement metrics. **Do these after Critical Path.**
+
+### Enhanced Charts (Goal: +30% time on site)
+
+**[Charts] Add Goal Differential Trend Chart** 🟡
+- **Impact:** HIGH - Shows competitive positioning over time
+- **Description:** Create line chart showing goal differential over time per fan
+- **Files:** `lib/standings.html.erb`
+- **Acceptance Criteria:**
+  - Displays in Trends tab below existing chart
+  - One line per fan using team colors
+  - X-axis: dates, Y-axis: goal differential
+  - Tooltips show date and exact value
+  - Responsive on mobile
+  - Loading and error states
+- **Dependencies:** Enhanced StandingsHistoryTracker
+- **Status:** Ready
+- **Estimated Impact:** Most-requested data visualization
+
+**[Charts] Add Win/Loss Distribution Chart** 🟡
+- **Impact:** HIGH - Instant visual of team performance
+- **Description:** Create stacked bar chart showing W/L/OTL for each fan
+- **Files:** `lib/standings.html.erb`, `lib/styles.css`
+- **Acceptance Criteria:**
+  - Displays in Trends tab
+  - Stacked bars: Wins (green), Losses (red), OT Losses (orange)
+  - Sorted by total points (like standings)
+  - Responsive on mobile
+  - Matches site color scheme
+- **Dependencies:** Enhanced StandingsHistoryTracker
+- **Status:** Ready
+- **Estimated Impact:** Quick visual comparison of performance
+
+**[Charts] Add Division Rankings Over Time Chart** 🟡
+- **Impact:** MEDIUM - Shows playoff race dynamics
+- **Description:** Create line chart showing division rank changes over season
+- **Files:** `lib/standings.html.erb`
+- **Acceptance Criteria:**
+  - Shows division rank (1st, 2nd, 3rd, etc.)
+  - Y-axis inverted (1st place at top visually)
+  - One line per fan
+  - Highlights playoff cutoff line
+  - Responsive on mobile
+- **Dependencies:** Enhanced StandingsHistoryTracker + division rank tracking
+- **Status:** Ready
+- **Estimated Impact:** Playoff race excitement
+
+---
+
+### Game Predictions (Goal: +300% DAU)
+
+**[Predictions] Add Voting UI to Featured Matchup** 🟡
+- **Impact:** VERY HIGH - Core engagement mechanic
+- **Description:** Add vote buttons to the featured matchup card
+- **Files:** `lib/standings.html.erb`, `lib/styles.css`
+- **Acceptance Criteria:**
+  - Two vote buttons (one per team)
+  - Buttons disabled after voting (localStorage)
+  - Vote count shows total votes per team
+  - Voting deadline shown (e.g., "Vote closes at 7:00 PM")
+  - Mobile responsive
+  - Accessible (ARIA labels, keyboard nav)
+- **Dependencies:** PredictionTracker created
+- **Status:** Ready
+- **Estimated Impact:** Creates daily habit of visiting site
+
+**[Predictions] Create Prediction Leaderboard** 🟡
+- **Impact:** HIGH - Competitive element drives engagement
+- **Description:** Add leaderboard showing prediction accuracy for all fans
+- **Files:** `lib/standings.html.erb`, `lib/styles.css`
+- **Acceptance Criteria:**
+  - Shows in League tab or new section
+  - Columns: Fan name, predictions made, correct, accuracy %
+  - Sorted by accuracy (ties broken by total predictions)
+  - Shows badges for top predictors (🥇🥈🥉)
+  - Updates after each game
+  - Mobile responsive
+- **Dependencies:** PredictionProcessor created
+- **Status:** Ready
+- **Estimated Impact:** Gamification increases return visits
+
+**[Predictions] Add Prediction Reminders** 🟢
+- **Impact:** MEDIUM - Increases prediction participation
+- **Description:** Show prominent reminder to vote on games starting soon
+- **Files:** `lib/standings.html.erb`, `lib/styles.css`
+- **Acceptance Criteria:**
+  - Alert banner when games start in < 2 hours
+  - Shows which matchups need predictions
+  - Dismissible but reappears for new games
+  - Mobile responsive
+- **Dependencies:** PredictionTracker, game schedule data
+- **Status:** Ready
+- **Estimated Impact:** Increases daily active predictions
+
+---
+
+### Real-Time Updates (Goal: +500% engagement during games)
 
 **[Live] Add JavaScript Live Score Polling** 🟡
+- **Impact:** VERY HIGH - Real-time engagement during games
 - **Description:** Add JavaScript to poll for live scores every 60 seconds
 - **Files:** `lib/standings.html.erb`
 - **Acceptance Criteria:**
   - Fetches `live_games.json` every 60 seconds
-  - Only polls during game windows (e.g., 4 PM - 11 PM PT)
-  - Updates scores on page without reload
-  - Stops polling when no games active
+  - Only polls during game windows (4 PM - 11 PM PT)
+  - Updates scores without page reload
+  - Stops when no games active
   - Handles fetch errors gracefully
-  - No memory leaks (proper cleanup)
-- **Dependencies:** LiveGameTracker created, live_games.json endpoint
+  - No memory leaks (proper cleanup on page unload)
+- **Dependencies:** LiveGameTracker, live_games.json endpoint
 - **Status:** Ready
+- **Estimated Impact:** Makes site essential during games
 
 **[Live] Add Live Game Indicators** 🟢
-- **Description:** Add visual 🔴 LIVE indicators to games in progress
+- **Impact:** HIGH - Visual excitement during games
+- **Description:** Add visual 🔴 LIVE indicators to active games
 - **Files:** `lib/standings.html.erb`, `lib/styles.css`
 - **Acceptance Criteria:**
-  - Red "🔴 LIVE" badge shows for active games
-  - Appears in matchups tab and standings
-  - Pulsing animation for attention
+  - Red "🔴 LIVE" badge on active games
+  - Appears in matchups and standings
+  - Pulsing animation
   - Shows current score and period
   - Mobile responsive
-- **Dependencies:** Live score polling implemented
+- **Dependencies:** Live score polling
 - **Status:** Ready
-
-**[Live] Create Live Games JSON Endpoint** 🟢
-- **Description:** Add script to generate live_games.json for JavaScript to consume
-- **Files:** `update_standings.rb` or new script
-- **Acceptance Criteria:**
-  - Generates `_site/live_games.json`
-  - Contains current scores, period, time remaining
-  - Updates every time update script runs
-  - Small file size (< 10KB)
-  - Valid JSON format
-- **Dependencies:** LiveGameTracker created
-- **Status:** Ready
+- **Estimated Impact:** Creates urgency and excitement
 
 **[Live] Add Real-Time Standings Updates** 🟡
+- **Impact:** VERY HIGH - Points change as games end
 - **Description:** Update standings points in real-time as games complete
 - **Files:** `lib/standings.html.erb`
 - **Acceptance Criteria:**
   - When game ends, points update immediately
-  - Smooth animation for point changes
-  - Fan rankings update if needed
-  - Works with JavaScript polling
-  - No full page reload required
-- **Dependencies:** Live score polling, standings recalculation logic
+  - Smooth animation for changes
+  - Rankings recalculate if needed
+  - Highlight changed values briefly
+  - No full page reload
+- **Dependencies:** Live score polling, standings calculation
+- **Status:** Ready
+- **Estimated Impact:** Creates "can't look away" experience
+
+**[Live] Create Live Games JSON Endpoint** 🟢
+- **Impact:** HIGH - Enables all live features
+- **Description:** Generate live_games.json for JavaScript consumption
+- **Files:** New script or `update_standings.rb`
+- **Acceptance Criteria:**
+  - Generates `_site/live_games.json`
+  - Contains: game_id, teams, scores, period, time, status
+  - Updates when script runs
+  - File size < 10KB
+  - Valid JSON format
+- **Dependencies:** LiveGameTracker created
+- **Status:** Ready
+- **Estimated Impact:** Foundation for real-time features
+
+---
+
+## 💡 SUPPORTING TASKS (Enable High-Impact Work)
+
+These support P0 features but aren't directly user-facing.
+
+**[Backend] Add GitHub Action for Prediction Processing** 🟡
+- **Impact:** Enables automated prediction accuracy
+- **Description:** Workflow to process predictions after games
+- **Files:** `.github/workflows/process-predictions.yml`
+- **Acceptance Criteria:**
+  - Runs hourly during season
+  - Processes completed games
+  - Updates predictions.json
+  - Commits changes back
+  - Error handling
+- **Dependencies:** PredictionProcessor
+- **Status:** Ready
+
+**[Data] Enhance Bet Stats Calculator for Predictions** 🟢
+- **Impact:** Powers prediction accuracy calculations
+- **Description:** Extend existing stats to include prediction metrics
+- **Files:** `lib/bet_stats_calculator.rb`
+- **Acceptance Criteria:**
+  - Calculates prediction streaks
+  - Tracks accuracy by team
+  - Handles edge cases
+  - Tests pass
+- **Dependencies:** PredictionTracker
 - **Status:** Ready
 
 ---
 
-## 🔔 P1 Feature: Push Notifications
+## 📌 MAYBE LATER (Low Priority)
 
-### ✅ Ready to Start
+These are lower impact. **Only do if P0 work is complete or blocked.**
 
-**[Notifications] Implement Service Worker** 🟡
-- **Description:** Create service worker for push notification support
-- **Files:** `_site/sw.js` (new), `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Service worker registers successfully
-  - Handles push events
-  - Shows notifications with proper content
-  - Works offline (basic caching)
-  - Tests in Chrome and Firefox
-- **Dependencies:** None
-- **Status:** Ready
+<details>
+<summary>Click to expand low-priority tasks (not recommended for AI agents)</summary>
 
-**[Notifications] Add Web Push API Integration** 🔴
-- **Description:** Integrate Web Push API for sending notifications
-- **Files:** Multiple (backend service, subscription management)
-- **Acceptance Criteria:**
-  - User can subscribe to notifications
-  - Subscription stored securely
-  - Can send test notification
-  - Unsubscribe works
-  - Complies with browser permissions
-- **Dependencies:** Service worker implemented
-- **Status:** Ready (Large - consider breaking down)
+### UI Polish (No measured impact)
 
-**[Notifications] Create Notification Preferences Page** 🟡
-- **Description:** Add UI for users to manage notification preferences
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Page accessible from settings/menu
-  - Checkboxes for each notification type
-  - Game start reminders (1 hour before)
-  - Game results
-  - Position changes
-  - Prediction reminders
-  - Save preferences to localStorage
-  - Mobile responsive
-- **Dependencies:** None (can be built independently)
-- **Status:** Ready
+**[UI] Add Search/Filter Bar** 🟢
+- Impact: LOW - Users already have Ctrl+F
+- Could do if: All P0 tasks complete
 
----
+**[UI] Add Keyboard Shortcuts** 🟢
+- Impact: LOW - Few users will discover/use
+- Could do if: All P0 tasks complete
 
-## 🏒 P1 Feature: Player Statistics
+**[UI] Add Print Stylesheet** 🟢
+- Impact: VERY LOW - Minimal user request
+- Could do if: All P0 tasks complete
 
-### ✅ Ready to Start
+**[Meta] Add Social Share Cards** 🟢
+- Impact: LOW unless site goes viral
+- Could do if: Building viral sharing feature
 
-**[Players] Create PlayerStatsTracker Class** 🟡
-- **Description:** Create class to fetch and store player statistics
-- **Files:** `lib/player_stats_tracker.rb`, `spec/player_stats_tracker_spec.rb`
-- **Acceptance Criteria:**
-  - `fetch_roster(team_id)` returns team roster
-  - `fetch_player_stats(player_id)` returns stats
-  - `get_team_leaders(team_id)` returns top 3 players
-  - Caches data to avoid repeated API calls
-  - Tests pass with mocked responses
-- **Dependencies:** None
-- **Status:** Ready
+**[UI] Add Mobile Bottom Navigation** 🟢
+- Impact: LOW - Existing nav works fine
+- Could do if: Mobile usage data shows problem
 
-**[Players] Add Player Stats Modal** 🟡
-- **Description:** Create modal to show player stats when team card is clicked
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Modal opens when "View Players" clicked
-  - Shows top 3-5 players with stats
-  - Goals, assists, points, +/-
-  - Close button and ESC key work
-  - Mobile responsive
-  - Accessible (ARIA, focus management)
-- **Dependencies:** PlayerStatsTracker created
-- **Status:** Ready
+**[Data] Add Color-Coded Streaks** 🟢
+- Impact: LOW - Incremental polish
+- Could do if: All P0 tasks complete
 
-**[Players] Add Top Performers Section** 🟢
-- **Description:** Add section showing league-wide top performers
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Shows top 5 goal scorers
-  - Shows top 5 point leaders
-  - Links to team/fan
-  - Updates daily
-  - Mobile responsive
-- **Dependencies:** PlayerStatsTracker created
-- **Status:** Ready
-
----
-
-## 📊 P2 Feature: Advanced Analytics
-
-### ✅ Ready to Start
-
-**[Analytics] Create Power Rankings Algorithm** 🔴
-- **Description:** Implement algorithm to calculate power rankings beyond just points
-- **Files:** `lib/power_rankings.rb`, `spec/power_rankings_spec.rb`
-- **Acceptance Criteria:**
-  - Considers recent form (last 10 games)
-  - Weights wins against strong opponents
-  - Accounts for goal differential
-  - Returns ranked list with scores
-  - Tests verify algorithm correctness
-- **Dependencies:** Historical stats data
-- **Status:** Ready (Large - consider breaking down)
-
-**[Analytics] Add Strength of Schedule Display** 🟡
-- **Description:** Calculate and display remaining schedule difficulty
-- **Files:** `lib/standings.html.erb`, existing analytics classes
-- **Acceptance Criteria:**
-  - Shows difficulty rating (easy/medium/hard)
-  - Considers opponent strength
-  - Shows next 5 games with difficulty
-  - Updates daily
-  - Visual indicators (colors, icons)
-- **Dependencies:** Power rankings or team strength metrics
-- **Status:** Ready
-
-**[Analytics] Create Playoff Probability Calculator** 🔴
-- **Description:** Calculate odds of making playoffs for each team
-- **Files:** `lib/playoff_probability.rb`, `spec/playoff_probability_spec.rb`
-- **Acceptance Criteria:**
-  - Runs Monte Carlo simulations
-  - Considers remaining schedule
-  - Returns probability percentage
-  - Updates daily
-  - Shows trend over time
-- **Dependencies:** Historical data, schedule
-- **Status:** Ready (Large - consider breaking down)
-
----
-
-## 💡 Documentation & Polish Tasks
-
-### ✅ Ready to Start
+### Documentation (Developer-focused)
 
 **[Docs] Add Inline Code Comments** 🟢
-- **Description:** Add JSDoc-style comments to all JavaScript functions
-- **Files:** `lib/standings.html.erb`
-- **Acceptance Criteria:**
-  - Every function has description comment
-  - Parameters documented
-  - Return values documented
-  - Example usage where helpful
-- **Dependencies:** None
-- **Status:** Ready
+- Impact: NONE on users
+- Could do if: Onboarding new developers
 
 **[Docs] Create Architecture Diagram** 🟢
-- **Description:** Create visual diagram of system architecture
-- **Files:** `ARCHITECTURE.md` (new)
-- **Acceptance Criteria:**
-  - Shows data flow (NHL API → Ruby → JSON → Browser)
-  - Shows GitHub Actions workflows
-  - Shows file structure
-  - Uses Mermaid or ASCII art
-  - Includes explanation of each component
-- **Dependencies:** None
-- **Status:** Ready
+- Impact: NONE on users
+- Could do if: Documentation project underway
+
+### Nice-to-Have Features
+
+**[Charts] Add Points Per Game Efficiency Chart** 🟡
+- Impact: LOW - Incremental chart
+- Could do if: Users request it after other charts
+
+**[Charts] Add Chart Export Functionality** 🟢
+- Impact: LOW - No user request for this
+- Could do if: Users specifically ask
 
 **[Polish] Improve Error Messages** 🟢
-- **Description:** Add user-friendly error messages throughout the site
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Replace generic "Error loading data" with specific messages
-  - Add retry buttons where appropriate
-  - Show helpful troubleshooting tips
-  - Error states are visually clear
-  - Accessible (screen reader friendly)
-- **Dependencies:** None
-- **Status:** Ready
+- Impact: LOW - Site rarely errors
+- Could do if: Error rate is high
 
 **[Polish] Add Animation and Transitions** 🟢
-- **Description:** Add smooth transitions and micro-animations throughout
-- **Files:** `lib/styles.css`
-- **Acceptance Criteria:**
-  - Tab switches have smooth transitions
-  - Card expansions animate smoothly
-  - Hover states have subtle effects
-  - Loading spinners are smooth
-  - No janky animations (60fps target)
-  - Respects prefers-reduced-motion
-- **Dependencies:** None
-- **Status:** Ready
+- Impact: LOW - Polish, not engagement
+- Could do if: All P0 complete
 
-**[A11y] Accessibility Audit and Fixes** 🟡
-- **Description:** Run accessibility audit and fix all WCAG AA issues
-- **Files:** `lib/standings.html.erb`, `lib/styles.css`
-- **Acceptance Criteria:**
-  - Run axe or Lighthouse accessibility scan
-  - Fix all critical and serious issues
-  - Add missing ARIA labels
-  - Improve keyboard navigation
-  - Ensure color contrast meets WCAG AA
-  - Test with screen reader
-- **Dependencies:** None
-- **Status:** Ready
+**[A11y] Accessibility Audit** 🟡
+- Impact: MEDIUM - Important but not urgent
+- Could do if: Legal requirement or user request
+
+</details>
 
 ---
 
-## 🔄 Continuous Tasks (Can Always Be Done)
+## 🎯 Recommended Execution Order
 
-**[Tests] Add More Test Coverage** 🟢
-- **Description:** Increase test coverage for existing code
-- **Files:** `spec/*_spec.rb`
-- **Acceptance Criteria:**
-  - Pick any file with < 90% coverage
-  - Add tests for uncovered branches
-  - Tests are meaningful (not just coverage)
-  - All tests pass
-- **Dependencies:** None
-- **Status:** Always Ready
+### Week 1-2: Critical Path
+Focus exclusively on unblocking high-impact work:
+1. ✅ Enhance StandingsHistoryTracker (unlocks charts)
+2. ✅ Create PredictionTracker (unlocks voting)
+3. ✅ Create LiveGameTracker (unlocks real-time)
 
-**[Refactor] Code Quality Improvements** 🟢
-- **Description:** Refactor any code that has technical debt
-- **Files:** Any Ruby files in `lib/`
-- **Acceptance Criteria:**
-  - Identify code smell or duplication
-  - Refactor to improve readability/maintainability
-  - Add tests if missing
-  - All existing tests still pass
-  - Rubocop violations fixed
-- **Dependencies:** None
-- **Status:** Always Ready
+**Outcome:** All P0 features unblocked
 
-**[Performance] Performance Optimization** 🟡
-- **Description:** Optimize slow parts of the application
-- **Files:** Various
-- **Acceptance Criteria:**
-  - Identify performance bottleneck
-  - Implement optimization
-  - Measure improvement (before/after)
-  - Document the change
-  - All functionality still works
-- **Dependencies:** None
-- **Status:** Always Ready
+### Week 3-4: High-Impact Features
+Build features that drive metrics:
+1. ✅ Goal Differential Chart
+2. ✅ Win/Loss Distribution Chart
+3. ✅ Voting UI
+4. ✅ Live Score Polling
+5. ✅ Live Indicators
+
+**Outcome:** Users see immediate value
+
+### Week 5-6: Complete P0
+Finish the engagement loops:
+1. ✅ PredictionProcessor
+2. ✅ Prediction Leaderboard
+3. ✅ Real-Time Standings Updates
+4. ✅ Live Games JSON Endpoint
+
+**Outcome:** All P0 features live, metrics tracking begins
+
+### Week 7+: Measure & Iterate
+- Track actual engagement metrics
+- Gather user feedback
+- Decide on P1 features based on data
+- **Do NOT** work on "Maybe Later" tasks without data justification
 
 ---
 
-## 📌 Dependency Chain Visualization
+## 📊 Success Metrics
 
-```
-Enhanced Charts:
-  └─► Enhance StandingsHistoryTracker (do first)
-      ├─► Win/Loss Chart
-      ├─► Goal Diff Chart
-      ├─► PPG Chart
-      └─► Division Rank Chart
-          └─► Chart Export Feature
+### Track These After P0 Completion
 
-Predictions:
-  ├─► PredictionTracker Class (do first)
-  │   ├─► PredictionProcessor Class
-  │   │   └─► GitHub Action
-  │   └─► Voting UI
-  └─► Prediction Leaderboard
+**Baseline (Before):**
+- Daily Active Users: _Record_
+- Time on Site: _Record_
+- Time During Games: _Record_
+- Return Rate: _Record_
 
-Real-Time:
-  ├─► LiveGameTracker Class (do first)
-  │   └─► Live Games JSON Endpoint
-  ├─► JavaScript Polling
-  │   ├─► Live Indicators
-  │   └─► Real-Time Updates
+**Target (After 90 days):**
+- Daily Active Users: 3x baseline
+- Time on Site: +30% increase
+- Time During Games: 5x baseline
+- Return Rate: 2x baseline
 
-Push Notifications:
-  └─► Service Worker (do first)
-      └─► Web Push Integration
-          └─► Preferences Page (can be parallel)
-
-Player Stats:
-  └─► PlayerStatsTracker Class (do first)
-      ├─► Player Modal
-      └─► Top Performers Section
-```
+**How to Measure:**
+- Google Analytics or similar
+- Track before/after each feature
+- User surveys for qualitative feedback
 
 ---
 
-## 🎯 Recommended Order for AI Agents
+## 💡 Key Principles
 
-### Phase 1: Quick Wins (Week 1)
-Start with any task marked 🟢 from "Quick Wins" - these are independent and provide immediate value.
+### For AI Agents
+1. **Always ask "What's the impact?"** - If you can't measure it, don't build it
+2. **Critical Path first** - Unblock other work before building features
+3. **User value over developer convenience** - Polish doesn't drive engagement
+4. **Validate with data** - Real metrics, not assumptions
+5. **When in doubt, ask** - Get clarity on impact before building
 
-### Phase 2: Enhanced Charts Foundation (Week 2)
-1. Enhance StandingsHistoryTracker
-2. Win/Loss Distribution Chart
-3. Goal Differential Chart
-4. Other charts in parallel
-
-### Phase 3: Predictions System (Weeks 3-4)
-1. PredictionTracker Class
-2. PredictionProcessor Class
-3. Voting UI
-4. Leaderboard
-5. GitHub Action
-
-### Phase 4: Real-Time Updates (Weeks 5-6)
-1. LiveGameTracker Class
-2. Live Games JSON Endpoint
-3. JavaScript Polling
-4. Live Indicators
-5. Real-Time Standings Updates
-
-### Phase 5: Continue with P1/P2 Features
-Follow dependency chains shown above.
+### For Project Managers
+1. **Protect against scope creep** - Say no to low-impact work
+2. **Measure everything** - Data drives decisions
+3. **User feedback trumps assumptions** - Listen to actual users
+4. **Kill "nice-to-haves"** - Focus wins every time
 
 ---
 
-## 💡 Tips for AI Agents
+**Current Stats:**
+- Critical Path Tasks: 3 (must do first)
+- P0 High-Impact Tasks: 12 (drive metrics)
+- Supporting Tasks: 2 (enable P0)
+- Maybe Later Tasks: 13 (low priority)
 
-1. **Always check dependencies first** - Don't start a task if its dependencies aren't complete
-2. **Update status immediately** - Mark "In Progress" when you start
-3. **Write tests first** - For backend tasks, write tests before implementation
-4. **Test on mobile** - Most users are on phones, always test responsive design
-5. **Run linters** - Fix Rubocop violations before committing
-6. **Keep PRs small** - One task per PR makes review easier
-7. **Update tracking docs** - Check off items in ROADMAP_TRACKING.md when done
-8. **Document as you go** - Add comments and update docs
-9. **Consider accessibility** - Always think about keyboard users and screen readers
-10. **Celebrate wins** - Move to "Done" and be proud of your work! 🎉
+**Focus:** 17 tasks that matter. Ignore the rest unless data says otherwise.
 
 ---
 
-## 📊 Backlog Stats
-
-**Total Tasks:** 45+  
-**Quick Wins:** 7  
-**P0 Tasks:** 16  
-**P1 Tasks:** 7  
-**P2 Tasks:** 3  
-**Polish/Docs:** 6  
-**Continuous:** 3+  
-
-**Average Task Size:** 2-3 hours  
-**Ready to Start:** All tasks with no dependencies  
-**Blocked:** None currently  
-
----
-
-*Keep this document updated as tasks are completed. Add new bite-sized tasks as features are broken down further.*
+*Last updated: November 22, 2025 - Refocused on high-impact work only*
