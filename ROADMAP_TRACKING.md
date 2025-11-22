@@ -1,8 +1,9 @@
 # Roadmap Implementation Tracking
 
 > **Purpose:** Track progress on roadmap features as they are implemented  
-> **Last Updated:** November 22, 2025  
-> **AI Agent Tasks:** See [TASKS.md](./TASKS.md) for **HIGH-IMPACT FOCUS** - 17 critical/P0 tasks only
+> **Last Updated:** November 2025  
+> **AI Agent Tasks:** See [TASKS.md](./TASKS.md) for **HIGH-IMPACT FOCUS** - 17 critical/P0 tasks only  
+> **Context:** See [ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md) for target audience and methodology
 
 This document tracks the implementation status of features from the [ROADMAP.md](./ROADMAP.md).
 
@@ -27,7 +28,7 @@ This document tracks the implementation status of features from the [ROADMAP.md]
 **Status:** 🔴 Not Started  
 **Priority:** P0  
 **Effort:** Low (1-2 weeks)  
-**Expected Impact:** +30% time on site
+**Expected Impact:** ~20-30% time on site (estimated based on similar private league apps)
 
 **Implementation Guide:** [GETTING_STARTED_ENHANCED_CHARTS.md](./GETTING_STARTED_ENHANCED_CHARTS.md)
 
@@ -52,7 +53,7 @@ This document tracks the implementation status of features from the [ROADMAP.md]
 **Status:** 🔴 Not Started  
 **Priority:** P0  
 **Effort:** Medium (2-3 weeks)  
-**Expected Impact:** +300% daily active users
+**Expected Impact:** ~2-3x daily active users (estimated 8-10 of 13 fans engaging daily)
 
 **Tasks:**
 - [ ] Create `lib/prediction_tracker.rb`
@@ -75,7 +76,7 @@ This document tracks the implementation status of features from the [ROADMAP.md]
 **Status:** 🔴 Not Started  
 **Priority:** P0  
 **Effort:** Medium (2-3 weeks)  
-**Expected Impact:** +500% engagement during games
+**Expected Impact:** ~4-5x engagement during games (estimated based on live sports app benchmarks)
 
 **Tasks:**
 - [ ] Create `lib/live_game_tracker.rb`
@@ -354,21 +355,25 @@ These are small improvements that can be done quickly:
 
 ## 📈 Metrics Tracking
 
+**Important:** This is a 13-person private league. Metrics are relative to this specific group, not general public usage.
+
 ### Before Implementation (Baseline)
 _Record these before starting P0 features_
 
-- Daily Active Users: _TBD_
+- Daily Active Users (of 13 total): _TBD_
 - Average Time on Site: _TBD_
 - Return Visit Rate: _TBD_
 - Time on Site During Games: _TBD_
 
 ### After P0 Features (90 days)
-_Target metrics after completing P0 features_
+_Target metrics are projections based on industry benchmarks (see ROADMAP_CONTEXT.md for methodology)_
 
-- Daily Active Users: Target 3x baseline
-- Average Time on Site: Target +30% increase
-- Return Visit Rate: Target 2x baseline
-- Time on Site During Games: Target 5x baseline
+- Daily Active Users: Target ~2-3x baseline (estimated 8-10 of 13 fans daily)
+- Average Time on Site: Target ~20-30% increase
+- Return Visit Rate: Target ~2x baseline
+- Time on Site During Games: Target ~4-5x baseline
+
+**Note:** These are estimates. Actual results will vary. Track actual metrics and adjust strategy accordingly.
 
 ### Actual Results
 _Record actual results here as features are completed_

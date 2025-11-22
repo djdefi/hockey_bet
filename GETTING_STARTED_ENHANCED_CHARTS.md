@@ -46,7 +46,7 @@ _site/
 
 ### Step 1: Review Existing Chart (15 minutes)
 
-Open `lib/standings.html.erb` and find the existing chart code (around line 5900):
+Open `lib/standings.html.erb` and search for "loadStandingsTrendChart" (approximately around line 5900, though line numbers may vary):
 
 ```javascript
 async function loadStandingsTrendChart() {
@@ -61,11 +61,13 @@ async function loadStandingsTrendChart() {
 
 **Study this function first.** You'll follow the same pattern.
 
+**Note:** Line numbers are approximate and may change as the file is updated. Use your editor's search function (Ctrl+F or Cmd+F) to find the function.
+
 ---
 
 ### Step 2: Add Chart Containers (30 minutes)
 
-In `lib/standings.html.erb`, add new chart sections in the Trends tab (around line 4720):
+In `lib/standings.html.erb`, search for the Trends tab section (approximately around line 4720, use search to locate) and add new chart sections:
 
 ```html
 <!-- Existing chart -->
@@ -119,15 +121,31 @@ async function loadWinLossChart() {
             return;
         }
         
-        // Get latest standings for current W/L/OTL
-        // You'll need to also fetch/store W/L/OTL in standings_history
-        // For now, fetch from current standings table or enhance the tracker
+        // Get latest standings snapshot
+        const latest = history[history.length - 1];
+        
+        // TODO: You'll need to enhance StandingsHistoryTracker first (see Step 4)
+        // to include W/L/OTL data in the 'details' object
+        // For now, this shows the structure you'll need:
+        
+        // Extract fan names and their stats
+        const fanNames = Object.keys(latest.standings);
+        const winsData = [];  // TODO: Extract from latest.details[fan].wins
+        const lossesData = []; // TODO: Extract from latest.details[fan].losses  
+        const otlData = [];    // TODO: Extract from latest.details[fan].ot_losses
+        
+        // Once StandingsHistoryTracker is enhanced, populate like this:
+        // fanNames.forEach(fan => {
+        //     winsData.push(latest.details[fan].wins);
+        //     lossesData.push(latest.details[fan].losses);
+        //     otlData.push(latest.details[fan].ot_losses);
+        // });
         
         const ctx = document.getElementById('winLossChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: fanNames, // Array of fan names
+                labels: fanNames,
                 datasets: [
                     {
                         label: 'Wins',
@@ -150,13 +168,15 @@ async function loadWinLossChart() {
                 responsive: true,
                 scales: {
                     x: { stacked: true },
-                    y: { stacked: true }
+                    y: { stacked: true, title: { display: true, text: 'Games' } }
                 }
             }
         });
         
     } catch (error) {
         console.error('Error loading win/loss chart:', error);
+        document.getElementById('winLossChart').parentElement.innerHTML = 
+            '<p class="text-danger" style="text-align: center; padding: 2rem;">Error loading chart. Please refresh.</p>';
     }
 }
 ```

@@ -1,10 +1,13 @@
 # AI Agent Task Backlog - HIGH IMPACT FOCUS
 
 > **Purpose:** High-impact tasks that AI agents can pick up to deliver maximum value  
-> **Last Updated:** November 22, 2025  
-> **Focus:** P0 features that drive 3x DAU, 5x engagement during games
+> **Last Updated:** November 2025  
+> **Focus:** P0 features for a **private 13-person fan league**  
+> **Target:** Keep all 13 fans engaged throughout the season
 
 This document focuses on **high-impact tasks** that directly contribute to the roadmap's success metrics.
+
+**Context:** See [ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md) for target audience, methodology, and why these metrics matter for a small private league.
 
 ---
 

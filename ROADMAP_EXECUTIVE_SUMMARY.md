@@ -1,12 +1,14 @@
 # Hockey Bet - Executive Summary & Quick Reference
 
-> **TL;DR:** 3 high-impact features to implement in the next 90 days
+> **TL;DR:** 3 high-impact features to implement in the next 90 days  
+> **Target:** Private 13-person fan league (not a public product)  
+> **Methodology:** See [ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md) for projections and benchmarks
 
 ---
 
 ## 🎯 The Big Picture
 
-Your NHL fantasy tracker is solid with great fundamentals. To 10x user engagement, focus on:
+Your NHL fantasy tracker is solid with great fundamentals. To maximize engagement for your 13-person private league, focus on:
 
 1. **Make it Interactive** - Add game predictions/voting
 2. **Make it Visual** - Enhanced charts and insights  
@@ -22,7 +24,7 @@ Your NHL fantasy tracker is solid with great fundamentals. To 10x user engagemen
 **Effort:** 1-2 weeks  
 **Files to modify:** `lib/standings.html.erb`, add Chart.js configurations
 
-### Days 31-60: Game Predictions System 🎯 HIGHEST VALUE
+### Days 31-60: Game Predictions MVP 🎯 HIGHEST VALUE
 **What:** Let fans vote on game outcomes, earn bonus points for accuracy  
 **Why:** Creates daily engagement, competitive element, reason to return  
 **Effort:** 2-3 weeks  
@@ -38,13 +40,17 @@ Your NHL fantasy tracker is solid with great fundamentals. To 10x user engagemen
 
 ## 💰 ROI Analysis
 
+**Note:** Projections are estimates based on benchmarks from similar private league apps (Sleeper, etc.). See [ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md) for detailed methodology.
+
 | Feature | Engagement Increase | Time Investment | ROI |
 |---------|-------------------|-----------------|-----|
-| Enhanced Charts | +30% time on site | 1-2 weeks | ⭐⭐⭐⭐⭐ |
-| Game Predictions | +300% daily active users | 2-3 weeks | ⭐⭐⭐⭐⭐ |
-| Real-Time Updates | +500% during games | 2-3 weeks | ⭐⭐⭐⭐⭐ |
-| Player Stats | +50% engagement | 5-6 weeks | ⭐⭐⭐ |
-| Push Notifications | +200% retention | 3-4 weeks | ⭐⭐⭐⭐ |
+| Enhanced Charts | ~20-30% time on site | 1-2 weeks | ⭐⭐⭐⭐⭐ |
+| Game Predictions | ~2-3x daily active users | 2-3 weeks | ⭐⭐⭐⭐⭐ |
+| Real-Time Updates | ~4-5x during games | 2-3 weeks | ⭐⭐⭐⭐⭐ |
+| Player Stats | ~50% engagement lift | 5-6 weeks | ⭐⭐⭐ |
+| Push Notifications | ~2x retention | 3-4 weeks | ⭐⭐⭐⭐ |
+
+**Context for 13-person league:** Even getting 2-3 inactive members engaged is a huge win.
 
 ---
 

@@ -1,19 +1,24 @@
 # Hockey Bet - Product Roadmap
 
-> **Last Updated:** November 21, 2025  
-> **Next Review:** December 21, 2025
+> **Last Updated:** November 2025  
+> **Next Review:** December 2025  
+> **Context:** [ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md) explains target audience and methodology
 
 This roadmap outlines high-value improvements prioritized by impact and implementation effort.
+
+**Important:** This roadmap is designed for a **private 13-person fan league**, not a public product. Success is measured by keeping these specific fans engaged throughout the season.
 
 ---
 
 ## 🎯 Executive Summary
 
 The Hockey Bet project is a well-built NHL fantasy league tracker with strong fundamentals:
-- ✅ Solid Ruby architecture with good test coverage
+- ✅ Solid Ruby architecture (~5,600 lines with strong test coverage)
 - ✅ Automated data updates via GitHub Actions
 - ✅ Responsive, accessible UI
 - ✅ Real-time NHL API integration
+
+**Target Audience:** Private league of 13 specific fans (not a public product)
 
 **Key Opportunities:**
 1. **User Engagement** - Add interactive betting/prediction features
@@ -110,7 +115,7 @@ function loadPlayoffOddsChart() { ... }
 **Value:**
 - Better data storytelling
 - Insights into team/fan performance
-- Increases time on site
+- Increases time on site (estimated ~20-30% based on similar private league apps)
 
 **Effort:** Low-Medium (1-2 weeks)
 - 3-4 new chart implementations
@@ -547,7 +552,7 @@ Track these KPIs to measure improvements:
 ## 📚 Resources & References
 
 ### APIs & Data Sources
-- [NHL API Documentation](https://gitlab.com/dword4/nhlapi)
+- [NHL API Documentation (Unofficial)](https://gitlab.com/dword4/nhlapi) - Community-maintained, not affiliated with NHL
 - [Chart.js Documentation](https://www.chartjs.org/docs/latest/)
 - [Web Push Protocol](https://web.dev/push-notifications-overview/)
 

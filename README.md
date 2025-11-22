@@ -99,12 +99,15 @@ The preview environment system ensures that:
 
 ## Product Roadmap
 
+**Context:** This is a **private 13-person fan league**, not a public product. The roadmap focuses on keeping these specific fans engaged throughout the season.
+
 Want to see what's next? Check out our improvement roadmap:
 
+- **[ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md)** - Target audience, methodology, and projection rationale
 - **[ROADMAP.md](./ROADMAP.md)** - Comprehensive roadmap with detailed implementation guides
 - **[ROADMAP_EXECUTIVE_SUMMARY.md](./ROADMAP_EXECUTIVE_SUMMARY.md)** - TL;DR version with 90-day action plan
 - **[ROADMAP_TRACKING.md](./ROADMAP_TRACKING.md)** - Track implementation progress as features are completed
-- **[TASKS.md](./TASKS.md)** - **HIGH-IMPACT FOCUS:** Critical path & P0 tasks only (17 tasks that matter)
+- **[TASKS.md](./TASKS.md)** - **HIGH-IMPACT FOCUS:** Critical path & P0 tasks (17 high-impact tasks)
 
 **Quick Overview:**
 - 🔥 **P0 Priority:** Game predictions, enhanced charts, real-time updates
