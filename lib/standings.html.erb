@@ -1237,12 +1237,38 @@
                     return;
                 }
                 
+                // Check if we have enough data points to show meaningful trends
+                if (history.length === 1) {
+                    console.log('Only one data point available - need more days for trend visualization');
+                    const canvas = document.getElementById('leagueTrendChart');
+                    if (canvas && canvas.parentElement) {
+                        const date = history[0].date;
+                        canvas.parentElement.innerHTML = `
+                            <div style="text-align: center; padding: 2rem;">
+                                <p class="text-secondary" style="margin-bottom: 1rem;">
+                                    <strong>Trend tracking started on ${date}</strong>
+                                </p>
+                                <p class="text-secondary" style="font-size: 0.9rem;">
+                                    Trends will appear once data from multiple days is collected.<br>
+                                    Check back tomorrow to see the standings trend chart!
+                                </p>
+                            </div>
+                        `;
+                    }
+                    return;
+                }
+                
                 // Prepare data for Chart.js
                 const dates = history.map(entry => entry.date);
                 
                 // Get all fan names from the most recent entry
                 const latestStandings = history[history.length - 1].standings;
                 const fanNames = Object.keys(latestStandings).sort();
+                
+                // Detect mobile for responsive styling
+                // Note: Uses < 768px to match CSS media query @media (max-width: 767px)
+                const MOBILE_BREAKPOINT = 768;
+                const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
                 
                 // Create datasets for each fan
                 const datasets = fanNames.map(fanName => {
@@ -1254,15 +1280,17 @@
                         data: data,
                         borderColor: color,
                         backgroundColor: color + '33', // Add transparency
-                        borderWidth: 2,
+                        borderWidth: isMobile ? 1.5 : 2,
                         tension: 0.1,
-                        pointRadius: 3,
-                        pointHoverRadius: 5
+                        pointRadius: isMobile ? 2 : 3,
+                        pointHoverRadius: isMobile ? 4 : 5,
+                        pointHitRadius: isMobile ? 10 : 8
                     };
                 });
                 
-                // Create the chart
+                // Create the chart with mobile-responsive configuration
                 const ctx = document.getElementById('leagueTrendChart').getContext('2d');
+                
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -1281,11 +1309,13 @@
                                 position: 'bottom',
                                 labels: {
                                     usePointStyle: true,
-                                    padding: 10,
+                                    padding: isMobile ? 6 : 10,
                                     font: {
-                                        size: 11
+                                        size: isMobile ? 9 : 11
                                     },
-                                    color: '#8da1b9' // Match secondary text color
+                                    color: '#8da1b9',
+                                    boxWidth: isMobile ? 8 : 12,
+                                    boxHeight: isMobile ? 8 : 12
                                 }
                             },
                             tooltip: {
@@ -1296,12 +1326,20 @@
                                 bodyColor: '#8da1b9',
                                 borderColor: '#2a3a52',
                                 borderWidth: 1,
+                                padding: isMobile ? 8 : 12,
+                                titleFont: {
+                                    size: isMobile ? 11 : 13
+                                },
+                                bodyFont: {
+                                    size: isMobile ? 10 : 12
+                                },
                                 callbacks: {
                                     title: function(context) {
                                         return 'Date: ' + context[0].label;
                                     },
                                     label: function(context) {
-                                        return context.dataset.label + ': ' + context.parsed.y + ' points';
+                                        const suffix = isMobile ? ' pts' : ' points';
+                                        return context.dataset.label + ': ' + context.parsed.y + suffix;
                                     }
                                 }
                             }
@@ -1309,27 +1347,42 @@
                         scales: {
                             x: {
                                 title: {
-                                    display: true,
+                                    display: !isMobile,
                                     text: 'Date',
-                                    color: '#8da1b9'
+                                    color: '#8da1b9',
+                                    font: {
+                                        size: isMobile ? 10 : 12
+                                    }
                                 },
                                 ticks: {
-                                    maxRotation: 45,
-                                    minRotation: 45,
-                                    color: '#8da1b9'
+                                    maxRotation: isMobile ? 90 : 45,
+                                    minRotation: isMobile ? 90 : 45,
+                                    color: '#8da1b9',
+                                    font: {
+                                        size: isMobile ? 9 : 11
+                                    },
+                                    autoSkip: true,
+                                    maxTicksLimit: isMobile ? 8 : 12
                                 },
                                 grid: {
-                                    color: 'rgba(42, 58, 82, 0.5)'
+                                    color: 'rgba(42, 58, 82, 0.5)',
+                                    display: !isMobile
                                 }
                             },
                             y: {
                                 title: {
                                     display: true,
                                     text: 'Points',
-                                    color: '#8da1b9'
+                                    color: '#8da1b9',
+                                    font: {
+                                        size: isMobile ? 10 : 12
+                                    }
                                 },
                                 ticks: {
-                                    color: '#8da1b9'
+                                    color: '#8da1b9',
+                                    font: {
+                                        size: isMobile ? 9 : 11
+                                    }
                                 },
                                 beginAtZero: true,
                                 grid: {
