@@ -543,4 +543,143 @@ RSpec.describe 'NHL Standings Table' do
       File.delete(temp_output_path) if File.exist?(temp_output_path)
     end
   end
+
+  describe 'Data directory persistence integration tests' do
+    let(:processor) { StandingsProcessor.new('spec/fixtures') }
+    let(:temp_data_dir) { 'spec/fixtures/temp_data' }
+    let(:temp_output_dir) { 'spec/fixtures/temp_site' }
+
+    before do
+      # Set up test environment
+      @teams = [
+        {
+          'teamAbbrev' => { 'default' => 'BOS' },
+          'teamName' => { 'default' => 'Bruins' },
+          'points' => 30
+        },
+        {
+          'teamAbbrev' => { 'default' => 'TOR' },
+          'teamName' => { 'default' => 'Maple Leafs' },
+          'points' => 25
+        }
+      ]
+      
+      @manager_team_map = { 'BOS' => 'Alice', 'TOR' => 'Bob' }
+      
+      processor.instance_variable_set(:@teams, @teams)
+      processor.instance_variable_set(:@manager_team_map, @manager_team_map)
+      processor.instance_variable_set(:@last_updated, Time.now)
+      
+      # Mock render_template
+      allow(processor).to receive(:render_template).and_return('<html>Test</html>')
+      
+      # Create temp directories
+      FileUtils.mkdir_p(temp_data_dir)
+      FileUtils.mkdir_p(temp_output_dir)
+      
+      # Stub DATA_DIR constant temporarily
+      stub_const('DATA_DIR', temp_data_dir)
+    end
+
+    after do
+      # Clean up
+      FileUtils.rm_rf(temp_data_dir) if Dir.exist?(temp_data_dir)
+      FileUtils.rm_rf(temp_output_dir) if Dir.exist?(temp_output_dir)
+    end
+
+    it 'creates standings_history.json in data directory' do
+      output_path = File.join(temp_output_dir, 'index.html')
+      
+      processor.render_output(output_path)
+      
+      history_path = File.join(temp_data_dir, 'standings_history.json')
+      expect(File.exist?(history_path)).to be true
+      
+      # Verify it's valid JSON
+      history_data = JSON.parse(File.read(history_path))
+      expect(history_data).to be_an(Array)
+      expect(history_data.length).to be > 0
+      expect(history_data.first).to have_key('date')
+      expect(history_data.first).to have_key('standings')
+    end
+
+    it 'creates fan_team_colors.json in data directory' do
+      output_path = File.join(temp_output_dir, 'index.html')
+      
+      processor.render_output(output_path)
+      
+      colors_path = File.join(temp_data_dir, 'fan_team_colors.json')
+      expect(File.exist?(colors_path)).to be true
+      
+      # Verify it's valid JSON
+      colors_data = JSON.parse(File.read(colors_path))
+      expect(colors_data).to be_a(Hash)
+      expect(colors_data.values.all? { |v| v.start_with?('#') }).to be true
+    end
+
+    it 'copies standings_history.json from data/ to output directory' do
+      output_path = File.join(temp_output_dir, 'index.html')
+      
+      processor.render_output(output_path)
+      
+      output_history_path = File.join(temp_output_dir, 'standings_history.json')
+      expect(File.exist?(output_history_path)).to be true
+      
+      # Verify both files have the same content
+      data_content = File.read(File.join(temp_data_dir, 'standings_history.json'))
+      output_content = File.read(output_history_path)
+      expect(output_content).to eq(data_content)
+    end
+
+    it 'copies fan_team_colors.json from data/ to output directory' do
+      output_path = File.join(temp_output_dir, 'index.html')
+      
+      processor.render_output(output_path)
+      
+      output_colors_path = File.join(temp_output_dir, 'fan_team_colors.json')
+      expect(File.exist?(output_colors_path)).to be true
+      
+      # Verify both files have the same content
+      data_content = File.read(File.join(temp_data_dir, 'fan_team_colors.json'))
+      output_content = File.read(output_colors_path)
+      expect(output_content).to eq(data_content)
+    end
+
+    it 'ensures data directory exists before writing files' do
+      # Remove the data directory to test it gets created
+      FileUtils.rm_rf(temp_data_dir)
+      expect(Dir.exist?(temp_data_dir)).to be false
+      
+      output_path = File.join(temp_output_dir, 'index.html')
+      processor.render_output(output_path)
+      
+      # Verify data directory was created
+      expect(Dir.exist?(temp_data_dir)).to be true
+      expect(File.exist?(File.join(temp_data_dir, 'standings_history.json'))).to be true
+    end
+
+    it 'accumulates standings history over multiple runs' do
+      output_path = File.join(temp_output_dir, 'index.html')
+      
+      # First run
+      processor.render_output(output_path)
+      history_path = File.join(temp_data_dir, 'standings_history.json')
+      first_data = JSON.parse(File.read(history_path))
+      first_length = first_data.length
+      
+      # Simulate time passing - modify the date
+      allow(Date).to receive(:today).and_return(Date.today + 1)
+      
+      # Update team points
+      @teams[0]['points'] = 32
+      processor.instance_variable_set(:@teams, @teams)
+      
+      # Second run
+      processor.render_output(output_path)
+      second_data = JSON.parse(File.read(history_path))
+      
+      # Should have more entries or updated entry for today
+      expect(second_data.length).to be >= first_length
+    end
+  end
 end

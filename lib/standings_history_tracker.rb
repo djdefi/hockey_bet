@@ -6,7 +6,7 @@ require 'date'
 class StandingsHistoryTracker
   attr_reader :data_file
   
-  def initialize(data_file = '_site/standings_history.json')
+  def initialize(data_file = 'data/standings_history.json')
     @data_file = data_file
     ensure_data_file_exists
   end
@@ -61,8 +61,17 @@ class StandingsHistoryTracker
     end
     
     # Keep only last 365 days of data to prevent file from growing too large
+    # However, keep at least 7 entries to ensure trends chart has enough data points
     cutoff_date = (Date.today - 365).to_s
-    history.select! { |entry| entry['date'] >= cutoff_date }
+    history_after_cutoff = history.select { |entry| entry['date'] >= cutoff_date }
+    
+    # If we have enough recent data, use it. Otherwise, keep the older data.
+    if history_after_cutoff.length >= 7
+      history = history_after_cutoff
+    elsif history.length > 7
+      # Keep the most recent 7 entries even if they're old
+      history = history.last(7)
+    end
     
     # Sort by date to ensure chronological order
     history.sort_by! { |entry| entry['date'] }
