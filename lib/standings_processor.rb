@@ -20,6 +20,9 @@ PLAYOFF_STATUS = {
   eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label: 'Eliminated', aria_label: 'Team cannot qualify for playoffs' }
 }
 
+# Directory for persistent data files that need to be committed
+DATA_DIR = 'data'
+
 class StandingsProcessor
   attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor, :bet_stats
 
@@ -85,14 +88,13 @@ class StandingsProcessor
     File.write(output_path, html_content)
     
     # Update standings history - store in data/ directory for persistence
-    data_dir = 'data'
-    FileUtils.mkdir_p(data_dir)
-    history_data_path = "#{data_dir}/standings_history.json"
+    FileUtils.mkdir_p(DATA_DIR)
+    history_data_path = "#{DATA_DIR}/standings_history.json"
     history_tracker = StandingsHistoryTracker.new(history_data_path)
     history_tracker.record_current_standings(@manager_team_map, @teams)
     
     # Export fan team colors to JSON - store in data/ directory for persistence
-    colors_data_path = "#{data_dir}/fan_team_colors.json"
+    colors_data_path = "#{DATA_DIR}/fan_team_colors.json"
     File.write(colors_data_path, JSON.pretty_generate(FAN_TEAM_COLORS))
     
     # Copy persistent data files to output directory for deployment
