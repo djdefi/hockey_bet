@@ -6,7 +6,7 @@ require 'date'
 class StandingsHistoryTracker
   attr_reader :data_file
   
-  def initialize(data_file = '_site/standings_history.json')
+  def initialize(data_file = 'data/standings_history.json')
     @data_file = data_file
     ensure_data_file_exists
   end
