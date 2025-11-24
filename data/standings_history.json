@@ -1,11 +1,308 @@
 [
   {
-    "date": "2025-11-24",
+    "date": "2024-10-07",
     "standings": {
-      "Alice": 106,
-      "Bob": 93,
-      "Charlie": 100,
-      "Dave": 86
+      "Jeff C.": 9,
+      "Travis R.": 8,
+      "Keith R.": 8,
+      "Zak S.": 8,
+      "Ryan T.": 7,
+      "Sean R.": 7,
+      "Trevor R.": 7,
+      "Dan R.": 6,
+      "Mike M.": 6,
+      "Tyler F.": 6,
+      "Brian D.": 6,
+      "Ryan B.": 6,
+      "David K.": 4
+    }
+  },
+  {
+    "date": "2024-10-10",
+    "standings": {
+      "Jeff C.": 11,
+      "Travis R.": 9,
+      "Keith R.": 8,
+      "Zak S.": 8,
+      "Ryan T.": 9,
+      "Sean R.": 8,
+      "Trevor R.": 8,
+      "Dan R.": 8,
+      "Mike M.": 8,
+      "Tyler F.": 7,
+      "Brian D.": 8,
+      "Ryan B.": 7,
+      "David K.": 5
+    }
+  },
+  {
+    "date": "2024-10-13",
+    "standings": {
+      "Jeff C.": 12,
+      "Travis R.": 10,
+      "Keith R.": 10,
+      "Zak S.": 9,
+      "Ryan T.": 10,
+      "Sean R.": 10,
+      "Trevor R.": 10,
+      "Dan R.": 9,
+      "Mike M.": 9,
+      "Tyler F.": 8,
+      "Brian D.": 8,
+      "Ryan B.": 7,
+      "David K.": 6
+    }
+  },
+  {
+    "date": "2024-10-16",
+    "standings": {
+      "Jeff C.": 14,
+      "Travis R.": 11,
+      "Keith R.": 12,
+      "Zak S.": 11,
+      "Ryan T.": 11,
+      "Sean R.": 11,
+      "Trevor R.": 11,
+      "Dan R.": 10,
+      "Mike M.": 10,
+      "Tyler F.": 9,
+      "Brian D.": 10,
+      "Ryan B.": 8,
+      "David K.": 6
+    }
+  },
+  {
+    "date": "2024-10-19",
+    "standings": {
+      "Jeff C.": 15,
+      "Travis R.": 12,
+      "Keith R.": 13,
+      "Zak S.": 13,
+      "Ryan T.": 12,
+      "Sean R.": 12,
+      "Trevor R.": 12,
+      "Dan R.": 11,
+      "Mike M.": 11,
+      "Tyler F.": 10,
+      "Brian D.": 11,
+      "Ryan B.": 10,
+      "David K.": 7
+    }
+  },
+  {
+    "date": "2024-10-22",
+    "standings": {
+      "Jeff C.": 17,
+      "Travis R.": 13,
+      "Keith R.": 14,
+      "Zak S.": 13,
+      "Ryan T.": 14,
+      "Sean R.": 13,
+      "Trevor R.": 12,
+      "Dan R.": 12,
+      "Mike M.": 13,
+      "Tyler F.": 12,
+      "Brian D.": 12,
+      "Ryan B.": 10,
+      "David K.": 8
+    }
+  },
+  {
+    "date": "2024-10-25",
+    "standings": {
+      "Jeff C.": 19,
+      "Travis R.": 15,
+      "Keith R.": 14,
+      "Zak S.": 14,
+      "Ryan T.": 15,
+      "Sean R.": 15,
+      "Trevor R.": 15,
+      "Dan R.": 13,
+      "Mike M.": 14,
+      "Tyler F.": 13,
+      "Brian D.": 13,
+      "Ryan B.": 11,
+      "David K.": 8
+    }
+  },
+  {
+    "date": "2024-10-28",
+    "standings": {
+      "Jeff C.": 21,
+      "Travis R.": 16,
+      "Keith R.": 16,
+      "Zak S.": 17,
+      "Ryan T.": 15,
+      "Sean R.": 16,
+      "Trevor R.": 15,
+      "Dan R.": 14,
+      "Mike M.": 14,
+      "Tyler F.": 14,
+      "Brian D.": 14,
+      "Ryan B.": 13,
+      "David K.": 9
+    }
+  },
+  {
+    "date": "2024-10-31",
+    "standings": {
+      "Jeff C.": 22,
+      "Travis R.": 17,
+      "Keith R.": 18,
+      "Zak S.": 17,
+      "Ryan T.": 17,
+      "Sean R.": 18,
+      "Trevor R.": 16,
+      "Dan R.": 16,
+      "Mike M.": 15,
+      "Tyler F.": 14,
+      "Brian D.": 15,
+      "Ryan B.": 13,
+      "David K.": 10
+    }
+  },
+  {
+    "date": "2024-11-03",
+    "standings": {
+      "Jeff C.": 23,
+      "Travis R.": 19,
+      "Keith R.": 19,
+      "Zak S.": 18,
+      "Ryan T.": 17,
+      "Sean R.": 18,
+      "Trevor R.": 17,
+      "Dan R.": 17,
+      "Mike M.": 17,
+      "Tyler F.": 17,
+      "Brian D.": 17,
+      "Ryan B.": 14,
+      "David K.": 12
+    }
+  },
+  {
+    "date": "2024-11-06",
+    "standings": {
+      "Jeff C.": 25,
+      "Travis R.": 21,
+      "Keith R.": 21,
+      "Zak S.": 20,
+      "Ryan T.": 20,
+      "Sean R.": 20,
+      "Trevor R.": 18,
+      "Dan R.": 18,
+      "Mike M.": 18,
+      "Tyler F.": 18,
+      "Brian D.": 17,
+      "Ryan B.": 15,
+      "David K.": 12
+    }
+  },
+  {
+    "date": "2024-11-09",
+    "standings": {
+      "Jeff C.": 26,
+      "Travis R.": 22,
+      "Keith R.": 22,
+      "Zak S.": 21,
+      "Ryan T.": 21,
+      "Sean R.": 20,
+      "Trevor R.": 19,
+      "Dan R.": 18,
+      "Mike M.": 19,
+      "Tyler F.": 19,
+      "Brian D.": 19,
+      "Ryan B.": 15,
+      "David K.": 12
+    }
+  },
+  {
+    "date": "2024-11-12",
+    "standings": {
+      "Jeff C.": 27,
+      "Travis R.": 23,
+      "Keith R.": 23,
+      "Zak S.": 23,
+      "Ryan T.": 22,
+      "Sean R.": 22,
+      "Trevor R.": 20,
+      "Dan R.": 19,
+      "Mike M.": 19,
+      "Tyler F.": 18,
+      "Brian D.": 20,
+      "Ryan B.": 16,
+      "David K.": 13
+    }
+  },
+  {
+    "date": "2024-11-15",
+    "standings": {
+      "Jeff C.": 28,
+      "Travis R.": 25,
+      "Keith R.": 25,
+      "Zak S.": 24,
+      "Ryan T.": 22,
+      "Sean R.": 23,
+      "Trevor R.": 21,
+      "Dan R.": 22,
+      "Mike M.": 21,
+      "Tyler F.": 20,
+      "Brian D.": 19,
+      "Ryan B.": 18,
+      "David K.": 14
+    }
+  },
+  {
+    "date": "2024-11-18",
+    "standings": {
+      "Jeff C.": 31,
+      "Travis R.": 25,
+      "Keith R.": 26,
+      "Zak S.": 25,
+      "Ryan T.": 23,
+      "Sean R.": 24,
+      "Trevor R.": 24,
+      "Dan R.": 23,
+      "Mike M.": 21,
+      "Tyler F.": 22,
+      "Brian D.": 22,
+      "Ryan B.": 19,
+      "David K.": 15
+    }
+  },
+  {
+    "date": "2024-11-21",
+    "standings": {
+      "Jeff C.": 34,
+      "Travis R.": 28,
+      "Keith R.": 28,
+      "Zak S.": 27,
+      "Ryan T.": 25,
+      "Sean R.": 25,
+      "Trevor R.": 23,
+      "Dan R.": 23,
+      "Mike M.": 23,
+      "Tyler F.": 23,
+      "Brian D.": 24,
+      "Ryan B.": 20,
+      "David K.": 15
+    }
+  },
+  {
+    "date": "2024-11-21",
+    "standings": {
+      "Jeff C.": 33,
+      "Travis R.": 27,
+      "Keith R.": 27,
+      "Zak S.": 26,
+      "Ryan T.": 26,
+      "Sean R.": 26,
+      "Trevor R.": 25,
+      "Dan R.": 24,
+      "Mike M.": 24,
+      "Tyler F.": 23,
+      "Brian D.": 23,
+      "Ryan B.": 20,
+      "David K.": 16
     }
   }
 ]
