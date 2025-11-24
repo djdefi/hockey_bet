@@ -44,6 +44,15 @@ jobs:
           pwd
           ruby update_standings.rb
           ls -la *
+      - name: Commit standings history
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          if [ -f "data/standings_history.json" ] && [ -f "data/fan_team_colors.json" ]; then
+            git add data/standings_history.json data/fan_team_colors.json
+            git diff --cached --quiet || git commit -m "Update standings history [skip ci]"
+            git push
+          fi
       - name: Copy favicon
         run: cp favicon.ico _site/
       - name: Setup Pages

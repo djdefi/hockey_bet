@@ -84,14 +84,20 @@ class StandingsProcessor
     html_content = render_template
     File.write(output_path, html_content)
     
-    # Update standings history - use same directory as output
-    history_path = "#{output_dir}/standings_history.json"
-    history_tracker = StandingsHistoryTracker.new(history_path)
+    # Update standings history - store in data/ directory for persistence
+    data_dir = 'data'
+    FileUtils.mkdir_p(data_dir)
+    history_data_path = "#{data_dir}/standings_history.json"
+    history_tracker = StandingsHistoryTracker.new(history_data_path)
     history_tracker.record_current_standings(@manager_team_map, @teams)
     
-    # Export fan team colors to JSON for frontend
-    colors_path = "#{output_dir}/fan_team_colors.json"
-    File.write(colors_path, JSON.pretty_generate(FAN_TEAM_COLORS))
+    # Export fan team colors to JSON - store in data/ directory for persistence
+    colors_data_path = "#{data_dir}/fan_team_colors.json"
+    File.write(colors_data_path, JSON.pretty_generate(FAN_TEAM_COLORS))
+    
+    # Copy persistent data files to output directory for deployment
+    FileUtils.cp(history_data_path, "#{output_dir}/standings_history.json")
+    FileUtils.cp(colors_data_path, "#{output_dir}/fan_team_colors.json")
     
     # Copy vendored assets to output directory
     vendor_src_dir = File.join(File.dirname(__FILE__), '..', 'vendor')
