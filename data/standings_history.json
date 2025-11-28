@@ -1,23 +1,5 @@
 [
   {
-    "date": "2024-11-27",
-    "standings": {
-      "Travis R.": 24,
-      "Ryan B.": 9,
-      "Brian D.": 19,
-      "David K.": 15,
-      "Ryan T.": 16,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 18,
-      "Zak S.": 4,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 19,
-      "Mike M.": 10
-    }
-  },
-  {
     "date": "2024-11-30",
     "standings": {
       "Travis R.": 24,
@@ -919,6 +901,24 @@
   },
   {
     "date": "2025-11-27",
+    "standings": {
+      "Jeff C.": 39,
+      "Travis R.": 31,
+      "Ryan T.": 30,
+      "Keith R.": 29,
+      "Zak S.": 28,
+      "Trevor R.": 28,
+      "Sean R.": 28,
+      "Mike M.": 28,
+      "Tyler F.": 27,
+      "Brian D.": 25,
+      "Dan R.": 24,
+      "Ryan B.": 22,
+      "David K.": 18
+    }
+  },
+  {
+    "date": "2025-11-28",
     "standings": {
       "Jeff C.": 39,
       "Travis R.": 31,
