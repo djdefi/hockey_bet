@@ -491,6 +491,8 @@ RSpec.describe BetStatsCalculator do
       expect(calculator.stats).to have_key(:comeback_kid)
       expect(calculator.stats).to have_key(:overtimer)
       expect(calculator.stats).to have_key(:point_scrounger)
+      expect(calculator.stats).to have_key(:sharks_victims)
+      expect(calculator.stats).to have_key(:predators_victims)
     end
 
     it 'returns stats hash' do

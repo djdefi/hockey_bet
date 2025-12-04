@@ -57,6 +57,8 @@ jobs:
           fi
       - name: Copy favicon
         run: cp favicon.ico _site/
+      - name: Create .nojekyll file
+        run: touch _site/.nojekyll
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
