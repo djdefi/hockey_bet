@@ -41,6 +41,21 @@ jobs:
           bundle config set --local without 'development test'
           bundle install --jobs 4 --retry 3
 
+      - name: Download current main site
+        run: |
+          # Download the current GitHub Pages deployment to preserve main site
+          echo "Downloading current main site..."
+          mkdir -p _site
+          
+          # Get the current Pages URL and download main site content
+          PAGES_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          
+          # Download main site files (index.html, styles.css, etc.)
+          wget -q -r -np -nH -R "robots.txt" --cut-dirs=1 -P _site/ "$PAGES_URL" || echo "Main site not found or download failed, creating new deployment"
+          
+          # Clean up wget artifacts
+          rm -f _site/index.html.tmp 2>/dev/null || true
+
       - name: Generate standings page
         run: |
           # Create PR-specific directory for isolation
@@ -61,6 +76,7 @@ jobs:
           echo "<p>Preview generated at $(date)</p>" >> _site/pr-${{ github.event.pull_request.number }}/pr-info.html
           echo "<p><a href='./index.html'>View Standings</a></p>" >> _site/pr-${{ github.event.pull_request.number }}/pr-info.html
           echo "<p><a href='./playoffs.html'>View Playoffs</a></p>" >> _site/pr-${{ github.event.pull_request.number }}/pr-info.html
+          echo "<p><a href='../index.html'>Back to Main Site</a></p>" >> _site/pr-${{ github.event.pull_request.number }}/pr-info.html
           echo "</body></html>" >> _site/pr-${{ github.event.pull_request.number }}/pr-info.html
 
       - name: Upload artifact
