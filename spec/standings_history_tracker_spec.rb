@@ -89,6 +89,7 @@ RSpec.describe StandingsHistoryTracker do
       history = tracker.load_history
       expect(history.length).to eq(1)
       expect(history[0]['date']).to eq(Date.today.to_s)
+      expect(history[0]['season']).to match(/\d{4}-\d{4}/)
       expect(history[0]['standings']['Jeff C.']).to eq(31)
       expect(history[0]['standings']['Travis R.']).to eq(27)
       expect(history[0]['standings']['Brian D.']).to eq(21)
@@ -161,6 +162,98 @@ RSpec.describe StandingsHistoryTracker do
       history = tracker.load_history
       dates = history.map { |entry| entry['date'] }
       expect(dates).to eq(dates.sort)
+    end
+  end
+  
+  describe '#backfill_seasons' do
+    it 'adds season to entries without season field' do
+      history = [
+        { 'date' => '2024-11-01', 'standings' => { 'Fan A' => 10 } },
+        { 'date' => '2025-01-15', 'standings' => { 'Fan A' => 20 } }
+      ]
+      tracker.save_history(history)
+      
+      tracker.backfill_seasons
+      
+      updated_history = tracker.load_history
+      expect(updated_history[0]['season']).to eq('2024-2025')
+      expect(updated_history[1]['season']).to eq('2024-2025')
+    end
+    
+    it 'does not modify entries that already have season field' do
+      history = [
+        { 'date' => '2024-11-01', 'season' => '2024-2025', 'standings' => { 'Fan A' => 10 } }
+      ]
+      tracker.save_history(history)
+      
+      tracker.backfill_seasons
+      
+      updated_history = tracker.load_history
+      expect(updated_history[0]['season']).to eq('2024-2025')
+    end
+  end
+  
+  describe '#get_available_seasons' do
+    it 'returns unique seasons from history' do
+      history = [
+        { 'date' => '2023-11-01', 'season' => '2023-2024', 'standings' => { 'Fan A' => 10 } },
+        { 'date' => '2023-12-01', 'season' => '2023-2024', 'standings' => { 'Fan A' => 15 } },
+        { 'date' => '2024-11-01', 'season' => '2024-2025', 'standings' => { 'Fan A' => 10 } }
+      ]
+      tracker.save_history(history)
+      
+      seasons = tracker.get_available_seasons
+      expect(seasons).to eq(['2024-2025', '2023-2024'])
+    end
+    
+    it 'handles entries without season field' do
+      history = [
+        { 'date' => '2024-11-01', 'standings' => { 'Fan A' => 10 } }
+      ]
+      tracker.save_history(history)
+      
+      seasons = tracker.get_available_seasons
+      expect(seasons).to eq(['2024-2025'])
+    end
+  end
+  
+  describe '#current_season' do
+    it 'returns current season based on date' do
+      # December is in the first half of the season (started in previous year)
+      allow(Date).to receive(:today).and_return(Date.new(2024, 12, 15))
+      expect(tracker.current_season).to eq('2024-2025')
+    end
+    
+    it 'returns correct season for summer months' do
+      # August is in the off-season, but considered part of next season
+      allow(Date).to receive(:today).and_return(Date.new(2024, 8, 15))
+      expect(tracker.current_season).to eq('2024-2025')
+    end
+  end
+  
+  describe '#get_history_by_season' do
+    it 'filters history by season' do
+      history = [
+        { 'date' => '2023-11-01', 'season' => '2023-2024', 'standings' => { 'Fan A' => 10 } },
+        { 'date' => '2024-11-01', 'season' => '2024-2025', 'standings' => { 'Fan A' => 20 } },
+        { 'date' => '2024-12-01', 'season' => '2024-2025', 'standings' => { 'Fan A' => 25 } }
+      ]
+      tracker.save_history(history)
+      
+      filtered = tracker.get_history_by_season('2024-2025')
+      expect(filtered.length).to eq(2)
+      expect(filtered[0]['date']).to eq('2024-11-01')
+      expect(filtered[1]['date']).to eq('2024-12-01')
+    end
+    
+    it 'handles entries without season field by determining from date' do
+      history = [
+        { 'date' => '2024-11-01', 'standings' => { 'Fan A' => 10 } }
+      ]
+      tracker.save_history(history)
+      
+      filtered = tracker.get_history_by_season('2024-2025')
+      expect(filtered.length).to eq(1)
     end
   end
 end

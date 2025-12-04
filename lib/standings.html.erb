@@ -638,7 +638,15 @@
         <!-- Tab: Trends (Chart) -->
         <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
             <div class="chart-container">
-                <h2>Fan League Standings Trend</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                    <h2 style="margin: 0;">Fan League Standings Trend</h2>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <label for="seasonSelector" style="font-size: 0.9rem; color: #8da1b9;">Season:</label>
+                        <select id="seasonSelector" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #2a3a52; background: #1a253a; color: #8da1b9; font-size: 0.9rem;">
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+                </div>
                 <canvas id="leagueTrendChart" role="img" aria-label="Line chart showing fan league standings trend over time"></canvas>
             </div>
         </div>
@@ -1355,20 +1363,27 @@
         });
 
         // Fan League Standings Trend Chart
+        let chartInstance = null;
+        let allHistoryData = null;
+        let fanColorsData = null;
+        let availableSeasonsData = null;
+        
         async function loadStandingsTrendChart() {
             if (window.chartLoaded) return; // Prevent double loading
             
             try {
-                // Fetch standings history and fan team colors
-                const [historyResponse, colorsResponse] = await Promise.all([
+                // Fetch standings history, fan team colors, and available seasons
+                const [historyResponse, colorsResponse, seasonsResponse] = await Promise.all([
                     fetch('standings_history.json'),
-                    fetch('fan_team_colors.json')
+                    fetch('fan_team_colors.json'),
+                    fetch('available_seasons.json')
                 ]);
                 
-                const history = await historyResponse.json();
-                const fanColors = await colorsResponse.json();
+                allHistoryData = await historyResponse.json();
+                fanColorsData = await colorsResponse.json();
+                availableSeasonsData = await seasonsResponse.json();
                 
-                if (!history || history.length === 0) {
+                if (!allHistoryData || allHistoryData.length === 0) {
                     console.log('No standings history data available yet');
                     const canvas = document.getElementById('leagueTrendChart');
                     if (canvas && canvas.parentElement) {
@@ -1377,13 +1392,73 @@
                     return;
                 }
                 
-                // Check if we have enough data points to show meaningful trends
-                if (history.length === 1) {
-                    console.log('Only one data point available - need more days for trend visualization');
-                    const canvas = document.getElementById('leagueTrendChart');
-                    if (canvas && canvas.parentElement) {
-                        const date = history[0].date;
-                        canvas.parentElement.innerHTML = `
+                // Populate season selector
+                const seasonSelector = document.getElementById('seasonSelector');
+                seasonSelector.innerHTML = '';
+                
+                if (availableSeasonsData && availableSeasonsData.seasons) {
+                    availableSeasonsData.seasons.forEach(season => {
+                        const option = document.createElement('option');
+                        option.value = season;
+                        option.textContent = season;
+                        if (season === availableSeasonsData.current_season) {
+                            option.selected = true;
+                        }
+                        seasonSelector.appendChild(option);
+                    });
+                }
+                
+                // Add event listener for season selector
+                seasonSelector.addEventListener('change', function() {
+                    renderChartForSeason(this.value);
+                });
+                
+                // Render chart for current season
+                const initialSeason = availableSeasonsData?.current_season || (availableSeasonsData?.seasons && availableSeasonsData.seasons[0]);
+                if (initialSeason) {
+                    renderChartForSeason(initialSeason);
+                }
+                
+                window.chartLoaded = true;
+                
+            } catch (error) {
+                console.error('Error loading standings trend chart:', error);
+                const canvas = document.getElementById('leagueTrendChart');
+                if (canvas && canvas.parentElement) {
+                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Unable to load trend chart. Please try again later.</p>';
+                }
+            }
+        }
+        
+        function renderChartForSeason(selectedSeason) {
+            // Filter history data by selected season
+            const history = allHistoryData.filter(entry => {
+                // Use season field if available, otherwise determine from date
+                const entrySeason = entry.season || determineSeasonFromDate(entry.date);
+                return entrySeason === selectedSeason;
+            });
+            
+            if (!history || history.length === 0) {
+                console.log('No data available for season ' + selectedSeason);
+                const canvas = document.getElementById('leagueTrendChart');
+                if (canvas && canvas.parentElement && canvas.parentElement.parentElement) {
+                    // Find just the canvas to replace
+                    const chartArea = canvas.parentElement;
+                    chartArea.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">No trend data available for this season yet.</p>';
+                }
+                return;
+            }
+            
+            // Check if we have enough data points to show meaningful trends
+            if (history.length === 1) {
+                console.log('Only one data point available for season ' + selectedSeason);
+                const canvas = document.getElementById('leagueTrendChart');
+                if (canvas && canvas.parentElement) {
+                    const date = history[0].date;
+                    const chartContainer = canvas.parentElement;
+                    const heading = chartContainer.querySelector('h2') || chartContainer.querySelector('div');
+                    if (heading && heading.nextElementSibling === canvas) {
+                        canvas.outerHTML = `
                             <div style="text-align: center; padding: 2rem;">
                                 <p class="text-secondary" style="margin-bottom: 1rem;">
                                     <strong>Trend tracking started on ${date}</strong>
@@ -1395,157 +1470,194 @@
                             </div>
                         `;
                     }
-                    return;
                 }
+                return;
+            }
+            
+            // Prepare data for Chart.js
+            const dates = history.map(entry => entry.date);
+            
+            // Get all fan names from the most recent entry
+            const latestStandings = history[history.length - 1].standings;
+            const fanNames = Object.keys(latestStandings).sort();
+            
+            // Detect mobile for responsive styling
+            const MOBILE_BREAKPOINT = 768;
+            const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+            
+            // Create datasets for each fan
+            const datasets = fanNames.map(fanName => {
+                const data = history.map(entry => entry.standings[fanName] || null);
+                const color = fanColorsData[fanName] || '#888888';
                 
-                // Prepare data for Chart.js
-                const dates = history.map(entry => entry.date);
-                
-                // Get all fan names from the most recent entry
-                const latestStandings = history[history.length - 1].standings;
-                const fanNames = Object.keys(latestStandings).sort();
-                
-                // Detect mobile for responsive styling
-                // Note: Uses < 768px to match CSS media query @media (max-width: 767px)
-                const MOBILE_BREAKPOINT = 768;
-                const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
-                
-                // Create datasets for each fan
-                const datasets = fanNames.map(fanName => {
-                    const data = history.map(entry => entry.standings[fanName] || null);
-                    const color = fanColors[fanName] || '#888888';
-                    
-                    return {
-                        label: fanName,
-                        data: data,
-                        borderColor: color,
-                        backgroundColor: color + '33', // Add transparency
-                        borderWidth: isMobile ? 1.5 : 2,
-                        tension: 0.1,
-                        pointRadius: isMobile ? 2 : 3,
-                        pointHoverRadius: isMobile ? 4 : 5,
-                        pointHitRadius: isMobile ? 10 : 8
-                    };
-                });
-                
-                // Create the chart with mobile-responsive configuration
-                const ctx = document.getElementById('leagueTrendChart').getContext('2d');
-                
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: dates,
-                        datasets: datasets
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: false
-                            },
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-                                labels: {
-                                    usePointStyle: true,
-                                    padding: isMobile ? 6 : 10,
-                                    font: {
-                                        size: isMobile ? 9 : 11
-                                    },
-                                    color: '#8da1b9',
-                                    boxWidth: isMobile ? 8 : 12,
-                                    boxHeight: isMobile ? 8 : 12
-                                }
-                            },
-                            tooltip: {
-                                mode: 'index',
-                                intersect: false,
-                                backgroundColor: 'rgba(26, 37, 58, 0.95)',
-                                titleColor: '#ffffff',
-                                bodyColor: '#8da1b9',
-                                borderColor: '#2a3a52',
-                                borderWidth: 1,
-                                padding: isMobile ? 8 : 12,
-                                titleFont: {
-                                    size: isMobile ? 11 : 13
-                                },
-                                bodyFont: {
-                                    size: isMobile ? 10 : 12
-                                },
-                                callbacks: {
-                                    title: function(context) {
-                                        return 'Date: ' + context[0].label;
-                                    },
-                                    label: function(context) {
-                                        const suffix = isMobile ? ' pts' : ' points';
-                                        return context.dataset.label + ': ' + context.parsed.y + suffix;
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                title: {
-                                    display: !isMobile,
-                                    text: 'Date',
-                                    color: '#8da1b9',
-                                    font: {
-                                        size: isMobile ? 10 : 12
-                                    }
-                                },
-                                ticks: {
-                                    maxRotation: isMobile ? 90 : 45,
-                                    minRotation: isMobile ? 90 : 45,
-                                    color: '#8da1b9',
-                                    font: {
-                                        size: isMobile ? 9 : 11
-                                    },
-                                    autoSkip: true,
-                                    maxTicksLimit: isMobile ? 8 : 12
-                                },
-                                grid: {
-                                    color: 'rgba(42, 58, 82, 0.5)',
-                                    display: !isMobile
-                                }
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'Points',
-                                    color: '#8da1b9',
-                                    font: {
-                                        size: isMobile ? 10 : 12
-                                    }
-                                },
-                                ticks: {
-                                    color: '#8da1b9',
-                                    font: {
-                                        size: isMobile ? 9 : 11
-                                    }
-                                },
-                                beginAtZero: true,
-                                grid: {
-                                    color: 'rgba(42, 58, 82, 0.5)'
-                                }
-                            }
-                        },
-                        interaction: {
-                            mode: 'nearest',
-                            axis: 'x',
-                            intersect: false
-                        }
+                return {
+                    label: fanName,
+                    data: data,
+                    borderColor: color,
+                    backgroundColor: color + '33', // Add transparency
+                    borderWidth: isMobile ? 1.5 : 2,
+                    tension: 0.1,
+                    pointRadius: isMobile ? 2 : 3,
+                    pointHoverRadius: isMobile ? 4 : 5,
+                    pointHitRadius: isMobile ? 10 : 8
+                };
+            });
+            
+            // Destroy existing chart if it exists
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+            
+            // Ensure canvas element exists
+            let canvas = document.getElementById('leagueTrendChart');
+            if (!canvas) {
+                // Recreate canvas if it was replaced
+                const chartContainer = document.querySelector('.chart-container');
+                if (chartContainer) {
+                    const existingMessage = chartContainer.querySelector('div[style*="text-align: center"]');
+                    if (existingMessage) {
+                        existingMessage.remove();
                     }
-                });
-                
-                window.chartLoaded = true;
-                
-            } catch (error) {
-                console.error('Error loading standings trend chart:', error);
-                const canvas = document.getElementById('leagueTrendChart');
-                if (canvas && canvas.parentElement) {
-                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Unable to load trend chart. Please try again later.</p>';
+                    canvas = document.createElement('canvas');
+                    canvas.id = 'leagueTrendChart';
+                    canvas.setAttribute('role', 'img');
+                    canvas.setAttribute('aria-label', 'Line chart showing fan league standings trend over time');
+                    chartContainer.appendChild(canvas);
                 }
+            }
+            
+            if (!canvas) {
+                console.error('Canvas element not found');
+                return;
+            }
+            
+            // Create the chart with mobile-responsive configuration
+            const ctx = canvas.getContext('2d');
+            
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: isMobile ? 6 : 10,
+                                font: {
+                                    size: isMobile ? 9 : 11
+                                },
+                                color: '#8da1b9',
+                                boxWidth: isMobile ? 8 : 12,
+                                boxHeight: isMobile ? 8 : 12
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#8da1b9',
+                            borderColor: '#2a3a52',
+                            borderWidth: 1,
+                            padding: isMobile ? 8 : 12,
+                            titleFont: {
+                                size: isMobile ? 11 : 13
+                            },
+                            bodyFont: {
+                                size: isMobile ? 10 : 12
+                            },
+                            callbacks: {
+                                title: function(context) {
+                                    return 'Date: ' + context[0].label;
+                                },
+                                label: function(context) {
+                                    const suffix = isMobile ? ' pts' : ' points';
+                                    return context.dataset.label + ': ' + context.parsed.y + suffix;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: !isMobile,
+                                text: 'Date',
+                                color: '#8da1b9',
+                                font: {
+                                    size: isMobile ? 10 : 12
+                                }
+                            },
+                            ticks: {
+                                maxRotation: isMobile ? 90 : 45,
+                                minRotation: isMobile ? 90 : 45,
+                                color: '#8da1b9',
+                                font: {
+                                    size: isMobile ? 9 : 11
+                                },
+                                autoSkip: true,
+                                maxTicksLimit: isMobile ? 8 : 12
+                            },
+                            grid: {
+                                color: 'rgba(42, 58, 82, 0.5)',
+                                display: !isMobile
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Points',
+                                color: '#8da1b9',
+                                font: {
+                                    size: isMobile ? 10 : 12
+                                }
+                            },
+                            ticks: {
+                                color: '#8da1b9',
+                                font: {
+                                    size: isMobile ? 9 : 11
+                                }
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(42, 58, 82, 0.5)'
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+        }
+        
+        // Helper function to determine season from date
+        // Note: This logic must stay synchronized with the Ruby implementation
+        // in lib/standings_history_tracker.rb#determine_season
+        function determineSeasonFromDate(dateStr) {
+            const date = new Date(dateStr);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1; // JavaScript months are 0-indexed
+            
+            // NHL season runs from October to June (e.g., 2024-10 to 2025-06)
+            // Months 1-6: season started previous year
+            // Months 7-12: season starts this year (includes off-season)
+            if (month >= 7) {
+                return `${year}-${year + 1}`;
+            } else {
+                return `${year - 1}-${year}`;
             }
         }
         
