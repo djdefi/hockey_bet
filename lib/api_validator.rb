@@ -2,12 +2,19 @@
 require 'json'
 require 'logger'
 
+# ApiValidator ensures NHL API responses match expected schema
+# This helps detect breaking changes in the API and provides early warning
+# when the data structure changes, preventing silent failures
 class ApiValidator
+  # Initializes validator with optional custom logger
+  # @param logger [Logger] Logger instance for validation messages
   def initialize(logger = Logger.new(STDOUT))
     @logger = logger
   end
 
   # Validate teams API response against expected schema
+  # @param response [Hash] API response from NHL teams endpoint
+  # @return [Boolean] True if response is valid, false otherwise
   def validate_teams_response(response)
     return false if response.nil? || !response.is_a?(Hash) || !response.key?('standings')
 
@@ -34,6 +41,8 @@ class ApiValidator
   end
 
   # Validate schedule API response against expected schema
+  # @param response [Hash] API response from NHL schedule endpoint
+  # @return [Boolean] True if response is valid, false otherwise
   def validate_schedule_response(response)
     return false if response.nil? || !response.is_a?(Hash) || !response.key?('gameWeek')
 
