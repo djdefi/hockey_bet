@@ -14,10 +14,15 @@ require_relative 'standings_history_tracker'
 require_relative 'team_colors'
 
 # Playoff Status Helper Structure
+# Enhanced with specific seed and position information
 PLAYOFF_STATUS = {
-  clinched: { class: 'color-bg-success-emphasis', icon: '✔️', label: 'Clinched', aria_label: 'Team has secured a playoff berth' },
-  contending: { class: 'color-bg-attention-emphasis', icon: '⚠️', label: 'Contending', aria_label: 'Team is still eligible via wild card standings' },
-  eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label: 'Eliminated', aria_label: 'Team cannot qualify for playoffs' }
+  div_leader_1: { class: 'color-bg-success-emphasis', icon: '🥇', label_prefix: 'Division Leader', aria_label: 'First place in division, secured playoff berth' },
+  div_leader_2: { class: 'color-bg-success-emphasis', icon: '🥈', label_prefix: 'Division 2nd', aria_label: 'Second place in division, secured playoff berth' },
+  div_leader_3: { class: 'color-bg-success-emphasis', icon: '🥉', label_prefix: 'Division 3rd', aria_label: 'Third place in division, secured playoff berth' },
+  wildcard_1: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #1', aria_label: 'First wildcard position, secured playoff berth' },
+  wildcard_2: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #2', aria_label: 'Second wildcard position, secured playoff berth' },
+  in_hunt: { class: 'color-bg-attention-emphasis', icon: '⚠️', label_prefix: 'In The Hunt', aria_label: 'Team is in contention for wildcard position' },
+  eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label_prefix: 'Eliminated', aria_label: 'Team is mathematically eliminated from playoffs' }
 }
 
 # Directory for persistent data files that need to be committed
@@ -141,12 +146,28 @@ class StandingsProcessor
     FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
   end
 
-  # Determine playoff status for a team
+  # Determine playoff status for a team with enhanced specificity
+  # Returns a symbol representing the team's playoff position
   def playoff_status_for(team)
-    if team['divisionSequence'].to_i <= 3
-      :clinched
-    elsif team['wildcardSequence'].to_i <= 2
-      :contending
+    div_seq = team['divisionSequence'].to_i
+    wc_seq = team['wildcardSequence'].to_i
+    
+    # Division leaders (top 3 in each division)
+    if div_seq == 1
+      :div_leader_1
+    elsif div_seq == 2
+      :div_leader_2
+    elsif div_seq == 3
+      :div_leader_3
+    # Wildcard positions (4th and 5th playoff spots in conference)
+    elsif wc_seq == 1
+      :wildcard_1
+    elsif wc_seq == 2
+      :wildcard_2
+    # In the hunt (positions 3-5 behind wildcard cutoff, still mathematically viable)
+    elsif wc_seq > 2 && wc_seq <= 5
+      :in_hunt
+    # Eliminated
     else
       :eliminated
     end
@@ -320,12 +341,53 @@ end
 
 # Helper method to convert playoff_status_for from instance method to global method for template compatibility
 def playoff_status_for(team)
-  if team['divisionSequence'].to_i <= 3
-    :clinched
-  elsif team['wildcardSequence'].to_i <= 2
-    :contending
+  div_seq = team['divisionSequence'].to_i
+  wc_seq = team['wildcardSequence'].to_i
+  
+  # Division leaders (top 3 in each division)
+  if div_seq == 1
+    :div_leader_1
+  elsif div_seq == 2
+    :div_leader_2
+  elsif div_seq == 3
+    :div_leader_3
+  # Wildcard positions (4th and 5th playoff spots in conference)
+  elsif wc_seq == 1
+    :wildcard_1
+  elsif wc_seq == 2
+    :wildcard_2
+  # In the hunt (positions 3-5 behind wildcard cutoff, still mathematically viable)
+  elsif wc_seq > 2 && wc_seq <= 5
+    :in_hunt
+  # Eliminated
   else
     :eliminated
+  end
+end
+
+# Helper function to get the full label for a playoff status
+# Includes position information like seed number or wildcard position
+def get_playoff_status_label(team, status)
+  status_info = PLAYOFF_STATUS[status]
+  return status_info[:label_prefix] unless status_info
+  
+  div_seq = team['divisionSequence'].to_i
+  conf_seq = team['conferenceSequence'].to_i
+  wc_seq = team['wildcardSequence'].to_i
+  
+  case status
+  when :div_leader_1, :div_leader_2, :div_leader_3
+    # Show conference seed for division leaders
+    "#{status_info[:label_prefix]} (#{conf_seq} seed)"
+  when :wildcard_1, :wildcard_2
+    # Show wildcard position
+    "#{status_info[:label_prefix]} (#{conf_seq} seed)"
+  when :in_hunt
+    # Show how many spots back from wildcard
+    spots_back = wc_seq - 2
+    "#{status_info[:label_prefix]} (#{spots_back} out)"
+  else
+    status_info[:label_prefix]
   end
 end
 
