@@ -3,6 +3,10 @@ require 'csv'
 require 'set'
 require_relative 'historical_stats_tracker'
 
+# BetStatsCalculator computes various statistical rankings and achievements
+# for fantasy hockey league participants based on NHL team performance data.
+# It generates rankings like top winners, best cup odds, head-to-head records,
+# and special achievements like "brick wall" (best defense) or "glass cannon" (high scoring).
 class BetStatsCalculator
   attr_reader :stats
   
@@ -10,16 +14,30 @@ class BetStatsCalculator
   PLAYOFF_TEAM_COUNT = 16  # Total number of playoff teams
   CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
   CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
+  
+  # Constants for stat calculations
+  TOP_MATCHUPS_TO_SHOW = 3  # Number of top matchups to display
+  MINIMUM_SCORING_RATE = 2.5  # Minimum goals/game for glass cannon consideration
+  STANLEY_CUP_WINS_REQUIRED = 16  # Playoff wins needed to win Stanley Cup
+  HALL_OF_FAME_LOOKBACK_YEARS = 6  # Years to look back for championship history
 
+  # Initializes the calculator with team data and mappings
+  # @param teams [Array<Hash>] NHL team data from API
+  # @param manager_team_map [Hash] Maps team abbreviations to fan/manager names
+  # @param next_games [Hash] Upcoming game information for each team
+  # @param historical_tracker [HistoricalStatsTracker, nil] Optional tracker for historical data
   def initialize(teams, manager_team_map, next_games, historical_tracker = nil)
     @teams = teams
     @manager_team_map = manager_team_map
     @next_games = next_games
     @stats = {}
     @historical_tracker = historical_tracker || HistoricalStatsTracker.new
+    @team_lookup_cache = {} # Cache for team lookups by abbreviation
   end
 
-  # Calculate all bet stats
+  # Calculate all bet stats and achievements
+  # This is the main entry point that computes all statistics and rankings
+  # @return [Hash] All calculated statistics keyed by stat name
   def calculate_all_stats
     # Fetch head-to-head data first (needed for some stats)
     fetch_head_to_head_records
@@ -63,24 +81,21 @@ class BetStatsCalculator
   end
 
   # Calculate top 3 fans with most wins (handles ties at medal positions)
+  # @return [Array<Hash>] Top winners with fan name, team, value, and display
   def calculate_top_winners
-    all_stats = fan_teams
-      .map { |team| create_fan_stat(team, team['wins'] || 0) }
-      .sort_by { |stat| -stat[:value] }
-    
-    filter_top_positions(all_stats)
+    calculate_simple_ranking('wins', descending: true, suffix: " wins")
   end
 
   # Calculate top 3 fans with most losses (handles ties at medal positions)
+  # @return [Array<Hash>] Top losers with fan name, team, value, and display
   def calculate_top_losers
-    all_stats = fan_teams
-      .map { |team| create_fan_stat(team, team['losses'] || 0) }
-      .sort_by { |stat| -stat[:value] }
-    
-    filter_top_positions(all_stats)
+    calculate_simple_ranking('losses', descending: true, suffix: " losses")
   end
 
   # Find most interesting upcoming fan vs fan matchups
+  # Calculates an "interest score" based on how close teams are in standings.
+  # Closer matchups are more interesting. Returns top 3 matchups.
+  # @return [Array<Hash>] Top matchups with fan names, teams, points, and game time
   def calculate_upcoming_fan_matchups
     matchups = []
     
@@ -132,7 +147,7 @@ class BetStatsCalculator
       }
     end
     
-    matchups.sort_by { |m| -m[:interest_score] }.take(3)
+    matchups.sort_by { |m| -m[:interest_score] }.take(TOP_MATCHUPS_TO_SHOW)
   end
 
   # Calculate fan with longest winning streak (handles ties)
@@ -165,12 +180,12 @@ class BetStatsCalculator
   def calculate_best_point_differential
     all_stats = fan_teams
       .map do |team|
-        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
-        next nil if games_played == 0
+        gp = games_played(team)
+        next nil if gp == 0
         
         # Calculate per-game averages - handle both API formats
         goals_for_per_game = if team.key?('goalFor') && !team['goalFor'].nil?
-          team['goalFor'].to_f / games_played
+          team['goalFor'].to_f / gp
         elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
           team['goalsForPctg'].to_f
         else
@@ -178,7 +193,7 @@ class BetStatsCalculator
         end
         
         goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / games_played
+          team['goalAgainst'].to_f / gp
         else
           0.0
         end
@@ -207,14 +222,15 @@ class BetStatsCalculator
   end
 
   # Calculate most dominant (best win percentage, returns top 3, including ties)
+  # @return [Array<Hash>, nil] Top teams by win percentage or nil if none
   def calculate_most_dominant
     all_stats = fan_teams
       .map do |team|
-        games_played = (team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0)
-        next nil if games_played == 0
+        gp = games_played(team)
+        next nil if gp == 0
         
         wins = team['wins'] || 0
-        win_pct = (wins.to_f / games_played * 100).round(1)
+        win_pct = (wins.to_f / gp * 100).round(1)
         
         abbrev = team['teamAbbrev']['default']
         {
@@ -237,12 +253,12 @@ class BetStatsCalculator
   def calculate_brick_wall
     all_stats = fan_teams
       .map do |team|
-        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
-        next nil if games_played == 0
+        gp = games_played(team)
+        next nil if gp == 0
         
         # Handle both API formats: goalAgainst (total) vs already per-game average
         goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / games_played
+          team['goalAgainst'].to_f / gp
         else
           0.0
         end
@@ -265,15 +281,17 @@ class BetStatsCalculator
   end
 
   # Calculate glass cannon (highest goals for but negative goal differential - scoring but losing, returns top 3, including ties)
+  # Teams that score a lot but still lose games are considered "glass cannons"
+  # @return [Array<Hash>, nil] Top glass cannon teams or nil if none qualify
   def calculate_glass_cannon
     all_stats = fan_teams
       .map do |team|
-        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
-        next nil if games_played == 0
+        gp = games_played(team)
+        next nil if gp == 0
         
         # Handle both API formats explicitly
         goals_for = if team.key?('goalFor') && !team['goalFor'].nil?
-          team['goalFor'].to_f / games_played
+          team['goalFor'].to_f / gp
         elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
           team['goalsForPctg'].to_f
         else
@@ -281,7 +299,7 @@ class BetStatsCalculator
         end
         
         goals_against = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / games_played
+          team['goalAgainst'].to_f / gp
         else
           0.0
         end
@@ -289,7 +307,7 @@ class BetStatsCalculator
         differential = goals_for - goals_against
         
         # Only consider teams with negative differential but high scoring
-        next nil if differential >= 0 || goals_for < 2.5
+        next nil if differential >= 0 || goals_for < MINIMUM_SCORING_RATE
         
         abbrev = team['teamAbbrev']['default']
         {
@@ -583,14 +601,14 @@ class BetStatsCalculator
     # the best goals against per game and highlight the best defensive performance
     all_stats = fan_teams
       .map do |team|
-        games_played = team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
-        next nil if games_played == 0
+        gp = games_played(team)
+        next nil if gp == 0
         
         goals_against = team['goalAgainst']
         next nil unless goals_against && goals_against.is_a?(Numeric)
         
         # Calculate average goals against
-        ga_per_game = goals_against.to_f / games_played
+        ga_per_game = goals_against.to_f / gp
         
         # Only include teams with exceptional defense (under 2.5 goals/game)
         next nil if ga_per_game > 2.5
@@ -806,9 +824,37 @@ class BetStatsCalculator
     }
   end
 
-  # Helper to find team by abbreviation
+  # Helper to calculate games played from team data
+  # Handles both explicit gamesPlayed field and calculated from W/L/OTL
+  # @param team [Hash] Team data
+  # @return [Integer] Number of games played
+  def games_played(team)
+    team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+  end
+
+  # Helper to find team by abbreviation with caching for performance
+  # @param abbrev [String] Team abbreviation (e.g., "BOS", "TOR")
+  # @return [Hash, nil] Team data or nil if not found
   def find_team_by_abbrev(abbrev)
-    @teams.find { |t| t['teamAbbrev']['default'] == abbrev }
+    return @team_lookup_cache[abbrev] if @team_lookup_cache.key?(abbrev)
+    
+    team = @teams.find { |t| t['teamAbbrev']['default'] == abbrev }
+    @team_lookup_cache[abbrev] = team
+    team
+  end
+
+  # Generic helper for calculating simple top-N rankings
+  # Reduces code duplication across similar stat calculations
+  # @param field [String, Symbol] The team data field to rank by
+  # @param descending [Boolean] Sort order (true for high-to-low, false for low-to-high)
+  # @param suffix [String] Optional suffix for display value (e.g., " wins")
+  # @return [Array<Hash>] Top-ranked stats with ties handled properly
+  def calculate_simple_ranking(field, descending: true, suffix: "")
+    all_stats = fan_teams
+      .map { |team| create_fan_stat(team, team[field.to_s] || 0, suffix: suffix) }
+      .sort_by { |stat| descending ? -stat[:value] : stat[:value] }
+    
+    filter_top_positions(all_stats)
   end
 
   # Filter stats to only show top 3 positions (Olympic-style ranking)
@@ -1055,14 +1101,14 @@ class BetStatsCalculator
     end
   end
 
-  # Calculate "Hall of Fame" - fans who have won the Stanley Cup in the last 6 years
-  # Winning the Stanley Cup requires 16 playoff wins
+  # Calculate "Hall of Fame" - fans who have won the Stanley Cup in recent years
+  # Winning the Stanley Cup requires 16 playoff wins (4 rounds × 4 wins per round)
+  # @return [Array<Hash>, nil] Championship records or nil if none found
   def calculate_hall_of_fame
     champions = []
     current_year = Time.now.year
-    lookback_years = 6
     
-    # Get all seasons from the last 6 years
+    # Get all seasons from the last N years
     fan_teams.each do |team|
       abbrev = team['teamAbbrev']['default']
       fan = @manager_team_map[abbrev]
@@ -1072,11 +1118,11 @@ class BetStatsCalculator
       history.each do |season, stats|
         # Parse season year (e.g., "2022-2023" -> 2023)
         season_end_year = season.split('-').last.to_i
-        next unless season_end_year >= (current_year - lookback_years)
+        next unless season_end_year >= (current_year - HALL_OF_FAME_LOOKBACK_YEARS)
         
         # Stanley Cup win requires 16 playoff wins (4 rounds × 4 wins)
         playoff_wins = stats['playoff_wins'] || 0
-        if playoff_wins >= 16
+        if playoff_wins >= STANLEY_CUP_WINS_REQUIRED
           champions << {
             fan: fan,
             team: team['teamName']['default'],
@@ -1157,6 +1203,9 @@ class BetStatsCalculator
   
   # Calculate goal differential for a team against the Sharks
   # Negative means they were outscored by the Sharks
+  # @param team_abbrev [String] Team abbreviation to check
+  # @param sharks_abbrev [String] Sharks team abbreviation
+  # @return [Integer] Goal differential (positive means team outscored Sharks)
   def calculate_goal_differential_vs_sharks(team_abbrev, sharks_abbrev)
     require 'net/http'
     require 'json'
@@ -1174,7 +1223,11 @@ class BetStatsCalculator
       # Fetch season schedule for the team
       url = URI("https://api-web.nhle.com/v1/club-schedule-season/#{team_abbrev}/#{season}")
       response = Net::HTTP.get_response(url)
-      return 0 unless response.is_a?(Net::HTTPSuccess)
+      
+      unless response.is_a?(Net::HTTPSuccess)
+        puts "Warning: Failed to fetch schedule for #{team_abbrev}: HTTP #{response.code}"
+        return 0
+      end
       
       schedule_data = JSON.parse(response.body)
       games = schedule_data['games'] || []
