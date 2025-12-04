@@ -225,7 +225,7 @@
             <h3 class="section-heading">🎯 Special Achievements</h3>
             <div class="stats-grid" role="region" aria-label="Special achievements">
                 <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:glass_cannon].length > 1 %>" role="article" aria-label="Glass cannon achievement">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:glass_cannon].length > 1 %>" role="<%= bet_stats[:glass_cannon].length > 1 ? 'button' : 'article' %>" aria-label="Glass cannon achievement" <%= 'tabindex="0"' if bet_stats[:glass_cannon].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:glass_cannon].length > 1 %>>
                         <div class="stat-emoji" aria-hidden="true">💥</div>
                         <div class="stat-label">Glass Cannon</div>
                         <div class="achievement-entries">
@@ -246,7 +246,7 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:comeback_kid].length > 1 %>" role="article" aria-label="Comeback kid achievement">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:comeback_kid].length > 1 %>" role="<%= bet_stats[:comeback_kid].length > 1 ? 'button' : 'article' %>" aria-label="Comeback kid achievement" <%= 'tabindex="0"' if bet_stats[:comeback_kid].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:comeback_kid].length > 1 %>>
                         <div class="stat-emoji" aria-hidden="true">🎯</div>
                         <div class="stat-label">Comeback Kid</div>
                         <div class="achievement-entries">
@@ -267,7 +267,7 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:overtimer].length > 1 %>" role="article" aria-label="Overtimer achievement">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:overtimer].length > 1 %>" role="<%= bet_stats[:overtimer].length > 1 ? 'button' : 'article' %>" aria-label="Overtimer achievement" <%= 'tabindex="0"' if bet_stats[:overtimer].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:overtimer].length > 1 %>>
                         <div class="stat-emoji" aria-hidden="true">⏱️</div>
                         <div class="stat-label">Overtimer</div>
                         <div class="achievement-entries">
@@ -288,7 +288,7 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:point_scrounger].length > 1 %>" role="article" aria-label="Point scrounger achievement">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:point_scrounger].length > 1 %>" role="<%= bet_stats[:point_scrounger].length > 1 ? 'button' : 'article' %>" aria-label="Point scrounger achievement" <%= 'tabindex="0"' if bet_stats[:point_scrounger].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:point_scrounger].length > 1 %>>
                         <div class="stat-emoji" aria-hidden="true">📌</div>
                         <div class="stat-label">Point Scrounger</div>
                         <div class="achievement-entries">
@@ -309,7 +309,7 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:sharks_victims].length > 1 %>" role="article" aria-label="Sharks victims achievement" style="background-color: rgba(0, 128, 128, 0.15);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:sharks_victims].length > 1 %>" role="<%= bet_stats[:sharks_victims].length > 1 ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if bet_stats[:sharks_victims].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:sharks_victims].length > 1 %> style="background-color: rgba(0, 128, 128, 0.15);">
                         <div class="stat-emoji" aria-hidden="true">🦈</div>
                         <div class="stat-label">Sharks Victims</div>
                         <div class="achievement-entries">
@@ -339,7 +339,7 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:worst_cup_odds].length > 1 %>" role="article" aria-label="Needs help achievement" style="background-color: rgba(231, 76, 60, 0.1);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:worst_cup_odds].length > 1 %>" role="<%= bet_stats[:worst_cup_odds].length > 1 ? 'button' : 'article' %>" aria-label="Needs help achievement" <%= 'tabindex="0"' if bet_stats[:worst_cup_odds].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:worst_cup_odds].length > 1 %> style="background-color: rgba(231, 76, 60, 0.1);">
                         <div class="stat-emoji" aria-hidden="true">😢</div>
                         <div class="stat-label">Needs Help</div>
                         <div class="achievement-entries">
@@ -1333,12 +1333,8 @@
         }
         
         // Make entire achievement card clickable
+        // Attributes (role, tabindex, aria-expanded) are set in the HTML template
         document.querySelectorAll('.achievement-card.expandable').forEach(card => {
-            // Add tabindex to make card focusable
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-expanded', 'false');
-            
             // Click handler for entire card
             card.addEventListener('click', function(e) {
                 toggleAchievementCard(this);
