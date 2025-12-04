@@ -1644,12 +1644,16 @@
         }
         
         // Helper function to determine season from date
+        // Note: This logic must stay synchronized with the Ruby implementation
+        // in lib/standings_history_tracker.rb#determine_season
         function determineSeasonFromDate(dateStr) {
             const date = new Date(dateStr);
             const year = date.getFullYear();
             const month = date.getMonth() + 1; // JavaScript months are 0-indexed
             
-            // NHL season runs from October to June
+            // NHL season runs from October to June (e.g., 2024-10 to 2025-06)
+            // Months 1-6: season started previous year
+            // Months 7-12: season starts this year (includes off-season)
             if (month >= 7) {
                 return `${year}-${year + 1}`;
             } else {

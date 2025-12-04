@@ -121,13 +121,14 @@ class StandingsHistoryTracker
   private
   
   # Determine season from a date
-  # NHL season typically runs from October to June
+  # NHL season typically runs from October to June (e.g., 2024-10 to 2025-06)
+  # Off-season months (July-September) are considered part of the upcoming season
   def determine_season(date)
     year = date.year
     month = date.month
     
-    # If we're in months 1-6, season started previous year
-    # If we're in months 7-12, season starts this year
+    # Months 1-6: season started previous year (e.g., Jan 2025 is 2024-2025 season)
+    # Months 7-12: season starts this year (e.g., Oct 2024 is 2024-2025 season)
     if month >= 7
       "#{year}-#{year + 1}"
     else
