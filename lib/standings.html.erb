@@ -1301,36 +1301,67 @@
         });
         
         // Achievement card expand/collapse functionality
-        document.querySelectorAll('.achievement-card .expand-toggle').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent card click
-                const card = this.closest('.achievement-card');
-                const entries = card.querySelectorAll('.achievement-entry');
-                const isExpanded = card.classList.contains('expanded');
-                
-                if (isExpanded) {
-                    // Collapse: show only first entry
-                    card.classList.remove('expanded');
-                    entries.forEach((entry, idx) => {
-                        if (idx > 0) entry.classList.add('hidden');
-                    });
-                    this.setAttribute('aria-expanded', 'false');
-                    this.querySelector('.expand-icon').textContent = '▼';
-                } else {
-                    // Expand: show all entries
-                    card.classList.add('expanded');
-                    entries.forEach(entry => entry.classList.remove('hidden'));
-                    this.setAttribute('aria-expanded', 'true');
-                    this.querySelector('.expand-icon').textContent = '▲';
+        // Function to toggle expansion state
+        function toggleAchievementCard(card) {
+            const entries = card.querySelectorAll('.achievement-entry');
+            const isExpanded = card.classList.contains('expanded');
+            const button = card.querySelector('.expand-toggle');
+            
+            if (isExpanded) {
+                // Collapse: show only first entry
+                card.classList.remove('expanded');
+                entries.forEach((entry, idx) => {
+                    if (idx > 0) entry.classList.add('hidden');
+                });
+                if (button) {
+                    button.setAttribute('aria-expanded', 'false');
+                    button.querySelector('.expand-icon').textContent = '▼';
+                }
+                card.setAttribute('aria-expanded', 'false');
+            } else {
+                // Expand: show all entries
+                card.classList.add('expanded');
+                entries.forEach(entry => entry.classList.remove('hidden'));
+                if (button) {
+                    button.setAttribute('aria-expanded', 'true');
+                    button.querySelector('.expand-icon').textContent = '▲';
+                }
+                card.setAttribute('aria-expanded', 'true');
+            }
+        }
+        
+        // Make entire achievement card clickable
+        document.querySelectorAll('.achievement-card.expandable').forEach(card => {
+            // Add tabindex to make card focusable
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-expanded', 'false');
+            
+            // Click handler for entire card
+            card.addEventListener('click', function(e) {
+                // Don't toggle if clicking the button directly (button will handle it)
+                if (!e.target.closest('.expand-toggle')) {
+                    toggleAchievementCard(this);
                 }
             });
             
-            // Add keyboard support
-            button.addEventListener('keydown', function(e) {
+            // Keyboard support for card
+            card.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    this.click();
+                    toggleAchievementCard(this);
                 }
+            });
+        });
+        
+        // Button still works for those who want to click it specifically
+        document.querySelectorAll('.achievement-card .expand-toggle').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Don't stop propagation - let the card handle it
+                // But prevent default to avoid double-firing
+                e.preventDefault();
+                const card = this.closest('.achievement-card');
+                toggleAchievementCard(card);
             });
         });
         
