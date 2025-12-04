@@ -1339,10 +1339,7 @@
             
             // Click handler for entire card
             card.addEventListener('click', function(e) {
-                // Don't toggle if clicking the button directly (button will handle it)
-                if (!e.target.closest('.expand-toggle')) {
-                    toggleAchievementCard(this);
-                }
+                toggleAchievementCard(this);
             });
             
             // Keyboard support for card
@@ -1351,17 +1348,6 @@
                     e.preventDefault();
                     toggleAchievementCard(this);
                 }
-            });
-        });
-        
-        // Button still works for those who want to click it specifically
-        document.querySelectorAll('.achievement-card .expand-toggle').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Don't stop propagation - let the card handle it
-                // But prevent default to avoid double-firing
-                e.preventDefault();
-                const card = this.closest('.achievement-card');
-                toggleAchievementCard(card);
             });
         });
         
