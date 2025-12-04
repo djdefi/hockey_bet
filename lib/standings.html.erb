@@ -225,7 +225,8 @@
             <h3 class="section-heading">🎯 Special Achievements</h3>
             <div class="stats-grid" role="region" aria-label="Special achievements">
                 <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:glass_cannon].length > 1 %>" role="<%= bet_stats[:glass_cannon].length > 1 ? 'button' : 'article' %>" aria-label="Glass cannon achievement" <%= 'tabindex="0"' if bet_stats[:glass_cannon].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:glass_cannon].length > 1 %>>
+                    <% is_expandable = bet_stats[:glass_cannon].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Glass cannon achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">💥</div>
                         <div class="stat-label">Glass Cannon</div>
                         <div class="achievement-entries">
@@ -237,7 +238,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:glass_cannon].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
@@ -246,7 +247,8 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:comeback_kid].length > 1 %>" role="<%= bet_stats[:comeback_kid].length > 1 ? 'button' : 'article' %>" aria-label="Comeback kid achievement" <%= 'tabindex="0"' if bet_stats[:comeback_kid].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:comeback_kid].length > 1 %>>
+                    <% is_expandable = bet_stats[:comeback_kid].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Comeback kid achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">🎯</div>
                         <div class="stat-label">Comeback Kid</div>
                         <div class="achievement-entries">
@@ -258,7 +260,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:comeback_kid].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
@@ -267,7 +269,8 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:overtimer].length > 1 %>" role="<%= bet_stats[:overtimer].length > 1 ? 'button' : 'article' %>" aria-label="Overtimer achievement" <%= 'tabindex="0"' if bet_stats[:overtimer].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:overtimer].length > 1 %>>
+                    <% is_expandable = bet_stats[:overtimer].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Overtimer achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">⏱️</div>
                         <div class="stat-label">Overtimer</div>
                         <div class="achievement-entries">
@@ -279,7 +282,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:overtimer].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
@@ -288,7 +291,8 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:point_scrounger].length > 1 %>" role="<%= bet_stats[:point_scrounger].length > 1 ? 'button' : 'article' %>" aria-label="Point scrounger achievement" <%= 'tabindex="0"' if bet_stats[:point_scrounger].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:point_scrounger].length > 1 %>>
+                    <% is_expandable = bet_stats[:point_scrounger].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Point scrounger achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">📌</div>
                         <div class="stat-label">Point Scrounger</div>
                         <div class="achievement-entries">
@@ -300,7 +304,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:point_scrounger].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
@@ -309,7 +313,8 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:sharks_victims].length > 1 %>" role="<%= bet_stats[:sharks_victims].length > 1 ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if bet_stats[:sharks_victims].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:sharks_victims].length > 1 %> style="background-color: rgba(0, 128, 128, 0.15);">
+                    <% is_expandable = bet_stats[:sharks_victims].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %> style="background-color: rgba(0, 128, 128, 0.15);">
                         <div class="stat-emoji" aria-hidden="true">🦈</div>
                         <div class="stat-label">Sharks Victims</div>
                         <div class="achievement-entries">
@@ -321,7 +326,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:sharks_victims].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
@@ -339,7 +344,8 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:worst_cup_odds].length > 1 %>" role="<%= bet_stats[:worst_cup_odds].length > 1 ? 'button' : 'article' %>" aria-label="Needs help achievement" <%= 'tabindex="0"' if bet_stats[:worst_cup_odds].length > 1 %> <%= 'aria-expanded="false"' if bet_stats[:worst_cup_odds].length > 1 %> style="background-color: rgba(231, 76, 60, 0.1);">
+                    <% is_expandable = bet_stats[:worst_cup_odds].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Needs help achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %> style="background-color: rgba(231, 76, 60, 0.1);">
                         <div class="stat-emoji" aria-hidden="true">😢</div>
                         <div class="stat-label">Needs Help</div>
                         <div class="achievement-entries">
@@ -351,7 +357,7 @@
                                 </div>
                             <% end %>
                         </div>
-                        <% if bet_stats[:worst_cup_odds].length > 1 %>
+                        <% if is_expandable %>
                             <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
