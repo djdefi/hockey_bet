@@ -413,10 +413,11 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     padding: 1rem;
     transition: all 0.2s ease;
+    overflow: hidden;
 }
 
 .stat-card-square:hover {
@@ -428,6 +429,7 @@ h3 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .stat-label {
@@ -435,10 +437,11 @@ h3 {
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
     line-height: 1.2;
+    flex-shrink: 0;
 }
 
 .stat-value {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
@@ -446,16 +449,24 @@ h3 {
     word-break: break-word;
     max-width: 100%;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .stat-fan-name {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.2;
     word-break: break-word;
     max-width: 100%;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Achievement Cards - Expandable */
@@ -479,7 +490,8 @@ h3 {
     height: auto;
     min-height: 140px;
     padding: 1rem;
-    overflow: visible;
+    overflow: hidden;
+    z-index: 10;
 }
 
 .achievement-entries {
@@ -1212,8 +1224,8 @@ h3 {
     }
     
     .stat-emoji {
-        font-size: 1.75rem;
-        margin-bottom: 0.4rem;
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
     }
     
     .stat-label {
@@ -1221,11 +1233,12 @@ h3 {
     }
     
     .stat-value {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
+        -webkit-line-clamp: 2;
     }
     
     .stat-fan-name {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
     
     .achievement-card.expandable {
