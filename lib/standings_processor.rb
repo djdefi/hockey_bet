@@ -149,6 +149,12 @@ class StandingsProcessor
   # Determine playoff status for a team with enhanced specificity
   # Returns a symbol representing the team's playoff position
   def playoff_status_for(team)
+    StandingsProcessor.calculate_playoff_status(team)
+  end
+
+  # Class method to calculate playoff status (shared between instance and global methods)
+  # Returns a symbol representing the team's playoff position
+  def self.calculate_playoff_status(team)
     div_seq = team['divisionSequence'].to_i
     wc_seq = team['wildcardSequence'].to_i
     
@@ -340,36 +346,16 @@ class StandingsProcessor
 end
 
 # Helper method to convert playoff_status_for from instance method to global method for template compatibility
+# This is needed because ERB templates can't access instance methods directly
 def playoff_status_for(team)
-  div_seq = team['divisionSequence'].to_i
-  wc_seq = team['wildcardSequence'].to_i
-  
-  # Division leaders (top 3 in each division)
-  if div_seq == 1
-    :div_leader_1
-  elsif div_seq == 2
-    :div_leader_2
-  elsif div_seq == 3
-    :div_leader_3
-  # Wildcard positions (4th and 5th playoff spots in conference)
-  elsif wc_seq == 1
-    :wildcard_1
-  elsif wc_seq == 2
-    :wildcard_2
-  # In the hunt (positions 3-5 behind wildcard cutoff, still mathematically viable)
-  elsif wc_seq > 2 && wc_seq <= 5
-    :in_hunt
-  # Eliminated
-  else
-    :eliminated
-  end
+  StandingsProcessor.calculate_playoff_status(team)
 end
 
 # Helper function to get the full label for a playoff status
 # Includes position information like seed number or wildcard position
 def get_playoff_status_label(team, status)
   status_info = PLAYOFF_STATUS[status]
-  return status_info[:label_prefix] unless status_info
+  return 'Unknown Status' unless status_info
   
   div_seq = team['divisionSequence'].to_i
   conf_seq = team['conferenceSequence'].to_i
