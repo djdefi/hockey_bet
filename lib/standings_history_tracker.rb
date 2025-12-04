@@ -33,6 +33,7 @@ class StandingsHistoryTracker
     
     # Get today's date in ISO format
     today = Date.today.to_s
+    current_season = determine_season(Date.today)
     
     # Check if we already have an entry for today
     today_entry = history.find { |entry| entry['date'] == today }
@@ -52,10 +53,12 @@ class StandingsHistoryTracker
     if today_entry
       # Update existing entry for today
       today_entry['standings'] = fan_points
+      today_entry['season'] = current_season
     else
       # Add new entry for today
       history << {
         'date' => today,
+        'season' => current_season,
         'standings' => fan_points
       }
     end
@@ -81,7 +84,56 @@ class StandingsHistoryTracker
     puts "Standings history updated: #{fan_points.size} fans tracked for #{today}"
   end
   
+  # Get history filtered by season
+  def get_history_by_season(season)
+    history = load_history
+    history.select { |entry| (entry['season'] || determine_season(Date.parse(entry['date']))) == season }
+  end
+  
+  # Backfill season information for existing entries that don't have it
+  def backfill_seasons
+    history = load_history
+    changed = false
+    
+    history.each do |entry|
+      unless entry['season']
+        entry['season'] = determine_season(Date.parse(entry['date']))
+        changed = true
+      end
+    end
+    
+    save_history(history) if changed
+    puts "Season information backfilled for #{history.length} entries" if changed
+  end
+  
+  # Get all available seasons from history
+  def get_available_seasons
+    history = load_history
+    seasons = history.map { |entry| entry['season'] || determine_season(Date.parse(entry['date'])) }.uniq.compact
+    seasons.sort.reverse # Most recent first
+  end
+  
+  # Get current season identifier (e.g., "2024-2025")
+  def current_season
+    determine_season(Date.today)
+  end
+  
   private
+  
+  # Determine season from a date
+  # NHL season typically runs from October to June
+  def determine_season(date)
+    year = date.year
+    month = date.month
+    
+    # If we're in months 1-6, season started previous year
+    # If we're in months 7-12, season starts this year
+    if month >= 7
+      "#{year}-#{year + 1}"
+    else
+      "#{year - 1}-#{year}"
+    end
+  end
   
   def ensure_data_file_exists
     return if File.exist?(@data_file)

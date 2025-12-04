@@ -99,7 +99,20 @@ class StandingsProcessor
     FileUtils.mkdir_p(DATA_DIR)
     history_data_path = "#{DATA_DIR}/standings_history.json"
     history_tracker = StandingsHistoryTracker.new(history_data_path)
+    
+    # Backfill season information for existing entries
+    history_tracker.backfill_seasons
+    
+    # Record current standings
     history_tracker.record_current_standings(@manager_team_map, @teams)
+    
+    # Export available seasons to JSON
+    seasons_data = {
+      'seasons' => history_tracker.get_available_seasons,
+      'current_season' => history_tracker.current_season
+    }
+    seasons_data_path = "#{DATA_DIR}/available_seasons.json"
+    File.write(seasons_data_path, JSON.pretty_generate(seasons_data))
     
     # Export fan team colors to JSON - store in data/ directory for persistence
     colors_data_path = "#{DATA_DIR}/fan_team_colors.json"
@@ -108,6 +121,7 @@ class StandingsProcessor
     # Copy persistent data files to output directory for deployment
     FileUtils.cp(history_data_path, "#{output_dir}/standings_history.json")
     FileUtils.cp(colors_data_path, "#{output_dir}/fan_team_colors.json")
+    FileUtils.cp(seasons_data_path, "#{output_dir}/available_seasons.json")
     
     # Copy vendored assets to output directory
     vendor_src_dir = File.join(File.dirname(__FILE__), '..', 'vendor')
