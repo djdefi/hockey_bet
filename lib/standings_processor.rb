@@ -22,6 +22,7 @@ PLAYOFF_STATUS = {
   wildcard_1: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #1', aria_label: 'First wildcard position, secured playoff berth' },
   wildcard_2: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #2', aria_label: 'Second wildcard position, secured playoff berth' },
   in_hunt: { class: 'color-bg-attention-emphasis', icon: '⚠️', label_prefix: 'In The Hunt', aria_label: 'Team is in contention for wildcard position' },
+  fading_fast: { class: 'color-bg-attention-emphasis', icon: '🫠', label_prefix: 'Fading Fast', aria_label: 'Team is fading from playoff contention' },
   eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label_prefix: 'Eliminated', aria_label: 'Team is mathematically eliminated from playoffs' }
 }
 
@@ -170,10 +171,13 @@ class StandingsProcessor
       :wildcard_1
     elsif wc_seq == 2
       :wildcard_2
-    # In the hunt (positions 3-5 behind wildcard cutoff, still mathematically viable)
+    # In the hunt (positions 3-5 behind wildcard cutoff, still realistically viable)
     elsif wc_seq > 2 && wc_seq <= 5
       :in_hunt
-    # Eliminated
+    # Fading fast (6-8 spots out, highly unlikely but not mathematically eliminated)
+    elsif wc_seq > 5 && wc_seq <= 8
+      :fading_fast
+    # Mathematically eliminated (9+ spots behind wildcard cutoff)
     else
       :eliminated
     end
@@ -368,7 +372,7 @@ def get_playoff_status_label(team, status)
   when :wildcard_1, :wildcard_2
     # Show wildcard position
     "#{status_info[:label_prefix]} (#{conf_seq} seed)"
-  when :in_hunt
+  when :in_hunt, :fading_fast
     # Show how many spots back from wildcard
     spots_back = wc_seq - 2
     "#{status_info[:label_prefix]} (#{spots_back} out)"

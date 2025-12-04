@@ -920,6 +920,12 @@ h3 {
     color: #ffc107;
 }
 
+/* Fading fast status - teams unlikely but not mathematically eliminated */
+.status-fading-fast {
+    background-color: rgba(255, 140, 0, 0.2);
+    color: #ff8c00;
+}
+
 /* Eliminated status */
 .status-eliminated {
     background-color: rgba(231, 76, 60, 0.2);

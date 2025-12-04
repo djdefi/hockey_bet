@@ -54,11 +54,15 @@ RSpec.describe 'NHL Standings Table' do
       expect(playoff_status_for(@teams[4])).to eq(:in_hunt)
     end
 
-    it 'returns :eliminated for teams with wildcardSequence > 5' do
-      # Buffalo, Ottawa, and Montreal have wildcardSequence > 5
-      expect(playoff_status_for(@teams[5])).to eq(:eliminated) # Buffalo
-      expect(playoff_status_for(@teams[6])).to eq(:eliminated) # Ottawa
-      expect(playoff_status_for(@teams[7])).to eq(:eliminated) # Montreal
+    it 'returns :fading_fast for teams with wildcardSequence 6-8' do
+      # Buffalo and Ottawa have wildcardSequence 6-8
+      expect(playoff_status_for(@teams[5])).to eq(:fading_fast) # Buffalo (WC: 6)
+      expect(playoff_status_for(@teams[6])).to eq(:fading_fast) # Ottawa (WC: 8)
+    end
+
+    it 'returns :eliminated for teams with wildcardSequence > 8' do
+      # Montreal has wildcardSequence 9
+      expect(playoff_status_for(@teams[7])).to eq(:eliminated) # Montreal (WC: 9)
     end
   end
 
@@ -205,11 +209,13 @@ RSpec.describe 'NHL Standings Table' do
       expect(PLAYOFF_STATUS).to have_key(:wildcard_1)
       expect(PLAYOFF_STATUS).to have_key(:wildcard_2)
       expect(PLAYOFF_STATUS).to have_key(:in_hunt)
+      expect(PLAYOFF_STATUS).to have_key(:fading_fast)
       expect(PLAYOFF_STATUS).to have_key(:eliminated)
 
       expect(PLAYOFF_STATUS[:div_leader_1]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:wildcard_1]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:in_hunt]).to include(:class, :icon, :label_prefix, :aria_label)
+      expect(PLAYOFF_STATUS[:fading_fast]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:eliminated]).to include(:class, :icon, :label_prefix, :aria_label)
     end
   end
@@ -237,6 +243,14 @@ RSpec.describe 'NHL Standings Table' do
       label = get_playoff_status_label(@teams[4], status)
       expect(label).to include('In The Hunt')
       expect(label).to include('1 out')
+    end
+
+    it 'returns label with spots out for fading fast teams' do
+      # Buffalo is wildcard 6 (4 spots out from WC2)
+      status = playoff_status_for(@teams[5])
+      label = get_playoff_status_label(@teams[5], status)
+      expect(label).to include('Fading Fast')
+      expect(label).to include('4 out')
     end
 
     it 'returns simple label for eliminated teams' do
