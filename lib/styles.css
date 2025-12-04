@@ -415,7 +415,7 @@ h3 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0.75rem;
+    padding: 1rem;
     transition: all 0.2s ease;
 }
 
@@ -472,7 +472,7 @@ h3 {
 .achievement-card.expanded {
     height: auto;
     min-height: 140px;
-    padding: 0.75rem;
+    padding: 1rem;
 }
 
 .achievement-entries {
@@ -680,18 +680,22 @@ h3 {
 .team-info {
     display: flex;
     flex-direction: column;
+    gap: 0.15rem;
 }
 
 .team-name {
     font-weight: 700;
     font-size: 1rem;
     color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .team-fan {
     font-size: 0.85rem;
     color: var(--text-secondary);
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .team-card-right {
@@ -851,15 +855,51 @@ h3 {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 12px;
     font-size: 0.7rem;
     font-weight: 600;
-    gap: 4px;
+    gap: 6px;
     white-space: nowrap;
-    margin-top: 0.25rem;
+    margin-top: 0.35rem;
+    line-height: 1.2;
 }
 
+.status-badge > span[aria-hidden="true"] {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 0.9rem;
+}
+
+/* Division leader statuses */
+.status-div-leader-1,
+.status-div-leader-2,
+.status-div-leader-3 {
+    background-color: rgba(33, 209, 159, 0.2);
+    color: var(--accent-green);
+}
+
+/* Wildcard statuses */
+.status-wildcard-1,
+.status-wildcard-2 {
+    background-color: rgba(33, 209, 159, 0.2);
+    color: var(--accent-green);
+}
+
+/* In the hunt status */
+.status-in-hunt {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+/* Eliminated status */
+.status-eliminated {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--accent-red);
+}
+
+/* Legacy status classes for backward compatibility */
 .status-clinched {
     background-color: rgba(33, 209, 159, 0.2);
     color: var(--accent-green);
@@ -870,9 +910,33 @@ h3 {
     color: #ffc107;
 }
 
-.status-eliminated {
-    background-color: rgba(231, 76, 60, 0.2);
-    color: var(--accent-red);
+/* Playoff Status Legend */
+.playoff-status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.status-item > span[role="img"] {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1;
 }
 
 /* Loading Skeleton */
