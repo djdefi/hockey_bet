@@ -1125,6 +1125,116 @@ h3 {
     .chart-container canvas {
         max-height: 450px;
     }
+    
+    /* Mobile-specific card adjustments */
+    .team-card {
+        padding: 0.75rem;
+    }
+    
+    .team-card-left {
+        gap: 0.5rem;
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .team-rank {
+        font-size: 1.25rem;
+        min-width: 30px;
+    }
+    
+    .team-info {
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .team-name {
+        font-size: 0.9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .team-fan {
+        font-size: 0.75rem;
+    }
+    
+    .team-card-right {
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+    
+    .team-points-value {
+        font-size: 1.25rem;
+    }
+    
+    .team-points-label {
+        font-size: 0.65rem;
+    }
+    
+    .team-trend {
+        font-size: 1.25rem;
+    }
+    
+    /* Status badge adjustments for mobile */
+    .status-badge {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        gap: 4px;
+        margin-top: 0.25rem;
+    }
+    
+    .status-badge > span[aria-hidden="true"] {
+        font-size: 0.8rem;
+    }
+    
+    /* Playoff status legend for mobile */
+    .playoff-status-legend {
+        gap: 0.5rem;
+        padding: 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .status-item {
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+    
+    .status-item > span[role="img"] {
+        font-size: 0.9rem;
+    }
+    
+    /* Achievement card mobile adjustments */
+    .stat-card-square {
+        flex: 0 0 130px;
+        width: 130px;
+        height: 130px;
+        padding: 0.75rem;
+    }
+    
+    .stat-emoji {
+        font-size: 1.75rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .stat-value {
+        font-size: 0.85rem;
+    }
+    
+    .stat-fan-name {
+        font-size: 0.7rem;
+    }
+    
+    .achievement-card.expandable {
+        padding-bottom: 1.5rem;
+    }
+    
+    .achievement-rank {
+        font-size: 0.6rem;
+    }
 }
 
 /* Utility classes */
