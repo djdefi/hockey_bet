@@ -238,7 +238,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:glass_cannon].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:glass_cannon].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -259,7 +259,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:comeback_kid].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:comeback_kid].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -280,7 +280,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:overtimer].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:overtimer].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -301,7 +301,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:point_scrounger].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:point_scrounger].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -322,7 +322,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:sharks_victims].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:sharks_victims].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -352,7 +352,7 @@
                             <% end %>
                         </div>
                         <% if bet_stats[:worst_cup_odds].length > 1 %>
-                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:worst_cup_odds].length %>" aria-expanded="false">
+                            <button class="expand-toggle" aria-hidden="true" tabindex="-1">
                                 <span class="expand-icon">▼</span>
                             </button>
                         <% end %>
@@ -1313,22 +1313,22 @@
                 entries.forEach((entry, idx) => {
                     if (idx > 0) entry.classList.add('hidden');
                 });
+                card.setAttribute('aria-expanded', 'false');
+                // Update visual indicator (button icon)
                 if (button) {
-                    button.setAttribute('aria-expanded', 'false');
                     const expandIcon = button.querySelector('.expand-icon');
                     if (expandIcon) expandIcon.textContent = '▼';
                 }
-                card.setAttribute('aria-expanded', 'false');
             } else {
                 // Expand: show all entries
                 card.classList.add('expanded');
                 entries.forEach(entry => entry.classList.remove('hidden'));
+                card.setAttribute('aria-expanded', 'true');
+                // Update visual indicator (button icon)
                 if (button) {
-                    button.setAttribute('aria-expanded', 'true');
                     const expandIcon = button.querySelector('.expand-icon');
                     if (expandIcon) expandIcon.textContent = '▲';
                 }
-                card.setAttribute('aria-expanded', 'true');
             }
         }
         
