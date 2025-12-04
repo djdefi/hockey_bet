@@ -95,25 +95,26 @@ RSpec.describe 'HTML Rendering and Accessibility' do
   
   describe 'playoff status displays' do
     it 'correctly applies status classes to rows' do
-      # Count the rows with each status class
-      clinched_rows = @doc.css(".#{PLAYOFF_STATUS[:clinched][:class].gsub(' ', '.')}")
-      contending_rows = @doc.css(".#{PLAYOFF_STATUS[:contending][:class].gsub(' ', '.')}")
+      # Count the rows with each status class (all playoff status types share same color classes)
+      success_rows = @doc.css(".#{PLAYOFF_STATUS[:div_leader_1][:class].gsub(' ', '.')}")
+      attention_rows = @doc.css(".#{PLAYOFF_STATUS[:in_hunt][:class].gsub(' ', '.')}")
       eliminated_rows = @doc.css(".#{PLAYOFF_STATUS[:eliminated][:class].gsub(' ', '.')}")
       
       # Just verify we have at least one row of each type
-      expect(clinched_rows.length).to be > 0
-      expect(contending_rows.length).to be > 0
+      expect(success_rows.length).to be > 0
+      expect(attention_rows.length).to be > 0
       expect(eliminated_rows.length).to be > 0
     end
     
-    it 'shows the legend with all status types' do
+    it 'shows the legend with status types' do
       legend_items = @doc.css('.status-item')
       legend_text = legend_items.map { |item| item.text.strip }.join(' ')
       
-      # Check that each status label exists somewhere in the combined legend text
-      expect(legend_text).to include(PLAYOFF_STATUS[:clinched][:label])
-      expect(legend_text).to include(PLAYOFF_STATUS[:contending][:label])
-      expect(legend_text).to include(PLAYOFF_STATUS[:eliminated][:label])
+      # Check that key status labels exist in the legend
+      expect(legend_text).to include('Division Leader')
+      expect(legend_text).to include('Wildcard')
+      expect(legend_text).to include(PLAYOFF_STATUS[:in_hunt][:label_prefix])
+      expect(legend_text).to include(PLAYOFF_STATUS[:eliminated][:label_prefix])
     end
   end
   

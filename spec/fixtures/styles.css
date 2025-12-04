@@ -413,10 +413,11 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
-    padding: 0.75rem;
+    padding: 1rem;
     transition: all 0.2s ease;
+    overflow: hidden;
 }
 
 .stat-card-square:hover {
@@ -428,6 +429,7 @@ h3 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .stat-label {
@@ -435,21 +437,36 @@ h3 {
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
     line-height: 1.2;
+    flex-shrink: 0;
 }
 
 .stat-value {
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
-    line-height: 1;
+    line-height: 1.2;
+    word-break: break-word;
+    max-width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .stat-fan-name {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.2;
+    word-break: break-word;
+    max-width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Achievement Cards - Expandable */
@@ -459,13 +476,22 @@ h3 {
 }
 
 .achievement-card.expandable {
-    padding-bottom: 1.5rem; /* Space for expand button */
+    padding-bottom: 1.75rem; /* Space for expand button */
+    cursor: pointer;
+    user-select: none;
+}
+
+.achievement-card.expandable:focus {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
 }
 
 .achievement-card.expanded {
     height: auto;
     min-height: 140px;
-    padding: 0.75rem;
+    padding: 1rem;
+    overflow: hidden;
+    z-index: 10;
 }
 
 .achievement-entries {
@@ -482,6 +508,8 @@ h3 {
     justify-content: center;
     transition: all 0.3s ease;
     opacity: 1;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .achievement-entry.hidden {
@@ -489,7 +517,7 @@ h3 {
 }
 
 .achievement-card.expanded .achievement-entry {
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -501,7 +529,8 @@ h3 {
     font-size: 0.65rem;
     color: var(--text-secondary);
     font-weight: 600;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
 }
 
 .expand-toggle {
@@ -673,24 +702,29 @@ h3 {
 .team-info {
     display: flex;
     flex-direction: column;
+    gap: 0.15rem;
 }
 
 .team-name {
     font-weight: 700;
     font-size: 1rem;
     color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .team-fan {
     font-size: 0.85rem;
     color: var(--text-secondary);
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .team-card-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 .team-points {
@@ -701,15 +735,19 @@ h3 {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--text-primary);
+    line-height: 1.2;
 }
 
 .team-points-label {
     font-size: 0.75rem;
     color: var(--text-secondary);
+    line-height: 1.2;
 }
 
 .team-trend {
     font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
 .trend-up {
@@ -844,15 +882,57 @@ h3 {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 12px;
     font-size: 0.7rem;
     font-weight: 600;
-    gap: 4px;
+    gap: 6px;
     white-space: nowrap;
-    margin-top: 0.25rem;
+    margin-top: 0.35rem;
+    line-height: 1.2;
 }
 
+.status-badge > span[aria-hidden="true"] {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 0.9rem;
+}
+
+/* Division leader statuses */
+.status-div-leader-1,
+.status-div-leader-2,
+.status-div-leader-3 {
+    background-color: rgba(33, 209, 159, 0.2);
+    color: var(--accent-green);
+}
+
+/* Wildcard statuses */
+.status-wildcard-1,
+.status-wildcard-2 {
+    background-color: rgba(33, 209, 159, 0.2);
+    color: var(--accent-green);
+}
+
+/* In the hunt status */
+.status-in-hunt {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+/* Fading fast status - teams unlikely but not mathematically eliminated */
+.status-fading-fast {
+    background-color: rgba(255, 140, 0, 0.2);
+    color: #ff8c00;
+}
+
+/* Eliminated status */
+.status-eliminated {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--accent-red);
+}
+
+/* Legacy status classes for backward compatibility */
 .status-clinched {
     background-color: rgba(33, 209, 159, 0.2);
     color: var(--accent-green);
@@ -863,9 +943,33 @@ h3 {
     color: #ffc107;
 }
 
-.status-eliminated {
-    background-color: rgba(231, 76, 60, 0.2);
-    color: var(--accent-red);
+/* Playoff Status Legend */
+.playoff-status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.status-item > span[role="img"] {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1;
 }
 
 /* Loading Skeleton */
@@ -1038,6 +1142,117 @@ h3 {
     
     .chart-container canvas {
         max-height: 450px;
+    }
+    
+    /* Mobile-specific card adjustments */
+    .team-card {
+        padding: 0.75rem;
+    }
+    
+    .team-card-left {
+        gap: 0.5rem;
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .team-rank {
+        font-size: 1.25rem;
+        min-width: 30px;
+    }
+    
+    .team-info {
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .team-name {
+        font-size: 0.9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .team-fan {
+        font-size: 0.75rem;
+    }
+    
+    .team-card-right {
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+    
+    .team-points-value {
+        font-size: 1.25rem;
+    }
+    
+    .team-points-label {
+        font-size: 0.65rem;
+    }
+    
+    .team-trend {
+        font-size: 1.25rem;
+    }
+    
+    /* Status badge adjustments for mobile */
+    .status-badge {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        gap: 4px;
+        margin-top: 0.25rem;
+    }
+    
+    .status-badge > span[aria-hidden="true"] {
+        font-size: 0.8rem;
+    }
+    
+    /* Playoff status legend for mobile */
+    .playoff-status-legend {
+        gap: 0.5rem;
+        padding: 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .status-item {
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+    
+    .status-item > span[role="img"] {
+        font-size: 0.9rem;
+    }
+    
+    /* Achievement card mobile adjustments */
+    .stat-card-square {
+        flex: 0 0 130px;
+        width: 130px;
+        height: 130px;
+        padding: 0.75rem;
+    }
+    
+    .stat-emoji {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .stat-value {
+        font-size: 0.75rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .stat-fan-name {
+        font-size: 0.65rem;
+    }
+    
+    .achievement-card.expandable {
+        padding-bottom: 1.5rem;
+    }
+    
+    .achievement-rank {
+        font-size: 0.6rem;
     }
 }
 

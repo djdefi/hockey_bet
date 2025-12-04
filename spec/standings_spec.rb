@@ -29,24 +29,40 @@ RSpec.describe 'NHL Standings Table' do
   end
 
   describe '#playoff_status_for' do
-    it 'returns :clinched for teams with divisionSequence <= 3' do
-      # Boston, Florida, and Toronto have divisionSequence 1, 2, and 3
-      expect(playoff_status_for(@teams[0])).to eq(:clinched) # Boston
-      expect(playoff_status_for(@teams[1])).to eq(:clinched) # Florida
-      expect(playoff_status_for(@teams[2])).to eq(:clinched) # Toronto
+    it 'returns :div_leader_1 for first place in division' do
+      # Boston has divisionSequence 1
+      expect(playoff_status_for(@teams[0])).to eq(:div_leader_1)
     end
 
-    it 'returns :contending for teams with wildcardSequence <= 2' do
+    it 'returns :div_leader_2 for second place in division' do
+      # Florida has divisionSequence 2
+      expect(playoff_status_for(@teams[1])).to eq(:div_leader_2)
+    end
+
+    it 'returns :div_leader_3 for third place in division' do
+      # Toronto has divisionSequence 3
+      expect(playoff_status_for(@teams[2])).to eq(:div_leader_3)
+    end
+
+    it 'returns :wildcard_1 for teams with wildcardSequence 1' do
       # Tampa Bay has wildcardSequence 1
-      expect(playoff_status_for(@teams[3])).to eq(:contending) # Tampa Bay
+      expect(playoff_status_for(@teams[3])).to eq(:wildcard_1)
     end
 
-    it 'returns :eliminated for teams with wildcardSequence > 2' do
-      # Detroit, Buffalo, Ottawa, and Montreal have wildcardSequence > 2
-      expect(playoff_status_for(@teams[4])).to eq(:eliminated) # Detroit
-      expect(playoff_status_for(@teams[5])).to eq(:eliminated) # Buffalo
-      expect(playoff_status_for(@teams[6])).to eq(:eliminated) # Ottawa
-      expect(playoff_status_for(@teams[7])).to eq(:eliminated) # Montreal
+    it 'returns :in_hunt for teams with wildcardSequence 3-5' do
+      # Detroit has wildcardSequence 3
+      expect(playoff_status_for(@teams[4])).to eq(:in_hunt)
+    end
+
+    it 'returns :fading_fast for teams with wildcardSequence 6-8' do
+      # Buffalo and Ottawa have wildcardSequence 6-8
+      expect(playoff_status_for(@teams[5])).to eq(:fading_fast) # Buffalo (WC: 6)
+      expect(playoff_status_for(@teams[6])).to eq(:fading_fast) # Ottawa (WC: 8)
+    end
+
+    it 'returns :eliminated for teams with wildcardSequence > 8' do
+      # Montreal has wildcardSequence 9
+      expect(playoff_status_for(@teams[7])).to eq(:eliminated) # Montreal (WC: 9)
     end
   end
 
@@ -187,13 +203,61 @@ RSpec.describe 'NHL Standings Table' do
 
   describe 'PLAYOFF_STATUS constant' do
     it 'has the correct structure with expected keys' do
-      expect(PLAYOFF_STATUS).to have_key(:clinched)
-      expect(PLAYOFF_STATUS).to have_key(:contending)
+      expect(PLAYOFF_STATUS).to have_key(:div_leader_1)
+      expect(PLAYOFF_STATUS).to have_key(:div_leader_2)
+      expect(PLAYOFF_STATUS).to have_key(:div_leader_3)
+      expect(PLAYOFF_STATUS).to have_key(:wildcard_1)
+      expect(PLAYOFF_STATUS).to have_key(:wildcard_2)
+      expect(PLAYOFF_STATUS).to have_key(:in_hunt)
+      expect(PLAYOFF_STATUS).to have_key(:fading_fast)
       expect(PLAYOFF_STATUS).to have_key(:eliminated)
 
-      expect(PLAYOFF_STATUS[:clinched]).to include(:class, :icon, :label, :aria_label)
-      expect(PLAYOFF_STATUS[:contending]).to include(:class, :icon, :label, :aria_label)
-      expect(PLAYOFF_STATUS[:eliminated]).to include(:class, :icon, :label, :aria_label)
+      expect(PLAYOFF_STATUS[:div_leader_1]).to include(:class, :icon, :label_prefix, :aria_label)
+      expect(PLAYOFF_STATUS[:wildcard_1]).to include(:class, :icon, :label_prefix, :aria_label)
+      expect(PLAYOFF_STATUS[:in_hunt]).to include(:class, :icon, :label_prefix, :aria_label)
+      expect(PLAYOFF_STATUS[:fading_fast]).to include(:class, :icon, :label_prefix, :aria_label)
+      expect(PLAYOFF_STATUS[:eliminated]).to include(:class, :icon, :label_prefix, :aria_label)
+    end
+  end
+
+  describe '#get_playoff_status_label' do
+    it 'returns label with conference seed for division leaders' do
+      # Boston is division leader 1, conference seed 1
+      status = playoff_status_for(@teams[0])
+      label = get_playoff_status_label(@teams[0], status)
+      expect(label).to include('Division Leader')
+      expect(label).to include('1 seed')
+    end
+
+    it 'returns label with conference seed for wildcard teams' do
+      # Tampa Bay is wildcard 1, conference seed 7
+      status = playoff_status_for(@teams[3])
+      label = get_playoff_status_label(@teams[3], status)
+      expect(label).to include('Wildcard')
+      expect(label).to include('7 seed')
+    end
+
+    it 'returns label with spots out for in hunt teams' do
+      # Detroit is wildcard 3 (1 spot out from WC2)
+      status = playoff_status_for(@teams[4])
+      label = get_playoff_status_label(@teams[4], status)
+      expect(label).to include('In The Hunt')
+      expect(label).to include('1 out')
+    end
+
+    it 'returns label with spots out for fading fast teams' do
+      # Buffalo is wildcard 6 (4 spots out from WC2)
+      status = playoff_status_for(@teams[5])
+      label = get_playoff_status_label(@teams[5], status)
+      expect(label).to include('Fading Fast')
+      expect(label).to include('4 out')
+    end
+
+    it 'returns simple label for eliminated teams' do
+      # Montreal is eliminated
+      status = playoff_status_for(@teams[7])
+      label = get_playoff_status_label(@teams[7], status)
+      expect(label).to eq('Eliminated')
     end
   end
 

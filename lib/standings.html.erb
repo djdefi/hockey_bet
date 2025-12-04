@@ -430,16 +430,20 @@
             <!-- Legend for playoff status indicators -->
             <div class="playoff-status-legend" role="region" aria-label="Playoff status legend">
                 <span class="status-item">
-                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:clinched][:aria_label] %>"><%= PLAYOFF_STATUS[:clinched][:icon] %></span>
-                    <%= PLAYOFF_STATUS[:clinched][:label] %>
+                    <span role="img" aria-label="Division leader - playoff berth secured"><%= PLAYOFF_STATUS[:div_leader_1][:icon] %></span>
+                    Division Leader
                 </span>
                 <span class="status-item">
-                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:contending][:aria_label] %>"><%= PLAYOFF_STATUS[:contending][:icon] %></span>
-                    <%= PLAYOFF_STATUS[:contending][:label] %>
+                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:wildcard_1][:aria_label] %>"><%= PLAYOFF_STATUS[:wildcard_1][:icon] %></span>
+                    Wildcard
+                </span>
+                <span class="status-item">
+                    <span role="img" aria-label="<%= PLAYOFF_STATUS[:in_hunt][:aria_label] %>"><%= PLAYOFF_STATUS[:in_hunt][:icon] %></span>
+                    <%= PLAYOFF_STATUS[:in_hunt][:label_prefix] %>
                 </span>
                 <span class="status-item">
                     <span role="img" aria-label="<%= PLAYOFF_STATUS[:eliminated][:aria_label] %>"><%= PLAYOFF_STATUS[:eliminated][:icon] %></span>
-                    <%= PLAYOFF_STATUS[:eliminated][:label] %>
+                    <%= PLAYOFF_STATUS[:eliminated][:label_prefix] %>
                 </span>
             </div>
             
@@ -447,6 +451,7 @@
                 <% 
                 status = playoff_status_for(team)
                 status_info = PLAYOFF_STATUS[status]
+                status_label = get_playoff_status_label(team, status)
                 team_abbrev = team['teamAbbrev']['default']
                 fan_name = manager_team_map[team_abbrev] || 'N/A'
                 next_game = next_games[team_abbrev]
@@ -477,7 +482,7 @@
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
                                 <div class="team-fan"><%= fan_name %></div>
                                 <span class="status-badge status-<%= status.to_s.gsub('_', '-') %>" role="status" aria-label="<%= status_info[:aria_label] %>">
-                                    <span aria-hidden="true"><%= status_info[:icon] %></span> <%= status_info[:label] %>
+                                    <span aria-hidden="true"><%= status_info[:icon] %></span> <%= status_label %>
                                 </span>
                             </div>
                         </div>
