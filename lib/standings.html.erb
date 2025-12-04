@@ -269,6 +269,15 @@
                     </div>
                 <% end %>
                 
+                <% if bet_stats && bet_stats[:predators_victims] && bet_stats[:predators_victims].any? %>
+                    <div class="stat-card-square" role="article" aria-label="Most losses to Predators" style="background-color: rgba(255, 185, 15, 0.15);">
+                        <div class="stat-emoji" aria-hidden="true">🐯</div>
+                        <div class="stat-label">Touched by Predator</div>
+                        <div class="stat-fan-name"><%= bet_stats[:predators_victims].first[:fan] %></div>
+                        <div class="stat-value"><%= bet_stats[:predators_victims].first[:display] %></div>
+                    </div>
+                <% end %>
+                
                 <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
                     <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help" style="background-color: rgba(231, 76, 60, 0.1);">
                         <div class="stat-emoji" aria-hidden="true">😢</div>
@@ -415,6 +424,14 @@
                                 sharks_victim = bet_stats[:sharks_victims].find { |sv| sv[:team_abbrev] == team_abbrev }
                                 if sharks_victim
                                     team_badges << { emoji: '🦈', label: 'Sharks Victim', value: sharks_victim[:display], color: 'rgba(0, 128, 128, 0.2)' }
+                                end
+                            end
+                            
+                            # Check for predators victim
+                            if bet_stats[:predators_victims] && bet_stats[:predators_victims].any?
+                                predators_victim = bet_stats[:predators_victims].find { |pv| pv[:team_abbrev] == team_abbrev }
+                                if predators_victim
+                                    team_badges << { emoji: '🐯', label: 'Touched by Predator', value: predators_victim[:display], color: 'rgba(255, 185, 15, 0.2)' }
                                 end
                             end
                             
@@ -802,6 +819,23 @@
                 <p class="text-small mb-2">Fans who have fallen prey to the Sharks this season</p>
                 <ul class="list-style-none">
                     <% bet_stats[:sharks_victims].each do |stat| %>
+                        <li class="py-1">
+                            <strong><%= stat[:fan] %></strong> 
+                            (<%= stat[:team] %>): 
+                            <%= stat[:display] %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            <% end %>
+
+            <!-- Predators Victims (Teams that lost to Predators) -->
+            <% if bet_stats[:predators_victims] && bet_stats[:predators_victims].any? %>
+            <div class="stat-card border rounded-2 p-3 mb-3 color-bg-attention-subtle">
+                <h3 class='h4 color-fg-attention'>🐯 Touched by a Predator 🐯</h3>
+                <p class="text-small mb-2">Fans who have been hunted by the Predators this season</p>
+                <ul class="list-style-none">
+                    <% bet_stats[:predators_victims].each do |stat| %>
                         <li class="py-1">
                             <strong><%= stat[:fan] %></strong> 
                             (<%= stat[:team] %>): 

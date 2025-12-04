@@ -69,7 +69,8 @@ class BetStatsCalculator
       dynasty_points: calculate_dynasty_points,
       most_improved: calculate_most_improved,
       hall_of_fame: calculate_hall_of_fame,
-      sharks_victims: calculate_sharks_victims
+      sharks_victims: calculate_sharks_victims,
+      predators_victims: calculate_predators_victims
     }
   end
 
@@ -268,6 +269,7 @@ class BetStatsCalculator
         {
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
+          team_abbrev: abbrev,
           value: goals_against_per_game,
           display: "#{goals_against_per_game.round(2)} goals against/game"
         }
@@ -314,6 +316,7 @@ class BetStatsCalculator
         {
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
+          team_abbrev: abbrev,
           value: goals_for,
           display: "#{goals_for.round(2)} goals/game but #{differential.round(2)} differential"
         }
@@ -549,6 +552,7 @@ class BetStatsCalculator
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
+        team_abbrev: abbrev,
         value: odds,
         division_sequence: division_seq,
         conference_sequence: conference_seq,
@@ -582,6 +586,7 @@ class BetStatsCalculator
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
+        team_abbrev: abbrev,
         value: odds,
         division_sequence: division_seq,
         conference_sequence: conference_seq,
@@ -618,6 +623,7 @@ class BetStatsCalculator
         {
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
+          team_abbrev: abbrev,
           value: -ga_per_game,  # Negative so lower is better
           display: "#{ga_per_game.round(2)} goals against/game (defensive fortress)"
         }
@@ -820,6 +826,7 @@ class BetStatsCalculator
     {
       fan: @manager_team_map[abbrev],
       team: team['teamName']['default'],
+      team_abbrev: abbrev,
       value: streak_num,
       display: "#{streak_num} game #{streak_type} (#{streak_code})"
     }
@@ -1147,31 +1154,42 @@ class BetStatsCalculator
   # Calculate "Sharks Victims" - fans who have lost to the Sharks this season
   # Shows how many times and by how many total points (goal differential)
   def calculate_sharks_victims
+    calculate_team_victims('SJS', 'Sharks')
+  end
+  
+  # Calculate "Predators Victims" - fans who have lost to the Predators this season
+  # Shows how many times and by how many total points (goal differential)
+  def calculate_predators_victims
+    calculate_team_victims('NSH', 'Predators')
+  end
+  
+  # Generic method to calculate victims for any team
+  # @param team_abbrev [String] Team abbreviation (e.g., 'SJS', 'NSH')
+  # @param team_name [String] Team name for display purposes
+  # @return [Array<Hash>, nil] List of victims or nil if none
+  def calculate_team_victims(team_abbrev, team_name)
     return nil if @head_to_head_matrix.nil? || @head_to_head_matrix.empty?
     
-    # Find the Sharks abbreviation
-    sharks_abbrev = 'SJS'
-    
-    # Check if Sharks exist in our data
-    return nil unless @head_to_head_matrix.key?(sharks_abbrev)
+    # Check if team exists in our data
+    return nil unless @head_to_head_matrix.key?(team_abbrev)
     
     victims = []
     
-    # Look at all opponents the Sharks have faced
-    sharks_record = @head_to_head_matrix[sharks_abbrev]
+    # Look at all opponents the team has faced
+    team_record = @head_to_head_matrix[team_abbrev]
     
-    sharks_record.each do |opponent_abbrev, record|
+    team_record.each do |opponent_abbrev, record|
       # Skip if opponent is not a fan team
       next unless @manager_team_map[opponent_abbrev] && @manager_team_map[opponent_abbrev] != 'N/A'
       
-      # Get the losses from the opponent's perspective (which are Sharks wins)
+      # Get the losses from the opponent's perspective (which are team wins)
       opponent_record = @head_to_head_matrix[opponent_abbrev]
-      next unless opponent_record && opponent_record[sharks_abbrev]
+      next unless opponent_record && opponent_record[team_abbrev]
       
-      opponent_stats = opponent_record[sharks_abbrev]
+      opponent_stats = opponent_record[team_abbrev]
       total_losses = opponent_stats[:losses] + opponent_stats[:ot_losses]
       
-      # Only include if they've actually lost to the Sharks
+      # Only include if they've actually lost to the team
       next if total_losses == 0
       
       # Find the opponent team info
@@ -1179,8 +1197,7 @@ class BetStatsCalculator
       next unless opponent_team
       
       # Calculate approximate goal differential
-      # Since we don't have exact game scores in the matrix, we'll fetch them
-      goal_differential = calculate_goal_differential_vs_sharks(opponent_abbrev, sharks_abbrev)
+      goal_differential = calculate_goal_differential_vs_team(opponent_abbrev, team_abbrev)
       
       victims << {
         fan: @manager_team_map[opponent_abbrev],
@@ -1202,12 +1219,12 @@ class BetStatsCalculator
     sorted
   end
   
-  # Calculate goal differential for a team against the Sharks
-  # Negative means they were outscored by the Sharks
+  # Calculate goal differential for a team against another team
+  # Negative means they were outscored by the opponent
   # @param team_abbrev [String] Team abbreviation to check
-  # @param sharks_abbrev [String] Sharks team abbreviation
-  # @return [Integer] Goal differential (positive means team outscored Sharks)
-  def calculate_goal_differential_vs_sharks(team_abbrev, sharks_abbrev)
+  # @param opponent_abbrev [String] Opponent team abbreviation
+  # @return [Integer] Goal differential (positive means team outscored opponent)
+  def calculate_goal_differential_vs_team(team_abbrev, opponent_abbrev)
     require 'net/http'
     require 'json'
     require 'uri'
@@ -1233,7 +1250,7 @@ class BetStatsCalculator
       schedule_data = JSON.parse(response.body)
       games = schedule_data['games'] || []
       
-      # Process each game against the Sharks
+      # Process each game against the opponent
       games.each do |game|
         # Check if game is completed
         game_state = game['gameState']
@@ -1250,13 +1267,13 @@ class BetStatsCalculator
         home_abbrev = game['homeTeam']['abbrev']
         away_abbrev = game['awayTeam']['abbrev']
         
-        # Check if this is a game vs Sharks (regular season only)
+        # Check if this is a game vs opponent (regular season only)
         game_id_str = game['id'].to_s
         next if game_id_str.length >= 6 && game_id_str[4..5] != '02'
         
-        is_vs_sharks = (home_abbrev == sharks_abbrev && away_abbrev == team_abbrev) ||
-                       (away_abbrev == sharks_abbrev && home_abbrev == team_abbrev)
-        next unless is_vs_sharks
+        is_vs_opponent = (home_abbrev == opponent_abbrev && away_abbrev == team_abbrev) ||
+                         (away_abbrev == opponent_abbrev && home_abbrev == team_abbrev)
+        next unless is_vs_opponent
         
         home_score = game['homeTeam']['score']
         away_score = game['awayTeam']['score']
