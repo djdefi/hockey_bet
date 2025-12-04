@@ -18,6 +18,7 @@ class BetStatsCalculator
   # Constants for stat calculations
   TOP_MATCHUPS_TO_SHOW = 3  # Number of top matchups to display
   MINIMUM_SCORING_RATE = 2.5  # Minimum goals/game for glass cannon consideration
+  EXCEPTIONAL_DEFENSE_THRESHOLD = 2.5  # Max goals against/game for shutout king
   STANLEY_CUP_WINS_REQUIRED = 16  # Playoff wins needed to win Stanley Cup
   HALL_OF_FAME_LOOKBACK_YEARS = 6  # Years to look back for championship history
 
@@ -610,8 +611,8 @@ class BetStatsCalculator
         # Calculate average goals against
         ga_per_game = goals_against.to_f / gp
         
-        # Only include teams with exceptional defense (under 2.5 goals/game)
-        next nil if ga_per_game > 2.5
+        # Only include teams with exceptional defense (under threshold)
+        next nil if ga_per_game > EXCEPTIONAL_DEFENSE_THRESHOLD
         
         abbrev = team['teamAbbrev']['default']
         {

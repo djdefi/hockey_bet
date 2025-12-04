@@ -23,9 +23,14 @@ PLAYOFF_STATUS = {
 # Directory for persistent data files that need to be committed
 DATA_DIR = 'data'
 
+# StandingsProcessor orchestrates the main data flow for generating NHL standings
+# It fetches data from NHL APIs, processes fan team mappings, calculates statistics,
+# and renders the final HTML output with current standings and bet statistics
 class StandingsProcessor
   attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor, :bet_stats
 
+  # Initializes the processor with optional fallback data path for testing
+  # @param fallback_path [String] Path to fallback data directory (default: 'spec/fixtures')
   def initialize(fallback_path = 'spec/fixtures')
     @validator = ApiValidator.new
     @fallback_path = fallback_path
@@ -38,7 +43,9 @@ class StandingsProcessor
     @bet_stats = nil
   end
 
-  # Main process method
+  # Main process method - orchestrates the complete data pipeline
+  # @param input_csv [String] Path to fan-to-team mapping CSV file
+  # @param output_path [String] Path where HTML output should be written
   def process(input_csv = 'fan_team.csv', output_path = '_site/index.html')
     fetch_data
     process_data(input_csv)
@@ -46,6 +53,7 @@ class StandingsProcessor
   end
 
   # Fetch data from APIs with validation
+  # Retrieves team standings, schedules, and playoff information from NHL APIs
   def fetch_data
     # Fetch team information
     @teams = fetch_team_info
@@ -169,6 +177,10 @@ class StandingsProcessor
   end
 
   # Map Managers to Teams using team name mapping
+  # Maps fantasy league managers to NHL teams based on CSV input
+  # @param csv_file [String] Path to CSV file with 'fan' and 'team' columns
+  # @param teams [Array<Hash>] NHL team data
+  # @return [Hash] Mapping of team abbreviations to manager names
   def map_managers_to_teams(csv_file, teams)
     manager_team_map = {}
     team_abbrevs = teams.map { |team| team['teamAbbrev']['default'] }
@@ -179,7 +191,17 @@ class StandingsProcessor
     end
 
     begin
+      unless File.exist?(csv_file)
+        puts "Warning: CSV file '#{csv_file}' not found. All teams will be marked as N/A."
+        return manager_team_map
+      end
+
       CSV.foreach(csv_file, headers: true) do |row|
+        unless row['fan'] && row['team']
+          puts "Warning: Skipping CSV row with missing 'fan' or 'team' column"
+          next
+        end
+
         manager = row['fan']
         team_name = row['team'].strip
 
@@ -188,8 +210,12 @@ class StandingsProcessor
 
         if abbrev && team_abbrevs.include?(abbrev)
           manager_team_map[abbrev] = manager
+        else
+          puts "Warning: Could not map team '#{team_name}' to a valid NHL team"
         end
       end
+    rescue CSV::MalformedCSVError => e
+      puts "Error: CSV file is malformed: #{e.message}"
     rescue => e
       puts "Error reading CSV: #{e.message}"
     end
