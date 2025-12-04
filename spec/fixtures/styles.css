@@ -460,6 +460,13 @@ h3 {
 
 .achievement-card.expandable {
     padding-bottom: 1.5rem; /* Space for expand button */
+    cursor: pointer;
+    user-select: none;
+}
+
+.achievement-card.expandable:focus {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
 }
 
 .achievement-card.expanded {
