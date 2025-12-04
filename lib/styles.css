@@ -455,13 +455,11 @@ h3 {
 /* Achievement Cards - Expandable */
 .achievement-card {
     position: relative;
-    cursor: default;
     overflow: hidden;
 }
 
 .achievement-card.expandable {
-    cursor: pointer;
-    padding-bottom: 2rem; /* Space for expand button */
+    padding-bottom: 1.5rem; /* Space for expand button */
 }
 
 .achievement-card.expanded {
@@ -526,7 +524,7 @@ h3 {
 }
 
 .expand-toggle:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid var(--accent-green);
     outline-offset: 2px;
 }
 
