@@ -225,56 +225,128 @@
             <h3 class="section-heading">🎯 Special Achievements</h3>
             <div class="stats-grid" role="region" aria-label="Special achievements">
                 <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:glass_cannon].first[:fan] %> is a glass cannon">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:glass_cannon].length > 1 %>" role="article" aria-label="Glass cannon achievement">
                         <div class="stat-emoji" aria-hidden="true">💥</div>
                         <div class="stat-label">Glass Cannon</div>
-                        <div class="stat-fan-name"><%= bet_stats[:glass_cannon].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:glass_cannon].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:glass_cannon].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:glass_cannon].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:glass_cannon].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:comeback_kid].first[:fan] %> is the comeback kid">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:comeback_kid].length > 1 %>" role="article" aria-label="Comeback kid achievement">
                         <div class="stat-emoji" aria-hidden="true">🎯</div>
                         <div class="stat-label">Comeback Kid</div>
-                        <div class="stat-fan-name"><%= bet_stats[:comeback_kid].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:comeback_kid].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:comeback_kid].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:comeback_kid].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:comeback_kid].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:overtimer].first[:fan] %> is the overtimer">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:overtimer].length > 1 %>" role="article" aria-label="Overtimer achievement">
                         <div class="stat-emoji" aria-hidden="true">⏱️</div>
                         <div class="stat-label">Overtimer</div>
-                        <div class="stat-fan-name"><%= bet_stats[:overtimer].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:overtimer].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:overtimer].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:overtimer].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:overtimer].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:point_scrounger].first[:fan] %> is the point scrounger">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:point_scrounger].length > 1 %>" role="article" aria-label="Point scrounger achievement">
                         <div class="stat-emoji" aria-hidden="true">📌</div>
                         <div class="stat-label">Point Scrounger</div>
-                        <div class="stat-fan-name"><%= bet_stats[:point_scrounger].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:point_scrounger].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:point_scrounger].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:point_scrounger].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:point_scrounger].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
-                    <div class="stat-card-square" role="article" aria-label="Most losses to Sharks" style="background-color: rgba(0, 128, 128, 0.15);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:sharks_victims].length > 1 %>" role="article" aria-label="Sharks victims achievement" style="background-color: rgba(0, 128, 128, 0.15);">
                         <div class="stat-emoji" aria-hidden="true">🦈</div>
                         <div class="stat-label">Sharks Victims</div>
-                        <div class="stat-fan-name"><%= bet_stats[:sharks_victims].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:sharks_victims].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:sharks_victims].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:sharks_victims].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:sharks_victims].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:worst_cup_odds].first[:fan] %> needs help" style="background-color: rgba(231, 76, 60, 0.1);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if bet_stats[:worst_cup_odds].length > 1 %>" role="article" aria-label="Needs help achievement" style="background-color: rgba(231, 76, 60, 0.1);">
                         <div class="stat-emoji" aria-hidden="true">😢</div>
                         <div class="stat-label">Needs Help</div>
-                        <div class="stat-fan-name"><%= bet_stats[:worst_cup_odds].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:worst_cup_odds].first[:display].split(' ').first %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:worst_cup_odds].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display].split(' ').first %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if bet_stats[:worst_cup_odds].length > 1 %>
+                            <button class="expand-toggle" aria-label="Show top <%= bet_stats[:worst_cup_odds].length %>" aria-expanded="false">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        <% end %>
                     </div>
                 <% end %>
             </div>
@@ -1190,6 +1262,40 @@
                     this.classList.toggle('expanded');
                     const isExpanded = this.classList.contains('expanded');
                     this.setAttribute('aria-expanded', isExpanded);
+                }
+            });
+        });
+        
+        // Achievement card expand/collapse functionality
+        document.querySelectorAll('.achievement-card .expand-toggle').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent card click
+                const card = this.closest('.achievement-card');
+                const entries = card.querySelectorAll('.achievement-entry');
+                const isExpanded = card.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Collapse: show only first entry
+                    card.classList.remove('expanded');
+                    entries.forEach((entry, idx) => {
+                        if (idx > 0) entry.classList.add('hidden');
+                    });
+                    this.setAttribute('aria-expanded', 'false');
+                    this.querySelector('.expand-icon').textContent = '▼';
+                } else {
+                    // Expand: show all entries
+                    card.classList.add('expanded');
+                    entries.forEach(entry => entry.classList.remove('hidden'));
+                    this.setAttribute('aria-expanded', 'true');
+                    this.querySelector('.expand-icon').textContent = '▲';
+                }
+            });
+            
+            // Add keyboard support
+            button.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
                 }
             });
         });
