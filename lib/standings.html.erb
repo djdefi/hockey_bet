@@ -1315,7 +1315,8 @@
                 });
                 if (button) {
                     button.setAttribute('aria-expanded', 'false');
-                    button.querySelector('.expand-icon').textContent = '▼';
+                    const expandIcon = button.querySelector('.expand-icon');
+                    if (expandIcon) expandIcon.textContent = '▼';
                 }
                 card.setAttribute('aria-expanded', 'false');
             } else {
@@ -1324,7 +1325,8 @@
                 entries.forEach(entry => entry.classList.remove('hidden'));
                 if (button) {
                     button.setAttribute('aria-expanded', 'true');
-                    button.querySelector('.expand-icon').textContent = '▲';
+                    const expandIcon = button.querySelector('.expand-icon');
+                    if (expandIcon) expandIcon.textContent = '▲';
                 }
                 card.setAttribute('aria-expanded', 'true');
             }
