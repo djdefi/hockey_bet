@@ -61,6 +61,6 @@ begin
 rescue StandardError => e
   puts "✗ Error updating NHL standings: #{e.message}"
   puts "Stack trace:"
-  puts e.backtrace.first(10).map { |line| "  #{line}" }.join("\n")
+  puts e.backtrace.first(5).map { |line| "  #{line}" }.join("\n")
   exit 1
 end
