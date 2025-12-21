@@ -9,8 +9,8 @@ require 'time'
 RSpec.describe PredictionProcessor do
   let(:temp_predictions_file) { Tempfile.new(['predictions', '.json']) }
   let(:temp_results_file) { Tempfile.new(['results', '.json']) }
-  let(:tracker) { PredictionTracker.new(temp_predictions_file.path) }
-  let(:processor) { PredictionProcessor.new(tracker, temp_results_file.path) }
+  let(:tracker) { PredictionTracker.new(temp_predictions_file.path, verbose: false) }
+  let(:processor) { PredictionProcessor.new(tracker, temp_results_file.path, verbose: false) }
   
   after do
     temp_predictions_file.close
@@ -38,6 +38,16 @@ RSpec.describe PredictionProcessor do
       tracker.store_prediction('Jeff C.', 'game_123', 'COL')
       tracker.store_prediction('Brian D.', 'game_123', 'SJS')
       tracker.store_prediction('Travis R.', 'game_123', 'COL')
+    end
+    
+    it 'validates required inputs' do
+      expect {
+        processor.process_completed_game('', 'COL')
+      }.to raise_error(ArgumentError, /Game ID cannot be empty/)
+      
+      expect {
+        processor.process_completed_game('game_123', '')
+      }.to raise_error(ArgumentError, /Winner abbreviation cannot be empty/)
     end
     
     it 'processes game results correctly' do
@@ -172,8 +182,8 @@ RSpec.describe PredictionProcessor do
       # Clear previous test data by creating new instances
       temp_pred_2 = Tempfile.new(['pred2', '.json'])
       temp_res_2 = Tempfile.new(['res2', '.json'])
-      tracker_2 = PredictionTracker.new(temp_pred_2.path)
-      processor_2 = PredictionProcessor.new(tracker_2, temp_res_2.path)
+      tracker_2 = PredictionTracker.new(temp_pred_2.path, verbose: false)
+      processor_2 = PredictionProcessor.new(tracker_2, temp_res_2.path, verbose: false)
       
       # Sean R.: 2 correct out of 4 = 50%
       tracker_2.store_prediction('Sean R.', 'game_1', 'COL')
@@ -214,8 +224,8 @@ RSpec.describe PredictionProcessor do
     end
     
     it 'returns empty array when no predictions exist' do
-      empty_tracker = PredictionTracker.new(Tempfile.new(['empty', '.json']).path)
-      empty_processor = PredictionProcessor.new(empty_tracker, Tempfile.new(['empty_results', '.json']).path)
+      empty_tracker = PredictionTracker.new(Tempfile.new(['empty', '.json']).path, verbose: false)
+      empty_processor = PredictionProcessor.new(empty_tracker, Tempfile.new(['empty_results', '.json']).path, verbose: false)
       
       leaderboard = empty_processor.get_leaderboard
       expect(leaderboard).to eq([])
@@ -305,8 +315,9 @@ RSpec.describe PredictionProcessor do
       expect(games).to contain_exactly('game_1', 'game_2')
     end
     
-    it 'returns empty array when no games processed' do
-      empty_processor = PredictionProcessor.new(tracker, Tempfile.new(['empty', '.json']).path)
+    it 'returns empty hash when no predictions exist' do
+      empty_tracker = PredictionTracker.new(Tempfile.new(['empty', '.json']).path, verbose: false)
+      empty_processor = PredictionProcessor.new(empty_tracker, Tempfile.new(['empty_results', '.json']).path, verbose: false)
       games = empty_processor.get_processed_games
       
       expect(games).to eq([])

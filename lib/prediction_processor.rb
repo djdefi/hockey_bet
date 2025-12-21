@@ -1,5 +1,6 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/prediction_processor.rb
 require_relative 'prediction_tracker'
+require_relative 'fan_league_constants'
 require 'json'
 require 'fileutils'
 require 'set'
@@ -9,9 +10,13 @@ require 'set'
 class PredictionProcessor
   attr_reader :results_file
   
-  def initialize(prediction_tracker = nil, results_file = 'data/prediction_results.json')
-    @tracker = prediction_tracker || PredictionTracker.new
+  # Enable/disable verbose logging (can be overridden for testing)
+  attr_accessor :verbose
+  
+  def initialize(prediction_tracker = nil, results_file = FanLeagueConstants::PREDICTION_RESULTS_FILE, verbose: true)
+    @tracker = prediction_tracker || PredictionTracker.new(verbose: verbose)
     @results_file = results_file
+    @verbose = verbose
     ensure_results_file_exists
   end
   
@@ -19,25 +24,17 @@ class PredictionProcessor
   # @param game_id [String] Unique game identifier
   # @param winner_abbrev [String] Team abbreviation of the actual winner
   # @return [Hash] Results for this game (fan => result data)
+  # @raise [ArgumentError] if game_id or winner_abbrev is empty
   def process_completed_game(game_id, winner_abbrev)
-    predictions = @tracker.get_predictions(game_id)
-    results = {}
+    validate_game_input!(game_id, winner_abbrev)
     
-    predictions.each do |fan_name, prediction|
-      was_correct = prediction['predicted_winner'] == winner_abbrev
-      results[fan_name] = {
-        'was_correct' => was_correct,
-        'predicted_winner' => prediction['predicted_winner'],
-        'actual_winner' => winner_abbrev,
-        'predicted_at' => prediction['predicted_at'],
-        'processed_at' => Time.now.iso8601
-      }
-    end
+    predictions = @tracker.get_predictions(game_id)
+    results = build_game_results(predictions, winner_abbrev)
     
     # Store results
     save_game_results(game_id, results)
     
-    puts "Processed game #{game_id}: #{winner_abbrev} won, #{results.size} predictions evaluated"
+    log_info("Processed game #{game_id}: #{winner_abbrev} won, #{results.size} predictions evaluated")
     results
   end
   
@@ -174,7 +171,7 @@ class PredictionProcessor
     data = load_all_results
     if data.delete(game_id)
       save_all_results(data)
-      puts "Results deleted for game #{game_id}"
+      log_info("Results deleted for game #{game_id}")
     end
   end
   
@@ -185,11 +182,36 @@ class PredictionProcessor
     
     JSON.parse(File.read(@results_file))
   rescue JSON::ParserError => e
-    puts "Warning: Error parsing prediction results: #{e.message}"
+    log_warning("Error parsing prediction results: #{e.message}")
     {}
   end
   
   private
+  
+  # Build results structure from predictions and actual winner
+  def build_game_results(predictions, winner_abbrev)
+    results = {}
+    
+    predictions.each do |fan_name, prediction|
+      was_correct = prediction['predicted_winner'] == winner_abbrev
+      results[fan_name] = {
+        'was_correct' => was_correct,
+        'predicted_winner' => prediction['predicted_winner'],
+        'actual_winner' => winner_abbrev,
+        'predicted_at' => prediction['predicted_at'],
+        'processed_at' => Time.now.iso8601
+      }
+    end
+    
+    results
+  end
+  
+  # Validate game processing inputs
+  # @raise [ArgumentError] if any input is invalid
+  def validate_game_input!(game_id, winner_abbrev)
+    raise ArgumentError, "Game ID cannot be empty" if game_id.nil? || game_id.to_s.strip.empty?
+    raise ArgumentError, "Winner abbreviation cannot be empty" if winner_abbrev.nil? || winner_abbrev.to_s.strip.empty?
+  end
   
   def save_game_results(game_id, results)
     data = load_all_results
@@ -277,5 +299,14 @@ class PredictionProcessor
       best_streak: best_streak,
       type: streak_type
     }
+  end
+  
+  # Logging helpers - respect verbose flag
+  def log_info(message)
+    puts message if @verbose
+  end
+  
+  def log_warning(message)
+    puts "Warning: #{message}" if @verbose
   end
 end

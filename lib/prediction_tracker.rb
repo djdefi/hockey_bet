@@ -2,6 +2,7 @@
 require 'json'
 require 'fileutils'
 require 'time'
+require_relative 'fan_league_constants'
 
 # PredictionTracker manages game predictions for the 13-person fan league
 # Uses honor system with hardcoded fan names (no authentication)
@@ -9,8 +10,12 @@ require 'time'
 class PredictionTracker
   attr_reader :data_file
   
-  def initialize(data_file = 'data/predictions.json')
+  # Enable/disable verbose logging (can be overridden for testing)
+  attr_accessor :verbose
+  
+  def initialize(data_file = FanLeagueConstants::PREDICTIONS_FILE, verbose: true)
     @data_file = data_file
+    @verbose = verbose
     ensure_data_file_exists
   end
   
@@ -19,7 +24,10 @@ class PredictionTracker
   # @param game_id [String] Unique game identifier
   # @param predicted_winner [String] Team abbreviation of predicted winner
   # @param predicted_at [Time] Timestamp of prediction (defaults to now)
+  # @raise [ArgumentError] if fan_name, game_id, or predicted_winner is empty
   def store_prediction(fan_name, game_id, predicted_winner, predicted_at = Time.now)
+    validate_input!(fan_name, game_id, predicted_winner)
+    
     data = load_data
     
     # Structure: { "game_id": { "fan_name": { "predicted_winner": "SJS", "predicted_at": "..." }}}
@@ -31,7 +39,7 @@ class PredictionTracker
     
     save_data(data)
     
-    puts "Prediction stored: #{fan_name} → #{predicted_winner} for game #{game_id}"
+    log_info("Prediction stored: #{fan_name} → #{predicted_winner} for game #{game_id}")
   end
   
   # Get all predictions for a specific game
@@ -105,7 +113,7 @@ class PredictionTracker
       data.delete(game_id) if data[game_id].empty?
       
       save_data(data)
-      puts "Prediction deleted: #{fan_name} for game #{game_id}"
+      log_info("Prediction deleted: #{fan_name} for game #{game_id}")
     end
   end
   
@@ -129,11 +137,19 @@ class PredictionTracker
     
     JSON.parse(File.read(@data_file))
   rescue JSON::ParserError => e
-    puts "Warning: Error parsing predictions: #{e.message}"
+    log_warning("Error parsing predictions: #{e.message}")
     {}
   end
   
   private
+  
+  # Validate required inputs for predictions
+  # @raise [ArgumentError] if any input is invalid
+  def validate_input!(fan_name, game_id, predicted_winner)
+    raise ArgumentError, "Fan name cannot be empty" if fan_name.nil? || fan_name.to_s.strip.empty?
+    raise ArgumentError, "Game ID cannot be empty" if game_id.nil? || game_id.to_s.strip.empty?
+    raise ArgumentError, "Predicted winner cannot be empty" if predicted_winner.nil? || predicted_winner.to_s.strip.empty?
+  end
   
   def save_data(data)
     FileUtils.mkdir_p(File.dirname(@data_file))
@@ -145,5 +161,14 @@ class PredictionTracker
     
     FileUtils.mkdir_p(File.dirname(@data_file))
     save_data({})
+  end
+  
+  # Logging helpers - respect verbose flag
+  def log_info(message)
+    puts message if @verbose
+  end
+  
+  def log_warning(message)
+    puts "Warning: #{message}" if @verbose
   end
 end

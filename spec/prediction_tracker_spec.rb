@@ -7,7 +7,7 @@ require 'time'
 
 RSpec.describe PredictionTracker do
   let(:temp_file) { Tempfile.new(['predictions', '.json']) }
-  let(:tracker) { PredictionTracker.new(temp_file.path) }
+  let(:tracker) { PredictionTracker.new(temp_file.path, verbose: false) }
   
   after do
     temp_file.close
@@ -40,6 +40,20 @@ RSpec.describe PredictionTracker do
       data = tracker.load_data
       expect(data['game_123']['Jeff C.']['predicted_winner']).to eq('COL')
       expect(data['game_123']['Jeff C.']['predicted_at']).to be_a(String)
+    end
+    
+    it 'validates required inputs' do
+      expect {
+        tracker.store_prediction('', 'game_123', 'COL')
+      }.to raise_error(ArgumentError, /Fan name cannot be empty/)
+      
+      expect {
+        tracker.store_prediction('Jeff C.', '', 'COL')
+      }.to raise_error(ArgumentError, /Game ID cannot be empty/)
+      
+      expect {
+        tracker.store_prediction('Jeff C.', 'game_123', '')
+      }.to raise_error(ArgumentError, /Predicted winner cannot be empty/)
     end
     
     it 'stores predictions with custom timestamp' do
