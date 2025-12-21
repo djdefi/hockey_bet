@@ -159,7 +159,7 @@ class BetStatsCalculator
       home_streak = home_team['streakCode'] || ''
       away_streak = away_team['streakCode'] || ''
       
-      # Get last 5 games record (L10 is last 10, but we'll extract info we have)
+      # Get last 10 games record
       home_last10 = home_team['l10'] || ''
       away_last10 = away_team['l10'] || ''
       

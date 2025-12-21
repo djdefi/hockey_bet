@@ -1171,7 +1171,7 @@
                                 </div>
                                 
                                 <!-- Team Names and Records -->
-                                <div class="matchup-teams mb-2" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.5rem; align-items: center;">
+                                <div class="matchup-teams matchup-teams-grid mb-2">
                                     <!-- Away Team -->
                                     <div class="team-info text-left">
                                         <div class="team-name text-bold"><%= matchup[:away_team] %></div>
@@ -1180,14 +1180,14 @@
                                             (<%= matchup[:away_points] %> pts)
                                         </div>
                                         <% if matchup[:away_streak] && !matchup[:away_streak].empty? %>
-                                            <div class="team-streak text-small" style="margin-top: 0.25rem;">
+                                            <div class="team-streak team-streak-spacing text-small">
                                                 <%= format_streak(matchup[:away_streak]) %>
                                             </div>
                                         <% end %>
                                     </div>
                                     
                                     <!-- VS Divider -->
-                                    <div class="vs-divider text-center" style="font-size: 1.2rem; font-weight: bold; color: var(--fgColor-muted);">
+                                    <div class="vs-divider vs-divider-styled text-center">
                                         VS
                                     </div>
                                     
@@ -1199,7 +1199,7 @@
                                             (<%= matchup[:home_points] %> pts)
                                         </div>
                                         <% if matchup[:home_streak] && !matchup[:home_streak].empty? %>
-                                            <div class="team-streak text-small" style="margin-top: 0.25rem;">
+                                            <div class="team-streak team-streak-spacing text-small">
                                                 <%= format_streak(matchup[:home_streak]) %>
                                             </div>
                                         <% end %>
@@ -1208,7 +1208,7 @@
                                 
                                 <!-- Head-to-Head Record -->
                                 <% if matchup[:h2h_away_wins] > 0 || matchup[:h2h_away_losses] > 0 %>
-                                <div class="h2h-record border-top pt-2 mt-2" style="border-color: var(--borderColor-muted) !important;">
+                                <div class="h2h-record h2h-border border-top pt-2 mt-2">
                                     <div class="text-small text-secondary text-center">
                                         <strong>Season Series:</strong> 
                                         <%= matchup[:away_fan] %> <%= matchup[:h2h_away_wins] %>-<%= matchup[:h2h_away_losses] %> <%= matchup[:home_fan] %>
@@ -1218,11 +1218,11 @@
                                 
                                 <!-- Additional Stats (expandable) -->
                                 <details class="matchup-details-expand mt-2">
-                                    <summary class="text-small" style="cursor: pointer; color: var(--fgColor-accent);">
+                                    <summary class="text-small matchup-summary">
                                         📊 More Stats & Context
                                     </summary>
-                                    <div class="expanded-stats mt-2 p-2 color-bg-subtle rounded-2">
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.85rem;">
+                                    <div class="expanded-stats expanded-stats-grid mt-2 p-2 color-bg-subtle rounded-2">
+                                        <div class="stats-columns">
                                             <!-- Away Team Stats -->
                                             <div>
                                                 <div class="text-bold mb-1"><%= matchup[:away_team] %></div>
@@ -1249,7 +1249,7 @@
                                 
                                 <!-- Game Time -->
                                 <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
-                                <div class="game-time border-top pt-2 mt-2 text-center" style="border-color: var(--borderColor-muted) !important;">
+                                <div class="game-time game-time-border border-top pt-2 mt-2 text-center">
                                     <div class="text-small">
                                         <strong>🕐 Game Time:</strong> 
                                         <span class="text-mono"><%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %></span>
