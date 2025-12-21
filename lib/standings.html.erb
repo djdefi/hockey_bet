@@ -1118,33 +1118,148 @@
         </div>
         <% end %>
 
-        <!-- Upcoming Fan Matchups -->
+        <!-- Upcoming Fan Matchups - Enhanced -->
         <% if bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
         <div class="stat-card border rounded-2 p-3 mb-3 color-bg-attention-subtle">
             <h3 class='h3 color-fg-attention'>🔥 Upcoming Fan vs Fan Battles 🔥</h3>
-            <div class="matchups-list">
-                <% bet_stats[:upcoming_fan_matchups].each_with_index do |matchup, idx| %>
-                    <div class="matchup-item border-bottom py-3 <%= 'border-bottom-0' if idx == bet_stats[:upcoming_fan_matchups].size - 1 %>">
-                        <div class="matchup-header mb-2">
-                            <strong class="h4">
-                                <%= matchup[:away_fan] %> (<%= matchup[:away_team] %>)
-                                vs 
-                                <%= matchup[:home_fan] %> (<%= matchup[:home_team] %>)
-                            </strong>
-                        </div>
-                        <div class="matchup-details">
-                            <span class="text-small">
-                                Records: <%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W | 
-                                Points: <%= matchup[:away_points] %> vs <%= matchup[:home_points] %>
-                                <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
-                                    <br>
-                                    <strong>Game Time:</strong> <%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %>
-                                <% end %>
+            
+            <% 
+            # Group matchups by date
+            grouped_matchups = bet_stats[:upcoming_fan_matchups].group_by { |m| get_date_group_label(m[:game_time]) }
+            # Sort groups by date priority
+            date_order = ['Today', 'Tomorrow', 'This Week', 'Later', 'Upcoming']
+            sorted_groups = date_order.select { |label| grouped_matchups.key?(label) }
+            %>
+            
+            <% sorted_groups.each_with_index do |date_label, group_idx| %>
+                <% matchups_in_group = grouped_matchups[date_label] %>
+                
+                <div class="matchup-date-group mb-3">
+                    <div class="date-group-header mb-2">
+                        <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="true">
+                            <span class="date-label badge <%= date_label == 'Today' ? 'color-bg-danger-emphasis' : 'color-bg-accent-emphasis' %> color-fg-on-emphasis" style="font-size: 0.85rem; padding: 0.25rem 0.5rem; border-radius: 6px;">
+                                <%= date_label %> (<%= matchups_in_group.length %>)
                             </span>
-                        </div>
+                            <span class="toggle-icon">▼</span>
+                        </button>
                     </div>
-                <% end %>
-            </div>
+                    
+                    <div class="matchups-list" id="matchups-<%= date_label.downcase.gsub(' ', '-') %>">
+                        <% matchups_in_group.each_with_index do |matchup, idx| %>
+                            <% 
+                            interest_flames = get_interest_flames(matchup[:interest_score])
+                            rivalry_badge = get_rivalry_badge(matchup[:same_division], matchup[:same_conference])
+                            %>
+                            
+                            <div class="matchup-item border rounded-2 p-3 mb-2 color-bg-default" style="border-width: 2px !important; <%= 'border-color: var(--borderColor-danger-emphasis) !important;' if matchup[:interest_score] >= 95 %>">
+                                <!-- Matchup Header with Interest Indicator -->
+                                <div class="d-flex flex-justify-between flex-items-center mb-2">
+                                    <div class="matchup-header">
+                                        <strong class="h4" style="font-size: 1.1rem;">
+                                            <span class="away-team"><%= matchup[:away_fan] %></span>
+                                            <span class="text-muted">@</span>
+                                            <span class="home-team"><%= matchup[:home_fan] %></span>
+                                        </strong>
+                                        <% if !interest_flames.empty? %>
+                                            <span class="interest-indicator ml-2" title="Interest Score: <%= matchup[:interest_score] %>"><%= interest_flames %></span>
+                                        <% end %>
+                                        <% if !rivalry_badge.empty? %>
+                                            <span class="rivalry-badge ml-2" style="font-size: 0.75rem;"><%= rivalry_badge %></span>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                
+                                <!-- Team Names and Records -->
+                                <div class="matchup-teams mb-2" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.5rem; align-items: center;">
+                                    <!-- Away Team -->
+                                    <div class="team-info text-left">
+                                        <div class="team-name text-bold"><%= matchup[:away_team] %></div>
+                                        <div class="team-record text-small text-secondary">
+                                            <%= matchup[:away_wins] %>-<%= matchup[:away_losses] %>-<%= matchup[:away_ot_losses] %> 
+                                            (<%= matchup[:away_points] %> pts)
+                                        </div>
+                                        <% if matchup[:away_streak] && !matchup[:away_streak].empty? %>
+                                            <div class="team-streak text-small" style="margin-top: 0.25rem;">
+                                                <%= format_streak(matchup[:away_streak]) %>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                    
+                                    <!-- VS Divider -->
+                                    <div class="vs-divider text-center" style="font-size: 1.2rem; font-weight: bold; color: var(--fgColor-muted);">
+                                        VS
+                                    </div>
+                                    
+                                    <!-- Home Team -->
+                                    <div class="team-info text-right">
+                                        <div class="team-name text-bold"><%= matchup[:home_team] %></div>
+                                        <div class="team-record text-small text-secondary">
+                                            <%= matchup[:home_wins] %>-<%= matchup[:home_losses] %>-<%= matchup[:home_ot_losses] %> 
+                                            (<%= matchup[:home_points] %> pts)
+                                        </div>
+                                        <% if matchup[:home_streak] && !matchup[:home_streak].empty? %>
+                                            <div class="team-streak text-small" style="margin-top: 0.25rem;">
+                                                <%= format_streak(matchup[:home_streak]) %>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                
+                                <!-- Head-to-Head Record -->
+                                <% if matchup[:h2h_away_wins] > 0 || matchup[:h2h_away_losses] > 0 %>
+                                <div class="h2h-record border-top pt-2 mt-2" style="border-color: var(--borderColor-muted) !important;">
+                                    <div class="text-small text-secondary text-center">
+                                        <strong>Season Series:</strong> 
+                                        <%= matchup[:away_fan] %> <%= matchup[:h2h_away_wins] %>-<%= matchup[:h2h_away_losses] %> <%= matchup[:home_fan] %>
+                                    </div>
+                                </div>
+                                <% end %>
+                                
+                                <!-- Additional Stats (expandable) -->
+                                <details class="matchup-details-expand mt-2">
+                                    <summary class="text-small" style="cursor: pointer; color: var(--fgColor-accent);">
+                                        📊 More Stats & Context
+                                    </summary>
+                                    <div class="expanded-stats mt-2 p-2 color-bg-subtle rounded-2">
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.85rem;">
+                                            <!-- Away Team Stats -->
+                                            <div>
+                                                <div class="text-bold mb-1"><%= matchup[:away_team] %></div>
+                                                <div class="text-secondary">⚔️ Goals/Game: <%= matchup[:away_gpg] %></div>
+                                                <div class="text-secondary">🛡️ Goals Against/Game: <%= matchup[:away_gapg] %></div>
+                                                <div class="text-secondary">🏠 Road Record: <%= matchup[:away_road_record] %></div>
+                                                <% if matchup[:away_last10] && !matchup[:away_last10].empty? %>
+                                                    <div class="text-secondary">📈 Last 10: <%= matchup[:away_last10] %></div>
+                                                <% end %>
+                                            </div>
+                                            <!-- Home Team Stats -->
+                                            <div>
+                                                <div class="text-bold mb-1"><%= matchup[:home_team] %></div>
+                                                <div class="text-secondary">⚔️ Goals/Game: <%= matchup[:home_gpg] %></div>
+                                                <div class="text-secondary">🛡️ Goals Against/Game: <%= matchup[:home_gapg] %></div>
+                                                <div class="text-secondary">🏠 Home Record: <%= matchup[:home_home_record] %></div>
+                                                <% if matchup[:home_last10] && !matchup[:home_last10].empty? %>
+                                                    <div class="text-secondary">📈 Last 10: <%= matchup[:home_last10] %></div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                                
+                                <!-- Game Time -->
+                                <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
+                                <div class="game-time border-top pt-2 mt-2 text-center" style="border-color: var(--borderColor-muted) !important;">
+                                    <div class="text-small">
+                                        <strong>🕐 Game Time:</strong> 
+                                        <span class="text-mono"><%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %></span>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
         </div>
         <% end %>
     </div>
@@ -1364,6 +1479,29 @@
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     toggleAchievementCard(this);
+                }
+            });
+        });
+        
+        // Date group toggle functionality for matchups
+        document.querySelectorAll('.date-group-toggle').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const groupName = this.getAttribute('data-group');
+                const matchupsList = document.getElementById('matchups-' + groupName);
+                const toggleIcon = this.querySelector('.toggle-icon');
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                if (matchupsList) {
+                    if (isExpanded) {
+                        matchupsList.style.display = 'none';
+                        this.setAttribute('aria-expanded', 'false');
+                        if (toggleIcon) toggleIcon.textContent = '▶';
+                    } else {
+                        matchupsList.style.display = 'block';
+                        this.setAttribute('aria-expanded', 'true');
+                        if (toggleIcon) toggleIcon.textContent = '▼';
+                    }
                 }
             });
         });

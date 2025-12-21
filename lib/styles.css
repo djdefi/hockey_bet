@@ -1284,3 +1284,135 @@ h3 {
 .hidden {
     display: none !important;
 }
+
+/* Enhanced Matchup Display Styles */
+.matchup-date-group {
+    margin-bottom: 1.5rem;
+}
+
+.date-group-header {
+    margin-bottom: 0.75rem;
+}
+
+.date-group-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: left;
+    color: inherit;
+}
+
+.date-group-toggle:hover {
+    opacity: 0.8;
+}
+
+.toggle-icon {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+    color: var(--fgColor-muted);
+}
+
+.date-label {
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.matchup-item {
+    transition: all 0.2s ease;
+}
+
+.matchup-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.interest-indicator {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.rivalry-badge {
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.team-info {
+    min-width: 0; /* Allow text truncation */
+}
+
+.team-name {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.team-record {
+    line-height: 1.4;
+}
+
+.team-streak {
+    font-style: italic;
+}
+
+.vs-divider {
+    flex-shrink: 0;
+    padding: 0 0.5rem;
+}
+
+.matchup-details-expand summary {
+    list-style: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.matchup-details-expand summary:hover {
+    background-color: var(--bgColor-muted);
+}
+
+.matchup-details-expand summary::-webkit-details-marker {
+    display: none;
+}
+
+.matchup-details-expand[open] summary {
+    margin-bottom: 0.5rem;
+}
+
+.expanded-stats {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.game-time {
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments for matchups */
+@media (max-width: 768px) {
+    .matchup-teams {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .vs-divider {
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+    
+    .team-info {
+        text-align: center !important;
+    }
+    
+    .expanded-stats > div {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}

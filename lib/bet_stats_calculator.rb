@@ -93,10 +93,16 @@ class BetStatsCalculator
     calculate_simple_ranking('losses', descending: true, suffix: " losses")
   end
 
-  # Find most interesting upcoming fan vs fan matchups
+  # Find most interesting upcoming fan vs fan matchups with enhanced details
   # Calculates an "interest score" based on how close teams are in standings.
   # Closer matchups are more interesting. Returns all matchups sorted by interest score.
-  # @return [Array<Hash>] All matchups with fan names, teams, points, and game time
+  # @return [Array<Hash>] All matchups with comprehensive details including:
+  #   - Fan names, teams, points, wins, losses
+  #   - Head-to-head records between the two teams
+  #   - Team streaks and recent form (last 5 games)
+  #   - Goals for/against, home/away records
+  #   - Conference/division info for rivalry detection
+  #   - Game time and date grouping info
   def calculate_upcoming_fan_matchups
     matchups = []
     
@@ -132,6 +138,48 @@ class BetStatsCalculator
       # More interesting if teams are closer in standings points
       interest_score = 100 - point_diff
       
+      # Get head-to-head record between these two teams
+      h2h_home_wins = 0
+      h2h_home_losses = 0
+      h2h_home_ot_losses = 0
+      if @head_to_head_matrix && @head_to_head_matrix[home_abbrev] && @head_to_head_matrix[home_abbrev][away_abbrev]
+        h2h_home_wins = @head_to_head_matrix[home_abbrev][away_abbrev][:wins] || 0
+        h2h_home_losses = @head_to_head_matrix[home_abbrev][away_abbrev][:losses] || 0
+        h2h_home_ot_losses = @head_to_head_matrix[home_abbrev][away_abbrev][:ot_losses] || 0
+      end
+      h2h_away_wins = h2h_home_losses + h2h_home_ot_losses
+      h2h_away_losses = h2h_home_wins
+      
+      # Check if same division or conference for rivalry detection
+      same_division = home_team['divisionName'] == away_team['divisionName']
+      same_conference = home_team['conferenceName'] == away_team['conferenceName']
+      
+      # Get streak information
+      home_streak = home_team['streakCode'] || ''
+      away_streak = away_team['streakCode'] || ''
+      
+      # Get last 5 games record (L10 is last 10, but we'll extract info we have)
+      home_last10 = home_team['l10'] || ''
+      away_last10 = away_team['l10'] || ''
+      
+      # Extract goals for/against
+      home_goals_for = home_team['goalFor'] || 0
+      home_goals_against = home_team['goalAgainst'] || 0
+      away_goals_for = away_team['goalFor'] || 0
+      away_goals_against = away_team['goalAgainst'] || 0
+      
+      # Calculate goals per game
+      home_games_played = home_team['gamesPlayed'] || 1
+      away_games_played = away_team['gamesPlayed'] || 1
+      home_gpg = home_games_played > 0 ? (home_goals_for.to_f / home_games_played).round(2) : 0
+      away_gpg = away_games_played > 0 ? (away_goals_for.to_f / away_games_played).round(2) : 0
+      home_gapg = home_games_played > 0 ? (home_goals_against.to_f / home_games_played).round(2) : 0
+      away_gapg = away_games_played > 0 ? (away_goals_against.to_f / away_games_played).round(2) : 0
+      
+      # Get home/away records
+      home_home_record = "#{home_team['homeWins'] || 0}-#{home_team['homeLosses'] || 0}-#{home_team['homeOtLosses'] || 0}"
+      away_road_record = "#{away_team['roadWins'] || 0}-#{away_team['roadLosses'] || 0}-#{away_team['roadOtLosses'] || 0}"
+      
       matchups << {
         home_fan: home_fan,
         away_fan: away_fan,
@@ -141,10 +189,39 @@ class BetStatsCalculator
         away_abbrev: away_abbrev,
         home_wins: home_team['wins'] || 0,
         away_wins: away_team['wins'] || 0,
+        home_losses: home_team['losses'] || 0,
+        away_losses: away_team['losses'] || 0,
+        home_ot_losses: home_team['otLosses'] || 0,
+        away_ot_losses: away_team['otLosses'] || 0,
         home_points: home_points,
         away_points: away_points,
         interest_score: interest_score,
-        game_time: game['startTimeUTC']
+        game_time: game['startTimeUTC'],
+        # Head-to-head records
+        h2h_home_wins: h2h_home_wins,
+        h2h_home_losses: h2h_home_losses + h2h_home_ot_losses,
+        h2h_away_wins: h2h_away_wins,
+        h2h_away_losses: h2h_away_losses,
+        # Rivalry indicators
+        same_division: same_division,
+        same_conference: same_conference,
+        # Streaks and form
+        home_streak: home_streak,
+        away_streak: away_streak,
+        home_last10: home_last10,
+        away_last10: away_last10,
+        # Goals data
+        home_goals_for: home_goals_for,
+        home_goals_against: home_goals_against,
+        away_goals_for: away_goals_for,
+        away_goals_against: away_goals_against,
+        home_gpg: home_gpg,
+        away_gpg: away_gpg,
+        home_gapg: home_gapg,
+        away_gapg: away_gapg,
+        # Home/away records
+        home_home_record: home_home_record,
+        away_road_record: away_road_record
       }
     end
     

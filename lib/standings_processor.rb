@@ -439,3 +439,60 @@ def get_fan_achievement(fan, bet_stats)
   end
   nil
 end
+
+# Helper methods for enhanced matchup display
+def get_date_group_label(game_time_str)
+  return 'Upcoming' if game_time_str.nil? || game_time_str == 'None' || game_time_str == 'TBD'
+  
+  game_time = convert_utc_to_pacific(game_time_str)
+  return 'Upcoming' if game_time.is_a?(String) # 'None' or 'TBD'
+  
+  now = Time.now
+  game_date = game_time.to_date
+  today = now.to_date
+  
+  days_diff = (game_date - today).to_i
+  
+  case days_diff
+  when 0
+    'Today'
+  when 1
+    'Tomorrow'
+  when 2..6
+    'This Week'
+  else
+    'Later'
+  end
+end
+
+def get_interest_flames(interest_score)
+  # Return 1-3 flames based on interest score
+  return '🔥🔥🔥' if interest_score >= 95  # Very close matchup (0-5 point diff)
+  return '🔥🔥' if interest_score >= 85     # Close matchup (5-15 point diff)
+  return '🔥' if interest_score >= 70       # Moderate matchup (15-30 point diff)
+  ''  # Large point differential
+end
+
+def format_streak(streak_code)
+  return '' if streak_code.nil? || streak_code.empty?
+  
+  type = streak_code[0]
+  count = streak_code[1..-1]
+  
+  case type
+  when 'W'
+    "#{count}W streak 🔥"
+  when 'L'
+    "#{count}L streak 📉"
+  when 'O'
+    "#{count}OT streak"
+  else
+    streak_code
+  end
+end
+
+def get_rivalry_badge(same_division, same_conference)
+  return '🔴 DIVISION RIVAL' if same_division
+  return '🟡 CONFERENCE RIVAL' if same_conference
+  ''
+end
