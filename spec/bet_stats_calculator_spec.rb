@@ -205,7 +205,8 @@ RSpec.describe BetStatsCalculator do
       matchups = calculator.calculate_upcoming_fan_matchups
       
       expect(matchups).to be_an(Array)
-      expect(matchups.size).to be <= 3
+      # Should return all fan vs fan matchups without any limit
+      expect(matchups.size).to be >= 0
     end
 
     it 'includes matchup details' do

@@ -1,100 +1,5 @@
 [
   {
-    "date": "2024-12-06",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 9,
-      "Brian D.": 25,
-      "David K.": 20,
-      "Ryan T.": 16,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 18,
-      "Zak S.": 4,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 23,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
-    "date": "2024-12-09",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 9,
-      "Brian D.": 25,
-      "David K.": 20,
-      "Ryan T.": 16,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 32,
-      "Zak S.": 4,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 24,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
-    "date": "2024-12-12",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 9,
-      "Brian D.": 27,
-      "David K.": 20,
-      "Ryan T.": 16,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 32,
-      "Zak S.": 4,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 24,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
-    "date": "2024-12-15",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 26,
-      "Brian D.": 27,
-      "David K.": 20,
-      "Ryan T.": 44,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 32,
-      "Zak S.": 43,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 24,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
-    "date": "2024-12-18",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 26,
-      "Brian D.": 27,
-      "David K.": 20,
-      "Ryan T.": 44,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 36,
-      "Zak S.": 43,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 28,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
     "date": "2024-12-21",
     "standings": {
       "Travis R.": 36,
@@ -1047,11 +952,334 @@
   {
     "date": "2025-12-04",
     "standings": {
+      "Jeff C.": 44,
+      "Mike M.": 36,
+      "Ryan T.": 35,
+      "Keith R.": 33,
+      "Travis R.": 33,
+      "Zak S.": 32,
+      "Sean R.": 31,
+      "Tyler F.": 29,
+      "Brian D.": 29,
+      "Trevor R.": 28,
+      "Dan R.": 27,
+      "Ryan B.": 26,
+      "David K.": 22
+    },
+    "season": "2025-2026"
+  },
+  {
+    "date": "2025-12-05",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 44,
+      "Mike M.": 36,
+      "Ryan T.": 35,
+      "Keith R.": 33,
+      "Travis R.": 33,
+      "Zak S.": 32,
+      "Sean R.": 31,
+      "Tyler F.": 29,
+      "Brian D.": 29,
+      "Trevor R.": 28,
+      "Dan R.": 27,
+      "Ryan B.": 26,
+      "David K.": 24
+    }
+  },
+  {
+    "date": "2025-12-06",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 46,
+      "Mike M.": 37,
+      "Keith R.": 35,
+      "Ryan T.": 35,
+      "Zak S.": 34,
+      "Travis R.": 33,
+      "Sean R.": 31,
+      "Tyler F.": 31,
+      "Dan R.": 29,
+      "Brian D.": 29,
+      "Trevor R.": 28,
+      "Ryan B.": 26,
+      "David K.": 24
+    }
+  },
+  {
+    "date": "2025-12-07",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 48,
+      "Mike M.": 37,
+      "Keith R.": 35,
+      "Ryan T.": 35,
+      "Zak S.": 34,
+      "Sean R.": 33,
+      "Travis R.": 33,
+      "Tyler F.": 31,
+      "Dan R.": 29,
+      "Brian D.": 29,
+      "Trevor R.": 28,
+      "Ryan B.": 26,
+      "David K.": 24
+    }
+  },
+  {
+    "date": "2025-12-08",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 48,
+      "Mike M.": 39,
+      "Keith R.": 37,
+      "Zak S.": 36,
+      "Ryan T.": 35,
+      "Sean R.": 33,
+      "Travis R.": 33,
+      "Tyler F.": 31,
+      "Brian D.": 31,
+      "Dan R.": 29,
+      "Trevor R.": 28,
+      "Ryan B.": 26,
+      "David K.": 24
+    }
+  },
+  {
+    "date": "2025-12-09",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 48,
+      "Mike M.": 39,
+      "Keith R.": 37,
+      "Ryan T.": 37,
+      "Zak S.": 36,
+      "Sean R.": 35,
+      "Travis R.": 33,
+      "Brian D.": 31,
+      "Tyler F.": 31,
+      "Dan R.": 29,
+      "Trevor R.": 28,
+      "Ryan B.": 26,
+      "David K.": 24
+    }
+  },
+  {
+    "date": "2025-12-10",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 49,
+      "Mike M.": 39,
+      "Keith R.": 39,
+      "Zak S.": 37,
+      "Ryan T.": 37,
+      "Sean R.": 35,
+      "Travis R.": 35,
+      "Tyler F.": 31,
+      "Brian D.": 31,
+      "Dan R.": 29,
+      "Trevor R.": 28,
+      "Ryan B.": 28,
+      "David K.": 26
+    }
+  },
+  {
+    "date": "2025-12-11",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 49,
+      "Mike M.": 39,
+      "Keith R.": 39,
+      "Zak S.": 37,
+      "Ryan T.": 37,
+      "Sean R.": 36,
+      "Travis R.": 35,
+      "Brian D.": 31,
+      "Tyler F.": 31,
+      "Trevor R.": 30,
+      "Dan R.": 29,
+      "Ryan B.": 28,
+      "David K.": 26
+    }
+  },
+  {
+    "date": "2025-12-12",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 51,
+      "Mike M.": 40,
+      "Zak S.": 39,
+      "Keith R.": 39,
+      "Ryan T.": 39,
+      "Sean R.": 36,
+      "Travis R.": 35,
+      "Brian D.": 33,
+      "Tyler F.": 31,
+      "Trevor R.": 30,
+      "Ryan B.": 30,
+      "Dan R.": 29,
+      "David K.": 28
+    }
+  },
+  {
+    "date": "2025-12-13",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 51,
+      "Mike M.": 40,
+      "Zak S.": 39,
+      "Ryan T.": 39,
+      "Keith R.": 39,
+      "Travis R.": 37,
+      "Sean R.": 36,
+      "Brian D.": 33,
+      "Tyler F.": 33,
+      "Trevor R.": 30,
+      "Ryan B.": 30,
+      "Dan R.": 29,
+      "David K.": 28
+    }
+  },
+  {
+    "date": "2025-12-14",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 53,
+      "Zak S.": 41,
+      "Ryan T.": 41,
+      "Mike M.": 40,
+      "Keith R.": 39,
+      "Sean R.": 37,
+      "Travis R.": 37,
+      "Brian D.": 35,
+      "Tyler F.": 33,
+      "Dan R.": 31,
+      "Trevor R.": 30,
+      "Ryan B.": 30,
+      "David K.": 28
+    }
+  },
+  {
+    "date": "2025-12-15",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 53,
+      "Ryan T.": 43,
+      "Zak S.": 41,
+      "Mike M.": 40,
+      "Keith R.": 39,
+      "Sean R.": 37,
+      "Travis R.": 37,
+      "Brian D.": 35,
+      "Tyler F.": 35,
+      "Ryan B.": 32,
+      "Dan R.": 31,
+      "Trevor R.": 30,
+      "David K.": 28
+    }
+  },
+  {
+    "date": "2025-12-16",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 53,
+      "Ryan T.": 43,
+      "Zak S.": 41,
+      "Keith R.": 41,
+      "Mike M.": 40,
+      "Sean R.": 37,
+      "Travis R.": 37,
+      "Brian D.": 35,
+      "Tyler F.": 35,
+      "Dan R.": 32,
+      "Ryan B.": 32,
+      "Trevor R.": 30,
+      "David K.": 30
+    }
+  },
+  {
+    "date": "2025-12-17",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 55,
+      "Ryan T.": 45,
+      "Keith R.": 42,
+      "Zak S.": 41,
+      "Mike M.": 40,
+      "Sean R.": 37,
+      "Travis R.": 37,
+      "Brian D.": 37,
+      "Tyler F.": 35,
+      "Dan R.": 32,
+      "Ryan B.": 32,
+      "Trevor R.": 30,
+      "David K.": 30
+    }
+  },
+  {
+    "date": "2025-12-18",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 55,
+      "Ryan T.": 45,
+      "Zak S.": 42,
+      "Keith R.": 42,
+      "Mike M.": 40,
+      "Travis R.": 39,
+      "Sean R.": 37,
+      "Brian D.": 37,
+      "Tyler F.": 37,
+      "Ryan B.": 32,
+      "Dan R.": 32,
+      "Trevor R.": 30,
+      "David K.": 30
+    }
+  },
+  {
+    "date": "2025-12-19",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 55,
+      "Ryan T.": 47,
+      "Zak S.": 42,
+      "Mike M.": 42,
+      "Keith R.": 42,
+      "Travis R.": 39,
+      "Sean R.": 39,
+      "Brian D.": 37,
+      "Tyler F.": 37,
+      "Ryan B.": 34,
+      "Dan R.": 32,
+      "Trevor R.": 30,
+      "David K.": 30
+    }
+  },
+  {
+    "date": "2025-12-20",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 57,
+      "Ryan T.": 47,
+      "Zak S.": 42,
+      "Mike M.": 42,
+      "Keith R.": 42,
+      "Travis R.": 41,
+      "Sean R.": 39,
+      "Brian D.": 37,
+      "Tyler F.": 37,
+      "Ryan B.": 34,
+      "Dan R.": 32,
+      "Trevor R.": 30,
+      "David K.": 30
+    }
+  },
+  {
+    "date": "2025-12-21",
+    "season": "2025-2026",
+    "standings": {
       "Alice": 106,
       "Bob": 93,
       "Charlie": 100,
       "Dave": 86
-    },
-    "season": "2025-2026"
+    }
   }
 ]

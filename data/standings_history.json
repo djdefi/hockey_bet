@@ -1276,6 +1276,7 @@
     "date": "2025-12-21",
     "season": "2025-2026",
     "standings": {
+<<<<<<< HEAD
       "Jeff C.": {
         "points": 57,
         "wins": 25,
@@ -1432,6 +1433,21 @@
         "division_rank": 7,
         "conference_rank": 15
       }
+=======
+      "Jeff C.": 57,
+      "Ryan T.": 49,
+      "Keith R.": 44,
+      "Mike M.": 43,
+      "Zak S.": 42,
+      "Travis R.": 41,
+      "Sean R.": 39,
+      "Brian D.": 37,
+      "Tyler F.": 37,
+      "Ryan B.": 36,
+      "Trevor R.": 32,
+      "Dan R.": 32,
+      "David K.": 32
+>>>>>>> main
     }
   }
 ]
