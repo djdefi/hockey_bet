@@ -1395,6 +1395,26 @@ h3 {
     font-size: 0.9rem;
 }
 
+/* Additional utility classes for matchups */
+.badge-date {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+.matchup-item-high-interest {
+    border-width: 2px !important;
+    border-color: var(--borderColor-danger-emphasis) !important;
+}
+
+.matchup-title {
+    font-size: 1.1rem;
+}
+
+.rivalry-badge-inline {
+    font-size: 0.75rem;
+}
+
 /* Responsive adjustments for matchups */
 @media (max-width: 768px) {
     .matchup-teams {

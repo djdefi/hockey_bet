@@ -147,6 +147,7 @@ class BetStatsCalculator
         h2h_home_losses = @head_to_head_matrix[home_abbrev][away_abbrev][:losses] || 0
         h2h_home_ot_losses = @head_to_head_matrix[home_abbrev][away_abbrev][:ot_losses] || 0
       end
+      # Away team's record is the inverse of home team's record in head-to-head
       h2h_away_wins = h2h_home_losses + h2h_home_ot_losses
       h2h_away_losses = h2h_home_wins
       

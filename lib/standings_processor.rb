@@ -475,6 +475,7 @@ end
 
 def format_streak(streak_code)
   return '' if streak_code.nil? || streak_code.empty?
+  return '' if streak_code.length < 2  # Need at least type and count
   
   type = streak_code[0]
   count = streak_code[1..-1]

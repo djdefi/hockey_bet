@@ -1137,7 +1137,7 @@
                 <div class="matchup-date-group mb-3">
                     <div class="date-group-header mb-2">
                         <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="true">
-                            <span class="date-label badge <%= date_label == 'Today' ? 'color-bg-danger-emphasis' : 'color-bg-accent-emphasis' %> color-fg-on-emphasis" style="font-size: 0.85rem; padding: 0.25rem 0.5rem; border-radius: 6px;">
+                            <span class="date-label badge badge-date <%= date_label == 'Today' ? 'color-bg-danger-emphasis' : 'color-bg-accent-emphasis' %> color-fg-on-emphasis">
                                 <%= date_label %> (<%= matchups_in_group.length %>)
                             </span>
                             <span class="toggle-icon">▼</span>
@@ -1149,13 +1149,14 @@
                             <% 
                             interest_flames = get_interest_flames(matchup[:interest_score])
                             rivalry_badge = get_rivalry_badge(matchup[:same_division], matchup[:same_conference])
+                            high_interest_class = matchup[:interest_score] >= 95 ? 'matchup-item-high-interest' : ''
                             %>
                             
-                            <div class="matchup-item border rounded-2 p-3 mb-2 color-bg-default" style="border-width: 2px !important; <%= 'border-color: var(--borderColor-danger-emphasis) !important;' if matchup[:interest_score] >= 95 %>">
+                            <div class="matchup-item border rounded-2 p-3 mb-2 color-bg-default <%= high_interest_class %>">
                                 <!-- Matchup Header with Interest Indicator -->
                                 <div class="d-flex flex-justify-between flex-items-center mb-2">
                                     <div class="matchup-header">
-                                        <strong class="h4" style="font-size: 1.1rem;">
+                                        <strong class="h4 matchup-title">
                                             <span class="away-team"><%= matchup[:away_fan] %></span>
                                             <span class="text-muted">@</span>
                                             <span class="home-team"><%= matchup[:home_fan] %></span>
@@ -1164,7 +1165,7 @@
                                             <span class="interest-indicator ml-2" title="Interest Score: <%= matchup[:interest_score] %>"><%= interest_flames %></span>
                                         <% end %>
                                         <% if !rivalry_badge.empty? %>
-                                            <span class="rivalry-badge ml-2" style="font-size: 0.75rem;"><%= rivalry_badge %></span>
+                                            <span class="rivalry-badge rivalry-badge-inline ml-2"><%= rivalry_badge %></span>
                                         <% end %>
                                     </div>
                                 </div>
