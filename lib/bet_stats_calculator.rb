@@ -16,7 +16,6 @@ class BetStatsCalculator
   CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
   
   # Constants for stat calculations
-  TOP_MATCHUPS_TO_SHOW = 3  # Number of top matchups to display
   MINIMUM_SCORING_RATE = 2.5  # Minimum goals/game for glass cannon consideration
   EXCEPTIONAL_DEFENSE_THRESHOLD = 2.5  # Max goals against/game for shutout king
   STANLEY_CUP_WINS_REQUIRED = 16  # Playoff wins needed to win Stanley Cup
@@ -96,8 +95,8 @@ class BetStatsCalculator
 
   # Find most interesting upcoming fan vs fan matchups
   # Calculates an "interest score" based on how close teams are in standings.
-  # Closer matchups are more interesting. Returns top 3 matchups.
-  # @return [Array<Hash>] Top matchups with fan names, teams, points, and game time
+  # Closer matchups are more interesting. Returns all matchups sorted by interest score.
+  # @return [Array<Hash>] All matchups with fan names, teams, points, and game time
   def calculate_upcoming_fan_matchups
     matchups = []
     
@@ -149,7 +148,7 @@ class BetStatsCalculator
       }
     end
     
-    matchups.sort_by { |m| -m[:interest_score] }.take(TOP_MATCHUPS_TO_SHOW)
+    matchups.sort_by { |m| -m[:interest_score] }
   end
 
   # Calculate fan with longest winning streak (handles ties)
