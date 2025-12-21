@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NHL Playoffs</title>
+    <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Home Screen App Icons and Meta -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
+    <meta name="theme-color" content="#041E42">
+    
+    <style>
+        /* Playoff Styles */
+        
+        /* Playoff Bracket Styles */
+.playoff-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.playoff-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #041E42;
+}
+
+.playoff-bracket {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.conference-bracket {
+  display: flex;
+  flex-direction: column;
+}
+
+.conference-bracket h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #041E42;
+  color: white;
+  border-radius: 4px;
+}
+
+.rounds-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.round {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.round h4 {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.series {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.team {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+}
+
+.team.leading {
+  background-color: rgba(0, 150, 0, 0.1);
+  font-weight: bold;
+}
+
+.team-name {
+  font-weight: 500;
+}
+
+.team-abbrev {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.team-wins {
+  font-weight: bold;
+  font-size: 1.1rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.vs {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  margin: 0.25rem 0;
+}
+
+.series-status {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.fan-name {
+  color: #0366d6;
+  font-weight: 500;
+}
+
+.finals-container {
+  margin-top: 1.5rem;
+  border-top: 2px solid #041E42;
+  padding-top: 1.5rem;
+}
+
+.finals-container h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #A4A4A4;
+  color: white;
+  border-radius: 4px;
+}
+
+.fan-rankings {
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: white;
+}
+
+.fan-odds-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fan-odds-table th {
+  background-color: #f3f3f3;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.fan-odds-table td {
+  padding: 0.5rem;
+  border-top: 1px solid #eee;
+}
+
+/* Mobile responsiveness for playoff bracket */
+@media screen and (max-width: 768px) {
+  .rounds-container {
+    flex-direction: column;
+  }
+  
+  .round {
+    margin-bottom: 1.5rem;
+  }
+  
+  .round h4 {
+    background-color: #f3f3f3;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}
+
+        
+        
+        .back-link {
+            margin-bottom: 1rem;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        
+        .last-updated {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .no-playoffs {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .error-message {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-lg clearfix">
+        <div class="col-12">
+            <!-- Navigation -->
+            <div class="back-link">
+                <a href="/" class="btn btn-sm">&larr; Back to Standings</a>
+            </div>
+
+            <!-- Header -->
+            <div class="header-section">
+                
+                
+                <h1>NHL Playoffs - 2025</h1>
+                
+                
+                    <div class="last-updated">
+                        Last updated: 2025-12-21 22:33:22 UTC
+                    </div>
+                
+            </div>
+
+            <!-- Content -->
+            
+                <div class="no-playoffs">
+                    <h2>Playoffs Starting Soon</h2>
+                    <p>The NHL playoffs are approaching. Bracket information will be available once the matchups are set.</p>
+                </div>
+            
+
+            <!-- Navigation Links -->
+            <div class="mt-4 text-center">
+                
+                    <a href="/" class="btn btn-primary mr-2">View Standings</a>
+                    <a href="/playoffs.html" class="btn btn-outline">View Playoffs</a>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
