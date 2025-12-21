@@ -198,11 +198,11 @@ class BetStatsCalculator
         away_points: away_points,
         interest_score: interest_score,
         game_time: game['startTimeUTC'],
-        # Head-to-head records
+        # Head-to-head records (combined wins include OT losses as wins)
         h2h_home_wins: h2h_home_wins,
-        h2h_home_losses: h2h_home_losses + h2h_home_ot_losses,
-        h2h_away_wins: h2h_away_wins,
-        h2h_away_losses: h2h_away_losses,
+        h2h_home_losses: h2h_home_losses + h2h_home_ot_losses,  # Total losses including OT
+        h2h_away_wins: h2h_away_wins,  # Already includes OT losses as wins
+        h2h_away_losses: h2h_away_losses,  # This is home team's wins
         # Rivalry indicators
         same_division: same_division,
         same_conference: same_conference,

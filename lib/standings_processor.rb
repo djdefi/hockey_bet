@@ -475,6 +475,7 @@ end
 
 def format_streak(streak_code)
   return '' if streak_code.nil? || streak_code.empty?
+  # Streak codes are formatted as: type (W/L/O) + count (e.g., 'W5' = 5-game winning streak)
   return '' if streak_code.length < 2  # Need at least type and count
   
   type = streak_code[0]

@@ -1290,6 +1290,10 @@ h3 {
     margin-bottom: 1.5rem;
 }
 
+.matchups-list-hidden {
+    display: none;
+}
+
 .date-group-header {
     margin-bottom: 0.75rem;
 }
@@ -1459,22 +1463,22 @@ h3 {
 
 /* Responsive adjustments for matchups */
 @media (max-width: 768px) {
-    .matchup-teams-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
+    .matchup-item .matchup-teams-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
-    .vs-divider {
+    .matchup-item .vs-divider {
         text-align: center;
         padding: 0.5rem 0;
     }
     
-    .team-info {
-        text-align: center !important;
+    .matchup-item .team-info {
+        text-align: center;
     }
     
-    .stats-columns {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
+    .matchup-item .stats-columns {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 }

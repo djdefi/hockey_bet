@@ -1136,15 +1136,15 @@
                 
                 <div class="matchup-date-group mb-3">
                     <div class="date-group-header mb-2">
-                        <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="true">
+                        <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="<%= date_label == 'Today' ? 'true' : 'false' %>">
                             <span class="date-label badge badge-date <%= date_label == 'Today' ? 'color-bg-danger-emphasis' : 'color-bg-accent-emphasis' %> color-fg-on-emphasis">
                                 <%= date_label %> (<%= matchups_in_group.length %>)
                             </span>
-                            <span class="toggle-icon">▼</span>
+                            <span class="toggle-icon"><%= date_label == 'Today' ? '▼' : '▶' %></span>
                         </button>
                     </div>
                     
-                    <div class="matchups-list" id="matchups-<%= date_label.downcase.gsub(' ', '-') %>">
+                    <div class="matchups-list <%= 'matchups-list-hidden' unless date_label == 'Today' %>" id="matchups-<%= date_label.downcase.gsub(' ', '-') %>">
                         <% matchups_in_group.each_with_index do |matchup, idx| %>
                             <% 
                             interest_flames = get_interest_flames(matchup[:interest_score])
@@ -1495,11 +1495,11 @@
                 
                 if (matchupsList) {
                     if (isExpanded) {
-                        matchupsList.style.display = 'none';
+                        matchupsList.classList.add('matchups-list-hidden');
                         this.setAttribute('aria-expanded', 'false');
                         if (toggleIcon) toggleIcon.textContent = '▶';
                     } else {
-                        matchupsList.style.display = 'block';
+                        matchupsList.classList.remove('matchups-list-hidden');
                         this.setAttribute('aria-expanded', 'true');
                         if (toggleIcon) toggleIcon.textContent = '▼';
                     }
