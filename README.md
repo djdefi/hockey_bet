@@ -102,6 +102,38 @@ The preview environment system ensures that:
 - Old deployments are automatically cleaned up
 - Manual override available for custom scenarios
 
+## Roadmap & Future Development
+
+This project has a comprehensive roadmap for high-value improvements designed for the 13-person private league:
+
+- **[TASK_SUMMARY.md](TASK_SUMMARY.md)** - Quick reference: Next 10-20 high-impact tasks
+- **[NEXT_TASKS.md](NEXT_TASKS.md)** - Complete implementation guide with code examples and detailed specifications
+- **[PR #193 - Comprehensive Roadmap](https://github.com/djdefi/hockey_bet/pull/193)** - Original strategic planning with full context
+
+### Next Priority Features
+
+1. **Game Predictions System** (2-3x daily engagement increase)
+   - No authentication required - dropdown with 13 hardcoded fan names
+   - Prediction leaderboard and accuracy tracking
+   - Honor system for small private group
+
+2. **Enhanced Data Visualizations** (+30% time on site)
+   - Goal differential charts
+   - Win/loss trends
+   - Division rankings over time
+
+3. **Real-Time Live Scores** (game-day engagement)
+   - Live game tracking with auto-refresh
+   - 5-minute updates during games
+   - In-progress score displays
+
+4. **Push Notifications** (daily return rate)
+   - Pre-game reminders
+   - Game results
+   - Prediction accuracy updates
+
+All features designed to work with existing GitHub Pages + Actions infrastructure. No replatforming, databases, or user authentication required.
+
 ## License
 
 [MIT License](LICENSE)
