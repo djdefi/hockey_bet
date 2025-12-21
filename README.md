@@ -102,6 +102,30 @@ The preview environment system ensures that:
 - Old deployments are automatically cleaned up
 - Manual override available for custom scenarios
 
+## Product Roadmap
+
+**Context:** This is a **private 13-person fan league**, not a public product. The roadmap focuses on keeping these specific fans engaged throughout the season.
+
+**Infrastructure:** All features work with existing GitHub Pages + Actions. **No replatforming or external services required.** See [INFRASTRUCTURE.md](./INFRASTRUCTURE.md) for details.
+
+Want to see what's next? Check out our improvement roadmap:
+
+- **[INFRASTRUCTURE.md](./INFRASTRUCTURE.md)** - **Infrastructure Q&A:** No replatforming needed, all features use existing GitHub setup
+- **[ROADMAP_CONTEXT.md](./ROADMAP_CONTEXT.md)** - Target audience, methodology, and projection rationale
+- **[ROADMAP.md](./ROADMAP.md)** - Comprehensive roadmap with detailed implementation guides
+- **[ROADMAP_EXECUTIVE_SUMMARY.md](./ROADMAP_EXECUTIVE_SUMMARY.md)** - TL;DR version with 90-day action plan
+- **[ROADMAP_TRACKING.md](./ROADMAP_TRACKING.md)** - Track implementation progress as features are completed
+- **[TASKS.md](./TASKS.md)** - **HIGH-IMPACT FOCUS:** Critical path & P0 tasks (17 high-impact tasks)
+
+**Quick Overview:**
+- 🔥 **P0 Priority:** Game predictions, enhanced charts, real-time updates
+- ⭐ **P1 Priority:** Push notifications, player stats, league chat  
+- 📌 **P2 Priority:** Advanced analytics, historical views, PWA enhancements
+
+**For AI Agents:** Start with [TASKS.md](./TASKS.md) **Critical Path** section (3 tasks that unblock everything else).
+
+See the roadmap for ROI analysis, implementation guides, and success metrics. Use the tracking document to monitor progress.
+
 ## License
 
 [MIT License](LICENSE)
