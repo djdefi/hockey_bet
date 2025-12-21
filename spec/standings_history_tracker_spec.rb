@@ -75,11 +75,66 @@ RSpec.describe StandingsHistoryTracker do
     
     let(:teams) do
       [
-        { 'teamAbbrev' => { 'default' => 'COL' }, 'points' => 31 },
-        { 'teamAbbrev' => { 'default' => 'NJD' }, 'points' => 27 },
-        { 'teamAbbrev' => { 'default' => 'ANA' }, 'points' => 27 },
-        { 'teamAbbrev' => { 'default' => 'SJS' }, 'points' => 21 },
-        { 'teamAbbrev' => { 'default' => 'BOS' }, 'points' => 30 }
+        { 
+          'teamAbbrev' => { 'default' => 'COL' }, 
+          'points' => 31,
+          'wins' => 15,
+          'losses' => 10,
+          'otLosses' => 2,
+          'gamesPlayed' => 27,
+          'goalFor' => 85,
+          'goalAgainst' => 70,
+          'divisionSequence' => 2,
+          'conferenceSequence' => 5
+        },
+        { 
+          'teamAbbrev' => { 'default' => 'NJD' }, 
+          'points' => 27,
+          'wins' => 13,
+          'losses' => 12,
+          'otLosses' => 2,
+          'gamesPlayed' => 27,
+          'goalFor' => 75,
+          'goalAgainst' => 75,
+          'divisionSequence' => 3,
+          'conferenceSequence' => 7
+        },
+        { 
+          'teamAbbrev' => { 'default' => 'ANA' }, 
+          'points' => 27,
+          'wins' => 13,
+          'losses' => 12,
+          'otLosses' => 2,
+          'gamesPlayed' => 27,
+          'goalFor' => 80,
+          'goalAgainst' => 80,
+          'divisionSequence' => 4,
+          'conferenceSequence' => 8
+        },
+        { 
+          'teamAbbrev' => { 'default' => 'SJS' }, 
+          'points' => 21,
+          'wins' => 10,
+          'losses' => 15,
+          'otLosses' => 2,
+          'gamesPlayed' => 27,
+          'goalFor' => 65,
+          'goalAgainst' => 90,
+          'divisionSequence' => 5,
+          'conferenceSequence' => 12
+        },
+        { 
+          'teamAbbrev' => { 'default' => 'BOS' }, 
+          'points' => 30,
+          'wins' => 14,
+          'losses' => 11,
+          'otLosses' => 2,
+          'gamesPlayed' => 27,
+          'goalFor' => 82,
+          'goalAgainst' => 72,
+          'divisionSequence' => 1,
+          'conferenceSequence' => 3
+        }
       ]
     end
     
@@ -90,9 +145,25 @@ RSpec.describe StandingsHistoryTracker do
       expect(history.length).to eq(1)
       expect(history[0]['date']).to eq(Date.today.to_s)
       expect(history[0]['season']).to match(/\d{4}-\d{4}/)
-      expect(history[0]['standings']['Jeff C.']).to eq(31)
-      expect(history[0]['standings']['Travis R.']).to eq(27)
-      expect(history[0]['standings']['Brian D.']).to eq(21)
+      
+      # Verify enhanced stats are stored
+      jeff_stats = history[0]['standings']['Jeff C.']
+      expect(jeff_stats['points']).to eq(31)
+      expect(jeff_stats['wins']).to eq(15)
+      expect(jeff_stats['losses']).to eq(10)
+      expect(jeff_stats['ot_losses']).to eq(2)
+      expect(jeff_stats['games_played']).to eq(27)
+      expect(jeff_stats['goals_for']).to eq(85)
+      expect(jeff_stats['goals_against']).to eq(70)
+      expect(jeff_stats['goal_diff']).to eq(15)
+      
+      travis_stats = history[0]['standings']['Travis R.']
+      expect(travis_stats['points']).to eq(27)
+      
+      brian_stats = history[0]['standings']['Brian D.']
+      expect(brian_stats['points']).to eq(21)
+      
+      # N/A fan should not be included
       expect(history[0]['standings']['N/A']).to be_nil
     end
     
@@ -102,7 +173,10 @@ RSpec.describe StandingsHistoryTracker do
       
       # Update teams with new points
       updated_teams = teams.map do |team|
-        team.merge({ 'points' => team['points'] + 2 })
+        team.merge({ 
+          'points' => team['points'] + 2,
+          'wins' => team['wins'] + 1
+        })
       end
       
       # Second recording (same day)
@@ -110,7 +184,8 @@ RSpec.describe StandingsHistoryTracker do
       
       history = tracker.load_history
       expect(history.length).to eq(1)
-      expect(history[0]['standings']['Jeff C.']).to eq(33)
+      expect(history[0]['standings']['Jeff C.']['points']).to eq(33)
+      expect(history[0]['standings']['Jeff C.']['wins']).to eq(16)
     end
     
     it 'adds new entry for different day' do
@@ -162,6 +237,44 @@ RSpec.describe StandingsHistoryTracker do
       history = tracker.load_history
       dates = history.map { |entry| entry['date'] }
       expect(dates).to eq(dates.sort)
+    end
+    
+    it 'is backward compatible with old data format (points only)' do
+      # Create old format data (points as integer, not hash)
+      old_history = [
+        { 
+          'date' => '2024-12-01', 
+          'season' => '2024-2025',
+          'standings' => { 
+            'Jeff C.' => 28,
+            'Travis R.' => 25,
+            'Brian D.' => 19
+          } 
+        }
+      ]
+      tracker.save_history(old_history)
+      
+      # Should load without errors
+      history = tracker.load_history
+      expect(history.length).to eq(1)
+      
+      # Old data should still be readable
+      expect(history[0]['standings']['Jeff C.']).to eq(28)
+      
+      # Now record new format data
+      tracker.record_current_standings(manager_team_map, teams)
+      
+      # Should have both old and new entries
+      history = tracker.load_history
+      expect(history.length).to eq(2)
+      
+      # Old entry should still be intact
+      expect(history[0]['standings']['Jeff C.']).to eq(28)
+      
+      # New entry should have enhanced stats
+      expect(history[1]['standings']['Jeff C.']).to be_a(Hash)
+      expect(history[1]['standings']['Jeff C.']['points']).to eq(31)
+      expect(history[1]['standings']['Jeff C.']['wins']).to eq(15)
     end
   end
   

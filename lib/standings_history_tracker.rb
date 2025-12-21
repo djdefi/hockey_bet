@@ -38,8 +38,8 @@ class StandingsHistoryTracker
     # Check if we already have an entry for today
     today_entry = history.find { |entry| entry['date'] == today }
     
-    # Build the standings for today
-    fan_points = {}
+    # Build the standings for today with enhanced stats
+    fan_standings = {}
     manager_team_map.each do |team_abbrev, fan_name|
       next if fan_name == "N/A"
       
@@ -47,19 +47,31 @@ class StandingsHistoryTracker
       team = teams.find { |t| t['teamAbbrev']['default'] == team_abbrev }
       next unless team
       
-      fan_points[fan_name] = team['points'] || 0
+      # Store comprehensive team stats for chart visualizations
+      fan_standings[fan_name] = {
+        'points' => team['points'] || 0,
+        'wins' => team['wins'] || 0,
+        'losses' => team['losses'] || 0,
+        'ot_losses' => team['otLosses'] || 0,
+        'games_played' => team['gamesPlayed'] || 0,
+        'goals_for' => team['goalFor'] || 0,
+        'goals_against' => team['goalAgainst'] || 0,
+        'goal_diff' => (team['goalFor'] || 0) - (team['goalAgainst'] || 0),
+        'division_rank' => team['divisionSequence'] || 0,
+        'conference_rank' => team['conferenceSequence'] || 0
+      }
     end
     
     if today_entry
       # Update existing entry for today
-      today_entry['standings'] = fan_points
+      today_entry['standings'] = fan_standings
       today_entry['season'] = current_season
     else
       # Add new entry for today
       history << {
         'date' => today,
         'season' => current_season,
-        'standings' => fan_points
+        'standings' => fan_standings
       }
     end
     
@@ -81,7 +93,7 @@ class StandingsHistoryTracker
     
     save_history(history)
     
-    puts "Standings history updated: #{fan_points.size} fans tracked for #{today}"
+    puts "Standings history updated: #{fan_standings.size} fans tracked for #{today}"
   end
   
   # Get history filtered by season
