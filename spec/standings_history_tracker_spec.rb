@@ -7,7 +7,7 @@ require 'date'
 
 RSpec.describe StandingsHistoryTracker do
   let(:temp_file) { Tempfile.new(['standings_history', '.json']) }
-  let(:tracker) { StandingsHistoryTracker.new(temp_file.path) }
+  let(:tracker) { StandingsHistoryTracker.new(temp_file.path, verbose: false) }
   
   after do
     temp_file.close

@@ -3,31 +3,51 @@ require 'json'
 require 'fileutils'
 require 'date'
 
+# StandingsHistoryTracker manages historical standings data for the fan league
+# Tracks comprehensive team statistics over time to enable:
+# - Points and win/loss trends
+# - Goal differential analysis
+# - Division rankings history
+# - Season-based filtering
 class StandingsHistoryTracker
   attr_reader :data_file
   
-  def initialize(data_file = 'data/standings_history.json')
+  # Maximum days of history to retain (prevents unbounded growth)
+  MAX_HISTORY_DAYS = 365
+  
+  # Minimum entries to keep regardless of age (ensures chart functionality)
+  MIN_HISTORY_ENTRIES = 7
+  
+  # Enable/disable verbose logging
+  attr_accessor :verbose
+  
+  def initialize(data_file = 'data/standings_history.json', verbose: true)
     @data_file = data_file
+    @verbose = verbose
     ensure_data_file_exists
   end
   
   # Load standings history from JSON file
+  # @return [Array<Hash>] Array of daily standings entries
   def load_history
     return [] unless File.exist?(@data_file)
     
     JSON.parse(File.read(@data_file))
   rescue JSON::ParserError => e
-    puts "Warning: Error parsing standings history: #{e.message}"
+    log_warning("Error parsing standings history: #{e.message}")
     []
   end
   
   # Save standings history to JSON file
+  # @param data [Array<Hash>] Standings history data
   def save_history(data)
     FileUtils.mkdir_p(File.dirname(@data_file))
     File.write(@data_file, JSON.pretty_generate(data))
   end
   
   # Record current standings for all fans
+  # @param manager_team_map [Hash] Map of team abbreviations to fan names
+  # @param teams [Array<Hash>] Array of team data from NHL API
   def record_current_standings(manager_team_map, teams)
     history = load_history
     
@@ -39,7 +59,77 @@ class StandingsHistoryTracker
     today_entry = history.find { |entry| entry['date'] == today }
     
     # Build the standings for today with enhanced stats
+    fan_standings = build_fan_standings(manager_team_map, teams)
+    
+    if today_entry
+      # Update existing entry for today
+      today_entry['standings'] = fan_standings
+      today_entry['season'] = current_season
+    else
+      # Add new entry for today
+      history << {
+        'date' => today,
+        'season' => current_season,
+        'standings' => fan_standings
+      }
+    end
+    
+    # Prune old entries while maintaining minimum for charts
+    history = prune_history(history)
+    
+    # Sort by date to ensure chronological order
+    history.sort_by! { |entry| entry['date'] }
+    
+    save_history(history)
+    
+    log_info("Standings history updated: #{fan_standings.size} fans tracked for #{today}")
+  end
+  
+  # Get history filtered by season
+  def get_history_by_season(season)
+    history = load_history
+    history.select { |entry| (entry['season'] || determine_season(Date.parse(entry['date']))) == season }
+  end
+  
+  # Backfill season information for existing entries that don't have it
+  # @return [Boolean] True if any entries were updated
+  def backfill_seasons
+    history = load_history
+    changed = false
+    
+    history.each do |entry|
+      unless entry['season']
+        entry['season'] = determine_season(Date.parse(entry['date']))
+        changed = true
+      end
+    end
+    
+    save_history(history) if changed
+    log_info("Season information backfilled for #{history.length} entries") if changed
+    changed
+  end
+  
+  # Get all available seasons from history
+  def get_available_seasons
+    history = load_history
+    seasons = history.map { |entry| entry['season'] || determine_season(Date.parse(entry['date'])) }.uniq.compact
+    seasons.sort.reverse # Most recent first
+  end
+  
+  # Get current season identifier (e.g., "2024-2025")
+  def current_season
+    determine_season(Date.today)
+  end
+  
+  private
+  
+  # Build fan standings from team data
+  # @param manager_team_map [Hash] Map of team abbreviations to fan names
+  # @param teams [Array<Hash>] Array of team data from NHL API
+  # @return [Hash] Fan standings with comprehensive stats
+  def build_fan_standings(manager_team_map, teams)
     fan_standings = {}
+    
     manager_team_map.each do |team_abbrev, fan_name|
       next if fan_name == "N/A"
       
@@ -62,79 +152,32 @@ class StandingsHistoryTracker
       }
     end
     
-    if today_entry
-      # Update existing entry for today
-      today_entry['standings'] = fan_standings
-      today_entry['season'] = current_season
-    else
-      # Add new entry for today
-      history << {
-        'date' => today,
-        'season' => current_season,
-        'standings' => fan_standings
-      }
-    end
-    
-    # Keep only last 365 days of data to prevent file from growing too large
-    # However, keep at least 7 entries to ensure trends chart has enough data points
-    cutoff_date = (Date.today - 365).to_s
+    fan_standings
+  end
+  
+  # Prune history to keep file size manageable
+  # @param history [Array<Hash>] History entries
+  # @return [Array<Hash>] Pruned history
+  def prune_history(history)
+    cutoff_date = (Date.today - MAX_HISTORY_DAYS).to_s
     history_after_cutoff = history.select { |entry| entry['date'] >= cutoff_date }
     
     # If we have enough recent data, use it. Otherwise, keep the older data.
-    if history_after_cutoff.length >= 7
-      history = history_after_cutoff
-    elsif history.length > 7
-      # Keep the most recent 7 entries even if they're old
-      history = history.last(7)
+    if history_after_cutoff.length >= MIN_HISTORY_ENTRIES
+      history_after_cutoff
+    elsif history.length > MIN_HISTORY_ENTRIES
+      # Keep the most recent entries even if they're old
+      history.last(MIN_HISTORY_ENTRIES)
+    else
+      history
     end
-    
-    # Sort by date to ensure chronological order
-    history.sort_by! { |entry| entry['date'] }
-    
-    save_history(history)
-    
-    puts "Standings history updated: #{fan_standings.size} fans tracked for #{today}"
   end
-  
-  # Get history filtered by season
-  def get_history_by_season(season)
-    history = load_history
-    history.select { |entry| (entry['season'] || determine_season(Date.parse(entry['date']))) == season }
-  end
-  
-  # Backfill season information for existing entries that don't have it
-  def backfill_seasons
-    history = load_history
-    changed = false
-    
-    history.each do |entry|
-      unless entry['season']
-        entry['season'] = determine_season(Date.parse(entry['date']))
-        changed = true
-      end
-    end
-    
-    save_history(history) if changed
-    puts "Season information backfilled for #{history.length} entries" if changed
-  end
-  
-  # Get all available seasons from history
-  def get_available_seasons
-    history = load_history
-    seasons = history.map { |entry| entry['season'] || determine_season(Date.parse(entry['date'])) }.uniq.compact
-    seasons.sort.reverse # Most recent first
-  end
-  
-  # Get current season identifier (e.g., "2024-2025")
-  def current_season
-    determine_season(Date.today)
-  end
-  
-  private
   
   # Determine season from a date
   # NHL season typically runs from October to June (e.g., 2024-10 to 2025-06)
   # Off-season months (July-September) are considered part of the upcoming season
+  # @param date [Date] Date to determine season for
+  # @return [String] Season identifier (e.g., "2024-2025")
   def determine_season(date)
     year = date.year
     month = date.month
@@ -153,5 +196,14 @@ class StandingsHistoryTracker
     
     FileUtils.mkdir_p(File.dirname(@data_file))
     save_history([])
+  end
+  
+  # Logging helpers - respect verbose flag
+  def log_info(message)
+    puts message if @verbose
+  end
+  
+  def log_warning(message)
+    puts "Warning: #{message}" if @verbose
   end
 end
