@@ -1,24 +1,5 @@
 [
   {
-    "date": "2024-12-21",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 26,
-      "Brian D.": 28,
-      "David K.": 20,
-      "Ryan T.": 44,
-      "Sean R.": 21,
-      "Tyler F.": 21,
-      "Jeff C.": 40,
-      "Zak S.": 43,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 28,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
     "date": "2024-12-24",
     "standings": {
       "Travis R.": 36,
@@ -1274,6 +1255,25 @@
   },
   {
     "date": "2025-12-21",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": 57,
+      "Ryan T.": 49,
+      "Keith R.": 44,
+      "Mike M.": 43,
+      "Zak S.": 42,
+      "Travis R.": 41,
+      "Sean R.": 39,
+      "Brian D.": 37,
+      "Tyler F.": 37,
+      "Ryan B.": 36,
+      "Trevor R.": 32,
+      "Dan R.": 32,
+      "David K.": 32
+    }
+  },
+  {
+    "date": "2025-12-22",
     "season": "2025-2026",
     "standings": {
       "Jeff C.": 57,
