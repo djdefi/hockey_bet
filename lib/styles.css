@@ -1514,7 +1514,7 @@ h3 {
     .matchup-vs {
         align-self: center;
         margin: 0;
-        padding: 6px 14px;
+        padding: 12px 14px;  /* Increased to meet 44px touch target */
         font-size: 0.85rem;
     }
     
@@ -1593,7 +1593,7 @@ h3 {
     
     .featured-vs {
         font-size: 1.1rem;
-        padding: 0.4rem 1rem;
+        padding: 0.75rem 1rem;  /* Increased to meet 44px touch target */
     }
     
     /* Legacy matchup-item support (if exists) */
