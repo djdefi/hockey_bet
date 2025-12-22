@@ -2,6 +2,7 @@
 require 'json'
 require 'fileutils'
 require 'date'
+require_relative 'base_tracker'
 
 # StandingsHistoryTracker manages historical standings data for the fan league
 # Tracks comprehensive team statistics over time to enable:
@@ -10,7 +11,7 @@ require 'date'
 # - Division rankings history
 # - Season-based filtering
 class StandingsHistoryTracker
-  attr_reader :data_file
+  include BaseTracker
   
   # Maximum days of history to retain (prevents unbounded growth)
   MAX_HISTORY_DAYS = 365
@@ -18,31 +19,22 @@ class StandingsHistoryTracker
   # Minimum entries to keep regardless of age (ensures chart functionality)
   MIN_HISTORY_ENTRIES = 7
   
-  # Enable/disable verbose logging
-  attr_accessor :verbose
-  
   def initialize(data_file = 'data/standings_history.json', verbose: true)
-    @data_file = data_file
-    @verbose = verbose
-    ensure_data_file_exists
+    initialize_tracker(data_file, verbose: verbose)
+    # Ensure file exists with empty array as default (history is an array)
+    ensure_data_file_exists([]) unless File.exist?(@data_file)
   end
   
   # Load standings history from JSON file
   # @return [Array<Hash>] Array of daily standings entries
   def load_history
-    return [] unless File.exist?(@data_file)
-    
-    JSON.parse(File.read(@data_file))
-  rescue JSON::ParserError => e
-    log_warning("Error parsing standings history: #{e.message}")
-    []
+    load_data_safe([])
   end
   
   # Save standings history to JSON file
   # @param data [Array<Hash>] Standings history data
   def save_history(data)
-    FileUtils.mkdir_p(File.dirname(@data_file))
-    File.write(@data_file, JSON.pretty_generate(data))
+    save_data_safe(data)
   end
   
   # Record current standings for all fans
@@ -189,21 +181,5 @@ class StandingsHistoryTracker
     else
       "#{year - 1}-#{year}"
     end
-  end
-  
-  def ensure_data_file_exists
-    return if File.exist?(@data_file)
-    
-    FileUtils.mkdir_p(File.dirname(@data_file))
-    save_history([])
-  end
-  
-  # Logging helpers - respect verbose flag
-  def log_info(message)
-    puts message if @verbose
-  end
-  
-  def log_warning(message)
-    puts "Warning: #{message}" if @verbose
   end
 end

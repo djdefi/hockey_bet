@@ -1,6 +1,7 @@
 # filepath: /home/runner/work/hockey_bet/hockey_bet/lib/prediction_processor.rb
 require_relative 'prediction_tracker'
 require_relative 'fan_league_constants'
+require_relative 'base_tracker'
 require 'json'
 require 'fileutils'
 require 'set'
@@ -8,16 +9,11 @@ require 'set'
 # PredictionProcessor processes completed games and calculates prediction accuracy
 # Manages prediction results and generates leaderboards
 class PredictionProcessor
-  attr_reader :results_file
-  
-  # Enable/disable verbose logging (can be overridden for testing)
-  attr_accessor :verbose
+  include BaseTracker
   
   def initialize(prediction_tracker = nil, results_file = FanLeagueConstants::PREDICTION_RESULTS_FILE, verbose: true)
     @tracker = prediction_tracker || PredictionTracker.new(verbose: verbose)
-    @results_file = results_file
-    @verbose = verbose
-    ensure_results_file_exists
+    initialize_tracker(results_file, verbose: verbose)
   end
   
   # Process a completed game and update prediction results
@@ -26,7 +22,8 @@ class PredictionProcessor
   # @return [Hash] Results for this game (fan => result data)
   # @raise [ArgumentError] if game_id or winner_abbrev is empty
   def process_completed_game(game_id, winner_abbrev)
-    validate_game_input!(game_id, winner_abbrev)
+    validate_not_empty!(game_id, "Game ID")
+    validate_not_empty!(winner_abbrev, "Winner abbreviation")
     
     predictions = @tracker.get_predictions(game_id)
     results = build_game_results(predictions, winner_abbrev)
@@ -178,12 +175,7 @@ class PredictionProcessor
   # Load all results (exposed for advanced queries)
   # @return [Hash] Complete results data structure
   def load_all_results
-    return {} unless File.exist?(@results_file)
-    
-    JSON.parse(File.read(@results_file))
-  rescue JSON::ParserError => e
-    log_warning("Error parsing prediction results: #{e.message}")
-    {}
+    load_data_safe({})
   end
   
   private
@@ -206,29 +198,18 @@ class PredictionProcessor
     results
   end
   
-  # Validate game processing inputs
-  # @raise [ArgumentError] if any input is invalid
-  def validate_game_input!(game_id, winner_abbrev)
-    raise ArgumentError, "Game ID cannot be empty" if game_id.nil? || game_id.to_s.strip.empty?
-    raise ArgumentError, "Winner abbreviation cannot be empty" if winner_abbrev.nil? || winner_abbrev.to_s.strip.empty?
-  end
-  
   def save_game_results(game_id, results)
     data = load_all_results
     data[game_id] = results
-    save_all_results(data)
+    save_data_safe(data)
   end
   
   def save_all_results(data)
-    FileUtils.mkdir_p(File.dirname(@results_file))
-    File.write(@results_file, JSON.pretty_generate(data))
+    save_data_safe(data)
   end
   
   def ensure_results_file_exists
-    return if File.exist?(@results_file)
-    
-    FileUtils.mkdir_p(File.dirname(@results_file))
-    save_all_results({})
+    ensure_data_file_exists({})
   end
   
   def get_all_fan_names
@@ -299,14 +280,5 @@ class PredictionProcessor
       best_streak: best_streak,
       type: streak_type
     }
-  end
-  
-  # Logging helpers - respect verbose flag
-  def log_info(message)
-    puts message if @verbose
-  end
-  
-  def log_warning(message)
-    puts "Warning: #{message}" if @verbose
   end
 end

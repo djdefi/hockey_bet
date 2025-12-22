@@ -3,20 +3,16 @@ require 'json'
 require 'fileutils'
 require 'time'
 require_relative 'fan_league_constants'
+require_relative 'base_tracker'
 
 # PredictionTracker manages game predictions for the 13-person fan league
 # Uses honor system with hardcoded fan names (no authentication)
 # Stores predictions in JSON file for simplicity and GitHub Pages compatibility
 class PredictionTracker
-  attr_reader :data_file
-  
-  # Enable/disable verbose logging (can be overridden for testing)
-  attr_accessor :verbose
+  include BaseTracker
   
   def initialize(data_file = FanLeagueConstants::PREDICTIONS_FILE, verbose: true)
-    @data_file = data_file
-    @verbose = verbose
-    ensure_data_file_exists
+    initialize_tracker(data_file, verbose: verbose)
   end
   
   # Store a prediction (no authentication, just fan name from dropdown)
@@ -26,7 +22,9 @@ class PredictionTracker
   # @param predicted_at [Time] Timestamp of prediction (defaults to now)
   # @raise [ArgumentError] if fan_name, game_id, or predicted_winner is empty
   def store_prediction(fan_name, game_id, predicted_winner, predicted_at = Time.now)
-    validate_input!(fan_name, game_id, predicted_winner)
+    validate_not_empty!(fan_name, "Fan name")
+    validate_not_empty!(game_id, "Game ID")
+    validate_not_empty!(predicted_winner, "Predicted winner")
     
     data = load_data
     
@@ -133,42 +131,12 @@ class PredictionTracker
   # Load all prediction data (exposed for processor class)
   # @return [Hash] Complete prediction data structure
   def load_data
-    return {} unless File.exist?(@data_file)
-    
-    JSON.parse(File.read(@data_file))
-  rescue JSON::ParserError => e
-    log_warning("Error parsing predictions: #{e.message}")
-    {}
+    load_data_safe({})
   end
   
   private
   
-  # Validate required inputs for predictions
-  # @raise [ArgumentError] if any input is invalid
-  def validate_input!(fan_name, game_id, predicted_winner)
-    raise ArgumentError, "Fan name cannot be empty" if fan_name.nil? || fan_name.to_s.strip.empty?
-    raise ArgumentError, "Game ID cannot be empty" if game_id.nil? || game_id.to_s.strip.empty?
-    raise ArgumentError, "Predicted winner cannot be empty" if predicted_winner.nil? || predicted_winner.to_s.strip.empty?
-  end
-  
   def save_data(data)
-    FileUtils.mkdir_p(File.dirname(@data_file))
-    File.write(@data_file, JSON.pretty_generate(data))
-  end
-  
-  def ensure_data_file_exists
-    return if File.exist?(@data_file)
-    
-    FileUtils.mkdir_p(File.dirname(@data_file))
-    save_data({})
-  end
-  
-  # Logging helpers - respect verbose flag
-  def log_info(message)
-    puts message if @verbose
-  end
-  
-  def log_warning(message)
-    puts "Warning: #{message}" if @verbose
+    save_data_safe(data)
   end
 end
