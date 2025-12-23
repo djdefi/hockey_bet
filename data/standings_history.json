@@ -1322,12 +1322,12 @@
       "Keith R.": {
         "points": 44,
         "wins": 21,
-        "losses": 13,
+        "losses": 14,
         "ot_losses": 2,
-        "games_played": 36,
-        "goals_for": 128,
-        "goals_against": 123,
-        "goal_diff": 5,
+        "games_played": 37,
+        "goals_for": 129,
+        "goals_against": 126,
+        "goal_diff": 3,
         "division_rank": 1,
         "conference_rank": 4
       },
@@ -1370,12 +1370,12 @@
       "Sean R.": {
         "points": 39,
         "wins": 15,
-        "losses": 10,
+        "losses": 11,
         "ot_losses": 9,
-        "games_played": 34,
-        "goals_for": 88,
-        "goals_against": 90,
-        "goal_diff": -2,
+        "games_played": 35,
+        "goals_for": 89,
+        "goals_against": 93,
+        "goal_diff": -4,
         "division_rank": 4,
         "conference_rank": 7
       },
@@ -1415,6 +1415,18 @@
         "division_rank": 5,
         "conference_rank": 9
       },
+      "Trevor R.": {
+        "points": 34,
+        "wins": 14,
+        "losses": 14,
+        "ot_losses": 6,
+        "games_played": 34,
+        "goals_for": 86,
+        "goals_against": 105,
+        "goal_diff": -19,
+        "division_rank": 6,
+        "conference_rank": 11
+      },
       "David K.": {
         "points": 34,
         "wins": 15,
@@ -1425,7 +1437,7 @@
         "goals_against": 119,
         "goal_diff": -19,
         "division_rank": 6,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Dan R.": {
         "points": 33,
@@ -1437,19 +1449,7 @@
         "goals_against": 107,
         "goal_diff": -4,
         "division_rank": 7,
-        "conference_rank": 13
-      },
-      "Trevor R.": {
-        "points": 32,
-        "wins": 13,
-        "losses": 14,
-        "ot_losses": 6,
-        "games_played": 33,
-        "goals_for": 83,
-        "goals_against": 104,
-        "goal_diff": -21,
-        "division_rank": 8,
-        "conference_rank": 15
+        "conference_rank": 14
       }
     }
   }
