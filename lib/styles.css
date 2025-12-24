@@ -1141,22 +1141,24 @@ h3 {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.3rem 0.5rem;
-    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(41, 128, 185, 0.15));
-    border: 1px solid rgba(155, 89, 182, 0.3);
+    padding: 0.4rem 0.6rem;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(41, 128, 185, 0.2));
+    border: 1px solid rgba(155, 89, 182, 0.4);
     border-radius: 6px;
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--accent-purple);
     animation: glow-pulse 2s ease-in-out infinite;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2);
 }
 
 @keyframes glow-pulse {
     0%, 100% {
-        box-shadow: 0 0 5px rgba(155, 89, 182, 0.3);
+        box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2), 0 0 5px rgba(155, 89, 182, 0.3);
     }
     50% {
-        box-shadow: 0 0 15px rgba(155, 89, 182, 0.6);
+        box-shadow: 0 2px 12px rgba(155, 89, 182, 0.3), 0 0 15px rgba(155, 89, 182, 0.6);
     }
 }
 

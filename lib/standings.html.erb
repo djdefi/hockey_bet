@@ -71,6 +71,21 @@
                 away_achievement = get_fan_achievement(matchup[:away_fan], bet_stats)
                 home_achievement = get_fan_achievement(matchup[:home_fan], bet_stats)
                 
+                # Calculate prediction
+                total_points = matchup[:away_points] + matchup[:home_points]
+                predicted_winner = ''
+                prediction_confidence = ''
+                if total_points > 0
+                    home_prob = (matchup[:home_points].to_f / total_points * 100).round
+                    if home_prob > 60
+                        predicted_winner = matchup[:home_fan]
+                        prediction_confidence = "#{home_prob}%"
+                    elsif home_prob < 40
+                        predicted_winner = matchup[:away_fan]
+                        prediction_confidence = "#{100 - home_prob}%"
+                    end
+                end
+                
                 # Format game time
                 game_time_formatted = ''
                 if matchup[:game_time]
@@ -83,6 +98,14 @@
                   end
                 end
                 %>
+                
+                <!-- Prediction Badge -->
+                <% if !predicted_winner.empty? %>
+                <div class="matchup-prediction">
+                    <span>🔮</span>
+                    <span>Prediction: <%= predicted_winner %> (<%= prediction_confidence %>)</span>
+                </div>
+                <% end %>
                 
                 <!-- Game Time Header -->
                 <% if game_time_formatted && !game_time_formatted.empty? %>
@@ -465,12 +488,53 @@
                             </div>
                             <% end %>
                             
-                            <!-- Current streak -->
+                            <!-- Current streak with momentum indicator -->
                             <div class="matchup-stat">
-                                <span class="matchup-stat-label">Streak</span>
-                                <span class="matchup-stat-value"><%= matchup[:away_streak] %> vs <%= matchup[:home_streak] %></span>
+                                <span class="matchup-stat-label">Momentum</span>
+                                <span class="matchup-stat-value">
+                                    <% 
+                                    away_momentum = matchup[:away_streak].to_s.start_with?('W') ? 'hot' : (matchup[:away_streak].to_s.start_with?('L') ? 'cold' : 'neutral')
+                                    home_momentum = matchup[:home_streak].to_s.start_with?('W') ? 'hot' : (matchup[:home_streak].to_s.start_with?('L') ? 'cold' : 'neutral')
+                                    %>
+                                    <span class="momentum-indicator momentum-<%= away_momentum %>"><%= matchup[:away_streak] %></span>
+                                    vs
+                                    <span class="momentum-indicator momentum-<%= home_momentum %>"><%= matchup[:home_streak] %></span>
+                                </span>
                             </div>
                         </div>
+                        
+                        <!-- Win Probability Prediction -->
+                        <% 
+                        # Calculate simple win probability based on points and recent form
+                        total_points = matchup[:away_points] + matchup[:home_points]
+                        if total_points > 0
+                            base_prob = (matchup[:home_points].to_f / total_points * 100).round
+                            # Adjust for streak
+                            streak_adjustment = 0
+                            if matchup[:home_streak].to_s.start_with?('W')
+                                streak_count = matchup[:home_streak].scan(/\d+/).first.to_i rescue 0
+                                streak_adjustment += [streak_count * 2, 10].min
+                            elsif matchup[:home_streak].to_s.start_with?('L')
+                                streak_count = matchup[:home_streak].scan(/\d+/).first.to_i rescue 0
+                                streak_adjustment -= [streak_count * 2, 10].min
+                            end
+                            if matchup[:away_streak].to_s.start_with?('W')
+                                streak_count = matchup[:away_streak].scan(/\d+/).first.to_i rescue 0
+                                streak_adjustment -= [streak_count * 2, 10].min
+                            elsif matchup[:away_streak].to_s.start_with?('L')
+                                streak_count = matchup[:away_streak].scan(/\d+/).first.to_i rescue 0
+                                streak_adjustment += [streak_count * 2, 10].min
+                            end
+                            win_prob = [[base_prob + streak_adjustment, 10].max, 90].min
+                        %>
+                        <div class="win-probability">
+                            <span class="win-prob-label">Win %</span>
+                            <div class="win-prob-bar">
+                                <div class="win-prob-fill" style="width: <%= win_prob %>%;"></div>
+                            </div>
+                            <span class="win-prob-value"><%= win_prob %>%</span>
+                        </div>
+                        <% end %>
                     </div>
                 <% end %>
             <% else %>
