@@ -1244,8 +1244,6 @@ h3 {
         min-height: 500px;
         padding: 0.75rem;
         padding-bottom: 0.5rem;
-        /* Prevent zooming on iOS when focusing */
-        touch-action: manipulation;
     }
     
     .chart-container h2 {
@@ -1268,7 +1266,7 @@ h3 {
     
     .team-card:active {
         background-color: var(--bg-card-hover);
-        transform: scale(0.98);
+        transform: scale(0.98) translateX(2px);
     }
     
     .team-card-left {
@@ -1432,6 +1430,8 @@ h3 {
     .app-container {
         /* Use CSS containment for better performance */
         contain: layout style paint;
+        /* Prevent zooming on iOS when focusing */
+        touch-action: manipulation;
     }
     
     .tab-section {
