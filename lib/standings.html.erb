@@ -373,6 +373,7 @@
             <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
                 <% bet_stats[:upcoming_fan_matchups].each do |matchup| %>
                     <div class="matchup-card" role="article" aria-label="Matchup between <%= matchup[:away_fan] %> and <%= matchup[:home_fan] %>">
+                        <!-- Compact team header -->
                         <div class="matchup-teams">
                             <div class="matchup-team">
                                 <% if matchup[:away_abbrev] %>
@@ -382,8 +383,10 @@
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
-                                <div class="matchup-team-name"><%= matchup[:away_team] %></div>
-                                <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
+                                <div>
+                                    <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
+                                    <div class="matchup-team-name"><%= matchup[:away_team] %></div>
+                                </div>
                             </div>
                             <div class="matchup-vs" aria-label="versus">VS</div>
                             <div class="matchup-team">
@@ -394,25 +397,88 @@
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
-                                <div class="matchup-team-name"><%= matchup[:home_team] %></div>
-                                <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
+                                <div>
+                                    <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
+                                    <div class="matchup-team-name"><%= matchup[:home_team] %></div>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Dense stats grid -->
                         <div class="matchup-details">
+                            <!-- Record comparison with bar -->
                             <div class="matchup-stat">
                                 <span class="matchup-stat-label">Record</span>
-                                <span class="matchup-stat-value"><%= matchup[:away_wins] %>W vs <%= matchup[:home_wins] %>W</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_wins] %>-<%= matchup[:away_losses] %> vs <%= matchup[:home_wins] %>-<%= matchup[:home_losses] %></span>
+                                <div class="matchup-stat-bar">
+                                    <span class="stat-bar-label"><%= matchup[:away_wins] %></span>
+                                    <div class="stat-bar-container">
+                                        <% total_wins = [matchup[:away_wins] + matchup[:home_wins], 1].max %>
+                                        <% away_pct = (matchup[:away_wins].to_f / total_wins * 100).round %>
+                                        <div class="stat-bar-fill away" style="width: <%= away_pct %>%;"></div>
+                                    </div>
+                                    <span class="stat-bar-label"><%= matchup[:home_wins] %></span>
+                                </div>
                             </div>
+                            
+                            <!-- Points comparison with bar -->
                             <div class="matchup-stat">
                                 <span class="matchup-stat-label">Points</span>
                                 <span class="matchup-stat-value"><%= matchup[:away_points] %> vs <%= matchup[:home_points] %></span>
+                                <div class="matchup-stat-bar">
+                                    <span class="stat-bar-label"><%= matchup[:away_points] %></span>
+                                    <div class="stat-bar-container">
+                                        <% total_pts = [matchup[:away_points] + matchup[:home_points], 1].max %>
+                                        <% away_pts_pct = (matchup[:away_points].to_f / total_pts * 100).round %>
+                                        <div class="stat-bar-fill away" style="width: <%= away_pts_pct %>%;"></div>
+                                    </div>
+                                    <span class="stat-bar-label"><%= matchup[:home_points] %></span>
+                                </div>
                             </div>
-                            <% if matchup[:game_time] && matchup[:game_time] != 'None' && matchup[:game_time] != 'TBD' %>
+                            
+                            <!-- Goals per game -->
                             <div class="matchup-stat">
-                                <span class="matchup-stat-label">Game Time</span>
-                                <span class="matchup-stat-value"><%= format_game_time_full(convert_utc_to_pacific(matchup[:game_time])) %></span>
+                                <span class="matchup-stat-label">Goals/Game</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_gpg] %> vs <%= matchup[:home_gpg] %></span>
+                                <div class="matchup-stat-bar">
+                                    <span class="stat-bar-label"><%= matchup[:away_gpg] %></span>
+                                    <div class="stat-bar-container">
+                                        <% total_gpg = [matchup[:away_gpg] + matchup[:home_gpg], 0.1].max %>
+                                        <% away_gpg_pct = (matchup[:away_gpg] / total_gpg * 100).round %>
+                                        <div class="stat-bar-fill away" style="width: <%= away_gpg_pct %>%;"></div>
+                                    </div>
+                                    <span class="stat-bar-label"><%= matchup[:home_gpg] %></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Goals against per game -->
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">Goals Against/G</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_gapg] %> vs <%= matchup[:home_gapg] %></span>
+                                <div class="matchup-stat-bar">
+                                    <span class="stat-bar-label"><%= matchup[:away_gapg] %></span>
+                                    <div class="stat-bar-container">
+                                        <% total_gapg = [matchup[:away_gapg] + matchup[:home_gapg], 0.1].max %>
+                                        <% away_gapg_pct = (matchup[:away_gapg] / total_gapg * 100).round %>
+                                        <div class="stat-bar-fill" style="width: <%= away_gapg_pct %>%;"></div>
+                                    </div>
+                                    <span class="stat-bar-label"><%= matchup[:home_gapg] %></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Head to head if available -->
+                            <% if matchup[:h2h_home_wins] && matchup[:h2h_away_wins] && (matchup[:h2h_home_wins] > 0 || matchup[:h2h_away_wins] > 0) %>
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">H2H Record</span>
+                                <span class="matchup-stat-value"><%= matchup[:h2h_away_wins] %>-<%= matchup[:h2h_away_losses] %> vs <%= matchup[:h2h_home_wins] %>-<%= matchup[:h2h_home_losses] %></span>
                             </div>
                             <% end %>
+                            
+                            <!-- Current streak -->
+                            <div class="matchup-stat">
+                                <span class="matchup-stat-label">Streak</span>
+                                <span class="matchup-stat-value"><%= matchup[:away_streak] %> vs <%= matchup[:home_streak] %></span>
+                            </div>
                         </div>
                     </div>
                 <% end %>
