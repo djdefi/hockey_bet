@@ -145,6 +145,11 @@ class StandingsProcessor
     styles_src = File.join(File.dirname(__FILE__), 'styles.css')
     styles_dest = "#{output_dir}/styles.css"
     FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
+    
+    # Copy service worker for PWA and caching
+    sw_src = 'service-worker.js'
+    sw_dest = "#{output_dir}/service-worker.js"
+    FileUtils.cp(sw_src, sw_dest) if File.exist?(sw_src)
   end
 
   # Determine playoff status for a team with enhanced specificity

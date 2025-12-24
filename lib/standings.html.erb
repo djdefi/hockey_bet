@@ -16,8 +16,12 @@
     <meta name="apple-mobile-web-app-title" content="NHL Fan League">
     <meta name="theme-color" content="#0b162a">
     
-    <!-- Chart.js - Vendored -->
-    <script src="vendor/chart.umd.js"></script>
+    <!-- Performance Optimization: Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="dns-prefetch" href="https://api-web.nhle.com">
+    
+    <!-- Chart.js - Vendored with deferred loading for performance -->
+    <script src="vendor/chart.umd.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -1949,6 +1953,15 @@
         
         // Don't load chart on page load - only when trends tab is clicked
         // Chart will be loaded by switchTab function
+        
+        // Register Service Worker for offline caching and performance
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('ServiceWorker registered'))
+                    .catch(err => console.log('ServiceWorker registration failed:', err));
+            });
+        }
     </script>
 </body>
 </html>
