@@ -31,6 +31,14 @@ body {
     padding: 0;
     padding-bottom: 80px; /* Space for bottom nav */
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent text size adjustment on mobile */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Typography */
@@ -85,6 +93,12 @@ h3 {
     height: 70px;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    /* Prevent layout shift */
+    will-change: transform;
+    /* Add backdrop blur for modern look on supported devices */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(26, 37, 58, 0.95);
 }
 
 .nav-item {
@@ -94,19 +108,33 @@ h3 {
     align-items: center;
     justify-content: center;
     min-height: var(--min-touch-target);
+    min-width: var(--min-touch-target);
     color: var(--text-secondary);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
     background: none;
     padding: 8px;
+    /* Improve tap highlight */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.15);
+    tap-highlight-color: rgba(33, 209, 159, 0.15);
+    /* Prevent text selection on double tap */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .nav-item:hover,
 .nav-item:focus {
     color: var(--text-primary);
     outline: none;
+    transform: translateY(-1px);
+}
+
+.nav-item:active {
+    transform: translateY(0);
+    color: var(--accent-green);
 }
 
 .nav-item:focus-visible {
@@ -116,6 +144,19 @@ h3 {
 
 .nav-item.active {
     color: var(--accent-green);
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 2px;
+    background-color: var(--accent-green);
+    border-radius: 2px 2px 0 0;
 }
 
 .nav-item-icon {
@@ -131,10 +172,22 @@ h3 {
 /* Tab Content Sections */
 .tab-section {
     display: none;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .tab-section.active {
     display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Card System */
@@ -144,12 +197,19 @@ h3 {
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid var(--border-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Prevent tappable elements from flickering on iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card:active {
+    transform: translateY(-1px);
 }
 
 .card-header {
@@ -381,6 +441,9 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     margin-bottom: 1.5rem;
+    /* Smooth scrolling on touch devices */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 .carousel-container {
@@ -416,13 +479,24 @@ h3 {
     justify-content: flex-start;
     text-align: center;
     padding: 1rem;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    /* Improve tap highlighting */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+    tap-highlight-color: rgba(33, 209, 159, 0.1);
+    /* Optimize rendering */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .stat-card-square:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card-square:active {
+    transform: scale(1.02);
 }
 
 .stat-emoji {
@@ -660,13 +734,28 @@ h3 {
     margin-bottom: 0.75rem;
     border: 1px solid var(--border-color);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: var(--min-touch-target);
+    /* Improve tap response */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+    tap-highlight-color: rgba(33, 209, 159, 0.1);
+    /* Prevent text selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* Optimize for touch scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .team-card:hover {
     background-color: var(--bg-card-hover);
     transform: translateX(4px);
+}
+
+.team-card:active {
+    background-color: var(--bg-card-hover);
+    transform: translateX(2px);
 }
 
 .team-card:focus {
@@ -1126,6 +1215,28 @@ h3 {
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
     min-height: 400px;
+    position: relative;
+}
+
+/* Loading indicator for charts */
+.chart-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-green);
+    border-radius: 50%;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 767px) {
@@ -1133,6 +1244,8 @@ h3 {
         min-height: 500px;
         padding: 0.75rem;
         padding-bottom: 0.5rem;
+        /* Prevent zooming on iOS when focusing */
+        touch-action: manipulation;
     }
     
     .chart-container h2 {
@@ -1142,11 +1255,20 @@ h3 {
     
     .chart-container canvas {
         max-height: 450px;
+        /* Improve touch responsiveness */
+        touch-action: pan-y;
     }
     
     /* Mobile-specific card adjustments */
     .team-card {
         padding: 0.75rem;
+        /* Smoother animations on mobile */
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .team-card:active {
+        background-color: var(--bg-card-hover);
+        transform: scale(0.98);
     }
     
     .team-card-left {
@@ -1249,10 +1371,78 @@ h3 {
     
     .achievement-card.expandable {
         padding-bottom: 1.5rem;
+        /* Improve touch response */
+        -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+        tap-highlight-color: rgba(33, 209, 159, 0.1);
+    }
+    
+    .achievement-card:active {
+        transform: scale(0.98);
+        background-color: var(--bg-card-hover);
     }
     
     .achievement-rank {
         font-size: 0.6rem;
+    }
+    
+    /* Optimize button touch targets on mobile */
+    button, .desktop-tab, .nav-item, .team-card, .stat-card-square, .achievement-card {
+        /* Ensure touch targets are at least 44x44px */
+        min-height: 44px;
+    }
+    
+    /* Improve header spacing on mobile */
+    .app-container header {
+        margin-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    /* Improve tap targets for matchup cards */
+    .matchup-vs {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .featured-vs {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Optimize scroll performance */
+    .app-container {
+        /* Use CSS containment for better performance */
+        contain: layout style paint;
+    }
+    
+    .tab-section {
+        /* Optimize tab switching */
+        contain: layout style paint;
+    }
+    
+    /* Improve loading states */
+    .skeleton-card {
+        animation: shimmer 2s infinite;
+        will-change: background-position;
     }
 }
 
