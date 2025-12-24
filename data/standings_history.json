@@ -1470,14 +1470,14 @@
         "conference_rank": 1
       },
       "Ryan T.": {
-        "points": 49,
+        "points": 50,
         "wins": 22,
         "losses": 10,
-        "ot_losses": 5,
-        "games_played": 37,
-        "goals_for": 115,
-        "goals_against": 96,
-        "goal_diff": 19,
+        "ot_losses": 6,
+        "games_played": 38,
+        "goals_for": 117,
+        "goals_against": 99,
+        "goal_diff": 18,
         "division_rank": 3,
         "conference_rank": 3
       },
@@ -1577,6 +1577,18 @@
         "division_rank": 5,
         "conference_rank": 9
       },
+      "David K.": {
+        "points": 36,
+        "wins": 16,
+        "losses": 16,
+        "ot_losses": 4,
+        "games_played": 36,
+        "goals_for": 103,
+        "goals_against": 121,
+        "goal_diff": -18,
+        "division_rank": 5,
+        "conference_rank": 10
+      },
       "Trevor R.": {
         "points": 34,
         "wins": 14,
@@ -1585,18 +1597,6 @@
         "games_played": 34,
         "goals_for": 86,
         "goals_against": 105,
-        "goal_diff": -19,
-        "division_rank": 6,
-        "conference_rank": 11
-      },
-      "David K.": {
-        "points": 34,
-        "wins": 15,
-        "losses": 16,
-        "ot_losses": 4,
-        "games_played": 35,
-        "goals_for": 100,
-        "goals_against": 119,
         "goal_diff": -19,
         "division_rank": 6,
         "conference_rank": 12
