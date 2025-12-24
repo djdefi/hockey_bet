@@ -445,6 +445,55 @@ def get_fan_achievement(fan, bet_stats)
   nil
 end
 
+# Calculate win probability for a matchup with momentum adjustment
+# @param home_points [Float] Home team points in standings
+# @param away_points [Float] Away team points in standings
+# @param home_streak [String] Home team streak (e.g., "W3", "L2")
+# @param away_streak [String] Away team streak
+# @return [Hash] { winner: 'home'|'away'|nil, confidence: Integer, home_prob: Integer, away_prob: Integer }
+def calculate_matchup_prediction(home_points, away_points, home_streak, away_streak)
+  total_points = home_points.to_f + away_points.to_f
+  return { winner: nil, confidence: 0, home_prob: 50, away_prob: 50 } if total_points == 0
+  
+  # Base probability from standings
+  base_home_prob = (home_points.to_f / total_points * 100).round
+  
+  # Momentum adjustment from streaks (±2% per game, max ±10%)
+  streak_adjustment = 0
+  if home_streak.to_s.start_with?('W')
+    streak_count = home_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
+    streak_adjustment += [streak_count * 2, 10].min
+  elsif home_streak.to_s.start_with?('L')
+    streak_count = home_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
+    streak_adjustment -= [streak_count * 2, 10].min
+  end
+  
+  if away_streak.to_s.start_with?('W')
+    streak_count = away_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
+    streak_adjustment -= [streak_count * 2, 10].min
+  elsif away_streak.to_s.start_with?('L')
+    streak_count = away_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
+    streak_adjustment += [streak_count * 2, 10].min
+  end
+  
+  # Apply adjustment and clamp between 10-90%
+  home_prob = [[base_home_prob + streak_adjustment, 10].max, 90].min
+  away_prob = 100 - home_prob
+  
+  # Determine winner if confidence > 60%
+  winner = nil
+  confidence = 0
+  if home_prob > 60
+    winner = 'home'
+    confidence = home_prob
+  elsif away_prob > 60
+    winner = 'away'
+    confidence = away_prob
+  end
+  
+  { winner: winner, confidence: confidence, home_prob: home_prob, away_prob: away_prob }
+end
+
 # Helper methods for enhanced matchup display
 def get_date_group_label(game_time_str)
   return 'Upcoming' if game_time_str.nil? || game_time_str == 'None' || game_time_str == 'TBD'
