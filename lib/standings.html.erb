@@ -290,31 +290,9 @@
                     </div>
                 <% end %>
                 
-                <% if bet_stats && bet_stats[:point_scrounger] && bet_stats[:point_scrounger].any? %>
-                    <% is_expandable = bet_stats[:point_scrounger].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Point scrounger achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true">📌</div>
-                        <div class="stat-label">Point Scrounger</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:point_scrounger].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-                
                 <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
                     <% is_expandable = bet_stats[:sharks_victims].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %> style="background-color: rgba(0, 128, 128, 0.15);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">🦈</div>
                         <div class="stat-label">Sharks Victims</div>
                         <div class="achievement-entries">
@@ -335,11 +313,24 @@
                 <% end %>
                 
                 <% if bet_stats && bet_stats[:predators_victims] && bet_stats[:predators_victims].any? %>
-                    <div class="stat-card-square" role="article" aria-label="Most losses to Predators" style="background-color: rgba(255, 185, 15, 0.15);">
+                    <% is_expandable = bet_stats[:predators_victims].length > 1 %>
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Touched by a predator achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">🐯</div>
                         <div class="stat-label">touched by a predator</div>
-                        <div class="stat-fan-name"><%= bet_stats[:predators_victims].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:predators_victims].first[:display] %></div>
+                        <div class="achievement-entries">
+                            <% bet_stats[:predators_victims].each_with_index do |entry, idx| %>
+                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
+                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
+                                    <div class="stat-value"><%= entry[:display] %></div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <% if is_expandable %>
+                            <span class="expand-toggle" aria-hidden="true">
+                                <span class="expand-icon">▼</span>
+                            </span>
+                        <% end %>
                     </div>
                 <% end %>
                 
