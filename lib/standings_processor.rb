@@ -460,20 +460,24 @@ def calculate_matchup_prediction(home_points, away_points, home_streak, away_str
   
   # Momentum adjustment from streaks (±2% per game, max ±10%)
   streak_adjustment = 0
-  if home_streak.to_s.start_with?('W')
-    streak_count = home_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
-    streak_adjustment += [streak_count * 2, 10].min
-  elsif home_streak.to_s.start_with?('L')
-    streak_count = home_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
-    streak_adjustment -= [streak_count * 2, 10].min
+  
+  # Helper to extract streak count safely
+  extract_streak_count = lambda do |streak|
+    streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
   end
   
+  # Home team streak adjustment
+  if home_streak.to_s.start_with?('W')
+    streak_adjustment += [extract_streak_count.call(home_streak) * 2, 10].min
+  elsif home_streak.to_s.start_with?('L')
+    streak_adjustment -= [extract_streak_count.call(home_streak) * 2, 10].min
+  end
+  
+  # Away team streak adjustment (inverse effect)
   if away_streak.to_s.start_with?('W')
-    streak_count = away_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
-    streak_adjustment -= [streak_count * 2, 10].min
+    streak_adjustment -= [extract_streak_count.call(away_streak) * 2, 10].min
   elsif away_streak.to_s.start_with?('L')
-    streak_count = away_streak.to_s.match(/(\d+)/)&.captures&.first&.to_i || 0
-    streak_adjustment += [streak_count * 2, 10].min
+    streak_adjustment += [extract_streak_count.call(away_streak) * 2, 10].min
   end
   
   # Apply adjustment and clamp between 10-90%

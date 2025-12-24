@@ -646,6 +646,8 @@ h3 {
     /* Optimize rendering */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    /* Note: will-change removed per code review - should be applied dynamically via JS only when needed
+       to avoid memory overhead on many static elements. Static CSS will-change can hurt performance. */
 }
 
 /* Add subtle shimmer effect */
