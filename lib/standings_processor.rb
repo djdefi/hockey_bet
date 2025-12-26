@@ -161,6 +161,11 @@ class StandingsProcessor
     a11y_dest = "#{output_dir}/accessibility.js"
     FileUtils.cp(a11y_src, a11y_dest) if File.exist?(a11y_src)
     
+    # Copy social-features.js from lib to output directory
+    social_src = File.join(File.dirname(__FILE__), 'social-features.js')
+    social_dest = "#{output_dir}/social-features.js"
+    FileUtils.cp(social_src, social_dest) if File.exist?(social_src)
+    
     # Copy service worker for PWA and caching
     sw_src = 'service-worker.js'
     sw_dest = "#{output_dir}/service-worker.js"
