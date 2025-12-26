@@ -151,6 +151,11 @@ class StandingsProcessor
     gestures_dest = "#{output_dir}/mobile-gestures.js"
     FileUtils.cp(gestures_src, gestures_dest) if File.exist?(gestures_src)
     
+    # Copy performance-utils.js from lib to output directory
+    perf_src = File.join(File.dirname(__FILE__), 'performance-utils.js')
+    perf_dest = "#{output_dir}/performance-utils.js"
+    FileUtils.cp(perf_src, perf_dest) if File.exist?(perf_src)
+    
     # Copy service worker for PWA and caching
     sw_src = 'service-worker.js'
     sw_dest = "#{output_dir}/service-worker.js"

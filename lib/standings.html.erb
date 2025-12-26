@@ -3,7 +3,16 @@
 <html lang="en">
 <head>
     <title>NHL Standings</title>
-    <link rel='stylesheet' href='styles.css'>
+    
+    <!-- Critical CSS inlined for instant render -->
+    <style>
+        :root{--bg-primary:#0b162a;--bg-card:#1a253a;--text-primary:#fff;--text-secondary:#8da1b9;--accent-green:#21d19f;--border-color:#2a3a52}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--bg-primary);color:var(--text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-weight:700;margin-top:0}h1{font-size:1.75rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}
+    </style>
+    
+    <!-- Load full styles asynchronously to avoid blocking render -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Home Screen App Icons and Meta -->
@@ -16,12 +25,16 @@
     <meta name="apple-mobile-web-app-title" content="NHL Fan League">
     <meta name="theme-color" content="#0b162a">
     
-    <!-- Performance Optimization: Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
+    <!-- Performance Optimization: Preconnect to external origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://api-web.nhle.com">
     
     <!-- Chart.js - Vendored with deferred loading for performance -->
     <script src="vendor/chart.umd.js" defer></script>
+    
+    <!-- Performance utilities - Core Web Vitals monitoring and lazy loading -->
+    <script src="performance-utils.js"></script>
     
     <!-- Mobile Gestures - Enhanced touch interactions -->
     <script src="mobile-gestures.js" defer></script>
