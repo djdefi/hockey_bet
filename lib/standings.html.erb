@@ -9,9 +9,8 @@
         :root{--bg-primary:#0b162a;--bg-card:#1a253a;--text-primary:#fff;--text-secondary:#8da1b9;--accent-green:#21d19f;--border-color:#2a3a52}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--bg-primary);color:var(--text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-weight:700;margin-top:0}h1{font-size:1.75rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}
     </style>
     
-    <!-- Load full styles asynchronously to avoid blocking render -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <!-- Load full styles synchronously for reliability -->
+    <link rel='stylesheet' href='styles.css'>
     
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
