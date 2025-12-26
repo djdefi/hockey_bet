@@ -156,6 +156,11 @@ class StandingsProcessor
     perf_dest = "#{output_dir}/performance-utils.js"
     FileUtils.cp(perf_src, perf_dest) if File.exist?(perf_src)
     
+    # Copy accessibility.js from lib to output directory
+    a11y_src = File.join(File.dirname(__FILE__), 'accessibility.js')
+    a11y_dest = "#{output_dir}/accessibility.js"
+    FileUtils.cp(a11y_src, a11y_dest) if File.exist?(a11y_src)
+    
     # Copy service worker for PWA and caching
     sw_src = 'service-worker.js'
     sw_dest = "#{output_dir}/service-worker.js"
