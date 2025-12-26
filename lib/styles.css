@@ -13,10 +13,23 @@
     --accent-green: #21d19f;
     --accent-red: #e74c3c;
     --accent-blue: #2980b9;
+    --accent-yellow: #f39c12;
+    --accent-purple: #9b59b6;
+    --accent-orange: #e67e22;
     --border-color: #2a3a52;
     
     /* Touch target minimum */
     --min-touch-target: 44px;
+    
+    /* Gradient overlays for visual interest */
+    --gradient-green: linear-gradient(135deg, rgba(33, 209, 159, 0.15) 0%, rgba(41, 128, 185, 0.15) 100%);
+    --gradient-fire: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(230, 126, 34, 0.2) 100%);
+    --gradient-purple: linear-gradient(135deg, rgba(155, 89, 182, 0.2) 0%, rgba(41, 128, 185, 0.2) 100%);
+    
+    /* Advanced visual effects */
+    --glow-green: 0 0 20px rgba(33, 209, 159, 0.3);
+    --glow-blue: 0 0 20px rgba(41, 128, 185, 0.3);
+    --glow-red: 0 0 20px rgba(231, 76, 60, 0.3);
 }
 
 * {
@@ -31,6 +44,14 @@ body {
     padding: 0;
     padding-bottom: 80px; /* Space for bottom nav */
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent text size adjustment on mobile */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Typography */
@@ -85,6 +106,12 @@ h3 {
     height: 70px;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    /* Prevent layout shift */
+    will-change: transform;
+    /* Add backdrop blur for modern look on supported devices */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(26, 37, 58, 0.95);
 }
 
 .nav-item {
@@ -94,19 +121,33 @@ h3 {
     align-items: center;
     justify-content: center;
     min-height: var(--min-touch-target);
+    min-width: var(--min-touch-target);
     color: var(--text-secondary);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
     background: none;
     padding: 8px;
+    /* Improve tap highlight */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.15);
+    tap-highlight-color: rgba(33, 209, 159, 0.15);
+    /* Prevent text selection on double tap */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .nav-item:hover,
 .nav-item:focus {
     color: var(--text-primary);
     outline: none;
+    transform: translateY(-1px);
+}
+
+.nav-item:active {
+    transform: translateY(0);
+    color: var(--accent-green);
 }
 
 .nav-item:focus-visible {
@@ -116,6 +157,19 @@ h3 {
 
 .nav-item.active {
     color: var(--accent-green);
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 2px;
+    background-color: var(--accent-green);
+    border-radius: 2px 2px 0 0;
 }
 
 .nav-item-icon {
@@ -131,10 +185,22 @@ h3 {
 /* Tab Content Sections */
 .tab-section {
     display: none;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .tab-section.active {
     display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Card System */
@@ -144,12 +210,19 @@ h3 {
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid var(--border-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Prevent tappable elements from flickering on iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card:active {
+    transform: translateY(-1px);
 }
 
 .card-header {
@@ -164,17 +237,43 @@ h3 {
 .hero-section {
     background: linear-gradient(135deg, var(--bg-card) 0%, #2a3a52 100%);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    padding: 0.85rem;
+    margin-bottom: 0.85rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add animated gradient overlay */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(33, 209, 159, 0.05) 0%, transparent 70%);
+    animation: rotateGradient 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-label {
@@ -183,25 +282,36 @@ h3 {
     color: var(--accent-green);
     text-transform: uppercase;
     letter-spacing: 1px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }
 
 .hero-fan-name {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(33, 209, 159, 0.3);
 }
 
 .hero-team-name {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     font-weight: 600;
 }
 
 .hero-stats-row {
     display: flex;
-    gap: 2rem;
-    margin-top: 0.75rem;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .hero-stat {
@@ -211,26 +321,47 @@ h3 {
 }
 
 .hero-stat-value {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--accent-green);
 }
 
 .hero-stat-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-top: 0.25rem;
+    margin-top: 0.15rem;
 }
 
 /* Featured Matchup */
 .featured-matchup {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.featured-matchup::before {
+    content: '⚡';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 3rem;
+    opacity: 0.1;
+    animation: rotate 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .featured-matchup-time {
-    background-color: rgba(41, 128, 185, 0.15);
+    background: linear-gradient(90deg, rgba(41, 128, 185, 0.15) 0%, rgba(41, 128, 185, 0.05) 100%);
     border-left: 3px solid var(--accent-blue);
     border-radius: 8px;
     padding: 0.75rem 1rem;
@@ -238,10 +369,32 @@ h3 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .time-icon {
     font-size: 1.1rem;
+    animation: swing 2s ease-in-out infinite;
+}
+
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
 }
 
 .time-text {
@@ -252,8 +405,8 @@ h3 {
 }
 
 .featured-matchup-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.95) 100%);
+    border: 1px solid rgba(33, 209, 159, 0.2);
     border-radius: 12px;
     padding: 1.25rem;
     display: flex;
@@ -261,6 +414,21 @@ h3 {
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(33, 209, 159, 0.1);
+}
+
+/* Add battle arena effect */
+.featured-matchup-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent-green) 50%, transparent 100%);
+    animation: shimmerBar 2s linear infinite;
 }
 
 .featured-team {
@@ -275,6 +443,13 @@ h3 {
     width: 56px;
     height: 56px;
     object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.featured-team-logo:hover {
+    transform: scale(1.15) rotate(-5deg);
+    filter: drop-shadow(0 4px 12px rgba(33, 209, 159, 0.4));
 }
 
 .featured-fallback {
@@ -316,18 +491,38 @@ h3 {
 }
 
 .featured-achievement {
-    background: linear-gradient(135deg, rgba(33, 209, 159, 0.15) 0%, rgba(41, 128, 185, 0.15) 100%);
-    border: 1px solid rgba(33, 209, 159, 0.3);
+    background: linear-gradient(135deg, rgba(33, 209, 159, 0.2) 0%, rgba(41, 128, 185, 0.2) 100%);
+    border: 1px solid rgba(33, 209, 159, 0.4);
     border-radius: 6px;
     padding: 0.35rem 0.6rem;
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
     margin-top: 0.25rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(33, 209, 159, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(33, 209, 159, 0.5);
+    }
 }
 
 .achievement-emoji {
     font-size: 0.85rem;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 .achievement-label {
@@ -343,32 +538,48 @@ h3 {
     font-weight: 800;
     color: var(--text-secondary);
     padding: 0.5rem 1rem;
-    background-color: var(--bg-primary);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(11, 22, 42, 0.8) 100%);
     border-radius: 50%;
     flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(33, 209, 159, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    border: 2px solid rgba(33, 209, 159, 0.3);
 }
 
 .voting-placeholder {
-    background-color: rgba(33, 209, 159, 0.1);
+    background: linear-gradient(135deg, rgba(33, 209, 159, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
     border: 2px dashed var(--accent-green);
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .voting-text {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--accent-green);
+    animation: pulse 2s ease-in-out infinite;
 }
 
 /* Section Headings */
 .section-heading {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.section-heading::before {
+    content: '';
+    width: 3px;
+    height: 1.2rem;
+    background: linear-gradient(180deg, var(--accent-green), var(--accent-blue));
+    border-radius: 2px;
 }
 
 .section-heading:first-of-type {
@@ -379,8 +590,18 @@ h3 {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    /* Smooth scrolling on touch devices */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* On smaller screens, make even more compact */
+@media (max-width: 360px) {
+    .stats-grid {
+        gap: 0.4rem;
+    }
 }
 
 .carousel-container {
@@ -404,47 +625,93 @@ h3 {
 }
 
 .stat-card-square {
-    flex: 0 0 140px;
-    width: 140px;
-    height: 140px;
-    background-color: var(--bg-card);
+    flex: 0 0 125px;
+    width: 125px;
+    height: 125px;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.8) 100%);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 1rem;
-    transition: all 0.2s ease;
+    padding: 0.65rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    position: relative;
+    /* Improve tap highlighting */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+    tap-highlight-color: rgba(33, 209, 159, 0.1);
+    /* Optimize rendering */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Note: will-change removed per code review - should be applied dynamically via JS only when needed
+       to avoid memory overhead on many static elements. Static CSS will-change can hurt performance. */
+}
+
+/* Add subtle shimmer effect */
+.stat-card-square::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(33, 209, 159, 0.03) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card-square:hover::after {
+    opacity: 1;
 }
 
 .stat-card-square:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 8px 24px rgba(33, 209, 159, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(33, 209, 159, 0.3);
+}
+
+.stat-card-square:active {
+    transform: scale(1.02);
 }
 
 .stat-emoji {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.35rem;
     line-height: 1;
     flex-shrink: 0;
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-secondary);
-    margin-bottom: 0.25rem;
-    line-height: 1.2;
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
     flex-shrink: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .stat-value {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    color: var(--accent-green);
+    margin-bottom: 0.2rem;
     line-height: 1.2;
     word-break: break-word;
     max-width: 100%;
@@ -454,6 +721,9 @@ h3 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 3px rgba(33, 209, 159, 0.3);
 }
 
 .stat-fan-name {
@@ -563,93 +833,333 @@ h3 {
     transition: transform 0.3s ease;
 }
 
-/* Matchup Cards */
+/* Matchup Cards - Compact Design */
 .matchup-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.9) 100%);
+    border-radius: 8px;
+    padding: 0.65rem;
+    margin-bottom: 0.65rem;
     border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Add battle-themed gradient overlay */
+.matchup-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-green) 50%, var(--accent-blue) 100%);
+    background-size: 200% 100%;
+    animation: shimmerBar 3s linear infinite;
+}
+
+@keyframes shimmerBar {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.matchup-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(41, 128, 185, 0.15), 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-color: rgba(41, 128, 185, 0.4);
+}
+
+/* Compact team header with logos side by side */
 .matchup-teams {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(42, 58, 82, 0.5);
 }
 
 .matchup-team {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0; /* Allow flex children to shrink */
+}
+
+.matchup-team > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
     flex: 1;
-    text-align: center;
 }
 
 .team-logo {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 0.5rem;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.team-logo:hover {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .team-logo-fallback {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 0.5rem;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--bg-card-hover);
     border-radius: 50%;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: var(--text-primary);
+    flex-shrink: 0;
 }
 
 .matchup-team-name {
     font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    display: none; /* Hide on mobile for compact design */
 }
 
 .matchup-fan-name {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .matchup-vs {
-    background-color: var(--accent-blue);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #1e5c87 100%);
     color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 4px 10px;
+    border-radius: 12px;
     font-weight: 700;
-    font-size: 0.9rem;
-    margin: 0 0.5rem;
+    font-size: 0.7rem;
     flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(41, 128, 185, 0.4);
+    animation: pulse 2s ease-in-out infinite;
 }
 
+/* Stats grid - compact 2 column layout */
 .matchup-details {
-    display: flex;
-    justify-content: space-around;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    font-size: 0.75rem;
 }
 
 .matchup-stat {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background: rgba(11, 22, 42, 0.4);
+    padding: 0.35rem 0.45rem;
+    border-radius: 6px;
+    border-left: 2px solid var(--accent-blue);
 }
 
 .matchup-stat-label {
-    display: block;
-    font-size: 0.75rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
 }
 
 .matchup-stat-value {
-    display: block;
     font-weight: 700;
     color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+/* Bar chart for comparison stats */
+.matchup-stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+}
+
+.stat-bar-container {
+    flex: 1;
+    height: 6px;
+    background: rgba(42, 58, 82, 0.6);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+    border-radius: 3px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-bar-fill.away {
+    background: linear-gradient(90deg, var(--accent-red) 0%, var(--accent-orange) 100%);
+}
+
+.stat-bar-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 32px;
+    text-align: right;
+}
+
+/* Momentum indicators and advanced visualizations */
+.momentum-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.momentum-hot {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.2));
+    color: var(--accent-orange);
+    box-shadow: var(--glow-red);
+}
+
+.momentum-cold {
+    background: linear-gradient(135deg, rgba(41, 128, 185, 0.2), rgba(52, 152, 219, 0.2));
+    color: var(--accent-blue);
+}
+
+.momentum-neutral {
+    background: rgba(141, 161, 185, 0.1);
+    color: var(--text-secondary);
+}
+
+/* Mini sparkline for trends */
+.mini-sparkline {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 1px;
+    height: 12px;
+    margin-left: 0.3rem;
+}
+
+.sparkline-bar {
+    width: 2px;
+    background: var(--accent-green);
+    transition: height 0.3s ease;
+    border-radius: 1px 1px 0 0;
+}
+
+.sparkline-bar.loss {
+    background: var(--accent-red);
+}
+
+.sparkline-bar.ot {
+    background: var(--accent-blue);
+}
+
+/* Win probability indicator */
+.win-probability {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    background: rgba(11, 22, 42, 0.6);
+    border-radius: 6px;
+    border-left: 2px solid var(--accent-purple);
+}
+
+.win-prob-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.win-prob-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(42, 58, 82, 0.6);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.win-prob-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--glow-green);
+}
+
+.win-prob-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    min-width: 40px;
+    text-align: right;
+}
+
+/* Advanced stat card with mini charts */
+.stat-card-advanced {
+    position: relative;
+    overflow: visible;
+}
+
+.stat-trend-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    opacity: 0.3;
+}
+
+.trend-line-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Matchup prediction badge */
+.matchup-prediction {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.6rem;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(41, 128, 185, 0.2));
+    border: 1px solid rgba(155, 89, 182, 0.4);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    animation: glow-pulse 2s ease-in-out infinite;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2);
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2), 0 0 5px rgba(155, 89, 182, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 12px rgba(155, 89, 182, 0.3), 0 0 15px rgba(155, 89, 182, 0.6);
+    }
 }
 
 /* Team Cards (Standings) */
@@ -660,13 +1170,28 @@ h3 {
     margin-bottom: 0.75rem;
     border: 1px solid var(--border-color);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: var(--min-touch-target);
+    /* Improve tap response */
+    -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+    tap-highlight-color: rgba(33, 209, 159, 0.1);
+    /* Prevent text selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* Optimize for touch scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .team-card:hover {
     background-color: var(--bg-card-hover);
     transform: translateX(4px);
+}
+
+.team-card:active {
+    background-color: var(--bg-card-hover);
+    transform: translateX(2px);
 }
 
 .team-card:focus {
@@ -1126,6 +1651,28 @@ h3 {
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
     min-height: 400px;
+    position: relative;
+}
+
+/* Loading indicator for charts */
+.chart-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-green);
+    border-radius: 50%;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 767px) {
@@ -1142,11 +1689,20 @@ h3 {
     
     .chart-container canvas {
         max-height: 450px;
+        /* Improve touch responsiveness */
+        touch-action: pan-y;
     }
     
     /* Mobile-specific card adjustments */
     .team-card {
         padding: 0.75rem;
+        /* Smoother animations on mobile */
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .team-card:active {
+        background-color: var(--bg-card-hover);
+        transform: scale(0.98) translateX(2px);
     }
     
     .team-card-left {
@@ -1249,10 +1805,124 @@ h3 {
     
     .achievement-card.expandable {
         padding-bottom: 1.5rem;
+        /* Improve touch response */
+        -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
+        tap-highlight-color: rgba(33, 209, 159, 0.1);
+    }
+    
+    .achievement-card:active {
+        transform: scale(0.98);
+        background-color: var(--bg-card-hover);
     }
     
     .achievement-rank {
         font-size: 0.6rem;
+    }
+    
+    /* Optimize button touch targets on mobile */
+    button, .desktop-tab, .nav-item, .team-card, .stat-card-square, .achievement-card {
+        /* Ensure touch targets are at least 44x44px */
+        min-height: 44px;
+    }
+    
+    /* Improve header spacing on mobile */
+    .app-container header {
+        margin-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    /* Improve tap targets for matchup cards */
+    .matchup-vs {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .featured-vs {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Optimize scroll performance */
+    .app-container {
+        /* Use CSS containment for better performance */
+        contain: layout style paint;
+        /* Prevent zooming on iOS when focusing */
+        touch-action: manipulation;
+    }
+    
+    .tab-section {
+        /* Optimize tab switching */
+        contain: layout style paint;
+    }
+    
+    /* Improve loading states */
+    .skeleton-card {
+        animation: shimmer 2s infinite;
+        will-change: background-position;
+    }
+    
+    /* Enhanced mobile animations for stat cards */
+    .stat-card-square {
+        animation: fadeInUp 0.5s ease-out backwards;
+    }
+    
+    .stat-card-square:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card-square:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card-square:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card-square:nth-child(4) { animation-delay: 0.4s; }
+    .stat-card-square:nth-child(5) { animation-delay: 0.5s; }
+    .stat-card-square:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Matchup cards stagger animation */
+    .matchup-card {
+        animation: slideIn 0.5s ease-out backwards;
+    }
+    
+    .matchup-card:nth-child(1) { animation-delay: 0.1s; }
+    .matchup-card:nth-child(2) { animation-delay: 0.2s; }
+    .matchup-card:nth-child(3) { animation-delay: 0.3s; }
+    .matchup-card:nth-child(4) { animation-delay: 0.4s; }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 }
 
