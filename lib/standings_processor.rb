@@ -146,25 +146,12 @@ class StandingsProcessor
     styles_dest = "#{output_dir}/styles.css"
     FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
     
-    # Copy mobile-gestures.js from lib to output directory
-    gestures_src = File.join(File.dirname(__FILE__), 'mobile-gestures.js')
-    gestures_dest = "#{output_dir}/mobile-gestures.js"
-    FileUtils.cp(gestures_src, gestures_dest) if File.exist?(gestures_src)
-    
-    # Copy performance-utils.js from lib to output directory
-    perf_src = File.join(File.dirname(__FILE__), 'performance-utils.js')
-    perf_dest = "#{output_dir}/performance-utils.js"
-    FileUtils.cp(perf_src, perf_dest) if File.exist?(perf_src)
-    
-    # Copy accessibility.js from lib to output directory
-    a11y_src = File.join(File.dirname(__FILE__), 'accessibility.js')
-    a11y_dest = "#{output_dir}/accessibility.js"
-    FileUtils.cp(a11y_src, a11y_dest) if File.exist?(a11y_src)
-    
-    # Copy social-features.js from lib to output directory
-    social_src = File.join(File.dirname(__FILE__), 'social-features.js')
-    social_dest = "#{output_dir}/social-features.js"
-    FileUtils.cp(social_src, social_dest) if File.exist?(social_src)
+    # Copy JavaScript files from lib to output directory
+    ['mobile-gestures.js', 'performance-utils.js', 'accessibility.js', 'social-features.js'].each do |file|
+      src = File.join(File.dirname(__FILE__), file)
+      dest = "#{output_dir}/#{file}"
+      FileUtils.cp(src, dest) if File.exist?(src)
+    end
     
     # Copy service worker for PWA and caching
     sw_src = 'service-worker.js'
