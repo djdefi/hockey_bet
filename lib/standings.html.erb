@@ -64,26 +64,51 @@
         <!-- Tab: League (Fan Stats Dashboard) -->
         <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
             
-            <!-- Hero Section: Current Leader -->
+            <!-- Top 3 Leaders - Compact -->
             <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
-            <div class="hero-section" role="region" aria-label="Current league leader">
-                <div class="hero-content">
-                    <div class="hero-label">🏆 League Leader</div>
-                    <div class="hero-fan-name"><%= bet_stats[:best_cup_odds].first[:fan] %></div>
-                    <div class="hero-team-name"><%= bet_stats[:best_cup_odds].first[:team] %></div>
-                    <div class="hero-stats-row">
-                        <div class="hero-stat">
-                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:display].split(' ').first %></div>
-                            <div class="hero-stat-label">Cup Odds</div>
+            <div class="leaders-compact-card" role="region" aria-label="Top 3 league leaders">
+                <% 
+                top_3 = bet_stats[:best_cup_odds].first(3)
+                rank_badges = ['🥇', '🥈', '🥉']
+                rank_labels = ['#1', '#2', '#3']
+                achievement_emojis = ['🏆', '👑', '💪']
+                achievement_labels = ['League Leader', 'Strong Contender', 'Top Threat']
+                %>
+                
+                <% top_3.each_with_index do |leader, index| %>
+                <div class="leader-compact-item <%= 'leader-first' if index == 0 %>" role="article" aria-label="<%= rank_labels[index] %>: <%= leader[:fan] %>">
+                    <div class="leader-rank-badge rank-<%= index + 1 %>">
+                        <span class="rank-emoji"><%= rank_badges[index] %></span>
+                        <span class="rank-text"><%= rank_labels[index] %></span>
+                    </div>
+                    <div class="leader-identity">
+                        <div class="leader-fan-name"><%= leader[:fan] %></div>
+                        <div class="leader-team-name"><%= leader[:team] %></div>
+                        <div class="leader-achievement">
+                            <span><%= achievement_emojis[index] %></span>
+                            <span><%= achievement_labels[index] %></span>
                         </div>
-                        <% if bet_stats[:best_cup_odds].first[:points] %>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value"><%= bet_stats[:best_cup_odds].first[:points] %></div>
-                            <div class="hero-stat-label">Points</div>
+                    </div>
+                    <div class="leader-stats-inline">
+                        <div class="leader-stat">
+                            <span class="leader-stat-value"><%= leader[:wins] || 0 %>-<%= leader[:losses] || 0 %>-<%= leader[:ot_losses] || 0 %></span>
+                            <span class="leader-stat-label">Record</span>
                         </div>
-                        <% end %>
+                        <div class="leader-stat">
+                            <span class="leader-stat-value"><%= leader[:points] || 0 %></span>
+                            <span class="leader-stat-label">Points</span>
+                        </div>
+                        <div class="leader-stat">
+                            <span class="leader-stat-value"><%= leader[:gpg] || '0.0' %></span>
+                            <span class="leader-stat-label">GPG</span>
+                        </div>
+                        <div class="leader-stat">
+                            <span class="leader-stat-value"><%= leader[:streak] || '-' %></span>
+                            <span class="leader-stat-label">Streak</span>
+                        </div>
                     </div>
                 </div>
+                <% end %>
             </div>
             <% end %>
             

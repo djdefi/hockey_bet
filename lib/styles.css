@@ -334,6 +334,151 @@ h3 {
     margin-top: 0.15rem;
 }
 
+/* Top 3 Leaders - Compact Layout */
+.leaders-compact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.85rem;
+    margin-bottom: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.leader-compact-item {
+    background: rgba(26, 37, 58, 0.6);
+    border: 1px solid rgba(42, 58, 82, 0.5);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.leader-compact-item.leader-first {
+    border-color: rgba(33, 209, 159, 0.3);
+    background: rgba(33, 209, 159, 0.03);
+}
+
+.leader-rank-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+}
+
+.leader-rank-badge.rank-1 {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    color: #FFD700;
+}
+
+.leader-rank-badge.rank-2 {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.1));
+    color: #C0C0C0;
+}
+
+.leader-rank-badge.rank-3 {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.1));
+    color: #CD7F32;
+}
+
+.rank-emoji {
+    font-size: 0.9rem;
+}
+
+.rank-text {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.leader-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-right: 4rem; /* Space for rank badge */
+}
+
+.leader-fan-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.leader-team-name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.leader-achievement {
+    font-size: 0.7rem;
+    color: var(--accent-green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.1rem;
+}
+
+.leader-stats-inline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(42, 58, 82, 0.3);
+}
+
+.leader-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.leader-stat-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.leader-stat-label {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Desktop: Side-by-side leaders */
+@media (min-width: 768px) {
+    .leaders-compact-card {
+        flex-direction: row;
+        gap: 0.85rem;
+        padding: 1rem;
+    }
+    
+    .leader-compact-item {
+        flex: 1;
+        min-width: 0; /* Allow flex items to shrink */
+    }
+    
+    .leader-fan-name {
+        font-size: 1.2rem;
+    }
+    
+    .leader-stat-value {
+        font-size: 1rem;
+    }
+}
+
 /* Featured Matchup */
 .featured-matchup {
     margin-bottom: 1.25rem;
