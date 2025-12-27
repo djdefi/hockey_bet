@@ -168,9 +168,9 @@
                         </div>
                         <% end %>
                         <% if !predicted_winner.empty? %>
-                        <div class="featured-prediction-compact">
+                        <div class="featured-prediction-compact" title="Based on points differential and current form">
                             <span>🔮</span>
-                            <span><%= predicted_winner %> <%= prediction_confidence %></span>
+                            <span>Prediction: <%= predicted_winner %> (<%= prediction_confidence %> confidence)</span>
                         </div>
                         <% end %>
                     </div>
