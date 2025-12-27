@@ -87,7 +87,7 @@
             </div>
             <% end %>
             
-            <!-- Featured Matchup / Voting Section (Placeholder for future betting feature) -->
+            <!-- Featured Matchup / Voting Section (Dense Layout) -->
             <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
             <div class="featured-matchup" role="region" aria-label="Featured upcoming matchup">
                 <h3 class="section-heading">⚡ Featured Matchup</h3>
@@ -125,69 +125,138 @@
                     game_time_formatted = 'TBD'
                   end
                 end
+                
+                # Calculate H2H record summary
+                h2h_summary = ''
+                if matchup[:h2h_away_wins] > 0 || matchup[:h2h_away_losses] > 0
+                  h2h_summary = "#{matchup[:away_fan]} #{matchup[:h2h_away_wins]}-#{matchup[:h2h_away_losses]} #{matchup[:home_fan]}"
+                end
                 %>
                 
-                <!-- Prediction Badge -->
-                <% if !predicted_winner.empty? %>
-                <div class="matchup-prediction">
-                    <span>🔮</span>
-                    <span>Prediction: <%= predicted_winner %> (<%= prediction_confidence %>)</span>
-                </div>
-                <% end %>
-                
-                <!-- Game Time Header -->
-                <% if game_time_formatted && !game_time_formatted.empty? %>
-                <div class="featured-matchup-time">
-                    <span class="time-icon">📅</span>
-                    <span class="time-text"><%= game_time_formatted %></span>
-                </div>
-                <% end %>
-                
-                <div class="featured-matchup-card">
-                    <div class="featured-team">
-                        <% if matchup[:away_abbrev] %>
-                            <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
-                                 alt="<%= matchup[:away_team] %> logo" 
-                                 class="featured-team-logo"
-                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                <div class="featured-matchup-card-dense">
+                    <!-- Header with Time and Prediction -->
+                    <div class="featured-header">
+                        <% if game_time_formatted && !game_time_formatted.empty? %>
+                        <div class="featured-time-compact">
+                            <span class="time-icon">📅</span>
+                            <span class="time-text"><%= game_time_formatted %></span>
+                        </div>
                         <% end %>
-                        <div class="featured-team-info">
-                            <div class="featured-fan-name"><%= matchup[:away_fan] %></div>
-                            <div class="featured-team-name"><%= matchup[:away_team] %></div>
-                            <div class="featured-record"><%= matchup[:away_wins] %>W - <%= matchup[:away_points] %>pts</div>
-                            <% if away_achievement %>
-                            <div class="featured-achievement">
-                                <span class="achievement-emoji"><%= away_achievement[:emoji] %></span>
-                                <span class="achievement-label"><%= away_achievement[:label] %></span>
+                        <% if !predicted_winner.empty? %>
+                        <div class="featured-prediction-compact">
+                            <span>🔮</span>
+                            <span><%= predicted_winner %> <%= prediction_confidence %></span>
+                        </div>
+                        <% end %>
+                    </div>
+                    
+                    <!-- Main matchup with teams and inline stats -->
+                    <div class="featured-teams-dense">
+                        <!-- Away Team -->
+                        <div class="featured-team-dense">
+                            <div class="featured-team-header-dense">
+                                <% if matchup[:away_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
+                                         alt="<%= matchup[:away_team] %> logo" 
+                                         class="featured-logo-dense"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-fallback-dense" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                                <% end %>
+                                <div class="featured-team-identity">
+                                    <div class="featured-fan-name-dense"><%= matchup[:away_fan] %></div>
+                                    <div class="featured-team-name-dense"><%= matchup[:away_team] %></div>
+                                    <% if away_achievement %>
+                                    <div class="featured-badge-dense">
+                                        <span><%= away_achievement[:emoji] %></span>
+                                        <span><%= away_achievement[:label] %></span>
+                                    </div>
+                                    <% end %>
+                                </div>
                             </div>
-                            <% end %>
+                            <div class="featured-stats-grid">
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:away_wins] %>-<%= matchup[:away_losses] %>-<%= matchup[:away_ot_losses] %></span>
+                                    <span class="stat-label-dense">Record</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:away_points] %></span>
+                                    <span class="stat-label-dense">Pts</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:away_gpg] %></span>
+                                    <span class="stat-label-dense">GPG</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:away_streak] %></span>
+                                    <span class="stat-label-dense">Streak</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- VS Divider -->
+                        <div class="featured-vs-dense">VS</div>
+                        
+                        <!-- Home Team -->
+                        <div class="featured-team-dense">
+                            <div class="featured-team-header-dense">
+                                <% if matchup[:home_abbrev] %>
+                                    <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
+                                         alt="<%= matchup[:home_team] %> logo" 
+                                         class="featured-logo-dense"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-fallback-dense" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                                <% end %>
+                                <div class="featured-team-identity">
+                                    <div class="featured-fan-name-dense"><%= matchup[:home_fan] %></div>
+                                    <div class="featured-team-name-dense"><%= matchup[:home_team] %></div>
+                                    <% if home_achievement %>
+                                    <div class="featured-badge-dense">
+                                        <span><%= home_achievement[:emoji] %></span>
+                                        <span><%= home_achievement[:label] %></span>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <div class="featured-stats-grid">
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:home_wins] %>-<%= matchup[:home_losses] %>-<%= matchup[:home_ot_losses] %></span>
+                                    <span class="stat-label-dense">Record</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:home_points] %></span>
+                                    <span class="stat-label-dense">Pts</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:home_gpg] %></span>
+                                    <span class="stat-label-dense">GPG</span>
+                                </div>
+                                <div class="stat-item-dense">
+                                    <span class="stat-value-dense"><%= matchup[:home_streak] %></span>
+                                    <span class="stat-label-dense">Streak</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="featured-vs">VS</div>
-                    <div class="featured-team">
-                        <% if matchup[:home_abbrev] %>
-                            <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
-                                 alt="<%= matchup[:home_team] %> logo" 
-                                 class="featured-team-logo"
-                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="team-logo-fallback featured-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
-                        <% end %>
-                        <div class="featured-team-info">
-                            <div class="featured-fan-name"><%= matchup[:home_fan] %></div>
-                            <div class="featured-team-name"><%= matchup[:home_team] %></div>
-                            <div class="featured-record"><%= matchup[:home_wins] %>W - <%= matchup[:home_points] %>pts</div>
-                            <% if home_achievement %>
-                            <div class="featured-achievement">
-                                <span class="achievement-emoji"><%= home_achievement[:emoji] %></span>
-                                <span class="achievement-label"><%= home_achievement[:label] %></span>
-                            </div>
-                            <% end %>
+                    
+                    <!-- Additional Info Row -->
+                    <div class="featured-info-row">
+                        <% if !h2h_summary.empty? %>
+                        <div class="info-badge">
+                            <span class="info-icon">⚔️</span>
+                            <span class="info-text"><%= h2h_summary %></span>
                         </div>
+                        <% end %>
+                        <div class="info-badge">
+                            <span class="info-icon">📊</span>
+                            <span class="info-text">Last 10: <%= matchup[:away_last10] %> vs <%= matchup[:home_last10] %></span>
+                        </div>
+                        <% if matchup[:same_division] %>
+                        <div class="info-badge rivalry-badge">
+                            <span class="info-icon">🔥</span>
+                            <span class="info-text">Division Rival</span>
+                        </div>
+                        <% end %>
                     </div>
-                </div>
-                <div class="voting-placeholder">
-                    <div class="voting-text">🗳️ Voting opens soon!</div>
                 </div>
             </div>
             <% end %>
