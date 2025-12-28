@@ -21,7 +21,11 @@ module ValidationUtils
   # @raise [ValidationError] if value is nil or empty
   # @return [Object] The validated value
   def validate_presence(value, field_name)
-    if value.nil? || (value.respond_to?(:empty?) && value.empty?)
+    is_empty = value.nil? || 
+               (value.respond_to?(:empty?) && value.empty?) || 
+               (value.is_a?(String) && value.strip.empty?)
+    
+    if is_empty
       raise ValidationError.new(field_name, value, "must be present")
     end
     value

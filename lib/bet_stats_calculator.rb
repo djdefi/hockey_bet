@@ -626,6 +626,11 @@ class BetStatsCalculator
       position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
       position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
       
+      # Calculate goals per game
+      games_played = team['gamesPlayed'] || 0
+      goals_for = team['goalFor'] || 0
+      gpg = games_played > 0 ? (goals_for.to_f / games_played).round(2) : 0.0
+      
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
@@ -633,7 +638,14 @@ class BetStatsCalculator
         value: odds,
         division_sequence: division_seq,
         conference_sequence: conference_seq,
-        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+        display: "#{odds}% cup odds (#{position_info.join(', ')})",
+        # Add stats for league leaders display
+        wins: team['wins'] || 0,
+        losses: team['losses'] || 0,
+        ot_losses: team['otLosses'] || 0,
+        points: team['points'] || 0,
+        gpg: gpg,
+        streak: team['streakCode'] || '-'
       }
     end.compact
     
@@ -660,6 +672,11 @@ class BetStatsCalculator
       position_info << "#{get_ordinal(division_seq)} in division" if division_seq > 0
       position_info << "#{get_ordinal(conference_seq)} in conference" if conference_seq > 0
       
+      # Calculate goals per game
+      games_played = team['gamesPlayed'] || 0
+      goals_for = team['goalFor'] || 0
+      gpg = games_played > 0 ? (goals_for.to_f / games_played).round(2) : 0.0
+      
       {
         fan: @manager_team_map[abbrev],
         team: team['teamName']['default'],
@@ -667,7 +684,14 @@ class BetStatsCalculator
         value: odds,
         division_sequence: division_seq,
         conference_sequence: conference_seq,
-        display: "#{odds}% cup odds (#{position_info.join(', ')})"
+        display: "#{odds}% cup odds (#{position_info.join(', ')})",
+        # Add stats for consistency with best_cup_odds
+        wins: team['wins'] || 0,
+        losses: team['losses'] || 0,
+        ot_losses: team['otLosses'] || 0,
+        points: team['points'] || 0,
+        gpg: gpg,
+        streak: team['streakCode'] || '-'
       }
     end.compact
     
