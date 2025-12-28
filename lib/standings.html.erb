@@ -54,7 +54,7 @@
         </header>
 
         <!-- Desktop Tabs (hidden on mobile) -->
-        <nav class="desktop-tabs" style="display: none;" role="navigation" aria-label="Main navigation">
+        <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
             <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
             <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
             <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
@@ -1769,11 +1769,6 @@
                 }
             });
         });
-        
-        // Show desktop tabs on larger screens
-        if (window.innerWidth >= 768) {
-            document.querySelector('.desktop-tabs').style.display = 'flex';
-        }
         
         // Original toggle functions for old table view
         document.getElementById('toggleButton')?.addEventListener('click', function () {
