@@ -157,6 +157,11 @@ class StandingsProcessor
     sw_src = 'service-worker.js'
     sw_dest = "#{output_dir}/service-worker.js"
     FileUtils.cp(sw_src, sw_dest) if File.exist?(sw_src)
+    
+    # Copy web manifest for PWA
+    manifest_src = 'site.webmanifest'
+    manifest_dest = "#{output_dir}/site.webmanifest"
+    FileUtils.cp(manifest_src, manifest_dest) if File.exist?(manifest_src)
   end
 
   # Determine playoff status for a team with enhanced specificity

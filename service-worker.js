@@ -6,9 +6,9 @@ const DATA_CACHE_NAME = 'hockey-bet-data-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/playoffs.html',
-  '/lib/styles.css',
-  '/favicon.ico'
+  '/styles.css',
+  '/favicon.ico',
+  '/site.webmanifest'
 ];
 
 // Install event - cache static assets
