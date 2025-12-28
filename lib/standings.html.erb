@@ -1402,7 +1402,7 @@
                 
                 <div class="matchup-date-group mb-3">
                     <div class="date-group-header mb-2">
-                        <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="<%= date_label == 'Today' ? 'true' : 'false' %>">
+                        <button class="date-group-toggle" data-group="<%= date_label.downcase.gsub(' ', '-') %>" aria-expanded="<%= date_label == 'Today' ? 'true' : 'false' %>" aria-label="Toggle <%= date_label %> matchups">
                             <span class="date-label badge badge-date <%= date_label == 'Today' ? 'color-bg-danger-emphasis' : 'color-bg-accent-emphasis' %> color-fg-on-emphasis">
                                 <%= date_label %> (<%= matchups_in_group.length %>)
                             </span>

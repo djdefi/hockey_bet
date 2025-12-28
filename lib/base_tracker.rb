@@ -15,10 +15,11 @@ module BaseTracker
   # Initialize tracker with file path and logging preferences
   # @param data_file [String] Path to JSON data file
   # @param verbose [Boolean] Enable verbose logging (default: true)
-  def initialize_tracker(data_file, verbose: true)
+  # @param default_content [Object] Default content for new file (default: {})
+  def initialize_tracker(data_file, verbose: true, default_content: {})
     @data_file = data_file
     @verbose = verbose
-    ensure_data_file_exists
+    ensure_data_file_exists(default_content)
   end
   
   # Load data from JSON file with error handling

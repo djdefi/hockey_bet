@@ -20,9 +20,8 @@ class StandingsHistoryTracker
   MIN_HISTORY_ENTRIES = 7
   
   def initialize(data_file = 'data/standings_history.json', verbose: true)
-    initialize_tracker(data_file, verbose: verbose)
-    # Ensure file exists with empty array as default (history is an array)
-    ensure_data_file_exists([]) unless File.exist?(@data_file)
+    # Initialize with empty array as default (history is an array, not a hash)
+    initialize_tracker(data_file, verbose: verbose, default_content: [])
   end
   
   # Load standings history from JSON file
