@@ -964,7 +964,7 @@ h3 {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem;
+    gap: 0.35rem;
     margin-bottom: 0.9rem;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -998,28 +998,41 @@ h3 {
 }
 
 .stat-card-square {
-    flex: 0 0 110px;
-    width: 110px;
-    height: 110px;
-    background: rgba(26, 37, 58, 0.4);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex: 0 0 95px;
+    width: 95px;
+    height: 95px;
+    background: rgba(26, 37, 58, 0.35);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 0.55rem;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     position: relative;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
     tap-highlight-color: rgba(33, 209, 159, 0.1);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+}
+
+/* Add gradient overlay for visual depth */
+.stat-card-square::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(33, 209, 159, 0.03) 0%, transparent 50%, rgba(33, 209, 159, 0.01) 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Add subtle shimmer effect */
@@ -1040,9 +1053,9 @@ h3 {
 }
 
 .stat-card-square:hover {
-    transform: scale(1.06) translateY(-5px);
-    box-shadow: 0 10px 30px rgba(33, 209, 159, 0.2), 0 6px 16px rgba(0, 0, 0, 0.4);
-    border-color: rgba(33, 209, 159, 0.4);
+    transform: scale(1.08) translateY(-6px);
+    box-shadow: 0 12px 30px rgba(33, 209, 159, 0.25), 0 8px 20px rgba(0, 0, 0, 0.45);
+    border-color: rgba(33, 209, 159, 0.5);
 }
 
 .stat-card-square:active {
