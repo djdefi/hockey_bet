@@ -1,7 +1,9 @@
 # Performance utility methods for optimization and caching
 # Provides memoization and performance monitoring capabilities
 module PerformanceUtils
-  # When extended, also include the instance methods
+  # Automatically includes InstanceMethods when this module is extended by a class,
+  # ensuring instance methods are available on objects while class-level methods
+  # like memoize remain available at the class level.
   def self.extended(base)
     base.include(InstanceMethods)
   end
