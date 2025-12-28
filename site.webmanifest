@@ -1,7 +1,7 @@
 {
-  "name": "NHL Standings",
-  "short_name": "NHL",
-  "description": "Up-to-date NHL standings with playoff status indicators",
+  "name": "Hockey Bet - NHL Fan League",
+  "short_name": "Hockey Bet",
+  "description": "Track NHL standings, predictions, and compete in the ultimate fan league. Installable PWA with live updates.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -11,11 +11,15 @@
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#041E42",
-  "background_color": "#ffffff",
+  "theme_color": "#0b162a",
+  "background_color": "#0b162a",
   "display": "standalone",
-  "start_url": "/index.html"
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/index.html",
+  "categories": ["sports", "entertainment"]
 }
