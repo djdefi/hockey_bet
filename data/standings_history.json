@@ -1,24 +1,5 @@
 [
   {
-    "date": "2024-12-27",
-    "standings": {
-      "Travis R.": 36,
-      "Ryan B.": 26,
-      "Brian D.": 28,
-      "David K.": 20,
-      "Ryan T.": 44,
-      "Sean R.": 43,
-      "Tyler F.": 21,
-      "Jeff C.": 42,
-      "Zak S.": 43,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 28,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
     "date": "2024-12-30",
     "standings": {
       "Travis R.": 36,
@@ -1917,6 +1898,60 @@
         "goal_diff": -4,
         "division_rank": 7,
         "conference_rank": 14
+      }
+    }
+  },
+  {
+    "date": "2025-12-28",
+    "season": "2025-2026",
+    "standings": {
+      "Alice": {
+        "points": 106,
+        "wins": 50,
+        "losses": 15,
+        "ot_losses": 6,
+        "games_played": 71,
+        "goals_for": 250,
+        "goals_against": 168,
+        "goal_diff": 82,
+        "division_rank": 1,
+        "conference_rank": 1
+      },
+      "Bob": {
+        "points": 93,
+        "wins": 42,
+        "losses": 22,
+        "ot_losses": 9,
+        "games_played": 73,
+        "goals_for": 249,
+        "goals_against": 211,
+        "goal_diff": 38,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
+      "Charlie": {
+        "points": 100,
+        "wins": 48,
+        "losses": 19,
+        "ot_losses": 4,
+        "games_played": 71,
+        "goals_for": 228,
+        "goals_against": 174,
+        "goal_diff": 54,
+        "division_rank": 2,
+        "conference_rank": 2
+      },
+      "Dave": {
+        "points": 86,
+        "wins": 40,
+        "losses": 25,
+        "ot_losses": 6,
+        "games_played": 71,
+        "goals_for": 223,
+        "goals_against": 207,
+        "goal_diff": 16,
+        "division_rank": 4,
+        "conference_rank": 7
       }
     }
   }
