@@ -4,7 +4,7 @@
   "description": "Track NHL standings, predictions, and compete in the ultimate fan league. Installable PWA with live updates.",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
     }
@@ -13,7 +13,7 @@
   "background_color": "#0b162a",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "start_url": "/index.html",
+  "scope": "./",
+  "start_url": "./index.html",
   "categories": ["sports", "entertainment"]
 }
