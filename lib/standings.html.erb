@@ -919,14 +919,11 @@
                 <!-- Will be populated by JavaScript -->
             </div>
             
-            <!-- Chart Section - More Compact -->
+            <!-- Chart Section - Simplified Bar Chart -->
             <div class="chart-container" style="padding: 0.75rem; margin-bottom: 0.5rem;">
-                <h3 style="margin-bottom: 0.25rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Visualization</h3>
-                <p style="margin: 0 0 0.5rem 0; text-align: center; font-size: 0.75rem; color: var(--text-secondary);">
-                    Inner ring = Make Playoffs • Outer ring = Win Cup
-                </p>
-                <div style="position: relative; height: 350px; max-width: 600px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Sunburst chart showing playoff progression odds for each fan team"></canvas>
+                <h3 style="margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Stanley Cup Odds</h3>
+                <div style="position: relative; height: 400px; max-width: 700px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Bar chart showing Stanley Cup odds for each fan team"></canvas>
                 </div>
             </div>
         </div>
@@ -1514,51 +1511,30 @@
             }
             
             // Generate distinct colors for all teams
+            
+            // Prepare data sorted by Cup odds for horizontal bar chart
+            const sortedTeams = teams
+                .map(abbrev => ({
+                    abbrev: abbrev,
+                    fan: playoffData[abbrev].fan,
+                    team: playoffData[abbrev].team,
+                    cupOdds: playoffData[abbrev].win_cup || 0
+                }))
+                .sort((a, b) => b.cupOdds - a.cupOdds); // Sort descending by Cup odds
+            
+            // Generate distinct colors
             function generateTeamColors(count) {
                 const colors = [];
                 const hueStep = 360 / count;
-                // Use offset to avoid starting at red (0°)
                 const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
                     const hue = (i * hueStep + hueOffset) % 360;
-                    colors.push({
-                        h: hue,
-                        s: 75, // Increased saturation for more vibrant colors
-                        l: 55  // Slightly lighter for better visibility on dark background
-                    });
+                    colors.push(`hsla(${hue}, 75%, 55%, 0.85)`);
                 }
                 return colors;
             }
             
-            // Convert HSL object to HSLA string with alpha
-            function hslToHsla(hsl, alpha) {
-                return `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha})`;
-            }
-            
-            const colors = generateTeamColors(teams.length);
-            
-            // Create 5 concentric rings for the stages
-            const stages = ['make_playoffs', 'make_2nd_round', 'make_3rd_round', 'make_finals', 'win_cup'];
-            const stageLabels = ['Make Playoffs', 'Make 2nd Round', 'Make 3rd Round', 'Make Finals', 'Win Cup'];
-            
-            const datasets = [];
-            
-            // Build datasets - each stage is a separate dataset
-            stages.forEach((stage, stageIndex) => {
-                const data = teams.map(teamAbbrev => playoffData[teamAbbrev][stage] || 0);
-                
-                datasets.push({
-                    label: stageLabels[stageIndex],
-                    data: data,
-                    backgroundColor: colors.map(c => {
-                        // Make inner rings more transparent
-                        const alpha = 0.5 + (stageIndex * 0.1);
-                        return hslToHsla(c, alpha);
-                    }),
-                    borderColor: '#1a253a',
-                    borderWidth: 2
-                });
-            });
+            const colors = generateTeamColors(sortedTeams.length);
             
             // Destroy existing chart if it exists
             if (playoffOddsChartInstance) {
@@ -1575,49 +1551,27 @@
             const ctx = canvas.getContext('2d');
             
             playoffOddsChartInstance = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'bar',
                 data: {
-                    labels: teams.map(abbrev => playoffData[abbrev].fan),
-                    datasets: datasets
+                    labels: sortedTeams.map(t => t.fan),
+                    datasets: [{
+                        label: 'Cup Odds %',
+                        data: sortedTeams.map(t => t.cupOdds),
+                        backgroundColor: colors,
+                        borderColor: colors.map(c => c.replace('0.85)', '1)')),
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        barThickness: 'flex',
+                        maxBarThickness: 40
+                    }]
                 },
                 options: {
+                    indexAxis: 'y', // Horizontal bar chart
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: false
-                        },
                         legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                generateLabels: function(chart) {
-                                    // Show team/fan names with their colors instead of stages
-                                    const labels = chart.data.labels || [];
-                                    return labels.map((label, i) => {
-                                        const teamAbbrev = teams[i];
-                                        const teamData = playoffData[teamAbbrev];
-                                        const color = colors[i];
-                                        
-                                        return {
-                                            text: `${label} (${teamData.team})`,
-                                            fillStyle: hslToHsla(color, 0.8),
-                                            strokeStyle: hslToHsla(color, 1),
-                                            lineWidth: 2,
-                                            hidden: false,
-                                            index: i
-                                        };
-                                    });
-                                },
-                                color: '#8da1b9',
-                                padding: 8,
-                                font: {
-                                    size: 11
-                                },
-                                boxWidth: 15,
-                                boxHeight: 15,
-                                usePointStyle: false
-                            }
+                            display: false // No legend needed - labels on Y axis
                         },
                         tooltip: {
                             backgroundColor: 'rgba(26, 37, 58, 0.95)',
@@ -1628,19 +1582,63 @@
                             padding: 12,
                             callbacks: {
                                 title: function(context) {
-                                    const dataIndex = context[0].dataIndex;
-                                    const teamAbbrev = teams[dataIndex];
-                                    return playoffData[teamAbbrev].fan + ' - ' + playoffData[teamAbbrev].team;
+                                    const index = context[0].dataIndex;
+                                    return sortedTeams[index].fan + ' - ' + sortedTeams[index].team;
                                 },
                                 label: function(context) {
-                                    const value = context.parsed;
-                                    return stageLabels[context.datasetIndex] + ': ' + value.toFixed(1) + '%';
+                                    return 'Cup Odds: ' + context.parsed.x.toFixed(1) + '%';
                                 }
                             }
                         }
                     },
-                    cutout: '20%', // Create the center hole
-                    radius: '95%'
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: '#8da1b9',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(42, 58, 82, 0.3)',
+                                drawBorder: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Stanley Cup Odds (%)',
+                                color: '#8da1b9',
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 11,
+                                    weight: '500'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 20,
+                            top: 10,
+                            bottom: 10
+                        }
+                    }
                 }
             });
             
