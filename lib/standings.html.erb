@@ -919,11 +919,11 @@
                 <!-- Will be populated by JavaScript -->
             </div>
             
-            <!-- Chart Section - Simplified Bar Chart -->
+            <!-- Chart Section - Polar Area Chart -->
             <div class="chart-container" style="padding: 0.75rem; margin-bottom: 0.5rem;">
                 <h3 style="margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Stanley Cup Odds</h3>
-                <div style="position: relative; height: 400px; max-width: 700px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Bar chart showing Stanley Cup odds for each fan team"></canvas>
+                <div style="position: relative; height: 450px; max-width: 650px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Polar area chart showing Stanley Cup odds for each fan team"></canvas>
                 </div>
             </div>
         </div>
@@ -1510,9 +1510,8 @@
                 summaryContainer.innerHTML = summaryHtml;
             }
             
-            // Generate distinct colors for all teams
             
-            // Prepare data sorted by Cup odds for horizontal bar chart
+            // Prepare data sorted by Cup odds for polar area chart
             const sortedTeams = teams
                 .map(abbrev => ({
                     abbrev: abbrev,
@@ -1522,14 +1521,14 @@
                 }))
                 .sort((a, b) => b.cupOdds - a.cupOdds); // Sort descending by Cup odds
             
-            // Generate distinct colors
+            // Generate distinct vibrant colors
             function generateTeamColors(count) {
                 const colors = [];
                 const hueStep = 360 / count;
                 const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
                     const hue = (i * hueStep + hueOffset) % 360;
-                    colors.push(`hsla(${hue}, 75%, 55%, 0.85)`);
+                    colors.push(`hsla(${hue}, 80%, 60%, 0.9)`);
                 }
                 return colors;
             }
@@ -1551,27 +1550,47 @@
             const ctx = canvas.getContext('2d');
             
             playoffOddsChartInstance = new Chart(ctx, {
-                type: 'bar',
+                type: 'polarArea',
                 data: {
                     labels: sortedTeams.map(t => t.fan),
                     datasets: [{
-                        label: 'Cup Odds %',
                         data: sortedTeams.map(t => t.cupOdds),
                         backgroundColor: colors,
-                        borderColor: colors.map(c => c.replace('0.85)', '1)')),
-                        borderWidth: 2,
-                        borderRadius: 4,
-                        barThickness: 'flex',
-                        maxBarThickness: 40
+                        borderColor: colors.map(c => c.replace('0.9)', '1)')),
+                        borderWidth: 2
                     }]
                 },
                 options: {
-                    indexAxis: 'y', // Horizontal bar chart
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false // No legend needed - labels on Y axis
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#ffffff',
+                                padding: 12,
+                                font: {
+                                    size: 12,
+                                    weight: '500'
+                                },
+                                boxWidth: 20,
+                                boxHeight: 20,
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    return data.labels.map((label, i) => {
+                                        const value = data.datasets[0].data[i];
+                                        return {
+                                            text: `${label}: ${value.toFixed(0)}%`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            strokeStyle: data.datasets[0].borderColor[i],
+                                            lineWidth: 2,
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
+                                }
+                            }
                         },
                         tooltip: {
                             backgroundColor: 'rgba(26, 37, 58, 0.95)',
@@ -1586,17 +1605,18 @@
                                     return sortedTeams[index].fan + ' - ' + sortedTeams[index].team;
                                 },
                                 label: function(context) {
-                                    return 'Cup Odds: ' + context.parsed.x.toFixed(1) + '%';
+                                    return 'Cup Odds: ' + context.parsed.r.toFixed(1) + '%';
                                 }
                             }
                         }
                     },
                     scales: {
-                        x: {
+                        r: {
                             beginAtZero: true,
                             max: 100,
                             ticks: {
                                 color: '#8da1b9',
+                                backdropColor: 'transparent',
                                 font: {
                                     size: 11
                                 },
@@ -1605,38 +1625,14 @@
                                 }
                             },
                             grid: {
-                                color: 'rgba(42, 58, 82, 0.3)',
-                                drawBorder: false
+                                color: 'rgba(141, 161, 185, 0.2)'
                             },
-                            title: {
-                                display: true,
-                                text: 'Stanley Cup Odds (%)',
-                                color: '#8da1b9',
-                                font: {
-                                    size: 12,
-                                    weight: 'bold'
-                                }
-                            }
-                        },
-                        y: {
-                            ticks: {
-                                color: '#ffffff',
-                                font: {
-                                    size: 11,
-                                    weight: '500'
-                                }
+                            angleLines: {
+                                color: 'rgba(141, 161, 185, 0.2)'
                             },
-                            grid: {
-                                display: false
+                            pointLabels: {
+                                display: false // Hide point labels to avoid clutter
                             }
-                        }
-                    },
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 20,
-                            top: 10,
-                            bottom: 10
                         }
                     }
                 }
