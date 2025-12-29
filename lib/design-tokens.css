@@ -48,6 +48,13 @@
   --color-status-warning: #fbbf24;
   --color-status-info: #3b82f6;
   
+  /* Subtle Status Colors (with transparency) */
+  --color-status-success-subtle: rgba(16, 185, 129, 0.1);
+  --color-status-error-subtle: rgba(239, 68, 68, 0.1);
+  --color-status-warning-subtle: rgba(251, 191, 36, 0.1);
+  --color-status-info-subtle: rgba(59, 130, 246, 0.1);
+  --color-danger-subtle: rgba(231, 76, 60, 0.1);  /* Accent danger subtle variant */
+  
   /* Gradients */
   --gradient-green: linear-gradient(135deg, rgba(33, 209, 159, 0.15) 0%, rgba(41, 128, 185, 0.15) 100%);
   --gradient-fire: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(230, 126, 34, 0.2) 100%);

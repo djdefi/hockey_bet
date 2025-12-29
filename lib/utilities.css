@@ -285,7 +285,7 @@
 
 .bg-success { background-color: var(--color-status-success) !important; }
 .bg-danger { background-color: var(--color-accent-danger) !important; }
-.bg-danger-subtle { background-color: rgba(231, 76, 60, 0.1) !important; }
+.bg-danger-subtle { background-color: var(--color-danger-subtle) !important; }
 .bg-warning { background-color: var(--color-accent-warning) !important; }
 .bg-info { background-color: var(--color-accent-info) !important; }
 
