@@ -58,6 +58,7 @@
             <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
             <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
             <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
+            <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
             <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
         </nav>
 
@@ -909,6 +910,20 @@
             <% end %>
         </div>
 
+        <!-- Tab: Playoff Odds (Sunburst Chart) -->
+        <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
+            <div class="chart-container">
+                <h2 style="margin-bottom: 1rem;">🏆 Playoff Progression Odds</h2>
+                <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    Each ring shows the probability of reaching that playoff stage. 
+                    Outer ring = Make Playoffs, Center = Win Stanley Cup
+                </p>
+                <div style="position: relative; height: 600px; max-width: 800px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Sunburst chart showing playoff progression odds for each fan team"></canvas>
+                </div>
+            </div>
+        </div>
+
         <!-- Tab: Trends (Chart) -->
         <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
             <div class="chart-container">
@@ -940,6 +955,10 @@
         <button class="nav-item" data-tab="standings" aria-label="View Standings tab">
             <div class="nav-item-icon" aria-hidden="true">📊</div>
             <div class="nav-item-label">Standings</div>
+        </button>
+        <button class="nav-item" data-tab="playoff-odds" aria-label="View Playoff Odds tab">
+            <div class="nav-item-icon" aria-hidden="true">🏆</div>
+            <div class="nav-item-label">Playoff Odds</div>
         </button>
         <button class="nav-item" data-tab="trends" aria-label="View Trends tab">
             <div class="nav-item-icon" aria-hidden="true">📈</div>
@@ -984,6 +1003,11 @@
             // Load chart if switching to trends tab
             if (tabName === 'trends' && !window.chartLoaded) {
                 loadStandingsTrendChart();
+            }
+            
+            // Load playoff odds chart if switching to playoff-odds tab
+            if (tabName === 'playoff-odds' && !window.playoffOddsChartLoaded) {
+                loadPlayoffOddsChart();
             }
         }
         
@@ -1393,6 +1417,147 @@
             } else {
                 return `${year - 1}-${year}`;
             }
+        }
+        
+        // Playoff Odds Sunburst Chart
+        let playoffOddsChartInstance = null;
+        
+        function loadPlayoffOddsChart() {
+            if (window.playoffOddsChartLoaded) return;
+            
+            // Playoff progression data from Ruby
+            const playoffData = <%= raw bet_stats[:playoff_progression].to_json rescue '{}' %>;
+            
+            if (!playoffData || Object.keys(playoffData).length === 0) {
+                console.log('No playoff odds data available');
+                const canvas = document.getElementById('playoffOddsChart');
+                if (canvas && canvas.parentElement) {
+                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Playoff odds data not available yet.</p>';
+                }
+                return;
+            }
+            
+            // Prepare data for sunburst/doughnut chart
+            // Create datasets for each playoff stage (rings)
+            const teams = Object.keys(playoffData);
+            const teamColors = {
+                // NHL team colors - you can expand this
+                'default': ['#001F5B', '#C8102E', '#006341', '#FFB81C', '#CE1126', '#00205B', 
+                           '#003E7E', '#6CACE4', '#00843D', '#8E9090', '#B9975B', '#041E42']
+            };
+            
+            // Generate distinct colors for all teams
+            function generateTeamColors(count) {
+                const colors = [];
+                const hueStep = 360 / count;
+                for (let i = 0; i < count; i++) {
+                    const hue = i * hueStep;
+                    colors.push(`hsl(${hue}, 70%, 50%)`);
+                }
+                return colors;
+            }
+            
+            const colors = generateTeamColors(teams.length);
+            
+            // Create 5 concentric rings for the stages
+            const stages = ['make_playoffs', 'make_2nd_round', 'make_3rd_round', 'make_finals', 'win_cup'];
+            const stageLabels = ['Make Playoffs', 'Make 2nd Round', 'Make 3rd Round', 'Make Finals', 'Win Cup'];
+            
+            const datasets = [];
+            
+            // Build datasets - each stage is a separate dataset
+            stages.forEach((stage, stageIndex) => {
+                const data = teams.map(teamAbbrev => playoffData[teamAbbrev][stage] || 0);
+                const labels = teams.map(teamAbbrev => `${playoffData[teamAbbrev].fan}: ${playoffData[teamAbbrev][stage]}%`);
+                
+                datasets.push({
+                    label: stageLabels[stageIndex],
+                    data: data,
+                    backgroundColor: colors.map(c => {
+                        // Make inner rings more transparent
+                        const alpha = 0.5 + (stageIndex * 0.1);
+                        return c.replace('hsl', 'hsla').replace(')', `, ${alpha})`);
+                    }),
+                    borderColor: '#1a253a',
+                    borderWidth: 2,
+                    labels: labels
+                });
+            });
+            
+            // Destroy existing chart if it exists
+            if (playoffOddsChartInstance) {
+                playoffOddsChartInstance.destroy();
+                playoffOddsChartInstance = null;
+            }
+            
+            const canvas = document.getElementById('playoffOddsChart');
+            if (!canvas) {
+                console.error('Playoff odds canvas not found');
+                return;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            
+            playoffOddsChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: teams.map(abbrev => playoffData[abbrev].fan),
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                generateLabels: function(chart) {
+                                    return chart.data.datasets.map((dataset, i) => ({
+                                        text: dataset.label,
+                                        fillStyle: chart.data.datasets[i].backgroundColor[0],
+                                        hidden: false,
+                                        index: i
+                                    }));
+                                },
+                                color: '#8da1b9',
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#8da1b9',
+                            borderColor: '#2a3a52',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                title: function(context) {
+                                    const datasetIndex = context[0].datasetIndex;
+                                    const dataIndex = context[0].dataIndex;
+                                    const teamAbbrev = teams[dataIndex];
+                                    return playoffData[teamAbbrev].fan + ' - ' + playoffData[teamAbbrev].team;
+                                },
+                                label: function(context) {
+                                    const stage = stages[context.datasetIndex];
+                                    const value = context.parsed;
+                                    return stageLabels[context.datasetIndex] + ': ' + value.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '20%', // Create the center hole
+                    radius: '95%'
+                }
+            });
+            
+            window.playoffOddsChartLoaded = true;
         }
         
         // Don't load chart on page load - only when trends tab is clicked
