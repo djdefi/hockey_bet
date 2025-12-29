@@ -2762,10 +2762,47 @@ h3 {
     margin: 0;
 }
 
+.tab-section > h2:first-child {
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
 .tab-section > * {
     margin-bottom: 1rem;
 }
 
 .tab-section > *:last-child {
     margin-bottom: 0;
+}
+
+/* Ensure consistent card spacing across all tabs */
+.matchup-card,
+.team-card,
+.achievement-card,
+.stat-card-square {
+    margin-bottom: 0.85rem;
+}
+
+/* Fix any potential overflow issues */
+.app-container {
+    overflow-x: hidden;
+}
+
+/* Improve touch target sizes for better mobile experience */
+@media (max-width: 767px) {
+    /* Ensure buttons and interactive elements meet minimum touch target size */
+    button, .nav-item, .desktop-tab, .date-group-toggle {
+        min-height: var(--min-touch-target);
+        min-width: var(--min-touch-target);
+    }
+    
+    /* Better spacing between sections on mobile */
+    .tab-section > * {
+        margin-bottom: 0.85rem;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
+    }
 }
