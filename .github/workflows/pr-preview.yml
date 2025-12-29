@@ -36,7 +36,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          gem install bundler:2.4.3
+          gem install bundler:2.7.2
           bundle config set --local path 'vendor/bundle'
           bundle config set --local without 'development test'
           bundle install --jobs 4 --retry 3
