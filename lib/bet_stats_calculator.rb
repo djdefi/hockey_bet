@@ -627,7 +627,6 @@ class BetStatsCalculator
       abbrev = team['teamAbbrev']['default']
       next unless @manager_team_map[abbrev] && @manager_team_map[abbrev] != "N/A"
       
-      division_seq = team['divisionSequence'].to_i
       conference_seq = team['conferenceSequence'].to_i
       league_seq = team['leagueSequence'].to_i
       point_pctg = team['pointPctg'].to_f
@@ -654,12 +653,18 @@ class BetStatsCalculator
       # Finals (Win Cup): 50% chance (1 of 2)
       
       # Adjust base probabilities by team strength (cup_odds)
+      # Apply strength adjustment once when advancing out of first round,
+      # then use neutral 50% decay for subsequent rounds
       strength_multiplier = 1.0 + ((cup_odds_pct - AVERAGE_CUP_ODDS_PCT) / 20.0)
       
       make_2nd_prob = (make_playoffs_prob * 0.50 * strength_multiplier).round(1)
-      make_3rd_prob = (make_2nd_prob * 0.50 * strength_multiplier).round(1)
-      make_finals_prob = (make_3rd_prob * 0.50 * strength_multiplier).round(1)
-      win_cup_prob = cup_odds_pct.round(1)
+      make_3rd_prob = (make_2nd_prob * 0.50).round(1)
+      # Ensure probabilities are monotonically non-increasing
+      make_3rd_prob = [make_3rd_prob, make_2nd_prob].min
+      make_finals_prob = (make_3rd_prob * 0.50).round(1)
+      make_finals_prob = [make_finals_prob, make_3rd_prob].min
+      # Winning the cup cannot be more likely than making the finals
+      win_cup_prob = [cup_odds_pct.round(1), make_finals_prob].min
       
       @playoff_progression[abbrev] = {
         team: team['teamName']['default'],

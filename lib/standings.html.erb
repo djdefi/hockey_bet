@@ -916,7 +916,7 @@
                 <h2 style="margin-bottom: 1rem;">🏆 Playoff Progression Odds</h2>
                 <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 0.9rem;">
                     Each ring shows the probability of reaching that playoff stage. 
-                    Outer ring = Make Playoffs, Center = Win Stanley Cup
+                    Inner ring = Make Playoffs, Outer ring = Win Stanley Cup
                 </p>
                 <div style="position: relative; height: 600px; max-width: 800px; margin: 0 auto;">
                     <canvas id="playoffOddsChart" role="img" aria-label="Sunburst chart showing playoff progression odds for each fan team"></canvas>
@@ -1426,8 +1426,7 @@
             if (window.playoffOddsChartLoaded) return;
             
             // Playoff progression data from Ruby
-            const playoffDataRaw = <%= raw (bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression].to_json : '{}' %>;
-            const playoffData = playoffDataRaw || {};
+            const playoffData = <%= (bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression].to_json : '{}' %>;
             
             if (Object.keys(playoffData).length === 0) {
                 console.log('No playoff odds data available');
@@ -1441,11 +1440,6 @@
             // Prepare data for sunburst/doughnut chart
             // Create datasets for each playoff stage (rings)
             const teams = Object.keys(playoffData);
-            const teamColors = {
-                // NHL team colors - you can expand this
-                'default': ['#001F5B', '#C8102E', '#006341', '#FFB81C', '#CE1126', '#00205B', 
-                           '#003E7E', '#6CACE4', '#00843D', '#8E9090', '#B9975B', '#041E42']
-            };
             
             // Generate distinct colors for all teams
             function generateTeamColors(count) {
@@ -1478,7 +1472,6 @@
             // Build datasets - each stage is a separate dataset
             stages.forEach((stage, stageIndex) => {
                 const data = teams.map(teamAbbrev => playoffData[teamAbbrev][stage] || 0);
-                const labels = teams.map(teamAbbrev => `${playoffData[teamAbbrev].fan}: ${playoffData[teamAbbrev][stage]}%`);
                 
                 datasets.push({
                     label: stageLabels[stageIndex],
@@ -1489,8 +1482,7 @@
                         return hslToHsla(c, alpha);
                     }),
                     borderColor: '#1a253a',
-                    borderWidth: 2,
-                    labels: labels
+                    borderWidth: 2
                 });
             });
             
@@ -1549,13 +1541,11 @@
                             padding: 12,
                             callbacks: {
                                 title: function(context) {
-                                    const datasetIndex = context[0].datasetIndex;
                                     const dataIndex = context[0].dataIndex;
                                     const teamAbbrev = teams[dataIndex];
                                     return playoffData[teamAbbrev].fan + ' - ' + playoffData[teamAbbrev].team;
                                 },
                                 label: function(context) {
-                                    const stage = stages[context.datasetIndex];
                                     const value = context.parsed;
                                     return stageLabels[context.datasetIndex] + ': ' + value.toFixed(1) + '%';
                                 }
