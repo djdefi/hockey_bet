@@ -255,17 +255,30 @@
 
 :root {
   /* Map old variables to new tokens */
+  /* DEPRECATED: Use var(--color-bg-primary) instead */
   --bg-primary: var(--color-bg-primary);
+  /* DEPRECATED: Use var(--color-bg-secondary) instead */
   --bg-card: var(--color-bg-secondary);
+  /* DEPRECATED: Use var(--color-bg-hover) instead */
   --bg-card-hover: var(--color-bg-hover);
+  /* DEPRECATED: Use var(--color-text-primary) instead */
   --text-primary: var(--color-text-primary);
+  /* DEPRECATED: Use var(--color-text-secondary) instead */
   --text-secondary: var(--color-text-secondary);
+  /* DEPRECATED: Use var(--color-accent-primary) instead */
   --accent-green: var(--color-accent-primary);
+  /* DEPRECATED: Use var(--color-accent-danger) instead */
   --accent-red: var(--color-accent-danger);
+  /* DEPRECATED: Use var(--color-accent-info) instead */
   --accent-blue: var(--color-accent-info);
+  /* DEPRECATED: Use var(--color-accent-warning) instead */
   --accent-yellow: var(--color-accent-warning);
+  /* DEPRECATED: Use var(--color-accent-purple) instead */
   --accent-purple: var(--color-accent-purple);
+  /* DEPRECATED: Use var(--color-accent-orange) instead */
   --accent-orange: var(--color-accent-orange);
+  /* DEPRECATED: Use var(--color-border-default) instead */
   --border-color: var(--color-border-default);
+  /* DEPRECATED: Use var(--touch-target-min) instead */
   --min-touch-target: var(--touch-target-min);
 }
