@@ -1710,6 +1710,7 @@ h3 {
     border-radius: 20px;
     font-size: 0.8rem;
     border: 1px solid var(--border-color);
+    background-color: var(--badge-bg, transparent);
 }
 
 .badge-emoji {

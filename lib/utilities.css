@@ -234,6 +234,18 @@
 .h-screen { height: 100vh !important; }
 
 /* ========================================
+   SIZE UTILITIES
+   ======================================== */
+
+/* Specific sizes */
+.w-10 { width: 2.5rem !important; }  /* 40px */
+.h-10 { height: 2.5rem !important; } /* 40px */
+
+/* Object fit */
+.object-contain { object-fit: contain !important; }
+.object-cover { object-fit: cover !important; }
+
+/* ========================================
    BORDER UTILITIES
    ======================================== */
 
@@ -273,6 +285,7 @@
 
 .bg-success { background-color: var(--color-status-success) !important; }
 .bg-danger { background-color: var(--color-accent-danger) !important; }
+.bg-danger-subtle { background-color: rgba(231, 76, 60, 0.1) !important; }
 .bg-warning { background-color: var(--color-accent-warning) !important; }
 .bg-info { background-color: var(--color-accent-info) !important; }
 
