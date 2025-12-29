@@ -82,6 +82,8 @@
 .pt-6 { padding-top: var(--space-6) !important; }
 .pt-8 { padding-top: var(--space-8) !important; }
 
+.pr-0 { padding-right: var(--space-0) !important; }
+.pr-1 { padding-right: var(--space-1) !important; }
 .pr-2 { padding-right: var(--space-2) !important; }
 .pr-3 { padding-right: var(--space-3) !important; }
 .pr-4 { padding-right: var(--space-4) !important; }
@@ -98,6 +100,8 @@
 .pb-6 { padding-bottom: var(--space-6) !important; }
 .pb-8 { padding-bottom: var(--space-8) !important; }
 
+.pl-0 { padding-left: var(--space-0) !important; }
+.pl-1 { padding-left: var(--space-1) !important; }
 .pl-2 { padding-left: var(--space-2) !important; }
 .pl-3 { padding-left: var(--space-3) !important; }
 .pl-4 { padding-left: var(--space-4) !important; }
