@@ -914,17 +914,20 @@
         <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
             <h2 style="margin-bottom: 0.75rem; text-align: center; font-size: 1.15rem;">🏆 Playoff Progression Odds</h2>
             
+            <!-- Chart Section - Multi-Ring Doughnut Chart -->
+            <div class="chart-container" style="padding: 0.75rem; margin-bottom: 1rem;">
+                <h3 style="margin-bottom: 0.25rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Visualization</h3>
+                <p style="margin: 0 0 0.5rem 0; text-align: center; font-size: 0.75rem; color: var(--text-secondary);">
+                    Inner ring = Make Playoffs • Outer ring = Win Cup
+                </p>
+                <div style="position: relative; height: 400px; max-width: 600px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Multi-ring doughnut chart showing playoff progression odds for each fan team"></canvas>
+                </div>
+            </div>
+            
             <!-- Compact Playoff Odds Summary Table -->
             <div id="playoffOddsSummary" class="playoff-odds-summary" style="margin-bottom: 1rem;">
                 <!-- Will be populated by JavaScript -->
-            </div>
-            
-            <!-- Chart Section - Doughnut Chart -->
-            <div class="chart-container" style="padding: 0.75rem; margin-bottom: 0.5rem;">
-                <h3 style="margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Stanley Cup Odds</h3>
-                <div style="position: relative; height: 400px; max-width: 600px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Doughnut chart showing Stanley Cup odds for each fan team"></canvas>
-                </div>
             </div>
         </div>
 
@@ -1511,29 +1514,51 @@
             }
             
             
-            // Prepare data sorted by Cup odds for doughnut chart
-            const sortedTeams = teams
-                .map(abbrev => ({
-                    abbrev: abbrev,
-                    fan: playoffData[abbrev].fan,
-                    team: playoffData[abbrev].team,
-                    cupOdds: playoffData[abbrev].win_cup || 0
-                }))
-                .sort((a, b) => b.cupOdds - a.cupOdds); // Sort descending by Cup odds
-            
-            // Generate distinct vibrant colors
+            // Generate team colors
             function generateTeamColors(count) {
                 const colors = [];
                 const hueStep = 360 / count;
                 const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
                     const hue = (i * hueStep + hueOffset) % 360;
-                    colors.push(`hsla(${hue}, 75%, 58%, 0.9)`);
+                    colors.push({
+                        h: hue,
+                        s: 75,
+                        l: 58
+                    });
                 }
                 return colors;
             }
             
-            const colors = generateTeamColors(sortedTeams.length);
+            // Convert HSL object to HSLA string with alpha
+            function hslToHsla(hsl, alpha) {
+                return `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha})`;
+            }
+            
+            const colors = generateTeamColors(teams.length);
+            
+            // Create 5 concentric rings for the stages
+            const stages = ['make_playoffs', 'make_2nd_round', 'make_3rd_round', 'make_finals', 'win_cup'];
+            const stageLabels = ['Make Playoffs', 'Make 2nd Round', 'Make 3rd Round', 'Make Finals', 'Win Cup'];
+            
+            const datasets = [];
+            
+            // Build datasets - each stage is a separate dataset (ring)
+            stages.forEach((stage, stageIndex) => {
+                const data = teams.map(teamAbbrev => playoffData[teamAbbrev][stage] || 0);
+                
+                datasets.push({
+                    label: stageLabels[stageIndex],
+                    data: data,
+                    backgroundColor: colors.map(c => {
+                        // Make inner rings more transparent, outer rings more opaque
+                        const alpha = 0.5 + (stageIndex * 0.1);
+                        return hslToHsla(c, alpha);
+                    }),
+                    borderColor: '#1a253a',
+                    borderWidth: 2
+                });
+            });
             
             // Destroy existing chart if it exists
             if (playoffOddsChartInstance) {
@@ -1552,13 +1577,8 @@
             playoffOddsChartInstance = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: sortedTeams.map(t => t.fan),
-                    datasets: [{
-                        data: sortedTeams.map(t => t.cupOdds),
-                        backgroundColor: colors,
-                        borderColor: '#1a253a',
-                        borderWidth: 2
-                    }]
+                    labels: teams.map(abbrev => playoffData[abbrev].fan),
+                    datasets: datasets
                 },
                 options: {
                     responsive: true,
@@ -1578,14 +1598,17 @@
                                 boxHeight: 15,
                                 generateLabels: function(chart) {
                                     const data = chart.data;
-                                    if (!data.labels || !data.datasets || !data.datasets[0]) return [];
+                                    if (!data.labels || !data.datasets) return [];
                                     
                                     return data.labels.map((label, i) => {
-                                        const value = data.datasets[0].data[i];
+                                        const teamAbbrev = teams[i];
+                                        const teamData = playoffData[teamAbbrev];
+                                        const color = colors[i];
+                                        
                                         return {
-                                            text: `${label} ${value.toFixed(0)}%`,
-                                            fillStyle: data.datasets[0].backgroundColor[i],
-                                            strokeStyle: data.datasets[0].borderColor,
+                                            text: `${label} ${teamData.win_cup.toFixed(0)}%`,
+                                            fillStyle: hslToHsla(color, 0.8),
+                                            strokeStyle: hslToHsla(color, 1),
                                             lineWidth: 1,
                                             hidden: false,
                                             index: i
@@ -1603,16 +1626,19 @@
                             padding: 12,
                             callbacks: {
                                 title: function(context) {
-                                    const index = context[0].dataIndex;
-                                    return sortedTeams[index].fan + ' - ' + sortedTeams[index].team;
+                                    const dataIndex = context[0].dataIndex;
+                                    const teamAbbrev = teams[dataIndex];
+                                    return playoffData[teamAbbrev].fan + ' - ' + playoffData[teamAbbrev].team;
                                 },
                                 label: function(context) {
-                                    return 'Cup Odds: ' + context.parsed.toFixed(1) + '%';
+                                    const value = context.parsed;
+                                    return stageLabels[context.datasetIndex] + ': ' + value.toFixed(1) + '%';
                                 }
                             }
                         }
                     },
-                    cutout: '50%' // Doughnut hole size
+                    cutout: '20%', // Smaller cutout for multi-ring display
+                    radius: '95%'
                 }
             });
             
