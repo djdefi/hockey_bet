@@ -1293,8 +1293,6 @@ h3 {
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     flex-shrink: 0;
 }
 
@@ -2711,31 +2709,29 @@ h3 {
 }
 
 /* Playoff Odds Specific Styles */
-.playoff-top-contenders {
-    margin-bottom: 1.5rem;
-}
 
 .playoff-odds-summary {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .playoff-odds-summary table {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     width: 100%;
     border-collapse: collapse;
 }
 
 .playoff-odds-summary th {
-    padding: 0.5rem;
+    padding: 0.4rem 0.3rem;
     text-align: left;
     color: var(--text-secondary);
     font-weight: 600;
+    font-size: 0.75rem;
     border-bottom: 2px solid var(--border-color);
 }
 
 .playoff-odds-summary td {
-    padding: 0.75rem 0.5rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 0.5rem 0.3rem;
+    border-bottom: 1px solid rgba(42, 58, 82, 0.3);
 }
 
 /* Responsive improvements for playoff odds */
@@ -2746,7 +2742,7 @@ h3 {
     
     .playoff-odds-summary th,
     .playoff-odds-summary td {
-        padding: 0.5rem 0.25rem;
+        padding: 0.4rem 0.25rem;
     }
     
     /* Make table horizontally scrollable on small screens */
@@ -2763,12 +2759,12 @@ h3 {
 }
 
 .tab-section > h2:first-child {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     margin-top: 0;
 }
 
 .tab-section > * {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .tab-section > *:last-child {
