@@ -922,6 +922,9 @@
             <!-- Chart Section - More Compact -->
             <div class="chart-container" style="padding: 0.75rem; margin-bottom: 0.5rem;">
                 <h3 style="margin-bottom: 0.25rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Visualization</h3>
+                <p style="margin: 0 0 0.5rem 0; text-align: center; font-size: 0.75rem; color: var(--text-secondary);">
+                    Inner ring = Make Playoffs • Outer ring = Win Cup
+                </p>
                 <div style="position: relative; height: 350px; max-width: 600px; margin: 0 auto;">
                     <canvas id="playoffOddsChart" role="img" aria-label="Sunburst chart showing playoff progression odds for each fan team"></canvas>
                 </div>
@@ -1514,12 +1517,14 @@
             function generateTeamColors(count) {
                 const colors = [];
                 const hueStep = 360 / count;
+                // Use offset to avoid starting at red (0°)
+                const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
-                    const hue = i * hueStep;
+                    const hue = (i * hueStep + hueOffset) % 360;
                     colors.push({
                         h: hue,
-                        s: 70,
-                        l: 50
+                        s: 75, // Increased saturation for more vibrant colors
+                        l: 55  // Slightly lighter for better visibility on dark background
                     });
                 }
                 return colors;
@@ -1587,18 +1592,31 @@
                             position: 'bottom',
                             labels: {
                                 generateLabels: function(chart) {
-                                    return chart.data.datasets.map((dataset, i) => ({
-                                        text: dataset.label,
-                                        fillStyle: chart.data.datasets[i].backgroundColor[0],
-                                        hidden: false,
-                                        index: i
-                                    }));
+                                    // Show team/fan names with their colors instead of stages
+                                    const labels = chart.data.labels || [];
+                                    return labels.map((label, i) => {
+                                        const teamAbbrev = teams[i];
+                                        const teamData = playoffData[teamAbbrev];
+                                        const color = colors[i];
+                                        
+                                        return {
+                                            text: `${label} (${teamData.team})`,
+                                            fillStyle: hslToHsla(color, 0.8),
+                                            strokeStyle: hslToHsla(color, 1),
+                                            lineWidth: 2,
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
                                 },
                                 color: '#8da1b9',
-                                padding: 15,
+                                padding: 8,
                                 font: {
-                                    size: 12
-                                }
+                                    size: 11
+                                },
+                                boxWidth: 15,
+                                boxHeight: 15,
+                                usePointStyle: false
                             }
                         },
                         tooltip: {
