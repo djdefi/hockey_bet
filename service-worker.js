@@ -1,14 +1,14 @@
 // Service Worker for Hockey Bet - Mobile Performance Optimization
-const CACHE_NAME = 'hockey-bet-v1';
-const DATA_CACHE_NAME = 'hockey-bet-data-v1';
+const CACHE_NAME = 'hockey-bet-v2';
+const DATA_CACHE_NAME = 'hockey-bet-data-v2';
 
-// Assets to cache on install
+// Assets to cache on install (using relative paths for GitHub Pages compatibility)
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/playoffs.html',
-  '/lib/styles.css',
-  '/favicon.ico'
+  './',
+  './index.html',
+  './styles.css',
+  './favicon.ico',
+  './site.webmanifest'
 ];
 
 // Install event - cache static assets

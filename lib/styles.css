@@ -2026,13 +2026,6 @@ h3 {
     }
 }
 
-/* Hide old Primer-based styles on mobile */
-@media (max-width: 767px) {
-    .old-table-view {
-        display: none;
-    }
-}
-
 /* Chart styling */
 .chart-container {
     background-color: var(--bg-card);

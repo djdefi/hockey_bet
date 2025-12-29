@@ -55,8 +55,9 @@ jobs:
           else
             echo "Warning: Expected data files not found, skipping commit"
           fi
-      - name: Copy favicon
-        run: cp favicon.ico _site/
+      - name: Copy static assets
+        run: |
+          cp favicon.ico _site/
       - name: Create .nojekyll file
         run: touch _site/.nojekyll
       - name: Setup Pages

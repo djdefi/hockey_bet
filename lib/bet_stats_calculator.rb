@@ -8,12 +8,13 @@ require_relative 'historical_stats_tracker'
 # It generates rankings like top winners, best cup odds, head-to-head records,
 # and special achievements like "brick wall" (best defense) or "glass cannon" (high scoring).
 class BetStatsCalculator
-  attr_reader :stats
+  attr_reader :stats, :playoff_progression
   
   # Constants for Stanley Cup odds calculation
   PLAYOFF_TEAM_COUNT = 16  # Total number of playoff teams
   CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
   CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
+  AVERAGE_CUP_ODDS_PCT = 3.13  # Average cup odds if evenly distributed across 32 teams (100/32)
   
   # Constants for stat calculations
   MINIMUM_SCORING_RATE = 2.5  # Minimum goals/game for glass cannon consideration
@@ -69,7 +70,8 @@ class BetStatsCalculator
       most_improved: calculate_most_improved,
       hall_of_fame: calculate_hall_of_fame,
       sharks_victims: calculate_sharks_victims,
-      predators_victims: calculate_predators_victims
+      predators_victims: calculate_predators_victims,
+      playoff_progression: @playoff_progression
     }
   end
 
@@ -607,6 +609,72 @@ class BetStatsCalculator
       @cup_odds.each do |abbrev, odds|
         @cup_odds[abbrev] = ((odds / total_odds) * 100).round(2)
       end
+    end
+    
+    # Calculate progressive playoff probabilities  
+    calculate_playoff_progression_odds
+  end
+  
+  # Calculate progressive playoff stage odds for visualization
+  # Breaks down each team's playoff journey into stages:
+  # Make Playoffs → Make 2nd Round → Make 3rd Round → Make Finals → Win Cup
+  def calculate_playoff_progression_odds
+    @playoff_progression = {}
+    
+    return if @cup_odds.nil? || @cup_odds.empty?
+    
+    @teams.each do |team|
+      abbrev = team['teamAbbrev']['default']
+      next unless @manager_team_map[abbrev] && @manager_team_map[abbrev] != "N/A"
+      
+      conference_seq = team['conferenceSequence'].to_i
+      league_seq = team['leagueSequence'].to_i
+      point_pctg = team['pointPctg'].to_f
+      
+      # Make Playoffs probability (based on current playoff position)
+      make_playoffs_prob = if conference_seq > 0 && conference_seq <= CONFERENCE_PLAYOFF_SPOTS
+                              # Already in playoff position
+                              [85.0 + (point_pctg * 15.0), 99.9].min
+                            elsif conference_seq <= 12
+                              # In the hunt
+                              [50.0 - ((conference_seq - CONFERENCE_PLAYOFF_SPOTS) * 8.0), 1.0].max
+                            else
+                              # Long shot
+                              [5.0 - ((conference_seq - 12) * 0.5), 0.1].max
+                            end
+      
+      # Each subsequent round probability is based on cup odds and a decay factor
+      cup_odds_pct = @cup_odds[abbrev] || 0.1
+      
+      # Model: Each round has decreasing probability
+      # Round 1 (Make 2nd): 50% of teams advance (8 of 16)
+      # Round 2 (Make 3rd): 50% of teams advance (4 of 8)  
+      # Round 3 (Make Finals): 50% of teams advance (2 of 4)
+      # Finals (Win Cup): 50% chance (1 of 2)
+      
+      # Adjust base probabilities by team strength (cup_odds)
+      # Apply strength adjustment once when advancing out of first round,
+      # then use neutral 50% decay for subsequent rounds
+      strength_multiplier = 1.0 + ((cup_odds_pct - AVERAGE_CUP_ODDS_PCT) / 20.0)
+      
+      make_2nd_prob = (make_playoffs_prob * 0.50 * strength_multiplier).round(1)
+      make_3rd_prob = (make_2nd_prob * 0.50).round(1)
+      # Ensure probabilities are monotonically non-increasing
+      make_3rd_prob = [make_3rd_prob, make_2nd_prob].min
+      make_finals_prob = (make_3rd_prob * 0.50).round(1)
+      make_finals_prob = [make_finals_prob, make_3rd_prob].min
+      # Winning the cup cannot be more likely than making the finals
+      win_cup_prob = [cup_odds_pct.round(1), make_finals_prob].min
+      
+      @playoff_progression[abbrev] = {
+        team: team['teamName']['default'],
+        fan: @manager_team_map[abbrev],
+        make_playoffs: make_playoffs_prob.round(1),
+        make_2nd_round: make_2nd_prob,
+        make_3rd_round: make_3rd_prob,
+        make_finals: make_finals_prob,
+        win_cup: win_cup_prob
+      }
     end
   end
 
