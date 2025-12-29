@@ -12,7 +12,7 @@ class MobileGestures {
     this.isDragging = false;
     this.pullToRefreshThreshold = 80;
     this.swipeThreshold = 50;
-    this.tabs = ['league', 'matchups', 'standings', 'trends'];
+    this.tabs = ['league', 'matchups', 'standings', 'playoff-odds', 'trends'];
     this.currentTabIndex = 0;
     
     this.init();
@@ -124,7 +124,9 @@ class MobileGestures {
     if (!appContainer) return;
     
     let startX = 0;
+    let startY = 0;
     let isSwiping = false;
+    let isHorizontalSwipe = false;
     
     appContainer.addEventListener('touchstart', (e) => {
       // Don't interfere with interactive controls (buttons, links, form inputs)
@@ -134,18 +136,28 @@ class MobileGestures {
       }
       
       startX = e.touches[0].pageX;
+      startY = e.touches[0].pageY;
       isSwiping = true;
+      isHorizontalSwipe = false;
     }, { passive: true });
     
     appContainer.addEventListener('touchmove', (e) => {
       if (!isSwiping) return;
       
       const currentX = e.touches[0].pageX;
-      const diff = currentX - startX;
+      const currentY = e.touches[0].pageY;
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
       
-      // Show visual feedback for swipe
-      if (Math.abs(diff) > 10) {
-        appContainer.style.transform = `translateX(${diff * 0.3}px)`;
+      // Determine if this is a horizontal or vertical swipe
+      if (!isHorizontalSwipe && Math.abs(diffX) > 10 && Math.abs(diffY) > 10) {
+        // Determine swipe direction based on which movement is greater
+        isHorizontalSwipe = Math.abs(diffX) > Math.abs(diffY);
+      }
+      
+      // Only show visual feedback for horizontal swipes
+      if (isHorizontalSwipe && Math.abs(diffX) > 10) {
+        appContainer.style.transform = `translateX(${diffX * 0.3}px)`;
         appContainer.style.transition = 'none';
       }
     }, { passive: true });
@@ -160,8 +172,8 @@ class MobileGestures {
       appContainer.style.transform = '';
       appContainer.style.transition = 'transform 0.3s ease';
       
-      // Detect swipe direction
-      if (Math.abs(diff) > this.swipeThreshold) {
+      // Only navigate if this was a horizontal swipe
+      if (isHorizontalSwipe && Math.abs(diff) > this.swipeThreshold) {
         if (diff > 0) {
           // Swipe right - go to previous tab
           this.navigatePrevTab();
@@ -172,6 +184,7 @@ class MobileGestures {
       }
       
       isSwiping = false;
+      isHorizontalSwipe = false;
     }, { passive: true });
   }
   

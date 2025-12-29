@@ -1293,8 +1293,6 @@ h3 {
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     flex-shrink: 0;
 }
 
@@ -2707,5 +2705,121 @@ h3 {
     .featured-time-compact,
     .featured-prediction-compact {
         justify-content: center;
+    }
+}
+
+/* Playoff Odds Specific Styles */
+
+.playoff-odds-summary {
+    margin-bottom: 1rem;
+}
+
+.playoff-odds-summary table {
+    font-size: 0.8rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.playoff-odds-summary th {
+    padding: 0.4rem 0.3rem;
+    text-align: left;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.playoff-odds-summary td {
+    padding: 0.5rem 0.3rem;
+    border-bottom: 1px solid rgba(42, 58, 82, 0.3);
+}
+
+/* Chart.js legend styling for playoff odds chart */
+#playoffOddsChart + .chartjs-legend,
+.chart-container .chartjs-legend,
+.chart-container canvas + div {
+    color: #ffffff !important;
+}
+
+.chart-container .chartjs-legend ul,
+.chart-container .chartjs-legend li {
+    color: #ffffff !important;
+}
+
+/* Override Chart.js default legend text color */
+#playoff-odds-tab .chart-container canvas {
+    color: #ffffff;
+}
+
+#playoff-odds-tab .chart-container {
+    --legend-text-color: #ffffff;
+}
+
+/* Responsive improvements for playoff odds */
+@media (max-width: 767px) {
+    .playoff-odds-summary table {
+        font-size: 0.75rem;
+    }
+    
+    .playoff-odds-summary th,
+    .playoff-odds-summary td {
+        padding: 0.4rem 0.25rem;
+    }
+    
+    /* Make table horizontally scrollable on small screens */
+    .playoff-odds-summary > div {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Better spacing for tab sections */
+.tab-section {
+    padding: 0;
+    margin: 0;
+}
+
+.tab-section > h2:first-child {
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+}
+
+.tab-section > * {
+    margin-bottom: 0.75rem;
+}
+
+.tab-section > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Ensure consistent card spacing across all tabs */
+.matchup-card,
+.team-card,
+.achievement-card,
+.stat-card-square {
+    margin-bottom: 0.85rem;
+}
+
+/* Fix any potential overflow issues */
+.app-container {
+    overflow-x: hidden;
+}
+
+/* Improve touch target sizes for better mobile experience */
+@media (max-width: 767px) {
+    /* Ensure buttons and interactive elements meet minimum touch target size */
+    button, .nav-item, .desktop-tab, .date-group-toggle {
+        min-height: var(--min-touch-target);
+        min-width: var(--min-touch-target);
+    }
+    
+    /* Better spacing between sections on mobile */
+    .tab-section > * {
+        margin-bottom: 0.85rem;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
     }
 }

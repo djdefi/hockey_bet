@@ -61,14 +61,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
 }
 
 h3 {
@@ -336,43 +338,59 @@ h3 {
 
 /* Top 3 Leaders - Compact Layout */
 .leaders-compact-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 0.85rem;
-    margin-bottom: 0.85rem;
+    background: rgba(26, 37, 58, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 0.7rem;
+    margin-bottom: 0.7rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.6rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .leader-compact-item {
-    background: rgba(26, 37, 58, 0.6);
-    border: 1px solid rgba(42, 58, 82, 0.5);
-    border-radius: 8px;
-    padding: 0.75rem;
+    background: rgba(26, 37, 58, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.65rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.45rem;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.leader-compact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(33, 209, 159, 0.2);
+    border-color: rgba(33, 209, 159, 0.3);
 }
 
 .leader-compact-item.leader-first {
-    border-color: rgba(33, 209, 159, 0.3);
-    background: rgba(33, 209, 159, 0.03);
+    border-color: rgba(33, 209, 159, 0.4);
+    background: linear-gradient(135deg, rgba(33, 209, 159, 0.08) 0%, rgba(26, 37, 58, 0.5) 100%);
+    box-shadow: 0 0 24px rgba(33, 209, 159, 0.15);
 }
 
 .leader-rank-badge {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.4rem;
+    right: 0.4rem;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.6rem;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .leader-rank-badge.rank-1 {
@@ -946,9 +964,8 @@ h3 {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    /* Smooth scrolling on touch devices */
+    gap: 0.35rem;
+    margin-bottom: 0.9rem;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
@@ -981,29 +998,41 @@ h3 {
 }
 
 .stat-card-square {
-    flex: 0 0 125px;
-    width: 125px;
-    height: 125px;
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.8) 100%);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
+    flex: 0 0 95px;
+    width: 95px;
+    height: 95px;
+    background: rgba(26, 37, 58, 0.35);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 0.65rem;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     position: relative;
-    /* Improve tap highlighting */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
     tap-highlight-color: rgba(33, 209, 159, 0.1);
-    /* Optimize rendering */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    /* Note: will-change removed per code review - should be applied dynamically via JS only when needed
-       to avoid memory overhead on many static elements. Static CSS will-change can hurt performance. */
+}
+
+/* Add gradient overlay for visual depth */
+.stat-card-square::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(33, 209, 159, 0.03) 0%, transparent 50%, rgba(33, 209, 159, 0.01) 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Add subtle shimmer effect */
@@ -1024,9 +1053,9 @@ h3 {
 }
 
 .stat-card-square:hover {
-    transform: scale(1.05) translateY(-4px);
-    box-shadow: 0 8px 24px rgba(33, 209, 159, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
-    border-color: rgba(33, 209, 159, 0.3);
+    transform: scale(1.08) translateY(-6px);
+    box-shadow: 0 12px 30px rgba(33, 209, 159, 0.25), 0 8px 20px rgba(0, 0, 0, 0.45);
+    border-color: rgba(33, 209, 159, 0.5);
 }
 
 .stat-card-square:active {
@@ -1191,14 +1220,17 @@ h3 {
 
 /* Matchup Cards - Compact Design */
 .matchup-card {
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.9) 100%);
-    border-radius: 8px;
-    padding: 0.65rem;
-    margin-bottom: 0.65rem;
-    border: 1px solid var(--border-color);
+    background: rgba(26, 37, 58, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 14px;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 /* Add battle-themed gradient overlay */
@@ -1224,9 +1256,9 @@ h3 {
 }
 
 .matchup-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(41, 128, 185, 0.15), 0 3px 10px rgba(0, 0, 0, 0.3);
-    border-color: rgba(41, 128, 185, 0.4);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 32px rgba(33, 209, 159, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-color: rgba(33, 209, 159, 0.4);
 }
 
 /* Compact team header with logos side by side */
@@ -1256,10 +1288,10 @@ h3 {
 }
 
 .team-logo {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     flex-shrink: 0;
 }
@@ -1992,13 +2024,6 @@ h3 {
     }
 }
 
-/* Hide old Primer-based styles on mobile */
-@media (max-width: 767px) {
-    .old-table-view {
-        display: none;
-    }
-}
-
 /* Chart styling */
 .chart-container {
     background-color: var(--bg-card);
@@ -2680,5 +2705,100 @@ h3 {
     .featured-time-compact,
     .featured-prediction-compact {
         justify-content: center;
+    }
+}
+
+/* Playoff Odds Specific Styles */
+
+.playoff-odds-summary {
+    margin-bottom: 1rem;
+}
+
+.playoff-odds-summary table {
+    font-size: 0.8rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.playoff-odds-summary th {
+    padding: 0.4rem 0.3rem;
+    text-align: left;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.playoff-odds-summary td {
+    padding: 0.5rem 0.3rem;
+    border-bottom: 1px solid rgba(42, 58, 82, 0.3);
+}
+
+/* Responsive improvements for playoff odds */
+@media (max-width: 767px) {
+    .playoff-odds-summary table {
+        font-size: 0.75rem;
+    }
+    
+    .playoff-odds-summary th,
+    .playoff-odds-summary td {
+        padding: 0.4rem 0.25rem;
+    }
+    
+    /* Make table horizontally scrollable on small screens */
+    .playoff-odds-summary > div {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Better spacing for tab sections */
+.tab-section {
+    padding: 0;
+    margin: 0;
+}
+
+.tab-section > h2:first-child {
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+}
+
+.tab-section > * {
+    margin-bottom: 0.75rem;
+}
+
+.tab-section > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Ensure consistent card spacing across all tabs */
+.matchup-card,
+.team-card,
+.achievement-card,
+.stat-card-square {
+    margin-bottom: 0.85rem;
+}
+
+/* Fix any potential overflow issues */
+.app-container {
+    overflow-x: hidden;
+}
+
+/* Improve touch target sizes for better mobile experience */
+@media (max-width: 767px) {
+    /* Ensure buttons and interactive elements meet minimum touch target size */
+    button, .nav-item, .desktop-tab, .date-group-toggle {
+        min-height: var(--min-touch-target);
+        min-width: var(--min-touch-target);
+    }
+    
+    /* Better spacing between sections on mobile */
+    .tab-section > * {
+        margin-bottom: 0.85rem;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+        overflow-x: hidden;
     }
 }

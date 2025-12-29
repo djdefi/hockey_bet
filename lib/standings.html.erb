@@ -912,15 +912,22 @@
 
         <!-- Tab: Playoff Odds (Sunburst Chart) -->
         <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
-            <div class="chart-container">
-                <h2 style="margin-bottom: 1rem;">🏆 Playoff Progression Odds</h2>
-                <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 0.9rem;">
-                    Each ring shows the probability of reaching that playoff stage. 
-                    Inner ring = Make Playoffs, Outer ring = Win Stanley Cup
+            <h2 style="margin-bottom: 0.75rem; text-align: center; font-size: 1.15rem;">🏆 Playoff Progression Odds</h2>
+            
+            <!-- Chart Section - Multi-Ring Doughnut Chart -->
+            <div class="chart-container" style="padding: 0.75rem; margin-bottom: 1rem;">
+                <h3 style="margin-bottom: 0.25rem; text-align: center; font-size: 0.95rem; color: #ffffff;">Visualization</h3>
+                <p style="margin: 0 0 0.5rem 0; text-align: center; font-size: 0.75rem; color: #8da1b9;">
+                    Inner ring = Make Playoffs • Outer ring = Win Cup
                 </p>
-                <div style="position: relative; height: 600px; max-width: 800px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Sunburst chart showing playoff progression odds for each fan team"></canvas>
+                <div style="position: relative; height: 400px; max-width: 600px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Multi-ring doughnut chart showing playoff progression odds for each fan team"></canvas>
                 </div>
+            </div>
+            
+            <!-- Compact Playoff Odds Summary Table -->
+            <div id="playoffOddsSummary" class="playoff-odds-summary" style="margin-bottom: 1rem;">
+                <!-- Will be populated by JavaScript -->
             </div>
         </div>
 
@@ -1441,16 +1448,83 @@
             // Create datasets for each playoff stage (rings)
             const teams = Object.keys(playoffData);
             
-            // Generate distinct colors for all teams
+            
+            // Populate Compact Playoff Odds Summary Table
+            const summaryContainer = document.getElementById('playoffOddsSummary');
+            if (summaryContainer) {
+                const sortedByCup = teams
+                    .map(abbrev => ({
+                        ...playoffData[abbrev],
+                        abbrev: abbrev
+                    }))
+                    .sort((a, b) => (b.win_cup || 0) - (a.win_cup || 0)); // Sort by Cup odds
+                
+                // Function to get emoji based on percentage
+                function getOddsEmoji(percentage) {
+                    if (percentage >= 50) return '🔥';
+                    if (percentage >= 25) return '📈';
+                    if (percentage >= 10) return '✅';
+                    if (percentage >= 5) return '🎯';
+                    return '📊';
+                }
+                
+                let summaryHtml = `
+                    <div style="background: var(--bg-card); border-radius: 8px; padding: 0.75rem; overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--border-color);">
+                                    <th style="padding: 0.4rem 0.3rem; text-align: left; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Fan</th>
+                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">P-offs</th>
+                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R2</th>
+                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R3</th>
+                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Finals</th>
+                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Cup</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                sortedByCup.forEach((team, idx) => {
+                    const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.02)';
+                    const cupOdds = team.win_cup || 0;
+                    const cupEmoji = getOddsEmoji(cupOdds);
+                    summaryHtml += `
+                        <tr style="border-bottom: 1px solid rgba(42, 58, 82, 0.3); background: ${rowBg};">
+                            <td style="padding: 0.5rem 0.3rem; color: var(--text-primary); font-weight: 500; font-size: 0.8rem;">
+                                <div style="line-height: 1.2;">${team.fan}</div>
+                                <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.1rem; line-height: 1.2;">${team.team}</div>
+                            </td>
+                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_playoffs || 0).toFixed(0)}%</td>
+                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_2nd_round || 0).toFixed(0)}%</td>
+                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_3rd_round || 0).toFixed(0)}%</td>
+                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_finals || 0).toFixed(0)}%</td>
+                            <td style="padding: 0.5rem 0.3rem; text-align: right; font-weight: 600; color: var(--accent-green); white-space: nowrap;">
+                                ${cupEmoji} ${cupOdds.toFixed(0)}%
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                summaryHtml += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                summaryContainer.innerHTML = summaryHtml;
+            }
+            
+            
+            // Generate team colors
             function generateTeamColors(count) {
                 const colors = [];
                 const hueStep = 360 / count;
+                const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
-                    const hue = i * hueStep;
+                    const hue = (i * hueStep + hueOffset) % 360;
                     colors.push({
                         h: hue,
-                        s: 70,
-                        l: 50
+                        s: 75,
+                        l: 58
                     });
                 }
                 return colors;
@@ -1469,7 +1543,7 @@
             
             const datasets = [];
             
-            // Build datasets - each stage is a separate dataset
+            // Build datasets - each stage is a separate dataset (ring)
             stages.forEach((stage, stageIndex) => {
                 const data = teams.map(teamAbbrev => playoffData[teamAbbrev][stage] || 0);
                 
@@ -1477,7 +1551,7 @@
                     label: stageLabels[stageIndex],
                     data: data,
                     backgroundColor: colors.map(c => {
-                        // Make inner rings more transparent
+                        // Make inner rings more transparent, outer rings more opaque
                         const alpha = 0.5 + (stageIndex * 0.1);
                         return hslToHsla(c, alpha);
                     }),
@@ -1510,25 +1584,41 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: false
-                        },
                         legend: {
                             display: true,
                             position: 'bottom',
+                            align: 'start',
                             labels: {
-                                generateLabels: function(chart) {
-                                    return chart.data.datasets.map((dataset, i) => ({
-                                        text: dataset.label,
-                                        fillStyle: chart.data.datasets[i].backgroundColor[0],
-                                        hidden: false,
-                                        index: i
-                                    }));
-                                },
-                                color: '#8da1b9',
-                                padding: 15,
+                                color: '#ffffff',
+                                padding: 10,
                                 font: {
-                                    size: 12
+                                    size: 12,
+                                    weight: '500',
+                                    family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                                },
+                                boxWidth: 20,
+                                boxHeight: 12,
+                                usePointStyle: false,
+                                textAlign: 'left',
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (!data.labels || !data.datasets) return [];
+                                    
+                                    return data.labels.map((label, i) => {
+                                        const teamAbbrev = teams[i];
+                                        const teamData = playoffData[teamAbbrev];
+                                        const color = colors[i];
+                                        
+                                        return {
+                                            text: `${label} ${teamData.win_cup.toFixed(0)}%`,
+                                            fillStyle: hslToHsla(color, 0.85),
+                                            strokeStyle: '#ffffff',
+                                            lineWidth: 1,
+                                            fontColor: '#ffffff',
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
                                 }
                             }
                         },
@@ -1552,7 +1642,7 @@
                             }
                         }
                     },
-                    cutout: '20%', // Create the center hole
+                    cutout: '20%', // Smaller cutout for multi-ring display
                     radius: '95%'
                 }
             });
