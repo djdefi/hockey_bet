@@ -244,6 +244,13 @@
 /* ========================================
    LEGACY VARIABLE ALIASES
    For backward compatibility with existing code
+   
+   ⚠️ DEPRECATION NOTICE: 
+   These aliases will be maintained for backward compatibility.
+   New code should use the full token names (e.g., var(--color-bg-primary))
+   instead of legacy aliases (e.g., var(--bg-primary)).
+   
+   No removal timeline - aliases will remain indefinitely for stability.
    ======================================== */
 
 :root {
