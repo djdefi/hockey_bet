@@ -919,11 +919,11 @@
                 <!-- Will be populated by JavaScript -->
             </div>
             
-            <!-- Chart Section - Polar Area Chart -->
+            <!-- Chart Section - Doughnut Chart -->
             <div class="chart-container" style="padding: 0.75rem; margin-bottom: 0.5rem;">
                 <h3 style="margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem; color: var(--text-secondary);">Stanley Cup Odds</h3>
-                <div style="position: relative; height: 450px; max-width: 650px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Polar area chart showing Stanley Cup odds for each fan team"></canvas>
+                <div style="position: relative; height: 400px; max-width: 600px; margin: 0 auto;">
+                    <canvas id="playoffOddsChart" role="img" aria-label="Doughnut chart showing Stanley Cup odds for each fan team"></canvas>
                 </div>
             </div>
         </div>
@@ -1511,7 +1511,7 @@
             }
             
             
-            // Prepare data sorted by Cup odds for polar area chart
+            // Prepare data sorted by Cup odds for doughnut chart
             const sortedTeams = teams
                 .map(abbrev => ({
                     abbrev: abbrev,
@@ -1528,7 +1528,7 @@
                 const hueOffset = 20;
                 for (let i = 0; i < count; i++) {
                     const hue = (i * hueStep + hueOffset) % 360;
-                    colors.push(`hsla(${hue}, 80%, 60%, 0.9)`);
+                    colors.push(`hsla(${hue}, 75%, 58%, 0.9)`);
                 }
                 return colors;
             }
@@ -1550,13 +1550,13 @@
             const ctx = canvas.getContext('2d');
             
             playoffOddsChartInstance = new Chart(ctx, {
-                type: 'polarArea',
+                type: 'doughnut',
                 data: {
                     labels: sortedTeams.map(t => t.fan),
                     datasets: [{
                         data: sortedTeams.map(t => t.cupOdds),
                         backgroundColor: colors,
-                        borderColor: colors.map(c => c.replace('0.9)', '1)')),
+                        borderColor: '#1a253a',
                         borderWidth: 2
                     }]
                 },
@@ -1566,25 +1566,27 @@
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'right',
+                            position: 'bottom',
                             labels: {
                                 color: '#ffffff',
-                                padding: 12,
+                                padding: 8,
                                 font: {
-                                    size: 12,
+                                    size: 11,
                                     weight: '500'
                                 },
-                                boxWidth: 20,
-                                boxHeight: 20,
+                                boxWidth: 15,
+                                boxHeight: 15,
                                 generateLabels: function(chart) {
                                     const data = chart.data;
+                                    if (!data.labels || !data.datasets || !data.datasets[0]) return [];
+                                    
                                     return data.labels.map((label, i) => {
                                         const value = data.datasets[0].data[i];
                                         return {
-                                            text: `${label}: ${value.toFixed(0)}%`,
+                                            text: `${label} ${value.toFixed(0)}%`,
                                             fillStyle: data.datasets[0].backgroundColor[i],
-                                            strokeStyle: data.datasets[0].borderColor[i],
-                                            lineWidth: 2,
+                                            strokeStyle: data.datasets[0].borderColor,
+                                            lineWidth: 1,
                                             hidden: false,
                                             index: i
                                         };
@@ -1605,36 +1607,12 @@
                                     return sortedTeams[index].fan + ' - ' + sortedTeams[index].team;
                                 },
                                 label: function(context) {
-                                    return 'Cup Odds: ' + context.parsed.r.toFixed(1) + '%';
+                                    return 'Cup Odds: ' + context.parsed.toFixed(1) + '%';
                                 }
                             }
                         }
                     },
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                color: '#8da1b9',
-                                backdropColor: 'transparent',
-                                font: {
-                                    size: 11
-                                },
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(141, 161, 185, 0.2)'
-                            },
-                            angleLines: {
-                                color: 'rgba(141, 161, 185, 0.2)'
-                            },
-                            pointLabels: {
-                                display: false // Hide point labels to avoid clutter
-                            }
-                        }
-                    }
+                    cutout: '50%' // Doughnut hole size
                 }
             });
             
