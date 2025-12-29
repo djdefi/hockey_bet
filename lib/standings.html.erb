@@ -1587,15 +1587,19 @@
                         legend: {
                             display: true,
                             position: 'bottom',
+                            align: 'start',
                             labels: {
                                 color: '#ffffff',
-                                padding: 8,
+                                padding: 10,
                                 font: {
-                                    size: 11,
-                                    weight: '500'
+                                    size: 12,
+                                    weight: '500',
+                                    family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 },
-                                boxWidth: 15,
-                                boxHeight: 15,
+                                boxWidth: 20,
+                                boxHeight: 12,
+                                usePointStyle: false,
+                                textAlign: 'left',
                                 generateLabels: function(chart) {
                                     const data = chart.data;
                                     if (!data.labels || !data.datasets) return [];
@@ -1607,9 +1611,10 @@
                                         
                                         return {
                                             text: `${label} ${teamData.win_cup.toFixed(0)}%`,
-                                            fillStyle: hslToHsla(color, 0.8),
-                                            strokeStyle: hslToHsla(color, 1),
+                                            fillStyle: hslToHsla(color, 0.85),
+                                            strokeStyle: '#ffffff',
                                             lineWidth: 1,
+                                            fontColor: '#ffffff',
                                             hidden: false,
                                             index: i
                                         };

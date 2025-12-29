@@ -2734,6 +2734,27 @@ h3 {
     border-bottom: 1px solid rgba(42, 58, 82, 0.3);
 }
 
+/* Chart.js legend styling for playoff odds chart */
+#playoffOddsChart + .chartjs-legend,
+.chart-container .chartjs-legend,
+.chart-container canvas + div {
+    color: #ffffff !important;
+}
+
+.chart-container .chartjs-legend ul,
+.chart-container .chartjs-legend li {
+    color: #ffffff !important;
+}
+
+/* Override Chart.js default legend text color */
+#playoff-odds-tab .chart-container canvas {
+    color: #ffffff;
+}
+
+#playoff-odds-tab .chart-container {
+    --legend-text-color: #ffffff;
+}
+
 /* Responsive improvements for playoff odds */
 @media (max-width: 767px) {
     .playoff-odds-summary table {
