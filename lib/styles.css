@@ -2709,3 +2709,63 @@ h3 {
         justify-content: center;
     }
 }
+
+/* Playoff Odds Specific Styles */
+.playoff-top-contenders {
+    margin-bottom: 1.5rem;
+}
+
+.playoff-odds-summary {
+    margin-bottom: 1.5rem;
+}
+
+.playoff-odds-summary table {
+    font-size: 0.85rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.playoff-odds-summary th {
+    padding: 0.5rem;
+    text-align: left;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.playoff-odds-summary td {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Responsive improvements for playoff odds */
+@media (max-width: 767px) {
+    .playoff-odds-summary table {
+        font-size: 0.75rem;
+    }
+    
+    .playoff-odds-summary th,
+    .playoff-odds-summary td {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    /* Make table horizontally scrollable on small screens */
+    .playoff-odds-summary > div {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Better spacing for tab sections */
+.tab-section {
+    padding: 0;
+    margin: 0;
+}
+
+.tab-section > * {
+    margin-bottom: 1rem;
+}
+
+.tab-section > *:last-child {
+    margin-bottom: 0;
+}
