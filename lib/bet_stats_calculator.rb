@@ -14,6 +14,7 @@ class BetStatsCalculator
   PLAYOFF_TEAM_COUNT = 16  # Total number of playoff teams
   CONFERENCE_PLAYOFF_SPOTS = 8  # Number of playoff spots per conference
   CONFERENCE_BONUS_MULTIPLIER = 5.0  # Bonus multiplier for conference position
+  AVERAGE_CUP_ODDS_PCT = 3.13  # Average cup odds if evenly distributed across 32 teams (100/32)
   
   # Constants for stat calculations
   MINIMUM_SCORING_RATE = 2.5  # Minimum goals/game for glass cannon consideration
@@ -653,7 +654,7 @@ class BetStatsCalculator
       # Finals (Win Cup): 50% chance (1 of 2)
       
       # Adjust base probabilities by team strength (cup_odds)
-      strength_multiplier = 1.0 + ((cup_odds_pct - 3.13) / 20.0) # 3.13 = average if evenly distributed across 32 teams
+      strength_multiplier = 1.0 + ((cup_odds_pct - AVERAGE_CUP_ODDS_PCT) / 20.0)
       
       make_2nd_prob = (make_playoffs_prob * 0.50 * strength_multiplier).round(1)
       make_3rd_prob = (make_2nd_prob * 0.50 * strength_multiplier).round(1)
