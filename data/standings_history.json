@@ -2424,18 +2424,18 @@
         "goals_for": 115,
         "goals_against": 110,
         "goal_diff": 5,
-        "division_rank": 1,
-        "conference_rank": 4
+        "division_rank": 2,
+        "conference_rank": 5
       },
       "Mike M.": {
         "points": 45,
         "wins": 20,
-        "losses": 13,
+        "losses": 14,
         "ot_losses": 5,
-        "games_played": 38,
-        "goals_for": 121,
-        "goals_against": 106,
-        "goal_diff": 15,
+        "games_played": 39,
+        "goals_for": 124,
+        "goals_against": 111,
+        "goal_diff": 13,
         "division_rank": 4,
         "conference_rank": 7
       },
@@ -2448,8 +2448,8 @@
         "goals_for": 130,
         "goals_against": 132,
         "goal_diff": -2,
-        "division_rank": 2,
-        "conference_rank": 5
+        "division_rank": 3,
+        "conference_rank": 6
       },
       "Ryan B.": {
         "points": 42,
@@ -2461,7 +2461,7 @@
         "goals_against": 118,
         "goal_diff": -2,
         "division_rank": 5,
-        "conference_rank": 9
+        "conference_rank": 10
       },
       "Travis R.": {
         "points": 42,
@@ -2472,8 +2472,8 @@
         "goals_for": 106,
         "goals_against": 114,
         "goal_diff": -8,
-        "division_rank": 5,
-        "conference_rank": 10
+        "division_rank": 6,
+        "conference_rank": 11
       },
       "Sean R.": {
         "points": 41,
@@ -2538,12 +2538,12 @@
       "Dan R.": {
         "points": 34,
         "wins": 15,
-        "losses": 17,
+        "losses": 18,
         "ot_losses": 4,
-        "games_played": 36,
-        "goals_for": 106,
-        "goals_against": 111,
-        "goal_diff": -5,
+        "games_played": 37,
+        "goals_for": 107,
+        "goals_against": 114,
+        "goal_diff": -7,
         "division_rank": 7,
         "conference_rank": 14
       }
