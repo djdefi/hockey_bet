@@ -50,7 +50,7 @@
         <!-- Header -->
         <header class="mb-3" role="banner">
             <h1>🏒 NHL Fan League</h1>
-            <p class="text-secondary" style="font-size: 0.9rem;">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
+            <p class="text-secondary text-md mb-2">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
         </header>
 
         <!-- Desktop Tabs (hidden on mobile) -->
@@ -186,7 +186,7 @@
                                          alt="<%= matchup[:away_team] %> logo" 
                                          class="featured-logo-dense"
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div class="logo-fallback-dense" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                                    <div class="logo-fallback-dense hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
                                     <div class="featured-fan-name-dense"><%= matchup[:away_fan] %></div>
@@ -230,7 +230,7 @@
                                          alt="<%= matchup[:home_team] %> logo" 
                                          class="featured-logo-dense"
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div class="logo-fallback-dense" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                                    <div class="logo-fallback-dense hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
                                     <div class="featured-fan-name-dense"><%= matchup[:home_fan] %></div>
@@ -482,7 +482,11 @@
                 
                 <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
                     <% is_expandable = bet_stats[:worst_cup_odds].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Needs help achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %> style="background-color: rgba(231, 76, 60, 0.1);">
+                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %> bg-danger-subtle" 
+                         role="<%= is_expandable ? 'button' : 'article' %>" 
+                         aria-label="Needs help achievement" 
+                         <%= 'tabindex="0"' if is_expandable %> 
+                         <%= 'aria-expanded="false"' if is_expandable %>>
                         <div class="stat-emoji" aria-hidden="true">😢</div>
                         <div class="stat-label">Needs Help</div>
                         <div class="achievement-entries">
@@ -518,7 +522,7 @@
                                          alt="<%= matchup[:away_team] %> logo" 
                                          class="team-logo"
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:away_abbrev] %></div>
+                                    <div class="team-logo-fallback hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div>
                                     <div class="matchup-fan-name"><%= matchup[:away_fan] %></div>
@@ -532,7 +536,7 @@
                                          alt="<%= matchup[:home_team] %> logo" 
                                          class="team-logo"
                                          onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div class="team-logo-fallback" style="display:none;"><%= matchup[:home_abbrev] %></div>
+                                    <div class="team-logo-fallback hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div>
                                     <div class="matchup-fan-name"><%= matchup[:home_fan] %></div>
@@ -738,10 +742,9 @@
                             <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
                             <img src="<%= get_team_logo_url(team_abbrev) %>" 
                                  alt="<%= team['teamName']['default'] %> logo" 
-                                 class="team-logo"
-                                 style="width: 40px; height: 40px; object-fit: contain; margin-right: 0.75rem;"
+                                 class="team-logo w-10 h-10 object-contain mr-3"
                                  onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="team-logo-fallback" style="display:none; width: 40px; height: 40px; margin-right: 0.75rem; font-size: 0.7rem;"><%= team_abbrev %></div>
+                            <div class="team-logo-fallback hidden w-10 h-10 mr-3 text-xs"><%= team_abbrev %></div>
                             <div class="team-info">
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
                                 <div class="team-fan"><%= fan_name %></div>
@@ -846,7 +849,7 @@
                         <% if team_badges.any? %>
                         <div class="team-badges">
                             <% team_badges.each do |badge| %>
-                                <div class="achievement-badge" style="background-color: <%= badge[:color] %>;">
+                                <div class="achievement-badge" style="--badge-bg: <%= badge[:color] %>;">
                                     <span class="badge-emoji"><%= badge[:emoji] %></span>
                                     <span class="badge-label"><%= badge[:label] %></span>
                                     <span class="badge-value"><%= badge[:value] %></span>
@@ -912,21 +915,21 @@
 
         <!-- Tab: Playoff Odds (Sunburst Chart) -->
         <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
-            <h2 style="margin-bottom: 0.75rem; text-align: center; font-size: 1.15rem;">🏆 Playoff Progression Odds</h2>
+            <h2 class="mb-3 text-center text-xl">🏆 Playoff Progression Odds</h2>
             
             <!-- Chart Section - Multi-Ring Doughnut Chart -->
-            <div class="chart-container" style="padding: 0.75rem; margin-bottom: 1rem;">
-                <h3 style="margin-bottom: 0.25rem; text-align: center; font-size: 0.95rem; color: #ffffff;">Visualization</h3>
-                <p style="margin: 0 0 0.5rem 0; text-align: center; font-size: 0.75rem; color: #8da1b9;">
+            <div class="chart-container p-3 mb-4">
+                <h3 class="mb-1 text-center text-md text-primary">Visualization</h3>
+                <p class="my-0 mb-2 text-center text-xs text-secondary">
                     Inner ring = Make Playoffs • Outer ring = Win Cup
                 </p>
-                <div style="position: relative; height: 400px; max-width: 600px; margin: 0 auto;">
+                <div class="relative" style="height: 400px; max-width: 600px; margin: 0 auto;">
                     <canvas id="playoffOddsChart" role="img" aria-label="Multi-ring doughnut chart showing playoff progression odds for each fan team"></canvas>
                 </div>
             </div>
             
             <!-- Compact Playoff Odds Summary Table -->
-            <div id="playoffOddsSummary" class="playoff-odds-summary" style="margin-bottom: 1rem;">
+            <div id="playoffOddsSummary" class="playoff-odds-summary mb-4">
                 <!-- Will be populated by JavaScript -->
             </div>
         </div>
@@ -934,11 +937,11 @@
         <!-- Tab: Trends (Chart) -->
         <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
             <div class="chart-container">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
-                    <h2 style="margin: 0;">Fan League Standings Trend</h2>
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <label for="seasonSelector" style="font-size: 0.9rem; color: #8da1b9;">Season:</label>
-                        <select id="seasonSelector" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #2a3a52; background: #1a253a; color: #8da1b9; font-size: 0.9rem;">
+                <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+                    <h2 class="m-0">Fan League Standings Trend</h2>
+                    <div class="flex items-center gap-2">
+                        <label for="seasonSelector" class="text-md text-secondary">Season:</label>
+                        <select id="seasonSelector" class="px-2 py-2 rounded-md border border-default bg-secondary text-secondary text-md">
                             <option value="">Loading...</option>
                         </select>
                     </div>
@@ -1152,7 +1155,7 @@
                     console.log('No standings history data available yet');
                     const canvas = document.getElementById('leagueTrendChart');
                     if (canvas && canvas.parentElement) {
-                        canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">No trend data available yet. Check back after a few days of tracking.</p>';
+                        canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">No trend data available yet. Check back after a few days of tracking.</p>';
                     }
                     return;
                 }
@@ -1190,7 +1193,7 @@
                 console.error('Error loading standings trend chart:', error);
                 const canvas = document.getElementById('leagueTrendChart');
                 if (canvas && canvas.parentElement) {
-                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Unable to load trend chart. Please try again later.</p>';
+                    canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">Unable to load trend chart. Please try again later.</p>';
                 }
             }
         }
@@ -1209,7 +1212,7 @@
                 if (canvas && canvas.parentElement && canvas.parentElement.parentElement) {
                     // Find just the canvas to replace
                     const chartArea = canvas.parentElement;
-                    chartArea.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">No trend data available for this season yet.</p>';
+                    chartArea.innerHTML = '<p class="text-secondary text-center p-8">No trend data available for this season yet.</p>';
                 }
                 return;
             }
@@ -1224,11 +1227,11 @@
                     const heading = chartContainer.querySelector('h2') || chartContainer.querySelector('div');
                     if (heading && heading.nextElementSibling === canvas) {
                         canvas.outerHTML = `
-                            <div style="text-align: center; padding: 2rem;">
-                                <p class="text-secondary" style="margin-bottom: 1rem;">
+                            <div class="text-center p-8">
+                                <p class="text-secondary mb-4">
                                     <strong>Trend tracking started on ${date}</strong>
                                 </p>
-                                <p class="text-secondary" style="font-size: 0.9rem;">
+                                <p class="text-secondary text-md">
                                     Trends will appear once data from multiple days is collected.<br>
                                     Check back tomorrow to see the standings trend chart!
                                 </p>
@@ -1439,7 +1442,7 @@
                 console.log('No playoff odds data available');
                 const canvas = document.getElementById('playoffOddsChart');
                 if (canvas && canvas.parentElement) {
-                    canvas.parentElement.innerHTML = '<p class="text-secondary" style="text-align: center; padding: 2rem;">Playoff odds data not available yet.</p>';
+                    canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">Playoff odds data not available yet.</p>';
                 }
                 return;
             }
