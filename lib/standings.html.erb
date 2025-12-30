@@ -50,7 +50,7 @@
         <!-- Header -->
         <header class="mb-3" role="banner">
             <h1>🏒 NHL Fan League</h1>
-            <p class="text-secondary text-sm mb-2">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
+            <p class="text-secondary text-md mb-2">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
         </header>
 
         <!-- Desktop Tabs (hidden on mobile) -->
@@ -940,8 +940,8 @@
                 <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
                     <h2 class="m-0">Fan League Standings Trend</h2>
                     <div class="flex items-center gap-2">
-                        <label for="seasonSelector" class="text-sm text-secondary">Season:</label>
-                        <select id="seasonSelector" class="px-2 py-2 rounded-md border border-default bg-secondary text-secondary text-sm">
+                        <label for="seasonSelector" class="text-md text-secondary">Season:</label>
+                        <select id="seasonSelector" class="px-2 py-2 rounded-md border border-default bg-secondary text-secondary text-md">
                             <option value="">Loading...</option>
                         </select>
                     </div>
@@ -1231,7 +1231,7 @@
                                 <p class="text-secondary mb-4">
                                     <strong>Trend tracking started on ${date}</strong>
                                 </p>
-                                <p class="text-secondary text-sm">
+                                <p class="text-secondary text-md">
                                     Trends will appear once data from multiple days is collected.<br>
                                     Check back tomorrow to see the standings trend chart!
                                 </p>
