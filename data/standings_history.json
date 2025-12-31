@@ -2558,6 +2558,18 @@
         "division_rank": 3,
         "conference_rank": 3
       },
+      "Mike M.": {
+        "points": 47,
+        "wins": 21,
+        "losses": 14,
+        "ot_losses": 5,
+        "games_played": 40,
+        "goals_for": 130,
+        "goals_against": 114,
+        "goal_diff": 16,
+        "division_rank": 4,
+        "conference_rank": 7
+      },
       "Zak S.": {
         "points": 45,
         "wins": 17,
@@ -2569,18 +2581,6 @@
         "goal_diff": 2,
         "division_rank": 2,
         "conference_rank": 5
-      },
-      "Mike M.": {
-        "points": 45,
-        "wins": 20,
-        "losses": 14,
-        "ot_losses": 5,
-        "games_played": 39,
-        "goals_for": 124,
-        "goals_against": 111,
-        "goal_diff": 13,
-        "division_rank": 4,
-        "conference_rank": 7
       },
       "Ryan B.": {
         "points": 44,
