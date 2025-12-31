@@ -2609,14 +2609,14 @@
       "Travis R.": {
         "points": 42,
         "wins": 20,
-        "losses": 16,
+        "losses": 17,
         "ot_losses": 2,
-        "games_played": 38,
+        "games_played": 39,
         "goals_for": 106,
-        "goals_against": 114,
-        "goal_diff": -8,
-        "division_rank": 6,
-        "conference_rank": 11
+        "goals_against": 118,
+        "goal_diff": -12,
+        "division_rank": 7,
+        "conference_rank": 13
       },
       "Sean R.": {
         "points": 41,
