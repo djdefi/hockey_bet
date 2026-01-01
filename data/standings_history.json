@@ -2697,14 +2697,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 65,
-        "wins": 29,
+        "points": 67,
+        "wins": 30,
         "losses": 2,
         "ot_losses": 7,
-        "games_played": 38,
-        "goals_for": 153,
-        "goals_against": 87,
-        "goal_diff": 66,
+        "games_played": 39,
+        "goals_for": 159,
+        "goals_against": 88,
+        "goal_diff": 71,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -2732,6 +2732,18 @@
         "division_rank": 4,
         "conference_rank": 7
       },
+      "Ryan B.": {
+        "points": 46,
+        "wins": 21,
+        "losses": 14,
+        "ot_losses": 4,
+        "games_played": 39,
+        "goals_for": 124,
+        "goals_against": 121,
+        "goal_diff": 3,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
       "Zak S.": {
         "points": 45,
         "wins": 17,
@@ -2755,18 +2767,6 @@
         "goal_diff": -4,
         "division_rank": 3,
         "conference_rank": 6
-      },
-      "Ryan B.": {
-        "points": 44,
-        "wins": 20,
-        "losses": 14,
-        "ot_losses": 4,
-        "games_played": 38,
-        "goals_for": 120,
-        "goals_against": 120,
-        "goal_diff": 0,
-        "division_rank": 5,
-        "conference_rank": 9
       },
       "Travis R.": {
         "points": 44,
@@ -2825,8 +2825,8 @@
         "goals_for": 95,
         "goals_against": 111,
         "goal_diff": -16,
-        "division_rank": 6,
-        "conference_rank": 10
+        "division_rank": 7,
+        "conference_rank": 11
       },
       "Tyler F.": {
         "points": 39,
@@ -2838,7 +2838,7 @@
         "goals_against": 116,
         "goal_diff": 3,
         "division_rank": 5,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Dan R.": {
         "points": 34,
