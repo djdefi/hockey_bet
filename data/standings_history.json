@@ -2768,6 +2768,18 @@
         "division_rank": 5,
         "conference_rank": 9
       },
+      "Travis R.": {
+        "points": 44,
+        "wins": 21,
+        "losses": 17,
+        "ot_losses": 2,
+        "games_played": 40,
+        "goals_for": 109,
+        "goals_against": 120,
+        "goal_diff": -11,
+        "division_rank": 5,
+        "conference_rank": 10
+      },
       "Brian D.": {
         "points": 43,
         "wins": 20,
@@ -2779,18 +2791,6 @@
         "goal_diff": -15,
         "division_rank": 4,
         "conference_rank": 7
-      },
-      "Travis R.": {
-        "points": 42,
-        "wins": 20,
-        "losses": 17,
-        "ot_losses": 2,
-        "games_played": 39,
-        "goals_for": 106,
-        "goals_against": 118,
-        "goal_diff": -12,
-        "division_rank": 7,
-        "conference_rank": 13
       },
       "Sean R.": {
         "points": 41,
@@ -2843,12 +2843,12 @@
       "Dan R.": {
         "points": 34,
         "wins": 15,
-        "losses": 18,
+        "losses": 19,
         "ot_losses": 4,
-        "games_played": 37,
-        "goals_for": 107,
-        "goals_against": 114,
-        "goal_diff": -7,
+        "games_played": 38,
+        "goals_for": 108,
+        "goals_against": 116,
+        "goal_diff": -8,
         "division_rank": 8,
         "conference_rank": 16
       }
