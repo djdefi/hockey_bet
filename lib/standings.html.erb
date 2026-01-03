@@ -734,6 +734,8 @@
                 trend_icon = streak_code.start_with?('W') ? '📈' : (streak_code.start_with?('L') ? '📉' : '➖')
                 %>
                 
+                <% next if !is_fan_team %>
+                
                 <div class="team-card" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
                     <div class="team-card-main">
                         <div class="team-card-left">
