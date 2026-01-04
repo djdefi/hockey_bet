@@ -736,7 +736,7 @@
                 
                 <% next if !is_fan_team %>
                 
-                <div class="team-card" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
+                <div class="team-card <%= status_info[:class] %>" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
                     <div class="team-card-main">
                         <div class="team-card-left">
                             <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
@@ -1476,12 +1476,12 @@
                         <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
                             <thead>
                                 <tr style="border-bottom: 2px solid var(--border-color);">
-                                    <th style="padding: 0.4rem 0.3rem; text-align: left; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Fan</th>
-                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">P-offs</th>
-                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R2</th>
-                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R3</th>
-                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Finals</th>
-                                    <th style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Cup</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: left; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Fan</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">P-offs</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R2</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R3</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Finals</th>
+                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Cup</th>
                                 </tr>
                             </thead>
                             <tbody>
