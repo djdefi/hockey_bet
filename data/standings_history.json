@@ -3328,12 +3328,12 @@
       "Jeff C.": {
         "points": 69,
         "wins": 31,
-        "losses": 2,
+        "losses": 3,
         "ot_losses": 7,
-        "games_played": 40,
-        "goals_for": 164,
-        "goals_against": 91,
-        "goal_diff": 73,
+        "games_played": 41,
+        "goals_for": 165,
+        "goals_against": 93,
+        "goal_diff": 72,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -3370,32 +3370,32 @@
         "goals_for": 125,
         "goals_against": 126,
         "goal_diff": -1,
-        "division_rank": 4,
-        "conference_rank": 9
+        "division_rank": 5,
+        "conference_rank": 10
+      },
+      "Zak S.": {
+        "points": 46,
+        "wins": 17,
+        "losses": 11,
+        "ot_losses": 12,
+        "games_played": 40,
+        "goals_for": 124,
+        "goals_against": 126,
+        "goal_diff": -2,
+        "division_rank": 1,
+        "conference_rank": 4
       },
       "Travis R.": {
         "points": 46,
         "wins": 22,
-        "losses": 17,
+        "losses": 18,
         "ot_losses": 2,
-        "games_played": 41,
-        "goals_for": 113,
-        "goals_against": 121,
-        "goal_diff": -8,
+        "games_played": 42,
+        "goals_for": 114,
+        "goals_against": 124,
+        "goal_diff": -10,
         "division_rank": 6,
-        "conference_rank": 10
-      },
-      "Zak S.": {
-        "points": 45,
-        "wins": 17,
-        "losses": 11,
-        "ot_losses": 11,
-        "games_played": 39,
-        "goals_for": 122,
-        "goals_against": 123,
-        "goal_diff": -1,
-        "division_rank": 2,
-        "conference_rank": 5
+        "conference_rank": 12
       },
       "Keith R.": {
         "points": 45,
