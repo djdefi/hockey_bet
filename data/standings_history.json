@@ -3540,6 +3540,18 @@
         "division_rank": 6,
         "conference_rank": 12
       },
+      "Trevor R.": {
+        "points": 45,
+        "wins": 19,
+        "losses": 14,
+        "ot_losses": 7,
+        "games_played": 40,
+        "goals_for": 108,
+        "goals_against": 116,
+        "goal_diff": -8,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Keith R.": {
         "points": 45,
         "wins": 21,
@@ -3549,18 +3561,6 @@
         "goals_for": 143,
         "goals_against": 153,
         "goal_diff": -10,
-        "division_rank": 3,
-        "conference_rank": 6
-      },
-      "Trevor R.": {
-        "points": 43,
-        "wins": 18,
-        "losses": 14,
-        "ot_losses": 7,
-        "games_played": 39,
-        "goals_for": 103,
-        "goals_against": 115,
-        "goal_diff": -12,
         "division_rank": 4,
         "conference_rank": 7
       },
