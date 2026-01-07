@@ -3633,12 +3633,12 @@
       "Jeff C.": {
         "points": 69,
         "wins": 31,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 7,
-        "games_played": 41,
-        "goals_for": 165,
-        "goals_against": 93,
-        "goal_diff": 72,
+        "games_played": 42,
+        "goals_for": 167,
+        "goals_against": 97,
+        "goal_diff": 70,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -3663,20 +3663,20 @@
         "goals_for": 142,
         "goals_against": 125,
         "goal_diff": 17,
-        "division_rank": 3,
-        "conference_rank": 6
+        "division_rank": 4,
+        "conference_rank": 7
       },
       "Ryan B.": {
-        "points": 46,
-        "wins": 21,
+        "points": 48,
+        "wins": 22,
         "losses": 15,
         "ot_losses": 4,
-        "games_played": 40,
-        "goals_for": 125,
-        "goals_against": 126,
-        "goal_diff": -1,
-        "division_rank": 5,
-        "conference_rank": 10
+        "games_played": 41,
+        "goals_for": 130,
+        "goals_against": 129,
+        "goal_diff": 1,
+        "division_rank": 4,
+        "conference_rank": 9
       },
       "Zak S.": {
         "points": 46,
@@ -3693,14 +3693,14 @@
       "Travis R.": {
         "points": 46,
         "wins": 22,
-        "losses": 18,
+        "losses": 19,
         "ot_losses": 2,
-        "games_played": 42,
+        "games_played": 43,
         "goals_for": 114,
-        "goals_against": 124,
-        "goal_diff": -10,
+        "goals_against": 133,
+        "goal_diff": -19,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 13
       },
       "Trevor R.": {
         "points": 45,
@@ -3729,12 +3729,12 @@
       "Keith R.": {
         "points": 45,
         "wins": 21,
-        "losses": 18,
+        "losses": 19,
         "ot_losses": 3,
-        "games_played": 42,
-        "goals_for": 143,
-        "goals_against": 153,
-        "goal_diff": -10,
+        "games_played": 43,
+        "goals_for": 145,
+        "goals_against": 158,
+        "goal_diff": -13,
         "division_rank": 5,
         "conference_rank": 8
       },
