@@ -3913,14 +3913,14 @@
         "conference_rank": 9
       },
       "Tyler F.": {
-        "points": 43,
-        "wins": 20,
+        "points": 45,
+        "wins": 21,
         "losses": 20,
         "ot_losses": 3,
-        "games_played": 43,
-        "goals_for": 130,
-        "goals_against": 124,
-        "goal_diff": 6,
+        "games_played": 44,
+        "goals_for": 133,
+        "goals_against": 125,
+        "goal_diff": 8,
         "division_rank": 4,
         "conference_rank": 10
       },
@@ -3933,8 +3933,8 @@
         "goals_for": 120,
         "goals_against": 142,
         "goal_diff": -22,
-        "division_rank": 5,
-        "conference_rank": 11
+        "division_rank": 6,
+        "conference_rank": 12
       },
       "Dan R.": {
         "points": 35,
