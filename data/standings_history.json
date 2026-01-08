@@ -3819,12 +3819,12 @@
       "Mike M.": {
         "points": 50,
         "wins": 22,
-        "losses": 15,
+        "losses": 16,
         "ot_losses": 6,
-        "games_played": 43,
-        "goals_for": 142,
-        "goals_against": 125,
-        "goal_diff": 17,
+        "games_played": 44,
+        "goals_for": 143,
+        "goals_against": 129,
+        "goal_diff": 14,
         "division_rank": 4,
         "conference_rank": 7
       },
