@@ -3959,6 +3959,18 @@
         "division_rank": 3,
         "conference_rank": 3
       },
+      "Ryan B.": {
+        "points": 50,
+        "wins": 23,
+        "losses": 15,
+        "ot_losses": 4,
+        "games_played": 42,
+        "goals_for": 135,
+        "goals_against": 131,
+        "goal_diff": 4,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
       "Mike M.": {
         "points": 50,
         "wins": 22,
@@ -3968,19 +3980,7 @@
         "goals_for": 143,
         "goals_against": 129,
         "goal_diff": 14,
-        "division_rank": 4,
-        "conference_rank": 7
-      },
-      "Ryan B.": {
-        "points": 48,
-        "wins": 22,
-        "losses": 15,
-        "ot_losses": 4,
-        "games_played": 41,
-        "goals_for": 130,
-        "goals_against": 129,
-        "goal_diff": 1,
-        "division_rank": 4,
+        "division_rank": 5,
         "conference_rank": 9
       },
       "Zak S.": {
@@ -4034,26 +4034,14 @@
       "Travis R.": {
         "points": 46,
         "wins": 22,
-        "losses": 19,
+        "losses": 20,
         "ot_losses": 2,
-        "games_played": 43,
-        "goals_for": 114,
-        "goals_against": 133,
-        "goal_diff": -19,
+        "games_played": 44,
+        "goals_for": 115,
+        "goals_against": 137,
+        "goal_diff": -22,
         "division_rank": 6,
         "conference_rank": 13
-      },
-      "Keith R.": {
-        "points": 45,
-        "wins": 21,
-        "losses": 19,
-        "ot_losses": 3,
-        "games_played": 43,
-        "goals_for": 145,
-        "goals_against": 158,
-        "goal_diff": -13,
-        "division_rank": 6,
-        "conference_rank": 9
       },
       "Tyler F.": {
         "points": 45,
@@ -4065,6 +4053,18 @@
         "goals_against": 125,
         "goal_diff": 8,
         "division_rank": 4,
+        "conference_rank": 9
+      },
+      "Keith R.": {
+        "points": 45,
+        "wins": 21,
+        "losses": 20,
+        "ot_losses": 3,
+        "games_played": 44,
+        "goals_for": 147,
+        "goals_against": 163,
+        "goal_diff": -16,
+        "division_rank": 6,
         "conference_rank": 10
       },
       "David K.": {
