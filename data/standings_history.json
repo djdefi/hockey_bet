@@ -4343,6 +4343,18 @@
         "division_rank": 4,
         "conference_rank": 7
       },
+      "Sean R.": {
+        "points": 48,
+        "wins": 19,
+        "losses": 15,
+        "ot_losses": 10,
+        "games_played": 44,
+        "goals_for": 119,
+        "goals_against": 125,
+        "goal_diff": -6,
+        "division_rank": 5,
+        "conference_rank": 8
+      },
       "Tyler F.": {
         "points": 47,
         "wins": 22,
@@ -4353,18 +4365,6 @@
         "goals_against": 127,
         "goal_diff": 10,
         "division_rank": 4,
-        "conference_rank": 8
-      },
-      "Sean R.": {
-        "points": 46,
-        "wins": 18,
-        "losses": 15,
-        "ot_losses": 10,
-        "games_played": 43,
-        "goals_for": 115,
-        "goals_against": 122,
-        "goal_diff": -7,
-        "division_rank": 5,
         "conference_rank": 9
       },
       "Travis R.": {
