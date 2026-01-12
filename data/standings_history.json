@@ -4426,6 +4426,18 @@
         "division_rank": 3,
         "conference_rank": 3
       },
+      "Zak S.": {
+        "points": 54,
+        "wins": 21,
+        "losses": 11,
+        "ot_losses": 12,
+        "games_played": 44,
+        "goals_for": 144,
+        "goals_against": 136,
+        "goal_diff": 8,
+        "division_rank": 1,
+        "conference_rank": 4
+      },
       "Ryan B.": {
         "points": 52,
         "wins": 24,
@@ -4437,18 +4449,6 @@
         "goal_diff": 6,
         "division_rank": 4,
         "conference_rank": 6
-      },
-      "Zak S.": {
-        "points": 52,
-        "wins": 20,
-        "losses": 11,
-        "ot_losses": 12,
-        "games_played": 43,
-        "goals_for": 137,
-        "goals_against": 134,
-        "goal_diff": 3,
-        "division_rank": 1,
-        "conference_rank": 4
       },
       "Mike M.": {
         "points": 52,
@@ -4465,12 +4465,12 @@
       "Brian D.": {
         "points": 49,
         "wins": 23,
-        "losses": 18,
+        "losses": 19,
         "ot_losses": 3,
-        "games_played": 44,
-        "goals_for": 141,
-        "goals_against": 155,
-        "goal_diff": -14,
+        "games_played": 45,
+        "goals_for": 143,
+        "goals_against": 162,
+        "goal_diff": -19,
         "division_rank": 3,
         "conference_rank": 6
       },
