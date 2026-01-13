@@ -4565,26 +4565,26 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 73,
+        "points": 74,
         "wins": 33,
         "losses": 4,
-        "ot_losses": 7,
-        "games_played": 44,
-        "goals_for": 179,
-        "goals_against": 99,
-        "goal_diff": 80,
+        "ot_losses": 8,
+        "games_played": 45,
+        "goals_for": 182,
+        "goals_against": 103,
+        "goal_diff": 79,
         "division_rank": 1,
         "conference_rank": 1
       },
       "Ryan T.": {
         "points": 61,
         "wins": 26,
-        "losses": 11,
+        "losses": 12,
         "ot_losses": 9,
-        "games_played": 46,
-        "goals_for": 146,
-        "goals_against": 125,
-        "goal_diff": 21,
+        "games_played": 47,
+        "goals_for": 148,
+        "goals_against": 130,
+        "goal_diff": 18,
         "division_rank": 3,
         "conference_rank": 3
       },
@@ -4609,8 +4609,8 @@
         "goals_for": 143,
         "goals_against": 138,
         "goal_diff": 5,
-        "division_rank": 4,
-        "conference_rank": 6
+        "division_rank": 5,
+        "conference_rank": 7
       },
       "Mike M.": {
         "points": 52,
@@ -4622,7 +4622,7 @@
         "goals_against": 133,
         "goal_diff": 17,
         "division_rank": 4,
-        "conference_rank": 8
+        "conference_rank": 9
       },
       "Trevor R.": {
         "points": 50,
@@ -4651,12 +4651,12 @@
       "Sean R.": {
         "points": 48,
         "wins": 19,
-        "losses": 15,
+        "losses": 16,
         "ot_losses": 10,
-        "games_played": 44,
-        "goals_for": 119,
-        "goals_against": 125,
-        "goal_diff": -6,
+        "games_played": 45,
+        "goals_for": 120,
+        "goals_against": 128,
+        "goal_diff": -8,
         "division_rank": 5,
         "conference_rank": 8
       },
@@ -4673,14 +4673,14 @@
         "conference_rank": 9
       },
       "Travis R.": {
-        "points": 46,
-        "wins": 22,
+        "points": 48,
+        "wins": 23,
         "losses": 21,
         "ot_losses": 2,
-        "games_played": 45,
-        "goals_for": 118,
-        "goals_against": 141,
-        "goal_diff": -23,
+        "games_played": 46,
+        "goals_for": 123,
+        "goals_against": 143,
+        "goal_diff": -20,
         "division_rank": 6,
         "conference_rank": 13
       },
@@ -4706,7 +4706,7 @@
         "goals_against": 168,
         "goal_diff": -18,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 11
       },
       "Dan R.": {
         "points": 39,
