@@ -4603,12 +4603,12 @@
       "Ryan B.": {
         "points": 52,
         "wins": 24,
-        "losses": 15,
+        "losses": 16,
         "ot_losses": 4,
-        "games_played": 43,
-        "goals_for": 140,
-        "goals_against": 134,
-        "goal_diff": 6,
+        "games_played": 44,
+        "goals_for": 143,
+        "goals_against": 138,
+        "goal_diff": 5,
         "division_rank": 4,
         "conference_rank": 6
       },
@@ -4624,6 +4624,18 @@
         "division_rank": 4,
         "conference_rank": 8
       },
+      "Trevor R.": {
+        "points": 50,
+        "wins": 21,
+        "losses": 15,
+        "ot_losses": 8,
+        "games_played": 44,
+        "goals_for": 123,
+        "goals_against": 128,
+        "goal_diff": -5,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Brian D.": {
         "points": 49,
         "wins": 23,
@@ -4633,18 +4645,6 @@
         "goals_for": 143,
         "goals_against": 162,
         "goal_diff": -19,
-        "division_rank": 3,
-        "conference_rank": 6
-      },
-      "Trevor R.": {
-        "points": 48,
-        "wins": 20,
-        "losses": 15,
-        "ot_losses": 8,
-        "games_played": 43,
-        "goals_for": 119,
-        "goals_against": 126,
-        "goal_diff": -7,
         "division_rank": 4,
         "conference_rank": 7
       },
