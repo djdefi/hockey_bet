@@ -4798,6 +4798,18 @@
         "division_rank": 3,
         "conference_rank": 6
       },
+      "Tyler F.": {
+        "points": 50,
+        "wins": 23,
+        "losses": 20,
+        "ot_losses": 4,
+        "games_played": 47,
+        "goals_for": 145,
+        "goals_against": 131,
+        "goal_diff": 14,
+        "division_rank": 4,
+        "conference_rank": 7
+      },
       "Brian D.": {
         "points": 49,
         "wins": 23,
@@ -4808,7 +4820,7 @@
         "goals_against": 162,
         "goal_diff": -19,
         "division_rank": 4,
-        "conference_rank": 7
+        "conference_rank": 8
       },
       "Sean R.": {
         "points": 48,
@@ -4820,18 +4832,6 @@
         "goals_against": 128,
         "goal_diff": -8,
         "division_rank": 5,
-        "conference_rank": 8
-      },
-      "Tyler F.": {
-        "points": 48,
-        "wins": 22,
-        "losses": 20,
-        "ot_losses": 4,
-        "games_played": 46,
-        "goals_for": 139,
-        "goals_against": 130,
-        "goal_diff": 9,
-        "division_rank": 4,
         "conference_rank": 9
       },
       "Travis R.": {
@@ -4847,38 +4847,38 @@
         "conference_rank": 13
       },
       "David K.": {
-        "points": 46,
-        "wins": 21,
+        "points": 48,
+        "wins": 22,
         "losses": 20,
         "ot_losses": 4,
-        "games_played": 45,
-        "goals_for": 125,
-        "goals_against": 148,
-        "goal_diff": -23,
+        "games_played": 46,
+        "goals_for": 129,
+        "goals_against": 151,
+        "goal_diff": -22,
         "division_rank": 5,
         "conference_rank": 10
       },
       "Keith R.": {
-        "points": 45,
-        "wins": 21,
+        "points": 47,
+        "wins": 22,
         "losses": 21,
         "ot_losses": 3,
-        "games_played": 45,
-        "goals_for": 150,
-        "goals_against": 168,
-        "goal_diff": -18,
+        "games_played": 46,
+        "goals_for": 153,
+        "goals_against": 169,
+        "goal_diff": -16,
         "division_rank": 6,
         "conference_rank": 11
       },
       "Dan R.": {
-        "points": 39,
-        "wins": 17,
+        "points": 41,
+        "wins": 18,
         "losses": 22,
         "ot_losses": 5,
-        "games_played": 44,
-        "goals_for": 130,
-        "goals_against": 138,
-        "goal_diff": -8,
+        "games_played": 45,
+        "goals_for": 135,
+        "goals_against": 142,
+        "goal_diff": -7,
         "division_rank": 8,
         "conference_rank": 15
       }
