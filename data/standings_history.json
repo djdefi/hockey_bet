@@ -4762,6 +4762,18 @@
         "division_rank": 1,
         "conference_rank": 4
       },
+      "Mike M.": {
+        "points": 54,
+        "wins": 24,
+        "losses": 17,
+        "ot_losses": 6,
+        "games_played": 47,
+        "goals_for": 153,
+        "goals_against": 135,
+        "goal_diff": 18,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Ryan B.": {
         "points": 52,
         "wins": 24,
@@ -4771,19 +4783,7 @@
         "goals_for": 143,
         "goals_against": 138,
         "goal_diff": 5,
-        "division_rank": 5,
-        "conference_rank": 7
-      },
-      "Mike M.": {
-        "points": 52,
-        "wins": 23,
-        "losses": 17,
-        "ot_losses": 6,
-        "games_played": 46,
-        "goals_for": 150,
-        "goals_against": 133,
-        "goal_diff": 17,
-        "division_rank": 4,
+        "division_rank": 6,
         "conference_rank": 9
       },
       "Trevor R.": {
