@@ -4905,6 +4905,18 @@
         "division_rank": 1,
         "conference_rank": 4
       },
+      "Ryan B.": {
+        "points": 54,
+        "wins": 25,
+        "losses": 16,
+        "ot_losses": 4,
+        "games_played": 45,
+        "goals_for": 148,
+        "goals_against": 140,
+        "goal_diff": 8,
+        "division_rank": 4,
+        "conference_rank": 6
+      },
       "Mike M.": {
         "points": 54,
         "wins": 24,
@@ -4915,29 +4927,17 @@
         "goals_against": 135,
         "goal_diff": 18,
         "division_rank": 3,
-        "conference_rank": 6
-      },
-      "Ryan B.": {
-        "points": 52,
-        "wins": 24,
-        "losses": 16,
-        "ot_losses": 4,
-        "games_played": 44,
-        "goals_for": 143,
-        "goals_against": 138,
-        "goal_diff": 5,
-        "division_rank": 6,
-        "conference_rank": 9
+        "conference_rank": 7
       },
       "Trevor R.": {
-        "points": 50,
+        "points": 51,
         "wins": 21,
         "losses": 15,
-        "ot_losses": 8,
-        "games_played": 44,
-        "goals_for": 123,
-        "goals_against": 128,
-        "goal_diff": -5,
+        "ot_losses": 9,
+        "games_played": 45,
+        "goals_for": 125,
+        "goals_against": 131,
+        "goal_diff": -6,
         "division_rank": 3,
         "conference_rank": 6
       },
@@ -4952,6 +4952,18 @@
         "goal_diff": 14,
         "division_rank": 4,
         "conference_rank": 7
+      },
+      "Travis R.": {
+        "points": 50,
+        "wins": 24,
+        "losses": 21,
+        "ot_losses": 2,
+        "games_played": 47,
+        "goals_for": 126,
+        "goals_against": 145,
+        "goal_diff": -19,
+        "division_rank": 6,
+        "conference_rank": 13
       },
       "Brian D.": {
         "points": 49,
@@ -4976,18 +4988,6 @@
         "goal_diff": -8,
         "division_rank": 5,
         "conference_rank": 9
-      },
-      "Travis R.": {
-        "points": 48,
-        "wins": 23,
-        "losses": 21,
-        "ot_losses": 2,
-        "games_played": 46,
-        "goals_for": 123,
-        "goals_against": 143,
-        "goal_diff": -20,
-        "division_rank": 6,
-        "conference_rank": 13
       },
       "David K.": {
         "points": 48,
