@@ -5068,28 +5068,28 @@
         "conference_rank": 4
       },
       "Ryan B.": {
-        "points": 54,
-        "wins": 25,
+        "points": 56,
+        "wins": 26,
         "losses": 16,
         "ot_losses": 4,
-        "games_played": 45,
-        "goals_for": 148,
-        "goals_against": 140,
-        "goal_diff": 8,
+        "games_played": 46,
+        "goals_for": 153,
+        "goals_against": 143,
+        "goal_diff": 10,
         "division_rank": 4,
-        "conference_rank": 6
+        "conference_rank": 5
       },
       "Mike M.": {
         "points": 54,
         "wins": 24,
-        "losses": 17,
+        "losses": 18,
         "ot_losses": 6,
-        "games_played": 47,
-        "goals_for": 153,
-        "goals_against": 135,
-        "goal_diff": 18,
-        "division_rank": 3,
-        "conference_rank": 7
+        "games_played": 48,
+        "goals_for": 155,
+        "goals_against": 138,
+        "goal_diff": 17,
+        "division_rank": 4,
+        "conference_rank": 9
       },
       "Trevor R.": {
         "points": 51,
@@ -5103,6 +5103,18 @@
         "division_rank": 3,
         "conference_rank": 6
       },
+      "Brian D.": {
+        "points": 51,
+        "wins": 24,
+        "losses": 19,
+        "ot_losses": 3,
+        "games_played": 46,
+        "goals_for": 146,
+        "goals_against": 164,
+        "goal_diff": -18,
+        "division_rank": 4,
+        "conference_rank": 7
+      },
       "Tyler F.": {
         "points": 50,
         "wins": 23,
@@ -5113,7 +5125,7 @@
         "goals_against": 131,
         "goal_diff": 14,
         "division_rank": 4,
-        "conference_rank": 7
+        "conference_rank": 8
       },
       "Travis R.": {
         "points": 50,
@@ -5126,18 +5138,6 @@
         "goal_diff": -19,
         "division_rank": 6,
         "conference_rank": 13
-      },
-      "Brian D.": {
-        "points": 49,
-        "wins": 23,
-        "losses": 19,
-        "ot_losses": 3,
-        "games_played": 45,
-        "goals_for": 143,
-        "goals_against": 162,
-        "goal_diff": -19,
-        "division_rank": 4,
-        "conference_rank": 8
       },
       "Sean R.": {
         "points": 49,
