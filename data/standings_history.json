@@ -5196,12 +5196,12 @@
       "Jeff C.": {
         "points": 74,
         "wins": 33,
-        "losses": 4,
+        "losses": 5,
         "ot_losses": 8,
-        "games_played": 45,
-        "goals_for": 182,
-        "goals_against": 103,
-        "goal_diff": 79,
+        "games_played": 46,
+        "goals_for": 185,
+        "goals_against": 110,
+        "goal_diff": 75,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -5301,6 +5301,18 @@
         "division_rank": 6,
         "conference_rank": 13
       },
+      "David K.": {
+        "points": 50,
+        "wins": 23,
+        "losses": 20,
+        "ot_losses": 4,
+        "games_played": 47,
+        "goals_for": 136,
+        "goals_against": 154,
+        "goal_diff": -18,
+        "division_rank": 5,
+        "conference_rank": 9
+      },
       "Sean R.": {
         "points": 49,
         "wins": 19,
@@ -5310,18 +5322,6 @@
         "goals_for": 122,
         "goals_against": 131,
         "goal_diff": -9,
-        "division_rank": 5,
-        "conference_rank": 9
-      },
-      "David K.": {
-        "points": 48,
-        "wins": 22,
-        "losses": 20,
-        "ot_losses": 4,
-        "games_played": 46,
-        "goals_for": 129,
-        "goals_against": 151,
-        "goal_diff": -22,
         "division_rank": 5,
         "conference_rank": 10
       },
