@@ -5206,14 +5206,14 @@
         "conference_rank": 1
       },
       "Ryan T.": {
-        "points": 61,
-        "wins": 26,
+        "points": 63,
+        "wins": 27,
         "losses": 13,
         "ot_losses": 9,
-        "games_played": 48,
-        "goals_for": 150,
-        "goals_against": 136,
-        "goal_diff": 14,
+        "games_played": 49,
+        "goals_for": 155,
+        "goals_against": 140,
+        "goal_diff": 15,
         "division_rank": 3,
         "conference_rank": 3
       },
@@ -5230,16 +5230,16 @@
         "conference_rank": 4
       },
       "Ryan B.": {
-        "points": 56,
+        "points": 57,
         "wins": 26,
         "losses": 16,
-        "ot_losses": 4,
-        "games_played": 46,
-        "goals_for": 153,
-        "goals_against": 143,
-        "goal_diff": 10,
+        "ot_losses": 5,
+        "games_played": 47,
+        "goals_for": 157,
+        "goals_against": 148,
+        "goal_diff": 9,
         "division_rank": 4,
-        "conference_rank": 6
+        "conference_rank": 5
       },
       "Mike M.": {
         "points": 54,
