@@ -25,7 +25,7 @@ GEM
     diff-lcs (1.6.2)
     docile (1.4.1)
     dumb_delegator (1.1.0)
-    httparty (0.24.0)
+    httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
