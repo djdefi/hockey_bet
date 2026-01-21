@@ -1,24 +1,5 @@
 [
   {
-    "date": "2025-01-20",
-    "standings": {
-      "Travis R.": 58,
-      "Ryan B.": 39,
-      "Brian D.": 34,
-      "David K.": 31,
-      "Ryan T.": 58,
-      "Sean R.": 53,
-      "Tyler F.": 21,
-      "Jeff C.": 53,
-      "Zak S.": 61,
-      "Dan R.": 4,
-      "Trevor R.": 0,
-      "Keith R.": 41,
-      "Mike M.": 10
-    },
-    "season": "2024-2025"
-  },
-  {
     "date": "2025-01-23",
     "standings": {
       "Travis R.": 58,
@@ -5658,6 +5639,168 @@
   },
   {
     "date": "2026-01-20",
+    "season": "2025-2026",
+    "standings": {
+      "Jeff C.": {
+        "points": 76,
+        "wins": 34,
+        "losses": 5,
+        "ot_losses": 8,
+        "games_played": 47,
+        "goals_for": 190,
+        "goals_against": 112,
+        "goal_diff": 78,
+        "division_rank": 1,
+        "conference_rank": 1
+      },
+      "Ryan T.": {
+        "points": 65,
+        "wins": 28,
+        "losses": 13,
+        "ot_losses": 9,
+        "games_played": 50,
+        "goals_for": 161,
+        "goals_against": 143,
+        "goal_diff": 18,
+        "division_rank": 2,
+        "conference_rank": 2
+      },
+      "Zak S.": {
+        "points": 60,
+        "wins": 24,
+        "losses": 12,
+        "ot_losses": 12,
+        "games_played": 48,
+        "goals_for": 161,
+        "goals_against": 147,
+        "goal_diff": 14,
+        "division_rank": 1,
+        "conference_rank": 4
+      },
+      "Ryan B.": {
+        "points": 57,
+        "wins": 26,
+        "losses": 17,
+        "ot_losses": 5,
+        "games_played": 48,
+        "goals_for": 158,
+        "goals_against": 150,
+        "goal_diff": 8,
+        "division_rank": 5,
+        "conference_rank": 7
+      },
+      "Tyler F.": {
+        "points": 54,
+        "wins": 25,
+        "losses": 20,
+        "ot_losses": 4,
+        "games_played": 49,
+        "goals_for": 153,
+        "goals_against": 135,
+        "goal_diff": 18,
+        "division_rank": 4,
+        "conference_rank": 6
+      },
+      "Mike M.": {
+        "points": 54,
+        "wins": 24,
+        "losses": 20,
+        "ot_losses": 6,
+        "games_played": 50,
+        "goals_for": 159,
+        "goals_against": 148,
+        "goal_diff": 11,
+        "division_rank": 5,
+        "conference_rank": 11
+      },
+      "Brian D.": {
+        "points": 53,
+        "wins": 25,
+        "losses": 20,
+        "ot_losses": 3,
+        "games_played": 48,
+        "goals_for": 152,
+        "goals_against": 169,
+        "goal_diff": -17,
+        "division_rank": 3,
+        "conference_rank": 7
+      },
+      "Keith R.": {
+        "points": 53,
+        "wins": 25,
+        "losses": 21,
+        "ot_losses": 3,
+        "games_played": 49,
+        "goals_for": 163,
+        "goals_against": 175,
+        "goal_diff": -12,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
+      "Travis R.": {
+        "points": 52,
+        "wins": 25,
+        "losses": 22,
+        "ot_losses": 2,
+        "games_played": 49,
+        "goals_for": 129,
+        "goals_against": 150,
+        "goal_diff": -21,
+        "division_rank": 6,
+        "conference_rank": 13
+      },
+      "Trevor R.": {
+        "points": 51,
+        "wins": 21,
+        "losses": 18,
+        "ot_losses": 9,
+        "games_played": 48,
+        "goals_for": 133,
+        "goals_against": 147,
+        "goal_diff": -14,
+        "division_rank": 5,
+        "conference_rank": 9
+      },
+      "Sean R.": {
+        "points": 51,
+        "wins": 19,
+        "losses": 16,
+        "ot_losses": 13,
+        "games_played": 48,
+        "goals_for": 125,
+        "goals_against": 136,
+        "goal_diff": -11,
+        "division_rank": 6,
+        "conference_rank": 10
+      },
+      "David K.": {
+        "points": 50,
+        "wins": 23,
+        "losses": 21,
+        "ot_losses": 4,
+        "games_played": 48,
+        "goals_for": 138,
+        "goals_against": 161,
+        "goal_diff": -23,
+        "division_rank": 5,
+        "conference_rank": 11
+      },
+      "Dan R.": {
+        "points": 44,
+        "wins": 19,
+        "losses": 23,
+        "ot_losses": 6,
+        "games_played": 48,
+        "goals_for": 144,
+        "goals_against": 150,
+        "goal_diff": -6,
+        "division_rank": 8,
+        "conference_rank": 15
+      }
+    }
+  },
+  {
+    "date": "2026-01-21",
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
