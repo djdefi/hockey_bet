@@ -6140,16 +6140,16 @@
         "conference_rank": 1
       },
       "Ryan T.": {
-        "points": 65,
-        "wins": 28,
+        "points": 67,
+        "wins": 29,
         "losses": 14,
         "ot_losses": 9,
-        "games_played": 51,
-        "goals_for": 164,
-        "goals_against": 147,
-        "goal_diff": 17,
-        "division_rank": 3,
-        "conference_rank": 3
+        "games_played": 52,
+        "goals_for": 168,
+        "goals_against": 150,
+        "goal_diff": 18,
+        "division_rank": 2,
+        "conference_rank": 2
       },
       "Ryan B.": {
         "points": 61,
@@ -6209,7 +6209,7 @@
         "goals_against": 151,
         "goal_diff": -20,
         "division_rank": 5,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Mike M.": {
         "points": 54,
@@ -6221,7 +6221,7 @@
         "goals_against": 152,
         "goal_diff": 10,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 13
       },
       "Trevor R.": {
         "points": 53,
@@ -6260,28 +6260,28 @@
         "conference_rank": 10
       },
       "David K.": {
-        "points": 50,
-        "wins": 23,
+        "points": 52,
+        "wins": 24,
         "losses": 22,
         "ot_losses": 4,
-        "games_played": 49,
-        "goals_for": 141,
-        "goals_against": 166,
-        "goal_diff": -25,
+        "games_played": 50,
+        "goals_for": 146,
+        "goals_against": 169,
+        "goal_diff": -23,
         "division_rank": 5,
         "conference_rank": 11
       },
       "Dan R.": {
-        "points": 46,
+        "points": 47,
         "wins": 20,
         "losses": 23,
-        "ot_losses": 6,
-        "games_played": 49,
-        "goals_for": 147,
-        "goals_against": 151,
-        "goal_diff": -4,
+        "ot_losses": 7,
+        "games_played": 50,
+        "goals_for": 148,
+        "goals_against": 153,
+        "goal_diff": -5,
         "division_rank": 7,
-        "conference_rank": 14
+        "conference_rank": 13
       }
     }
   }
