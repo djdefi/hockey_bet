@@ -6151,29 +6151,29 @@
         "division_rank": 3,
         "conference_rank": 3
       },
+      "Ryan B.": {
+        "points": 61,
+        "wins": 28,
+        "losses": 17,
+        "ot_losses": 5,
+        "games_played": 50,
+        "goals_for": 167,
+        "goals_against": 155,
+        "goal_diff": 12,
+        "division_rank": 4,
+        "conference_rank": 5
+      },
       "Zak S.": {
         "points": 60,
         "wins": 24,
-        "losses": 12,
+        "losses": 13,
         "ot_losses": 12,
-        "games_played": 48,
-        "goals_for": 161,
-        "goals_against": 147,
-        "goal_diff": 14,
+        "games_played": 49,
+        "goals_for": 164,
+        "goals_against": 151,
+        "goal_diff": 13,
         "division_rank": 1,
         "conference_rank": 4
-      },
-      "Ryan B.": {
-        "points": 59,
-        "wins": 27,
-        "losses": 17,
-        "ot_losses": 5,
-        "games_played": 49,
-        "goals_for": 163,
-        "goals_against": 153,
-        "goal_diff": 10,
-        "division_rank": 4,
-        "conference_rank": 5
       },
       "Tyler F.": {
         "points": 56,
