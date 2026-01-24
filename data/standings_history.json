@@ -6294,6 +6294,18 @@
         "division_rank": 3,
         "conference_rank": 3
       },
+      "Ryan B.": {
+        "points": 63,
+        "wins": 29,
+        "losses": 17,
+        "ot_losses": 5,
+        "games_played": 51,
+        "goals_for": 172,
+        "goals_against": 155,
+        "goal_diff": 17,
+        "division_rank": 3,
+        "conference_rank": 4
+      },
       "Zak S.": {
         "points": 62,
         "wins": 25,
@@ -6305,18 +6317,6 @@
         "goal_diff": 16,
         "division_rank": 1,
         "conference_rank": 4
-      },
-      "Ryan B.": {
-        "points": 61,
-        "wins": 28,
-        "losses": 17,
-        "ot_losses": 5,
-        "games_played": 50,
-        "goals_for": 167,
-        "goals_against": 155,
-        "goal_diff": 12,
-        "division_rank": 4,
-        "conference_rank": 5
       },
       "Keith R.": {
         "points": 57,
