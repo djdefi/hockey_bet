@@ -6633,12 +6633,12 @@
       "Zak S.": {
         "points": 62,
         "wins": 25,
-        "losses": 13,
+        "losses": 14,
         "ot_losses": 12,
-        "games_played": 50,
-        "goals_for": 170,
-        "goals_against": 154,
-        "goal_diff": 16,
+        "games_played": 51,
+        "goals_for": 171,
+        "goals_against": 161,
+        "goal_diff": 10,
         "division_rank": 1,
         "conference_rank": 4
       },
