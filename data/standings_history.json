@@ -7064,12 +7064,12 @@
       "Jeff C.": {
         "points": 79,
         "wins": 35,
-        "losses": 6,
+        "losses": 7,
         "ot_losses": 9,
-        "games_played": 50,
-        "goals_for": 198,
-        "goals_against": 122,
-        "goal_diff": 76,
+        "games_played": 51,
+        "goals_for": 200,
+        "goals_against": 127,
+        "goal_diff": 73,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -7178,8 +7178,8 @@
         "goals_for": 171,
         "goals_against": 164,
         "goal_diff": 7,
-        "division_rank": 5,
-        "conference_rank": 12
+        "division_rank": 6,
+        "conference_rank": 14
       },
       "Travis R.": {
         "points": 56,
@@ -7190,8 +7190,8 @@
         "goals_for": 141,
         "goals_against": 163,
         "goal_diff": -22,
-        "division_rank": 6,
-        "conference_rank": 13
+        "division_rank": 7,
+        "conference_rank": 15
       },
       "David K.": {
         "points": 53,
