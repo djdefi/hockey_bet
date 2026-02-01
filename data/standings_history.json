@@ -7541,14 +7541,14 @@
         "conference_rank": 1
       },
       "Ryan T.": {
-        "points": 72,
-        "wins": 31,
+        "points": 74,
+        "wins": 32,
         "losses": 14,
         "ot_losses": 10,
-        "games_played": 55,
-        "goals_for": 179,
-        "goals_against": 158,
-        "goal_diff": 21,
+        "games_played": 56,
+        "goals_for": 186,
+        "goals_against": 161,
+        "goal_diff": 25,
         "division_rank": 2,
         "conference_rank": 2
       },
@@ -7567,14 +7567,26 @@
       "Zak S.": {
         "points": 64,
         "wins": 25,
-        "losses": 14,
+        "losses": 15,
         "ot_losses": 14,
-        "games_played": 53,
-        "goals_for": 177,
-        "goals_against": 169,
-        "goal_diff": 8,
+        "games_played": 54,
+        "goals_for": 179,
+        "goals_against": 172,
+        "goal_diff": 7,
         "division_rank": 1,
         "conference_rank": 4
+      },
+      "Trevor R.": {
+        "points": 61,
+        "wins": 26,
+        "losses": 19,
+        "ot_losses": 9,
+        "games_played": 54,
+        "goals_for": 156,
+        "goals_against": 159,
+        "goal_diff": -3,
+        "division_rank": 3,
+        "conference_rank": 6
       },
       "Mike M.": {
         "points": 61,
@@ -7591,25 +7603,13 @@
       "Tyler F.": {
         "points": 60,
         "wins": 28,
-        "losses": 22,
+        "losses": 23,
         "ot_losses": 4,
-        "games_played": 54,
-        "goals_for": 171,
-        "goals_against": 151,
-        "goal_diff": 20,
+        "games_played": 55,
+        "goals_for": 173,
+        "goals_against": 154,
+        "goal_diff": 19,
         "division_rank": 4,
-        "conference_rank": 6
-      },
-      "Trevor R.": {
-        "points": 59,
-        "wins": 25,
-        "losses": 19,
-        "ot_losses": 9,
-        "games_played": 53,
-        "goals_for": 153,
-        "goals_against": 157,
-        "goal_diff": -4,
-        "division_rank": 3,
         "conference_rank": 7
       },
       "Sean R.": {
