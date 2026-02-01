@@ -7555,14 +7555,14 @@
       "Ryan B.": {
         "points": 67,
         "wins": 31,
-        "losses": 17,
+        "losses": 18,
         "ot_losses": 5,
-        "games_played": 53,
-        "goals_for": 183,
-        "goals_against": 160,
-        "goal_diff": 23,
-        "division_rank": 3,
-        "conference_rank": 4
+        "games_played": 54,
+        "goals_for": 185,
+        "goals_against": 164,
+        "goal_diff": 21,
+        "division_rank": 4,
+        "conference_rank": 6
       },
       "Zak S.": {
         "points": 64,
@@ -7575,6 +7575,18 @@
         "goal_diff": 8,
         "division_rank": 1,
         "conference_rank": 4
+      },
+      "Mike M.": {
+        "points": 61,
+        "wins": 27,
+        "losses": 22,
+        "ot_losses": 7,
+        "games_played": 56,
+        "goals_for": 179,
+        "goals_against": 170,
+        "goal_diff": 9,
+        "division_rank": 5,
+        "conference_rank": 10
       },
       "Tyler F.": {
         "points": 60,
@@ -7624,18 +7636,6 @@
         "division_rank": 5,
         "conference_rank": 9
       },
-      "Mike M.": {
-        "points": 59,
-        "wins": 26,
-        "losses": 22,
-        "ot_losses": 7,
-        "games_played": 55,
-        "goals_for": 175,
-        "goals_against": 167,
-        "goal_diff": 8,
-        "division_rank": 5,
-        "conference_rank": 11
-      },
       "Brian D.": {
         "points": 58,
         "wins": 27,
@@ -7651,24 +7651,24 @@
       "Travis R.": {
         "points": 58,
         "wins": 28,
-        "losses": 24,
+        "losses": 25,
         "ot_losses": 2,
-        "games_played": 54,
-        "goals_for": 144,
-        "goals_against": 165,
-        "goal_diff": -21,
-        "division_rank": 6,
-        "conference_rank": 12
+        "games_played": 55,
+        "goals_for": 145,
+        "goals_against": 169,
+        "goal_diff": -24,
+        "division_rank": 7,
+        "conference_rank": 15
       },
       "David K.": {
-        "points": 54,
-        "wins": 24,
+        "points": 56,
+        "wins": 25,
         "losses": 23,
         "ot_losses": 6,
-        "games_played": 53,
-        "goals_for": 152,
-        "goals_against": 180,
-        "goal_diff": -28,
+        "games_played": 54,
+        "goals_for": 156,
+        "goals_against": 183,
+        "goal_diff": -27,
         "division_rank": 5,
         "conference_rank": 11
       },
