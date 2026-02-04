@@ -8043,6 +8043,18 @@
         "division_rank": 1,
         "conference_rank": 4
       },
+      "Keith R.": {
+        "points": 63,
+        "wins": 30,
+        "losses": 23,
+        "ot_losses": 3,
+        "games_played": 56,
+        "goals_for": 185,
+        "goals_against": 195,
+        "goal_diff": -10,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Mike M.": {
         "points": 63,
         "wins": 28,
@@ -8053,7 +8065,7 @@
         "goals_against": 175,
         "goal_diff": 10,
         "division_rank": 5,
-        "conference_rank": 10
+        "conference_rank": 11
       },
       "Tyler F.": {
         "points": 62,
@@ -8065,29 +8077,17 @@
         "goals_against": 156,
         "goal_diff": 23,
         "division_rank": 4,
-        "conference_rank": 6
+        "conference_rank": 7
       },
       "Trevor R.": {
         "points": 61,
         "wins": 26,
-        "losses": 19,
+        "losses": 20,
         "ot_losses": 9,
-        "games_played": 54,
-        "goals_for": 156,
-        "goals_against": 159,
-        "goal_diff": -3,
-        "division_rank": 3,
-        "conference_rank": 7
-      },
-      "Keith R.": {
-        "points": 61,
-        "wins": 29,
-        "losses": 23,
-        "ot_losses": 3,
         "games_played": 55,
-        "goals_for": 181,
-        "goals_against": 193,
-        "goal_diff": -12,
+        "goals_for": 158,
+        "goals_against": 163,
+        "goal_diff": -5,
         "division_rank": 4,
         "conference_rank": 8
       },
