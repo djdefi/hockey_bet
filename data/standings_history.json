@@ -8020,16 +8020,16 @@
         "conference_rank": 2
       },
       "Ryan B.": {
-        "points": 69,
+        "points": 70,
         "wins": 32,
         "losses": 18,
-        "ot_losses": 5,
-        "games_played": 55,
-        "goals_for": 190,
-        "goals_against": 167,
-        "goal_diff": 23,
-        "division_rank": 4,
-        "conference_rank": 5
+        "ot_losses": 6,
+        "games_played": 56,
+        "goals_for": 193,
+        "goals_against": 171,
+        "goal_diff": 22,
+        "division_rank": 3,
+        "conference_rank": 4
       },
       "Zak S.": {
         "points": 64,
@@ -8046,14 +8046,14 @@
       "Mike M.": {
         "points": 63,
         "wins": 28,
-        "losses": 22,
+        "losses": 23,
         "ot_losses": 7,
-        "games_played": 57,
-        "goals_for": 183,
-        "goals_against": 171,
-        "goal_diff": 12,
-        "division_rank": 4,
-        "conference_rank": 9
+        "games_played": 58,
+        "goals_for": 185,
+        "goals_against": 175,
+        "goal_diff": 10,
+        "division_rank": 5,
+        "conference_rank": 10
       },
       "Tyler F.": {
         "points": 62,
@@ -8130,12 +8130,12 @@
       "Travis R.": {
         "points": 58,
         "wins": 28,
-        "losses": 25,
+        "losses": 26,
         "ot_losses": 2,
-        "games_played": 55,
+        "games_played": 56,
         "goals_for": 145,
-        "goals_against": 169,
-        "goal_diff": -24,
+        "goals_against": 172,
+        "goal_diff": -27,
         "division_rank": 7,
         "conference_rank": 15
       },
