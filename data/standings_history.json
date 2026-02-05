@@ -8171,8 +8171,8 @@
         "goals_for": 193,
         "goals_against": 171,
         "goal_diff": 22,
-        "division_rank": 3,
-        "conference_rank": 4
+        "division_rank": 4,
+        "conference_rank": 5
       },
       "Zak S.": {
         "points": 64,
@@ -8285,12 +8285,12 @@
       "Dan R.": {
         "points": 52,
         "wins": 22,
-        "losses": 25,
+        "losses": 26,
         "ot_losses": 8,
-        "games_played": 55,
-        "goals_for": 159,
-        "goals_against": 170,
-        "goal_diff": -11,
+        "games_played": 56,
+        "goals_for": 160,
+        "goals_against": 175,
+        "goal_diff": -15,
         "division_rank": 7,
         "conference_rank": 13
       }
