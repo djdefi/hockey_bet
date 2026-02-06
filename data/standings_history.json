@@ -8337,14 +8337,14 @@
         "conference_rank": 6
       },
       "Zak S.": {
-        "points": 66,
-        "wins": 26,
+        "points": 68,
+        "wins": 27,
         "losses": 16,
         "ot_losses": 14,
-        "games_played": 56,
-        "goals_for": 187,
-        "goals_against": 178,
-        "goal_diff": 9,
+        "games_played": 57,
+        "goals_for": 191,
+        "goals_against": 179,
+        "goal_diff": 12,
         "division_rank": 1,
         "conference_rank": 4
       },
@@ -8399,12 +8399,12 @@
       "Sean R.": {
         "points": 60,
         "wins": 23,
-        "losses": 18,
+        "losses": 19,
         "ot_losses": 14,
-        "games_played": 55,
-        "goals_for": 145,
-        "goals_against": 157,
-        "goal_diff": -12,
+        "games_played": 56,
+        "goals_for": 146,
+        "goals_against": 161,
+        "goal_diff": -15,
         "division_rank": 5,
         "conference_rank": 9
       },
