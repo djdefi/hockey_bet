@@ -11428,20 +11428,20 @@
         "goals_for": 196,
         "goals_against": 169,
         "goal_diff": 27,
-        "division_rank": 2,
-        "conference_rank": 2
+        "division_rank": 3,
+        "conference_rank": 3
       },
       "Ryan B.": {
-        "points": 70,
-        "wins": 32,
+        "points": 72,
+        "wins": 33,
         "losses": 19,
         "ot_losses": 6,
-        "games_played": 57,
-        "goals_for": 195,
-        "goals_against": 176,
-        "goal_diff": 19,
-        "division_rank": 4,
-        "conference_rank": 6
+        "games_played": 58,
+        "goals_for": 197,
+        "goals_against": 177,
+        "goal_diff": 20,
+        "division_rank": 3,
+        "conference_rank": 4
       },
       "Zak S.": {
         "points": 68,
@@ -11456,16 +11456,16 @@
         "conference_rank": 4
       },
       "Mike M.": {
-        "points": 65,
-        "wins": 29,
+        "points": 67,
+        "wins": 30,
         "losses": 23,
         "ot_losses": 7,
-        "games_played": 59,
-        "goals_for": 189,
-        "goals_against": 177,
-        "goal_diff": 12,
-        "division_rank": 5,
-        "conference_rank": 10
+        "games_played": 60,
+        "goals_for": 192,
+        "goals_against": 178,
+        "goal_diff": 14,
+        "division_rank": 4,
+        "conference_rank": 9
       },
       "Tyler F.": {
         "points": 64,
@@ -11479,18 +11479,6 @@
         "division_rank": 4,
         "conference_rank": 5
       },
-      "Trevor R.": {
-        "points": 63,
-        "wins": 27,
-        "losses": 20,
-        "ot_losses": 9,
-        "games_played": 56,
-        "goals_for": 162,
-        "goals_against": 165,
-        "goal_diff": -3,
-        "division_rank": 3,
-        "conference_rank": 7
-      },
       "Keith R.": {
         "points": 63,
         "wins": 30,
@@ -11500,6 +11488,18 @@
         "goals_for": 185,
         "goals_against": 195,
         "goal_diff": -10,
+        "division_rank": 3,
+        "conference_rank": 7
+      },
+      "Trevor R.": {
+        "points": 63,
+        "wins": 27,
+        "losses": 21,
+        "ot_losses": 9,
+        "games_played": 57,
+        "goals_for": 163,
+        "goals_against": 169,
+        "goal_diff": -6,
         "division_rank": 4,
         "conference_rank": 8
       },
@@ -11542,12 +11542,12 @@
       "Travis R.": {
         "points": 58,
         "wins": 28,
-        "losses": 27,
+        "losses": 28,
         "ot_losses": 2,
-        "games_played": 57,
-        "goals_for": 146,
-        "goals_against": 175,
-        "goal_diff": -29,
+        "games_played": 58,
+        "goals_for": 147,
+        "goals_against": 177,
+        "goal_diff": -30,
         "division_rank": 7,
         "conference_rank": 15
       },
