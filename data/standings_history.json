@@ -11572,26 +11572,26 @@
       "Jeff C.": {
         "points": 85,
         "wins": 38,
-        "losses": 9,
+        "losses": 10,
         "ot_losses": 9,
-        "games_played": 56,
-        "goals_for": 216,
-        "goals_against": 140,
-        "goal_diff": 76,
+        "games_played": 57,
+        "goals_for": 218,
+        "goals_against": 145,
+        "goal_diff": 73,
         "division_rank": 1,
         "conference_rank": 1
       },
       "Ryan T.": {
-        "points": 78,
-        "wins": 34,
+        "points": 80,
+        "wins": 35,
         "losses": 14,
         "ot_losses": 10,
-        "games_played": 58,
-        "goals_for": 196,
-        "goals_against": 169,
-        "goal_diff": 27,
-        "division_rank": 3,
-        "conference_rank": 3
+        "games_played": 59,
+        "goals_for": 201,
+        "goals_against": 171,
+        "goal_diff": 30,
+        "division_rank": 2,
+        "conference_rank": 2
       },
       "Ryan B.": {
         "points": 72,
@@ -11692,12 +11692,12 @@
       "Brian D.": {
         "points": 58,
         "wins": 27,
-        "losses": 24,
+        "losses": 25,
         "ot_losses": 4,
-        "games_played": 55,
-        "goals_for": 171,
-        "goals_against": 193,
-        "goal_diff": -22,
+        "games_played": 56,
+        "goals_for": 172,
+        "goals_against": 197,
+        "goal_diff": -25,
         "division_rank": 6,
         "conference_rank": 11
       },
@@ -11723,7 +11723,7 @@
         "goals_against": 177,
         "goal_diff": -14,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 13
       }
     }
   }
