@@ -11638,8 +11638,8 @@
         "goals_for": 191,
         "goals_against": 200,
         "goal_diff": -9,
-        "division_rank": 2,
-        "conference_rank": 5
+        "division_rank": 3,
+        "conference_rank": 6
       },
       "Tyler F.": {
         "points": 64,
@@ -11651,7 +11651,7 @@
         "goals_against": 161,
         "goal_diff": 24,
         "division_rank": 4,
-        "conference_rank": 6
+        "conference_rank": 7
       },
       "Trevor R.": {
         "points": 63,
@@ -11680,12 +11680,12 @@
       "Sean R.": {
         "points": 60,
         "wins": 23,
-        "losses": 20,
+        "losses": 21,
         "ot_losses": 14,
-        "games_played": 57,
-        "goals_for": 150,
-        "goals_against": 167,
-        "goal_diff": -17,
+        "games_played": 58,
+        "goals_for": 151,
+        "goals_against": 175,
+        "goal_diff": -24,
         "division_rank": 5,
         "conference_rank": 10
       },
