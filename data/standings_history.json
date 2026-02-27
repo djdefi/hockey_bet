@@ -11602,8 +11602,8 @@
         "goals_for": 197,
         "goals_against": 177,
         "goal_diff": 20,
-        "division_rank": 3,
-        "conference_rank": 4
+        "division_rank": 4,
+        "conference_rank": 6
       },
       "Zak S.": {
         "points": 70,
@@ -11656,14 +11656,26 @@
       "Trevor R.": {
         "points": 63,
         "wins": 27,
-        "losses": 21,
+        "losses": 22,
         "ot_losses": 9,
-        "games_played": 57,
-        "goals_for": 163,
-        "goals_against": 169,
-        "goal_diff": -6,
+        "games_played": 58,
+        "goals_for": 164,
+        "goals_against": 174,
+        "goal_diff": -10,
         "division_rank": 4,
         "conference_rank": 8
+      },
+      "David K.": {
+        "points": 61,
+        "wins": 27,
+        "losses": 24,
+        "ot_losses": 7,
+        "games_played": 58,
+        "goals_for": 173,
+        "goals_against": 200,
+        "goal_diff": -27,
+        "division_rank": 5,
+        "conference_rank": 9
       },
       "Sean R.": {
         "points": 60,
@@ -11674,18 +11686,6 @@
         "goals_for": 150,
         "goals_against": 167,
         "goal_diff": -17,
-        "division_rank": 5,
-        "conference_rank": 9
-      },
-      "David K.": {
-        "points": 59,
-        "wins": 26,
-        "losses": 24,
-        "ot_losses": 7,
-        "games_played": 57,
-        "goals_for": 169,
-        "goals_against": 198,
-        "goal_diff": -29,
         "division_rank": 5,
         "conference_rank": 10
       },
@@ -11704,12 +11704,12 @@
       "Travis R.": {
         "points": 58,
         "wins": 28,
-        "losses": 28,
+        "losses": 29,
         "ot_losses": 2,
-        "games_played": 58,
-        "goals_for": 147,
-        "goals_against": 177,
-        "goal_diff": -30,
+        "games_played": 59,
+        "goals_for": 148,
+        "goals_against": 181,
+        "goal_diff": -33,
         "division_rank": 7,
         "conference_rank": 15
       },
