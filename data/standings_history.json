@@ -11746,12 +11746,12 @@
       "Ryan T.": {
         "points": 80,
         "wins": 35,
-        "losses": 14,
+        "losses": 15,
         "ot_losses": 10,
-        "games_played": 59,
-        "goals_for": 201,
-        "goals_against": 171,
-        "goal_diff": 30,
+        "games_played": 60,
+        "goals_for": 203,
+        "goals_against": 176,
+        "goal_diff": 27,
         "division_rank": 2,
         "conference_rank": 2
       },
@@ -11792,28 +11792,28 @@
         "conference_rank": 9
       },
       "Keith R.": {
-        "points": 65,
-        "wins": 31,
+        "points": 67,
+        "wins": 32,
         "losses": 23,
         "ot_losses": 3,
-        "games_played": 57,
-        "goals_for": 191,
-        "goals_against": 200,
-        "goal_diff": -9,
-        "division_rank": 3,
-        "conference_rank": 6
+        "games_played": 58,
+        "goals_for": 196,
+        "goals_against": 204,
+        "goal_diff": -8,
+        "division_rank": 2,
+        "conference_rank": 5
       },
       "Tyler F.": {
-        "points": 64,
-        "wins": 30,
+        "points": 66,
+        "wins": 31,
         "losses": 24,
         "ot_losses": 4,
-        "games_played": 58,
-        "goals_for": 185,
-        "goals_against": 161,
-        "goal_diff": 24,
+        "games_played": 59,
+        "goals_for": 190,
+        "goals_against": 163,
+        "goal_diff": 27,
         "division_rank": 4,
-        "conference_rank": 7
+        "conference_rank": 6
       },
       "Trevor R.": {
         "points": 63,
@@ -11876,16 +11876,16 @@
         "conference_rank": 15
       },
       "Dan R.": {
-        "points": 54,
+        "points": 55,
         "wins": 23,
         "losses": 26,
-        "ot_losses": 8,
-        "games_played": 57,
-        "goals_for": 163,
-        "goals_against": 177,
-        "goal_diff": -14,
+        "ot_losses": 9,
+        "games_played": 58,
+        "goals_for": 167,
+        "goals_against": 182,
+        "goal_diff": -15,
         "division_rank": 6,
-        "conference_rank": 13
+        "conference_rank": 12
       }
     }
   }
