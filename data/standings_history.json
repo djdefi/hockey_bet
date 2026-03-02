@@ -12084,6 +12084,18 @@
         "division_rank": 1,
         "conference_rank": 4
       },
+      "Keith R.": {
+        "points": 69,
+        "wins": 33,
+        "losses": 23,
+        "ot_losses": 3,
+        "games_played": 59,
+        "goals_for": 199,
+        "goals_against": 206,
+        "goal_diff": -7,
+        "division_rank": 2,
+        "conference_rank": 5
+      },
       "Mike M.": {
         "points": 69,
         "wins": 31,
@@ -12095,18 +12107,6 @@
         "goal_diff": 11,
         "division_rank": 4,
         "conference_rank": 9
-      },
-      "Keith R.": {
-        "points": 67,
-        "wins": 32,
-        "losses": 23,
-        "ot_losses": 3,
-        "games_played": 58,
-        "goals_for": 196,
-        "goals_against": 204,
-        "goal_diff": -8,
-        "division_rank": 2,
-        "conference_rank": 5
       },
       "Tyler F.": {
         "points": 66,
