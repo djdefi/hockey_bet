@@ -12270,6 +12270,18 @@
         "division_rank": 4,
         "conference_rank": 9
       },
+      "Trevor R.": {
+        "points": 67,
+        "wins": 29,
+        "losses": 22,
+        "ot_losses": 9,
+        "games_played": 60,
+        "goals_for": 171,
+        "goals_against": 176,
+        "goal_diff": -5,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Tyler F.": {
         "points": 66,
         "wins": 31,
@@ -12280,19 +12292,7 @@
         "goals_against": 167,
         "goal_diff": 23,
         "division_rank": 4,
-        "conference_rank": 6
-      },
-      "Trevor R.": {
-        "points": 65,
-        "wins": 28,
-        "losses": 22,
-        "ot_losses": 9,
-        "games_played": 59,
-        "goals_for": 169,
-        "goals_against": 175,
-        "goal_diff": -6,
-        "division_rank": 4,
-        "conference_rank": 8
+        "conference_rank": 7
       },
       "Brian D.": {
         "points": 62,
