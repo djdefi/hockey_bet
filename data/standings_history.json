@@ -12199,14 +12199,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 87,
-        "wins": 39,
+        "points": 89,
+        "wins": 40,
         "losses": 10,
         "ot_losses": 9,
-        "games_played": 58,
-        "goals_for": 221,
-        "goals_against": 146,
-        "goal_diff": 75,
+        "games_played": 59,
+        "goals_for": 225,
+        "goals_against": 148,
+        "goal_diff": 77,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -12306,18 +12306,6 @@
         "division_rank": 5,
         "conference_rank": 9
       },
-      "Sean R.": {
-        "points": 62,
-        "wins": 24,
-        "losses": 21,
-        "ot_losses": 14,
-        "games_played": 59,
-        "goals_for": 153,
-        "goals_against": 175,
-        "goal_diff": -22,
-        "division_rank": 6,
-        "conference_rank": 10
-      },
       "David K.": {
         "points": 62,
         "wins": 27,
@@ -12328,6 +12316,18 @@
         "goals_against": 207,
         "goal_diff": -30,
         "division_rank": 5,
+        "conference_rank": 10
+      },
+      "Sean R.": {
+        "points": 62,
+        "wins": 24,
+        "losses": 22,
+        "ot_losses": 14,
+        "games_played": 60,
+        "goals_for": 155,
+        "goals_against": 179,
+        "goal_diff": -24,
+        "division_rank": 6,
         "conference_rank": 11
       },
       "Travis R.": {
