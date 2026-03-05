@@ -12552,14 +12552,14 @@
         "conference_rank": 4
       },
       "Keith R.": {
-        "points": 69,
-        "wins": 33,
+        "points": 71,
+        "wins": 34,
         "losses": 24,
         "ot_losses": 3,
-        "games_played": 60,
-        "goals_for": 200,
-        "goals_against": 211,
-        "goal_diff": -11,
+        "games_played": 61,
+        "goals_for": 205,
+        "goals_against": 212,
+        "goal_diff": -7,
         "division_rank": 2,
         "conference_rank": 5
       },
@@ -12590,12 +12590,12 @@
       "Trevor R.": {
         "points": 67,
         "wins": 29,
-        "losses": 22,
+        "losses": 23,
         "ot_losses": 9,
-        "games_played": 60,
-        "goals_for": 171,
-        "goals_against": 176,
-        "goal_diff": -5,
+        "games_played": 61,
+        "goals_for": 173,
+        "goals_against": 179,
+        "goal_diff": -6,
         "division_rank": 4,
         "conference_rank": 8
       },
