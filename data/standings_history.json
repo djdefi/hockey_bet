@@ -12690,14 +12690,14 @@
         "conference_rank": 3
       },
       "Ryan B.": {
-        "points": 78,
-        "wins": 36,
+        "points": 80,
+        "wins": 37,
         "losses": 19,
         "ot_losses": 6,
-        "games_played": 61,
-        "goals_for": 209,
-        "goals_against": 183,
-        "goal_diff": 26,
+        "games_played": 62,
+        "goals_for": 214,
+        "goals_against": 184,
+        "goal_diff": 30,
         "division_rank": 2,
         "conference_rank": 3
       },
@@ -12725,6 +12725,18 @@
         "division_rank": 2,
         "conference_rank": 5
       },
+      "Tyler F.": {
+        "points": 70,
+        "wins": 33,
+        "losses": 25,
+        "ot_losses": 4,
+        "games_played": 62,
+        "goals_for": 196,
+        "goals_against": 169,
+        "goal_diff": 27,
+        "division_rank": 4,
+        "conference_rank": 6
+      },
       "Mike M.": {
         "points": 69,
         "wins": 31,
@@ -12736,18 +12748,6 @@
         "goal_diff": 10,
         "division_rank": 5,
         "conference_rank": 10
-      },
-      "Tyler F.": {
-        "points": 68,
-        "wins": 32,
-        "losses": 25,
-        "ot_losses": 4,
-        "games_played": 61,
-        "goals_for": 193,
-        "goals_against": 169,
-        "goal_diff": 24,
-        "division_rank": 4,
-        "conference_rank": 6
       },
       "Trevor R.": {
         "points": 67,
