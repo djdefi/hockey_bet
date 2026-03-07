@@ -12883,12 +12883,12 @@
       "Mike M.": {
         "points": 69,
         "wins": 31,
-        "losses": 25,
+        "losses": 26,
         "ot_losses": 7,
-        "games_played": 63,
-        "goals_for": 199,
-        "goals_against": 189,
-        "goal_diff": 10,
+        "games_played": 64,
+        "goals_for": 200,
+        "goals_against": 192,
+        "goal_diff": 8,
         "division_rank": 5,
         "conference_rank": 11
       },
