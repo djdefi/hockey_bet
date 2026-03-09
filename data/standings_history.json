@@ -13157,16 +13157,16 @@
         "conference_rank": 3
       },
       "Ryan B.": {
-        "points": 82,
-        "wins": 38,
+        "points": 84,
+        "wins": 39,
         "losses": 19,
         "ot_losses": 6,
-        "games_played": 63,
-        "goals_for": 217,
-        "goals_against": 186,
-        "goal_diff": 31,
-        "division_rank": 2,
-        "conference_rank": 3
+        "games_played": 64,
+        "goals_for": 225,
+        "goals_against": 193,
+        "goal_diff": 32,
+        "division_rank": 1,
+        "conference_rank": 2
       },
       "Keith R.": {
         "points": 73,
@@ -13243,12 +13243,12 @@
       "Travis R.": {
         "points": 66,
         "wins": 32,
-        "losses": 29,
+        "losses": 30,
         "ot_losses": 2,
-        "games_played": 63,
+        "games_played": 64,
         "goals_for": 166,
-        "goals_against": 189,
-        "goal_diff": -23,
+        "goals_against": 192,
+        "goal_diff": -26,
         "division_rank": 7,
         "conference_rank": 13
       },
