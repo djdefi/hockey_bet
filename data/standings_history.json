@@ -13440,12 +13440,12 @@
       "Jeff C.": {
         "points": 95,
         "wins": 43,
-        "losses": 10,
+        "losses": 11,
         "ot_losses": 9,
-        "games_played": 62,
-        "goals_for": 238,
-        "goals_against": 155,
-        "goal_diff": 83,
+        "games_played": 63,
+        "goals_for": 241,
+        "goals_against": 159,
+        "goal_diff": 82,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -13506,8 +13506,8 @@
         "goals_for": 210,
         "goals_against": 207,
         "goal_diff": 3,
-        "division_rank": 2,
-        "conference_rank": 6
+        "division_rank": 3,
+        "conference_rank": 7
       },
       "Mike M.": {
         "points": 71,
@@ -13524,12 +13524,12 @@
       "Trevor R.": {
         "points": 67,
         "wins": 29,
-        "losses": 24,
+        "losses": 25,
         "ot_losses": 9,
-        "games_played": 62,
-        "goals_for": 177,
-        "goals_against": 186,
-        "goal_diff": -9,
+        "games_played": 63,
+        "goals_for": 179,
+        "goals_against": 190,
+        "goal_diff": -11,
         "division_rank": 4,
         "conference_rank": 8
       },
@@ -13557,6 +13557,18 @@
         "division_rank": 6,
         "conference_rank": 10
       },
+      "David K.": {
+        "points": 66,
+        "wins": 29,
+        "losses": 27,
+        "ot_losses": 8,
+        "games_played": 64,
+        "goals_for": 191,
+        "goals_against": 218,
+        "goal_diff": -27,
+        "division_rank": 5,
+        "conference_rank": 11
+      },
       "Travis R.": {
         "points": 66,
         "wins": 32,
@@ -13568,18 +13580,6 @@
         "goal_diff": -26,
         "division_rank": 7,
         "conference_rank": 14
-      },
-      "David K.": {
-        "points": 64,
-        "wins": 28,
-        "losses": 27,
-        "ot_losses": 8,
-        "games_played": 63,
-        "goals_for": 187,
-        "goals_against": 216,
-        "goal_diff": -29,
-        "division_rank": 5,
-        "conference_rank": 11
       },
       "Dan R.": {
         "points": 62,
