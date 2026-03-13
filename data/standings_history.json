@@ -13743,14 +13743,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 95,
-        "wins": 43,
+        "points": 97,
+        "wins": 44,
         "losses": 11,
         "ot_losses": 9,
-        "games_played": 63,
-        "goals_for": 241,
-        "goals_against": 159,
-        "goal_diff": 82,
+        "games_played": 64,
+        "goals_for": 246,
+        "goals_against": 160,
+        "goal_diff": 86,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -13791,16 +13791,28 @@
         "conference_rank": 4
       },
       "Tyler F.": {
-        "points": 73,
+        "points": 74,
         "wins": 34,
         "losses": 26,
-        "ot_losses": 5,
-        "games_played": 65,
-        "goals_for": 203,
-        "goals_against": 181,
-        "goal_diff": 22,
+        "ot_losses": 6,
+        "games_played": 66,
+        "goals_for": 205,
+        "goals_against": 184,
+        "goal_diff": 21,
         "division_rank": 4,
         "conference_rank": 5
+      },
+      "Zak S.": {
+        "points": 74,
+        "wins": 30,
+        "losses": 22,
+        "ot_losses": 14,
+        "games_played": 66,
+        "goals_for": 216,
+        "goals_against": 209,
+        "goal_diff": 7,
+        "division_rank": 2,
+        "conference_rank": 6
       },
       "Mike M.": {
         "points": 73,
@@ -13813,18 +13825,6 @@
         "goal_diff": 10,
         "division_rank": 6,
         "conference_rank": 12
-      },
-      "Zak S.": {
-        "points": 72,
-        "wins": 29,
-        "losses": 22,
-        "ot_losses": 14,
-        "games_played": 65,
-        "goals_for": 210,
-        "goals_against": 207,
-        "goal_diff": 3,
-        "division_rank": 2,
-        "conference_rank": 6
       },
       "Brian D.": {
         "points": 68,
@@ -13841,12 +13841,12 @@
       "Trevor R.": {
         "points": 67,
         "wins": 29,
-        "losses": 25,
+        "losses": 26,
         "ot_losses": 9,
-        "games_played": 63,
-        "goals_for": 179,
-        "goals_against": 190,
-        "goal_diff": -11,
+        "games_played": 64,
+        "goals_for": 180,
+        "goals_against": 195,
+        "goal_diff": -15,
         "division_rank": 5,
         "conference_rank": 9
       },
@@ -13863,14 +13863,14 @@
         "conference_rank": 10
       },
       "David K.": {
-        "points": 66,
+        "points": 67,
         "wins": 29,
         "losses": 27,
-        "ot_losses": 8,
-        "games_played": 64,
-        "goals_for": 191,
-        "goals_against": 218,
-        "goal_diff": -27,
+        "ot_losses": 9,
+        "games_played": 65,
+        "goals_for": 194,
+        "goals_against": 222,
+        "goal_diff": -28,
         "division_rank": 5,
         "conference_rank": 11
       },
