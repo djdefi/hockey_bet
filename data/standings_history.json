@@ -13988,6 +13988,18 @@
         "division_rank": 6,
         "conference_rank": 12
       },
+      "Sean R.": {
+        "points": 69,
+        "wins": 27,
+        "losses": 23,
+        "ot_losses": 15,
+        "games_played": 65,
+        "goals_for": 172,
+        "goals_against": 194,
+        "goal_diff": -22,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
       "Brian D.": {
         "points": 68,
         "wins": 31,
@@ -13997,8 +14009,8 @@
         "goals_for": 196,
         "goals_against": 220,
         "goal_diff": -24,
-        "division_rank": 4,
-        "conference_rank": 8
+        "division_rank": 5,
+        "conference_rank": 9
       },
       "Trevor R.": {
         "points": 67,
@@ -14009,18 +14021,6 @@
         "goals_for": 180,
         "goals_against": 195,
         "goal_diff": -15,
-        "division_rank": 5,
-        "conference_rank": 9
-      },
-      "Sean R.": {
-        "points": 67,
-        "wins": 26,
-        "losses": 23,
-        "ot_losses": 15,
-        "games_played": 64,
-        "goals_for": 169,
-        "goals_against": 192,
-        "goal_diff": -23,
         "division_rank": 6,
         "conference_rank": 10
       },
@@ -14057,8 +14057,8 @@
         "goals_for": 182,
         "goals_against": 199,
         "goal_diff": -17,
-        "division_rank": 6,
-        "conference_rank": 12
+        "division_rank": 7,
+        "conference_rank": 13
       }
     }
   }
