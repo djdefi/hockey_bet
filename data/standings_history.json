@@ -14432,16 +14432,16 @@
         "conference_rank": 5
       },
       "Tyler F.": {
-        "points": 74,
-        "wins": 34,
+        "points": 76,
+        "wins": 35,
         "losses": 27,
         "ot_losses": 6,
-        "games_played": 67,
-        "goals_for": 208,
-        "goals_against": 188,
-        "goal_diff": 20,
+        "games_played": 68,
+        "goals_for": 214,
+        "goals_against": 191,
+        "goal_diff": 23,
         "division_rank": 4,
-        "conference_rank": 7
+        "conference_rank": 6
       },
       "Mike M.": {
         "points": 74,
@@ -14467,6 +14467,18 @@
         "division_rank": 4,
         "conference_rank": 8
       },
+      "Sean R.": {
+        "points": 71,
+        "wins": 28,
+        "losses": 24,
+        "ot_losses": 15,
+        "games_played": 67,
+        "goals_for": 180,
+        "goals_against": 201,
+        "goal_diff": -21,
+        "division_rank": 5,
+        "conference_rank": 9
+      },
       "Brian D.": {
         "points": 70,
         "wins": 32,
@@ -14476,32 +14488,20 @@
         "goals_for": 204,
         "goals_against": 229,
         "goal_diff": -25,
-        "division_rank": 5,
-        "conference_rank": 9
-      },
-      "Sean R.": {
-        "points": 69,
-        "wins": 27,
-        "losses": 24,
-        "ot_losses": 15,
-        "games_played": 66,
-        "goals_for": 176,
-        "goals_against": 200,
-        "goal_diff": -24,
         "division_rank": 6,
         "conference_rank": 10
       },
       "Travis R.": {
-        "points": 68,
-        "wins": 33,
+        "points": 70,
+        "wins": 34,
         "losses": 31,
         "ot_losses": 2,
-        "games_played": 66,
-        "goals_for": 176,
-        "goals_against": 201,
-        "goal_diff": -25,
+        "games_played": 67,
+        "goals_for": 180,
+        "goals_against": 204,
+        "goal_diff": -24,
         "division_rank": 7,
-        "conference_rank": 15
+        "conference_rank": 13
       },
       "David K.": {
         "points": 67,
