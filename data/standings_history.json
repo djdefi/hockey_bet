@@ -15001,14 +15001,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 98,
-        "wins": 44,
+        "points": 100,
+        "wins": 45,
         "losses": 13,
         "ot_losses": 10,
-        "games_played": 67,
-        "goals_for": 250,
-        "goals_against": 172,
-        "goal_diff": 78,
+        "games_played": 68,
+        "goals_for": 254,
+        "goals_against": 173,
+        "goal_diff": 81,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -15061,14 +15061,14 @@
         "conference_rank": 5
       },
       "Mike M.": {
-        "points": 76,
-        "wins": 34,
+        "points": 78,
+        "wins": 35,
         "losses": 27,
         "ot_losses": 8,
-        "games_played": 69,
-        "goals_for": 216,
-        "goals_against": 204,
-        "goal_diff": 12,
+        "games_played": 70,
+        "goals_for": 218,
+        "goals_against": 205,
+        "goal_diff": 13,
         "division_rank": 6,
         "conference_rank": 12
       },
@@ -15084,18 +15084,6 @@
         "division_rank": 3,
         "conference_rank": 7
       },
-      "Travis R.": {
-        "points": 72,
-        "wins": 35,
-        "losses": 31,
-        "ot_losses": 2,
-        "games_played": 68,
-        "goals_for": 186,
-        "goals_against": 207,
-        "goal_diff": -21,
-        "division_rank": 7,
-        "conference_rank": 13
-      },
       "Sean R.": {
         "points": 72,
         "wins": 28,
@@ -15107,6 +15095,18 @@
         "goal_diff": -22,
         "division_rank": 4,
         "conference_rank": 8
+      },
+      "Travis R.": {
+        "points": 72,
+        "wins": 35,
+        "losses": 32,
+        "ot_losses": 2,
+        "games_played": 69,
+        "goals_for": 187,
+        "goals_against": 209,
+        "goal_diff": -22,
+        "division_rank": 7,
+        "conference_rank": 13
       },
       "Trevor R.": {
         "points": 71,
