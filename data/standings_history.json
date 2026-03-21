@@ -15037,28 +15037,16 @@
         "conference_rank": 3
       },
       "Keith R.": {
-        "points": 78,
-        "wins": 37,
+        "points": 80,
+        "wins": 38,
         "losses": 27,
         "ot_losses": 4,
-        "games_played": 68,
-        "goals_for": 225,
-        "goals_against": 236,
-        "goal_diff": -11,
+        "games_played": 69,
+        "goals_for": 229,
+        "goals_against": 237,
+        "goal_diff": -8,
         "division_rank": 1,
         "conference_rank": 4
-      },
-      "Tyler F.": {
-        "points": 78,
-        "wins": 36,
-        "losses": 27,
-        "ot_losses": 6,
-        "games_played": 69,
-        "goals_for": 218,
-        "goals_against": 191,
-        "goal_diff": 27,
-        "division_rank": 4,
-        "conference_rank": 5
       },
       "Mike M.": {
         "points": 78,
@@ -15071,6 +15059,18 @@
         "goal_diff": 13,
         "division_rank": 6,
         "conference_rank": 12
+      },
+      "Tyler F.": {
+        "points": 78,
+        "wins": 36,
+        "losses": 28,
+        "ot_losses": 6,
+        "games_played": 70,
+        "goals_for": 219,
+        "goals_against": 195,
+        "goal_diff": 24,
+        "division_rank": 4,
+        "conference_rank": 5
       },
       "Zak S.": {
         "points": 76,
