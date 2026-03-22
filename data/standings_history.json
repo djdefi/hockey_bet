@@ -15144,14 +15144,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 100,
-        "wins": 45,
+        "points": 102,
+        "wins": 46,
         "losses": 13,
         "ot_losses": 10,
-        "games_played": 68,
-        "goals_for": 254,
-        "goals_against": 173,
-        "goal_diff": 81,
+        "games_played": 69,
+        "goals_for": 257,
+        "goals_against": 175,
+        "goal_diff": 82,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -15192,14 +15192,14 @@
         "conference_rank": 4
       },
       "Mike M.": {
-        "points": 78,
+        "points": 79,
         "wins": 35,
         "losses": 27,
-        "ot_losses": 8,
-        "games_played": 70,
-        "goals_for": 218,
-        "goals_against": 205,
-        "goal_diff": 13,
+        "ot_losses": 9,
+        "games_played": 71,
+        "goals_for": 220,
+        "goals_against": 208,
+        "goal_diff": 12,
         "division_rank": 6,
         "conference_rank": 12
       },
@@ -15288,14 +15288,14 @@
         "conference_rank": 11
       },
       "Dan R.": {
-        "points": 68,
-        "wins": 28,
+        "points": 70,
+        "wins": 29,
         "losses": 29,
         "ot_losses": 12,
-        "games_played": 69,
-        "goals_for": 196,
-        "goals_against": 217,
-        "goal_diff": -21,
+        "games_played": 70,
+        "goals_for": 199,
+        "goals_against": 219,
+        "goal_diff": -20,
         "division_rank": 6,
         "conference_rank": 12
       }
