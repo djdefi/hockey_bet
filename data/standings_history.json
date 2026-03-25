@@ -15647,26 +15647,26 @@
         "conference_rank": 3
       },
       "Keith R.": {
-        "points": 82,
-        "wins": 39,
+        "points": 84,
+        "wins": 40,
         "losses": 27,
         "ot_losses": 4,
-        "games_played": 70,
-        "goals_for": 235,
-        "goals_against": 242,
-        "goal_diff": -7,
+        "games_played": 71,
+        "goals_for": 240,
+        "goals_against": 245,
+        "goal_diff": -5,
         "division_rank": 1,
         "conference_rank": 4
       },
       "Tyler F.": {
         "points": 80,
         "wins": 37,
-        "losses": 28,
+        "losses": 29,
         "ot_losses": 6,
-        "games_played": 71,
-        "goals_for": 223,
-        "goals_against": 198,
-        "goal_diff": 25,
+        "games_played": 72,
+        "goals_for": 225,
+        "goals_against": 203,
+        "goal_diff": 22,
         "division_rank": 4,
         "conference_rank": 5
       },
@@ -15691,8 +15691,8 @@
         "goals_for": 225,
         "goals_against": 225,
         "goal_diff": 0,
-        "division_rank": 2,
-        "conference_rank": 6
+        "division_rank": 3,
+        "conference_rank": 7
       },
       "David K.": {
         "points": 77,
@@ -15719,14 +15719,14 @@
         "conference_rank": 13
       },
       "Sean R.": {
-        "points": 73,
+        "points": 74,
         "wins": 28,
         "losses": 25,
-        "ot_losses": 17,
-        "games_played": 70,
-        "goals_for": 187,
-        "goals_against": 213,
-        "goal_diff": -26,
+        "ot_losses": 18,
+        "games_played": 71,
+        "goals_for": 189,
+        "goals_against": 216,
+        "goal_diff": -27,
         "division_rank": 4,
         "conference_rank": 9
       },
