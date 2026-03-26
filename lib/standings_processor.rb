@@ -16,14 +16,14 @@ require_relative 'team_colors'
 # Playoff Status Helper Structure
 # Enhanced with specific seed and position information
 PLAYOFF_STATUS = {
-  div_leader_1: { class: 'color-bg-success-emphasis', icon: '🥇', label_prefix: 'Division Leader', aria_label: 'First place in division, secured playoff berth' },
-  div_leader_2: { class: 'color-bg-success-emphasis', icon: '🥈', label_prefix: 'Division 2nd', aria_label: 'Second place in division, secured playoff berth' },
-  div_leader_3: { class: 'color-bg-success-emphasis', icon: '🥉', label_prefix: 'Division 3rd', aria_label: 'Third place in division, secured playoff berth' },
-  wildcard_1: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #1', aria_label: 'First wildcard position, secured playoff berth' },
-  wildcard_2: { class: 'color-bg-success-emphasis', icon: '🎟️', label_prefix: 'Wildcard #2', aria_label: 'Second wildcard position, secured playoff berth' },
-  in_hunt: { class: 'color-bg-attention-emphasis', icon: '⚠️', label_prefix: 'In The Hunt', aria_label: 'Team is in contention for wildcard position' },
-  fading_fast: { class: 'color-bg-attention-emphasis', icon: '🫠', label_prefix: 'Fading Fast', aria_label: 'Team is fading from playoff contention' },
-  eliminated: { class: 'color-bg-danger-emphasis', icon: '❌', label_prefix: 'Eliminated', aria_label: 'Team is mathematically eliminated from playoffs' }
+  div_leader_1: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#FFD700', label_prefix: 'Division Leader', aria_label: 'First place in division, secured playoff berth' },
+  div_leader_2: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#C0C0C0', label_prefix: 'Division 2nd', aria_label: 'Second place in division, secured playoff berth' },
+  div_leader_3: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#CD7F32', label_prefix: 'Division 3rd', aria_label: 'Third place in division, secured playoff berth' },
+  wildcard_1: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#21d19f', label_prefix: 'Wildcard #1', aria_label: 'First wildcard position, secured playoff berth' },
+  wildcard_2: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#21d19f', label_prefix: 'Wildcard #2', aria_label: 'Second wildcard position, secured playoff berth' },
+  in_hunt: { class: 'color-bg-attention-emphasis', icon: 'solar:danger-triangle-bold', icon_color: '#f39c12', label_prefix: 'In The Hunt', aria_label: 'Team is in contention for wildcard position' },
+  fading_fast: { class: 'color-bg-attention-emphasis', icon: 'solar:sad-square-bold', icon_color: '#f39c12', label_prefix: 'Fading Fast', aria_label: 'Team is fading from playoff contention' },
+  eliminated: { class: 'color-bg-danger-emphasis', icon: 'solar:close-circle-bold', icon_color: '#e74c3c', label_prefix: 'Eliminated', aria_label: 'Team is mathematically eliminated from playoffs' }
 }
 
 # Directory for persistent data files that need to be committed
@@ -436,22 +436,22 @@ end
 def get_fan_achievement(fan, bet_stats)
   # Priority order of achievements (most impressive first)
   checks = [
-    { key: :best_cup_odds, emoji: '🏆', label: 'Cup Contender' },
-    { key: :fan_crusher, emoji: '💪', label: 'Fan Crusher' },
-    { key: :most_dominant, emoji: '👑', label: 'Most Dominant' },
-    { key: :on_fire, emoji: '🔥', label: 'On Fire' },
-    { key: :brick_wall, emoji: '🧱', label: 'Brick Wall' },
-    { key: :top_winners, emoji: '🥇', label: 'Top Winner' },
-    { key: :shutout_king, emoji: '🚫', label: 'Shutout King' },
-    { key: :glass_cannon, emoji: '💥', label: 'Glass Cannon' },
-    { key: :comeback_kid, emoji: '🎯', label: 'Comeback Kid' },
-    { key: :overtimer, emoji: '⏱️', label: 'Overtimer' }
+    { key: :best_cup_odds, icon: 'solar:cup-star-bold', label: 'Cup Contender' },
+    { key: :fan_crusher, icon: 'solar:flash-bold', label: 'Fan Crusher' },
+    { key: :most_dominant, icon: 'solar:crown-bold', label: 'Most Dominant' },
+    { key: :on_fire, icon: 'solar:fire-bold', label: 'On Fire' },
+    { key: :brick_wall, icon: 'solar:shield-bold', label: 'Brick Wall' },
+    { key: :top_winners, icon: 'solar:medal-ribbons-star-bold', label: 'Top Winner' },
+    { key: :shutout_king, icon: 'solar:forbidden-bold', label: 'Shutout King' },
+    { key: :glass_cannon, icon: 'solar:flash-circle-bold', label: 'Glass Cannon' },
+    { key: :comeback_kid, icon: 'solar:target-bold', label: 'Comeback Kid' },
+    { key: :overtimer, icon: 'solar:stopwatch-bold', label: 'Overtimer' }
   ]
   
   checks.each do |check|
     stat = bet_stats[check[:key]]
     if stat && stat.any? && stat.first[:fan] == fan
-      return { emoji: check[:emoji], label: check[:label], value: stat.first[:display] }
+      return { icon: check[:icon], label: check[:label], value: stat.first[:display] }
     end
   end
   nil
@@ -537,10 +537,10 @@ end
 
 def get_interest_flames(interest_score)
   # Return 1-3 flames based on interest score
-  return '🔥🔥🔥' if interest_score >= 95  # Very close matchup (0-5 point diff)
-  return '🔥🔥' if interest_score >= 85     # Close matchup (5-15 point diff)
-  return '🔥' if interest_score >= 70       # Moderate matchup (15-30 point diff)
-  ''  # Large point differential
+  return 3 if interest_score >= 95  # Very close matchup (0-5 point diff)
+  return 2 if interest_score >= 85  # Close matchup (5-15 point diff)
+  return 1 if interest_score >= 70  # Moderate matchup (15-30 point diff)
+  0  # Large point differential
 end
 
 def format_streak(streak_code)
@@ -553,9 +553,9 @@ def format_streak(streak_code)
   
   case type
   when 'W'
-    "#{count}W streak 🔥"
+    "#{count}W streak"
   when 'L'
-    "#{count}L streak 📉"
+    "#{count}L streak"
   when 'O'
     "#{count}OT streak"
   else
@@ -564,7 +564,7 @@ def format_streak(streak_code)
 end
 
 def get_rivalry_badge(same_division, same_conference)
-  return '🔴 DIVISION RIVAL' if same_division
-  return '🟡 CONFERENCE RIVAL' if same_conference
+  return 'DIVISION RIVAL' if same_division
+  return 'CONFERENCE RIVAL' if same_conference
   ''
 end

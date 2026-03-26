@@ -321,7 +321,7 @@ class PlayoffProcessor
       </head>
       <body>
           <div class="container-lg">
-              #{pr_preview && pr_number ? "<div class='flash flash-warn'>🚧 PR ##{pr_number} Preview Environment</div>" : ""}
+              #{pr_preview && pr_number ? "<div class='flash flash-warn'><iconify-icon icon=\"solar:danger-triangle-bold\" width=\"16\" height=\"16\"></iconify-icon> PR ##{pr_number} Preview Environment</div>" : ""}
               <h1>NHL Playoffs</h1>
               #{@is_playoff_time ? playoff_content_html : no_playoffs_html}
           </div>
