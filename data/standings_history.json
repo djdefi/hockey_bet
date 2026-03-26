@@ -15785,14 +15785,14 @@
         "conference_rank": 1
       },
       "Ryan B.": {
-        "points": 95,
+        "points": 96,
         "wins": 44,
         "losses": 20,
-        "ot_losses": 7,
-        "games_played": 71,
-        "goals_for": 251,
-        "goals_against": 207,
-        "goal_diff": 44,
+        "ot_losses": 8,
+        "games_played": 72,
+        "goals_for": 254,
+        "goals_against": 211,
+        "goal_diff": 43,
         "division_rank": 1,
         "conference_rank": 2
       },
@@ -15878,7 +15878,7 @@
         "goals_against": 213,
         "goal_diff": -20,
         "division_rank": 7,
-        "conference_rank": 13
+        "conference_rank": 14
       },
       "Sean R.": {
         "points": 74,
