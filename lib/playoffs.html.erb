@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
-    <meta name="theme-color" content="#041E42">
+    <meta name="theme-color" content="#0b162a">
     
     <style>
         /* Playoff Styles */
@@ -23,36 +23,94 @@
         <% end %>
         
         .back-link {
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-4);
+        }
+        
+        .back-link .btn {
+            background-color: var(--color-bg-tertiary);
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border-default);
+            transition: background-color var(--duration-fast) var(--ease-out),
+                        color var(--duration-fast) var(--ease-out);
+        }
+        
+        .back-link .btn:hover {
+            background-color: var(--color-bg-hover);
+            color: var(--color-text-primary);
         }
         
         .header-section {
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
+            margin-bottom: var(--space-8);
+            padding: var(--space-4);
+        }
+        
+        .header-section h1 {
+            color: var(--color-text-primary);
+            font-weight: var(--font-weight-extrabold);
         }
         
         .last-updated {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2);
         }
         
         .no-playoffs {
             text-align: center;
-            padding: 2rem;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            margin: 2rem 0;
+            padding: var(--space-12) var(--space-6);
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-default);
+            border-radius: var(--radius-lg);
+            margin: var(--space-8) 0;
+        }
+        
+        .no-playoffs iconify-icon {
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+        
+        .no-playoffs h2 {
+            color: var(--color-text-primary);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+        }
+        
+        .no-playoffs p {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+            max-width: 28rem;
+            margin: 0 auto;
+            line-height: var(--line-height-relaxed);
         }
         
         .error-message {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 4px;
-            padding: 1rem;
-            margin: 1rem 0;
-            color: #856404;
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid var(--color-accent-danger);
+            border-radius: var(--radius-sm);
+            padding: var(--space-4);
+            margin: var(--space-4) 0;
+            color: var(--color-accent-danger);
+        }
+        
+        body {
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+        }
+        
+        .container-lg {
+            padding-top: var(--space-6);
+            padding-bottom: var(--space-6);
+        }
+        
+        .mt-4.text-center .btn {
+            transition: background-color var(--duration-fast) var(--ease-out),
+                        transform var(--duration-fast) var(--ease-out);
+        }
+        
+        .mt-4.text-center .btn:hover {
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -157,11 +215,13 @@
                 </div>
             <% elsif @is_playoff_time %>
                 <div class="no-playoffs">
+                    <iconify-icon icon="solar:calendar-bold" width="48" height="48"></iconify-icon>
                     <h2>Playoffs Starting Soon</h2>
                     <p>The NHL playoffs are approaching. Bracket information will be available once the matchups are set.</p>
                 </div>
             <% else %>
                 <div class="no-playoffs">
+                    <iconify-icon icon="solar:calendar-bold" width="48" height="48"></iconify-icon>
                     <h2>No Active Playoffs</h2>
                     <p>The NHL playoffs typically run from April through June. Check back during playoff season!</p>
                 </div>
