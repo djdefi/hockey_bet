@@ -83,6 +83,48 @@
 
     <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Standings">
       <h2>Standings Table</h2>
+      <table class="standings-table" role="table" aria-label="NHL Standings">
+        <thead>
+          <tr>
+            <th scope="col">Team</th>
+            <th scope="col">GP</th>
+            <th scope="col">W</th>
+            <th scope="col">L</th>
+            <th scope="col">OTL</th>
+            <th scope="col">PTS</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="fan-team-row" data-team="SJS">
+            <td>San Jose Sharks</td>
+            <td>72</td>
+            <td>30</td>
+            <td>35</td>
+            <td>7</td>
+            <td>67</td>
+            <td><span aria-label="Eliminated">❌</span></td>
+          </tr>
+          <tr data-team="COL">
+            <td>Colorado Avalanche</td>
+            <td>72</td>
+            <td>42</td>
+            <td>22</td>
+            <td>8</td>
+            <td>92</td>
+            <td><span aria-label="Clinched">✔️</span></td>
+          </tr>
+          <tr data-team="NSH">
+            <td>Nashville Predators</td>
+            <td>72</td>
+            <td>38</td>
+            <td>28</td>
+            <td>6</td>
+            <td>82</td>
+            <td><span aria-label="Contending">⚠️</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff Odds">
