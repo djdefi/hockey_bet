@@ -16,8 +16,8 @@
     @keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
     .team-logo{background:var(--bg-card);border-radius:4px}
     .hidden{display:none}
-    .desktop-tabs{display:flex;gap:8px;margin-bottom:16px}
-    .desktop-tab{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:8px 16px;border-radius:8px;cursor:pointer}
+    .desktop-tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .desktop-tab{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0}
     .desktop-tab.active{color:var(--accent-green);border-color:var(--accent-green)}
     .tab-section{display:none}
     .tab-section.active{display:block}
@@ -129,6 +129,7 @@
 
   <!-- Load all JS in production order -->
   <script src="../lib/team-themes.js"></script>
+  <script src="../lib/accessibility.js"></script>
   <script src="../lib/social-features.js"></script>
   <script src="../lib/mobile-gestures.js"></script>
   <script src="../lib/pwa-install.js"></script>
