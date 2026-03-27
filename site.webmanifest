@@ -10,10 +10,10 @@
       "type": "image/x-icon"
     },
     {
-      "src": "favicon.ico",
-      "sizes": "96x96 128x128",
-      "type": "image/x-icon",
-      "purpose": "any"
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#0b162a",
