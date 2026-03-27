@@ -107,11 +107,24 @@
     function switchTab(tabName) {
       document.querySelectorAll('.tab-section').forEach(function(s) { s.classList.remove('active'); });
       document.querySelectorAll('.desktop-tab').forEach(function(t) { t.classList.remove('active'); t.removeAttribute('aria-current'); });
+      document.querySelectorAll('.bottom-nav .nav-item').forEach(function(n) { n.classList.remove('active'); });
       var tab = document.getElementById(tabName + '-tab');
       if (tab) tab.classList.add('active');
-      var btn = document.querySelector('[data-tab="' + tabName + '"]');
+      var btn = document.querySelector('.desktop-tab[data-tab="' + tabName + '"]');
       if (btn) { btn.classList.add('active'); btn.setAttribute('aria-current', 'page'); }
+      var navItem = document.querySelector('.bottom-nav .nav-item[data-tab="' + tabName + '"]');
+      if (navItem) navItem.classList.add('active');
     }
+
+    // Wire up desktop tab clicks
+    document.querySelectorAll('.desktop-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() { switchTab(this.dataset.tab); });
+    });
+
+    // Wire up bottom nav clicks
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(function(item) {
+      item.addEventListener('click', function() { switchTab(this.dataset.tab); });
+    });
   </script>
 
   <!-- Load all JS in production order -->
