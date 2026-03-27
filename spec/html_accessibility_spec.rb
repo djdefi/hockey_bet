@@ -64,7 +64,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     end
     
     it 'has status icons with aria-label attributes' do
-      status_icons = @doc.css('span[role="img"]')
+      status_icons = @doc.css('iconify-icon[aria-label]')
       expect(status_icons.length).to be > 0
       
       status_icons.each do |icon|

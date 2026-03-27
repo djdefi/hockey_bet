@@ -118,7 +118,7 @@ class PWAInstall {
     banner.className = 'pwa-install-banner';
     banner.innerHTML = `
       <div class="pwa-banner-content">
-        <div class="pwa-banner-icon">🏒</div>
+        <div class="pwa-banner-icon"><iconify-icon icon="solar:hockey-bold" width="32" height="32" style="color: var(--accent-green, #21d19f);"></iconify-icon></div>
         <div class="pwa-banner-text">
           <div class="pwa-banner-title">Add Hockey Bet to Home Screen</div>
           <div class="pwa-banner-subtitle">Get instant access and stay updated with live NHL standings</div>
@@ -168,7 +168,7 @@ class PWAInstall {
     banner.className = 'pwa-install-banner';
     banner.innerHTML = `
       <div class="pwa-banner-content">
-        <div class="pwa-banner-icon">🏒</div>
+        <div class="pwa-banner-icon"><iconify-icon icon="solar:hockey-bold" width="32" height="32" style="color: var(--accent-green, #21d19f);"></iconify-icon></div>
         <div class="pwa-banner-text">
           <div class="pwa-banner-title">Add Hockey Bet to Home Screen</div>
           <div class="pwa-banner-subtitle">Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></div>
