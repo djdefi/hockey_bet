@@ -206,7 +206,7 @@
                                          class="featured-logo-dense skeleton"
                                          width="64" height="64"
                                          loading="eager" decoding="async"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="logo-fallback-dense hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
@@ -252,7 +252,7 @@
                                          class="featured-logo-dense skeleton"
                                          width="64" height="64"
                                          loading="eager" decoding="async"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="logo-fallback-dense hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
@@ -546,7 +546,7 @@
                                          class="team-logo skeleton"
                                          width="40" height="40"
                                          loading="lazy" decoding="async"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div>
@@ -562,7 +562,7 @@
                                          class="team-logo skeleton"
                                          width="40" height="40"
                                          loading="lazy" decoding="async"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div>
@@ -772,7 +772,7 @@
                                  class="team-logo skeleton w-10 h-10 object-contain mr-3"
                                  width="40" height="40"
                                  loading="lazy" decoding="async"
-                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                             <div class="team-logo-fallback hidden w-10 h-10 mr-3 text-xs"><%= team_abbrev %></div>
                             <div class="team-info">
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
