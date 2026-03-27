@@ -12,6 +12,9 @@
         .team-logo{background:var(--bg-card,#1a253a);border-radius:4px}
     </style>
     
+    <!-- Theme init — apply stored team theme before first paint -->
+    <script><%= File.read("lib/theme-init.js") %></script>
+    
     <!-- Load full styles synchronously for reliability -->
     <link rel='stylesheet' href='styles.css'>
     

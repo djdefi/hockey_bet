@@ -1,6 +1,6 @@
 // Service Worker for Hockey Bet - Mobile Performance Optimization
-const CACHE_NAME = 'hockey-bet-v3';
-const DATA_CACHE_NAME = 'hockey-bet-data-v3';
+const CACHE_NAME = 'hockey-bet-v4';
+const DATA_CACHE_NAME = 'hockey-bet-data-v4';
 
 // Assets to cache on install (using relative paths for GitHub Pages compatibility)
 const STATIC_ASSETS = [
@@ -14,6 +14,8 @@ const STATIC_ASSETS = [
   './social-features.js',
   './mobile-gestures.js',
   './pwa-install.js',
+  './team-themes.js',
+  './team-picker.js',
   './vendor/chart.umd.js'
 ];
 
