@@ -15,8 +15,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
     <meta name="theme-color" content="#0b162a">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Iconify Icon Web Component for Solar icons -->
+    <script src="https://code.iconify.design/iconify-icon/2.2.0/iconify-icon.min.js" defer></script>
     
     <style>
+        /* Design Tokens — inlined so playoff page has access to CSS variables */
+        <% if File.exist?("lib/design-tokens.css") %>
+        <%= File.read("lib/design-tokens.css") %>
+        <% end %>
+        
         /* Playoff Styles */
         <% if File.exist?("lib/playoff_styles.css") %>
         <%= File.read("lib/playoff_styles.css") %>
