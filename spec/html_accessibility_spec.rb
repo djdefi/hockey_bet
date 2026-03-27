@@ -64,7 +64,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     end
     
     it 'has status icons with aria-label attributes' do
-      status_icons = @doc.css('span[role="img"]')
+      status_icons = @doc.css('iconify-icon[aria-label]')
       expect(status_icons.length).to be > 0
       
       status_icons.each do |icon|
@@ -123,8 +123,8 @@ RSpec.describe 'HTML Rendering and Accessibility' do
   end
   
   describe 'fan team opponent indicator' do
-    it 'only shows flame emoji for games between fan-owned teams' do
-      # In our fixture, Boston vs Toronto should show the flame emoji for both
+    it 'only shows fire icon for games between fan-owned teams' do
+      # In our fixture, Boston vs Toronto should show the fire icon for both
       team_rows = @doc.css('tr')
       
       # Check the logic for a few expected cases
@@ -136,15 +136,15 @@ RSpec.describe 'HTML Rendering and Accessibility' do
         opponent_cell = cells[-1]
         next unless opponent_cell
         
-        opponent_name = opponent_cell.text.gsub('🔥', '').strip
-        flame_emoji_present = opponent_cell.text.include?('🔥')
+        opponent_name = opponent_cell.text.strip
+        fire_icon_present = opponent_cell.css('iconify-icon[icon="solar:fire-bold"]').any?
         
         if team_name == 'Boston Bruins' && opponent_name.include?('Toronto')
-          # Boston vs Toronto - both have fans, should have flame
-          expect(flame_emoji_present).to be(true)
+          # Boston vs Toronto - both have fans, should have fire icon
+          expect(fire_icon_present).to be(true)
         elsif team_name == 'Detroit Red Wings' && opponent_name.include?('Buffalo')
-          # Detroit vs Buffalo - neither have fans, should not have flame
-          expect(flame_emoji_present).to be(false)
+          # Detroit vs Buffalo - neither have fans, should not have fire icon
+          expect(fire_icon_present).to be(false)
         end
       end
     end

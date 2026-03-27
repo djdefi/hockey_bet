@@ -186,6 +186,10 @@ h3 {
 .nav-item-icon {
     font-size: 1.5rem;
     margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
 }
 
 .nav-item-label {
@@ -419,6 +423,8 @@ h3 {
 
 .rank-emoji {
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
 
 .rank-text {
@@ -513,11 +519,17 @@ h3 {
 }
 
 .featured-matchup::before {
-    content: '⚡';
+    content: '';
     position: absolute;
     top: -10px;
     right: -10px;
-    font-size: 3rem;
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-accent-primary);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M14.616 1.9a1.371 1.371 0 0 1 2.468 1.2l-2.098 4.312h4.789a1.371 1.371 0 0 1 1.052 2.25l-10.5 12.6a1.371 1.371 0 0 1-2.468-1.2l2.098-4.312H5.168a1.371 1.371 0 0 1-1.052-2.25z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M14.616 1.9a1.371 1.371 0 0 1 2.468 1.2l-2.098 4.312h4.789a1.371 1.371 0 0 1 1.052 2.25l-10.5 12.6a1.371 1.371 0 0 1-2.468-1.2l2.098-4.312H5.168a1.371 1.371 0 0 1-1.052-2.25z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
     opacity: 0.1;
     animation: rotate 10s linear infinite;
     pointer-events: none;
@@ -557,6 +569,8 @@ h3 {
 
 .time-icon {
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
     animation: swing 2s ease-in-out infinite;
 }
 
@@ -928,6 +942,8 @@ h3 {
 
 .info-icon {
     font-size: 0.85rem;
+    display: flex;
+    align-items: center;
 }
 
 .info-text {
@@ -1079,6 +1095,10 @@ h3 {
     animation: float 3s ease-in-out infinite;
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-primary);
 }
 
 @keyframes float {
@@ -2180,6 +2200,7 @@ h3 {
     .stat-emoji {
         font-size: 1.6rem;
         margin-bottom: 0.3rem;
+        color: var(--color-accent-primary);
     }
     
     .stat-label {

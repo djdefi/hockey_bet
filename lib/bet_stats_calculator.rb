@@ -834,7 +834,7 @@ class BetStatsCalculator
           fan: @manager_team_map[abbrev],
           team: team['teamName']['default'],
           value: streak_num,
-          display: "#{streak_num}-game point streak (riding the wave 🌊)"
+          display: "#{streak_num}-game point streak"
         }
       end
       .compact
@@ -1307,7 +1307,7 @@ class BetStatsCalculator
             season: season,
             year: season_end_year,
             value: playoff_wins,
-            display: "🏆 #{season} Stanley Cup Champion (#{playoff_wins} playoff wins)"
+            display: "#{season} Stanley Cup Champion (#{playoff_wins} playoff wins)"
           }
         end
       end

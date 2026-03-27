@@ -68,7 +68,7 @@
             <div class="header-section">
                 <% if pr_preview && pr_number %>
                     <div class="flash flash-warn mb-3">
-                        <strong>🚧 PR #<%= pr_number %> Preview Environment</strong><br>
+                        <strong><iconify-icon icon="solar:danger-triangle-bold" width="16" height="16"></iconify-icon> PR #<%= pr_number %> Preview Environment</strong><br>
                         This is an isolated preview that doesn't affect the main deployment
                     </div>
                 <% end %>
