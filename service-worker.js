@@ -1,6 +1,6 @@
 // Service Worker for Hockey Bet - Mobile Performance Optimization
-const CACHE_NAME = 'hockey-bet-v2';
-const DATA_CACHE_NAME = 'hockey-bet-data-v2';
+const CACHE_NAME = 'hockey-bet-v4';
+const DATA_CACHE_NAME = 'hockey-bet-data-v4';
 
 // Assets to cache on install (using relative paths for GitHub Pages compatibility)
 const STATIC_ASSETS = [
@@ -8,8 +8,40 @@ const STATIC_ASSETS = [
   './index.html',
   './styles.css',
   './favicon.ico',
-  './site.webmanifest'
+  './site.webmanifest',
+  './performance-utils.js',
+  './accessibility.js',
+  './social-features.js',
+  './mobile-gestures.js',
+  './pwa-install.js',
+  './team-themes.js',
+  './team-picker.js',
+  './vendor/chart.umd.js'
 ];
+
+// Offline fallback page served when navigation fails without a cached response
+const OFFLINE_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hockey Bet - Offline</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; background: #0b162a; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    .offline { max-width: 400px; padding: 2rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+    p { color: #8da1b9; line-height: 1.6; }
+    button { background: #21d19f; color: #0b162a; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="offline">
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. The standings will be back when you reconnect.</p>
+    <button onclick="window.location.reload()">Try Again</button>
+  </div>
+</body>
+</html>`;
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
@@ -55,6 +87,26 @@ self.addEventListener('fetch', (event) => {
           return cachedResponse || fetchPromise;
         });
       })
+    );
+    return;
+  }
+
+  // Handle navigation requests with offline fallback
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then((cached) => {
+            return cached || new Response(OFFLINE_HTML, {
+              headers: { 'Content-Type': 'text/html' }
+            });
+          });
+        })
     );
     return;
   }

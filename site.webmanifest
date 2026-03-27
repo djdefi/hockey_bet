@@ -1,12 +1,19 @@
 {
   "name": "Hockey Bet - NHL Fan League",
   "short_name": "Hockey Bet",
+  "id": "hockey-bet-nhl-fan-league",
   "description": "Track NHL standings, predictions, and compete in the ultimate fan league. Installable PWA with live updates.",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#0b162a",
@@ -15,5 +22,20 @@
   "orientation": "portrait-primary",
   "scope": "./",
   "start_url": "./index.html",
-  "categories": ["sports", "entertainment"]
+  "categories": ["sports", "entertainment"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "View Standings",
+      "short_name": "Standings",
+      "url": "./index.html",
+      "description": "Jump to the NHL fan league standings"
+    },
+    {
+      "name": "View Playoffs",
+      "short_name": "Playoffs",
+      "url": "./playoffs.html",
+      "description": "Check the playoff bracket and odds"
+    }
+  ]
 }

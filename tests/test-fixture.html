@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b162a">
+  <title>Hockey Bet Test Fixture</title>
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <style>
+    :root{--bg-primary:#0b162a;--bg-card:#1a253a;--text-primary:#fff;--text-secondary:#8da1b9;--accent-green:#21d19f;--border-color:#2a3a52}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',-apple-system,sans-serif;background-color:var(--bg-primary);color:var(--text-primary);margin:0;padding:0}
+    .skeleton{background:linear-gradient(90deg,var(--bg-card) 25%,#2a3a52 50%,var(--bg-card) 75%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
+    @keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .team-logo{background:var(--bg-card);border-radius:4px}
+    .hidden{display:none}
+    .desktop-tabs{display:flex;gap:8px;margin-bottom:16px}
+    .desktop-tab{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:8px 16px;border-radius:8px;cursor:pointer}
+    .desktop-tab.active{color:var(--accent-green);border-color:var(--accent-green)}
+    .tab-section{display:none}
+    .tab-section.active{display:block}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg-card);border-top:2px solid transparent}
+    .bottom-nav .nav-item{flex:1;padding:8px;text-align:center;border-top:2px solid transparent}
+    .bottom-nav .nav-item.active{border-top-color:var(--accent-green)}
+  </style>
+
+  <!-- Design tokens -->
+  <link rel="stylesheet" href="../lib/design-tokens.css">
+
+  <!-- Theme init (inline in real app, loaded as script here for testing) -->
+  <script src="../lib/theme-init.js"></script>
+</head>
+<body>
+  <div class="app-accent-bar" aria-hidden="true" style="height:3px;background:linear-gradient(90deg,var(--color-accent-primary,#21d19f),var(--color-accent-info,#2980b9));position:fixed;top:0;left:0;right:0;z-index:1000"></div>
+
+  <div class="app-container">
+    <header class="mb-3" role="banner">
+      <h1>NHL Fan League</h1>
+      <p class="text-secondary text-md mb-2">Last updated: 2026-03-27 12:00:00 PT</p>
+    </header>
+
+    <!-- Desktop Tabs -->
+    <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
+      <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
+      <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
+      <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
+      <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
+      <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
+    </nav>
+
+    <!-- Tab Sections -->
+    <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
+      <div class="hero-section" style="padding:16px;background:var(--bg-card);border-radius:8px;margin-bottom:16px">
+        <h2>League Leaders</h2>
+      </div>
+
+      <!-- Matchup cards for reaction testing -->
+      <div class="matchup-card" style="padding:16px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;margin-bottom:8px">
+        <span class="stat-fan-name">Brian D.</span>
+        <span class="team-name">Sharks</span>
+        <img src="https://example.com/nonexistent.png"
+             alt="Test logo" class="team-logo skeleton" width="40" height="40"
+             loading="lazy" decoding="async"
+             onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
+        <div class="team-logo-fallback hidden">SJS</div>
+      </div>
+
+      <div class="matchup-card" style="padding:16px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;margin-bottom:8px">
+        <span class="stat-fan-name">Jeff C.</span>
+        <span class="team-name">Avalanche</span>
+      </div>
+
+      <div class="team-card" style="padding:16px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;margin-bottom:8px">
+        <span class="team-name">Predators</span>
+      </div>
+    </div>
+
+    <div id="matchups-tab" class="tab-section" role="tabpanel" aria-label="Matchups">
+      <h2>Matchups</h2>
+    </div>
+
+    <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Standings">
+      <h2>Standings Table</h2>
+    </div>
+
+    <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff Odds">
+      <h2>Playoff Odds</h2>
+    </div>
+
+    <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Trends">
+      <h2>Trends</h2>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-tab="league">League</div>
+    <div class="nav-item" data-tab="matchups">Matchups</div>
+    <div class="nav-item" data-tab="standings">Standings</div>
+    <div class="nav-item" data-tab="trends">Trends</div>
+  </nav>
+
+  <!-- Global tab switching function (normally in standings.html.erb inline script) -->
+  <script>
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-section').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelectorAll('.desktop-tab').forEach(function(t) { t.classList.remove('active'); t.removeAttribute('aria-current'); });
+      var tab = document.getElementById(tabName + '-tab');
+      if (tab) tab.classList.add('active');
+      var btn = document.querySelector('[data-tab="' + tabName + '"]');
+      if (btn) { btn.classList.add('active'); btn.setAttribute('aria-current', 'page'); }
+    }
+  </script>
+
+  <!-- Load all JS in production order -->
+  <script src="../lib/team-themes.js"></script>
+  <script src="../lib/social-features.js"></script>
+  <script src="../lib/mobile-gestures.js"></script>
+  <script src="../lib/pwa-install.js"></script>
+  <script src="../lib/team-picker.js"></script>
+</body>
+</html>

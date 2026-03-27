@@ -7,12 +7,20 @@
     <!-- Critical CSS inlined for instant render -->
     <style>
         :root{--bg-primary:#0b162a;--bg-card:#1a253a;--text-primary:#fff;--text-secondary:#8da1b9;--accent-green:#21d19f;--border-color:#2a3a52}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--bg-primary);color:var(--text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-weight:700;margin-top:0}h1{font-size:1.75rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
+        .skeleton{background:linear-gradient(90deg,var(--bg-card,#1a253a) 25%,#2a3a52 50%,var(--bg-card,#1a253a) 75%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
+        @keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .team-logo{background:var(--bg-card,#1a253a);border-radius:4px}
     </style>
+    
+    <!-- Theme init — apply stored team theme before first paint -->
+    <script><%= File.read("lib/theme-init.js") %></script>
     
     <!-- Load full styles synchronously for reliability -->
     <link rel='stylesheet' href='styles.css'>
     
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
     
     <!-- Home Screen App Icons and Meta -->
     <link rel="manifest" href="site.webmanifest">
@@ -46,9 +54,16 @@
     
     <!-- PWA Install Promotion - Smart "Add to Home Screen" banner -->
     <script src="pwa-install.js" defer></script>
+
+    <!-- Team Theming - Dynamic team color themes -->
+    <script src="team-themes.js" defer></script>
+
+    <!-- Team Picker - Team allegiance selection modal -->
+    <script src="team-picker.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    <div class="app-accent-bar" aria-hidden="true"></div>
     <div class="app-container">
         <!-- Header -->
         <header class="mb-3" role="banner">
@@ -188,8 +203,10 @@
                                 <% if matchup[:away_abbrev] %>
                                     <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
                                          alt="<%= matchup[:away_team] %> logo" 
-                                         class="featured-logo-dense"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         class="featured-logo-dense skeleton"
+                                         width="64" height="64"
+                                         loading="eager" decoding="async"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="logo-fallback-dense hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
@@ -232,8 +249,10 @@
                                 <% if matchup[:home_abbrev] %>
                                     <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
                                          alt="<%= matchup[:home_team] %> logo" 
-                                         class="featured-logo-dense"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         class="featured-logo-dense skeleton"
+                                         width="64" height="64"
+                                         loading="eager" decoding="async"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="logo-fallback-dense hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div class="featured-team-identity">
@@ -524,8 +543,10 @@
                                 <% if matchup[:away_abbrev] %>
                                     <img src="<%= get_team_logo_url(matchup[:away_abbrev]) %>" 
                                          alt="<%= matchup[:away_team] %> logo" 
-                                         class="team-logo"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         class="team-logo skeleton"
+                                         width="40" height="40"
+                                         loading="lazy" decoding="async"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback hidden"><%= matchup[:away_abbrev] %></div>
                                 <% end %>
                                 <div>
@@ -538,8 +559,10 @@
                                 <% if matchup[:home_abbrev] %>
                                     <img src="<%= get_team_logo_url(matchup[:home_abbrev]) %>" 
                                          alt="<%= matchup[:home_team] %> logo" 
-                                         class="team-logo"
-                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         class="team-logo skeleton"
+                                         width="40" height="40"
+                                         loading="lazy" decoding="async"
+                                         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                                     <div class="team-logo-fallback hidden"><%= matchup[:home_abbrev] %></div>
                                 <% end %>
                                 <div>
@@ -746,8 +769,10 @@
                             <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
                             <img src="<%= get_team_logo_url(team_abbrev) %>" 
                                  alt="<%= team['teamName']['default'] %> logo" 
-                                 class="team-logo w-10 h-10 object-contain mr-3"
-                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                 class="team-logo skeleton w-10 h-10 object-contain mr-3"
+                                 width="40" height="40"
+                                 loading="lazy" decoding="async"
+                                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.style.display='flex';">
                             <div class="team-logo-fallback hidden w-10 h-10 mr-3 text-xs"><%= team_abbrev %></div>
                             <div class="team-info">
                                 <div class="team-name"><%= team['teamName']['default'] %></div>
