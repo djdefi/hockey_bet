@@ -2855,3 +2855,72 @@ h3 {
         overflow-x: hidden;
     }
 }
+
+/* ============================================================
+   Personality touches — hand-crafted UI polish
+   ============================================================ */
+
+/* Accent bar — team color strip at top of page */
+.app-accent-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info, var(--color-accent-primary)));
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Team-aware header styling */
+header h1 {
+  position: relative;
+  display: inline-block;
+}
+
+header h1::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 4px;
+  background: linear-gradient(90deg, var(--color-accent-primary), transparent);
+  border-radius: 1px;
+  opacity: 0.6;
+}
+
+/* Team-colored active tab indicator */
+.bottom-nav .nav-item.active {
+  border-top-color: var(--color-accent-primary);
+}
+
+/* Subtle background texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.015) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Card personality */
+.stat-card-square,
+.matchup-card,
+.team-card {
+  transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
+              box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
+              border-color var(--duration-base, 0.2s) var(--ease-out, ease);
+}
+
+.stat-card-square:hover,
+.matchup-card:hover,
+.team-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent-primary);
+}

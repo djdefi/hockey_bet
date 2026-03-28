@@ -12,7 +12,9 @@
     "test:e2e:headed": "npx playwright test --headed",
     "test:e2e:desktop": "npx playwright test --project=desktop-chrome",
     "test:e2e:mobile": "npx playwright test --project=mobile-iphone",
-    "test:e2e:report": "npx playwright show-report e2e/report"
+    "test:e2e:report": "npx playwright show-report e2e/report",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug"
   },
   "keywords": [],
   "author": "",
