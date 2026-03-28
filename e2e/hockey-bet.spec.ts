@@ -18,6 +18,12 @@ async function snapFull(page: Page, name: string) {
   });
 }
 
+// Helper: click a tab that works on both desktop and mobile
+async function clickTab(page: Page, tabName: string) {
+  const tab = page.locator(`[data-tab="${tabName}"]`).filter({ visible: true }).first();
+  await tab.click();
+}
+
 // ─── Page Load & Structure ──────────────────────────────────────────
 
 test.describe('Page load and structure', () => {
@@ -193,6 +199,10 @@ test.describe('Mobile bottom navigation', () => {
 
     const section = page.locator('#matchups-tab');
     await expect(section).toHaveClass(/active/);
+
+    // Verify content is actually visible, not blank
+    const height = await section.evaluate(el => el.offsetHeight);
+    expect(height).toBeGreaterThan(100);
     await snap(page, '08-mobile-matchups');
   });
 
@@ -202,7 +212,26 @@ test.describe('Mobile bottom navigation', () => {
 
     const activeNav = page.locator('.nav-item[data-tab="standings"]');
     await expect(activeNav).toHaveClass(/active/);
+
+    // Verify standings content rendered
+    const section = page.locator('#standings-tab');
+    const height = await section.evaluate(el => el.offsetHeight);
+    expect(height).toBeGreaterThan(100);
     await snap(page, '09-mobile-standings');
+  });
+
+  test('all mobile tabs render content', async ({ page }) => {
+    await page.goto('/');
+    const tabs = ['league', 'matchups', 'standings', 'playoff-odds', 'trends'];
+    for (const tab of tabs) {
+      await page.click(`.nav-item[data-tab="${tab}"]`);
+      await page.waitForTimeout(300);
+
+      const section = page.locator(`#${tab}-tab`);
+      await expect(section).toHaveClass(/active/);
+      const height = await section.evaluate(el => el.offsetHeight);
+      expect(height).toBeGreaterThan(50, { message: `${tab} tab content should not be empty` });
+    }
   });
 });
 
@@ -358,7 +387,7 @@ test.describe('Featured matchup', () => {
 test.describe('Matchups tab', () => {
   test('shows matchup cards or empty message', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const matchupsTab = page.locator('#matchups-tab');
     await expect(matchupsTab).toHaveClass(/active/);
@@ -378,7 +407,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have team info', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     const count = await cards.count();
@@ -413,7 +442,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have stat comparisons', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     if ((await cards.count()) === 0) {
@@ -434,7 +463,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have comparison bars', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     if ((await cards.count()) === 0) {
@@ -457,7 +486,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have win probability bar', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     if ((await cards.count()) === 0) {
@@ -476,7 +505,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have team logos', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     if ((await cards.count()) === 0) {
@@ -494,7 +523,7 @@ test.describe('Matchups tab', () => {
 
   test('matchup cards have momentum indicators', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="matchups"]');
+    await clickTab(page, 'matchups');
 
     const cards = page.locator('#matchups-tab .matchup-card');
     if ((await cards.count()) === 0) {
@@ -513,7 +542,7 @@ test.describe('Matchups tab', () => {
 test.describe('Standings tab', () => {
   test('shows standings content', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="standings"]');
+    await clickTab(page, 'standings');
 
     const standingsTab = page.locator('#standings-tab');
     await expect(standingsTab).toHaveClass(/active/);
@@ -528,7 +557,7 @@ test.describe('Standings tab', () => {
 
   test('team cards have required info', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="standings"]');
+    await clickTab(page, 'standings');
 
     const teamCards = page.locator('#standings-tab .team-card');
     const count = await teamCards.count();
@@ -546,7 +575,7 @@ test.describe('Standings tab', () => {
 
   test('team cards are expandable', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="standings"]');
+    await clickTab(page, 'standings');
 
     const expandToggles = page.locator('#standings-tab .expand-toggle');
     const count = await expandToggles.count();
@@ -567,7 +596,7 @@ test.describe('Standings tab', () => {
 
   test('team cards have playoff status indicators', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="standings"]');
+    await clickTab(page, 'standings');
 
     const teamCards = page.locator('#standings-tab .team-card');
     const count = await teamCards.count();
@@ -585,7 +614,7 @@ test.describe('Standings tab', () => {
 test.describe('Playoff odds tab', () => {
   test('shows playoff odds content', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="playoff-odds"]');
+    await clickTab(page, 'playoff-odds');
 
     const section = page.locator('#playoff-odds-tab');
     await expect(section).toHaveClass(/active/);
@@ -599,7 +628,7 @@ test.describe('Playoff odds tab', () => {
 
   test('has chart canvas element', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="playoff-odds"]');
+    await clickTab(page, 'playoff-odds');
 
     const canvas = page.locator('#playoffOddsChart');
     await expect(canvas).toBeVisible();
@@ -607,7 +636,7 @@ test.describe('Playoff odds tab', () => {
 
   test('has odds summary section', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="playoff-odds"]');
+    await clickTab(page, 'playoff-odds');
 
     const summary = page.locator('#playoffOddsSummary');
     const count = await summary.count();
@@ -620,7 +649,7 @@ test.describe('Playoff odds tab', () => {
 test.describe('Trends tab', () => {
   test('shows trends content', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="trends"]');
+    await clickTab(page, 'trends');
 
     const section = page.locator('#trends-tab');
     await expect(section).toHaveClass(/active/);
@@ -630,7 +659,7 @@ test.describe('Trends tab', () => {
 
   test('has chart canvas element', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="trends"]');
+    await clickTab(page, 'trends');
 
     const canvas = page.locator('#leagueTrendChart');
     await expect(canvas).toBeVisible();
@@ -638,7 +667,7 @@ test.describe('Trends tab', () => {
 
   test('has season selector', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-tab="trends"]');
+    await clickTab(page, 'trends');
 
     const selector = page.locator('#seasonSelector');
     if (await selector.isVisible().catch(() => false)) {
@@ -735,7 +764,7 @@ test.describe('Runtime health', () => {
 
     const tabs = ['league', 'matchups', 'standings', 'playoff-odds', 'trends'];
     for (const tab of tabs) {
-      await page.click(`[data-tab="${tab}"]`);
+      await clickTab(page, tab);
       await page.waitForTimeout(300);
     }
 
@@ -777,7 +806,7 @@ test.describe('Visual snapshots (all tabs)', () => {
     test(`screenshot: ${tab.label} tab`, async ({ page }, testInfo) => {
       await page.goto('/');
       await page.waitForLoadState('networkidle');
-      await page.click(`[data-tab="${tab.name}"]`);
+      await clickTab(page, tab.name);
       await page.waitForTimeout(500);
 
       const project = testInfo.project.name;

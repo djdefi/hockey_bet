@@ -15,7 +15,7 @@
     </style>
     
     <!-- Theme init — apply stored team theme before first paint -->
-    <script><%= File.read("lib/theme-init.js") %></script>
+    <script><%= File.read("lib/theme-init.js", encoding: 'UTF-8') %></script>
     
     <!-- Load full styles synchronously for reliability -->
     <link rel='stylesheet' href='styles.css'>

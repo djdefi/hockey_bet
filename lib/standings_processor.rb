@@ -149,7 +149,7 @@ class StandingsProcessor
     end
     
     # Copy JavaScript files from lib to output directory
-    ['mobile-gestures.js', 'performance-utils.js', 'accessibility.js', 'social-features.js', 'pwa-install.js'].each do |file|
+    ['mobile-gestures.js', 'performance-utils.js', 'accessibility.js', 'social-features.js', 'pwa-install.js', 'team-themes.js', 'team-picker.js'].each do |file|
       src = File.join(File.dirname(__FILE__), file)
       dest = "#{output_dir}/#{file}"
       FileUtils.cp(src, dest) if File.exist?(src)
