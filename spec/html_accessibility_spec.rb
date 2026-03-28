@@ -35,7 +35,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     @bet_stats = calculator.stats
     
     # Load and render the template
-    template = File.read('lib/standings.html.erb')
+    template = File.read('lib/standings.html.erb', encoding: 'UTF-8')
     
     # Create local variables for the ERB template (bind them in the context)
     # These are used by the ERB template
@@ -46,7 +46,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     bet_stats = @bet_stats
     
     html_content = ERB.new(template).result(binding)
-    @doc = Nokogiri::HTML(html_content)
+    @doc = Nokogiri::HTML5(html_content)
   end
 
   describe 'HTML structure and accessibility' do
@@ -79,7 +79,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
       # proper scope attributes in the table definition that will be rendered.
       
       # Check that the template source includes table headers with scope="col"
-      template_content = File.read('lib/standings.html.erb')
+      template_content = File.read('lib/standings.html.erb', encoding: 'UTF-8')
       expect(template_content).to include('scope="col"')
       
       # Verify scope is used consistently with th elements in table headers

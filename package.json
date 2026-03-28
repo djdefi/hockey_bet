@@ -8,6 +8,11 @@
   },
   "scripts": {
     "test": "npx playwright test",
+    "test:e2e": "npx playwright test",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:e2e:desktop": "npx playwright test --project=desktop-chrome",
+    "test:e2e:mobile": "npx playwright test --project=mobile-iphone",
+    "test:e2e:report": "npx playwright show-report e2e/report",
     "test:headed": "npx playwright test --headed",
     "test:debug": "npx playwright test --debug"
   },
@@ -19,6 +24,7 @@
     "chart.js": "^4.5.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.58.2",
+    "serve": "^14.2.6"
   }
 }

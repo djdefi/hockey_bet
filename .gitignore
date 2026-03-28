@@ -12,3 +12,8 @@ node_modules/
 coverage/
 _site/
 .claude/
+
+# Playwright
+e2e/test-results/
+e2e/report/
+e2e/screenshots/

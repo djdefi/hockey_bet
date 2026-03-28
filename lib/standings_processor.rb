@@ -141,10 +141,12 @@ class StandingsProcessor
       FileUtils.cp(src, dest) if File.exist?(src)
     end
     
-    # Copy styles.css from lib to output directory
-    styles_src = File.join(File.dirname(__FILE__), 'styles.css')
-    styles_dest = "#{output_dir}/styles.css"
-    FileUtils.cp(styles_src, styles_dest) if File.exist?(styles_src)
+    # Copy CSS files from lib to output directory (styles.css imports design-tokens.css and utilities.css)
+    ['styles.css', 'design-tokens.css', 'utilities.css', 'playoff_styles.css'].each do |file|
+      src = File.join(File.dirname(__FILE__), file)
+      dest = "#{output_dir}/#{file}"
+      FileUtils.cp(src, dest) if File.exist?(src)
+    end
     
     # Copy JavaScript files from lib to output directory
     ['mobile-gestures.js', 'performance-utils.js', 'accessibility.js', 'social-features.js', 'pwa-install.js'].each do |file|
@@ -350,7 +352,7 @@ class StandingsProcessor
 
   # Render ERB Template
   def render_template
-    template = File.read("lib/standings.html.erb")
+    template = File.read("lib/standings.html.erb", encoding: 'UTF-8')
 
     # Process teams with defaults for nil values
     @teams.each do |team|
