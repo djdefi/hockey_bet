@@ -7,7 +7,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "test:e2e": "npx playwright test",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:e2e:desktop": "npx playwright test --project=desktop-chrome",
+    "test:e2e:mobile": "npx playwright test --project=mobile-iphone",
+    "test:e2e:report": "npx playwright show-report e2e/report"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +20,9 @@
   "dependencies": {
     "@primer/css": "^22.0.2",
     "chart.js": "^4.5.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "serve": "^14.2.6"
   }
 }

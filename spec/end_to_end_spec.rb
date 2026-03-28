@@ -34,8 +34,8 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       expect(File.exist?(output_path)).to be true
       
       # Parse and validate HTML structure
-      html = File.read(output_path)
-      doc = Nokogiri::HTML(html)
+      html = File.read(output_path, encoding: 'UTF-8')
+      doc = Nokogiri::HTML5(html)
       
       # Validate basic HTML structure
       expect(doc.at('html')['lang']).to eq('en')
@@ -70,8 +70,8 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       processor.process_data(csv_path)
       processor.render_output(output_path)
       
-      html = File.read(output_path)
-      doc = Nokogiri::HTML(html)
+      html = File.read(output_path, encoding: 'UTF-8')
+      doc = Nokogiri::HTML5(html)
       
       # Verify Boston Bruins data is accurately rendered
       boston_card = doc.css('.team-card[data-team-id="BOS"]').first
@@ -180,7 +180,7 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       processor.process_data(csv_path)
       processor.render_output(output_path)
       
-      first_html = File.read(output_path)
+      first_html = File.read(output_path, encoding: 'UTF-8')
       
       # Second run with same data
       output_path2 = File.join(output_dir, 'index2.html')
@@ -194,11 +194,11 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       processor2.process_data(csv_path)
       processor2.render_output(output_path2)
       
-      second_html = File.read(output_path2)
+      second_html = File.read(output_path2, encoding: 'UTF-8')
       
       # Parse both to compare key data (excluding timestamps)
-      doc1 = Nokogiri::HTML(first_html)
-      doc2 = Nokogiri::HTML(second_html)
+      doc1 = Nokogiri::HTML5(first_html)
+      doc2 = Nokogiri::HTML5(second_html)
       
       # Compare team card counts
       expect(doc1.css('.team-card').length).to eq(doc2.css('.team-card').length)
@@ -228,8 +228,8 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       processor.process_data(csv_path)
       processor.render_output(output_path)
       
-      @html = File.read(output_path)
-      @doc = Nokogiri::HTML(@html)
+      @html = File.read(output_path, encoding: 'UTF-8')
+      @doc = Nokogiri::HTML5(@html)
     end
     
     it 'includes all critical meta tags for PWA' do
