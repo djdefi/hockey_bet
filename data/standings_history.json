@@ -16485,6 +16485,18 @@
         "division_rank": 3,
         "conference_rank": 7
       },
+      "Travis R.": {
+        "points": 78,
+        "wins": 38,
+        "losses": 33,
+        "ot_losses": 2,
+        "games_played": 73,
+        "goals_for": 204,
+        "goals_against": 223,
+        "goal_diff": -19,
+        "division_rank": 7,
+        "conference_rank": 13
+      },
       "David K.": {
         "points": 77,
         "wins": 34,
@@ -16496,18 +16508,6 @@
         "goal_diff": -26,
         "division_rank": 5,
         "conference_rank": 8
-      },
-      "Travis R.": {
-        "points": 76,
-        "wins": 37,
-        "losses": 33,
-        "ot_losses": 2,
-        "games_played": 72,
-        "goals_for": 199,
-        "goals_against": 220,
-        "goal_diff": -21,
-        "division_rank": 7,
-        "conference_rank": 13
       },
       "Sean R.": {
         "points": 76,
