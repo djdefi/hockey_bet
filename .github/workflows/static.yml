@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.295.0
+        uses: ruby/setup-ruby@v1.299.0
         with:
           bundler-cache: true
       - name: Run script
@@ -61,11 +61,11 @@ jobs:
       - name: Create .nojekyll file
         run: touch _site/.nojekyll
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: '_site/'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
