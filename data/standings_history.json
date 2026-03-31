@@ -16545,14 +16545,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 106,
-        "wins": 48,
+        "points": 108,
+        "wins": 49,
         "losses": 14,
         "ot_losses": 10,
-        "games_played": 72,
-        "goals_for": 268,
-        "goals_against": 183,
-        "goal_diff": 85,
+        "games_played": 73,
+        "goals_for": 277,
+        "goals_against": 185,
+        "goal_diff": 92,
         "division_rank": 1,
         "conference_rank": 1
       },
