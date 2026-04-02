@@ -16871,12 +16871,12 @@
       "Jeff C.": {
         "points": 108,
         "wins": 49,
-        "losses": 14,
+        "losses": 15,
         "ot_losses": 10,
-        "games_played": 73,
-        "goals_for": 277,
-        "goals_against": 185,
-        "goal_diff": 92,
+        "games_played": 74,
+        "goals_for": 283,
+        "goals_against": 193,
+        "goal_diff": 90,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -16907,12 +16907,12 @@
       "Keith R.": {
         "points": 87,
         "wins": 41,
-        "losses": 28,
+        "losses": 29,
         "ot_losses": 5,
-        "games_played": 74,
-        "goals_for": 249,
-        "goals_against": 256,
-        "goal_diff": -7,
+        "games_played": 75,
+        "goals_for": 252,
+        "goals_against": 260,
+        "goal_diff": -8,
         "division_rank": 1,
         "conference_rank": 4
       },
@@ -16964,6 +16964,30 @@
         "division_rank": 7,
         "conference_rank": 13
       },
+      "Sean R.": {
+        "points": 78,
+        "wins": 30,
+        "losses": 26,
+        "ot_losses": 18,
+        "games_played": 74,
+        "goals_for": 197,
+        "goals_against": 223,
+        "goal_diff": -26,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
+      "Brian D.": {
+        "points": 77,
+        "wins": 35,
+        "losses": 31,
+        "ot_losses": 7,
+        "games_played": 73,
+        "goals_for": 224,
+        "goals_against": 260,
+        "goal_diff": -36,
+        "division_rank": 5,
+        "conference_rank": 9
+      },
       "David K.": {
         "points": 77,
         "wins": 34,
@@ -16974,19 +16998,7 @@
         "goals_against": 246,
         "goal_diff": -26,
         "division_rank": 5,
-        "conference_rank": 8
-      },
-      "Sean R.": {
-        "points": 76,
-        "wins": 29,
-        "losses": 26,
-        "ot_losses": 18,
-        "games_played": 73,
-        "goals_for": 195,
-        "goals_against": 222,
-        "goal_diff": -27,
-        "division_rank": 4,
-        "conference_rank": 9
+        "conference_rank": 10
       },
       "Dan R.": {
         "points": 76,
@@ -16998,18 +17010,6 @@
         "goals_against": 228,
         "goal_diff": -15,
         "division_rank": 6,
-        "conference_rank": 10
-      },
-      "Brian D.": {
-        "points": 75,
-        "wins": 34,
-        "losses": 31,
-        "ot_losses": 7,
-        "games_played": 72,
-        "goals_for": 220,
-        "goals_against": 257,
-        "goal_diff": -37,
-        "division_rank": 5,
         "conference_rank": 11
       },
       "Trevor R.": {
