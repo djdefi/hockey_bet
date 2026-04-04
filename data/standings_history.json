@@ -17212,14 +17212,14 @@
       "Keith R.": {
         "points": 87,
         "wins": 41,
-        "losses": 29,
+        "losses": 30,
         "ot_losses": 5,
-        "games_played": 75,
-        "goals_for": 252,
-        "goals_against": 260,
-        "goal_diff": -8,
-        "division_rank": 1,
-        "conference_rank": 4
+        "games_played": 76,
+        "goals_for": 254,
+        "goals_against": 266,
+        "goal_diff": -12,
+        "division_rank": 2,
+        "conference_rank": 5
       },
       "Mike M.": {
         "points": 85,
@@ -17314,8 +17314,8 @@
         "goals_for": 213,
         "goals_against": 231,
         "goal_diff": -18,
-        "division_rank": 6,
-        "conference_rank": 11
+        "division_rank": 7,
+        "conference_rank": 12
       },
       "Trevor R.": {
         "points": 75,
@@ -17327,7 +17327,7 @@
         "goals_against": 233,
         "goal_diff": -25,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 13
       }
     }
   }
