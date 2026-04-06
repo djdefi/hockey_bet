@@ -17481,12 +17481,12 @@
       "Jeff C.": {
         "points": 110,
         "wins": 50,
-        "losses": 15,
+        "losses": 16,
         "ot_losses": 10,
-        "games_played": 75,
-        "goals_for": 285,
-        "goals_against": 193,
-        "goal_diff": 92,
+        "games_played": 76,
+        "goals_for": 287,
+        "goals_against": 196,
+        "goal_diff": 91,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -17619,8 +17619,8 @@
         "goals_for": 215,
         "goals_against": 232,
         "goal_diff": -17,
-        "division_rank": 6,
-        "conference_rank": 11
+        "division_rank": 7,
+        "conference_rank": 12
       },
       "Trevor R.": {
         "points": 75,
