@@ -17653,14 +17653,14 @@
         "conference_rank": 1
       },
       "Ryan B.": {
-        "points": 100,
-        "wins": 46,
+        "points": 102,
+        "wins": 47,
         "losses": 23,
         "ot_losses": 8,
-        "games_played": 77,
-        "goals_for": 266,
-        "goals_against": 231,
-        "goal_diff": 35,
+        "games_played": 78,
+        "goals_for": 270,
+        "goals_against": 233,
+        "goal_diff": 37,
         "division_rank": 2,
         "conference_rank": 3
       },
@@ -17760,6 +17760,18 @@
         "division_rank": 4,
         "conference_rank": 9
       },
+      "Dan R.": {
+        "points": 80,
+        "wins": 34,
+        "losses": 31,
+        "ot_losses": 12,
+        "games_played": 77,
+        "goals_for": 221,
+        "goals_against": 234,
+        "goal_diff": -13,
+        "division_rank": 6,
+        "conference_rank": 10
+      },
       "Brian D.": {
         "points": 79,
         "wins": 36,
@@ -17770,29 +17782,17 @@
         "goals_against": 267,
         "goal_diff": -36,
         "division_rank": 5,
-        "conference_rank": 10
-      },
-      "Dan R.": {
-        "points": 78,
-        "wins": 33,
-        "losses": 31,
-        "ot_losses": 12,
-        "games_played": 76,
-        "goals_for": 215,
-        "goals_against": 232,
-        "goal_diff": -17,
-        "division_rank": 7,
-        "conference_rank": 12
+        "conference_rank": 11
       },
       "Trevor R.": {
         "points": 75,
         "wins": 32,
-        "losses": 32,
+        "losses": 33,
         "ot_losses": 11,
-        "games_played": 75,
-        "goals_for": 210,
-        "goals_against": 237,
-        "goal_diff": -27,
+        "games_played": 76,
+        "goals_for": 212,
+        "goals_against": 243,
+        "goal_diff": -31,
         "division_rank": 6,
         "conference_rank": 13
       }
