@@ -17803,14 +17803,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 110,
-        "wins": 50,
+        "points": 112,
+        "wins": 51,
         "losses": 16,
         "ot_losses": 10,
-        "games_played": 76,
-        "goals_for": 287,
-        "goals_against": 196,
-        "goal_diff": 91,
+        "games_played": 77,
+        "goals_for": 290,
+        "goals_against": 197,
+        "goal_diff": 93,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -17827,14 +17827,14 @@
         "conference_rank": 3
       },
       "Ryan T.": {
-        "points": 100,
-        "wins": 44,
+        "points": 102,
+        "wins": 45,
         "losses": 21,
         "ot_losses": 12,
-        "games_played": 77,
-        "goals_for": 256,
-        "goals_against": 223,
-        "goal_diff": 33,
+        "games_played": 78,
+        "goals_for": 261,
+        "goals_against": 225,
+        "goal_diff": 36,
         "division_rank": 3,
         "conference_rank": 3
       },
@@ -17886,18 +17886,6 @@
         "division_rank": 3,
         "conference_rank": 7
       },
-      "Travis R.": {
-        "points": 83,
-        "wins": 40,
-        "losses": 34,
-        "ot_losses": 3,
-        "games_played": 77,
-        "goals_for": 218,
-        "goals_against": 234,
-        "goal_diff": -16,
-        "division_rank": 7,
-        "conference_rank": 13
-      },
       "Sean R.": {
         "points": 83,
         "wins": 32,
@@ -17909,6 +17897,18 @@
         "goal_diff": -25,
         "division_rank": 4,
         "conference_rank": 8
+      },
+      "Travis R.": {
+        "points": 83,
+        "wins": 40,
+        "losses": 35,
+        "ot_losses": 3,
+        "games_played": 78,
+        "goals_for": 219,
+        "goals_against": 239,
+        "goal_diff": -20,
+        "division_rank": 7,
+        "conference_rank": 13
       },
       "David K.": {
         "points": 82,
@@ -17949,12 +17949,12 @@
       "Trevor R.": {
         "points": 75,
         "wins": 32,
-        "losses": 33,
+        "losses": 34,
         "ot_losses": 11,
-        "games_played": 76,
-        "goals_for": 212,
-        "goals_against": 243,
-        "goal_diff": -31,
+        "games_played": 77,
+        "goals_for": 214,
+        "goals_against": 248,
+        "goal_diff": -34,
         "division_rank": 6,
         "conference_rank": 13
       }
