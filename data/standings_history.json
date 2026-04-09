@@ -18003,7 +18003,7 @@
         "goals_against": 223,
         "goal_diff": 31,
         "division_rank": 4,
-        "conference_rank": 4
+        "conference_rank": 5
       },
       "Zak S.": {
         "points": 88,
@@ -18068,12 +18068,12 @@
       "Brian D.": {
         "points": 81,
         "wins": 37,
-        "losses": 32,
+        "losses": 33,
         "ot_losses": 7,
-        "games_played": 76,
-        "goals_for": 234,
-        "goals_against": 269,
-        "goal_diff": -35,
+        "games_played": 77,
+        "goals_for": 236,
+        "goals_against": 274,
+        "goal_diff": -38,
         "division_rank": 5,
         "conference_rank": 10
       },
