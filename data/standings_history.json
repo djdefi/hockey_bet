@@ -18413,14 +18413,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 114,
+        "points": 115,
         "wins": 52,
         "losses": 16,
-        "ot_losses": 10,
-        "games_played": 78,
-        "goals_for": 293,
-        "goals_against": 198,
-        "goal_diff": 95,
+        "ot_losses": 11,
+        "games_played": 79,
+        "goals_for": 295,
+        "goals_against": 201,
+        "goal_diff": 94,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -18457,32 +18457,32 @@
         "goals_for": 258,
         "goals_against": 243,
         "goal_diff": 15,
-        "division_rank": 4,
-        "conference_rank": 9
+        "division_rank": 5,
+        "conference_rank": 10
+      },
+      "Zak S.": {
+        "points": 91,
+        "wins": 37,
+        "losses": 26,
+        "ot_losses": 17,
+        "games_played": 80,
+        "goals_for": 255,
+        "goals_against": 247,
+        "goal_diff": 8,
+        "division_rank": 1,
+        "conference_rank": 4
       },
       "Tyler F.": {
         "points": 90,
         "wins": 42,
-        "losses": 30,
+        "losses": 31,
         "ot_losses": 6,
-        "games_played": 78,
-        "goals_for": 258,
-        "goals_against": 224,
-        "goal_diff": 34,
-        "division_rank": 4,
-        "conference_rank": 4
-      },
-      "Zak S.": {
-        "points": 89,
-        "wins": 36,
-        "losses": 26,
-        "ot_losses": 17,
         "games_played": 79,
-        "goals_for": 252,
-        "goals_against": 245,
-        "goal_diff": 7,
-        "division_rank": 2,
-        "conference_rank": 6
+        "goals_for": 259,
+        "goals_against": 228,
+        "goal_diff": 31,
+        "division_rank": 4,
+        "conference_rank": 5
       },
       "Keith R.": {
         "points": 89,
@@ -18535,12 +18535,12 @@
       "Dan R.": {
         "points": 82,
         "wins": 35,
-        "losses": 31,
+        "losses": 32,
         "ot_losses": 12,
-        "games_played": 78,
-        "goals_for": 224,
-        "goals_against": 236,
-        "goal_diff": -12,
+        "games_played": 79,
+        "goals_for": 225,
+        "goals_against": 243,
+        "goal_diff": -18,
         "division_rank": 6,
         "conference_rank": 10
       },
@@ -18557,14 +18557,14 @@
         "conference_rank": 11
       },
       "Trevor R.": {
-        "points": 77,
-        "wins": 33,
+        "points": 79,
+        "wins": 34,
         "losses": 34,
         "ot_losses": 11,
-        "games_played": 78,
-        "goals_for": 218,
-        "goals_against": 251,
-        "goal_diff": -33,
+        "games_played": 79,
+        "goals_for": 222,
+        "goals_against": 252,
+        "goal_diff": -30,
         "division_rank": 6,
         "conference_rank": 13
       }
