@@ -18637,24 +18637,24 @@
       "Tyler F.": {
         "points": 90,
         "wins": 42,
-        "losses": 31,
+        "losses": 32,
         "ot_losses": 6,
-        "games_played": 79,
-        "goals_for": 259,
-        "goals_against": 228,
-        "goal_diff": 31,
+        "games_played": 80,
+        "goals_for": 260,
+        "goals_against": 232,
+        "goal_diff": 28,
         "division_rank": 4,
         "conference_rank": 5
       },
       "Keith R.": {
-        "points": 89,
+        "points": 90,
         "wins": 42,
         "losses": 32,
-        "ot_losses": 5,
-        "games_played": 79,
-        "goals_for": 263,
-        "goals_against": 277,
-        "goal_diff": -14,
+        "ot_losses": 6,
+        "games_played": 80,
+        "goals_for": 266,
+        "goals_against": 281,
+        "goal_diff": -15,
         "division_rank": 3,
         "conference_rank": 7
       },
@@ -18670,6 +18670,18 @@
         "division_rank": 4,
         "conference_rank": 8
       },
+      "Travis R.": {
+        "points": 87,
+        "wins": 42,
+        "losses": 36,
+        "ot_losses": 3,
+        "games_played": 81,
+        "goals_for": 230,
+        "goals_against": 250,
+        "goal_diff": -20,
+        "division_rank": 7,
+        "conference_rank": 13
+      },
       "David K.": {
         "points": 86,
         "wins": 38,
@@ -18681,18 +18693,6 @@
         "goal_diff": -20,
         "division_rank": 5,
         "conference_rank": 9
-      },
-      "Travis R.": {
-        "points": 85,
-        "wins": 41,
-        "losses": 36,
-        "ot_losses": 3,
-        "games_played": 80,
-        "goals_for": 226,
-        "goals_against": 247,
-        "goal_diff": -21,
-        "division_rank": 7,
-        "conference_rank": 13
       },
       "Dan R.": {
         "points": 82,
