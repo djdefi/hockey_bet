@@ -12,6 +12,7 @@ require_relative 'playoff_processor'
 require_relative 'bet_stats_calculator'
 require_relative 'standings_history_tracker'
 require_relative 'team_colors'
+require_relative 'app_assets'
 
 # Playoff Status Helper Structure
 # Enhanced with specific seed and position information
@@ -134,36 +135,41 @@ class StandingsProcessor
     vendor_dest_dir = "#{output_dir}/vendor"
     FileUtils.mkdir_p(vendor_dest_dir)
     
-    # Copy Chart.js and Primer CSS if they exist
-    ['chart.umd.js', 'primer.css'].each do |file|
+    # Copy vendor assets declared in the shared asset manifest
+    AppAssets.vendor_files.each do |file|
       src = File.join(vendor_src_dir, file)
       dest = File.join(vendor_dest_dir, file)
       FileUtils.cp(src, dest) if File.exist?(src)
     end
     
     # Copy CSS files from lib to output directory (styles.css imports design-tokens.css and utilities.css)
-    ['styles.css', 'design-tokens.css', 'utilities.css', 'playoff_styles.css'].each do |file|
+    AppAssets.css_files.each do |file|
       src = File.join(File.dirname(__FILE__), file)
       dest = "#{output_dir}/#{file}"
       FileUtils.cp(src, dest) if File.exist?(src)
     end
     
     # Copy JavaScript files from lib to output directory
-    ['mobile-gestures.js', 'performance-utils.js', 'accessibility.js', 'social-features.js', 'pwa-install.js', 'team-themes.js', 'team-picker.js'].each do |file|
+    AppAssets.js_files.each do |file|
       src = File.join(File.dirname(__FILE__), file)
       dest = "#{output_dir}/#{file}"
       FileUtils.cp(src, dest) if File.exist?(src)
     end
+
+    # Write the shared asset manifest used by the service worker and tests
+    File.write("#{output_dir}/app-assets.json", AppAssets.manifest_json)
     
     # Copy service worker for PWA and caching
     sw_src = 'service-worker.js'
     sw_dest = "#{output_dir}/service-worker.js"
     FileUtils.cp(sw_src, sw_dest) if File.exist?(sw_src)
     
-    # Copy web manifest for PWA
-    manifest_src = 'site.webmanifest'
-    manifest_dest = "#{output_dir}/site.webmanifest"
-    FileUtils.cp(manifest_src, manifest_dest) if File.exist?(manifest_src)
+    # Copy root-level assets required for installability and icon rendering
+    AppAssets.root_files.each do |file|
+      src = file
+      dest = "#{output_dir}/#{file}"
+      FileUtils.cp(src, dest) if File.exist?(src)
+    end
   end
 
   # Determine playoff status for a team with enhanced specificity

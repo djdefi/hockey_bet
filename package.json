@@ -7,8 +7,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "npx playwright test",
+    "build": "bundle exec ruby update_standings.rb",
+    "serve:site": "npx serve _site -l 8765 --no-clipboard",
+    "test": "npm run test:e2e",
+    "test:ruby": "bundle exec rspec",
     "test:e2e": "npx playwright test",
+    "test:all": "npm run test:ruby && npm run test:e2e",
     "test:e2e:headed": "npx playwright test --headed",
     "test:e2e:desktop": "npx playwright test --project=desktop-chrome",
     "test:e2e:mobile": "npx playwright test --project=mobile-iphone",

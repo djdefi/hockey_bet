@@ -16,16 +16,18 @@ A live NHL standings tracker with playoff status indicators, fan ownership track
 
 ### Prerequisites
 
-- Ruby 3.0+ with Bundler
+- Ruby 3.4+ with Bundler 2.7.x
+- Node.js 20+
 - Basic knowledge of CSV for team mapping
 
 ### Installation
 
 1. Clone this repository
 2. Install dependencies:
-   ```
-   bundle install
-   ```
+    ```
+    bundle install
+    npm install
+    ```
 
 3. Edit `fan_team.csv` to map your fantasy league members to NHL teams:
    ```
@@ -34,10 +36,10 @@ A live NHL standings tracker with playoff status indicators, fan ownership track
    Bob,Maple Leafs
    ```
 
-4. Run the update script:
-   ```
-   ruby update_standings.rb
-   ```
+4. Build the site:
+    ```
+    npm run build
+    ```
 
 5. Open `_site/index.html` in your browser to view the standings
 
@@ -83,8 +85,11 @@ The "team" column can use full names, city names, or common nicknames - the syst
 ### Running Tests
 
 ```
-bundle exec rspec
+npm run test:ruby
+npm run test:e2e
 ```
+
+`npm run test:e2e` now builds the static site before Playwright starts its local server, so end-to-end runs always exercise a fresh `_site/` output instead of whatever happened to be generated earlier.
 
 Code coverage reports are automatically generated in the `coverage/` directory.
 

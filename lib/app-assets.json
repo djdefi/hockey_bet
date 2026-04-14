@@ -1,0 +1,96 @@
+{
+  "stylesheets": [
+    {
+      "href": "styles.css",
+      "rel": "stylesheet"
+    }
+  ],
+  "external_scripts": [
+    {
+      "src": "https://code.iconify.design/iconify-icon/2.2.0/iconify-icon.min.js",
+      "defer": true
+    }
+  ],
+  "local_scripts": [
+    {
+      "src": "vendor/chart.umd.js",
+      "defer": true
+    },
+    {
+      "src": "performance-utils.js",
+      "defer": true
+    },
+    {
+      "src": "accessibility.js",
+      "defer": true
+    },
+    {
+      "src": "social-features.js",
+      "defer": true
+    },
+    {
+      "src": "mobile-gestures.js",
+      "defer": true
+    },
+    {
+      "src": "pwa-install.js",
+      "defer": true
+    },
+    {
+      "src": "team-themes.js",
+      "defer": true
+    },
+    {
+      "src": "team-picker.js",
+      "defer": true
+    }
+  ],
+  "copy": {
+    "vendor": [
+      "chart.umd.js",
+      "primer.css"
+    ],
+    "css": [
+      "styles.css",
+      "design-tokens.css",
+      "utilities.css",
+      "playoff_styles.css"
+    ],
+    "js": [
+      "performance-utils.js",
+      "accessibility.js",
+      "social-features.js",
+      "mobile-gestures.js",
+      "pwa-install.js",
+      "team-themes.js",
+      "team-picker.js"
+    ],
+    "root": [
+      "favicon.ico",
+      "icon.svg",
+      "site.webmanifest"
+    ]
+  },
+  "precache_paths": [
+    "./",
+    "./index.html",
+    "./standings.html",
+    "./playoffs.html",
+    "./styles.css",
+    "./design-tokens.css",
+    "./utilities.css",
+    "./playoff_styles.css",
+    "./favicon.ico",
+    "./icon.svg",
+    "./site.webmanifest",
+    "./app-assets.json",
+    "./vendor/chart.umd.js",
+    "./performance-utils.js",
+    "./accessibility.js",
+    "./social-features.js",
+    "./mobile-gestures.js",
+    "./pwa-install.js",
+    "./team-themes.js",
+    "./team-picker.js"
+  ]
+}

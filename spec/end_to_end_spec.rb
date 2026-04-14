@@ -6,10 +6,16 @@ require 'tmpdir'
 RSpec.describe 'End-to-End Generation and Rendering' do
   let(:output_dir) { Dir.mktmpdir }
   let(:output_path) { File.join(output_dir, 'index.html') }
+  let(:data_dir) { Dir.mktmpdir }
   let(:csv_path) { 'spec/fixtures/fan_team.csv' }
+
+  before do
+    stub_const('DATA_DIR', data_dir)
+  end
   
   after do
     FileUtils.rm_rf(output_dir) if Dir.exist?(output_dir)
+    FileUtils.rm_rf(data_dir) if Dir.exist?(data_dir)
   end
   
   describe 'Complete generation pipeline' do
@@ -53,6 +59,7 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       # Verify all required assets were copied
       output_dir_path = File.dirname(output_path)
       expect(File.exist?(File.join(output_dir_path, 'styles.css'))).to be true
+      expect(File.exist?(File.join(output_dir_path, 'app-assets.json'))).to be true
       expect(Dir.exist?(File.join(output_dir_path, 'vendor'))).to be true
     end
     

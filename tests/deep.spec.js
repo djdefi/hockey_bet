@@ -360,18 +360,17 @@ test.describe('Mobile Gestures Edge Cases', () => {
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Cross-File Consistency', () => {
-  test('all JS files referenced in standings.html.erb are in service worker cache', async () => {
-    const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
-    const erb = fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'standings.html.erb'), 'utf-8');
+  test('all local scripts declared in app_assets are in precache_paths', async () => {
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
 
-    // Find all script src in ERB (excluding external URLs and inline)
-    const scriptMatches = erb.match(/src="([^"]+\.js)"/g) || [];
-    const localScripts = scriptMatches
-      .map(m => m.match(/src="([^"]+\.js)"/)[1])
-      .filter(s => !s.startsWith('http'));
+    const localScripts = assetManifest.local_scripts
+      .map(script => script.src)
+      .filter(src => !src.startsWith('http'));
 
     for (const script of localScripts) {
-      expect(sw).toContain(script);
+      expect(assetManifest.precache_paths).toContain('./' + script);
     }
   });
 

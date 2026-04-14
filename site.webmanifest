@@ -21,7 +21,7 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "scope": "./",
-  "start_url": "./index.html",
+  "start_url": "./",
   "categories": ["sports", "entertainment"],
   "prefer_related_applications": false,
   "shortcuts": [
