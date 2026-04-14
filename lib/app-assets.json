@@ -43,6 +43,10 @@
     {
       "src": "team-picker.js",
       "defer": true
+    },
+    {
+      "src": "standings-app.js",
+      "defer": true
     }
   ],
   "copy": {
@@ -63,7 +67,8 @@
       "mobile-gestures.js",
       "pwa-install.js",
       "team-themes.js",
-      "team-picker.js"
+      "team-picker.js",
+      "standings-app.js"
     ],
     "root": [
       "favicon.ico",
@@ -91,6 +96,7 @@
     "./mobile-gestures.js",
     "./pwa-install.js",
     "./team-themes.js",
-    "./team-picker.js"
+    "./team-picker.js",
+    "./standings-app.js"
   ]
 }

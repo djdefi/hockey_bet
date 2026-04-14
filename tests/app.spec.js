@@ -474,7 +474,7 @@ test.describe('PWA Assets', () => {
     const expectedAssets = [
       './team-themes.js', './team-picker.js', './social-features.js',
       './mobile-gestures.js', './pwa-install.js', './accessibility.js',
-      './performance-utils.js', './vendor/chart.umd.js'
+      './performance-utils.js', './standings-app.js', './vendor/chart.umd.js'
     ];
     expectedAssets.forEach(asset => {
       expect(assetManifest.precache_paths).toContain(asset);

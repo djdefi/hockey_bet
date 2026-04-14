@@ -452,6 +452,7 @@ RSpec.describe 'NHL Standings Table' do
         manifest = JSON.parse(File.read(asset_manifest_path))
         expect(manifest['precache_paths']).to include('./site.webmanifest')
         expect(manifest['precache_paths']).to include('./performance-utils.js')
+        expect(manifest['precache_paths']).to include('./standings-app.js')
 
         File.delete(asset_manifest_path) if File.exist?(asset_manifest_path)
       end

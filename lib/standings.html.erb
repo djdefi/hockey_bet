@@ -996,160 +996,8 @@
         </button>
     </nav>
 
+    <script id="playoff-progression-data" type="application/json"><%= JSON.generate((bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression] : {}) %></script>
     <script>
-        // Tab switching functionality
-        function switchTab(tabName) {
-            // Hide all tab sections
-            document.querySelectorAll('.tab-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected tab section
-            const selectedTab = document.getElementById(tabName + '-tab');
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
-            
-            // Update nav item active states (mobile)
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                item.removeAttribute('aria-current');
-            });
-            document.querySelectorAll(`.nav-item[data-tab="${tabName}"]`).forEach(item => {
-                item.classList.add('active');
-                item.setAttribute('aria-current', 'page');
-            });
-            
-            // Update desktop tab active states
-            document.querySelectorAll('.desktop-tab').forEach(tab => {
-                tab.classList.remove('active');
-                tab.removeAttribute('aria-current');
-            });
-            document.querySelectorAll(`.desktop-tab[data-tab="${tabName}"]`).forEach(tab => {
-                tab.classList.add('active');
-                tab.setAttribute('aria-current', 'page');
-            });
-            
-            // Load chart if switching to trends tab
-            if (tabName === 'trends' && !window.chartLoaded) {
-                loadStandingsTrendChart();
-            }
-            
-            // Load playoff odds chart if switching to playoff-odds tab
-            if (tabName === 'playoff-odds' && !window.playoffOddsChartLoaded) {
-                loadPlayoffOddsChart();
-            }
-        }
-        
-        // Add click event listeners to all nav items and tabs
-        document.querySelectorAll('.nav-item, .desktop-tab').forEach(item => {
-            item.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                switchTab(tabName);
-            });
-            
-            // Add keyboard support (Enter and Space)
-            item.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const tabName = this.getAttribute('data-tab');
-                    switchTab(tabName);
-                }
-            });
-        });
-        
-        // Team card expand/collapse functionality with keyboard support
-        document.querySelectorAll('.team-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('expanded');
-                // Update aria-expanded
-                const isExpanded = this.classList.contains('expanded');
-                this.setAttribute('aria-expanded', isExpanded);
-            });
-            
-            // Add keyboard support
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.classList.toggle('expanded');
-                    const isExpanded = this.classList.contains('expanded');
-                    this.setAttribute('aria-expanded', isExpanded);
-                }
-            });
-        });
-        
-        // Achievement card expand/collapse functionality
-        // Function to toggle expansion state
-        function toggleAchievementCard(card) {
-            const entries = card.querySelectorAll('.achievement-entry');
-            const isExpanded = card.classList.contains('expanded');
-            const button = card.querySelector('.expand-toggle');
-            
-            if (isExpanded) {
-                // Collapse: show only first entry
-                card.classList.remove('expanded');
-                entries.forEach((entry, idx) => {
-                    if (idx > 0) entry.classList.add('hidden');
-                });
-                card.setAttribute('aria-expanded', 'false');
-                // Update visual indicator (button icon)
-                if (button) {
-                    const expandIcon = button.querySelector('.expand-icon');
-                    if (expandIcon) expandIcon.textContent = '▼';
-                }
-            } else {
-                // Expand: show all entries
-                card.classList.add('expanded');
-                entries.forEach(entry => entry.classList.remove('hidden'));
-                card.setAttribute('aria-expanded', 'true');
-                // Update visual indicator (button icon)
-                if (button) {
-                    const expandIcon = button.querySelector('.expand-icon');
-                    if (expandIcon) expandIcon.textContent = '▲';
-                }
-            }
-        }
-        
-        // Make entire achievement card clickable
-        // Attributes (role, tabindex, aria-expanded) are set in the HTML template
-        document.querySelectorAll('.achievement-card.expandable').forEach(card => {
-            // Click handler for entire card
-            card.addEventListener('click', function(e) {
-                toggleAchievementCard(this);
-            });
-            
-            // Keyboard support for card
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleAchievementCard(this);
-                }
-            });
-        });
-        
-        // Date group toggle functionality for matchups
-        document.querySelectorAll('.date-group-toggle').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const groupName = this.getAttribute('data-group');
-                const matchupsList = document.getElementById('matchups-' + groupName);
-                const toggleIcon = this.querySelector('.toggle-icon');
-                const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                
-                if (matchupsList) {
-                    if (isExpanded) {
-                        matchupsList.classList.add('matchups-list-hidden');
-                        this.setAttribute('aria-expanded', 'false');
-                        if (toggleIcon) toggleIcon.textContent = '▶';
-                    } else {
-                        matchupsList.classList.remove('matchups-list-hidden');
-                        this.setAttribute('aria-expanded', 'true');
-                        if (toggleIcon) toggleIcon.textContent = '▼';
-                    }
-                }
-            });
-        });
-        
         // Fan League Standings Trend Chart
         let chartInstance = null;
         let allHistoryData = null;
@@ -1452,11 +1300,24 @@
         // Playoff Odds Sunburst Chart
         let playoffOddsChartInstance = null;
         
+        function loadPlayoffProgressionData() {
+            const script = document.getElementById('playoff-progression-data');
+            if (!script) {
+                return {};
+            }
+
+            try {
+                return JSON.parse(script.textContent || '{}');
+            } catch (error) {
+                console.error('Invalid playoff odds data payload:', error);
+                return {};
+            }
+        }
+
         function loadPlayoffOddsChart() {
             if (window.playoffOddsChartLoaded) return;
             
-            // Playoff progression data from Ruby
-            const playoffData = <%= (bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression].to_json : '{}' %>;
+            const playoffData = loadPlayoffProgressionData();
             
             if (Object.keys(playoffData).length === 0) {
                 console.log('No playoff odds data available');
@@ -1673,47 +1534,8 @@
             window.playoffOddsChartLoaded = true;
         }
         
-        // Don't load chart on page load - only when trends tab is clicked
-        // Chart will be loaded by switchTab function
-        
-        // Register Service Worker for offline caching and reliable deploy updates
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                let hasReloadedForServiceWorker = false;
-
-                navigator.serviceWorker.register('./service-worker.js')
-                    .then((registration) => {
-                        registration.update();
-
-                        if (registration.waiting) {
-                            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                        }
-
-                        registration.addEventListener('updatefound', () => {
-                            const installingWorker = registration.installing;
-                            if (!installingWorker) {
-                                return;
-                            }
-
-                            installingWorker.addEventListener('statechange', () => {
-                                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller && registration.waiting) {
-                                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                                }
-                            });
-                        });
-                    })
-                    .catch((err) => console.warn('ServiceWorker registration failed:', err));
-
-                navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    if (hasReloadedForServiceWorker) {
-                        return;
-                    }
-
-                    hasReloadedForServiceWorker = true;
-                    window.location.reload();
-                });
-            });
-        }
+        window.loadStandingsTrendChart = loadStandingsTrendChart;
+        window.loadPlayoffOddsChart = loadPlayoffOddsChart;
     </script>
 </body>
 </html>

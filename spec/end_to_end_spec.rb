@@ -254,6 +254,7 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       expect(scripts).to include('accessibility.js')
       expect(scripts).to include('social-features.js')
       expect(scripts).to include('mobile-gestures.js')
+      expect(scripts).to include('standings-app.js')
     end
     
     it 'includes navigation tabs for desktop' do

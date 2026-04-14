@@ -204,6 +204,12 @@ test.describe('Service Worker Analysis', () => {
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
     expect(sw).toContain('caches.delete(name)');
   });
+
+  test('service worker page reload is gated to updates, not first install', () => {
+    const appShell = fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'standings-app.js'), 'utf-8');
+    expect(appShell).toContain('const hadServiceWorkerController = Boolean(navigator.serviceWorker.controller);');
+    expect(appShell).toContain('if (!hadServiceWorkerController || hasReloadedForServiceWorker)');
+  });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
