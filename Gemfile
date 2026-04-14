@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'httparty'
 gem 'csv'
 gem 'tzinfo'
+gem 'logger' # Required for Ruby 4.0+
 gem 'base64' # Required for Ruby 3.4+
 gem 'bigdecimal' # Required for Ruby 3.4+
 

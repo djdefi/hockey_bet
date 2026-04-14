@@ -3,6 +3,7 @@ require 'tzinfo'
 require 'time'
 require 'json'
 require 'erb'
+require 'tmpdir'
 
 # Load the refactored script
 require_relative '../lib/standings_processor'
@@ -398,24 +399,25 @@ RSpec.describe 'NHL Standings Table' do
         
         # Mock the render_template method
         allow(processor).to receive(:render_template).and_return('HTML content')
-        
-        @temp_output = '/tmp/test_output.html'
+
+        @temp_root = Dir.mktmpdir
+        @temp_output = File.join(@temp_root, 'test_output.html')
+        @temp_data_dir = File.join(@temp_root, 'data')
+
+        stub_const('DATA_DIR', @temp_data_dir)
       end
 
       after do
-        File.delete(@temp_output) if File.exist?(@temp_output)
+        FileUtils.rm_rf(@temp_root) if @temp_root && Dir.exist?(@temp_root)
       end
 
       it 'creates output directory if needed' do
-        output_path = '/tmp/subdir/test.html'
+        output_path = File.join(@temp_root, 'nested', 'test.html')
         
         processor.render_output(output_path)
         
-        expect(Dir.exist?('/tmp/subdir')).to be true
+        expect(Dir.exist?(File.dirname(output_path))).to be true
         expect(File.exist?(output_path)).to be true
-        
-        # Cleanup - use rm_rf to remove directory and all contents
-        FileUtils.rm_rf('/tmp/subdir')
       end
 
       it 'writes HTML content to file' do
@@ -440,6 +442,20 @@ RSpec.describe 'NHL Standings Table' do
         File.delete(styles_path) if File.exist?(styles_path)
       end
 
+      it 'writes app-assets.json to output directory' do
+        processor.render_output(@temp_output)
+
+        output_dir = File.dirname(@temp_output)
+        asset_manifest_path = File.join(output_dir, 'app-assets.json')
+
+        expect(File.exist?(asset_manifest_path)).to be true
+        manifest = JSON.parse(File.read(asset_manifest_path))
+        expect(manifest['precache_paths']).to include('./site.webmanifest')
+        expect(manifest['precache_paths']).to include('./performance-utils.js')
+
+        File.delete(asset_manifest_path) if File.exist?(asset_manifest_path)
+      end
+
       it 'copies vendor assets to output directory' do
         processor.render_output(@temp_output)
         
@@ -452,6 +468,19 @@ RSpec.describe 'NHL Standings Table' do
         
         # Cleanup
         FileUtils.rm_rf(vendor_dir) if Dir.exist?(vendor_dir)
+      end
+
+      it 'copies root install assets to output directory' do
+        processor.render_output(@temp_output)
+
+        output_dir = File.dirname(@temp_output)
+        expect(File.exist?(File.join(output_dir, 'favicon.ico'))).to be true
+        expect(File.exist?(File.join(output_dir, 'icon.svg'))).to be true
+        expect(File.exist?(File.join(output_dir, 'site.webmanifest'))).to be true
+
+        File.delete(File.join(output_dir, 'favicon.ico')) if File.exist?(File.join(output_dir, 'favicon.ico'))
+        File.delete(File.join(output_dir, 'icon.svg')) if File.exist?(File.join(output_dir, 'icon.svg'))
+        File.delete(File.join(output_dir, 'site.webmanifest')) if File.exist?(File.join(output_dir, 'site.webmanifest'))
       end
     end
 
@@ -594,8 +623,10 @@ RSpec.describe 'NHL Standings Table' do
       # Mock the render_template method to return HTML content
       allow(processor).to receive(:render_template).and_return("<html>Test content</html>")
 
-      # Create a temporary output file
-      temp_output_path = 'spec/fixtures/temp_output.html'
+      temp_root = Dir.mktmpdir
+      temp_output_path = File.join(temp_root, 'temp_output.html')
+      temp_data_dir = File.join(temp_root, 'data')
+      stub_const('DATA_DIR', temp_data_dir)
 
       # Run the render_output method
       expect { processor.render_output(temp_output_path) }.not_to raise_error
@@ -604,7 +635,7 @@ RSpec.describe 'NHL Standings Table' do
       expect(File.exist?(temp_output_path)).to be true
 
       # Clean up
-      File.delete(temp_output_path) if File.exist?(temp_output_path)
+      FileUtils.rm_rf(temp_root) if Dir.exist?(temp_root)
     end
   end
 

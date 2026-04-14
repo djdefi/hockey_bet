@@ -43,7 +43,7 @@ This document provides a comprehensive guide to the mobile experience enhancemen
 - **Critical CSS Inlining**: 324 bytes of essential styles inline in `<head>`
 - **Async CSS Loading**: Full stylesheet loads without blocking render
 - **Resource Hints**: Preconnect to fonts.googleapis.com and fonts.gstatic.com
-- **Core Web Vitals Monitoring**: Tracks LCP, FID, CLS in development
+- **Core Web Vitals Monitoring**: Tracks LCP, INP, and CLS in development
 - **Lazy Loading Helper**: Intersection Observer for future image optimization
 - **Network-Aware Loading**: Detects connection speed (2G/3G/4G)
 - **Data Caching**: Simple in-memory cache with configurable TTL
@@ -52,7 +52,7 @@ This document provides a comprehensive guide to the mobile experience enhancemen
 ```javascript
 // Core Web Vitals Tracking
 window.perfUtils.getMetrics()
-// Returns: { lcp: 1234, fid: 12, cls: 0.05 }
+// Returns: { lcp: 1234, inp: 75, cls: 0.05 }
 
 // Data Caching
 window.cacheHelper.get('standings', fetchStandings, 5 * 60 * 1000)
@@ -65,7 +65,7 @@ window.networkInfo.isFast() // true on 4g
 
 **Performance Targets:**
 - LCP (Largest Contentful Paint): <2.5s ✅
-- FID (First Input Delay): <100ms ✅
+- INP (Interaction to Next Paint): <200ms ✅
 - CLS (Cumulative Layout Shift): <0.1 ✅
 - Initial CSS Load: Instant (inlined) ✅
 
@@ -223,7 +223,7 @@ Total: ~40 KB (defer-loaded, non-blocking)
 - **Initial CSS Render**: <100ms (critical CSS inlined)
 - **Full Page Load**: ~1.2s (optimized resources)
 - **LCP**: <2.5s ✅
-- **FID**: <100ms ✅
+- **INP**: <200ms ✅
 - **CLS**: <0.1 ✅
 - **Monitoring**: Active (Web Vitals tracked)
 
@@ -286,7 +286,7 @@ Total: ~40 KB (defer-loaded, non-blocking)
 
 ### Technical Metrics
 - **Load Time**: -20% (critical CSS)
-- **Interaction Delay**: <100ms (FID)
+- **Interaction Delay**: <200ms (INP)
 - **Layout Stability**: <0.1 (CLS)
 - **Accessibility**: WCAG 2.1 AA compliant
 

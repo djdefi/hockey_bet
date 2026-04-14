@@ -27,9 +27,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npx serve _site -l 8765 --no-clipboard',
+    command: 'bundle exec ruby update_standings.rb && npx serve _site -l 8765 --no-clipboard',
     port: 8765,
     reuseExistingServer: !process.env.CI,
-    timeout: 10000,
+    timeout: 45000,
   },
 });

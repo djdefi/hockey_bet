@@ -1,28 +1,9 @@
-// Service Worker for Hockey Bet - Mobile Performance Optimization
-const CACHE_NAME = 'hockey-bet-v5';
-const DATA_CACHE_NAME = 'hockey-bet-data-v5';
+// Service Worker for Hockey Bet - installable shell + refresh-friendly caching
+const CACHE_NAME = 'hockey-bet-static-v6';
+const DATA_CACHE_NAME = 'hockey-bet-data-v6';
+const APP_ASSET_MANIFEST_URL = './app-assets.json';
+const LOCAL_ORIGIN = self.location.origin;
 
-// Assets to cache on install (using relative paths for GitHub Pages compatibility)
-const STATIC_ASSETS = [
-  './',
-  './index.html',
-  './styles.css',
-  './design-tokens.css',
-  './favicon.ico',
-  './icon.svg',
-  './site.webmanifest',
-  './theme-init.js',
-  './performance-utils.js',
-  './accessibility.js',
-  './social-features.js',
-  './mobile-gestures.js',
-  './pwa-install.js',
-  './team-themes.js',
-  './team-picker.js',
-  './vendor/chart.umd.js'
-];
-
-// Offline fallback page served when navigation fails without a cached response
 const OFFLINE_HTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,91 +27,161 @@ const OFFLINE_HTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
-// Install event - cache static assets
+const OFFLINE_HTML_HEADERS = {
+  'Content-Type': 'text/html; charset=UTF-8'
+};
+
+function isSameOriginGetRequest(request) {
+  return request.method === 'GET' && new URL(request.url).origin === LOCAL_ORIGIN;
+}
+
+function isDataRequest(url) {
+  return url.pathname.endsWith('.json');
+}
+
+function isStaticAssetRequest(request, url) {
+  return ['script', 'style', 'image', 'font', 'manifest'].includes(request.destination) ||
+    /\.(?:css|js|ico|svg|png|webmanifest)$/i.test(url.pathname);
+}
+
+async function loadPrecachePaths() {
+  try {
+    const response = await fetch(APP_ASSET_MANIFEST_URL, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`Unable to load ${APP_ASSET_MANIFEST_URL}: ${response.status}`);
+    }
+
+    const manifest = await response.json();
+    const paths = Array.isArray(manifest.precache_paths) ? manifest.precache_paths : [];
+    return [...new Set(paths)];
+  } catch (error) {
+    console.warn('ServiceWorker precache manifest unavailable:', error);
+    return ['./', './index.html', './site.webmanifest'];
+  }
+}
+
+async function precacheStaticAssets(cache) {
+  const paths = await loadPrecachePaths();
+
+  await Promise.allSettled(
+    paths.map(async (assetPath) => {
+      const request = new Request(assetPath, { cache: 'reload' });
+      const response = await fetch(request);
+      if (!response.ok) {
+        throw new Error(`Precache failed for ${assetPath}: ${response.status}`);
+      }
+
+      await cache.put(request, response.clone());
+    })
+  );
+}
+
+async function handleDataRequest(event) {
+  const cache = await caches.open(DATA_CACHE_NAME);
+  const cachedResponse = await cache.match(event.request);
+  const networkFetch = fetch(event.request).then((networkResponse) => {
+    if (networkResponse && networkResponse.ok) {
+      cache.put(event.request, networkResponse.clone());
+    }
+    return networkResponse;
+  });
+
+  if (cachedResponse) {
+    event.waitUntil(networkFetch.catch(() => undefined));
+    return cachedResponse;
+  }
+
+  try {
+    return await networkFetch;
+  } catch (error) {
+    return new Response(JSON.stringify({ error: 'offline' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+async function handleNavigationRequest(event) {
+  const cache = await caches.open(CACHE_NAME);
+
+  try {
+    const networkResponse = await fetch(event.request);
+    if (networkResponse && networkResponse.ok) {
+      await cache.put(event.request, networkResponse.clone());
+    }
+    return networkResponse;
+  } catch (error) {
+    const cachedResponse = await cache.match(event.request);
+    return cachedResponse || new Response(OFFLINE_HTML, { headers: OFFLINE_HTML_HEADERS });
+  }
+}
+
+async function handleStaticAssetRequest(event) {
+  const cache = await caches.open(CACHE_NAME);
+  const cachedResponse = await cache.match(event.request);
+  const networkFetch = fetch(event.request).then((networkResponse) => {
+    if (networkResponse && networkResponse.ok) {
+      cache.put(event.request, networkResponse.clone());
+    }
+    return networkResponse;
+  });
+
+  if (cachedResponse) {
+    event.waitUntil(networkFetch.catch(() => undefined));
+    return cachedResponse;
+  }
+
+  try {
+    return await networkFetch;
+  } catch (error) {
+    return cachedResponse || Response.error();
+  }
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
+      .then((cache) => precacheStaticAssets(cache))
       .then(() => self.skipWaiting())
   );
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames
-            .filter((name) => name !== CACHE_NAME && name !== DATA_CACHE_NAME)
-            .map((name) => caches.delete(name))
-        );
-      })
+      .then((cacheNames) => Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_NAME && name !== DATA_CACHE_NAME)
+          .map((name) => caches.delete(name))
+      ))
       .then(() => self.clients.claim())
   );
 });
 
-// Fetch event - stale-while-revalidate for data, cache-first for assets
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Handle JSON data files with stale-while-revalidate
-  if (url.pathname.endsWith('.json')) {
-    event.respondWith(
-      caches.open(DATA_CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          const fetchPromise = fetch(request).then((networkResponse) => {
-            // Update cache with fresh data
-            cache.put(request, networkResponse.clone());
-            return networkResponse;
-          }).catch(() => cachedResponse); // Fallback to cache if network fails
-
-          // Return cached data immediately, update in background
-          return cachedResponse || fetchPromise;
-        });
-      })
-    );
+  if (!isSameOriginGetRequest(event.request)) {
     return;
   }
 
-  // Handle navigation requests with offline fallback
-  if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request).then((cached) => {
-            return cached || new Response(OFFLINE_HTML, {
-              headers: { 'Content-Type': 'text/html' }
-            });
-          });
-        })
-    );
+  const url = new URL(event.request.url);
+
+  if (isDataRequest(url)) {
+    event.respondWith(handleDataRequest(event));
     return;
   }
 
-  // Handle static assets with cache-first
-  event.respondWith(
-    caches.match(request).then((response) => {
-      if (response) {
-        return response;
-      }
+  if (event.request.mode === 'navigate') {
+    event.respondWith(handleNavigationRequest(event));
+    return;
+  }
 
-      return fetch(request).then((response) => {
-        // Cache successful responses
-        if (response.status === 200) {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseToCache);
-          });
-        }
-        return response;
-      });
-    })
-  );
+  if (isStaticAssetRequest(event.request, url)) {
+    event.respondWith(handleStaticAssetRequest(event));
+  }
 });

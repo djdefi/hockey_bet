@@ -186,26 +186,31 @@ test.describe('switchTab API', () => {
 
 test.describe('Service Worker Cache', () => {
   test('service worker caches design-tokens.css', () => {
-    const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
-    expect(sw).toContain('design-tokens.css');
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
+    expect(assetManifest.precache_paths).toContain('./design-tokens.css');
   });
 
-  test('service worker caches theme-init.js', () => {
-    const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
-    expect(sw).toContain('theme-init.js');
+  test('service worker does not precache inline theme-init.js', () => {
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
+    expect(assetManifest.precache_paths).not.toContain('./theme-init.js');
   });
 
   test('service worker caches icon.svg', () => {
-    const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
-    expect(sw).toContain('icon.svg');
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
+    expect(assetManifest.precache_paths).toContain('./icon.svg');
   });
 
-  test('STATIC_ASSETS has no duplicates', () => {
-    const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
-    const match = sw.match(/const STATIC_ASSETS = \[([\s\S]*?)\];/);
-    expect(match).toBeTruthy();
-
-    const assets = match[1].match(/'([^']+)'/g).map(s => s.replace(/'/g, ''));
+  test('precache_paths has no duplicates', () => {
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
+    const assets = assetManifest.precache_paths;
     const unique = new Set(assets);
     expect(assets.length).toBe(unique.size);
   });
@@ -214,6 +219,7 @@ test.describe('Service Worker Cache', () => {
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
     expect(sw).toContain('.json');
     expect(sw).toContain('DATA_CACHE_NAME');
+    expect(sw).toContain('event.waitUntil(networkFetch');
   });
 
   test('service worker has offline fallback HTML', () => {

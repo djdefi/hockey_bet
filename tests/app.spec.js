@@ -467,15 +467,20 @@ test.describe('PWA Assets', () => {
     const fs = require('fs');
     const path = require('path');
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
+    const assetManifest = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
+    );
 
     const expectedAssets = [
-      'team-themes.js', 'team-picker.js', 'social-features.js',
-      'mobile-gestures.js', 'pwa-install.js', 'accessibility.js',
-      'performance-utils.js', 'chart.umd.js'
+      './team-themes.js', './team-picker.js', './social-features.js',
+      './mobile-gestures.js', './pwa-install.js', './accessibility.js',
+      './performance-utils.js', './vendor/chart.umd.js'
     ];
     expectedAssets.forEach(asset => {
-      expect(sw).toContain(asset);
+      expect(assetManifest.precache_paths).toContain(asset);
     });
+
+    expect(sw).toContain('APP_ASSET_MANIFEST_URL');
   });
 
   test('service-worker has offline fallback', async ({ page }) => {

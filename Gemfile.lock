@@ -30,9 +30,12 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     ice_nine (0.11.2)
+    logger (1.7.0)
     mini_mime (1.1.5)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
+    nokogiri (1.19.2-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
     ostruct (0.6.3)
@@ -65,6 +68,7 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
 
 PLATFORMS
+  arm64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
@@ -73,6 +77,7 @@ DEPENDENCIES
   bigdecimal
   csv
   httparty
+  logger
   nokogiri
   rspec
   simplecov

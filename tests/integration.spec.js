@@ -181,12 +181,13 @@ test.describe('Service Worker Analysis', () => {
 
     // JSON handling (stale-while-revalidate)
     expect(sw).toContain('.json');
+    expect(sw).toContain('handleDataRequest');
 
     // Navigation handling (offline fallback)
     expect(sw).toContain("request.mode === 'navigate'");
 
     // Static asset handling (cache-first)
-    expect(sw).toContain('caches.match(request)');
+    expect(sw).toContain('handleStaticAssetRequest');
   });
 
   test('service worker activates correctly (claims clients)', () => {
