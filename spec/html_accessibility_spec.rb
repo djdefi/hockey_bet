@@ -76,15 +76,16 @@ RSpec.describe 'HTML Rendering and Accessibility' do
     it 'has table headers with scope attributes' do
       # Note: The main data tables in this application are generated client-side by JavaScript
       # for dynamic playoff odds calculations. This test verifies that the template includes
-      # proper scope attributes in the table definition that will be rendered.
+      # the accessibility hooks needed to render scoped headers for the playoff odds table.
       
-      # Check that the template source includes table headers with scope="col"
       template_content = File.read('lib/standings.html.erb', encoding: 'UTF-8')
-      expect(template_content).to include('scope="col"')
-      
-      # Verify scope is used consistently with th elements in table headers
-      scope_count = template_content.scan(/scope="col"/).length
-      expect(scope_count).to be >= 6  # At least 6 columns in playoff odds table
+
+      static_scope_count = template_content.scan(/scope="col"/).length
+      dynamic_scope_assignment_count = template_content.scan(/setAttribute\('scope', 'col'\)/).length
+      expect(static_scope_count + dynamic_scope_assignment_count).to be >= 1
+
+      header_labels = template_content.scan(/\{ label: '([^']+)', align: '(?:left|right)' \}/).flatten
+      expect(header_labels).to include('Fan', 'P-offs', 'R2', 'R3', 'Finals', 'Cup')
     end
     
     it 'has proper button attributes for accessibility' do

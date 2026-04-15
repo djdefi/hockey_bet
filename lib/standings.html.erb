@@ -996,160 +996,8 @@
         </button>
     </nav>
 
+    <script id="playoff-progression-data" type="application/json"><%= JSON.generate((bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression] : {}) %></script>
     <script>
-        // Tab switching functionality
-        function switchTab(tabName) {
-            // Hide all tab sections
-            document.querySelectorAll('.tab-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected tab section
-            const selectedTab = document.getElementById(tabName + '-tab');
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
-            
-            // Update nav item active states (mobile)
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                item.removeAttribute('aria-current');
-            });
-            document.querySelectorAll(`.nav-item[data-tab="${tabName}"]`).forEach(item => {
-                item.classList.add('active');
-                item.setAttribute('aria-current', 'page');
-            });
-            
-            // Update desktop tab active states
-            document.querySelectorAll('.desktop-tab').forEach(tab => {
-                tab.classList.remove('active');
-                tab.removeAttribute('aria-current');
-            });
-            document.querySelectorAll(`.desktop-tab[data-tab="${tabName}"]`).forEach(tab => {
-                tab.classList.add('active');
-                tab.setAttribute('aria-current', 'page');
-            });
-            
-            // Load chart if switching to trends tab
-            if (tabName === 'trends' && !window.chartLoaded) {
-                loadStandingsTrendChart();
-            }
-            
-            // Load playoff odds chart if switching to playoff-odds tab
-            if (tabName === 'playoff-odds' && !window.playoffOddsChartLoaded) {
-                loadPlayoffOddsChart();
-            }
-        }
-        
-        // Add click event listeners to all nav items and tabs
-        document.querySelectorAll('.nav-item, .desktop-tab').forEach(item => {
-            item.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                switchTab(tabName);
-            });
-            
-            // Add keyboard support (Enter and Space)
-            item.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const tabName = this.getAttribute('data-tab');
-                    switchTab(tabName);
-                }
-            });
-        });
-        
-        // Team card expand/collapse functionality with keyboard support
-        document.querySelectorAll('.team-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('expanded');
-                // Update aria-expanded
-                const isExpanded = this.classList.contains('expanded');
-                this.setAttribute('aria-expanded', isExpanded);
-            });
-            
-            // Add keyboard support
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.classList.toggle('expanded');
-                    const isExpanded = this.classList.contains('expanded');
-                    this.setAttribute('aria-expanded', isExpanded);
-                }
-            });
-        });
-        
-        // Achievement card expand/collapse functionality
-        // Function to toggle expansion state
-        function toggleAchievementCard(card) {
-            const entries = card.querySelectorAll('.achievement-entry');
-            const isExpanded = card.classList.contains('expanded');
-            const button = card.querySelector('.expand-toggle');
-            
-            if (isExpanded) {
-                // Collapse: show only first entry
-                card.classList.remove('expanded');
-                entries.forEach((entry, idx) => {
-                    if (idx > 0) entry.classList.add('hidden');
-                });
-                card.setAttribute('aria-expanded', 'false');
-                // Update visual indicator (button icon)
-                if (button) {
-                    const expandIcon = button.querySelector('.expand-icon');
-                    if (expandIcon) expandIcon.textContent = '▼';
-                }
-            } else {
-                // Expand: show all entries
-                card.classList.add('expanded');
-                entries.forEach(entry => entry.classList.remove('hidden'));
-                card.setAttribute('aria-expanded', 'true');
-                // Update visual indicator (button icon)
-                if (button) {
-                    const expandIcon = button.querySelector('.expand-icon');
-                    if (expandIcon) expandIcon.textContent = '▲';
-                }
-            }
-        }
-        
-        // Make entire achievement card clickable
-        // Attributes (role, tabindex, aria-expanded) are set in the HTML template
-        document.querySelectorAll('.achievement-card.expandable').forEach(card => {
-            // Click handler for entire card
-            card.addEventListener('click', function(e) {
-                toggleAchievementCard(this);
-            });
-            
-            // Keyboard support for card
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleAchievementCard(this);
-                }
-            });
-        });
-        
-        // Date group toggle functionality for matchups
-        document.querySelectorAll('.date-group-toggle').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const groupName = this.getAttribute('data-group');
-                const matchupsList = document.getElementById('matchups-' + groupName);
-                const toggleIcon = this.querySelector('.toggle-icon');
-                const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                
-                if (matchupsList) {
-                    if (isExpanded) {
-                        matchupsList.classList.add('matchups-list-hidden');
-                        this.setAttribute('aria-expanded', 'false');
-                        if (toggleIcon) toggleIcon.textContent = '▶';
-                    } else {
-                        matchupsList.classList.remove('matchups-list-hidden');
-                        this.setAttribute('aria-expanded', 'true');
-                        if (toggleIcon) toggleIcon.textContent = '▼';
-                    }
-                }
-            });
-        });
-        
         // Fan League Standings Trend Chart
         let chartInstance = null;
         let allHistoryData = null;
@@ -1452,11 +1300,24 @@
         // Playoff Odds Sunburst Chart
         let playoffOddsChartInstance = null;
         
+        function loadPlayoffProgressionData() {
+            const script = document.getElementById('playoff-progression-data');
+            if (!script) {
+                return {};
+            }
+
+            try {
+                return JSON.parse(script.textContent || '{}');
+            } catch (error) {
+                console.error('Invalid playoff odds data payload:', error);
+                return {};
+            }
+        }
+
         function loadPlayoffOddsChart() {
             if (window.playoffOddsChartLoaded) return;
             
-            // Playoff progression data from Ruby
-            const playoffData = <%= (bet_stats && bet_stats[:playoff_progression]) ? bet_stats[:playoff_progression].to_json : '{}' %>;
+            const playoffData = loadPlayoffProgressionData();
             
             if (Object.keys(playoffData).length === 0) {
                 console.log('No playoff odds data available');
@@ -1482,58 +1343,95 @@
                     }))
                     .sort((a, b) => (b.win_cup || 0) - (a.win_cup || 0)); // Sort by Cup odds
                 
-                // Function to get icon based on percentage
-                function getOddsIcon(percentage) {
-                    if (percentage >= 50) return '<iconify-icon icon="solar:fire-bold" width="14" height="14"></iconify-icon>';
-                    if (percentage >= 25) return '<iconify-icon icon="solar:graph-up-bold" width="14" height="14"></iconify-icon>';
-                    if (percentage >= 10) return '<iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>';
-                    if (percentage >= 5) return '<iconify-icon icon="solar:target-bold" width="14" height="14"></iconify-icon>';
-                    return '<iconify-icon icon="solar:chart-bold" width="14" height="14"></iconify-icon>';
+                function getOddsIconName(percentage) {
+                    if (percentage >= 50) return 'solar:fire-bold';
+                    if (percentage >= 25) return 'solar:graph-up-bold';
+                    if (percentage >= 10) return 'solar:check-circle-bold';
+                    if (percentage >= 5) return 'solar:target-bold';
+                    return 'solar:chart-bold';
                 }
-                
-                let summaryHtml = `
-                    <div style="background: var(--bg-card); border-radius: 8px; padding: 0.75rem; overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem;">
-                            <thead>
-                                <tr style="border-bottom: 2px solid var(--border-color);">
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: left; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Fan</th>
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">P-offs</th>
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R2</th>
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">R3</th>
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Finals</th>
-                                    <th scope="col" style="padding: 0.4rem 0.3rem; text-align: right; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;">Cup</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                `;
-                
+
+                function appendSummaryValueCell(row, value) {
+                    const cell = document.createElement('td');
+                    cell.setAttribute('style', 'padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);');
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                }
+
+                const wrapper = document.createElement('div');
+                wrapper.setAttribute('style', 'background: var(--bg-card); border-radius: 8px; padding: 0.75rem; overflow-x: auto;');
+
+                const table = document.createElement('table');
+                table.setAttribute('style', 'width: 100%; border-collapse: collapse; font-size: 0.8rem;');
+
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                headerRow.setAttribute('style', 'border-bottom: 2px solid var(--border-color);');
+
+                [
+                    { label: 'Fan', align: 'left' },
+                    { label: 'P-offs', align: 'right' },
+                    { label: 'R2', align: 'right' },
+                    { label: 'R3', align: 'right' },
+                    { label: 'Finals', align: 'right' },
+                    { label: 'Cup', align: 'right' }
+                ].forEach(({ label, align }) => {
+                    const headerCell = document.createElement('th');
+                    headerCell.setAttribute('scope', 'col');
+                    headerCell.setAttribute('style', `padding: 0.4rem 0.3rem; text-align: ${align}; color: var(--text-secondary); font-weight: 600; font-size: 0.75rem;`);
+                    headerCell.textContent = label;
+                    headerRow.appendChild(headerCell);
+                });
+
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+
                 sortedByCup.forEach((team, idx) => {
                     const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.02)';
                     const cupOdds = team.win_cup || 0;
-                    const cupIcon = getOddsIcon(cupOdds);
-                    summaryHtml += `
-                        <tr style="border-bottom: 1px solid rgba(42, 58, 82, 0.3); background: ${rowBg};">
-                            <td style="padding: 0.5rem 0.3rem; color: var(--text-primary); font-weight: 500; font-size: 0.8rem;">
-                                <div style="line-height: 1.2;">${team.fan}</div>
-                                <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.1rem; line-height: 1.2;">${team.team}</div>
-                            </td>
-                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_playoffs || 0).toFixed(0)}%</td>
-                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_2nd_round || 0).toFixed(0)}%</td>
-                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_3rd_round || 0).toFixed(0)}%</td>
-                            <td style="padding: 0.5rem 0.3rem; text-align: right; color: var(--text-primary);">${(team.make_finals || 0).toFixed(0)}%</td>
-                            <td style="padding: 0.5rem 0.3rem; text-align: right; font-weight: 600; color: var(--accent-green); white-space: nowrap;">
-                                ${cupIcon} ${cupOdds.toFixed(0)}%
-                            </td>
-                        </tr>
-                    `;
+                    const row = document.createElement('tr');
+                    row.setAttribute('style', `border-bottom: 1px solid rgba(42, 58, 82, 0.3); background: ${rowBg};`);
+
+                    const teamCell = document.createElement('td');
+                    teamCell.setAttribute('style', 'padding: 0.5rem 0.3rem; color: var(--text-primary); font-weight: 500; font-size: 0.8rem;');
+
+                    const fanName = document.createElement('div');
+                    fanName.setAttribute('style', 'line-height: 1.2;');
+                    fanName.textContent = team.fan || '';
+
+                    const teamName = document.createElement('div');
+                    teamName.setAttribute('style', 'font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.1rem; line-height: 1.2;');
+                    teamName.textContent = team.team || '';
+
+                    teamCell.appendChild(fanName);
+                    teamCell.appendChild(teamName);
+                    row.appendChild(teamCell);
+
+                    appendSummaryValueCell(row, `${(team.make_playoffs || 0).toFixed(0)}%`);
+                    appendSummaryValueCell(row, `${(team.make_2nd_round || 0).toFixed(0)}%`);
+                    appendSummaryValueCell(row, `${(team.make_3rd_round || 0).toFixed(0)}%`);
+                    appendSummaryValueCell(row, `${(team.make_finals || 0).toFixed(0)}%`);
+
+                    const cupCell = document.createElement('td');
+                    cupCell.setAttribute('style', 'padding: 0.5rem 0.3rem; text-align: right; font-weight: 600; color: var(--accent-green); white-space: nowrap;');
+
+                    const cupIcon = document.createElement('iconify-icon');
+                    cupIcon.setAttribute('icon', getOddsIconName(cupOdds));
+                    cupIcon.setAttribute('width', '14');
+                    cupIcon.setAttribute('height', '14');
+
+                    cupCell.appendChild(cupIcon);
+                    cupCell.appendChild(document.createTextNode(` ${cupOdds.toFixed(0)}%`));
+                    row.appendChild(cupCell);
+
+                    tbody.appendChild(row);
                 });
-                
-                summaryHtml += `
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-                summaryContainer.innerHTML = summaryHtml;
+
+                table.appendChild(tbody);
+                wrapper.appendChild(table);
+                summaryContainer.replaceChildren(wrapper);
             }
             
             
@@ -1673,47 +1571,8 @@
             window.playoffOddsChartLoaded = true;
         }
         
-        // Don't load chart on page load - only when trends tab is clicked
-        // Chart will be loaded by switchTab function
-        
-        // Register Service Worker for offline caching and reliable deploy updates
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                let hasReloadedForServiceWorker = false;
-
-                navigator.serviceWorker.register('./service-worker.js')
-                    .then((registration) => {
-                        registration.update();
-
-                        if (registration.waiting) {
-                            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                        }
-
-                        registration.addEventListener('updatefound', () => {
-                            const installingWorker = registration.installing;
-                            if (!installingWorker) {
-                                return;
-                            }
-
-                            installingWorker.addEventListener('statechange', () => {
-                                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller && registration.waiting) {
-                                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                                }
-                            });
-                        });
-                    })
-                    .catch((err) => console.warn('ServiceWorker registration failed:', err));
-
-                navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    if (hasReloadedForServiceWorker) {
-                        return;
-                    }
-
-                    hasReloadedForServiceWorker = true;
-                    window.location.reload();
-                });
-            });
-        }
+        window.loadStandingsTrendChart = loadStandingsTrendChart;
+        window.loadPlayoffOddsChart = loadPlayoffOddsChart;
     </script>
 </body>
 </html>
