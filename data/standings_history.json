@@ -18916,14 +18916,14 @@
         "conference_rank": 3
       },
       "Mike M.": {
-        "points": 93,
-        "wins": 42,
+        "points": 95,
+        "wins": 43,
         "losses": 30,
         "ot_losses": 9,
-        "games_played": 81,
-        "goals_for": 261,
-        "goals_against": 243,
-        "goal_diff": 18,
+        "games_played": 82,
+        "goals_for": 263,
+        "goals_against": 244,
+        "goal_diff": 19,
         "division_rank": 4,
         "conference_rank": 9
       },
@@ -18978,12 +18978,12 @@
       "Travis R.": {
         "points": 87,
         "wins": 42,
-        "losses": 36,
+        "losses": 37,
         "ot_losses": 3,
-        "games_played": 81,
+        "games_played": 82,
         "goals_for": 230,
-        "goals_against": 250,
-        "goal_diff": -20,
+        "goals_against": 254,
+        "goal_diff": -24,
         "division_rank": 7,
         "conference_rank": 13
       },
