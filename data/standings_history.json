@@ -19090,14 +19090,14 @@
         "conference_rank": 9
       },
       "Zak S.": {
-        "points": 93,
-        "wins": 38,
+        "points": 95,
+        "wins": 39,
         "losses": 26,
         "ot_losses": 17,
-        "games_played": 81,
-        "goals_for": 261,
-        "goals_against": 249,
-        "goal_diff": 12,
+        "games_played": 82,
+        "goals_for": 265,
+        "goals_against": 250,
+        "goal_diff": 15,
         "division_rank": 1,
         "conference_rank": 4
       },
@@ -19188,12 +19188,12 @@
       "Trevor R.": {
         "points": 79,
         "wins": 34,
-        "losses": 35,
+        "losses": 36,
         "ot_losses": 11,
-        "games_played": 80,
-        "goals_for": 225,
-        "goals_against": 257,
-        "goal_diff": -32,
+        "games_played": 81,
+        "goals_for": 226,
+        "goals_against": 261,
+        "goal_diff": -35,
         "division_rank": 6,
         "conference_rank": 13
       }
