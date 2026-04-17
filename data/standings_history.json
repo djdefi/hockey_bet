@@ -19204,14 +19204,14 @@
     "season": "2025-2026",
     "standings": {
       "Jeff C.": {
-        "points": 119,
-        "wins": 54,
+        "points": 121,
+        "wins": 55,
         "losses": 16,
         "ot_losses": 11,
-        "games_played": 81,
-        "goals_for": 300,
+        "games_played": 82,
+        "goals_for": 302,
         "goals_against": 203,
-        "goal_diff": 97,
+        "goal_diff": 99,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -19350,12 +19350,12 @@
       "Trevor R.": {
         "points": 79,
         "wins": 34,
-        "losses": 36,
+        "losses": 37,
         "ot_losses": 11,
-        "games_played": 81,
+        "games_played": 82,
         "goals_for": 226,
-        "goals_against": 261,
-        "goal_diff": -35,
+        "goals_against": 263,
+        "goal_diff": -37,
         "division_rank": 6,
         "conference_rank": 13
       }
