@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.301.0
+        uses: ruby/setup-ruby@v1.302.0
         with:
           bundler-cache: true
       - name: Run script
@@ -63,7 +63,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: '_site/'
       - name: Deploy to GitHub Pages
