@@ -3,7 +3,7 @@
   # Helpers used inline by the template — defined here so they have direct
   # access to the ERB binding without polluting PlayoffProcessor's public API.
 
-  def render_playoff_team_row(team, wins, series, side)
+  def render_playoff_team_row(team, wins, series, side, manager_team_map = {})
     classes = ['team']
     is_leading = side == :home ? wins > series[:away_wins] : wins > series[:home_wins]
     classes << 'team--leading' if is_leading && !series[:winner_abbrev]
@@ -12,6 +12,7 @@
     classes << 'team--tbd' if team[:abbrev] == 'TBD'
 
     display_name = team[:short_name] || team[:name]
+    fan_owner = manager_team_map && team[:abbrev] != 'TBD' ? manager_team_map[team[:abbrev]] : nil
 
     out = +%(<div class="#{classes.join(' ')}" data-abbrev="#{team[:abbrev]}">)
     out << %(<div class="team-identity">)
@@ -25,6 +26,9 @@
     out << %(<span class="team-name">#{display_name}</span>)
     if team[:seed] && team[:abbrev] != 'TBD'
       out << %(<span class="team-seed">#{team[:seed]}</span>)
+    end
+    if fan_owner && fan_owner != 'N/A'
+      out << %(<span class="fan-chip" title="Drafted by #{fan_owner}"><iconify-icon icon="solar:user-bold" width="11" height="11"></iconify-icon>#{fan_owner}</span>)
     end
     out << %(</div>)
     badges = []
@@ -218,6 +222,68 @@
 
             <!-- Content -->
             <% if @is_playoff_time && @playoff_rounds && !@playoff_rounds.empty? %>
+                <!-- Fan Pulse: podium + roll call -->
+                <% if @fan_status && !@fan_status.empty? %>
+                    <%
+                      sorted_fans = @fan_status.sort_by { |_, info| [-info[:cup_odds], info[:status] == :eliminated ? 1 : 0] }
+                      podium_candidates = sorted_fans.reject { |_, info| info[:status] == :not_in_playoffs }
+                      podium = podium_candidates.first(3)
+                      status_rank = { champion: 0, alive: 1, eliminated: 2, not_in_playoffs: 3 }
+                      roll_call = @fan_status.sort_by { |_, info| [status_rank[info[:status]] || 9, -(info[:cup_odds] || 0)] }
+                    %>
+                    <div class="fan-pulse" role="region" aria-label="Fan playoff status">
+                        <h2><iconify-icon icon="solar:users-group-rounded-bold" width="22" height="22"></iconify-icon> Fan Pulse</h2>
+                        <% if podium.any? %>
+                            <div class="fan-podium" role="list" aria-label="Top 3 fans by cup odds">
+                                <%
+                                  medals = ['🥇', '🥈', '🥉']
+                                  ordered = podium.length >= 3 ? [podium[1], podium[0], podium[2]] : podium
+                                  ordered.each do |fan, info|
+                                    rank = podium.index([fan, info]) + 1
+                                %>
+                                    <div class="fan-podium__step fan-podium__step--<%= rank %>" role="listitem">
+                                        <div class="fan-podium__medal" aria-label="Rank <%= rank %>"><%= medals[rank - 1] %></div>
+                                        <div class="fan-podium__name"><%= fan %></div>
+                                        <% pteam = info[:primary_team] %>
+                                        <% if pteam && pteam[:logo] %>
+                                            <span class="fan-podium__team">
+                                                <img src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %> logo" width="18" height="18" loading="lazy">
+                                                <%= pteam[:name] %>
+                                            </span>
+                                        <% end %>
+                                        <div class="fan-podium__odds"><%= info[:cup_odds] %>% cup odds</div>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                        <div class="fan-roll-call" role="list" aria-label="All fan playoff statuses">
+                            <% roll_call.each do |fan, info| %>
+                                <% pteam = info[:primary_team] %>
+                                <div class="fan-roll-call__item fan-roll-call__item--<%= info[:status] %>" role="listitem">
+                                    <% if pteam && pteam[:logo] %>
+                                        <img class="fan-roll-call__logo" src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %>" width="32" height="32" loading="lazy">
+                                    <% else %>
+                                        <span class="fan-roll-call__logo" aria-hidden="true">🏒</span>
+                                    <% end %>
+                                    <div class="fan-roll-call__body">
+                                        <div class="fan-roll-call__fan">
+                                            <%= fan %>
+                                            <span class="fan-status-pill fan-status-pill--<%= info[:status] %>">
+                                                <% case info[:status]
+                                                   when :champion %>🏆 Champion<%
+                                                   when :eliminated %>Out<%
+                                                   when :not_in_playoffs %>No Team<%
+                                                   else %>Alive<% end %>
+                                            </span>
+                                        </div>
+                                        <div class="fan-roll-call__tagline" title="<%= info[:tagline] %>"><%= info[:tagline] %></div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+
                 <!-- Fan Cup Odds Section -->
                 <% if @fan_cup_odds && !@fan_cup_odds.empty? %>
                     <div class="fan-rankings">
@@ -273,8 +339,8 @@
                                             </div>
                                         <% end %>
 
-                                        <%= render_playoff_team_row(series[:home_team], series[:home_wins], series, :home) %>
-                                        <%= render_playoff_team_row(series[:away_team], series[:away_wins], series, :away) %>
+                                        <%= render_playoff_team_row(series[:home_team], series[:home_wins], series, :home, @manager_team_map) %>
+                                        <%= render_playoff_team_row(series[:away_team], series[:away_wins], series, :away, @manager_team_map) %>
 
                                         <% unless series[:is_tbd] %>
                                             <div class="series-progress" aria-label="Best of seven progress: <%= series[:home_wins] %>-<%= series[:away_wins] %>">

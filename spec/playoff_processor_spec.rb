@@ -385,6 +385,64 @@ RSpec.describe PlayoffProcessor do
     end
   end
 
+  describe '#compute_fan_status' do
+    before do
+      processor.instance_variable_set(:@playoff_data, sample_playoff_bracket_response)
+      processor.instance_variable_set(:@is_playoff_time, true)
+      processor.send(:process_playoff_data_bracket_format)
+    end
+
+    it 'marks a fan whose team won round 1 as alive' do
+      processor.compute_fan_status('BOS' => 'Bruins Fan')
+      info = processor.fan_status['Bruins Fan']
+      expect(info[:status]).to eq(:alive)
+      expect(info[:primary_team][:abbrev]).to eq('BOS')
+      expect(info[:tagline]).to include('advance')
+    end
+
+    it 'marks a fan whose team lost round 1 as eliminated' do
+      processor.compute_fan_status('TOR' => 'Leafs Fan')
+      info = processor.fan_status['Leafs Fan']
+      expect(info[:status]).to eq(:eliminated)
+      expect(info[:tagline]).to include('OUT')
+    end
+
+    it 'marks a fan whose team has no playoff bracket presence as not_in_playoffs' do
+      processor.compute_fan_status('NYR' => 'Rangers Fan')
+      info = processor.fan_status['Rangers Fan']
+      expect(info[:status]).to eq(:not_in_playoffs)
+    end
+
+    it 'skips entries whose fan name is the sentinel "N/A"' do
+      processor.compute_fan_status('BOS' => 'N/A', 'TOR' => 'Real Fan')
+      expect(processor.fan_status.keys).to contain_exactly('Real Fan')
+    end
+
+    it 'returns an empty hash when playoffs are not active' do
+      processor.instance_variable_set(:@is_playoff_time, false)
+      expect(processor.compute_fan_status('BOS' => 'Bruins Fan')).to eq({})
+    end
+  end
+
+  describe '#current_round_label and #fans_alive_count' do
+    before do
+      processor.instance_variable_set(:@playoff_data, sample_playoff_bracket_response)
+      processor.instance_variable_set(:@is_playoff_time, true)
+      processor.send(:process_playoff_data_bracket_format)
+    end
+
+    it 'reports the most-advanced round with an active series, falling back to the last round' do
+      # Sample fixture has only a decided R1 + a TBD SCF — current round falls
+      # back to SCF (the last round, since no rounds have undecided non-TBD series).
+      expect(processor.current_round_label).to eq('Stanley Cup Final')
+    end
+
+    it 'counts only fans whose status is alive or champion' do
+      processor.compute_fan_status('BOS' => 'Alive Fan', 'TOR' => 'Out Fan', 'NYR' => 'No-Team Fan')
+      expect(processor.fans_alive_count).to eq(1)
+    end
+  end
+
   describe '#format_playoff_team' do
     let(:sample_team) do
       {

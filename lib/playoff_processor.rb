@@ -6,7 +6,7 @@ require 'erb'
 require_relative 'api_validator'
 
 class PlayoffProcessor
-  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated, :bracket_logo
+  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated, :bracket_logo, :fan_status, :manager_team_map
 
   def initialize(fallback_path = 'spec/fixtures')
     @fallback_path = fallback_path
@@ -18,16 +18,21 @@ class PlayoffProcessor
     @is_playoff_time = false
     @last_updated = nil
     @bracket_logo = nil
+    @fan_status = {}
+    @manager_team_map = {}
   end
 
   # Main process method to generate playoffs HTML
   def process(output_path, manager_team_map = {})
     # Fetch and process playoff data
     success = fetch_playoff_data
-    
+
+    @manager_team_map = manager_team_map || {}
+
     # Calculate fan cup odds if we have manager team mapping
     unless manager_team_map.empty?
       calculate_fan_cup_odds(manager_team_map)
+      compute_fan_status(manager_team_map)
     end
     
     # Update timestamp
@@ -475,6 +480,71 @@ class PlayoffProcessor
     @fan_cup_odds = fan_odds.sort_by { |_, odds| -odds }.to_h
   end
 
+  # Compute per-fan status across all picked teams using the bracket data.
+  # Returns a hash of `{fan => {teams: [...], status: :alive|:eliminated|:champion,
+  #   round_reached, round_label, opponent, series_status, tagline}}`.
+  def compute_fan_status(manager_team_map)
+    @fan_status = {}
+    return @fan_status unless @is_playoff_time && @playoff_rounds && !@playoff_rounds.empty?
+
+    # Group teams by fan
+    fans_teams = {}
+    manager_team_map.each do |team_abbrev, fan|
+      next if fan.nil? || fan == "N/A"
+      fans_teams[fan] ||= []
+      fans_teams[fan] << team_abbrev
+    end
+
+    # Build a flat lookup of every team's bracket history across rounds.
+    team_history = build_team_history
+
+    fans_teams.each do |fan, team_abbrevs|
+      team_summaries = team_abbrevs.map do |abbrev|
+        history = team_history[abbrev] || { round_reached: 0, round_label: nil, status: :not_in_playoffs, name: abbrev, logo: nil, opponent: nil, series_status: nil, last_round_key: nil }
+        history.merge(abbrev: abbrev)
+      end
+
+      # Pick the best-positioned team to represent the fan's overall status.
+      primary = team_summaries.max_by { |t| t[:round_reached] || 0 }
+      next if primary.nil?
+
+      status = primary[:status] || :alive
+      tagline = fan_tagline_for(status, primary)
+
+      @fan_status[fan] = {
+        teams: team_summaries,
+        primary_team: primary,
+        status: status,
+        round_reached: primary[:round_reached] || 0,
+        round_label: primary[:round_label],
+        opponent: primary[:opponent],
+        series_status: primary[:series_status],
+        tagline: tagline,
+        cup_odds: @fan_cup_odds[fan] || 0
+      }
+    end
+
+    @fan_status
+  end
+
+  # Friendly label for the current/most-advanced active round (for the
+  # standings hero banner). Returns nil when playoffs aren't active.
+  def current_round_label
+    return nil unless @is_playoff_time && @playoff_rounds && !@playoff_rounds.empty?
+
+    # Find the most-advanced round that still has an undecided series.
+    active = @playoff_rounds.reverse.find do |round|
+      round[:series].any? { |s| !s[:is_tbd] && s[:winner_abbrev].nil? }
+    end
+    (active || @playoff_rounds.last)[:name]
+  end
+
+  # Number of fans who still have at least one team alive.
+  def fans_alive_count
+    return 0 if @fan_status.nil? || @fan_status.empty?
+    @fan_status.count { |_, info| %i[alive champion].include?(info[:status]) }
+  end
+
   # Determine if we have valid playoff data
   def valid_playoff_data?(data)
     @validator.validate_playoffs_response(data)
@@ -482,7 +552,77 @@ class PlayoffProcessor
 
   private
 
-  # Render the playoffs template
+  # Build a flat lookup of every team that appears in the bracket, with
+  # `{round_reached, round_label, status, opponent, series_status, last_round_key, name, logo}`.
+  # round_reached uses BRACKET_ROUND_ORDER (R1=1, R2=2, CF=3, SCF=4) and is +1
+  # for the eventual champion.
+  def build_team_history
+    history = {}
+    return history unless @playoff_rounds
+
+    @playoff_rounds.each do |round|
+      round_index = BRACKET_ROUND_ORDER[round[:round_key]] || round[:round_number] || 0
+      round[:series].each do |series|
+        [series[:home_team], series[:away_team]].each do |team|
+          next if team.nil? || team[:abbrev].nil? || team[:abbrev].empty?
+          abbrev = team[:abbrev]
+          opponent = (team == series[:home_team]) ? series[:away_team] : series[:home_team]
+
+          # Each appearance means the team made it into this round.
+          existing = history[abbrev] || { round_reached: 0, status: :alive }
+          if round_index >= existing[:round_reached]
+            history[abbrev] = {
+              round_reached: round_index,
+              round_label: round[:name],
+              last_round_key: round[:round_key],
+              name: team[:short_name] || team[:name] || abbrev,
+              logo: team[:logo],
+              opponent: opponent && !opponent[:is_tbd] ? (opponent[:short_name] || opponent[:name] || opponent[:abbrev]) : nil,
+              series_status: series[:status],
+              status: derive_team_status(series, abbrev, round[:round_key])
+            }
+          end
+        end
+      end
+    end
+
+    history
+  end
+
+  def derive_team_status(series, abbrev, round_key)
+    if series[:winner_abbrev] == abbrev
+      round_key == 'SCF' ? :champion : :alive
+    elsif series[:eliminated_abbrev] == abbrev
+      :eliminated
+    else
+      :alive
+    end
+  end
+
+  def fan_tagline_for(status, primary)
+    case status
+    when :champion then "🏆 STANLEY CUP CHAMPION"
+    when :eliminated then "💀 OUT — #{primary[:name]} fell in #{primary[:round_label]}"
+    when :alive
+      sstat = primary[:series_status].to_s
+      if sstat.start_with?(primary[:abbrev]) && sstat.include?('wins')
+        "🔥 #{primary[:name]} advance — on to the next round"
+      elsif sstat.include?('leads')
+        "🔥 Cooking — #{primary[:name]} #{sstat.split(' ', 2).last}"
+      elsif sstat.include?('trails')
+        "⚠️ On the brink — #{primary[:name]} #{sstat.split(' ', 2).last}"
+      elsif sstat.include?('tied')
+        "🤝 Knotted up — #{primary[:name]} #{sstat}"
+      else
+        "🏒 #{primary[:name]} alive in #{primary[:round_label]}"
+      end
+    else
+      "🪑 No team in the bracket"
+    end
+  end
+
+  private
+
   def render_template
     template_path = "lib/playoffs.html.erb"
     
