@@ -6,7 +6,7 @@ require 'erb'
 require_relative 'api_validator'
 
 class PlayoffProcessor
-  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated
+  attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated, :bracket_logo
 
   def initialize(fallback_path = 'spec/fixtures')
     @fallback_path = fallback_path
@@ -17,6 +17,7 @@ class PlayoffProcessor
     @fan_cup_odds = {}
     @is_playoff_time = false
     @last_updated = nil
+    @bracket_logo = nil
   end
 
   # Main process method to generate playoffs HTML
@@ -141,6 +142,8 @@ class PlayoffProcessor
   def process_playoff_data_bracket_format
     return unless @playoff_data["series"].is_a?(Array)
 
+    @bracket_logo = @playoff_data["bracketLogo"]
+
     grouped = @playoff_data["series"].group_by do |s|
       s["seriesAbbrev"] || "R#{s['playoffRound']}"
     end
@@ -150,24 +153,69 @@ class PlayoffProcessor
 
       {
         name: round_name,
+        round_key: key,
         round_number: series_in_round.first["playoffRound"].to_i,
-        series: series_in_round.map do |series|
-          top_team = series["topSeedTeam"]
-          bottom_team = series["bottomSeedTeam"]
-          top_wins = series["topSeedWins"].to_i
-          bottom_wins = series["bottomSeedWins"].to_i
-
-          {
-            id: series["seriesLetter"] || series["seriesAbbrev"],
-            status: bracket_series_status(series, top_wins, bottom_wins),
-            home_team: format_playoff_team_bracket_format(top_team, series["topSeedRankAbbrev"]),
-            away_team: format_playoff_team_bracket_format(bottom_team, series["bottomSeedRankAbbrev"]),
-            home_wins: top_wins,
-            away_wins: bottom_wins,
-            games: []
-          }
-        end
+        series: series_in_round.map { |series| build_bracket_series(series) }
       }
+    end
+  end
+
+  # Build a normalized series hash from one bracket-format entry.
+  def build_bracket_series(series)
+    top_team = series["topSeedTeam"]
+    bottom_team = series["bottomSeedTeam"]
+    top_wins = series["topSeedWins"].to_i
+    bottom_wins = series["bottomSeedWins"].to_i
+    winner_id = series["winningTeamId"]
+    is_tbd = top_team.nil? || bottom_team.nil?
+
+    home_payload = format_playoff_team_bracket_format(top_team, series["topSeedRankAbbrev"])
+    away_payload = format_playoff_team_bracket_format(bottom_team, series["bottomSeedRankAbbrev"])
+
+    winner_abbrev =
+      if winner_id && top_team && top_team["id"] == winner_id then top_team["abbrev"]
+      elsif winner_id && bottom_team && bottom_team["id"] == winner_id then bottom_team["abbrev"]
+      end
+
+    eliminated_abbrev =
+      if winner_id && top_team && top_team["id"] != winner_id then top_team["abbrev"]
+      elsif winner_id && bottom_team && bottom_team["id"] != winner_id then bottom_team["abbrev"]
+      end
+
+    {
+      id: series["seriesLetter"] || series["seriesAbbrev"],
+      series_letter: series["seriesLetter"],
+      series_abbrev: series["seriesAbbrev"],
+      status: bracket_series_status(series, top_wins, bottom_wins),
+      home_team: home_payload,
+      away_team: away_payload,
+      home_wins: top_wins,
+      away_wins: bottom_wins,
+      winner_abbrev: winner_abbrev,
+      eliminated_abbrev: eliminated_abbrev,
+      is_tbd: is_tbd,
+      is_upset: bracket_series_upset?(series),
+      games: []
+    }
+  end
+
+  # Detect when the lower-seeded team is leading or has won the series.
+  def bracket_series_upset?(series)
+    top_rank = series["topSeedRank"].to_i
+    bottom_rank = series["bottomSeedRank"].to_i
+    return false if top_rank.zero? || bottom_rank.zero?
+
+    top_wins = series["topSeedWins"].to_i
+    bottom_wins = series["bottomSeedWins"].to_i
+
+    # Higher seed-rank number = lower seed. Flag when the lower seed leads
+    # outright, or has clinched the upset.
+    if bottom_rank > top_rank
+      bottom_wins > top_wins
+    elsif top_rank > bottom_rank
+      top_wins > bottom_wins
+    else
+      false
     end
   end
 
@@ -207,10 +255,14 @@ class PlayoffProcessor
   # Falls back to a TBD placeholder so later-round series (which omit teams
   # until they're determined) still render in the bracket.
   def format_playoff_team_bracket_format(team, seed_abbrev = nil)
-    return { name: "TBD", abbrev: "TBD", seed: seed_abbrev || "TBD", record: "TBD" } unless team
+    return { name: "TBD", short_name: "TBD", abbrev: "TBD", seed: nil, record: "TBD" } unless team
+
+    full_name = (team["name"] && team["name"]["default"]) || team["abbrev"]
+    short_name = (team["commonName"] && team["commonName"]["default"]) || full_name
 
     {
-      name: (team["name"] && team["name"]["default"]) || team["abbrev"],
+      name: full_name,
+      short_name: short_name,
       abbrev: team["abbrev"],
       logo: team["logo"],
       seed: seed_abbrev || team["seed"],

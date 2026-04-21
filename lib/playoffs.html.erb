@@ -1,7 +1,70 @@
 <%# filepath: /workspaces/hockey_bet/lib/playoffs.html.erb %>
+<%
+  # Helpers used inline by the template — defined here so they have direct
+  # access to the ERB binding without polluting PlayoffProcessor's public API.
+
+  def render_playoff_team_row(team, wins, series, side)
+    classes = ['team']
+    is_leading = side == :home ? wins > series[:away_wins] : wins > series[:home_wins]
+    classes << 'team--leading' if is_leading && !series[:winner_abbrev]
+    classes << 'team--advanced' if series[:winner_abbrev] == team[:abbrev]
+    classes << 'team--eliminated' if series[:eliminated_abbrev] == team[:abbrev]
+    classes << 'team--tbd' if team[:abbrev] == 'TBD'
+
+    display_name = team[:short_name] || team[:name]
+
+    out = +%(<div class="#{classes.join(' ')}" data-abbrev="#{team[:abbrev]}">)
+    out << %(<div class="team-identity">)
+    if team[:logo] && team[:abbrev] != 'TBD'
+      out << %(<img class="team-logo" src="#{team[:logo]}" alt="#{team[:abbrev]} logo" loading="lazy" width="36" height="36">)
+    else
+      out << %(<span class="team-logo team-logo--placeholder" aria-hidden="true">?</span>)
+    end
+    out << %(<div class="team-meta">)
+    out << %(<div class="team-name-row">)
+    out << %(<span class="team-name">#{display_name}</span>)
+    if team[:seed] && team[:abbrev] != 'TBD'
+      out << %(<span class="team-seed">#{team[:seed]}</span>)
+    end
+    out << %(</div>)
+    badges = []
+    badges << %(<span class="team-badge team-badge--advanced"><iconify-icon icon="solar:check-circle-bold" width="12" height="12"></iconify-icon> Advanced</span>) if series[:winner_abbrev] == team[:abbrev]
+    badges << %(<span class="team-badge team-badge--eliminated">Eliminated</span>) if series[:eliminated_abbrev] == team[:abbrev]
+    out << %(<div class="team-badges">#{badges.join(' ')}</div>) unless badges.empty?
+    out << %(</div></div>)
+    if team[:abbrev] == 'TBD'
+      out << %(<div class="team-wins team-wins--tbd" aria-hidden="true">&mdash;</div>)
+    else
+      out << %(<div class="team-wins" aria-label="Series wins">#{wins}</div>)
+    end
+    out << %(</div>)
+    out
+  end
+
+  def series_status_class(series)
+    return 'series-status--decided' if series[:winner_abbrev]
+    return 'series-status--tied' if series[:home_wins] == series[:away_wins] && series[:home_wins].positive?
+    return 'series-status--neutral' if series[:home_wins].zero? && series[:away_wins].zero?
+    'series-status--leading'
+  end
+
+  def series_status_icon(series)
+    icon = if series[:winner_abbrev]
+             'solar:cup-bold'
+           elsif series[:home_wins] == series[:away_wins] && series[:home_wins].positive?
+             'solar:scale-bold'
+           elsif series[:home_wins].zero? && series[:away_wins].zero?
+             'solar:calendar-bold'
+           else
+             'solar:arrow-up-bold'
+           end
+    %(<iconify-icon icon="#{icon}" width="14" height="14"></iconify-icon>)
+  end
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>NHL Playoffs</title>
     <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -138,11 +201,16 @@
                         This is an isolated preview that doesn't affect the main deployment
                     </div>
                 <% end %>
-                
-                <h1>NHL Playoffs <% if Date.today.year %>- <%= Date.today.year %><% end %></h1>
-                
+
+                <% if @bracket_logo %>
+                    <img class="bracket-hero" src="<%= @bracket_logo %>" alt="NHL Stanley Cup Playoffs banner" loading="lazy">
+                <% end %>
+
+                <h1 class="bracket-title">Stanley Cup Playoffs <% if Date.today.year %><span class="bracket-year"><%= Date.today.year %></span><% end %></h1>
+
                 <% if @last_updated %>
                     <div class="last-updated">
+                        <iconify-icon icon="solar:clock-circle-bold" width="14" height="14"></iconify-icon>
                         Last updated: <%= @last_updated %>
                     </div>
                 <% end %>
@@ -153,71 +221,87 @@
                 <!-- Fan Cup Odds Section -->
                 <% if @fan_cup_odds && !@fan_cup_odds.empty? %>
                     <div class="fan-rankings">
-                        <h2>Fan Stanley Cup Odds</h2>
-                        <table class="fan-odds-table">
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Fan</th>
-                                    <th>Cup Odds (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% @fan_cup_odds.each_with_index do |(fan, odds), index| %>
-                                    <tr>
-                                        <td><%= index + 1 %></td>
-                                        <td class="fan-name"><%= fan %></td>
-                                        <td><%= odds %>%</td>
-                                    </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
+                        <h2><iconify-icon icon="solar:cup-star-bold" width="22" height="22"></iconify-icon> Fan Stanley Cup Odds</h2>
+                        <% max_odds = @fan_cup_odds.values.max.to_f %>
+                        <ol class="fan-odds-list">
+                            <% @fan_cup_odds.each_with_index do |(fan, odds), index| %>
+                                <li class="fan-odds-row">
+                                    <span class="fan-rank">#<%= index + 1 %></span>
+                                    <span class="fan-name"><%= fan %></span>
+                                    <span class="fan-odds-bar" aria-hidden="true">
+                                        <span class="fan-odds-bar-fill" style="width: <%= max_odds.zero? ? 0 : (odds / max_odds * 100).round %>%"></span>
+                                    </span>
+                                    <span class="fan-odds-pct"><%= odds %>%</span>
+                                </li>
+                            <% end %>
+                        </ol>
                     </div>
                 <% end %>
 
                 <!-- Playoff Bracket -->
                 <div class="playoff-section">
-                    <h2>Playoff Bracket</h2>
-                    
-                    <div class="playoff-bracket">
+                    <div class="playoff-section-header">
+                        <h2><iconify-icon icon="solar:medal-ribbons-star-bold" width="22" height="22"></iconify-icon> Playoff Bracket</h2>
+                        <p class="playoff-section-sub">Best-of-seven all the way to the Cup</p>
+                    </div>
+
+                    <div class="rounds-container">
                         <% @playoff_rounds.each do |round| %>
-                            <div class="round">
-                                <h4><%= round[:name] %></h4>
-                                
+                            <section class="round" data-round-key="<%= round[:round_key] %>">
+                                <h4>
+                                    <% case round[:round_key]
+                                       when 'R1' %><iconify-icon icon="solar:bolt-bold" width="14" height="14"></iconify-icon><% 
+                                       when 'R2' %><iconify-icon icon="solar:fire-bold" width="14" height="14"></iconify-icon><% 
+                                       when 'CF' %><iconify-icon icon="solar:cup-bold" width="14" height="14"></iconify-icon><% 
+                                       when 'SCF' %><iconify-icon icon="solar:cup-star-bold" width="14" height="14"></iconify-icon><% 
+                                       end %>
+                                    <%= round[:name] %>
+                                </h4>
+
                                 <% round[:series].each do |series| %>
-                                    <div class="series">
-                                        <!-- Home Team -->
-                                        <div class="team <%= 'leading' if series[:home_wins] > series[:away_wins] %>">
-                                            <div>
-                                                <span class="team-name"><%= series[:home_team][:name] %></span>
-                                                <span class="team-abbrev">(<%= series[:home_team][:abbrev] %>)</span>
-                                                <% if series[:home_team][:seed] && series[:home_team][:seed] != "TBD" %>
-                                                    <span class="team-seed">#<%= series[:home_team][:seed] %></span>
-                                                <% end %>
+                                    <%
+                                      series_classes = ['series']
+                                      series_classes << 'series--tbd' if series[:is_tbd]
+                                      series_classes << 'series--decided' if series[:winner_abbrev]
+                                      series_classes << 'series--upset' if series[:is_upset]
+                                    %>
+                                    <article class="<%= series_classes.join(' ') %>" aria-label="<%= series[:home_team][:name] %> vs <%= series[:away_team][:name] %>">
+                                        <% if series[:is_upset] && !series[:is_tbd] %>
+                                            <div class="series-flag series-flag--upset">
+                                                <iconify-icon icon="solar:bolt-circle-bold" width="14" height="14"></iconify-icon>
+                                                Upset alert
                                             </div>
-                                            <div class="team-wins"><%= series[:home_wins] %></div>
-                                        </div>
-                                        
-                                        <div class="vs">vs</div>
-                                        
-                                        <!-- Away Team -->
-                                        <div class="team <%= 'leading' if series[:away_wins] > series[:home_wins] %>">
-                                            <div>
-                                                <span class="team-name"><%= series[:away_team][:name] %></span>
-                                                <span class="team-abbrev">(<%= series[:away_team][:abbrev] %>)</span>
-                                                <% if series[:away_team][:seed] && series[:away_team][:seed] != "TBD" %>
-                                                    <span class="team-seed">#<%= series[:away_team][:seed] %></span>
-                                                <% end %>
-                                            </div>
-                                            <div class="team-wins"><%= series[:away_wins] %></div>
-                                        </div>
-                                        
-                                        <% if series[:status] && series[:status] != "" %>
-                                            <div class="series-status"><%= series[:status] %></div>
                                         <% end %>
-                                    </div>
+
+                                        <%= render_playoff_team_row(series[:home_team], series[:home_wins], series, :home) %>
+                                        <%= render_playoff_team_row(series[:away_team], series[:away_wins], series, :away) %>
+
+                                        <% unless series[:is_tbd] %>
+                                            <div class="series-progress" aria-label="Best of seven progress: <%= series[:home_wins] %>-<%= series[:away_wins] %>">
+                                                <% 4.times do |i| %>
+                                                    <span class="dot dot--top <%= 'dot--won' if i < series[:home_wins] %>"></span>
+                                                <% end %>
+                                                <span class="progress-divider" aria-hidden="true"></span>
+                                                <% 4.times do |i| %>
+                                                    <span class="dot dot--bottom <%= 'dot--won' if i < series[:away_wins] %>"></span>
+                                                <% end %>
+                                            </div>
+
+                                            <div class="series-status <%= series_status_class(series) %>">
+                                                <%= series_status_icon(series) %>
+                                                <%= series[:status] %>
+                                            </div>
+                                        <% else %>
+                                            <div class="series-progress series-progress--tbd" aria-hidden="true">
+                                                <% 7.times do %><span class="dot dot--empty"></span><% end %>
+                                            </div>
+                                            <div class="series-status series-status--neutral">
+                                                Awaiting matchup
+                                            </div>
+                                        <% end %>
+                                    </article>
                                 <% end %>
-                            </div>
+                            </section>
                         <% end %>
                     </div>
                 </div>
@@ -238,11 +322,9 @@
             <!-- Navigation Links -->
             <div class="mt-4 text-center">
                 <% if pr_preview && pr_number %>
-                    <a href="/pr-<%= pr_number %>/" class="btn btn-primary mr-2">View Standings</a>
-                    <a href="/pr-<%= pr_number %>/playoffs.html" class="btn btn-outline">View Playoffs</a>
+                    <a href="/pr-<%= pr_number %>/" class="btn btn-primary">View Standings</a>
                 <% else %>
-                    <a href="/" class="btn btn-primary mr-2">View Standings</a>
-                    <a href="/playoffs.html" class="btn btn-outline">View Playoffs</a>
+                    <a href="/" class="btn btn-primary">View Standings</a>
                 <% end %>
             </div>
         </div>
