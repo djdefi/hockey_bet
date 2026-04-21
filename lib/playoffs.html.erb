@@ -3,7 +3,7 @@
   # Helpers used inline by the template — defined here so they have direct
   # access to the ERB binding without polluting PlayoffProcessor's public API.
 
-  def render_playoff_team_row(team, wins, series, side, manager_team_map = {})
+  render_playoff_team_row = ->(team, wins, series, side, manager_team_map = {}) do
     classes = ['team']
     is_leading = side == :home ? wins > series[:away_wins] : wins > series[:home_wins]
     classes << 'team--leading' if is_leading && !series[:winner_abbrev]
@@ -45,14 +45,14 @@
     out
   end
 
-  def series_status_class(series)
+  series_status_class = ->(series) do
     return 'series-status--decided' if series[:winner_abbrev]
     return 'series-status--tied' if series[:home_wins] == series[:away_wins] && series[:home_wins].positive?
     return 'series-status--neutral' if series[:home_wins].zero? && series[:away_wins].zero?
     'series-status--leading'
   end
 
-  def series_status_icon(series)
+  series_status_icon = ->(series) do
     icon = if series[:winner_abbrev]
              'solar:cup-bold'
            elsif series[:home_wins] == series[:away_wins] && series[:home_wins].positive?
@@ -339,8 +339,8 @@
                                             </div>
                                         <% end %>
 
-                                        <%= render_playoff_team_row(series[:home_team], series[:home_wins], series, :home, @manager_team_map) %>
-                                        <%= render_playoff_team_row(series[:away_team], series[:away_wins], series, :away, @manager_team_map) %>
+                                        <%= render_playoff_team_row.call(series[:home_team], series[:home_wins], series, :home, @manager_team_map) %>
+                                        <%= render_playoff_team_row.call(series[:away_team], series[:away_wins], series, :away, @manager_team_map) %>
 
                                         <% unless series[:is_tbd] %>
                                             <div class="series-progress" aria-label="Best of seven progress: <%= series[:home_wins] %>-<%= series[:away_wins] %>">
@@ -353,8 +353,8 @@
                                                 <% end %>
                                             </div>
 
-                                            <div class="series-status <%= series_status_class(series) %>">
-                                                <%= series_status_icon(series) %>
+                                            <div class="series-status <%= series_status_class.call(series) %>">
+                                                <%= series_status_icon.call(series) %>
                                                 <%= series[:status] %>
                                             </div>
                                         <% else %>

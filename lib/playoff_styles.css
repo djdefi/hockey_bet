@@ -580,7 +580,7 @@
 
 /* Status pill row */
 .series-status {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.3rem;
   margin: var(--space-2) auto 0;
@@ -611,11 +611,6 @@
 .series-status--neutral {
   background: rgba(255, 255, 255, 0.05);
   color: var(--color-text-muted);
-}
-
-.series-status {
-  display: flex;
-  justify-content: center;
 }
 
 /* Fan cup odds — lightweight bar chart */

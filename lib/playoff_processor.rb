@@ -61,9 +61,11 @@ class PlayoffProcessor
       data = JSON.parse(bracket_response.body)
       if @validator.validate_playoffs_response(data)
         @playoff_data = data
-        @is_playoff_time = true
+        series_list = data["series"]
+        has_series = series_list.is_a?(Array) && !series_list.empty?
+        @is_playoff_time = has_series
         process_playoff_data_bracket_format
-        calculate_cup_odds
+        calculate_cup_odds if has_series
         return true
       end
     end
@@ -244,7 +246,6 @@ class PlayoffProcessor
       winner_abbrev = winner ? winner["abbrev"] : ""
       "#{winner_abbrev} wins #{[top_wins, bottom_wins].max}-#{[top_wins, bottom_wins].min}"
     else
-      "Series tied #{top_wins}-#{bottom_wins}" if top_wins == bottom_wins && top_wins.positive?
       leader = top_wins > bottom_wins ? series["topSeedTeam"] : series["bottomSeedTeam"]
       if top_wins.zero? && bottom_wins.zero?
         "Series not started"
@@ -391,7 +392,8 @@ class PlayoffProcessor
       playoff_teams = {}
 
       @playoff_data["series"].each do |series|
-        round_number = series["playoffRound"].to_i
+        abbrev_round = BRACKET_ROUND_ORDER[series["seriesAbbrev"]]
+        round_number = abbrev_round || series["playoffRound"].to_i
         winner_id = series["winningTeamId"]
 
         [
