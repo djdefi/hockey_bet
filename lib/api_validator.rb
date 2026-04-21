@@ -116,6 +116,22 @@ class ApiValidator
           is_valid = team.key?('teamAbbrev') && team['teamAbbrev'].is_a?(Hash) && team['teamAbbrev'].key?('default')
         end
       end
+    # For playoff-bracket/{year} endpoint (current NHL API as of 2024+)
+    elsif response.key?('series') && response['series'].is_a?(Array)
+      series_list = response['series']
+      # Empty series is valid during off-season
+      return true if series_list.empty?
+
+      series = series_list.first
+      is_valid = series.key?('playoffRound')
+      # topSeedTeam/bottomSeedTeam may be absent for placeholder/TBD series in later
+      # rounds; treat the response as valid as long as at least one series carries
+      # team metadata.
+      has_team_data = series_list.any? do |s|
+        team = s['topSeedTeam'] || s['bottomSeedTeam']
+        team.is_a?(Hash) && team.key?('abbrev')
+      end
+      is_valid &&= has_team_data
     # For playoffs/now endpoint
     elsif response.key?('currentRound') || response.key?('playoffRounds')
       is_valid = true

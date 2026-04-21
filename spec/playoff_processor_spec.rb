@@ -258,6 +258,133 @@ RSpec.describe PlayoffProcessor do
     end
   end
 
+  let(:sample_playoff_bracket_response) do
+    {
+      'bracketLogo' => 'https://assets.nhle.com/logos/playoffs/png/bracket.png',
+      'series' => [
+        {
+          'seriesUrl' => '/schedule/playoff-series/2026/series-a/bruins-vs-leafs',
+          'seriesTitle' => '1st Round',
+          'seriesAbbrev' => 'R1',
+          'seriesLetter' => 'A',
+          'playoffRound' => 1,
+          'topSeedRank' => 1,
+          'topSeedRankAbbrev' => 'D1',
+          'topSeedWins' => 4,
+          'bottomSeedRank' => 4,
+          'bottomSeedRankAbbrev' => 'WC1',
+          'bottomSeedWins' => 2,
+          'winningTeamId' => 6,
+          'losingTeamId' => 10,
+          'topSeedTeam' => {
+            'id' => 6,
+            'abbrev' => 'BOS',
+            'name' => { 'default' => 'Boston Bruins' },
+            'logo' => 'bos.svg'
+          },
+          'bottomSeedTeam' => {
+            'id' => 10,
+            'abbrev' => 'TOR',
+            'name' => { 'default' => 'Toronto Maple Leafs' },
+            'logo' => 'tor.svg'
+          }
+        },
+        {
+          # Placeholder series for a later round — no teams assigned yet.
+          'seriesTitle' => 'Stanley Cup Final',
+          'seriesAbbrev' => 'SCF',
+          'seriesLetter' => 'O',
+          'playoffRound' => 4,
+          'topSeedWins' => 0,
+          'bottomSeedWins' => 0
+        }
+      ]
+    }
+  end
+
+  describe '#process_playoff_data_bracket_format' do
+    before do
+      processor.instance_variable_set(:@playoff_data, sample_playoff_bracket_response)
+    end
+
+    it 'groups flat series array into rounds with friendly names' do
+      processor.process_playoff_data_bracket_format
+      rounds = processor.playoff_rounds
+
+      expect(rounds.length).to eq(2)
+      expect(rounds.map { |r| r[:name] }).to eq(['1st Round', 'Stanley Cup Final'])
+    end
+
+    it 'maps top/bottom seed teams to home/away with seed rank labels' do
+      processor.process_playoff_data_bracket_format
+      first_series = processor.playoff_rounds.first[:series].first
+
+      expect(first_series[:home_team][:abbrev]).to eq('BOS')
+      expect(first_series[:home_team][:seed]).to eq('D1')
+      expect(first_series[:away_team][:abbrev]).to eq('TOR')
+      expect(first_series[:home_wins]).to eq(4)
+      expect(first_series[:away_wins]).to eq(2)
+      expect(first_series[:status]).to eq('BOS wins 4-2')
+    end
+
+    it 'renders TBD placeholders for series without assigned teams' do
+      processor.process_playoff_data_bracket_format
+      scf = processor.playoff_rounds.last[:series].first
+
+      expect(scf[:home_team][:abbrev]).to eq('TBD')
+      expect(scf[:away_team][:abbrev]).to eq('TBD')
+      expect(scf[:status]).to eq('')
+    end
+
+    it 'computes cup odds weighted by round and wins' do
+      processor.instance_variable_set(:@is_playoff_time, true)
+      processor.calculate_cup_odds
+
+      expect(processor.cup_odds.keys).to include('BOS', 'TOR')
+      expect(processor.cup_odds['BOS']).to be > processor.cup_odds['TOR']
+    end
+
+    it 'handles missing series key' do
+      processor.instance_variable_set(:@playoff_data, {})
+      processor.process_playoff_data_bracket_format
+      expect(processor.playoff_rounds).to eq([])
+    end
+  end
+
+  describe '#bracket_year' do
+    it 'returns the current year during the second half of the season' do
+      allow(Date).to receive(:today).and_return(Date.new(2026, 4, 21))
+      expect(processor.bracket_year).to eq(2026)
+    end
+
+    it 'rolls forward to next year for July onward' do
+      allow(Date).to receive(:today).and_return(Date.new(2025, 10, 1))
+      expect(processor.bracket_year).to eq(2026)
+    end
+  end
+
+  describe '#fetch_playoff_data with bracket endpoint' do
+    it 'tries the playoff-bracket endpoint first' do
+      allow(HTTParty).to receive(:get).and_return(double(code: 404, body: '{}'))
+      allow(processor.instance_variable_get(:@validator)).to receive(:validate_playoffs_response).and_return(false)
+      allow(processor.instance_variable_get(:@validator)).to receive(:handle_api_failure).and_return({})
+
+      expect(HTTParty).to receive(:get).with(%r{/v1/playoff-bracket/\d{4}})
+      processor.fetch_playoff_data
+    end
+
+    it 'processes a successful bracket-format response' do
+      bracket_response = double(code: 200, body: sample_playoff_bracket_response.to_json)
+      allow(HTTParty).to receive(:get).with(%r{/v1/playoff-bracket/\d{4}}).and_return(bracket_response)
+
+      result = processor.fetch_playoff_data
+
+      expect(result).to be true
+      expect(processor.is_playoff_time).to be true
+      expect(processor.playoff_rounds.first[:series].first[:home_team][:abbrev]).to eq('BOS')
+    end
+  end
+
   describe '#format_playoff_team' do
     let(:sample_team) do
       {
