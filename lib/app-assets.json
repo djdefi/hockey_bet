@@ -3,6 +3,10 @@
     {
       "href": "styles.css",
       "rel": "stylesheet"
+    },
+    {
+      "href": "playoff_styles.css",
+      "rel": "stylesheet"
     }
   ],
   "external_scripts": [

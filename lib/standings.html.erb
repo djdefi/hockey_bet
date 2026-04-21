@@ -62,6 +62,36 @@
             <p class="text-secondary text-md mb-2">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
         </header>
 
+        <%
+          playoff_proc = (defined?(playoff_processor) && playoff_processor) || nil
+          if playoff_proc && playoff_proc.is_playoff_time
+            # Make sure fan status is computed for the hero banner numbers
+            playoff_proc.compute_fan_status(manager_team_map) if playoff_proc.fan_status.nil? || playoff_proc.fan_status.empty?
+            current_round = playoff_proc.current_round_label || 'Playoffs'
+            fans_alive = playoff_proc.fans_alive_count
+            total_fans = (manager_team_map || {}).values.reject { |v| v == 'N/A' }.uniq.length
+        %>
+            <!-- Playoffs LIVE Hero Banner (only renders during playoff time) -->
+            <a class="playoff-hero-banner" href="playoffs.html" role="region" aria-label="Stanley Cup Playoffs are live, view bracket">
+                <div class="playoff-hero-banner__icon" aria-hidden="true">
+                    <iconify-icon icon="solar:cup-star-bold" width="36" height="36"></iconify-icon>
+                </div>
+                <div class="playoff-hero-banner__text">
+                    <div class="playoff-hero-banner__eyebrow">🏒 Stanley Cup Playoffs · LIVE</div>
+                    <div class="playoff-hero-banner__title"><%= current_round %></div>
+                    <div class="playoff-hero-banner__meta">
+                        <span><strong><%= fans_alive %></strong> of <%= total_fans %> fans still alive</span>
+                        <span class="playoff-hero-banner__sep" aria-hidden="true">·</span>
+                        <span>Bracket, fan podium &amp; cup odds</span>
+                    </div>
+                </div>
+                <div class="playoff-hero-banner__cta" aria-hidden="true">
+                    View Bracket
+                    <iconify-icon icon="solar:arrow-right-bold" width="20" height="20"></iconify-icon>
+                </div>
+            </a>
+        <% end %>
+
         <!-- Desktop Tabs (hidden on mobile) -->
         <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
             <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
