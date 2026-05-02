@@ -36,7 +36,6 @@
 
 body {
     font-family: var(--font-family-primary);
-    background-color: var(--color-bg-primary);
     background:
         radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent 30rem),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
@@ -2977,7 +2976,7 @@ body::before {
 
 .section-heading::before {
   width: 4px;
-  height: 1.4rem;
+  height: var(--space-5);
   background: var(--color-accent-primary);
 }
 
