@@ -37,7 +37,7 @@
 body {
     font-family: var(--font-family-primary);
     background:
-        radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent min(65vw, 30rem)),
+        radial-gradient(circle at top left, var(--color-accent-primary-wash) 0%, transparent min(65vw, 30rem)),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
     color: var(--color-text-primary);
     margin: 0;
@@ -2870,7 +2870,7 @@ h3 {
 /* Accent bar — team color strip at top of page */
 .app-accent-bar {
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info));
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info, var(--color-accent-primary)));
   position: fixed;
   top: 0;
   left: 0;
