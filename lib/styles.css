@@ -36,10 +36,10 @@
 
 body {
     font-family: var(--font-family-primary);
+    background-color: var(--color-bg-primary);
     background:
         radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent 30rem),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
-    background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     margin: 0;
     padding: 0;
@@ -2881,7 +2881,7 @@ h3 {
 
 /* Team-aware header styling */
 header {
-  background: linear-gradient(135deg, var(--color-surface-raised), var(--color-surface-raised-soft));
+  background: var(--gradient-surface-raised);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-3xl);
   box-shadow: var(--shadow-lg);
@@ -2947,9 +2947,17 @@ body::before {
 .stat-card-square,
 .matchup-card,
 .team-card {
-  transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
-              box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
-              border-color var(--duration-base, 0.2s) var(--ease-out, ease);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stat-card-square,
+  .matchup-card,
+  .team-card {
+    transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
+                box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
+                border-color var(--duration-base, 0.2s) var(--ease-out, ease);
+  }
 }
 
 .stat-card-square:hover,
