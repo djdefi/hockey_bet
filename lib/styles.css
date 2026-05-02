@@ -37,7 +37,7 @@
 body {
     font-family: var(--font-family-primary);
     background:
-        radial-gradient(circle at top left, var(--color-accent-primary-wash) 0%, transparent min(65vw, 30rem)),
+        radial-gradient(circle at top left, var(--color-accent-primary-wash) 0%, transparent 70%),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
     color: var(--color-text-primary);
     margin: 0;
