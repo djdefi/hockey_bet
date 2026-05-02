@@ -37,7 +37,7 @@
 body {
     font-family: var(--font-family-primary);
     background:
-        radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent 30rem),
+        radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent 65vw),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
     color: var(--color-text-primary);
     margin: 0;
@@ -2876,6 +2876,7 @@ h3 {
   left: 0;
   right: 0;
   z-index: 1000;
+  pointer-events: none;
 }
 
 /* Team-aware header styling */
