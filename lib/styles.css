@@ -35,9 +35,12 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    font-family: var(--font-family-primary);
+    background:
+        radial-gradient(circle at top left, rgba(33, 209, 159, 0.08), transparent 30rem),
+        linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     margin: 0;
     padding: 0;
     padding-bottom: 80px; /* Space for bottom nav */
@@ -57,26 +60,33 @@ body {
    ======================================== */
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-top: 0;
+    line-height: var(--line-height-snug);
 }
 
 h1 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    margin-bottom: 0.3rem;
-    letter-spacing: -0.02em;
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: var(--space-2);
+    letter-spacing: var(--letter-spacing-tight);
 }
 
 h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.01em;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-3);
+    letter-spacing: var(--letter-spacing-tight);
 }
 
 h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-3);
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 3px;
+    box-shadow: var(--shadow-focus);
 }
 
 /* ========================================
@@ -2854,13 +2864,14 @@ h3 {
 }
 
 /* ============================================================
-   Personality touches — hand-crafted UI polish
+   Refero-aligned polish: clear hierarchy, restrained motion,
+   consistent surfaces, and accessible interactive states.
    ============================================================ */
 
 /* Accent bar — team color strip at top of page */
 .app-accent-bar {
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info, var(--color-accent-primary)));
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info), var(--color-accent-primary));
   position: fixed;
   top: 0;
   left: 0;
@@ -2869,19 +2880,32 @@ h3 {
 }
 
 /* Team-aware header styling */
+header {
+  background: linear-gradient(135deg, var(--color-surface-raised), rgba(26, 37, 58, 0.56));
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+}
+
 header h1 {
   position: relative;
   display: inline-block;
+  color: var(--color-text-primary);
 }
 
 header h1::after {
   content: '';
   display: block;
   height: 2px;
-  margin-top: 4px;
+  margin-top: var(--space-1);
   background: linear-gradient(90deg, var(--color-accent-primary), transparent);
   border-radius: 1px;
-  opacity: 0.6;
+  opacity: 0.8;
+}
+
+header p {
+  color: var(--color-text-secondary);
 }
 
 /* Team-colored active tab indicator */
@@ -2908,6 +2932,20 @@ body::before {
 /* Card personality */
 .stat-card-square,
 .matchup-card,
+.team-card,
+.leaders-compact-card,
+.leader-compact-item,
+.featured-matchup-card-dense,
+.chart-container,
+.playoff-status-legend {
+  background: linear-gradient(145deg, var(--color-surface-raised), rgba(26, 37, 58, 0.64));
+  border-color: var(--color-border-strong);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card-square,
+.matchup-card,
 .team-card {
   transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
               box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
@@ -2918,6 +2956,98 @@ body::before {
 .matchup-card:hover,
 .team-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
   border-color: var(--color-accent-primary);
+}
+
+.section-heading {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  letter-spacing: var(--letter-spacing-normal);
+  margin-bottom: var(--space-3);
+}
+
+.section-heading::before {
+  width: 4px;
+  height: 1.4rem;
+  background: var(--color-accent-primary);
+}
+
+.leader-rank-badge,
+.featured-time-compact,
+.featured-prediction-compact,
+.info-badge,
+.stat-item-dense,
+.matchup-stat,
+.achievement-badge,
+.h2h-item {
+  background: var(--color-surface-inset);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.featured-prediction-compact,
+.featured-badge-dense,
+.stat-value,
+.hero-stat-value,
+.leader-achievement {
+  color: var(--color-accent-primary);
+}
+
+.featured-team-name-dense,
+.stat-label-dense,
+.leader-stat-label,
+.matchup-stat-label,
+.detail-label,
+.team-points-label,
+.team-fan,
+.info-text {
+  color: var(--color-text-secondary);
+}
+
+.desktop-tab,
+.nav-item,
+.date-group-toggle,
+.expand-toggle {
+  border-radius: var(--radius-lg);
+}
+
+.desktop-tab:hover,
+.nav-item:hover,
+.date-group-toggle:hover,
+.expand-toggle:hover {
+  background: var(--color-surface-soft);
+  opacity: 1;
+}
+
+.stat-emoji,
+.hero-label,
+.time-icon,
+.achievement-emoji,
+.featured-vs,
+.matchup-vs {
+  animation: none;
+}
+
+@media (min-width: 768px) {
+  header {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .app-container .desktop-tabs {
+    background: var(--color-surface-inset);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-3xl);
+    padding: var(--space-2);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .desktop-tab {
+    border-bottom: 0;
+  }
+
+  .desktop-tab.active {
+    background: rgba(33, 209, 159, 0.14);
+    box-shadow: inset 0 0 0 1px rgba(33, 209, 159, 0.28);
+  }
 }
