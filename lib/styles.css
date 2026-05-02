@@ -37,7 +37,7 @@
 body {
     font-family: var(--font-family-primary);
     background:
-        radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent 65vw),
+        radial-gradient(circle at top left, var(--color-accent-primary-wash), transparent min(65vw, 30rem)),
         linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-depth) 100%);
     color: var(--color-text-primary);
     margin: 0;
@@ -2904,7 +2904,7 @@ header h1::after {
   opacity: 0.8;
 }
 
-header p {
+header > p {
   color: var(--color-text-secondary);
 }
 
@@ -2947,16 +2947,16 @@ body::before {
 .stat-card-square,
 .matchup-card,
 .team-card {
-  transition: none;
+  transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
+              box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
+              border-color var(--duration-base, 0.2s) var(--ease-out, ease);
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: reduce) {
   .stat-card-square,
   .matchup-card,
   .team-card {
-    transition: transform var(--duration-base, 0.2s) var(--ease-out, ease),
-                box-shadow var(--duration-base, 0.2s) var(--ease-out, ease),
-                border-color var(--duration-base, 0.2s) var(--ease-out, ease);
+    transition: none;
   }
 }
 
