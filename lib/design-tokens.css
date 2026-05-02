@@ -27,6 +27,7 @@
   --color-accent-primary: #21d19f;      /* Green - Success, Primary Actions */
   --color-accent-primary-wash: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
   --color-accent-primary-subtle: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+  --color-accent-primary-selected: color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
   --color-accent-primary-border: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
   --color-accent-danger: #e74c3c;       /* Red - Errors, Losses */
   --color-accent-warning: #f39c12;      /* Yellow/Orange - Warnings */

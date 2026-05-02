@@ -3057,7 +3057,7 @@ body::before {
   }
 
   .desktop-tab.active {
-    background: var(--color-accent-primary-subtle);
-    box-shadow: inset 0 0 0 1px var(--color-accent-primary-border);
+    background: var(--color-accent-primary-selected);
+    box-shadow: inset 0 0 0 2px var(--color-accent-primary-border);
   }
 }
