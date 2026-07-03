@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# filepath: /workspaces/hockey_bet/update_standings.rb
 # Main entry point script for updating NHL standings and playoffs data
 # This script orchestrates the data fetching, processing, and HTML generation
 # Can run in normal mode or PR preview mode for GitHub Actions deployments

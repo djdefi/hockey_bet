@@ -1,11 +1,22 @@
-<%# filepath: /workspaces/hockey_bet/lib/standings.html.erb %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NHL Standings</title>
-    
+    <meta name="description" content="Live NHL standings, playoff picture, and Stanley Cup odds for our fantasy hockey pool — refreshed automatically throughout the season.">
+    <link rel="canonical" href="https://djdefi.github.io/hockey_bet/">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NHL Fan League">
+    <meta property="og:title" content="NHL Standings &amp; Playoff Hub">
+    <meta property="og:description" content="Live NHL standings, playoff picture, and Stanley Cup odds for our fantasy hockey pool.">
+    <meta property="og:url" content="https://djdefi.github.io/hockey_bet/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NHL Standings &amp; Playoff Hub">
+    <meta name="twitter:description" content="Live NHL standings, playoff picture, and Stanley Cup odds for our fantasy hockey pool.">
+
     <!-- Critical CSS inlined for instant render -->
     <style>
         :root{--bg-primary:#0b162a;--bg-card:#1a253a;--text-primary:#fff;--text-secondary:#8da1b9;--accent-green:#21d19f;--border-color:#2a3a52}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--bg-primary);color:var(--text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-weight:700;margin-top:0}h1{font-size:1.75rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
@@ -312,7 +323,7 @@
                     <div class="featured-info-row">
                         <% if !h2h_summary.empty? %>
                         <div class="info-badge">
-                            <span class="info-icon"><iconify-icon icon="solar:sword-bold" width="14" height="14"></iconify-icon></span>
+                            <span class="info-icon"><iconify-icon icon="mdi:sword-cross" width="14" height="14"></iconify-icon></span>
                             <span class="info-text"><%= h2h_summary %></span>
                         </div>
                         <% end %>
@@ -336,7 +347,7 @@
             <div class="stats-grid" role="region" aria-label="Excellence awards">
                 <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
                     <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:flash-bold" width="28" height="28"></iconify-icon></div>
+                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:bolt-circle-bold" width="28" height="28"></iconify-icon></div>
                         <div class="stat-label">Fan Crusher</div>
                         <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
                         <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
@@ -417,7 +428,7 @@
                 <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
                     <% is_expandable = bet_stats[:glass_cannon].length > 1 %>
                     <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Glass cannon achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:flash-circle-bold" width="28" height="28"></iconify-icon></div>
+                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:bomb-minimalistic-bold" width="28" height="28"></iconify-icon></div>
                         <div class="stat-label">Glass Cannon</div>
                         <div class="achievement-entries">
                             <% bet_stats[:glass_cannon].each_with_index do |entry, idx| %>
@@ -779,7 +790,7 @@
                 # Determine trend based on streak
                 streak_code = team['streakCode'] || ''
                 trend_class = streak_code.start_with?('W') ? 'trend-up' : (streak_code.start_with?('L') ? 'trend-down' : '')
-                trend_icon = streak_code.start_with?('W') ? 'solar:graph-up-bold' : (streak_code.start_with?('L') ? 'solar:graph-down-bold' : 'solar:minus-bold')
+                trend_icon = streak_code.start_with?('W') ? 'solar:graph-up-bold' : (streak_code.start_with?('L') ? 'solar:graph-down-bold' : 'solar:minus-circle-bold')
                 %>
                 
                 <% next if !is_fan_team %>
@@ -863,7 +874,7 @@
                             if bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any?
                                 cannon = bet_stats[:glass_cannon].find { |stat| stat[:team_abbrev] == team_abbrev }
                                 if cannon
-                                    team_badges << { icon: 'solar:flash-circle-bold', label: 'Glass Cannon', value: cannon[:display], color: 'rgba(255, 140, 0, 0.15)' }
+                                    team_badges << { icon: 'solar:bomb-minimalistic-bold', label: 'Glass Cannon', value: cannon[:display], color: 'rgba(255, 140, 0, 0.15)' }
                                 end
                             end
                             
@@ -1050,7 +1061,6 @@
                 availableSeasonsData = await seasonsResponse.json();
                 
                 if (!allHistoryData || allHistoryData.length === 0) {
-                    console.log('No standings history data available yet');
                     const canvas = document.getElementById('leagueTrendChart');
                     if (canvas && canvas.parentElement) {
                         canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">No trend data available yet. Check back after a few days of tracking.</p>';
@@ -1105,7 +1115,6 @@
             });
             
             if (!history || history.length === 0) {
-                console.log('No data available for season ' + selectedSeason);
                 const canvas = document.getElementById('leagueTrendChart');
                 if (canvas && canvas.parentElement && canvas.parentElement.parentElement) {
                     // Find just the canvas to replace
@@ -1117,7 +1126,6 @@
             
             // Check if we have enough data points to show meaningful trends
             if (history.length === 1) {
-                console.log('Only one data point available for season ' + selectedSeason);
                 const canvas = document.getElementById('leagueTrendChart');
                 if (canvas && canvas.parentElement) {
                     const date = history[0].date;
@@ -1350,7 +1358,6 @@
             const playoffData = loadPlayoffProgressionData();
             
             if (Object.keys(playoffData).length === 0) {
-                console.log('No playoff odds data available');
                 const canvas = document.getElementById('playoffOddsChart');
                 if (canvas && canvas.parentElement) {
                     canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">Playoff odds data not available yet.</p>';

@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/spec/bet_stats_calculator_spec.rb
 require_relative '../lib/bet_stats_calculator'
 require 'json'
 require 'net/http'

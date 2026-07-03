@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/lib/bet_stats_calculator.rb
 require 'csv'
 require 'set'
 require_relative 'historical_stats_tracker'
@@ -265,19 +264,9 @@ class BetStatsCalculator
         next nil if gp == 0
         
         # Calculate per-game averages - handle both API formats
-        goals_for_per_game = if team.key?('goalFor') && !team['goalFor'].nil?
-          team['goalFor'].to_f / gp
-        elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
-          team['goalsForPctg'].to_f
-        else
-          0.0
-        end
+        goals_for_per_game = per_game_goals_for(team, gp)
         
-        goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / gp
-        else
-          0.0
-        end
+        goals_against_per_game = per_game_goals_against(team, gp)
         
         differential_per_game = goals_for_per_game - goals_against_per_game
         
@@ -338,11 +327,7 @@ class BetStatsCalculator
         next nil if gp == 0
         
         # Handle both API formats: goalAgainst (total) vs already per-game average
-        goals_against_per_game = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / gp
-        else
-          0.0
-        end
+        goals_against_per_game = per_game_goals_against(team, gp)
         
         abbrev = team['teamAbbrev']['default']
         {
@@ -372,19 +357,9 @@ class BetStatsCalculator
         next nil if gp == 0
         
         # Handle both API formats explicitly
-        goals_for = if team.key?('goalFor') && !team['goalFor'].nil?
-          team['goalFor'].to_f / gp
-        elsif team.key?('goalsForPctg') && !team['goalsForPctg'].nil?
-          team['goalsForPctg'].to_f
-        else
-          0.0
-        end
+        goals_for = per_game_goals_for(team, gp)
         
-        goals_against = if team.key?('goalAgainst') && !team['goalAgainst'].nil?
-          team['goalAgainst'].to_f / gp
-        else
-          0.0
-        end
+        goals_against = per_game_goals_against(team, gp)
         
         differential = goals_for - goals_against
         
@@ -824,9 +799,10 @@ class BetStatsCalculator
           streak_num = (streak_num_raw.nil? || streak_num_raw == 0) ? 1 : streak_num_raw
         end
         
-        # Point streaks include both wins (W) and OT losses (OT)
-        # We'll count win streaks as point streaks
-        is_point_streak = streak_code.start_with?('W')
+        # Point streaks include games earning at least one point: wins (streakCode
+        # "W…") and overtime/shootout losses (streakCode "OT…"). Regulation losses
+        # ("L…") earn no points and are excluded.
+        is_point_streak = streak_code.start_with?('W') || streak_code.start_with?('OT')
         next nil unless is_point_streak
         
         abbrev = team['teamAbbrev']['default']
@@ -1007,6 +983,20 @@ class BetStatsCalculator
   # @return [Integer] Number of games played
   def games_played(team)
     team['gamesPlayed'] || ((team['wins'] || 0) + (team['losses'] || 0) + (team['otLosses'] || 0))
+  end
+
+  # Per-game goals scored, tolerant of missing/nil source data (returns 0.0).
+  def per_game_goals_for(team, gp)
+    return 0.0 unless team.key?('goalFor') && !team['goalFor'].nil?
+
+    team['goalFor'].to_f / gp
+  end
+
+  # Per-game goals allowed, tolerant of missing/nil source data (returns 0.0).
+  def per_game_goals_against(team, gp)
+    return 0.0 unless team.key?('goalAgainst') && !team['goalAgainst'].nil?
+
+    team['goalAgainst'].to_f / gp
   end
 
   # Helper to find team by abbreviation with caching for performance
@@ -1458,7 +1448,7 @@ class BetStatsCalculator
         end
       end
     rescue StandardError => e
-      # Return 0 if we can't fetch the data
+      warn "calculate_goal_differential_vs_team(#{team_abbrev} vs #{opponent_abbrev}) failed: #{e.message}"
       return 0
     end
     

@@ -1,4 +1,3 @@
-<%# filepath: /workspaces/hockey_bet/lib/playoffs.html.erb %>
 <%
   # Helpers used inline by the template — defined here so they have direct
   # access to the ERB binding without polluting PlayoffProcessor's public API.
@@ -207,7 +206,7 @@
                 <% end %>
 
                 <% if @bracket_logo %>
-                    <img class="bracket-hero" src="<%= @bracket_logo %>" alt="NHL Stanley Cup Playoffs banner" loading="lazy">
+                    <img class="bracket-hero" src="<%= @bracket_logo %>" alt="NHL Stanley Cup Playoffs banner" loading="lazy" onerror="this.style.display='none'">
                 <% end %>
 
                 <h1 class="bracket-title">Stanley Cup Playoffs <% if Date.today.year %><span class="bracket-year"><%= Date.today.year %></span><% end %></h1>

@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/spec/fan_league_constants_spec.rb
 
 require_relative '../lib/fan_league_constants'
 require 'date'

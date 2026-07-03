@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/lib/standings_history_tracker.rb
 require 'json'
 require 'fileutils'
 require 'date'

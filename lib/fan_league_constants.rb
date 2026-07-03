@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/lib/fan_league_constants.rb
 
 # FanLeagueConstants provides shared constants for the hockey fan league
 # Used across prediction, standings, and leaderboard features

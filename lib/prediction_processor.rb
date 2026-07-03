@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/lib/prediction_processor.rb
 require_relative 'prediction_tracker'
 require_relative 'fan_league_constants'
 require_relative 'base_tracker'
@@ -191,7 +190,10 @@ class PredictionProcessor
         'predicted_winner' => prediction['predicted_winner'],
         'actual_winner' => winner_abbrev,
         'predicted_at' => prediction['predicted_at'],
-        'processed_at' => Time.now.iso8601
+        # UTC microsecond precision so games processed within the same second get
+        # distinct, lexicographically sortable timestamps (recent/streak ordering
+        # relies on sorting by processed_at).
+        'processed_at' => Time.now.utc.iso8601(6)
       }
     end
     

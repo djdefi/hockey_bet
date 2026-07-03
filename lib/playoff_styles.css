@@ -1063,3 +1063,24 @@
   background: rgba(141, 161, 185, 0.18);
   color: var(--color-text-secondary);
 }
+
+/* ============================================================
+   Align Primer's primary button with the site's teal accent.
+   Primer ships GitHub green (#2da44e), which clashed with the
+   brand accent. Loaded after primer.css so this wins.
+   ============================================================ */
+.btn-primary {
+  color: var(--color-text-inverse);
+  background-color: var(--color-accent-primary);
+  border-color: color-mix(in srgb, var(--color-accent-primary) 72%, black);
+}
+
+.btn-primary:hover:not(:disabled) {
+  color: var(--color-text-inverse);
+  background-color: color-mix(in srgb, var(--color-accent-primary) 88%, black);
+  border-color: color-mix(in srgb, var(--color-accent-primary) 62%, black);
+}
+
+.btn-primary:focus-visible {
+  box-shadow: var(--shadow-focus);
+}

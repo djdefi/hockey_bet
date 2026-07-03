@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# filepath: /home/runner/work/hockey_bet/hockey_bet/backfill_standings_history.rb
 #
 # Script to backfill standings history from the start of the season
 # This fetches historical game data and reconstructs standings for each date
@@ -91,7 +90,7 @@ class StandingsBackfill
           puts "Failed (HTTP #{response.code})"
           all_games[team_abbrev] = []
         end
-      rescue HTTParty::Error, Timeout::Error, StandardError => e
+      rescue StandardError => e
         puts "Error: #{e.message}"
         all_games[team_abbrev] = []
       end

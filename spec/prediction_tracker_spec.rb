@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/spec/prediction_tracker_spec.rb
 
 require_relative '../lib/prediction_tracker'
 require 'tempfile'

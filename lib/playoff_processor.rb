@@ -3,6 +3,7 @@ require 'json'
 require 'date'
 require 'tzinfo'
 require 'erb'
+require 'fileutils'
 require_relative 'api_validator'
 
 class PlayoffProcessor
@@ -40,7 +41,7 @@ class PlayoffProcessor
     
     # Ensure the output directory exists
     output_dir = File.dirname(output_path)
-    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
+    FileUtils.mkdir_p(output_dir)
 
     # Render the template and write to file
     html_content = render_template

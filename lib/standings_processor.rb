@@ -1,4 +1,3 @@
-# filepath: /workspaces/hockey_bet/lib/standings_processor.rb
 require 'httparty'
 require 'json'
 require 'csv'
@@ -96,7 +95,7 @@ class StandingsProcessor
   def render_output(output_path)
     # Ensure the output directory exists
     output_dir = File.dirname(output_path)
-    Dir.mkdir(output_dir) unless Dir.exist?(output_dir)
+    FileUtils.mkdir_p(output_dir)
 
     # Render the template and write to file
     html_content = render_template
@@ -422,11 +421,6 @@ def format_game_time(time)
   time.strftime('%-m/%-d %H:%M')
 end
 
-def format_game_time_full(time)
-  return 'TBD' if time == 'None' || time == 'TBD' || time.is_a?(String)
-  time.strftime('%A, %B %-d at %-I:%M %p Pacific')
-end
-
 def get_opponent_name(game, team_id)
   return 'None' unless game
   return 'None' if game['awayTeam']['abbrev'] == 'None' || game['homeTeam']['abbrev'] == 'None'
@@ -445,13 +439,12 @@ def get_fan_achievement(fan, bet_stats)
   # Priority order of achievements (most impressive first)
   checks = [
     { key: :best_cup_odds, icon: 'solar:cup-star-bold', label: 'Cup Contender' },
-    { key: :fan_crusher, icon: 'solar:flash-bold', label: 'Fan Crusher' },
+    { key: :fan_crusher, icon: 'solar:bolt-bold', label: 'Fan Crusher' },
     { key: :most_dominant, icon: 'solar:crown-bold', label: 'Most Dominant' },
-    { key: :on_fire, icon: 'solar:fire-bold', label: 'On Fire' },
     { key: :brick_wall, icon: 'solar:shield-bold', label: 'Brick Wall' },
     { key: :top_winners, icon: 'solar:medal-ribbons-star-bold', label: 'Top Winner' },
     { key: :shutout_king, icon: 'solar:forbidden-bold', label: 'Shutout King' },
-    { key: :glass_cannon, icon: 'solar:flash-circle-bold', label: 'Glass Cannon' },
+    { key: :glass_cannon, icon: 'solar:bolt-circle-bold', label: 'Glass Cannon' },
     { key: :comeback_kid, icon: 'solar:target-bold', label: 'Comeback Kid' },
     { key: :overtimer, icon: 'solar:stopwatch-bold', label: 'Overtimer' }
   ]

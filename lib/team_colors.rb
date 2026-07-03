@@ -1,4 +1,3 @@
-# filepath: /home/runner/work/hockey_bet/hockey_bet/lib/team_colors.rb
 
 # Official NHL team colors for Chart.js visualization
 TEAM_COLORS = {

@@ -1,4 +1,3 @@
-# filepath: /workspaces/hockey_bet/lib/api_validator.rb
 require 'json'
 require 'logger'
 
