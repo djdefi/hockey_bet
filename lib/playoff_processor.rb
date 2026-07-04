@@ -549,11 +549,6 @@ class PlayoffProcessor
     @fan_status.count { |_, info| %i[alive champion].include?(info[:status]) }
   end
 
-  # Determine if we have valid playoff data
-  def valid_playoff_data?(data)
-    @validator.validate_playoffs_response(data)
-  end
-
   private
 
   # Build a flat lookup of every team that appears in the bracket, with
