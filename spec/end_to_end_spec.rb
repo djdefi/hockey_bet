@@ -252,7 +252,6 @@ RSpec.describe 'End-to-End Generation and Rendering' do
       expect(scripts).to include('vendor/chart.umd.js')
       expect(scripts).to include('performance-utils.js')
       expect(scripts).to include('accessibility.js')
-      expect(scripts).to include('social-features.js')
       expect(scripts).to include('mobile-gestures.js')
       expect(scripts).to include('standings-app.js')
     end
@@ -297,9 +296,11 @@ RSpec.describe 'End-to-End Generation and Rendering' do
     end
     
     it 'shows last updated timestamp' do
-      last_updated = @doc.css('.text-secondary').find { |el| el.text.include?('Last updated') }
+      last_updated = @doc.css('.masthead-updated').first
       expect(last_updated).not_to be_nil
-      expect(last_updated.text).to match(/\d{4}-\d{2}-\d{2}/)
+      expect(last_updated.text).to include('Updated')
+      expect(last_updated.text).to match(/\d{4}/)
+      expect(last_updated.text).to include('PT')
     end
     
     it 'includes status legend for users' do

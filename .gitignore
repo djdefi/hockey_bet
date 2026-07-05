@@ -17,3 +17,6 @@ _site/
 e2e/test-results/
 e2e/report/
 e2e/screenshots/
+
+# Local playwright-cli screenshot output (dev only)
+.playwright-cli/

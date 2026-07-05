@@ -19,10 +19,10 @@
 
     <!-- Critical CSS inlined for instant render -->
     <style>
-        :root{--color-bg-primary:#0b162a;--color-bg-secondary:#1a253a;--color-text-primary:#fff;--color-text-secondary:#b6c4d8;--color-accent-primary:#21d19f;--color-border-default:#2a3a52}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--color-bg-primary);color:var(--color-text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-weight:700;margin-top:0}h1{font-size:1.75rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
-        .skeleton{background:linear-gradient(90deg,var(--color-bg-secondary,#1a253a) 25%,#2a3a52 50%,var(--color-bg-secondary,#1a253a) 75%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
+        :root{--color-bg-primary:#0a0c10;--color-bg-secondary:#14171d;--color-text-primary:#f3f6fa;--color-text-secondary:#9aa5b3;--color-accent-primary:#1f9dff;--color-border-default:#262c36}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--color-bg-primary);color:var(--color-text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-family:'Barlow Condensed','Inter',-apple-system,sans-serif;font-weight:700;margin-top:0;text-transform:uppercase;letter-spacing:.01em}h1{font-size:2rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
+        .skeleton{background:linear-gradient(90deg,var(--color-bg-secondary,#14171d) 25%,#1e232b 50%,var(--color-bg-secondary,#14171d) 75%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
         @keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
-        .team-logo{background:var(--color-bg-secondary,#1a253a);border-radius:4px}
+        .team-logo{background:var(--color-bg-secondary,#14171d);border-radius:3px}
     </style>
     
     <!-- Theme init — apply stored team theme before first paint -->
@@ -42,11 +42,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Fan League">
-    <meta name="theme-color" content="#0b162a">
+    <meta name="theme-color" content="#0a0c10">
     
     <!-- Performance Optimization: Preconnect to external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="dns-prefetch" href="https://api-web.nhle.com">
     
     <script>
@@ -68,9 +69,10 @@
     <div class="app-accent-bar" aria-hidden="true"></div>
     <div class="app-container">
         <!-- Header -->
-        <header class="mb-3" role="banner">
-            <h1>NHL Fan League</h1>
-            <p class="text-secondary text-md mb-2">Last updated: <%= Time.parse(last_updated.to_s).strftime("%Y-%m-%d %H:%M:%S") %> PT</p>
+        <header class="mb-3 site-masthead" role="banner">
+            <div class="masthead-eyebrow">Fantasy Hockey Pool</div>
+            <h1 class="masthead-title">NHL Fan League</h1>
+            <p class="masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</p>
         </header>
 
         <%
@@ -815,6 +817,14 @@
                             </div>
                         </div>
                         <div class="team-card-right">
+                            <div class="team-stat-col team-stat-col--gp">
+                                <span class="team-stat-num"><%= team['gamesPlayed'] || '—' %></span>
+                                <span class="team-stat-cap">GP</span>
+                            </div>
+                            <div class="team-stat-col team-stat-col--record">
+                                <span class="team-stat-num"><%= team['wins'] %>-<%= team['losses'] %>-<%= team['otLosses'] %></span>
+                                <span class="team-stat-cap">W-L-OT</span>
+                            </div>
                             <div class="team-points">
                                 <div class="team-points-value"><%= team['points'] || 'N/A' %></div>
                                 <div class="team-points-label">PTS</div>
@@ -1231,7 +1241,7 @@
                                 font: {
                                     size: isMobile ? 9 : 11
                                 },
-                                color: '#8da1b9',
+                                color: '#9aa5b3',
                                 boxWidth: isMobile ? 8 : 12,
                                 boxHeight: isMobile ? 8 : 12
                             }
@@ -1239,10 +1249,10 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
-                            backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                            backgroundColor: 'rgba(20, 23, 29, 0.97)',
                             titleColor: '#ffffff',
-                            bodyColor: '#8da1b9',
-                            borderColor: '#2a3a52',
+                            bodyColor: '#9aa5b3',
+                            borderColor: '#262c36',
                             borderWidth: 1,
                             padding: isMobile ? 8 : 12,
                             titleFont: {
@@ -1267,7 +1277,7 @@
                             title: {
                                 display: !isMobile,
                                 text: 'Date',
-                                color: '#8da1b9',
+                                color: '#9aa5b3',
                                 font: {
                                     size: isMobile ? 10 : 12
                                 }
@@ -1275,7 +1285,7 @@
                             ticks: {
                                 maxRotation: isMobile ? 90 : 45,
                                 minRotation: isMobile ? 90 : 45,
-                                color: '#8da1b9',
+                                color: '#9aa5b3',
                                 font: {
                                     size: isMobile ? 9 : 11
                                 },
@@ -1283,7 +1293,7 @@
                                 maxTicksLimit: isMobile ? 8 : 12
                             },
                             grid: {
-                                color: 'rgba(42, 58, 82, 0.5)',
+                                color: 'rgba(38, 44, 54, 0.6)',
                                 display: !isMobile
                             }
                         },
@@ -1291,20 +1301,20 @@
                             title: {
                                 display: true,
                                 text: 'Points',
-                                color: '#8da1b9',
+                                color: '#9aa5b3',
                                 font: {
                                     size: isMobile ? 10 : 12
                                 }
                             },
                             ticks: {
-                                color: '#8da1b9',
+                                color: '#9aa5b3',
                                 font: {
                                     size: isMobile ? 9 : 11
                                 }
                             },
                             beginAtZero: true,
                             grid: {
-                                color: 'rgba(42, 58, 82, 0.5)'
+                                color: 'rgba(38, 44, 54, 0.6)'
                             }
                         }
                     },
@@ -1429,7 +1439,7 @@
                     const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.02)';
                     const cupOdds = team.win_cup || 0;
                     const row = document.createElement('tr');
-                    row.setAttribute('style', `border-bottom: 1px solid rgba(42, 58, 82, 0.3); background: ${rowBg};`);
+                    row.setAttribute('style', `border-bottom: 1px solid rgba(38, 44, 54, 0.5); background: ${rowBg};`);
 
                     const teamCell = document.createElement('td');
                     teamCell.setAttribute('style', 'padding: 0.5rem 0.3rem; color: var(--color-text-primary); font-weight: 500; font-size: 0.8rem;');
@@ -1513,7 +1523,7 @@
                         const alpha = 0.5 + (stageIndex * 0.1);
                         return hslToHsla(c, alpha);
                     }),
-                    borderColor: '#1a253a',
+                    borderColor: '#14171d',
                     borderWidth: 2
                 });
             });
@@ -1581,10 +1591,10 @@
                             }
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(26, 37, 58, 0.95)',
+                            backgroundColor: 'rgba(20, 23, 29, 0.97)',
                             titleColor: '#ffffff',
-                            bodyColor: '#8da1b9',
-                            borderColor: '#2a3a52',
+                            bodyColor: '#9aa5b3',
+                            borderColor: '#262c36',
                             borderWidth: 1,
                             padding: 12,
                             callbacks: {

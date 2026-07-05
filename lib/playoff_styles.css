@@ -1,4 +1,15 @@
-/* Playoff Bracket Styles — Dark Theme with Design Tokens */
+/* Playoff Bracket Styles — bold broadcast theme using canonical design tokens. */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-display), 'Barlow Condensed', 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
 
 /* Warning banner (PR-preview notice) — local, token-driven flash styling. */
 .flash {
@@ -6,18 +17,18 @@
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-3);
   border: 1px solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 .flash-warn {
   color: var(--color-text-primary);
-  background: var(--color-status-warning-subtle);
+  background: color-mix(in srgb, var(--color-accent-warning) 14%, var(--color-bg-secondary));
   border-color: var(--color-accent-warning);
 }
 
 /* Local layout/button primitives (formerly from Primer). */
 .container-lg {
-  max-width: 1012px;
+  max-width: 1180px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -39,17 +50,23 @@
 
 .btn {
   position: relative;
-  display: inline-block;
-  padding: 5px var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-family-display);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 20px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  border: 1px solid;
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
   appearance: none;
   text-decoration: none;
 }
@@ -61,339 +78,182 @@
 .btn:disabled,
 .btn[aria-disabled="true"] {
   cursor: default;
+  opacity: 0.65;
 }
 
 .btn-sm {
-  padding: 3px 12px;
+  padding: 0.45rem 0.75rem;
   font-size: var(--font-size-xs);
-  line-height: 20px;
 }
 
-.mb-3 {
-  margin-bottom: 16px !important; /* Preserves the previous spacing scale. */
+.btn-primary {
+  color: var(--color-text-inverse);
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
 }
 
-.mt-4 {
-  margin-top: 24px !important; /* Preserves the previous spacing scale. */
+.btn-primary:hover:not(:disabled) {
+  color: var(--color-text-inverse);
+  background-color: color-mix(in srgb, var(--color-accent-primary) 86%, black);
+  border-color: color-mix(in srgb, var(--color-accent-primary) 70%, white);
 }
 
-.text-center {
-  text-align: center !important;
+.btn-primary:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
 }
 
-.playoff-section {
-  margin-top: var(--space-8);
-  padding: var(--space-4);
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-default);
+.mb-3 { margin-bottom: 16px !important; }
+.mt-4 { margin-top: 24px !important; }
+.text-center { text-align: center !important; }
+
+.bracket-hero {
+  max-width: min(520px, 100%);
+  height: auto;
+  margin: 0 0 var(--space-4);
+  display: block;
 }
 
-.playoff-section h2 {
-  text-align: center;
-  margin-bottom: var(--space-6);
-  color: var(--color-text-primary);
+.bracket-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+  color: var(--color-accent-primary);
+  font-family: var(--font-family-display);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.playoff-bracket {
+.bracket-eyebrow::before,
+.playoff-section-header h2::before,
+.fan-rankings h2::before,
+.fan-pulse h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 1.1em;
+  background: var(--color-accent-primary);
+}
+
+.bracket-title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.bracket-title .bracket-year {
+  color: var(--color-accent-gold);
+  margin-left: 0.5rem;
+}
+
+.last-updated iconify-icon {
+  color: var(--color-accent-primary);
+}
+
+.no-playoffs {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  margin: var(--space-8) 0;
+}
+
+.no-playoffs iconify-icon {
+  color: var(--color-text-muted);
+  margin: 0 auto var(--space-4);
+  display: block;
+}
+
+.no-playoffs h2 {
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 0.95;
+  margin: 0 0 var(--space-3);
+}
+
+.no-playoffs p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  max-width: 34rem;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+.playoff-section,
+.fan-rankings,
+.fan-pulse {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  padding: var(--space-5);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+}
+
+.playoff-section-header,
+.fan-rankings h2,
+.fan-pulse h2 {
+  text-align: left;
+  margin-bottom: var(--space-5);
+}
+
+.playoff-section-header h2,
+.fan-rankings h2,
+.fan-pulse h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 0.95;
+}
+
+.playoff-section-header h2 iconify-icon,
+.fan-rankings h2 iconify-icon,
+.fan-pulse h2 iconify-icon {
+  color: var(--color-accent-primary);
+}
+
+.playoff-section-sub {
+  margin: var(--space-2) 0 0 calc(var(--space-2) + 4px);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.playoff-bracket,
+.conference-bracket {
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
 }
 
-.conference-bracket {
-  display: flex;
-  flex-direction: column;
-}
-
-.conference-bracket h3 {
-  text-align: center;
-  margin-bottom: var(--space-4);
-  padding: var(--space-2);
+.conference-bracket h3,
+.finals-container h3 {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-3);
   background-color: var(--color-bg-tertiary);
-  color: var(--color-text-primary);
+  border-left: 4px solid var(--color-accent-primary);
   border-radius: var(--radius-sm);
-  font-weight: var(--font-weight-semibold);
-}
-
-.rounds-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.round {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.round h4 {
-  text-align: center;
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--space-2);
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
-  font-weight: var(--font-weight-semibold);
-}
-
-.series {
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-  margin-bottom: var(--space-4);
-  background-color: var(--color-bg-primary);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--duration-base) var(--ease-out),
-              transform var(--duration-base) var(--ease-out),
-              border-color var(--duration-base) var(--ease-out);
-}
-
-.series:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-  border-color: var(--color-border-strong);
-}
-
-.series:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.team {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-2);
-  margin-bottom: var(--space-1);
-  border-radius: var(--radius-sm);
-  transition: background-color var(--duration-fast) var(--ease-out);
-}
-
-.team.leading {
-  background-color: rgba(33, 209, 159, 0.12);
-  font-weight: var(--font-weight-bold);
-}
-
-.team-name {
-  font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
-}
-
-.team-abbrev {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-}
-
-.team-seed {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-accent-warning);
-  color: var(--color-bg-primary);
-  font-size: 0.65rem;
+  font-size: 1.4rem;
   font-weight: var(--font-weight-bold);
-  padding: 0.1rem 0.4rem;
-  border-radius: var(--radius-full);
-  margin-left: var(--space-1);
-  line-height: 1;
-  vertical-align: middle;
-}
-
-.team-wins {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
-  min-width: 1.5rem;
-  text-align: center;
-  color: var(--color-text-primary);
-}
-
-.team.leading .team-wins {
-  color: var(--color-accent-primary);
-}
-
-.vs {
-  text-align: center;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  margin: var(--space-1) 0;
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wider);
-}
-
-.series-status {
-  text-align: center;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  margin-top: var(--space-2);
-  font-style: italic;
-}
-
-.fan-name {
-  color: var(--color-accent-info);
-  font-weight: var(--font-weight-medium);
 }
 
 .finals-container {
   margin-top: var(--space-6);
-  border-top: 2px solid var(--color-accent-primary);
+  border-top: 1px solid var(--color-border-default);
   padding-top: var(--space-6);
 }
 
-.finals-container h3 {
-  text-align: center;
-  margin-bottom: var(--space-4);
-  padding: var(--space-2);
-  background-color: var(--color-bg-tertiary);
-  color: var(--color-text-primary);
-  border-radius: var(--radius-sm);
-  font-weight: var(--font-weight-semibold);
-}
-
-.fan-rankings {
-  margin-bottom: var(--space-8);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  background-color: var(--color-bg-secondary);
-}
-
-.fan-rankings h2 {
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
-  text-align: center;
-  font-weight: var(--font-weight-bold);
-}
-
-.fan-odds-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.fan-odds-table th {
-  background-color: var(--color-bg-tertiary);
-  padding: var(--space-2) var(--space-3);
-  text-align: left;
-  color: var(--color-text-secondary);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
-}
-
-.fan-odds-table td {
-  padding: var(--space-2) var(--space-3);
-  border-top: 1px solid var(--color-border-subtle);
-  color: var(--color-text-primary);
-}
-
-.fan-odds-table tbody tr {
-  transition: background-color var(--duration-fast) var(--ease-out);
-}
-
-.fan-odds-table tbody tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-.fan-odds-table tbody tr:hover {
-  background-color: var(--color-bg-hover);
-}
-
-/* Mobile responsiveness for playoff bracket */
-@media screen and (max-width: 768px) {
-  .playoff-section {
-    padding: var(--space-3);
-    margin-top: var(--space-4);
-  }
-
-  .rounds-container {
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .round {
-    margin-bottom: var(--space-4);
-  }
-
-  .round h4 {
-    background-color: var(--color-bg-tertiary);
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-sm);
-    font-size: var(--font-size-base);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-
-  .series {
-    margin-bottom: var(--space-3);
-  }
-
-  .fan-rankings {
-    padding: var(--space-3);
-  }
-
-  .fan-odds-table th,
-  .fan-odds-table td {
-    padding: var(--space-2);
-    font-size: var(--font-size-sm);
-  }
-}
-
-/* ============================================================
-   Engaging playoff bracket — hero, team logos, progress dots,
-   status pills, upset alerts, and bracket-column layout.
-   ============================================================ */
-
-.bracket-hero {
-  max-width: min(560px, 80%);
-  height: auto;
-  margin: 0 auto var(--space-4);
-  display: block;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
-}
-
-.bracket-title {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  letter-spacing: -0.02em;
-}
-
-.bracket-title .bracket-year {
-  background: linear-gradient(135deg, rgba(245, 215, 110, 1) 0%, rgba(212, 175, 55, 1) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-left: 0.5rem;
-}
-
-.last-updated iconify-icon {
-  vertical-align: -2px;
-  margin-right: 0.25rem;
-}
-
-.playoff-section-header {
-  text-align: center;
-  margin-bottom: var(--space-6);
-}
-
-.playoff-section-header h2 {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
-}
-
-.playoff-section-sub {
-  margin: var(--space-2) 0 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-}
-
-/* Bracket layout: horizontal columns on desktop, stack on mobile */
 .rounds-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -405,127 +265,109 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  /* Stagger series vertically so later rounds visually float toward the
-     center, evoking a real bracket without complex SVG connectors. */
 }
 
 .round[data-round-key="R2"]  { padding-top: 4.5rem; gap: 9rem; }
 .round[data-round-key="CF"]  { padding-top: 13rem; gap: 18rem; }
 .round[data-round-key="SCF"] { padding-top: 30rem; }
 
-.team-wins--tbd {
-  color: var(--color-text-muted);
-  font-weight: var(--font-weight-medium);
-}
-
 .round h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-1);
+  align-self: stretch;
   margin: 0 0 var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  background: linear-gradient(135deg, rgba(33, 209, 159, 0.18), rgba(41, 128, 185, 0.18));
-  border-radius: var(--radius-full);
-  align-self: center;
-  text-transform: uppercase;
-  font-size: var(--font-size-xs);
-  letter-spacing: var(--letter-spacing-wide);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--color-accent-primary);
+  border-radius: var(--radius-sm);
   color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
 }
 
-/* Series card */
+.round h4 iconify-icon {
+  color: var(--color-accent-primary);
+}
+
 .series {
   position: relative;
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-lg);
-  padding: var(--space-3);
-  background: linear-gradient(180deg, var(--color-bg-primary) 0%, rgba(11, 22, 42, 0.6) 100%);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out),
-              border-color var(--duration-base) var(--ease-out);
 }
 
 .series:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
   border-color: var(--color-border-strong);
 }
 
 .series--tbd {
   border-style: dashed;
-  border-color: var(--color-border-subtle);
-  background: rgba(11, 22, 42, 0.35);
-  opacity: 0.85;
+  opacity: 0.82;
 }
 
 .series--decided {
-  border-color: rgba(33, 209, 159, 0.45);
-  box-shadow: 0 0 0 1px rgba(33, 209, 159, 0.18), var(--shadow-sm);
+  border-left: 4px solid var(--color-accent-primary);
 }
 
-.series--upset::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(243, 156, 18, 0.5), transparent 60%);
-  pointer-events: none;
-  z-index: 0;
+.series--upset {
+  border-left: 4px solid var(--color-accent-warning);
 }
-
-.series--upset > * { position: relative; z-index: 1; }
 
 .series-flag {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.7rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-full);
   margin-bottom: var(--space-2);
-}
-
-.series-flag--upset {
-  background: rgba(243, 156, 18, 0.18);
+  padding: 0.2rem 0.5rem;
+  background: color-mix(in srgb, var(--color-accent-warning) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-warning) 42%, transparent);
+  border-radius: var(--radius-sm);
   color: var(--color-accent-warning);
-  border: 1px solid rgba(243, 156, 18, 0.4);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* Team row */
 .team {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2);
-  border-radius: var(--radius-md);
-  transition: background-color var(--duration-fast) var(--ease-out);
+  border-radius: var(--radius-sm);
 }
 
-.team + .team { margin-top: var(--space-1); }
+.team + .team {
+  margin-top: var(--space-1);
+  border-top: 1px solid var(--color-border-default);
+}
 
 .team--leading {
-  background-color: rgba(41, 128, 185, 0.14);
+  background-color: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
 }
 
 .team--advanced {
-  background: linear-gradient(90deg, rgba(33, 209, 159, 0.22), rgba(33, 209, 159, 0.05));
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
   box-shadow: inset 3px 0 0 var(--color-accent-primary);
 }
 
 .team--eliminated {
-  opacity: 0.55;
+  opacity: 0.58;
   text-decoration: line-through;
-  text-decoration-color: rgba(231, 76, 60, 0.6);
+  text-decoration-color: color-mix(in srgb, var(--color-accent-danger) 70%, transparent);
   text-decoration-thickness: 2px;
 }
 
-.team--tbd { opacity: 0.65; }
+.team--tbd { opacity: 0.68; }
 
 .team-identity {
   display: flex;
@@ -538,8 +380,10 @@
   width: 32px;
   height: 32px;
   flex: 0 0 32px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: var(--radius-full);
+  object-fit: contain;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
   padding: 2px;
 }
 
@@ -547,9 +391,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: var(--font-weight-bold);
   color: var(--color-text-muted);
-  border: 1px dashed var(--color-border-subtle);
+  font-weight: var(--font-weight-bold);
+  border-style: dashed;
 }
 
 .team-meta { min-width: 0; }
@@ -562,67 +406,82 @@
 }
 
 .team-name {
-  font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.15;
   word-break: break-word;
 }
 
+.team-abbrev {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
 .team-seed {
-  font-size: 0.65rem;
-  font-weight: var(--font-weight-bold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
   padding: 0.1rem 0.4rem;
-  border-radius: var(--radius-full);
-  background: rgba(243, 156, 18, 0.18);
-  color: var(--color-accent-warning);
-  border: 1px solid rgba(243, 156, 18, 0.35);
-  letter-spacing: 0.02em;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent-gold);
+  font-family: var(--font-family-display);
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0.04em;
 }
 
 .team-badges {
   display: flex;
   gap: 0.3rem;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
-.team-badge {
+.team-badge,
+.fan-status-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: 0.65rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-display);
+  font-size: 0.7rem;
   font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.1rem 0.4rem;
-  border-radius: var(--radius-full);
+  text-transform: uppercase;
 }
 
-.team-badge--advanced {
-  background: rgba(33, 209, 159, 0.18);
+.team-badge--advanced,
+.fan-status-pill--alive {
+  background: color-mix(in srgb, var(--color-accent-primary) 16%, transparent);
   color: var(--color-accent-primary);
-  border: 1px solid rgba(33, 209, 159, 0.4);
-  animation: badge-pulse 2.4s ease-in-out infinite;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
 }
 
-.team-badge--eliminated {
-  background: rgba(231, 76, 60, 0.16);
+.team-badge--eliminated,
+.fan-status-pill--eliminated {
+  background: color-mix(in srgb, var(--color-accent-danger) 14%, transparent);
   color: var(--color-accent-danger);
-  border: 1px solid rgba(231, 76, 60, 0.4);
-}
-
-@keyframes badge-pulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.06); }
+  border: 1px solid color-mix(in srgb, var(--color-accent-danger) 42%, transparent);
 }
 
 .team-wins {
-  font-variant-numeric: tabular-nums;
-  font-weight: var(--font-weight-bold);
-  font-size: 1.5rem;
   min-width: 1.75rem;
-  text-align: center;
   color: var(--color-text-primary);
+  font-family: var(--font-family-display);
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-extrabold);
+  font-variant-numeric: tabular-nums;
   line-height: 1;
+  text-align: center;
+}
+
+.team-wins--tbd {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
 }
 
 .team--leading .team-wins,
@@ -630,7 +489,16 @@
   color: var(--color-accent-primary);
 }
 
-/* Best-of-7 progress dots */
+.vs {
+  margin: var(--space-1) 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wider);
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .series-progress {
   display: flex;
   align-items: center;
@@ -642,14 +510,18 @@
 .series-progress .dot {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
 }
 
-.series-progress .dot--won.dot--top    { background: var(--color-accent-info);    border-color: var(--color-accent-info); }
-.series-progress .dot--won.dot--bottom { background: var(--color-accent-primary); border-color: var(--color-accent-primary); }
-.series-progress .dot--empty           { opacity: 0.25; }
+.series-progress .dot--won.dot--top,
+.series-progress .dot--won.dot--bottom {
+  background: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+}
+
+.series-progress .dot--empty { opacity: 0.45; }
 
 .series-progress .progress-divider {
   width: 1px;
@@ -658,48 +530,47 @@
   margin: 0 4px;
 }
 
-.series-progress--tbd .dot { background: transparent; border-style: dashed; }
+.series-progress--tbd .dot {
+  background: transparent;
+  border-style: dashed;
+}
 
-/* Status pill row */
 .series-status {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  width: fit-content;
   margin: var(--space-2) auto 0;
   padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-display);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  text-align: center;
   font-style: normal;
-  width: fit-content;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-.series-status--leading {
-  background: rgba(41, 128, 185, 0.16);
-  color: var(--color-accent-info);
-}
-
-.series-status--tied {
-  background: rgba(243, 156, 18, 0.16);
-  color: var(--color-accent-warning);
-}
-
+.series-status--leading,
 .series-status--decided {
-  background: rgba(33, 209, 159, 0.16);
+  background: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
   color: var(--color-accent-primary);
 }
 
+.series-status--tied {
+  background: color-mix(in srgb, var(--color-accent-warning) 14%, transparent);
+  color: var(--color-accent-warning);
+}
+
 .series-status--neutral {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-bg-tertiary);
   color: var(--color-text-muted);
 }
 
-/* Fan cup odds — lightweight bar chart */
-.fan-rankings h2 {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.fan-name {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .fan-odds-list {
@@ -713,123 +584,277 @@
 
 .fan-odds-row {
   display: grid;
-  grid-template-columns: 2.25rem minmax(7rem, 1fr) 2fr 3.5rem;
+  grid-template-columns: 2.5rem minmax(7rem, 1fr) 2fr 4rem;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-2) var(--space-3);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
 }
 
 .fan-odds-row:first-child {
-  background: linear-gradient(90deg, rgba(245, 215, 110, 0.12), rgba(212, 175, 55, 0.04));
-  border-color: rgba(245, 215, 110, 0.35);
+  border-color: color-mix(in srgb, var(--color-accent-gold) 55%, var(--color-border-default));
+  box-shadow: inset 4px 0 0 var(--color-accent-gold);
 }
 
 .fan-rank {
-  font-weight: var(--font-weight-bold);
   color: var(--color-text-secondary);
+  font-family: var(--font-family-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
   font-variant-numeric: tabular-nums;
+}
+
+.fan-odds-row:first-child .fan-rank {
+  color: var(--color-accent-gold);
 }
 
 .fan-odds-bar {
   position: relative;
   height: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-full);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .fan-odds-bar-fill {
   position: absolute;
   inset: 0 auto 0 0;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info));
+  background: var(--color-accent-primary);
   border-radius: inherit;
-  transition: width var(--duration-slow) var(--ease-out);
 }
 
-.fan-odds-pct {
-  font-variant-numeric: tabular-nums;
+.fan-odds-pct,
+.fan-podium__odds {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-display);
   font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
   text-align: right;
+}
+
+.fan-podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.fan-podium__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.fan-podium__step--1 {
+  border-color: color-mix(in srgb, var(--color-accent-gold) 62%, var(--color-border-default));
+  box-shadow: inset 0 4px 0 var(--color-accent-gold);
+}
+
+.fan-podium__step--2 {
+  border-color: color-mix(in srgb, var(--color-accent-silver) 55%, var(--color-border-default));
+  box-shadow: inset 0 4px 0 var(--color-accent-silver);
+}
+
+.fan-podium__step--3 {
+  border-color: color-mix(in srgb, var(--color-accent-bronze) 55%, var(--color-border-default));
+  box-shadow: inset 0 4px 0 var(--color-accent-bronze);
+}
+
+.fan-podium__medal {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.fan-podium__name {
+  max-width: 100%;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  overflow-wrap: break-word;
+  text-align: center;
+  word-break: break-word;
+}
+
+.fan-podium__team {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+}
+
+.fan-podium__team img,
+.fan-roll-call__logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.fan-podium__team img {
+  width: 18px;
+  height: 18px;
+}
+
+.fan-podium__odds {
+  color: var(--color-accent-gold);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.fan-roll-call {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-2);
+}
+
+.fan-roll-call__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+}
+
+.fan-roll-call__item--alive {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 38%, var(--color-border-default));
+}
+
+.fan-roll-call__item--champion {
+  border-color: color-mix(in srgb, var(--color-accent-gold) 62%, var(--color-border-default));
+  box-shadow: inset 4px 0 0 var(--color-accent-gold);
+}
+
+.fan-roll-call__item--eliminated,
+.fan-roll-call__item--not_in_playoffs {
+  opacity: 0.62;
+}
+
+.fan-roll-call__item--not_in_playoffs {
+  filter: grayscale(0.6);
+}
+
+.fan-roll-call__logo {
+  flex: 0 0 auto;
+}
+
+span.fan-roll-call__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+}
+
+.fan-roll-call__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fan-roll-call__fan {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.fan-roll-call__tagline {
+  margin-top: 0.15rem;
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.fan-status-pill--champion {
+  background: var(--color-accent-gold);
+  color: var(--color-bg-primary);
+  border: 1px solid var(--color-accent-gold);
+}
+
+.fan-status-pill--not_in_playoffs {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-default);
+}
+
+.fan-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.4rem;
+  padding: 0.08rem 0.4rem;
+  background: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 36%, transparent);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent-primary);
+  font-family: var(--font-family-display);
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.fan-chip iconify-icon {
+  font-size: 0.75rem;
+}
+
+.fan-odds-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fan-odds-table th {
+  background-color: var(--color-bg-tertiary);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.fan-odds-table td {
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--color-border-default);
   color: var(--color-text-primary);
 }
 
-/* Tablet */
-@media screen and (max-width: 1100px) {
-  .rounds-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .round[data-round-key] { padding-top: 0; gap: var(--space-3); }
-}
-
-/* Mobile */
-@media screen and (max-width: 720px) {
-  .rounds-container { grid-template-columns: 1fr; gap: var(--space-4); }
-  .round[data-round-key] { padding-top: 0; gap: var(--space-3); }
-  .round h4 {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    align-self: stretch;
-    border-radius: var(--radius-md);
-  }
-  .team-wins { font-size: 1.25rem; }
-  .team-logo { width: 28px; height: 28px; flex-basis: 28px; }
-  .fan-odds-row {
-    grid-template-columns: 1.75rem 1fr 2.75rem;
-    grid-template-areas:
-      "rank name pct"
-      "rank bar  bar";
-    row-gap: 0.4rem;
-  }
-  .fan-rank { grid-area: rank; }
-  .fan-name { grid-area: name; }
-  .fan-odds-bar { grid-area: bar; }
-  .fan-odds-pct { grid-area: pct; }
-}
-
-/* ============================================================
-   Playoff hero banner — used on the standings page during playoffs
-   ============================================================ */
+/* Playoff hero banner — used on standings page during playoffs. */
 .playoff-hero-banner {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.1rem 1.4rem;
-  margin-bottom: 1rem;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-4);
   border-radius: var(--radius-lg);
-  background: linear-gradient(
-    100deg,
-    rgba(212, 175, 55, 0.20) 0%,
-    rgba(212, 175, 55, 0.08) 45%,
-    rgba(33, 209, 159, 0.10) 100%
-  );
-  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--color-accent-primary);
   color: var(--color-text-primary);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.playoff-hero-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 0% 50%,
-    rgba(245, 215, 110, 0.18) 0%,
-    transparent 55%
-  );
-  pointer-events: none;
 }
 
 .playoff-hero-banner:hover,
 .playoff-hero-banner:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(212, 175, 55, 0.75);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.35);
+  border-color: var(--color-border-strong);
   outline: none;
 }
 
@@ -839,12 +864,10 @@
   place-items: center;
   width: 56px;
   height: 56px;
-  border-radius: var(--radius-full);
-  background: rgba(212, 175, 55, 0.18);
-  color: var(--color-accent-warning);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  position: relative;
-  z-index: 1;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent-gold);
+  border: 1px solid var(--color-border-default);
 }
 
 .playoff-hero-banner__text {
@@ -853,22 +876,23 @@
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  position: relative;
-  z-index: 1;
 }
 
 .playoff-hero-banner__eyebrow {
-  font-size: 0.72rem;
+  font-family: var(--font-family-display);
+  font-size: 0.85rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent-warning);
+  color: var(--color-accent-primary);
 }
 
 .playoff-hero-banner__title {
-  font-size: 1.35rem;
+  font-family: var(--font-family-display);
+  font-size: 1.6rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.15;
+  line-height: 1;
+  text-transform: uppercase;
   color: var(--color-text-primary);
 }
 
@@ -896,269 +920,76 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.6rem 1rem;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, rgba(245, 215, 110, 1) 0%, rgba(212, 175, 55, 1) 100%);
-  color: rgba(11, 22, 42, 1);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-display);
   font-weight: var(--font-weight-bold);
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 1;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+
+@media screen and (max-width: 1100px) {
+  .rounds-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .round[data-round-key] { padding-top: 0; gap: var(--space-3); }
+}
+
+@media screen and (max-width: 720px) {
+  .playoff-section,
+  .fan-rankings,
+  .fan-pulse {
+    padding: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .rounds-container { grid-template-columns: 1fr; gap: var(--space-4); }
+  .round[data-round-key] { padding-top: 0; gap: var(--space-3); }
+
+  .round h4 {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .team-wins { font-size: 1.35rem; }
+  .team-logo { width: 28px; height: 28px; flex-basis: 28px; }
+
+  .fan-podium { grid-template-columns: 1fr; }
+
+  .fan-odds-row {
+    grid-template-columns: 1.75rem 1fr 3rem;
+    grid-template-areas:
+      "rank name pct"
+      "rank bar  bar";
+    row-gap: 0.4rem;
+  }
+
+  .fan-rank { grid-area: rank; }
+  .fan-name { grid-area: name; }
+  .fan-odds-bar { grid-area: bar; }
+  .fan-odds-pct { grid-area: pct; }
 }
 
 @media (max-width: 640px) {
   .playoff-hero-banner {
     flex-wrap: wrap;
-    padding: 0.9rem 1rem;
+    padding: var(--space-3) var(--space-4);
   }
+
   .playoff-hero-banner__icon {
     width: 44px;
     height: 44px;
   }
+
   .playoff-hero-banner__title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
+
   .playoff-hero-banner__cta {
     width: 100%;
     justify-content: center;
     margin-top: 0.4rem;
   }
-}
-
-/* ============================================================
-   Fan Pulse — podium + status grid for the playoffs page
-   ============================================================ */
-.fan-pulse {
-  margin-bottom: 1.5rem;
-  padding: 1.25rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.06));
-}
-
-.fan-pulse h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
-}
-
-.fan-podium {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.fan-podium__step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.9rem 0.6rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  text-align: center;
-  min-width: 0;
-}
-
-.fan-podium__step--1 {
-  background: linear-gradient(180deg, rgba(245, 215, 110, 0.18) 0%, rgba(212, 175, 55, 0.06) 100%);
-  border-color: rgba(212, 175, 55, 0.5);
-  transform: translateY(-6px);
-}
-
-.fan-podium__step--2 {
-  background: linear-gradient(180deg, rgba(192, 192, 192, 0.18) 0%, rgba(192, 192, 192, 0.04) 100%);
-  border-color: rgba(192, 192, 192, 0.4);
-}
-
-.fan-podium__step--3 {
-  background: linear-gradient(180deg, rgba(205, 127, 50, 0.18) 0%, rgba(205, 127, 50, 0.04) 100%);
-  border-color: rgba(205, 127, 50, 0.4);
-}
-
-.fan-podium__medal {
-  font-size: 1.6rem;
-  line-height: 1;
-}
-
-.fan-podium__name {
-  font-weight: var(--font-weight-bold);
-  font-size: 0.95rem;
-  color: var(--color-text-primary);
-  max-width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  text-align: center;
-}
-
-.fan-podium__team {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.78rem;
-  color: var(--color-text-secondary);
-}
-
-.fan-podium__team img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-
-.fan-podium__odds {
-  font-size: 0.75rem;
-  color: var(--color-accent-warning);
-  font-weight: var(--font-weight-bold);
-}
-
-.fan-roll-call {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.6rem;
-}
-
-.fan-roll-call__item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 0.8rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  position: relative;
-  overflow: hidden;
-}
-
-.fan-roll-call__item--alive {
-  border-color: rgba(33, 209, 159, 0.35);
-  background: linear-gradient(135deg, rgba(33, 209, 159, 0.08) 0%, rgba(33, 209, 159, 0.02) 100%);
-}
-
-.fan-roll-call__item--champion {
-  border-color: rgba(212, 175, 55, 0.6);
-  background: linear-gradient(135deg, rgba(245, 215, 110, 0.18) 0%, rgba(212, 175, 55, 0.05) 100%);
-  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25), 0 6px 14px rgba(212, 175, 55, 0.18);
-}
-
-.fan-roll-call__item--eliminated {
-  opacity: 0.6;
-  filter: grayscale(0.4);
-}
-
-.fan-roll-call__logo {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 auto;
-  object-fit: contain;
-}
-
-.fan-roll-call__body {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.fan-roll-call__fan {
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.fan-roll-call__tagline {
-  font-size: 0.78rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.15rem;
-  line-height: 1.35;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-.fan-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  font-size: 0.65rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.1rem 0.45rem;
-  border-radius: var(--radius-full);
-}
-
-.fan-status-pill--alive {
-  background: rgba(33, 209, 159, 0.18);
-  color: var(--color-accent-primary);
-}
-
-.fan-status-pill--eliminated {
-  background: rgba(231, 76, 60, 0.16);
-  color: var(--color-accent-danger);
-}
-
-.fan-status-pill--champion {
-  background: linear-gradient(135deg, rgba(245, 215, 110, 1) 0%, rgba(212, 175, 55, 1) 100%);
-  color: rgba(11, 22, 42, 1);
-}
-
-/* Fan ownership chip beside team names in series rows */
-.fan-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  margin-left: 0.4rem;
-  padding: 0.05rem 0.4rem;
-  border-radius: var(--radius-full);
-  background: rgba(41, 128, 185, 0.18);
-  color: var(--color-accent-info);
-  font-size: 0.65rem;
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.02em;
-  border: 1px solid rgba(41, 128, 185, 0.35);
-  white-space: nowrap;
-}
-
-.fan-chip iconify-icon {
-  font-size: 0.75rem;
-}
-
-@media (max-width: 640px) {
-  .fan-podium {
-    grid-template-columns: 1fr;
-  }
-  .fan-podium__step--1 {
-    transform: none;
-  }
-}
-
-.fan-roll-call__item--not_in_playoffs {
-  opacity: 0.45;
-  filter: grayscale(0.6);
-}
-
-.fan-status-pill--not_in_playoffs {
-  background: rgba(141, 161, 185, 0.18);
-  color: var(--color-text-secondary);
-}
-
-/* Primary action button aligned with the site's teal accent. */
-.btn-primary {
-  color: var(--color-text-inverse);
-  background-color: var(--color-accent-primary);
-  border-color: color-mix(in srgb, var(--color-accent-primary) 72%, black);
-}
-
-.btn-primary:hover:not(:disabled) {
-  color: var(--color-text-inverse);
-  background-color: color-mix(in srgb, var(--color-accent-primary) 88%, black);
-  border-color: color-mix(in srgb, var(--color-accent-primary) 62%, black);
-}
-
-.btn-primary:focus-visible {
-  box-shadow: var(--shadow-focus);
 }

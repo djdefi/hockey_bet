@@ -29,10 +29,6 @@
       "defer": true
     },
     {
-      "src": "social-features.js",
-      "defer": true
-    },
-    {
       "src": "mobile-gestures.js",
       "defer": true
     },
@@ -66,7 +62,6 @@
     "js": [
       "performance-utils.js",
       "accessibility.js",
-      "social-features.js",
       "mobile-gestures.js",
       "pwa-install.js",
       "team-themes.js",
@@ -95,7 +90,6 @@
     "./vendor/chart.umd.js",
     "./performance-utils.js",
     "./accessibility.js",
-    "./social-features.js",
     "./mobile-gestures.js",
     "./pwa-install.js",
     "./team-themes.js",

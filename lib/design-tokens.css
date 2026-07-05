@@ -13,42 +13,47 @@
      COLOR SYSTEM
      ======================================== */
   
-  /* Primary Colors */
-  --color-bg-primary: #0b162a;
-  --color-bg-depth: #071120;
-  --color-bg-secondary: #1a253a;
-  --color-bg-tertiary: #2a3a52;
-  --color-bg-hover: #212d47;
+  /* Primary Colors — broadcast near-black, cool neutral (not navy) */
+  --color-bg-primary: #0a0c10;          /* page: near-black */
+  --color-bg-depth: #06080b;            /* deepest inset */
+  --color-bg-secondary: #14171d;        /* panel / card surface */
+  --color-bg-tertiary: #1e232b;         /* elevated surface */
+  --color-bg-hover: #232932;            /* hover surface */
   
   /* Text Colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b6c4d8;
-  --color-text-muted: #94a3b8;
-  --color-text-inverse: #0b162a;
+  --color-text-primary: #f3f6fa;        /* near-white */
+  --color-text-secondary: #9aa5b3;      /* muted */
+  --color-text-muted: #6b7686;          /* tertiary */
+  --color-text-inverse: #0a0c10;        /* text on accent fills */
   
-  /* Accent Colors */
-  --color-accent-primary: #21d19f;      /* Green - Success, Primary Actions */
+  /* Accent Colors — signature electric azure + semantic pops (broadcast) */
+  --color-accent-primary: #1f9dff;      /* Electric azure - brand / primary accent */
   --color-accent-primary-wash: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
   --color-accent-primary-subtle: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
   --color-accent-primary-selected: color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
-  --color-accent-primary-border: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
-  --color-accent-danger: #e74c3c;       /* Red - Errors, Losses */
-  --color-accent-warning: #f39c12;      /* Yellow/Orange - Warnings */
-  --color-accent-info: #2980b9;         /* Blue - Info, Links */
-  --color-accent-purple: #9b59b6;       /* Purple - Special Actions */
-  --color-accent-orange: #e67e22;       /* Orange - Hot/Active States */
+  --color-accent-primary-border: color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
+  --color-accent-danger: #ff5347;       /* Red - Errors, Losses */
+  --color-accent-warning: #ffb020;      /* Amber - Warnings */
+  --color-accent-info: #1f9dff;         /* Blue - Info, Links (= brand) */
+  --color-accent-purple: #a06bff;       /* Purple - Special Actions */
+  --color-accent-orange: #ff7a2f;       /* Orange - Hot/Active States */
+  --color-accent-hot: #ff4436;          /* Broadcast red - live / emphasis */
+  --color-accent-positive: #35d07f;     /* Green - gains / positive deltas */
+  --color-accent-gold: #f5c451;         /* Rank #1 / champion */
+  --color-accent-silver: #cbd3dd;       /* Rank #2 */
+  --color-accent-bronze: #dd9159;       /* Rank #3 */
   
-  /* Border & Divider Colors */
-  --color-border-default: #2a3a52;
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-border-strong: rgba(255, 255, 255, 0.1);
+  /* Border & Divider Colors — hairline */
+  --color-border-default: #262c36;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.13);
 
-  /* Surface Colors */
-  --color-surface-raised: rgba(26, 37, 58, 0.82);
-  --color-surface-raised-muted: rgba(26, 37, 58, 0.64);
-  --color-surface-raised-soft: rgba(26, 37, 58, 0.56);
-  --color-surface-soft: rgba(42, 58, 82, 0.46);
-  --color-surface-inset: rgba(11, 22, 42, 0.58);
+  /* Surface Colors — solid near-black panels (flat, no gradient) */
+  --color-surface-raised: #14171d;
+  --color-surface-raised-muted: #12151b;
+  --color-surface-raised-soft: #101318;
+  --color-surface-soft: #1a1f27;
+  --color-surface-inset: #0c0e13;
   
   /* Overlay & Shadow Colors */
   --color-overlay-dark: rgba(0, 0, 0, 0.5);
@@ -68,13 +73,13 @@
   --color-status-error-subtle: rgba(239, 68, 68, 0.1);
   --color-status-warning-subtle: rgba(251, 191, 36, 0.1);
   --color-status-info-subtle: rgba(59, 130, 246, 0.1);
-  --color-danger-subtle: rgba(231, 76, 60, 0.1);  /* Accent danger subtle variant */
+  --color-danger-subtle: color-mix(in srgb, var(--color-accent-danger) 10%, transparent);  /* Accent danger subtle variant */
   
-  /* Gradients */
-  --gradient-green: linear-gradient(135deg, rgba(33, 209, 159, 0.15) 0%, rgba(41, 128, 185, 0.15) 100%);
-  --gradient-fire: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(230, 126, 34, 0.2) 100%);
-  --gradient-purple: linear-gradient(135deg, rgba(155, 89, 182, 0.2) 0%, rgba(41, 128, 185, 0.2) 100%);
-  --gradient-surface-raised: linear-gradient(145deg, var(--color-surface-raised), var(--color-surface-raised-muted));
+  /* Gradients — flattened for broadcast (surfaces are solid; washes are subtle) */
+  --gradient-green: var(--color-accent-primary-wash);
+  --gradient-fire: color-mix(in srgb, var(--color-accent-hot) 10%, transparent);
+  --gradient-purple: color-mix(in srgb, var(--color-accent-purple) 10%, transparent);
+  --gradient-surface-raised: var(--color-surface-raised);
   
   /* ========================================
      SPACING SYSTEM
@@ -102,6 +107,7 @@
   
   /* Font Families */
   --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: 'Barlow Condensed', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   
   /* Font Sizes */
@@ -141,13 +147,13 @@
      LAYOUT & SIZING
      ======================================== */
   
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 10px;
-  --radius-2xl: 12px;
-  --radius-3xl: 16px;
+  /* Border Radius — broadcast-blocky (crisp, minimal rounding) */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 5px;
+  --radius-2xl: 6px;
+  --radius-3xl: 8px;
   --radius-full: 9999px;
   
   /* Widths */
@@ -173,19 +179,19 @@
      SHADOWS & ELEVATION
      ======================================== */
   
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.25);
-  --shadow-2xl: 0 24px 48px rgba(0, 0, 0, 0.3);
-  --shadow-focus: 0 0 0 3px rgba(33, 209, 159, 0.32);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 18px 40px rgba(0, 0, 0, 0.55);
+  --shadow-2xl: 0 28px 56px rgba(0, 0, 0, 0.6);
+  --shadow-focus: 0 0 0 3px color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
   
-  /* Glow Effects */
-  --glow-green: 0 0 20px rgba(33, 209, 159, 0.3);
-  --glow-blue: 0 0 20px rgba(41, 128, 185, 0.3);
-  --glow-red: 0 0 20px rgba(231, 76, 60, 0.3);
-  --glow-purple: 0 0 20px rgba(155, 89, 182, 0.3);
+  /* Glow Effects — disabled for broadcast (flat, crisp; no neon glow) */
+  --glow-green: none;
+  --glow-blue: none;
+  --glow-red: none;
+  --glow-purple: none;
   
   /* ========================================
      ANIMATION & TRANSITIONS
