@@ -1,6 +1,6 @@
 // Service Worker for Hockey Bet - installable shell + refresh-friendly caching
-const CACHE_NAME = 'hockey-bet-static-v6';
-const DATA_CACHE_NAME = 'hockey-bet-data-v6';
+const CACHE_NAME = 'hockey-bet-static-v7';
+const DATA_CACHE_NAME = 'hockey-bet-data-v7';
 const APP_ASSET_MANIFEST_URL = './app-assets.json';
 const LOCAL_ORIGIN = self.location.origin;
 
@@ -11,11 +11,11 @@ const OFFLINE_HTML = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hockey Bet - Offline</title>
   <style>
-    body { font-family: -apple-system, sans-serif; background: #0b162a; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    body { font-family: -apple-system, sans-serif; background: #0a0c10; color: #f3f6fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
     .offline { max-width: 400px; padding: 2rem; }
     h1 { font-size: 1.5rem; margin-bottom: 1rem; }
-    p { color: #8da1b9; line-height: 1.6; }
-    button { background: #21d19f; color: #0b162a; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+    p { color: #9aa5b3; line-height: 1.6; }
+    button { background: #1f9dff; color: #0a0c10; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
   </style>
 </head>
 <body>
