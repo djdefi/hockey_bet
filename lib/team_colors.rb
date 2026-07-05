@@ -32,3 +32,32 @@ FAN_TEAM_COLORS = {
   'Mike M.' => TEAM_COLORS['Capitals'],
   'Dan R.' => TEAM_COLORS['Jets']
 }.freeze
+
+# Relative luminance (0..1) of a #RRGGBB hex color.
+def color_luminance(hex)
+  h = hex.delete('#')
+  r = h[0, 2].to_i(16)
+  g = h[2, 2].to_i(16)
+  b = h[4, 2].to_i(16)
+  (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255.0
+end
+
+# Blend a hex color toward white by `amount` (0..1), preserving hue reasonably.
+def lighten_color(hex, amount)
+  h = hex.delete('#')
+  r = h[0, 2].to_i(16)
+  g = h[2, 2].to_i(16)
+  b = h[4, 2].to_i(16)
+  nr = (r + (255 - r) * amount).round
+  ng = (g + (255 - g) * amount).round
+  nb = (b + (255 - b) * amount).round
+  format('#%<r>02X%<g>02X%<b>02X', r: nr, g: ng, b: nb)
+end
+
+# Accent color for a fan, safe to use on the dark UI. Falls back to the
+# azure brand accent for unmapped fans and lifts very dark team colors
+# (near-black / deep navy) so they remain visible as accent bars/dots.
+def fan_accent(fan)
+  hex = FAN_TEAM_COLORS[fan] || '#1f9dff'
+  color_luminance(hex) < 0.15 ? lighten_color(hex, 0.5) : hex
+end

@@ -70,9 +70,25 @@
     <div class="app-container">
         <!-- Header -->
         <header class="mb-3 site-masthead" role="banner">
-            <div class="masthead-eyebrow">Fantasy Hockey Pool</div>
-            <h1 class="masthead-title">NHL Fan League</h1>
-            <p class="masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</p>
+            <div class="masthead-brand">
+                <span class="masthead-mark" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" width="46" height="46">
+                        <rect class="mark-tile" x="2" y="2" width="44" height="44" rx="13"/>
+                        <g class="mark-sticks" stroke-width="3.6" stroke-linecap="round" fill="none">
+                            <line x1="15" y1="34" x2="33" y2="14"/>
+                            <line x1="33" y1="34" x2="15" y2="14"/>
+                        </g>
+                        <ellipse class="mark-puck" cx="24" cy="35.5" rx="5.6" ry="2.8"/>
+                    </svg>
+                </span>
+                <span class="masthead-lockup">
+                    <span class="masthead-eyebrow">Fantasy Hockey Pool</span>
+                    <h1 class="masthead-title">NHL Fan League</h1>
+                </span>
+            </div>
+            <div class="masthead-meta">
+                <span class="masthead-meta-item masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</span>
+            </div>
         </header>
 
         <%
@@ -117,53 +133,55 @@
         <!-- Tab: League (Fan Stats Dashboard) -->
         <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
             
-            <!-- Top 3 Leaders - Compact -->
+            <!-- League leaders: champion + chasers -->
             <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
-            <div class="leaders-compact-card" role="region" aria-label="Top 3 league leaders">
-                <% 
-                top_3 = bet_stats[:best_cup_odds].first(3)
-                rank_badges = ['solar:medal-ribbons-star-bold', 'solar:medal-ribbons-star-bold', 'solar:medal-ribbons-star-bold']
-                rank_colors = ['#FFD700', '#C0C0C0', '#CD7F32']
-                rank_labels = ['#1', '#2', '#3']
-                achievement_icons = ['solar:cup-star-bold', 'solar:crown-bold', 'solar:bolt-bold']
-                achievement_labels = ['League Leader', 'Strong Contender', 'Top Threat']
-                %>
-                
-                <% top_3.each_with_index do |leader, index| %>
-                <div class="leader-compact-item <%= 'leader-first' if index == 0 %>" role="article" aria-label="<%= rank_labels[index] %>: <%= leader[:fan] %>">
-                    <div class="leader-rank-badge rank-<%= index + 1 %>">
-                        <span class="rank-emoji"><iconify-icon icon="<%= rank_badges[index] %>" width="16" height="16" style="color: <%= rank_colors[index] %>"></iconify-icon></span>
-                        <span class="rank-text"><%= rank_labels[index] %></span>
+            <% leaders = bet_stats[:best_cup_odds].first(5) %>
+            <% champ = leaders.first %>
+            <section class="league-hero" role="region" aria-label="League leaders">
+                <article class="hero-champ" style="--team: <%= fan_accent(champ[:fan]) %>" aria-label="League leader: <%= champ[:fan] %>">
+                    <div class="hero-champ__eyebrow">
+                        <iconify-icon icon="solar:cup-star-bold" width="15" height="15"></iconify-icon>
+                        <span>League Leader</span>
                     </div>
-                    <div class="leader-identity">
-                        <div class="leader-fan-name"><%= leader[:fan] %></div>
-                        <div class="leader-team-name"><%= leader[:team] %></div>
-                        <div class="leader-achievement">
-                            <span><iconify-icon icon="<%= achievement_icons[index] %>" width="14" height="14"></iconify-icon></span>
-                            <span><%= achievement_labels[index] %></span>
-                        </div>
+                    <div class="hero-champ__name"><%= champ[:fan] %></div>
+                    <div class="hero-champ__team">
+                        <span class="hero-champ__dot" aria-hidden="true"></span><%= champ[:team] %>
                     </div>
-                    <div class="leader-stats-inline">
-                        <div class="leader-stat">
-                            <span class="leader-stat-value"><%= leader[:wins] || 0 %>-<%= leader[:losses] || 0 %>-<%= leader[:ot_losses] || 0 %></span>
-                            <span class="leader-stat-label">Record</span>
+                    <div class="hero-champ__stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat__num"><%= champ[:wins] || 0 %>-<%= champ[:losses] || 0 %>-<%= champ[:ot_losses] || 0 %></span>
+                            <span class="hero-stat__cap">Record</span>
                         </div>
-                        <div class="leader-stat">
-                            <span class="leader-stat-value"><%= leader[:points] || 0 %></span>
-                            <span class="leader-stat-label">Points</span>
+                        <div class="hero-stat">
+                            <span class="hero-stat__num"><%= champ[:points] || 0 %></span>
+                            <span class="hero-stat__cap">Points</span>
                         </div>
-                        <div class="leader-stat">
-                            <span class="leader-stat-value"><%= leader[:gpg] || '0.0' %></span>
-                            <span class="leader-stat-label">GPG</span>
+                        <div class="hero-stat">
+                            <span class="hero-stat__num"><%= champ[:gpg] || '0.0' %></span>
+                            <span class="hero-stat__cap">GPG</span>
                         </div>
-                        <div class="leader-stat">
-                            <span class="leader-stat-value"><%= leader[:streak] || '-' %></span>
-                            <span class="leader-stat-label">Streak</span>
+                        <div class="hero-stat">
+                            <span class="hero-stat__num"><%= champ[:streak] || '—' %></span>
+                            <span class="hero-stat__cap">Streak</span>
                         </div>
                     </div>
-                </div>
-                <% end %>
-            </div>
+                </article>
+                <ol class="hero-chasers" aria-label="Chasing the leader">
+                    <% leaders.drop(1).each_with_index do |l, i| %>
+                    <li class="chaser" style="--team: <%= fan_accent(l[:fan]) %>">
+                        <span class="chaser__rank"><%= i + 2 %></span>
+                        <span class="chaser__id">
+                            <span class="chaser__name"><%= l[:fan] %></span>
+                            <span class="chaser__team"><%= l[:team] %></span>
+                        </span>
+                        <span class="chaser__stat">
+                            <span class="chaser__num"><%= l[:points] || 0 %></span>
+                            <span class="chaser__cap">PTS</span>
+                        </span>
+                    </li>
+                    <% end %>
+                </ol>
+            </section>
             <% end %>
             
             <!-- Featured Matchup / Voting Section (Dense Layout) -->
@@ -344,225 +362,75 @@
             </div>
             <% end %>
             
-            <!-- Excellence Awards -->
-            <h3 class="section-heading"><iconify-icon icon="solar:star-bold" width="18" height="18"></iconify-icon> Excellence Awards</h3>
-            <div class="stats-grid" role="region" aria-label="Excellence awards">
-                <% if bet_stats && bet_stats[:fan_crusher] && bet_stats[:fan_crusher].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:fan_crusher].first[:fan] %> is the fan crusher">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:bolt-circle-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Fan Crusher</div>
-                        <div class="stat-fan-name"><%= bet_stats[:fan_crusher].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:fan_crusher].first[:display].split(' ').first %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:most_dominant] && bet_stats[:most_dominant].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:most_dominant].first[:fan] %> is most dominant">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:crown-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Most Dominant</div>
-                        <div class="stat-fan-name"><%= bet_stats[:most_dominant].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:most_dominant].first[:display] %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:top_winners] && bet_stats[:top_winners].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:top_winners].first[:fan] %> has most wins">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:medal-ribbons-star-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Top Winner</div>
-                        <div class="stat-fan-name"><%= bet_stats[:top_winners].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:top_winners].first[:display] %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:best_point_differential] && bet_stats[:best_point_differential].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:best_point_differential].first[:fan] %> has best goal differential">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:add-circle-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Goal Diff Leader</div>
-                        <div class="stat-fan-name"><%= bet_stats[:best_point_differential].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:best_point_differential].first[:display] %></div>
-                    </div>
-                <% end %>
-            </div>
-            
-            <!-- Defense & Momentum -->
-            <h3 class="section-heading"><iconify-icon icon="solar:shield-bold" width="18" height="18"></iconify-icon> Defense & Momentum</h3>
-            <div class="stats-grid" role="region" aria-label="Defense and momentum statistics">
-                <% if bet_stats && bet_stats[:brick_wall] && bet_stats[:brick_wall].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:brick_wall].first[:fan] %> is the brick wall">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:shield-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Brick Wall</div>
-                        <div class="stat-fan-name"><%= bet_stats[:brick_wall].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:brick_wall].first[:display] %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:shutout_king] && bet_stats[:shutout_king].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:shutout_king].first[:fan] %> is the shutout king">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:forbidden-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Shutout King</div>
-                        <div class="stat-fan-name"><%= bet_stats[:shutout_king].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:shutout_king].first[:display] %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:longest_win_streak] && bet_stats[:longest_win_streak].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:longest_win_streak].first[:fan] %> is on fire">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:fire-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">On Fire</div>
-                        <div class="stat-fan-name"><%= bet_stats[:longest_win_streak].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:longest_win_streak].first[:display] %></div>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:momentum_master] && bet_stats[:momentum_master].any? %>
-                    <div class="stat-card-square" role="article" aria-label="<%= bet_stats[:momentum_master].first[:fan] %> is the momentum master">
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:bolt-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Momentum Master</div>
-                        <div class="stat-fan-name"><%= bet_stats[:momentum_master].first[:fan] %></div>
-                        <div class="stat-value"><%= bet_stats[:momentum_master].first[:display] %></div>
-                    </div>
-                <% end %>
-            </div>
-            
-            <!-- Special Achievements -->
-            <h3 class="section-heading"><iconify-icon icon="solar:target-bold" width="18" height="18"></iconify-icon> Special Achievements</h3>
-            <div class="stats-grid" role="region" aria-label="Special achievements">
-                <% if bet_stats && bet_stats[:glass_cannon] && bet_stats[:glass_cannon].any? %>
-                    <% is_expandable = bet_stats[:glass_cannon].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Glass cannon achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:bomb-minimalistic-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Glass Cannon</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:glass_cannon].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
+            <!-- Season superlatives -->
+            <%
+            award_groups = [
+              { title: 'Excellence', icon: 'solar:star-bold', awards: [
+                { key: :fan_crusher,             icon: 'solar:bolt-circle-bold',       label: 'Fan Crusher', short: true },
+                { key: :most_dominant,           icon: 'solar:crown-bold',             label: 'Most Dominant' },
+                { key: :top_winners,             icon: 'solar:medal-ribbons-star-bold', label: 'Top Winner' },
+                { key: :best_point_differential, icon: 'solar:add-circle-bold',        label: 'Goal Diff Leader' }
+              ] },
+              { title: 'Defense &amp; Momentum', icon: 'solar:shield-bold', awards: [
+                { key: :brick_wall,        icon: 'solar:shield-bold',    label: 'Brick Wall' },
+                { key: :shutout_king,      icon: 'solar:forbidden-bold', label: 'Shutout King' },
+                { key: :longest_win_streak, icon: 'solar:fire-bold',     label: 'On Fire' },
+                { key: :momentum_master,   icon: 'solar:bolt-bold',      label: 'Momentum Master' }
+              ] },
+              { title: 'Special', icon: 'solar:target-bold', ranked: true, awards: [
+                { key: :glass_cannon,      icon: 'solar:bomb-minimalistic-bold', label: 'Glass Cannon' },
+                { key: :comeback_kid,      icon: 'solar:target-bold',            label: 'Comeback Kid' },
+                { key: :overtimer,         icon: 'solar:stopwatch-bold',         label: 'Overtimer' },
+                { key: :sharks_victims,    icon: 'solar:water-bold',             label: 'Sharks Victims' },
+                { key: :predators_victims, icon: 'solar:cat-bold',               label: 'Touched by a Predator' },
+                { key: :worst_cup_odds,    icon: 'solar:sad-circle-bold',        label: 'Needs Help', short: true, danger: true }
+              ] }
+            ]
+            %>
+            <section class="superlatives" aria-label="Season superlatives">
+                <% award_groups.each do |group| %>
+                    <% visible = group[:awards].select { |a| bet_stats && bet_stats[a[:key]] && bet_stats[a[:key]].any? } %>
+                    <% next if visible.empty? %>
+                    <div class="superlative-group">
+                        <h3 class="superlative-group__title">
+                            <iconify-icon icon="<%= group[:icon] %>" width="15" height="15"></iconify-icon>
+                            <span><%= group[:title] %></span>
+                        </h3>
+                        <ul class="superlative-list">
+                            <% visible.each do |a| %>
+                                <% entries = bet_stats[a[:key]] %>
+                                <% list = group[:ranked] ? entries : [entries.first] %>
+                                <% expandable = list.length > 1 %>
+                                <% winner = list.first %>
+                                <li class="superlative achievement-card<%= ' expandable' if expandable %><%= ' superlative--danger' if a[:danger] %>"
+                                    style="--team: <%= fan_accent(winner[:fan]) %>"
+                                    role="<%= expandable ? 'button' : 'listitem' %>"
+                                    aria-label="<%= a[:label] %>: <%= winner[:fan] %>"
+                                    <%= 'tabindex="0"' if expandable %>
+                                    <%= 'aria-expanded="false"' if expandable %>>
+                                    <span class="superlative__icon" aria-hidden="true"><iconify-icon icon="<%= a[:icon] %>" width="19" height="19"></iconify-icon></span>
+                                    <span class="superlative__body">
+                                        <span class="superlative__label"><%= a[:label] %></span>
+                                        <span class="achievement-entries">
+                                            <% list.each_with_index do |e, idx| %>
+                                                <span class="achievement-entry superlative__entry<%= ' hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
+                                                    <span class="achievement-rank"><%= idx + 1 %></span>
+                                                    <span class="superlative__winner"><%= e[:fan] %></span>
+                                                    <span class="superlative__stat"><%= a[:short] ? e[:display].to_s.split(' ').first : e[:display] %></span>
+                                                </span>
+                                            <% end %>
+                                        </span>
+                                    </span>
+                                    <% if expandable %>
+                                        <span class="superlative__count"><%= list.length %></span>
+                                        <span class="expand-toggle" aria-hidden="true"><span class="expand-icon">▾</span></span>
+                                    <% end %>
+                                </li>
                             <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
+                        </ul>
                     </div>
                 <% end %>
-                
-                <% if bet_stats && bet_stats[:comeback_kid] && bet_stats[:comeback_kid].any? %>
-                    <% is_expandable = bet_stats[:comeback_kid].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Comeback kid achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:target-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Comeback Kid</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:comeback_kid].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:overtimer] && bet_stats[:overtimer].any? %>
-                    <% is_expandable = bet_stats[:overtimer].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Overtimer achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:stopwatch-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Overtimer</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:overtimer].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:sharks_victims] && bet_stats[:sharks_victims].any? %>
-                    <% is_expandable = bet_stats[:sharks_victims].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Sharks victims achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:water-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Sharks Victims</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:sharks_victims].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:predators_victims] && bet_stats[:predators_victims].any? %>
-                    <% is_expandable = bet_stats[:predators_victims].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %>" role="<%= is_expandable ? 'button' : 'article' %>" aria-label="Touched by a Predator achievement" <%= 'tabindex="0"' if is_expandable %> <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:cat-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Touched by a Predator</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:predators_victims].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display] %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-                
-                <% if bet_stats && bet_stats[:worst_cup_odds] && bet_stats[:worst_cup_odds].any? %>
-                    <% is_expandable = bet_stats[:worst_cup_odds].length > 1 %>
-                    <div class="stat-card-square achievement-card <%= 'expandable' if is_expandable %> bg-danger-subtle" 
-                         role="<%= is_expandable ? 'button' : 'article' %>" 
-                         aria-label="Needs help achievement" 
-                         <%= 'tabindex="0"' if is_expandable %> 
-                         <%= 'aria-expanded="false"' if is_expandable %>>
-                        <div class="stat-emoji" aria-hidden="true"><iconify-icon icon="solar:sad-circle-bold" width="28" height="28"></iconify-icon></div>
-                        <div class="stat-label">Needs Help</div>
-                        <div class="achievement-entries">
-                            <% bet_stats[:worst_cup_odds].each_with_index do |entry, idx| %>
-                                <div class="achievement-entry <%= 'hidden' if idx > 0 %>" data-rank="<%= idx + 1 %>">
-                                    <div class="achievement-rank"><%= idx + 1 %>.</div>
-                                    <div class="stat-fan-name"><%= entry[:fan] %></div>
-                                    <div class="stat-value"><%= entry[:display].split(' ').first %></div>
-                                </div>
-                            <% end %>
-                        </div>
-                        <% if is_expandable %>
-                            <span class="expand-toggle" aria-hidden="true">
-                                <span class="expand-icon">▼</span>
-                            </span>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
+            </section>
         </div>
 
         <!-- Tab: Matchups -->

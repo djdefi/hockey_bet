@@ -331,169 +331,6 @@ h3 {
     margin-top: 0.15rem;
 }
 
-/* Top 3 Leaders - Compact Layout */
-.leaders-compact-card {
-    background: var(--color-bg-secondary);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 0.7rem;
-    margin-bottom: 0.7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.leader-compact-item {
-    background: var(--color-bg-secondary);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 0.65rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.leader-compact-item:hover {
-    transform: translateY(-2px);
-    box-shadow: none;
-    border-color: var(--color-accent-primary-border);
-}
-
-.leader-compact-item.leader-first {
-    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
-    background: var(--color-bg-secondary);
-    box-shadow: none;
-}
-
-.leader-rank-badge {
-    position: absolute;
-    top: 0.4rem;
-    right: 0.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.35rem 0.6rem;
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.leader-rank-badge.rank-1 {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-    color: #FFD700;
-}
-
-.leader-rank-badge.rank-2 {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.1));
-    color: #C0C0C0;
-}
-
-.leader-rank-badge.rank-3 {
-    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.1));
-    color: #CD7F32;
-}
-
-.rank-emoji {
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-}
-
-.rank-text {
-    font-weight: 800;
-    letter-spacing: 0.5px;
-}
-
-.leader-identity {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding-right: 4rem; /* Space for rank badge */
-}
-
-.leader-fan-name {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--color-text-primary);
-    line-height: 1.1;
-}
-
-.leader-team-name {
-    font-size: 0.75rem;
-    color: var(--color-text-secondary);
-    font-weight: 600;
-}
-
-.leader-achievement {
-    font-size: 0.7rem;
-    color: var(--color-accent-primary);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-top: 0.1rem;
-}
-
-.leader-stats-inline {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-border-default) 30%, transparent);
-}
-
-.leader-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-}
-
-.leader-stat-value {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-}
-
-.leader-stat-label {
-    font-size: 0.6rem;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Desktop: Side-by-side leaders */
-@media (min-width: 768px) {
-    .leaders-compact-card {
-        flex-direction: row;
-        gap: 0.85rem;
-        padding: 1rem;
-    }
-    
-    .leader-compact-item {
-        flex: 1;
-        min-width: 0; /* Allow flex items to shrink */
-    }
-    
-    .leader-fan-name {
-        font-size: 1.2rem;
-    }
-    
-    .leader-stat-value {
-        font-size: 1rem;
-    }
-}
-
 /* Featured Matchup */
 .featured-matchup {
     margin-bottom: 1.25rem;
@@ -913,84 +750,6 @@ h3 {
     .stats-grid {
         gap: 0.4rem;
     }
-}
-
-/* Stat cards — broadcast stat block: left-aligned, display name as hero,
-   metric as accent line, icon demoted to a faint watermark. */
-.stat-card-square {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    text-align: left;
-    gap: 0.1rem;
-    padding: 0.7rem 0.85rem;
-    min-height: 88px;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-lg);
-    box-shadow: none;
-    position: relative;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.stat-emoji {
-    position: absolute;
-    top: 0.55rem;
-    right: 0.6rem;
-    font-size: 1rem;
-    line-height: 1;
-    flex-shrink: 0;
-    z-index: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    opacity: 0.3;
-}
-
-.stat-label {
-    font-size: 0.62rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 0.1rem;
-    line-height: 1.1;
-    flex-shrink: 0;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding-right: 1.2rem;
-}
-
-.stat-value {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    margin-top: auto;
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
-    text-align: left;
-    display: block;
-    position: relative;
-    z-index: 1;
-    font-variant-numeric: tabular-nums;
-}
-
-.stat-fan-name {
-    font-family: var(--font-family-display);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-    word-break: break-word;
-    max-width: 100%;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 /* Achievement Cards - Expandable */
@@ -2042,29 +1801,6 @@ h3 {
         font-size: 0.9rem;
     }
     
-    /* Achievement card mobile adjustments */
-    .stat-card-square {
-        padding: 0.7rem 0.75rem;
-    }
-    
-    .stat-emoji {
-        font-size: 0.95rem;
-        color: var(--color-text-muted);
-        opacity: 0.45;
-    }
-    
-    .stat-label {
-        font-size: 0.62rem;
-    }
-    
-    .stat-value {
-        font-size: 0.78rem;
-    }
-    
-    .stat-fan-name {
-        font-size: 1.1rem;
-    }
-    
     .achievement-card.expandable {
         padding-bottom: 1.5rem;
         /* Improve touch response */
@@ -2913,3 +2649,314 @@ body::before {
 .achievement-card:not(.expanded) .achievement-rank {
   display: none;
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   2026 identity layer — editorial masthead, hero leader, superlatives board.
+   Team-color accents driven by the per-element `--team` custom property.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Editorial masthead ─────────────────────────────────────────────── */
+header.site-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  position: relative;
+  padding-right: var(--space-10);
+}
+.masthead-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.masthead-mark {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+}
+.masthead-mark .mark-tile { fill: var(--color-accent-primary); }
+.masthead-mark .mark-sticks { stroke: var(--color-bg-primary); }
+.masthead-mark .mark-puck { fill: var(--color-bg-primary); }
+.masthead-lockup { display: flex; flex-direction: column; min-width: 0; }
+.masthead-lockup .masthead-eyebrow { margin-bottom: 0.1rem; }
+.masthead-lockup .masthead-title { margin-bottom: 0; }
+.masthead-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+.masthead-meta-item {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Hero: champion + chasers ───────────────────────────────────────── */
+.league-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+@media (min-width: 768px) {
+  .league-hero { grid-template-columns: 1.5fr 1fr; align-items: stretch; }
+}
+.hero-champ {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--team, var(--color-accent-primary));
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--team, var(--color-accent-primary)) 16%, transparent), transparent 55%),
+    var(--color-bg-secondary);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.hero-champ__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent-gold);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-accent-gold) 14%, transparent);
+}
+.hero-champ__name {
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary);
+}
+.hero-champ__team {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+.hero-champ__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--team, var(--color-accent-primary));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--team, var(--color-accent-primary)) 35%, transparent);
+  flex-shrink: 0;
+}
+.hero-champ__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+.hero-stat { display: flex; flex-direction: column; gap: 0.1rem; }
+.hero-stat__num {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.hero-stat__cap {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+.hero-chasers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  justify-content: center;
+}
+.chaser {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-default);
+  border-left: 3px solid var(--team, var(--color-accent-primary));
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+.chaser__rank {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 1.1rem;
+  text-align: center;
+}
+.chaser__id { display: flex; flex-direction: column; min-width: 0; }
+.chaser__name {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chaser__team {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chaser__stat { display: flex; align-items: baseline; gap: 0.25rem; }
+.chaser__num {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.chaser__cap {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Superlatives board (was the award-card wall) ───────────────────── */
+.superlatives {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+@media (min-width: 700px) {
+  .superlatives { grid-template-columns: repeat(3, 1fr); align-items: start; }
+}
+.superlative-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.superlative-group__title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.1rem;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+.superlative-group__title iconify-icon { color: var(--color-accent-primary); }
+.superlative-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.superlative {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-default);
+  border-left: 3px solid var(--team, var(--color-accent-primary));
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+.superlative.expandable { cursor: pointer; }
+.superlative.expandable:hover { background: var(--color-bg-tertiary); border-color: var(--color-accent-primary-border); }
+.superlative.expandable:focus-visible { outline: 2px solid var(--color-accent-primary); outline-offset: 2px; }
+.superlative__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--team, var(--color-accent-primary));
+  flex-shrink: 0;
+}
+.superlative__body { display: flex; flex-direction: column; gap: 0.1rem; flex: 1; min-width: 0; }
+.superlative__label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+.superlative .achievement-entries { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.superlative__entry { display: flex; flex-direction: column; gap: 0.05rem; min-width: 0; }
+.superlative__entry .achievement-rank { display: none; }
+.superlative.expanded .superlative__entry {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-2);
+  row-gap: 0.05rem;
+  padding: 0.35rem 0;
+  border-bottom-color: var(--color-border-subtle);
+}
+.superlative.expanded .achievement-rank {
+  display: block;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: baseline;
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.superlative.expanded .superlative__winner { grid-column: 2; grid-row: 1; }
+.superlative.expanded .superlative__stat { grid-column: 2; grid-row: 2; }
+.superlative__winner {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.superlative__stat {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.superlative__count {
+  flex-shrink: 0;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  background: var(--color-surface-inset);
+  border-radius: var(--radius-full);
+  padding: 0.05rem 0.4rem;
+}
+.superlative .expand-toggle {
+  position: static;
+  transform: none;
+  bottom: auto;
+  left: auto;
+  padding: 0;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+.superlative--danger { border-left-color: var(--color-accent-danger); }
+.superlative--danger .superlative__icon { color: var(--color-accent-danger); }
