@@ -656,7 +656,7 @@ class PlayoffProcessor
       <html lang="en">
       <head>
           <title>NHL Playoffs</title>
-          <link rel='stylesheet' href='https://unpkg.com/@primer/css@^20.2.4/dist/primer.css'>
+          <link rel='stylesheet' href='vendor/primer.css'>
       </head>
       <body>
           <div class="container-lg">

@@ -285,8 +285,6 @@
   --accent-red: var(--color-accent-danger);
   /* DEPRECATED: Use var(--color-accent-info) instead */
   --accent-blue: var(--color-accent-info);
-  /* DEPRECATED: Use var(--color-accent-warning) instead */
-  --accent-yellow: var(--color-accent-warning);
   /* DEPRECATED: Use var(--color-accent-purple) instead */
   --accent-purple: var(--color-accent-purple);
   /* DEPRECATED: Use var(--color-accent-orange) instead */

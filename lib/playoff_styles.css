@@ -1,4 +1,21 @@
 /* Playoff Bracket Styles — Dark Theme with Design Tokens */
+
+/* Warning banner (PR-preview notice) — local, token-driven replacement for
+   Primer's .flash so the page no longer depends on the full Primer stylesheet. */
+.flash {
+  position: relative;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.flash-warn {
+  color: var(--color-text-primary);
+  background: var(--color-status-warning-subtle);
+  border-color: var(--color-accent-warning);
+}
+
 .playoff-section {
   margin-top: var(--space-8);
   padding: var(--space-4);
