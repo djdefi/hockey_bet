@@ -62,6 +62,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--font-weight-bold);
     margin-top: 0;
     line-height: var(--line-height-snug);
+    text-wrap: balance;
 }
 
 h1 {
@@ -118,8 +119,8 @@ h3 {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--bg-card);
-    border-top: 1px solid var(--border-color);
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border-default);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -140,9 +141,9 @@ h3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: var(--min-touch-target);
-    min-width: var(--min-touch-target);
-    color: var(--text-secondary);
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+    color: var(--color-text-secondary);
     text-decoration: none;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -160,23 +161,23 @@ h3 {
 
 .nav-item:hover,
 .nav-item:focus {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     outline: none;
     transform: translateY(-1px);
 }
 
 .nav-item:active {
     transform: translateY(0);
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .nav-item:focus-visible {
-    outline: 2px solid var(--accent-green);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: -2px;
 }
 
 .nav-item.active {
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     position: relative;
 }
 
@@ -188,7 +189,7 @@ h3 {
     transform: translateX(-50%);
     width: 24px;
     height: 2px;
-    background-color: var(--accent-green);
+    background-color: var(--color-accent-primary);
     border-radius: 2px 2px 0 0;
 }
 
@@ -229,11 +230,11 @@ h3 {
 
 /* Card System */
 .card {
-    background-color: var(--bg-card);
+    background-color: var(--color-bg-secondary);
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-default);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     /* Prevent tappable elements from flickering on iOS */
     -webkit-transform: translateZ(0);
@@ -253,14 +254,14 @@ h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
 }
 
 /* Horizontal Scrolling Carousel */
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--bg-card) 0%, #2a3a52 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, #2a3a52 100%);
+    border: 1px solid var(--color-border-default);
     border-radius: 12px;
     padding: 0.85rem;
     margin-bottom: 0.85rem;
@@ -281,7 +282,7 @@ h3 {
 .hero-label {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -298,13 +299,13 @@ h3 {
 .hero-fan-name {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.1;
 }
 
 .hero-team-name {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
 }
 
@@ -323,13 +324,13 @@ h3 {
 .hero-stat-value {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     font-variant-numeric: tabular-nums;
 }
 
 .hero-stat-label {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: 0.15rem;
@@ -428,19 +429,19 @@ h3 {
 .leader-fan-name {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.1;
 }
 
 .leader-team-name {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
 }
 
 .leader-achievement {
     font-size: 0.7rem;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -466,12 +467,12 @@ h3 {
 .leader-stat-value {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
 }
 
 .leader-stat-label {
     font-size: 0.6rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -532,7 +533,7 @@ h3 {
 
 .featured-matchup-time {
     background: linear-gradient(90deg, rgba(41, 128, 185, 0.15) 0%, rgba(41, 128, 185, 0.05) 100%);
-    border-left: 3px solid var(--accent-blue);
+    border-left: 3px solid var(--color-accent-info);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     margin-bottom: 0.75rem;
@@ -572,12 +573,12 @@ h3 {
 .time-text {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     letter-spacing: 0.3px;
 }
 
 .featured-matchup-card {
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.95) 100%);
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(26, 37, 58, 0.95) 100%);
     border: 1px solid rgba(33, 209, 159, 0.2);
     border-radius: 12px;
     padding: 1.25rem;
@@ -599,7 +600,7 @@ h3 {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--accent-green) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--color-accent-primary) 50%, transparent 100%);
     animation: shimmerBar 2s linear infinite;
 }
 
@@ -628,13 +629,13 @@ h3 {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background-color: var(--bg-primary);
+    background-color: var(--color-bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
 }
 
 .featured-team-info {
@@ -644,20 +645,20 @@ h3 {
 .featured-fan-name {
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0.15rem;
 }
 
 .featured-team-name {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     margin-bottom: 0.25rem;
     font-weight: 500;
 }
 
 .featured-record {
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
     margin-bottom: 0.35rem;
 }
@@ -700,7 +701,7 @@ h3 {
 .achievement-label {
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -708,9 +709,9 @@ h3 {
 .featured-vs {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(11, 22, 42, 0.8) 100%);
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, rgba(11, 22, 42, 0.8) 100%);
     border-radius: 50%;
     flex-shrink: 0;
     box-shadow: 0 0 20px rgba(33, 209, 159, 0.2);
@@ -720,7 +721,7 @@ h3 {
 
 .voting-placeholder {
     background: linear-gradient(135deg, rgba(33, 209, 159, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
-    border: 2px dashed var(--accent-green);
+    border: 2px dashed var(--color-accent-primary);
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
@@ -730,13 +731,13 @@ h3 {
 .voting-text {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     animation: pulse 2s ease-in-out infinite;
 }
 
 /* Dense Featured Matchup Layout */
 .featured-matchup-card-dense {
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 37, 58, 0.95) 100%);
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(26, 37, 58, 0.95) 100%);
     border: 1px solid rgba(33, 209, 159, 0.2);
     border-radius: 12px;
     padding: 1rem;
@@ -759,7 +760,7 @@ h3 {
     align-items: center;
     gap: 0.4rem;
     background: rgba(41, 128, 185, 0.15);
-    border-left: 2px solid var(--accent-blue);
+    border-left: 2px solid var(--color-accent-info);
     padding: 0.4rem 0.75rem;
     border-radius: 6px;
     font-size: 0.85rem;
@@ -775,12 +776,12 @@ h3 {
     align-items: center;
     gap: 0.4rem;
     background: rgba(33, 209, 159, 0.15);
-    border-left: 2px solid var(--accent-green);
+    border-left: 2px solid var(--color-accent-primary);
     padding: 0.4rem 0.75rem;
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .featured-teams-dense {
@@ -821,7 +822,7 @@ h3 {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: var(--bg-primary);
+    background-color: var(--color-bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -838,7 +839,7 @@ h3 {
 .featured-fan-name-dense {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0.15rem;
     white-space: nowrap;
     overflow: hidden;
@@ -847,7 +848,7 @@ h3 {
 
 .featured-team-name-dense {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     margin-bottom: 0.4rem;
     white-space: nowrap;
     overflow: hidden;
@@ -885,13 +886,13 @@ h3 {
 .stat-value-dense {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0.15rem;
 }
 
 .stat-label-dense {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.3px;
 }
@@ -902,7 +903,7 @@ h3 {
     justify-content: center;
     font-size: 1.1rem;
     font-weight: 900;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     padding: 0 0.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -933,7 +934,7 @@ h3 {
 }
 
 .info-text {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 500;
 }
 
@@ -951,7 +952,7 @@ h3 {
 .section-heading {
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0.5rem;
     margin-top: 1rem;
     display: flex;
@@ -963,7 +964,7 @@ h3 {
     content: '';
     width: 3px;
     height: 1.2rem;
-    background: linear-gradient(180deg, var(--accent-green), var(--accent-blue));
+    background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-info));
     border-radius: 2px;
 }
 
@@ -1021,7 +1022,7 @@ h3 {
 
 .stat-label {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     margin-bottom: 0.2rem;
     line-height: 1.1;
     flex-shrink: 0;
@@ -1033,7 +1034,7 @@ h3 {
 .stat-value {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     margin-bottom: 0.2rem;
     line-height: 1.25;
     word-break: break-word;
@@ -1049,7 +1050,7 @@ h3 {
 .stat-fan-name {
     font-size: 0.7rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.2;
     word-break: break-word;
     max-width: 100%;
@@ -1072,7 +1073,7 @@ h3 {
 }
 
 .achievement-card.expandable:focus {
-    outline: 2px solid var(--accent-green);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -1108,7 +1109,7 @@ h3 {
 
 .achievement-card.expanded .achievement-entry {
     padding: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--color-border-default);
 }
 
 .achievement-card.expanded .achievement-entry:last-child {
@@ -1117,7 +1118,7 @@ h3 {
 
 .achievement-rank {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
     margin-bottom: 0.25rem;
     line-height: 1.2;
@@ -1130,7 +1131,7 @@ h3 {
     transform: translateX(-50%);
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
@@ -1139,11 +1140,11 @@ h3 {
 }
 
 .expand-toggle:hover {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
 }
 
 .expand-toggle:focus {
-    outline: 2px solid var(--accent-green);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -1176,7 +1177,7 @@ h3 {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-green) 50%, var(--accent-blue) 100%);
+    background: linear-gradient(90deg, var(--color-accent-info) 0%, var(--color-accent-primary) 50%, var(--color-accent-info) 100%);
     background-size: 200% 100%;
     animation: shimmerBar 3s linear infinite;
 }
@@ -1241,11 +1242,11 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-card-hover);
+    background-color: var(--color-bg-hover);
     border-radius: 50%;
     font-weight: 700;
     font-size: 0.65rem;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     flex-shrink: 0;
 }
 
@@ -1258,14 +1259,14 @@ h3 {
 .matchup-fan-name {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .matchup-vs {
-    background: linear-gradient(135deg, var(--accent-blue) 0%, #1e5c87 100%);
+    background: linear-gradient(135deg, var(--color-accent-info) 0%, #1e5c87 100%);
     color: white;
     padding: 4px 10px;
     border-radius: 12px;
@@ -1290,12 +1291,12 @@ h3 {
     background: rgba(11, 22, 42, 0.4);
     padding: 0.35rem 0.45rem;
     border-radius: 6px;
-    border-left: 2px solid var(--accent-blue);
+    border-left: 2px solid var(--color-accent-info);
 }
 
 .matchup-stat-label {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -1304,7 +1305,7 @@ h3 {
 
 .matchup-stat-value {
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     font-size: 0.8rem;
 }
 
@@ -1327,19 +1328,19 @@ h3 {
 
 .stat-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+    background: linear-gradient(90deg, var(--color-accent-primary) 0%, var(--color-accent-info) 100%);
     border-radius: 3px;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stat-bar-fill.away {
-    background: linear-gradient(90deg, var(--accent-red) 0%, var(--accent-orange) 100%);
+    background: linear-gradient(90deg, var(--color-accent-danger) 0%, var(--color-accent-orange) 100%);
 }
 
 .stat-bar-label {
     font-size: 0.7rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     min-width: 32px;
     text-align: right;
 }
@@ -1357,18 +1358,18 @@ h3 {
 
 .momentum-hot {
     background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.2));
-    color: var(--accent-orange);
+    color: var(--color-accent-orange);
     box-shadow: var(--glow-red);
 }
 
 .momentum-cold {
     background: linear-gradient(135deg, rgba(41, 128, 185, 0.2), rgba(52, 152, 219, 0.2));
-    color: var(--accent-blue);
+    color: var(--color-accent-info);
 }
 
 .momentum-neutral {
     background: rgba(141, 161, 185, 0.1);
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
 }
 
 /* Mini sparkline for trends */
@@ -1382,17 +1383,17 @@ h3 {
 
 .sparkline-bar {
     width: 2px;
-    background: var(--accent-green);
+    background: var(--color-accent-primary);
     transition: height 0.3s ease;
     border-radius: 1px 1px 0 0;
 }
 
 .sparkline-bar.loss {
-    background: var(--accent-red);
+    background: var(--color-accent-danger);
 }
 
 .sparkline-bar.ot {
-    background: var(--accent-blue);
+    background: var(--color-accent-info);
 }
 
 /* Win probability indicator */
@@ -1404,12 +1405,12 @@ h3 {
     padding: 0.4rem 0.5rem;
     background: rgba(11, 22, 42, 0.6);
     border-radius: 6px;
-    border-left: 2px solid var(--accent-purple);
+    border-left: 2px solid var(--color-accent-purple);
 }
 
 .win-prob-label {
     font-size: 0.65rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -1426,7 +1427,7 @@ h3 {
 
 .win-prob-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-info));
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--glow-green);
 }
@@ -1434,7 +1435,7 @@ h3 {
 .win-prob-value {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
     min-width: 40px;
     text-align: right;
 }
@@ -1470,7 +1471,7 @@ h3 {
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--accent-purple);
+    color: var(--color-accent-purple);
     animation: glow-pulse 2s ease-in-out infinite;
     margin-bottom: 0.6rem;
     box-shadow: 0 2px 8px rgba(155, 89, 182, 0.2);
@@ -1487,14 +1488,14 @@ h3 {
 
 /* Team Cards (Standings) */
 .team-card {
-    background-color: var(--bg-card);
+    background-color: var(--color-bg-secondary);
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-default);
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: var(--min-touch-target);
+    min-height: var(--touch-target-min);
     /* Improve tap response */
     -webkit-tap-highlight-color: rgba(33, 209, 159, 0.1);
     tap-highlight-color: rgba(33, 209, 159, 0.1);
@@ -1508,22 +1509,22 @@ h3 {
 }
 
 .team-card:hover {
-    background-color: var(--bg-card-hover);
+    background-color: var(--color-bg-hover);
     transform: translateX(4px);
 }
 
 .team-card:active {
-    background-color: var(--bg-card-hover);
+    background-color: var(--color-bg-hover);
     transform: translateX(2px);
 }
 
 .team-card:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--accent-green);
+    box-shadow: 0 0 0 2px var(--color-accent-primary);
 }
 
 .team-card:focus-visible {
-    outline: 2px solid var(--accent-green);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
 }
 
@@ -1542,7 +1543,7 @@ h3 {
 .team-rank {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     min-width: 40px;
     text-align: center;
 }
@@ -1556,14 +1557,14 @@ h3 {
 .team-name {
     font-weight: 700;
     font-size: 1rem;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0;
     line-height: 1.3;
 }
 
 .team-fan {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     margin-bottom: 0;
     line-height: 1.3;
 }
@@ -1582,13 +1583,13 @@ h3 {
 .team-points-value {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.2;
 }
 
 .team-points-label {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     line-height: 1.2;
 }
 
@@ -1599,11 +1600,11 @@ h3 {
 }
 
 .trend-up {
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .trend-down {
-    color: var(--accent-red);
+    color: var(--color-accent-danger);
 }
 
 /* Expandable Details */
@@ -1617,7 +1618,7 @@ h3 {
     max-height: 800px;
     padding-top: 1rem;
     margin-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--color-border-default);
 }
 
 /* Achievement badges */
@@ -1635,7 +1636,7 @@ h3 {
     padding: 0.4rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-default);
     /* Use dynamic badge color with fallback to secondary background */
     background-color: var(--badge-bg, var(--color-bg-secondary));
 }
@@ -1646,13 +1647,13 @@ h3 {
 }
 
 .badge-label {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
     font-size: 0.75rem;
 }
 
 .badge-value {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     font-weight: 700;
     font-size: 0.85rem;
 }
@@ -1670,27 +1671,27 @@ h3 {
 
 .detail-label {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     margin-bottom: 0.25rem;
 }
 
 .detail-value {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
 }
 
 /* Head-to-head section */
 .h2h-section {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--color-border-default);
 }
 
 .h2h-title {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 0.75rem;
 }
 
@@ -1705,13 +1706,13 @@ h3 {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    background-color: var(--bg-card-hover);
+    background-color: var(--color-bg-hover);
     border-radius: 6px;
     font-size: 0.8rem;
 }
 
 .h2h-opponent {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
 }
 
@@ -1721,11 +1722,11 @@ h3 {
 }
 
 .h2h-record.winning {
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .h2h-record.losing {
-    color: var(--accent-red);
+    color: var(--color-accent-danger);
 }
 
 /* Status Indicators */
@@ -1754,14 +1755,14 @@ h3 {
 .status-div-leader-2,
 .status-div-leader-3 {
     background-color: rgba(33, 209, 159, 0.2);
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 /* Wildcard statuses */
 .status-wildcard-1,
 .status-wildcard-2 {
     background-color: rgba(33, 209, 159, 0.2);
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 /* In the hunt status */
@@ -1779,13 +1780,13 @@ h3 {
 /* Eliminated status */
 .status-eliminated {
     background-color: rgba(231, 76, 60, 0.2);
-    color: var(--accent-red);
+    color: var(--color-accent-danger);
 }
 
 /* Legacy status classes for backward compatibility */
 .status-clinched {
     background-color: rgba(33, 209, 159, 0.2);
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .status-contending {
@@ -1800,9 +1801,9 @@ h3 {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background-color: var(--bg-card);
+    background-color: var(--color-bg-secondary);
     border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-default);
 }
 
 .status-item {
@@ -1811,7 +1812,7 @@ h3 {
     gap: 6px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.2;
 }
 
@@ -1835,9 +1836,9 @@ h3 {
 .skeleton {
     background: linear-gradient(
         90deg,
-        var(--bg-card) 0%,
-        var(--bg-card-hover) 50%,
-        var(--bg-card) 100%
+        var(--color-bg-secondary) 0%,
+        var(--color-bg-hover) 50%,
+        var(--color-bg-secondary) 100%
     );
     background-size: 1000px 100%;
     animation: shimmer 2s infinite;
@@ -1851,19 +1852,19 @@ h3 {
 
 /* Color Utilities */
 .text-green {
-    color: var(--accent-green);
+    color: var(--color-accent-primary);
 }
 
 .text-red {
-    color: var(--accent-red);
+    color: var(--color-accent-danger);
 }
 
 .text-blue {
-    color: var(--accent-blue);
+    color: var(--color-accent-info);
 }
 
 .text-secondary {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
 }
 
 /* Desktop Adjustments */
@@ -1880,14 +1881,14 @@ h3 {
         display: flex; /* More specific selector instead of !important */
         gap: 1rem;
         margin-bottom: 2rem;
-        border-bottom: 2px solid var(--border-color);
+        border-bottom: 2px solid var(--color-border-default);
     }
     
     .desktop-tab {
         padding: 1rem 1.5rem;
         background: none;
         border: none;
-        color: var(--text-secondary);
+        color: var(--color-text-secondary);
         font-weight: 600;
         font-size: 1rem;
         cursor: pointer;
@@ -1896,7 +1897,7 @@ h3 {
     }
     
     .desktop-tab:hover {
-        color: var(--text-primary);
+        color: var(--color-text-primary);
     }
     
     .desktop-tab:focus {
@@ -1904,13 +1905,13 @@ h3 {
     }
     
     .desktop-tab:focus-visible {
-        outline: 2px solid var(--accent-green);
+        outline: 2px solid var(--color-accent-primary);
         outline-offset: -2px;
     }
     
     .desktop-tab.active {
-        color: var(--accent-green);
-        border-bottom-color: var(--accent-green);
+        color: var(--color-accent-primary);
+        border-bottom-color: var(--color-accent-primary);
     }
     
     .stats-grid {
@@ -1957,11 +1958,11 @@ h3 {
 
 /* Chart styling */
 .chart-container {
-    background-color: var(--bg-card);
+    background-color: var(--color-bg-secondary);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border-default);
     min-height: 400px;
     position: relative;
 }
@@ -1975,8 +1976,8 @@ h3 {
     width: 40px;
     height: 40px;
     margin: -20px 0 0 -20px;
-    border: 3px solid var(--border-color);
-    border-top-color: var(--accent-green);
+    border: 3px solid var(--color-border-default);
+    border-top-color: var(--color-accent-primary);
     border-radius: 50%;
     animation: spinner 0.8s linear infinite;
 }
@@ -2013,7 +2014,7 @@ h3 {
     }
     
     .team-card:active {
-        background-color: var(--bg-card-hover);
+        background-color: var(--color-bg-hover);
         transform: scale(0.98) translateX(2px);
     }
     
@@ -2121,7 +2122,7 @@ h3 {
     
     .achievement-card:active {
         transform: scale(0.98);
-        background-color: var(--bg-card-hover);
+        background-color: var(--color-bg-hover);
     }
     
     .achievement-rank {
@@ -2610,10 +2611,10 @@ h3 {
 .playoff-odds-summary th {
     padding: 0.4rem 0.3rem;
     text-align: left;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 600;
     font-size: 0.75rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--color-border-default);
 }
 
 .playoff-odds-summary td {
@@ -2696,8 +2697,8 @@ h3 {
 @media (max-width: 767px) {
     /* Ensure buttons and interactive elements meet minimum touch target size */
     button, .nav-item, .desktop-tab, .date-group-toggle {
-        min-height: var(--min-touch-target);
-        min-width: var(--min-touch-target);
+        min-height: var(--touch-target-min);
+        min-width: var(--touch-target-min);
     }
     
     /* Better spacing between sections on mobile */

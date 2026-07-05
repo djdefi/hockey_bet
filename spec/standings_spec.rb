@@ -465,7 +465,7 @@ RSpec.describe 'NHL Standings Table' do
         
         expect(Dir.exist?(vendor_dir)).to be true
         expect(File.exist?(File.join(vendor_dir, 'chart.umd.js'))).to be true
-        expect(File.exist?(File.join(vendor_dir, 'primer.css'))).to be true
+        expect(File.exist?(File.join(vendor_dir, 'primer.css'))).to be false
         
         # Cleanup
         FileUtils.rm_rf(vendor_dir) if Dir.exist?(vendor_dir)

@@ -69,7 +69,6 @@
 <head>
     <meta charset="utf-8">
     <title>NHL Playoffs</title>
-    <link rel='stylesheet' href='vendor/primer.css'>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.svg">
@@ -88,12 +87,12 @@
     <style>
         /* Design Tokens — inlined so playoff page has access to CSS variables */
         <% if File.exist?("lib/design-tokens.css") %>
-        <%= File.read("lib/design-tokens.css") %>
+        <%= AppAssets.minify_css(File.read("lib/design-tokens.css", encoding: 'UTF-8')) %>
         <% end %>
         
         /* Playoff Styles */
         <% if File.exist?("lib/playoff_styles.css") %>
-        <%= File.read("lib/playoff_styles.css") %>
+        <%= AppAssets.minify_css(File.read("lib/playoff_styles.css", encoding: 'UTF-8')) %>
         <% end %>
         
         .back-link {

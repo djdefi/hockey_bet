@@ -145,7 +145,7 @@ class StandingsProcessor
     AppAssets.css_files.each do |file|
       src = File.join(File.dirname(__FILE__), file)
       dest = "#{output_dir}/#{file}"
-      FileUtils.cp(src, dest) if File.exist?(src)
+      File.write(dest, AppAssets.minify_css(File.read(src, encoding: 'UTF-8'))) if File.exist?(src)
     end
     
     # Copy JavaScript files from lib to output directory

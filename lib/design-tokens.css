@@ -6,6 +6,9 @@
  */
 
 :root {
+  /* Dark-only UI: render native controls, scrollbars, and form widgets dark */
+  color-scheme: dark;
+
   /* ========================================
      COLOR SYSTEM
      ======================================== */
@@ -253,44 +256,4 @@
   --badge-radius: var(--radius-full);
   --badge-font-size: var(--font-size-xs);
   --badge-font-weight: var(--font-weight-semibold);
-}
-
-/* ========================================
-   LEGACY VARIABLE ALIASES
-   For backward compatibility with existing code
-   
-   ⚠️ DEPRECATION NOTICE: 
-   These aliases will be maintained for backward compatibility.
-   New code should use the full token names (e.g., var(--color-bg-primary))
-   instead of legacy aliases (e.g., var(--bg-primary)).
-   
-   No removal timeline - aliases will remain indefinitely for stability.
-   ======================================== */
-
-:root {
-  /* Map old variables to new tokens */
-  /* DEPRECATED: Use var(--color-bg-primary) instead */
-  --bg-primary: var(--color-bg-primary);
-  /* DEPRECATED: Use var(--color-bg-secondary) instead */
-  --bg-card: var(--color-bg-secondary);
-  /* DEPRECATED: Use var(--color-bg-hover) instead */
-  --bg-card-hover: var(--color-bg-hover);
-  /* DEPRECATED: Use var(--color-text-primary) instead */
-  --text-primary: var(--color-text-primary);
-  /* DEPRECATED: Use var(--color-text-secondary) instead */
-  --text-secondary: var(--color-text-secondary);
-  /* DEPRECATED: Use var(--color-accent-primary) instead */
-  --accent-green: var(--color-accent-primary);
-  /* DEPRECATED: Use var(--color-accent-danger) instead */
-  --accent-red: var(--color-accent-danger);
-  /* DEPRECATED: Use var(--color-accent-info) instead */
-  --accent-blue: var(--color-accent-info);
-  /* DEPRECATED: Use var(--color-accent-purple) instead */
-  --accent-purple: var(--color-accent-purple);
-  /* DEPRECATED: Use var(--color-accent-orange) instead */
-  --accent-orange: var(--color-accent-orange);
-  /* DEPRECATED: Use var(--color-border-default) instead */
-  --border-color: var(--color-border-default);
-  /* DEPRECATED: Use var(--touch-target-min) instead */
-  --min-touch-target: var(--touch-target-min);
 }

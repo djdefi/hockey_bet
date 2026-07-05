@@ -1,7 +1,6 @@
 /* Playoff Bracket Styles — Dark Theme with Design Tokens */
 
-/* Warning banner (PR-preview notice) — local, token-driven replacement for
-   Primer's .flash so the page no longer depends on the full Primer stylesheet. */
+/* Warning banner (PR-preview notice) — local, token-driven flash styling. */
 .flash {
   position: relative;
   padding: var(--space-3) var(--space-4);
@@ -14,6 +13,72 @@
   color: var(--color-text-primary);
   background: var(--color-status-warning-subtle);
   border-color: var(--color-accent-warning);
+}
+
+/* Local layout/button primitives (formerly from Primer). */
+.container-lg {
+  max-width: 1012px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.clearfix::before {
+  display: table;
+  content: "";
+}
+
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.col-12 {
+  width: 100%;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 5px var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid;
+  border-radius: var(--radius-md);
+  appearance: none;
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: default;
+}
+
+.btn-sm {
+  padding: 3px 12px;
+  font-size: var(--font-size-xs);
+  line-height: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 16px !important; /* Preserves the previous spacing scale. */
+}
+
+.mt-4 {
+  margin-top: 24px !important; /* Preserves the previous spacing scale. */
+}
+
+.text-center {
+  text-align: center !important;
 }
 
 .playoff-section {
@@ -1081,11 +1146,7 @@
   color: var(--color-text-secondary);
 }
 
-/* ============================================================
-   Align Primer's primary button with the site's teal accent.
-   Primer ships GitHub green (#2da44e), which clashed with the
-   brand accent. Loaded after primer.css so this wins.
-   ============================================================ */
+/* Primary action button aligned with the site's teal accent. */
 .btn-primary {
   color: var(--color-text-inverse);
   background-color: var(--color-accent-primary);

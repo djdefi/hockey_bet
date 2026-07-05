@@ -55,8 +55,7 @@
   ],
   "copy": {
     "vendor": [
-      "chart.umd.js",
-      "primer.css"
+      "chart.umd.js"
     ],
     "css": [
       "styles.css",

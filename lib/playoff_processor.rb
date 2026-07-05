@@ -5,6 +5,7 @@ require 'tzinfo'
 require 'erb'
 require 'fileutils'
 require_relative 'api_validator'
+require_relative 'app_assets'
 
 class PlayoffProcessor
   attr_reader :playoff_data, :playoff_rounds, :cup_odds, :fan_cup_odds, :is_playoff_time, :last_updated, :bracket_logo, :fan_status, :manager_team_map
@@ -656,7 +657,6 @@ class PlayoffProcessor
       <html lang="en">
       <head>
           <title>NHL Playoffs</title>
-          <link rel='stylesheet' href='vendor/primer.css'>
       </head>
       <body>
           <div class="container-lg">
