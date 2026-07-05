@@ -947,7 +947,7 @@ h3 {
     align-items: center;
     justify-content: center;
     color: var(--color-text-muted);
-    opacity: 0.45;
+    opacity: 0.3;
 }
 
 .stat-label {
@@ -965,7 +965,7 @@ h3 {
 .stat-value {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--color-accent-primary);
+    color: var(--color-text-secondary);
     margin-top: auto;
     line-height: 1.2;
     word-break: break-word;
@@ -2822,7 +2822,6 @@ body::before {
 
 .featured-prediction-compact,
 .featured-badge-dense,
-.stat-value,
 .hero-stat-value,
 .leader-achievement {
   color: var(--color-accent-primary);
@@ -2830,6 +2829,7 @@ body::before {
 
 .featured-team-name-dense,
 .stat-label-dense,
+.stat-value,
 .leader-stat-label,
 .matchup-stat-label,
 .detail-label,
