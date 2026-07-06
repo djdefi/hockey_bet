@@ -2699,6 +2699,22 @@ header.site-masthead {
   font-variant-numeric: tabular-nums;
 }
 
+/* Desktop tabs live inside the masthead bar so the header reads as one app
+   bar (brand · nav · meta) instead of a wordmark stranded in empty space.
+   The nav drops its own full-width underline + row margin here; the active
+   tab keeps its short accent underline. Hidden on mobile (bottom nav wins). */
+@media (min-width: 768px) {
+  .site-masthead .desktop-tabs {
+    margin: 0;
+    border-bottom: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .site-masthead .desktop-tab {
+    margin-bottom: 0;
+  }
+}
+
 /* ── Hero: champion + chasers ───────────────────────────────────────── */
 .league-hero {
   display: grid;

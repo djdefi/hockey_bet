@@ -86,6 +86,13 @@
                     <h1 class="masthead-title">NHL Fan League</h1>
                 </span>
             </div>
+            <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
+                <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
+                <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
+                <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
+                <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
+                <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
+            </nav>
             <div class="masthead-meta">
                 <span class="masthead-meta-item masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</span>
             </div>
@@ -120,15 +127,6 @@
                 </div>
             </a>
         <% end %>
-
-        <!-- Desktop Tabs (hidden on mobile) -->
-        <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
-            <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
-            <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
-            <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
-            <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
-            <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
-        </nav>
 
         <!-- Tab: League (Fan Stats Dashboard) -->
         <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
