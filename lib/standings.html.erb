@@ -139,32 +139,40 @@
             <% champ = leaders.first %>
             <section class="league-hero" role="region" aria-label="League leaders">
                 <article class="hero-champ" style="--team: <%= fan_accent(champ[:fan]) %>" aria-label="League leader: <%= champ[:fan] %>">
-                    <div class="hero-champ__eyebrow">
-                        <iconify-icon icon="solar:cup-star-bold" width="15" height="15"></iconify-icon>
-                        <span>League Leader</span>
+                    <div class="hero-champ__main">
+                        <div class="hero-champ__eyebrow">
+                            <iconify-icon icon="solar:cup-star-bold" width="15" height="15"></iconify-icon>
+                            <span>League Leader</span>
+                        </div>
+                        <div class="hero-champ__name"><%= champ[:fan] %></div>
+                        <div class="hero-champ__team">
+                            <span class="hero-champ__dot" aria-hidden="true"></span><%= champ[:team] %>
+                        </div>
+                        <div class="hero-champ__stats">
+                            <div class="hero-stat">
+                                <span class="hero-stat__num"><%= champ[:wins] || 0 %>-<%= champ[:losses] || 0 %>-<%= champ[:ot_losses] || 0 %></span>
+                                <span class="hero-stat__cap">Record</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="hero-stat__num"><%= champ[:points] || 0 %></span>
+                                <span class="hero-stat__cap">Points</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="hero-stat__num"><%= champ[:gpg] || '0.0' %></span>
+                                <span class="hero-stat__cap">GPG</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="hero-stat__num"><%= champ[:streak] || '—' %></span>
+                                <span class="hero-stat__cap">Streak</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="hero-champ__name"><%= champ[:fan] %></div>
-                    <div class="hero-champ__team">
-                        <span class="hero-champ__dot" aria-hidden="true"></span><%= champ[:team] %>
+                    <% if champ[:value] %>
+                    <div class="hero-champ__medallion" aria-label="Stanley Cup odds">
+                        <span class="hero-champ__odds"><%= champ[:value].round %><span class="hero-champ__odds-pct">%</span></span>
+                        <span class="hero-champ__odds-cap">Cup Odds</span>
                     </div>
-                    <div class="hero-champ__stats">
-                        <div class="hero-stat">
-                            <span class="hero-stat__num"><%= champ[:wins] || 0 %>-<%= champ[:losses] || 0 %>-<%= champ[:ot_losses] || 0 %></span>
-                            <span class="hero-stat__cap">Record</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="hero-stat__num"><%= champ[:points] || 0 %></span>
-                            <span class="hero-stat__cap">Points</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="hero-stat__num"><%= champ[:gpg] || '0.0' %></span>
-                            <span class="hero-stat__cap">GPG</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="hero-stat__num"><%= champ[:streak] || '—' %></span>
-                            <span class="hero-stat__cap">Streak</span>
-                        </div>
-                    </div>
+                    <% end %>
                 </article>
                 <ol class="hero-chasers" aria-label="Chasing the leader">
                     <% leaders.drop(1).each_with_index do |l, i| %>
