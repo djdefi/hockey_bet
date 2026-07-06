@@ -1,6 +1,6 @@
 // Service Worker for Hockey Bet - installable shell + refresh-friendly caching
-const CACHE_NAME = 'hockey-bet-static-v10';
-const DATA_CACHE_NAME = 'hockey-bet-data-v10';
+const CACHE_NAME = 'hockey-bet-static-v11';
+const DATA_CACHE_NAME = 'hockey-bet-data-v11';
 const APP_ASSET_MANIFEST_URL = './app-assets.json';
 const LOCAL_ORIGIN = self.location.origin;
 

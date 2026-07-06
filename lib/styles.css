@@ -1669,13 +1669,19 @@ h3 {
 
 /* Chart styling */
 .chart-container {
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-surface-raised);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    border: 1px solid var(--color-border-default);
+    border: 1px solid color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-border-default));
     min-height: 400px;
     position: relative;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+#playoff-odds-tab .chart-container,
+#trends-tab .chart-container {
+    background: linear-gradient(180deg, var(--color-surface-raised) 0%, var(--color-bg-secondary) 100%);
 }
 
 /* Loading indicator for charts */
@@ -2290,6 +2296,12 @@ h3 {
     margin-bottom: 1rem;
 }
 
+.playoff-odds-summary > div {
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border-default);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
 .playoff-odds-summary table {
     font-size: 0.8rem;
     width: 100%;
@@ -2314,21 +2326,21 @@ h3 {
 #playoffOddsChart + .chartjs-legend,
 .chart-container .chartjs-legend,
 .chart-container canvas + div {
-    color: #ffffff !important;
+    color: var(--color-text-secondary) !important;
 }
 
 .chart-container .chartjs-legend ul,
 .chart-container .chartjs-legend li {
-    color: #ffffff !important;
+    color: var(--color-text-secondary) !important;
 }
 
 /* Override Chart.js default legend text color */
 #playoff-odds-tab .chart-container canvas {
-    color: #ffffff;
+    color: var(--color-text-secondary);
 }
 
 #playoff-odds-tab .chart-container {
-    --legend-text-color: #ffffff;
+    --legend-text-color: var(--color-text-secondary);
 }
 
 /* Responsive improvements for playoff odds */

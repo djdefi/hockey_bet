@@ -1052,12 +1052,15 @@
                     label: fanName,
                     data: data,
                     borderColor: color,
-                    backgroundColor: color + '33', // Add transparency
+                    backgroundColor: colorWithAlpha(color, 0.18),
                     borderWidth: isMobile ? 1.5 : 2,
                     tension: 0.1,
                     pointRadius: isMobile ? 2 : 3,
                     pointHoverRadius: isMobile ? 4 : 5,
-                    pointHitRadius: isMobile ? 10 : 8
+                    pointHitRadius: isMobile ? 10 : 8,
+                    pointBackgroundColor: resolveThemeColor('--color-bg-secondary', '#14171d'),
+                    pointBorderColor: color,
+                    pointBorderWidth: isMobile ? 1 : 1.5
                 };
             });
             
@@ -1113,9 +1116,10 @@
                                 usePointStyle: true,
                                 padding: isMobile ? 6 : 10,
                                 font: {
-                                    size: isMobile ? 9 : 11
+                                    size: isMobile ? 9 : 11,
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 },
-                                color: '#9aa5b3',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 boxWidth: isMobile ? 8 : 12,
                                 boxHeight: isMobile ? 8 : 12
                             }
@@ -1123,17 +1127,19 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
-                            backgroundColor: 'rgba(20, 23, 29, 0.97)',
-                            titleColor: '#ffffff',
-                            bodyColor: '#9aa5b3',
-                            borderColor: '#262c36',
+                            backgroundColor: resolveThemeColor('--color-bg-secondary', '#14171d'),
+                            titleColor: resolveThemeColor('--color-text-primary', '#f3f6fa'),
+                            bodyColor: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
+                            borderColor: resolveThemeColor('--color-border-default', '#262c36'),
                             borderWidth: 1,
                             padding: isMobile ? 8 : 12,
                             titleFont: {
-                                size: isMobile ? 11 : 13
+                                size: isMobile ? 11 : 13,
+                                family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                             },
                             bodyFont: {
-                                size: isMobile ? 10 : 12
+                                size: isMobile ? 10 : 12,
+                                family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                             },
                             callbacks: {
                                 title: function(context) {
@@ -1151,23 +1157,26 @@
                             title: {
                                 display: !isMobile,
                                 text: 'Date',
-                                color: '#9aa5b3',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 font: {
-                                    size: isMobile ? 10 : 12
+                                    size: isMobile ? 10 : 12,
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 }
                             },
                             ticks: {
                                 maxRotation: isMobile ? 90 : 45,
                                 minRotation: isMobile ? 90 : 45,
-                                color: '#9aa5b3',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 font: {
-                                    size: isMobile ? 9 : 11
+                                    size: isMobile ? 9 : 11,
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 },
                                 autoSkip: true,
                                 maxTicksLimit: isMobile ? 8 : 12
                             },
                             grid: {
-                                color: 'rgba(38, 44, 54, 0.6)',
+                                color: colorWithAlpha(resolveThemeColor('--color-border-default', '#262c36'), 0.5),
+                                borderColor: resolveThemeColor('--color-border-default', '#262c36'),
                                 display: !isMobile
                             }
                         },
@@ -1175,20 +1184,23 @@
                             title: {
                                 display: true,
                                 text: 'Points',
-                                color: '#9aa5b3',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 font: {
-                                    size: isMobile ? 10 : 12
+                                    size: isMobile ? 10 : 12,
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 }
                             },
                             ticks: {
-                                color: '#9aa5b3',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 font: {
-                                    size: isMobile ? 9 : 11
+                                    size: isMobile ? 9 : 11,
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 }
                             },
                             beginAtZero: true,
                             grid: {
-                                color: 'rgba(38, 44, 54, 0.6)'
+                                color: colorWithAlpha(resolveThemeColor('--color-border-default', '#262c36'), 0.5),
+                                borderColor: resolveThemeColor('--color-border-default', '#262c36')
                             }
                         }
                     },
@@ -1218,7 +1230,41 @@
                 return `${year - 1}-${year}`;
             }
         }
-        
+
+        function resolveThemeColor(variableName, fallback) {
+            const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+            return value || fallback;
+        }
+
+        function colorWithAlpha(color, alpha) {
+            if (!color) return `rgba(31, 157, 255, ${alpha})`;
+
+            if (color.startsWith('#')) {
+                const hex = color.slice(1);
+                const normalized = hex.length === 3
+                    ? hex.split('').map(char => char + char).join('')
+                    : hex;
+
+                const red = parseInt(normalized.slice(0, 2), 16);
+                const green = parseInt(normalized.slice(2, 4), 16);
+                const blue = parseInt(normalized.slice(4, 6), 16);
+                return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+            }
+
+            const rgbMatch = color.match(/^rgb\(([^)]+)\)$/i);
+            if (rgbMatch) {
+                return `rgba(${rgbMatch[1]}, ${alpha})`;
+            }
+
+            const rgbaMatch = color.match(/^rgba\(([^)]+)\)$/i);
+            if (rgbaMatch) {
+                const parts = rgbaMatch[1].split(',').map(part => part.trim());
+                return `rgba(${parts.slice(0, 3).join(', ')}, ${alpha})`;
+            }
+
+            return color;
+        }
+
         // Playoff Odds Sunburst Chart
         let playoffOddsChartInstance = null;
         
@@ -1280,10 +1326,10 @@
                 }
 
                 const wrapper = document.createElement('div');
-                wrapper.setAttribute('style', 'background: var(--color-bg-secondary); border-radius: 8px; padding: 0.75rem; overflow-x: auto;');
+                wrapper.setAttribute('style', 'background: var(--color-surface-raised); border-radius: 8px; padding: 0.75rem; overflow-x: auto; border: 1px solid var(--color-border-default);');
 
                 const table = document.createElement('table');
-                table.setAttribute('style', 'width: 100%; border-collapse: collapse; font-size: 0.8rem;');
+                table.setAttribute('style', 'width: 100%; border-collapse: collapse; font-size: 0.8rem; color: var(--color-text-primary);');
 
                 const thead = document.createElement('thead');
                 const headerRow = document.createElement('tr');
@@ -1359,22 +1405,20 @@
             // Generate team colors
             function generateTeamColors(count) {
                 const colors = [];
-                const hueStep = 360 / count;
-                const hueOffset = 20;
+                const palette = [
+                    resolveThemeColor('--color-accent-primary', '#1f9dff'),
+                    resolveThemeColor('--color-accent-positive', '#35d07f'),
+                    resolveThemeColor('--color-accent-purple', '#a06bff'),
+                    resolveThemeColor('--color-accent-orange', '#ff7a2f'),
+                    resolveThemeColor('--color-accent-gold', '#f5c451'),
+                    resolveThemeColor('--color-accent-danger', '#ff5347'),
+                    resolveThemeColor('--color-accent-warning', '#ffb020'),
+                    resolveThemeColor('--color-accent-info', '#1f9dff')
+                ];
                 for (let i = 0; i < count; i++) {
-                    const hue = (i * hueStep + hueOffset) % 360;
-                    colors.push({
-                        h: hue,
-                        s: 75,
-                        l: 58
-                    });
+                    colors.push(palette[i % palette.length]);
                 }
                 return colors;
-            }
-            
-            // Convert HSL object to HSLA string with alpha
-            function hslToHsla(hsl, alpha) {
-                return `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha})`;
             }
             
             const colors = generateTeamColors(teams.length);
@@ -1393,11 +1437,10 @@
                     label: stageLabels[stageIndex],
                     data: data,
                     backgroundColor: colors.map(c => {
-                        // Make inner rings more transparent, outer rings more opaque
-                        const alpha = 0.5 + (stageIndex * 0.1);
-                        return hslToHsla(c, alpha);
+                        const alpha = 0.38 + (stageIndex * 0.1);
+                        return colorWithAlpha(c, alpha);
                     }),
-                    borderColor: '#14171d',
+                    borderColor: resolveThemeColor('--color-bg-secondary', '#14171d'),
                     borderWidth: 2
                 });
             });
@@ -1431,12 +1474,12 @@
                             position: 'bottom',
                             align: 'start',
                             labels: {
-                                color: '#ffffff',
+                                color: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                 padding: 10,
                                 font: {
                                     size: 12,
                                     weight: '500',
-                                    family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                                    family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                                 },
                                 boxWidth: 20,
                                 boxHeight: 12,
@@ -1453,10 +1496,10 @@
                                         
                                         return {
                                             text: `${label} ${teamData.win_cup.toFixed(0)}%`,
-                                            fillStyle: hslToHsla(color, 0.85),
-                                            strokeStyle: '#ffffff',
+                                            fillStyle: colorWithAlpha(color, 0.85),
+                                            strokeStyle: resolveThemeColor('--color-bg-secondary', '#14171d'),
                                             lineWidth: 1,
-                                            fontColor: '#ffffff',
+                                            fontColor: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
                                             hidden: false,
                                             index: i
                                         };
@@ -1465,10 +1508,10 @@
                             }
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(20, 23, 29, 0.97)',
-                            titleColor: '#ffffff',
-                            bodyColor: '#9aa5b3',
-                            borderColor: '#262c36',
+                            backgroundColor: resolveThemeColor('--color-bg-secondary', '#14171d'),
+                            titleColor: resolveThemeColor('--color-text-primary', '#f3f6fa'),
+                            bodyColor: resolveThemeColor('--color-text-secondary', '#9aa5b3'),
+                            borderColor: resolveThemeColor('--color-border-default', '#262c36'),
                             borderWidth: 1,
                             padding: 12,
                             callbacks: {
