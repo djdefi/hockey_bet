@@ -48,17 +48,16 @@ test.describe('Page load and structure', () => {
 
   test('has header with NHL Fan League heading', async ({ page }) => {
     await page.goto('/');
-    const heading = page.locator('h1');
+    const heading = page.locator('.site-masthead h1');
     await expect(heading).toBeVisible();
     await expect(heading).toHaveText('NHL Fan League');
   });
 
   test('has last updated timestamp', async ({ page }) => {
     await page.goto('/');
-    const timestamp = page.locator('header .text-secondary');
+    const timestamp = page.locator('.site-masthead .masthead-updated');
     await expect(timestamp).toBeVisible();
-    const text = await timestamp.textContent();
-    expect(text).toMatch(/Last updated:/);
+    await expect(timestamp).toHaveText(/^Updated .+ · \d{1,2}:\d{2} [AP]M PT$/);
   });
 
   test('loads external resources (Iconify, stylesheets)', async ({ page }) => {
@@ -187,9 +186,11 @@ test.describe('Mobile bottom navigation', () => {
 
   test('has bottom nav items', async ({ page }) => {
     await page.goto('/');
-    const navItems = page.locator('.nav-item');
-    const count = await navItems.count();
-    expect(count).toBeGreaterThanOrEqual(4);
+    const navItems = page.locator('.bottom-nav button.nav-item');
+    await expect(navItems).toHaveCount(5);
+    await expect(navItems.locator('.nav-item-label')).toHaveText([
+      'League', 'Matchups', 'Standings', 'Playoff Odds', 'Trends',
+    ]);
     await snap(page, '07-mobile-initial');
   });
 
@@ -243,27 +244,32 @@ test.describe('League tab content', () => {
     const leagueTab = page.locator('#league-tab');
     await expect(leagueTab).toHaveClass(/active/);
 
-    // Should have a heading visible
-    const headings = leagueTab.locator('h2, h3');
-    const count = await headings.count();
-    expect(count).toBeGreaterThan(0);
+    await expect(leagueTab.getByRole('heading', { name: 'League overview' })).toBeVisible();
   });
 
-  test('shows top leaders section', async ({ page }) => {
+  test('shows league leaders or the season-ready state', async ({ page }) => {
     await page.goto('/');
-    // Look for leader cards or top-3 section
-    const leaderCards = page.locator('#league-tab .leader-card, #league-tab .top-leaders');
-    const count = await leaderCards.count();
-    expect(count).toBeGreaterThanOrEqual(0); // May not have data in fixtures
+    const leagueTab = page.locator('#league-tab');
+    const leaders = leagueTab.getByRole('region', { name: 'League leaders', exact: true });
+    if (await leaders.count()) {
+      await expect(leaders).toBeVisible();
+      await expect(leaders.locator('.hero-champ__name')).toHaveText(/\S/);
+      await expect(leaders.locator('.hero-champ__team')).toHaveText(/\S/);
+      await expect(leaders.locator('.hero-stat__cap')).toHaveText(['Record', 'Points', 'GPG', 'Streak']);
+    } else {
+      await expect(leagueTab.getByRole('heading', { name: 'The league is getting ready' })).toBeVisible();
+      await expect(leagueTab.locator('.empty-state p')).toHaveText(
+        'Season leaders will appear when team statistics are available.'
+      );
+    }
     await snap(page, '10-league-leaders');
   });
 
-  test('shows team cards', async ({ page }) => {
+  test('league standings link opens team rows', async ({ page }) => {
     await page.goto('/');
-    const teamCards = page.locator('#league-tab .team-card');
-    const count = await teamCards.count();
-    // Should have some team cards in the standings section
-    expect(count).toBeGreaterThanOrEqual(0);
+    await page.getByRole('button', { name: 'View team standings', exact: true }).click();
+    await expect(page.locator('#standings-tab')).toHaveClass(/active/);
+    await expect(page.locator('#standings-tab .team-card').first()).toBeVisible();
   });
 });
 
@@ -393,15 +399,17 @@ test.describe('Matchups tab', () => {
     await expect(matchupsTab).toHaveClass(/active/);
 
     const matchupCards = matchupsTab.locator('.matchup-card');
-    const emptyMsg = matchupsTab.locator('.text-secondary');
+    const emptyState = matchupsTab.locator('.empty-state');
     const cardCount = await matchupCards.count();
 
     if (cardCount > 0) {
-      // Matchups exist - validate structure
+      await expect(matchupCards.first()).toBeVisible();
       await snap(page, '12-matchups-cards');
     } else {
-      // Should show empty message
-      await expect(emptyMsg).toBeVisible();
+      await expect(emptyState.getByRole('heading', { name: 'No upcoming fan matchups' })).toBeVisible();
+      await expect(emptyState.locator('p')).toHaveText(
+        'Games will appear here when the NHL schedule has your fan teams facing each other.'
+      );
     }
   });
 
@@ -547,7 +555,7 @@ test.describe('Standings tab', () => {
     const standingsTab = page.locator('#standings-tab');
     await expect(standingsTab).toHaveClass(/active/);
 
-    // Should have team cards or a standings table
+    // Fan standings are expandable rows.
     const teamCards = standingsTab.locator('.team-card');
     const count = await teamCards.count();
     expect(count).toBeGreaterThan(0);
@@ -559,39 +567,37 @@ test.describe('Standings tab', () => {
     await page.goto('/');
     await clickTab(page, 'standings');
 
-    const teamCards = page.locator('#standings-tab .team-card');
-    const count = await teamCards.count();
-    if (count === 0) {
-      test.skip();
-      return;
-    }
-
-    const firstCard = teamCards.first();
-
-    // Should have a fan name or team name visible
-    const textContent = await firstCard.textContent();
-    expect(textContent?.trim().length).toBeGreaterThan(0);
+    const firstCard = page.locator('#standings-tab .team-card').first();
+    await expect(firstCard).toBeVisible();
+    await expect(firstCard.locator('.team-name')).toHaveText(/\S/);
+    await expect(firstCard.locator('.team-fan')).toHaveText(/\S/);
+    await expect(firstCard.locator('.team-points-value')).toHaveText(/\S/);
   });
 
-  test('team cards are expandable', async ({ page }) => {
+  test('team rows expand with pointer, Enter, and Space', async ({ page }) => {
     await page.goto('/');
     await clickTab(page, 'standings');
 
-    const expandToggles = page.locator('#standings-tab .expand-toggle');
-    const count = await expandToggles.count();
+    const card = page.locator('#standings-tab .team-card').first();
+    const details = card.locator('.team-card-details');
+    await expect(card).toHaveAttribute('role', 'button');
+    await expect(card).toHaveAttribute('tabindex', '0');
+    await expect(card).toHaveAttribute('aria-controls', await details.getAttribute('id') as string);
+    await expect(card).toHaveAttribute('aria-expanded', 'false');
+    await expect(details).toBeHidden();
 
-    if (count > 0) {
-      // Click first expand toggle
-      await expandToggles.first().click();
-      await page.waitForTimeout(300);
+    await card.click();
+    await expect(card).toHaveAttribute('aria-expanded', 'true');
+    await expect(details).toBeVisible();
 
-      // Check that expanded content is visible
-      const expanded = page.locator('#standings-tab .team-card.expanded, #standings-tab .expandable.active');
-      const expandedCount = await expanded.count();
-      expect(expandedCount).toBeGreaterThan(0);
+    await card.press('Enter');
+    await expect(card).toHaveAttribute('aria-expanded', 'false');
+    await expect(details).toBeHidden();
 
-      await snap(page, '15-standings-expanded');
-    }
+    await card.press('Space');
+    await expect(card).toHaveAttribute('aria-expanded', 'true');
+    await expect(details).toBeVisible();
+    await snap(page, '15-standings-expanded');
   });
 
   test('team cards have playoff status indicators', async ({ page }) => {
@@ -601,11 +607,14 @@ test.describe('Standings tab', () => {
     const teamCards = page.locator('#standings-tab .team-card');
     const count = await teamCards.count();
 
-    // At least some cards should have status classes
-    const statusCards = page.locator('#standings-tab .team-card[class*="color-bg-"]');
-    const statusCount = await statusCards.count();
-    // Allow 0 if fixtures don't have playoff status
-    expect(statusCount).toBeGreaterThanOrEqual(0);
+    expect(count).toBeGreaterThan(0);
+    const statuses = teamCards.locator('.status-badge[role="status"]');
+    await expect(statuses).toHaveCount(count);
+    for (const status of await statuses.all()) {
+      await expect(status).toBeVisible();
+      await expect(status).toHaveAttribute('aria-label', /\S/);
+      await expect(status).toHaveText(/\S/);
+    }
   });
 });
 
@@ -639,8 +648,8 @@ test.describe('Playoff odds tab', () => {
     await clickTab(page, 'playoff-odds');
 
     const summary = page.locator('#playoffOddsSummary');
-    const count = await summary.count();
-    expect(count).toBeGreaterThanOrEqual(0);
+    await expect(summary.locator('.odds-table')).toBeVisible();
+    await expect(summary.locator('th[scope="col"]')).toHaveText(['Fan', 'Playoffs', 'R2', 'R3', 'Finals', 'Cup']);
   });
 });
 
@@ -657,22 +666,29 @@ test.describe('Trends tab', () => {
     await snap(page, '17-trends');
   });
 
-  test('has chart canvas element', async ({ page }) => {
+  test('renders a trend chart or an explicit insufficient-history state', async ({ page }) => {
     await page.goto('/');
     await clickTab(page, 'trends');
 
     const canvas = page.locator('#leagueTrendChart');
-    await expect(canvas).toBeVisible();
+    const status = page.locator('#trend-status');
+    await expect(page.locator('#seasonSelector')).not.toContainText('Loading...');
+    await expect(canvas).toHaveAttribute('role', 'img');
+    if (await status.isVisible()) {
+      await expect(canvas).toBeHidden();
+      await expect(status).toHaveAttribute('role', 'status');
+      await expect(status).toContainText(/No trend data for this season yet|Trends appear after a second day of data/);
+    } else {
+      await expect(canvas).toBeVisible();
+      await expect(status).toBeHidden();
+    }
   });
 
   test('has season selector', async ({ page }) => {
     await page.goto('/');
     await clickTab(page, 'trends');
 
-    const selector = page.locator('#seasonSelector');
-    if (await selector.isVisible().catch(() => false)) {
-      await expect(selector).toBeVisible();
-    }
+    await expect(page.getByLabel('Season', { exact: true })).toBeVisible();
   });
 });
 
@@ -719,10 +735,12 @@ test.describe('Accessibility', () => {
     }
   });
 
-  test('header is landmark', async ({ page }) => {
+  test('masthead and main content are landmarks', async ({ page }) => {
     await page.goto('/');
-    const header = page.locator('header[role="banner"]');
+    const header = page.locator('header.site-masthead[role="banner"]');
     await expect(header).toBeVisible();
+    await expect(page.locator('main#main-content')).toBeVisible();
+    await expect(page.locator('.skip-link')).toHaveAttribute('href', '#main-content');
   });
 
   test('navigation is landmark', async ({ page }) => {
@@ -774,19 +792,35 @@ test.describe('Runtime health', () => {
     expect(unexpectedErrors).toEqual([]);
   });
 
-  test('critical CSS and JS files load', async ({ page }) => {
+  test('critical CSS and JS files load', async ({ page, baseURL }) => {
     const failedRequests: string[] = [];
+    const origin = new URL(baseURL as string).origin;
     page.on('requestfailed', (req) => {
       const url = req.url();
-      // Only flag local resources, not external CDNs
-      if (url.includes('localhost')) {
+      if (new URL(url).origin === origin) {
         failedRequests.push(url);
+      }
+    });
+    page.on('response', (response) => {
+      if (new URL(response.url()).origin === origin && response.status() >= 400) {
+        failedRequests.push(`${response.status()} ${response.url()}`);
       }
     });
 
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
+    const response = await page.request.get('app-assets.json');
+    await expect(response).toBeOK();
+    const assets = await response.json();
+    expect(assets.stylesheets.length).toBeGreaterThan(0);
+    expect(assets.local_scripts.length).toBeGreaterThan(0);
+    for (const { href } of assets.stylesheets) {
+      await expect(page.locator(`link[rel="stylesheet"][href="${href}"]`)).toHaveCount(1);
+    }
+    for (const { src } of assets.local_scripts) {
+      await expect(page.locator(`script[src="${src}"]`)).toHaveCount(1);
+    }
     expect(failedRequests).toEqual([]);
   });
 });

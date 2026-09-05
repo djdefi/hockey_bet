@@ -65,26 +65,30 @@
   end
 %>
 <!DOCTYPE html>
+<!--
+THESIS: Follow the pool through one framed playoff field.
+OWN-WORLD: White data on neutral black, amber focus, open round columns.
+STORY: Read fan status, compare Cup odds, follow each best-of-seven series.
+FIRST VIEWPORT: Return navigation, a corner-framed playoff title, then fan status.
+FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
+-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>NHL Playoffs</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.svg">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
     
     <!-- Home Screen App Icons and Meta -->
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Playoffs">
-    <meta name="theme-color" content="#0a0c10">
+    <meta name="theme-color" content="#101214">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Fonts: Barlow Condensed (display) + Inter (body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+    <script><%= File.read("lib/theme-init.js", encoding: 'UTF-8') %></script>
     
     <!-- Iconify Icon Web Component for Solar icons -->
     <script src="https://code.iconify.design/iconify-icon/2.2.0/iconify-icon.min.js" defer></script>
@@ -121,11 +125,34 @@
         .header-section {
             text-align: left;
             margin-bottom: var(--space-8);
-            padding: var(--space-5);
-            background-color: var(--color-bg-secondary);
+            padding: var(--space-8);
+            background-color: var(--color-bg-depth);
             border: 1px solid var(--color-border-default);
-            border-left: 4px solid var(--color-accent-primary);
-            border-radius: var(--radius-lg);
+            border-radius: 0;
+            position: relative;
+        }
+
+        .header-section::before,
+        .header-section::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--color-text-secondary);
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .header-section::before {
+            top: 8px;
+            left: 8px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .header-section::after {
+            bottom: 8px;
+            right: 8px;
+            border-width: 0 2px 2px 0;
         }
         
         .header-section h1 {
@@ -182,14 +209,16 @@
         }
         
         body {
+            margin: 0;
             background-color: var(--color-bg-primary);
             color: var(--color-text-primary);
-            font-family: var(--font-family-primary), 'Inter', sans-serif;
+            font-family: var(--font-family-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
         
         .container-lg {
-            padding-top: var(--space-6);
-            padding-bottom: var(--space-6);
+            padding: var(--space-6) var(--space-6) var(--space-12);
         }
         
         .mt-4.text-center .btn {
@@ -202,12 +231,12 @@
         }
     </style>
 </head>
-<body>
+<body class="playoffs-page">
     <div class="container-lg clearfix">
         <div class="col-12">
             <!-- Navigation -->
             <div class="back-link">
-                <a href="<%= pr_preview && pr_number ? "/pr-#{pr_number}/" : "/" %>" class="btn btn-sm">&larr; Back to Standings</a>
+                <a href="index.html" class="btn btn-sm">&larr; Back to league</a>
             </div>
 
             <!-- Header -->
@@ -223,8 +252,7 @@
                     <img class="bracket-hero" src="<%= @bracket_logo %>" alt="NHL Stanley Cup Playoffs banner" loading="lazy" onerror="this.style.display='none'">
                 <% end %>
 
-                <div class="bracket-eyebrow">Stanley Cup</div>
-                <h1 class="bracket-title">Playoffs <% if Date.today.year %><span class="bracket-year"><%= Date.today.year %></span><% end %></h1>
+                <h1 class="bracket-title">Stanley Cup playoffs <span class="bracket-year"><%= Date.today.year %></span></h1>
 
                 <% if @last_updated %>
                     <div class="last-updated">
@@ -401,11 +429,7 @@
 
             <!-- Navigation Links -->
             <div class="mt-4 text-center">
-                <% if pr_preview && pr_number %>
-                    <a href="/pr-<%= pr_number %>/" class="btn btn-primary">View Standings</a>
-                <% else %>
-                    <a href="/" class="btn btn-primary">View Standings</a>
-                <% end %>
+                <a href="index.html" class="btn btn-primary">Back to league</a>
             </div>
         </div>
     </div>

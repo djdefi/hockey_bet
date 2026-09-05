@@ -72,32 +72,23 @@ test.describe('Standings Table', () => {
 test.describe('Image Fallback', () => {
   test.beforeEach(async ({ page }) => {
     await loadFixture(page);
+    await page.evaluate(() => switchTab('matchups'));
   });
 
   test('broken images trigger fallback display', async ({ page }) => {
-    // Wait for onerror to fire on the broken image
-    await page.waitForTimeout(1000);
-
     const fallback = page.locator('.team-logo-fallback').first();
-    const isHidden = await fallback.evaluate(el => el.classList.contains('hidden'));
-    // After onerror, fallback should not be hidden
-    expect(isHidden).toBe(false);
+    await expect(fallback).not.toHaveClass(/hidden/);
+    await expect(fallback).toBeVisible();
   });
 
   test('fallback shows team abbreviation', async ({ page }) => {
-    await page.waitForTimeout(1000);
-
     const fallback = page.locator('.team-logo-fallback').first();
-    const text = await fallback.textContent();
-    expect(text.trim()).toBe('SJS');
+    await expect(fallback).toHaveText('SJS');
   });
 
   test('broken img element is hidden after error', async ({ page }) => {
-    await page.waitForTimeout(1000);
-
     const img = page.locator('.matchup-card img.team-logo').first();
-    const display = await img.evaluate(el => el.style.display);
-    expect(display).toBe('none');
+    await expect(img).toHaveCSS('display', 'none');
   });
 });
 

@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<!--
+THESIS: The fan pool is the subject in a broadcast viewfinder, not a wall of cards.
+OWN-WORLD: Neutral black field, white readouts, amber focus brackets, system sans
+for names and controls, tabular monospace for measurements. No decorative glow.
+STORY: Find the leader, compare the chase, then focus on a team, game, or trend.
+FIRST VIEWPORT: Compact masthead and view rail above one corner-framed league
+field. The leader sits left, available chasers right, and standings access below.
+FORM: Broadcast Viewfinder, user-selected challenger, seed 5e1fc3ac. A wide
+overview narrows to in-place team details; mobile stacks the same reading order.
+-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -19,10 +29,7 @@
 
     <!-- Critical CSS inlined for instant render -->
     <style>
-        :root{--color-bg-primary:#0a0c10;--color-bg-secondary:#14171d;--color-text-primary:#f3f6fa;--color-text-secondary:#9aa5b3;--color-accent-primary:#1f9dff;--color-border-default:#262c36}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--color-bg-primary);color:var(--color-text-primary);margin:0;padding:0 0 80px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}h1,h2,h3{font-family:'Barlow Condensed','Inter',-apple-system,sans-serif;font-weight:700;margin-top:0;text-transform:uppercase;letter-spacing:.01em}h1{font-size:2rem;margin-bottom:.5rem}.app-container{max-width:100%;margin:0 auto;padding:1rem;padding-bottom:100px}header{margin-bottom:1rem}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
-        .skeleton{background:linear-gradient(90deg,var(--color-bg-secondary,#14171d) 25%,#1e232b 50%,var(--color-bg-secondary,#14171d) 75%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
-        @keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
-        .team-logo{background:var(--color-bg-secondary,#14171d);border-radius:3px}
+        :root{color-scheme:dark;--color-bg-primary:#101214;--color-bg-secondary:#171a1d;--color-text-primary:#f4f5f6;--color-text-secondary:#b2b8bf;--color-accent-primary:#ffbc52;--color-border-default:#363c42}*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--color-bg-primary);color:var(--color-text-primary);margin:0;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}.tab-section{display:none}.tab-section.active{display:block}.desktop-tabs{display:none}@media(min-width:768px){.desktop-tabs{display:flex}}
     </style>
     
     <!-- Theme init — apply stored team theme before first paint -->
@@ -42,12 +49,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NHL Fan League">
-    <meta name="theme-color" content="#0a0c10">
+    <meta name="theme-color" content="#101214">
     
     <!-- Performance Optimization: Preconnect to external origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="dns-prefetch" href="https://api-web.nhle.com">
     
     <script>
@@ -69,11 +73,11 @@
     <div class="app-accent-bar" aria-hidden="true"></div>
     <div class="app-container">
         <!-- Header -->
-        <header class="mb-3 site-masthead" role="banner">
+        <header class="site-masthead" role="banner">
             <div class="masthead-brand">
                 <span class="masthead-mark" aria-hidden="true">
                     <svg viewBox="0 0 48 48" width="46" height="46">
-                        <rect class="mark-tile" x="2" y="2" width="44" height="44" rx="13"/>
+                        <path class="mark-tile" d="M2 15V2h13m18 0h13v13M2 33v13h13m18 0h13V33"/>
                         <g class="mark-sticks" stroke-width="3.6" stroke-linecap="round" fill="none">
                             <line x1="15" y1="34" x2="33" y2="14"/>
                             <line x1="33" y1="34" x2="15" y2="14"/>
@@ -82,22 +86,24 @@
                     </svg>
                 </span>
                 <span class="masthead-lockup">
-                    <span class="masthead-eyebrow">Fantasy Hockey Pool</span>
                     <h1 class="masthead-title">NHL Fan League</h1>
+                    <span class="masthead-description">Fantasy hockey. In focus.</span>
                 </span>
             </div>
-            <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
+            <div class="masthead-meta">
+                <span class="masthead-meta-item masthead-source">NHL standings snapshot</span>
+                <span class="masthead-meta-item masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</span>
+            </div>
+        </header>
+        <nav class="desktop-tabs" role="navigation" aria-label="Main navigation">
                 <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
                 <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
                 <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
                 <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
                 <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
-            </nav>
-            <div class="masthead-meta">
-                <span class="masthead-meta-item masthead-updated">Updated <%= Time.parse(last_updated.to_s).strftime("%b %-d, %Y · %-I:%M %p") %> PT</span>
-            </div>
-        </header>
+        </nav>
 
+        <main id="main-content">
         <%
           playoff_proc = (defined?(playoff_processor) && playoff_processor) || nil
           if playoff_proc && playoff_proc.is_playoff_time
@@ -130,21 +136,45 @@
 
         <!-- Tab: League (Fan Stats Dashboard) -->
         <div id="league-tab" class="tab-section active" role="tabpanel" aria-label="League statistics">
-            
+            <div class="view-heading">
+                <div>
+                    <h2>League overview</h2>
+                    <p>Your teams. The whole picture.</p>
+                </div>
+                <div class="view-readout">
+                    <% season_id = teams.first&.fetch('seasonId', nil).to_s %>
+                    <% if season_id.match?(/\A\d{8}\z/) %>
+                    <div>SEASON <strong><%= season_id[0, 4] %>/<%= season_id[6, 2] %></strong></div>
+                    <% end %>
+                    <div><strong><%= manager_team_map.values.reject { |fan| fan == 'N/A' }.uniq.length %></strong> FANS IN FRAME</div>
+                </div>
+            </div>
+
             <!-- League leaders: champion + chasers -->
             <% if bet_stats && bet_stats[:best_cup_odds] && bet_stats[:best_cup_odds].any? %>
             <% leaders = bet_stats[:best_cup_odds].first(5) %>
             <% champ = leaders.first %>
-            <section class="league-hero" role="region" aria-label="League leaders">
-                <article class="hero-champ" style="--team: <%= fan_accent(champ[:fan]) %>" aria-label="League leader: <%= champ[:fan] %>">
-                    <div class="hero-champ__main">
-                        <div class="hero-champ__eyebrow">
-                            <iconify-icon icon="solar:cup-star-bold" width="15" height="15"></iconify-icon>
-                            <span>League Leader</span>
+            <div class="viewfinder-frame">
+                <span class="frame-corner frame-corner--tl" aria-hidden="true"></span>
+                <span class="frame-corner frame-corner--tr" aria-hidden="true"></span>
+                <span class="frame-corner frame-corner--bl" aria-hidden="true"></span>
+                <span class="frame-corner frame-corner--br" aria-hidden="true"></span>
+                <section class="league-hero" role="region" aria-label="League leaders">
+                    <article class="hero-champ" aria-label="League leader: <%= champ[:fan] %>">
+                        <div class="hero-champ__header">
+                            <h3><span class="hero-champ__rank">#1</span> League leader</h3>
+                            <% if champ[:value] %>
+                            <span class="hero-champ__odds">CUP <strong><%= champ[:value].round %>%</strong></span>
+                            <% end %>
                         </div>
-                        <div class="hero-champ__name"><%= champ[:fan] %></div>
-                        <div class="hero-champ__team">
-                            <span class="hero-champ__dot" aria-hidden="true"></span><%= champ[:team] %>
+                        <div class="hero-champ__identity">
+                            <% if champ[:team_abbrev] %>
+                            <img class="hero-champ__logo" src="<%= get_team_logo_url(champ[:team_abbrev]) %>" alt="<%= champ[:team] %> logo" width="100" height="100" decoding="async">
+                            <% end %>
+                            <div>
+                                <div class="hero-champ__name"><%= champ[:fan] %></div>
+                                <div class="hero-champ__team"><%= champ[:team] %></div>
+                            </div>
                         </div>
                         <div class="hero-champ__stats">
                             <div class="hero-stat">
@@ -164,18 +194,16 @@
                                 <span class="hero-stat__cap">Streak</span>
                             </div>
                         </div>
-                    </div>
-                    <% if champ[:value] %>
-                    <div class="hero-champ__medallion" aria-label="Stanley Cup odds">
-                        <span class="hero-champ__odds"><%= champ[:value].round %><span class="hero-champ__odds-pct">%</span></span>
-                        <span class="hero-champ__odds-cap">Cup Odds</span>
-                    </div>
-                    <% end %>
                 </article>
-                <ol class="hero-chasers" aria-label="Chasing the leader">
+                <ol class="hero-chasers" start="2" aria-label="Chasing the leader">
                     <% leaders.drop(1).each_with_index do |l, i| %>
-                    <li class="chaser" style="--team: <%= fan_accent(l[:fan]) %>">
+                    <li class="chaser">
                         <span class="chaser__rank"><%= i + 2 %></span>
+                        <% if l[:team_abbrev] %>
+                        <img class="chaser__logo" src="<%= get_team_logo_url(l[:team_abbrev]) %>" alt="<%= l[:team] %> logo" width="34" height="34" decoding="async">
+                        <% else %>
+                        <span class="chaser__logo" aria-hidden="true"></span>
+                        <% end %>
                         <span class="chaser__id">
                             <span class="chaser__name"><%= l[:fan] %></span>
                             <span class="chaser__team"><%= l[:team] %></span>
@@ -187,7 +215,19 @@
                     </li>
                     <% end %>
                 </ol>
-            </section>
+                </section>
+                <div class="viewfinder-status">
+                    <span>Ranked by Stanley Cup odds</span>
+                    <button class="view-link" data-tab="standings" aria-label="View team standings">View team standings <iconify-icon icon="solar:arrow-right-linear" width="18" height="18" aria-hidden="true"></iconify-icon></button>
+                </div>
+            </div>
+            <% else %>
+            <div class="empty-state">
+                <iconify-icon icon="solar:calendar-linear" width="36" height="36" aria-hidden="true"></iconify-icon>
+                <h3>The league is getting ready</h3>
+                <p>Season leaders will appear when team statistics are available.</p>
+                <button class="view-link" data-tab="standings" aria-label="View team standings">View team standings <span aria-hidden="true">&rarr;</span></button>
+            </div>
             <% end %>
             
             <!-- Featured Matchup / Voting Section (Dense Layout) -->
@@ -218,16 +258,12 @@
                 end
                 
                 # Format game time
-                game_time_formatted = ''
-                if matchup[:game_time]
-                  begin
-                    game_time = Time.parse(matchup[:game_time])
-                    game_time_pst = game_time.getlocal('-08:00')
-                    game_time_formatted = game_time_pst.strftime("%a %b %-d • %-I:%M %p PT")
-                  rescue
-                    game_time_formatted = 'TBD'
+                game_time_formatted =
+                  if matchup[:game_time] && !%w[None TBD].include?(matchup[:game_time])
+                    "#{format_game_time(convert_utc_to_pacific(matchup[:game_time]))} PT"
+                  else
+                    'Time TBD'
                   end
-                end
                 
                 # Calculate H2H record summary
                 h2h_summary = ''
@@ -355,7 +391,13 @@
                         <% end %>
                         <div class="info-badge">
                             <span class="info-icon"><iconify-icon icon="solar:chart-bold" width="14" height="14"></iconify-icon></span>
-                            <span class="info-text" title="Recent form: Last 10 games record">Last 10: <%= matchup[:away_last10] %> vs <%= matchup[:home_last10] %></span>
+                            <span class="info-text" title="Recent form: Last 10 games record">
+                                <% if !matchup[:away_last10].to_s.strip.empty? && !matchup[:home_last10].to_s.strip.empty? %>
+                                    Last 10: <%= matchup[:away_last10] %> vs <%= matchup[:home_last10] %>
+                                <% else %>
+                                    Last 10 records unavailable
+                                <% end %>
+                            </span>
                         </div>
                         <% if matchup[:same_division] %>
                         <div class="info-badge rivalry-badge">
@@ -409,7 +451,6 @@
                                 <% expandable = list.length > 1 %>
                                 <% winner = list.first %>
                                 <li class="superlative achievement-card<%= ' expandable' if expandable %><%= ' superlative--danger' if a[:danger] %>"
-                                    style="--team: <%= fan_accent(winner[:fan]) %>"
                                     role="<%= expandable ? 'button' : 'listitem' %>"
                                     aria-label="<%= a[:label] %>: <%= winner[:fan] %>"
                                     <%= 'tabindex="0"' if expandable %>
@@ -441,10 +482,19 @@
 
         <!-- Tab: Matchups -->
         <div id="matchups-tab" class="tab-section" role="tabpanel" aria-label="Upcoming matchups">
-            <h2>Upcoming Battles</h2>
+            <div class="view-heading">
+                <div><h2>Upcoming matchups</h2><p>The next games between fan teams.</p></div>
+            </div>
             <% if bet_stats && bet_stats[:upcoming_fan_matchups] && bet_stats[:upcoming_fan_matchups].any? %>
                 <% bet_stats[:upcoming_fan_matchups].each do |matchup| %>
                     <div class="matchup-card" role="article" aria-label="Matchup between <%= matchup[:away_fan] %> and <%= matchup[:home_fan] %>">
+                        <div class="matchup-time">
+                            <% if matchup[:game_time] && !%w[None TBD].include?(matchup[:game_time]) %>
+                                <time datetime="<%= matchup[:game_time] %>"><%= format_game_time(convert_utc_to_pacific(matchup[:game_time])) %> PT</time>
+                            <% else %>
+                                <span>Time TBD</span>
+                            <% end %>
+                        </div>
                         <!-- Compact team header -->
                         <div class="matchup-teams">
                             <div class="matchup-team">
@@ -611,7 +661,7 @@
                         win_prob = matchup_prediction[:home_prob]
                         %>
                         <div class="win-probability">
-                            <span class="win-prob-label">Win %</span>
+                            <span class="win-prob-label"><%= matchup[:home_fan] %> win chance</span>
                             <div class="win-prob-bar">
                                 <div class="win-prob-fill" style="width: <%= win_prob %>%;"></div>
                             </div>
@@ -620,15 +670,20 @@
                     </div>
                 <% end %>
             <% else %>
-                <div class="card">
-                    <p class="text-secondary">No upcoming fan matchups scheduled</p>
+                <div class="empty-state">
+                    <iconify-icon icon="solar:calendar-linear" width="36" height="36" aria-hidden="true"></iconify-icon>
+                    <h3>No upcoming fan matchups</h3>
+                    <p>Games will appear here when the NHL schedule has your fan teams facing each other.</p>
                 </div>
             <% end %>
         </div>
 
         <!-- Tab: Standings -->
         <div id="standings-tab" class="tab-section" role="tabpanel" aria-label="Team standings">
-            <h2>Team Standings</h2>
+            <div class="view-heading">
+                <div><h2>Team standings</h2><p>Select a team for its season detail and head-to-head record.</p></div>
+                <span class="view-readout">NHL RANK / FAN TEAMS</span>
+            </div>
             
             <!-- Legend for playoff status indicators -->
             <div class="playoff-status-legend" role="region" aria-label="Playoff status legend">
@@ -671,7 +726,7 @@
                 
                 <% next if !is_fan_team %>
                 
-                <div class="team-card <%= status_info[:class] %>" data-team-id="<%= team_abbrev %>" role="article" aria-label="<%= team['teamName']['default'] %> standings" tabindex="0">
+                <div class="team-card <%= status_info[:class] %>" data-team-id="<%= team_abbrev %>" role="button" aria-label="<%= team['teamName']['default'] %> standings" aria-expanded="false" aria-controls="details-<%= team_abbrev %>" tabindex="0">
                     <div class="team-card-main">
                         <div class="team-card-left">
                             <div class="team-rank" aria-label="Rank <%= index + 1 %>"><%= index + 1 %></div>
@@ -706,7 +761,7 @@
                             <div class="team-trend <%= trend_class %>" aria-hidden="true"><iconify-icon icon="<%= trend_icon %>" width="18" height="18"></iconify-icon></div>
                         </div>
                     </div>
-                    <div class="team-card-details">
+                    <div id="details-<%= team_abbrev %>" class="team-card-details">
                         <%
                         # Get team-specific achievements and badges
                         team_badges = []
@@ -860,41 +915,48 @@
 
         <!-- Tab: Playoff Odds (Sunburst Chart) -->
         <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
-            <h2 class="mb-3 text-center text-xl"><iconify-icon icon="solar:cup-star-bold" width="22" height="22"></iconify-icon> Playoff Progression Odds</h2>
-            
-            <!-- Chart Section - Multi-Ring Doughnut Chart -->
-            <div class="chart-container p-3 mb-4">
-                <h3 class="mb-1 text-center text-md text-primary">Visualization</h3>
-                <p class="my-0 mb-2 text-center text-xs text-secondary">
-                    Inner ring = Make Playoffs • Outer ring = Win Cup
-                </p>
-                <div class="relative" style="height: 400px; max-width: 600px; margin: 0 auto;">
-                    <canvas id="playoffOddsChart" role="img" aria-label="Multi-ring doughnut chart showing playoff progression odds for each fan team"></canvas>
-                </div>
+            <div class="view-heading">
+                <div><h2>Playoff progression odds</h2><p>From a playoff berth to the Stanley Cup.</p></div>
             </div>
-            
-            <!-- Compact Playoff Odds Summary Table -->
-            <div id="playoffOddsSummary" class="playoff-odds-summary mb-4">
-                <!-- Will be populated by JavaScript -->
+            <div class="odds-layout">
+                <div id="playoffOddsSummary" class="playoff-odds-summary"></div>
+                <div class="chart-container">
+                    <div class="chart-heading">
+                        <div><h3>Round by round</h3><p>Outer ring: make playoffs. Inner ring: win the Cup.</p></div>
+                    </div>
+                    <div class="odds-plot">
+                        <canvas id="playoffOddsChart" role="img" aria-label="Multi-ring doughnut chart showing playoff progression odds for each fan team"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Tab: Trends (Chart) -->
         <div id="trends-tab" class="tab-section" role="tabpanel" aria-label="Standings trends chart">
+            <div class="view-heading">
+                <div><h2>The season in motion</h2><p>Follow your fan teams' points across the season.</p></div>
+            </div>
             <div class="chart-container">
-                <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
-                    <h2 class="m-0">Fan League Standings Trend</h2>
-                    <div class="flex items-center gap-2">
-                        <label for="seasonSelector" class="text-md text-secondary">Season:</label>
-                        <select id="seasonSelector" class="px-2 py-2 rounded-md border border-default bg-secondary text-secondary text-md">
+                <div class="chart-heading">
+                    <h3>Fan league standings trend</h3>
+                    <div class="season-control">
+                        <label for="seasonSelector">Season</label>
+                        <select id="seasonSelector">
                             <option value="">Loading...</option>
                         </select>
                     </div>
                 </div>
-                <canvas id="leagueTrendChart" role="img" aria-label="Line chart showing fan league standings trend over time"></canvas>
+                <div class="trend-plot">
+                    <canvas id="leagueTrendChart" role="img" aria-label="Line chart showing fan league standings trend over time"></canvas>
+                    <div id="trend-status" class="empty-state hidden" role="status"></div>
+                </div>
             </div>
         </div>
-
+        </main>
+        <footer class="site-footer">
+            <span>NHL Fan League &middot; Data from the NHL</span>
+            <a href="playoffs.html">Playoff bracket &rarr;</a>
+        </footer>
     </div>
 
     <!-- Fixed Bottom Navigation (Mobile Only) -->
@@ -944,12 +1006,8 @@
                 fanColorsData = await colorsResponse.json();
                 availableSeasonsData = await seasonsResponse.json();
                 
-                if (!allHistoryData || allHistoryData.length === 0) {
-                    const canvas = document.getElementById('leagueTrendChart');
-                    if (canvas && canvas.parentElement) {
-                        canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">No trend data available yet. Check back after a few days of tracking.</p>';
-                    }
-                    return;
+                if (!Array.isArray(allHistoryData)) {
+                    throw new Error('Standings history is not a list of daily snapshots.');
                 }
                 
                 // Populate season selector
@@ -975,18 +1033,16 @@
                 
                 // Render chart for current season
                 const initialSeason = availableSeasonsData?.current_season || (availableSeasonsData?.seasons && availableSeasonsData.seasons[0]);
-                if (initialSeason) {
-                    renderChartForSeason(initialSeason);
-                }
+                renderChartForSeason(initialSeason || '');
                 
                 window.chartLoaded = true;
                 
             } catch (error) {
                 console.error('Error loading standings trend chart:', error);
-                const canvas = document.getElementById('leagueTrendChart');
-                if (canvas && canvas.parentElement) {
-                    canvas.parentElement.innerHTML = '<p class="text-secondary text-center p-8">Unable to load trend chart. Please try again later.</p>';
-                }
+                document.getElementById('leagueTrendChart').classList.add('hidden');
+                const status = document.getElementById('trend-status');
+                status.textContent = 'Unable to load standings history. Reload the page to try again.';
+                status.classList.remove('hidden');
             }
         }
         
@@ -998,46 +1054,30 @@
                 return entrySeason === selectedSeason;
             });
             
-            if (!history || history.length === 0) {
-                const canvas = document.getElementById('leagueTrendChart');
-                if (canvas && canvas.parentElement && canvas.parentElement.parentElement) {
-                    // Find just the canvas to replace
-                    const chartArea = canvas.parentElement;
-                    chartArea.innerHTML = '<p class="text-secondary text-center p-8">No trend data available for this season yet.</p>';
-                }
-                return;
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
             }
-            
-            // Check if we have enough data points to show meaningful trends
-            if (history.length === 1) {
-                const canvas = document.getElementById('leagueTrendChart');
-                if (canvas && canvas.parentElement) {
-                    const date = history[0].date;
-                    const chartContainer = canvas.parentElement;
-                    const heading = chartContainer.querySelector('h2') || chartContainer.querySelector('div');
-                    if (heading && heading.nextElementSibling === canvas) {
-                        canvas.outerHTML = `
-                            <div class="text-center p-8">
-                                <p class="text-secondary mb-4">
-                                    <strong>Trend tracking started on ${date}</strong>
-                                </p>
-                                <p class="text-secondary text-md">
-                                    Trends will appear once data from multiple days is collected.<br>
-                                    Check back tomorrow to see the standings trend chart!
-                                </p>
-                            </div>
-                        `;
-                    }
-                }
+
+            const canvas = document.getElementById('leagueTrendChart');
+            const status = document.getElementById('trend-status');
+            const fanNames = Object.keys(history[history.length - 1]?.standings ?? {}).sort();
+            const hasTrend = history.length > 1 && fanNames.some(fan =>
+                history.some(entry => Number.isFinite(entry.standings?.[fan]))
+            );
+            canvas.classList.toggle('hidden', !hasTrend);
+            status.classList.toggle('hidden', hasTrend);
+
+            // Keep the season control and canvas mounted through offseason states.
+            if (!hasTrend) {
+                status.textContent = history.length === 1
+                    ? `Tracking started on ${history[0].date}. Trends appear after a second day of data.`
+                    : 'No trend data for this season yet. Choose another season to explore previous standings.';
                 return;
             }
             
             // Prepare data for Chart.js
             const dates = history.map(entry => entry.date);
-            
-            // Get all fan names from the most recent entry
-            const latestStandings = history[history.length - 1].standings;
-            const fanNames = Object.keys(latestStandings).sort();
             
             // Detect mobile for responsive styling
             const MOBILE_BREAKPOINT = 768;
@@ -1045,7 +1085,7 @@
             
             // Create datasets for each fan
             const datasets = fanNames.map(fanName => {
-                const data = history.map(entry => entry.standings[fanName] || null);
+                const data = history.map(entry => entry.standings?.[fanName] ?? null);
                 const color = fanColorsData[fanName] || '#888888';
                 
                 return {
@@ -1064,35 +1104,6 @@
                 };
             });
             
-            // Destroy existing chart if it exists
-            if (chartInstance) {
-                chartInstance.destroy();
-                chartInstance = null;
-            }
-            
-            // Ensure canvas element exists
-            let canvas = document.getElementById('leagueTrendChart');
-            if (!canvas) {
-                // Recreate canvas if it was replaced
-                const chartContainer = document.querySelector('.chart-container');
-                if (chartContainer) {
-                    const existingMessage = chartContainer.querySelector('div[style*="text-align: center"]');
-                    if (existingMessage) {
-                        existingMessage.remove();
-                    }
-                    canvas = document.createElement('canvas');
-                    canvas.id = 'leagueTrendChart';
-                    canvas.setAttribute('role', 'img');
-                    canvas.setAttribute('aria-label', 'Line chart showing fan league standings trend over time');
-                    chartContainer.appendChild(canvas);
-                }
-            }
-            
-            if (!canvas) {
-                console.error('Canvas element not found');
-                return;
-            }
-            
             // Create the chart with mobile-responsive configuration
             const ctx = canvas.getContext('2d');
             
@@ -1105,6 +1116,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    animation: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { duration: 300 },
                     plugins: {
                         title: {
                             display: false
@@ -1320,32 +1332,32 @@
 
                 function appendSummaryValueCell(row, value) {
                     const cell = document.createElement('td');
-                    cell.setAttribute('style', 'padding: 0.5rem 0.3rem; text-align: right; color: var(--color-text-primary);');
                     cell.textContent = value;
                     row.appendChild(cell);
                 }
 
                 const wrapper = document.createElement('div');
-                wrapper.setAttribute('style', 'background: var(--color-surface-raised); border-radius: 8px; padding: 0.75rem; overflow-x: auto; border: 1px solid var(--color-border-default);');
+                wrapper.className = 'odds-table-scroll';
+                wrapper.setAttribute('tabindex', '0');
+                wrapper.setAttribute('role', 'region');
+                wrapper.setAttribute('aria-label', 'Fan playoff odds comparison');
 
                 const table = document.createElement('table');
-                table.setAttribute('style', 'width: 100%; border-collapse: collapse; font-size: 0.8rem; color: var(--color-text-primary);');
+                table.className = 'odds-table';
 
                 const thead = document.createElement('thead');
                 const headerRow = document.createElement('tr');
-                headerRow.setAttribute('style', 'border-bottom: 2px solid var(--color-border-default);');
 
                 [
                     { label: 'Fan', align: 'left' },
-                    { label: 'P-offs', align: 'right' },
+                    { label: 'Playoffs', align: 'right' },
                     { label: 'R2', align: 'right' },
                     { label: 'R3', align: 'right' },
                     { label: 'Finals', align: 'right' },
                     { label: 'Cup', align: 'right' }
-                ].forEach(({ label, align }) => {
+                ].forEach(({ label }) => {
                     const headerCell = document.createElement('th');
                     headerCell.setAttribute('scope', 'col');
-                    headerCell.setAttribute('style', `padding: 0.4rem 0.3rem; text-align: ${align}; color: var(--color-text-secondary); font-weight: 600; font-size: 0.75rem;`);
                     headerCell.textContent = label;
                     headerRow.appendChild(headerCell);
                 });
@@ -1355,21 +1367,18 @@
 
                 const tbody = document.createElement('tbody');
 
-                sortedByCup.forEach((team, idx) => {
-                    const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.02)';
+                sortedByCup.forEach((team) => {
                     const cupOdds = team.win_cup || 0;
                     const row = document.createElement('tr');
-                    row.setAttribute('style', `border-bottom: 1px solid rgba(38, 44, 54, 0.5); background: ${rowBg};`);
 
                     const teamCell = document.createElement('td');
-                    teamCell.setAttribute('style', 'padding: 0.5rem 0.3rem; color: var(--color-text-primary); font-weight: 500; font-size: 0.8rem;');
 
                     const fanName = document.createElement('div');
-                    fanName.setAttribute('style', 'line-height: 1.2;');
+                    fanName.className = 'odds-fan';
                     fanName.textContent = team.fan || '';
 
                     const teamName = document.createElement('div');
-                    teamName.setAttribute('style', 'font-size: 0.7rem; color: var(--color-text-secondary); margin-top: 0.1rem; line-height: 1.2;');
+                    teamName.className = 'odds-team';
                     teamName.textContent = team.team || '';
 
                     teamCell.appendChild(fanName);
@@ -1382,7 +1391,7 @@
                     appendSummaryValueCell(row, `${(team.make_finals || 0).toFixed(0)}%`);
 
                     const cupCell = document.createElement('td');
-                    cupCell.setAttribute('style', 'padding: 0.5rem 0.3rem; text-align: right; font-weight: 600; color: var(--color-accent-primary); white-space: nowrap;');
+                    cupCell.className = 'odds-cup';
 
                     const cupIcon = document.createElement('iconify-icon');
                     cupIcon.setAttribute('icon', getOddsIconName(cupOdds));
@@ -1468,6 +1477,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    animation: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { duration: 300 },
                     plugins: {
                         legend: {
                             display: true,

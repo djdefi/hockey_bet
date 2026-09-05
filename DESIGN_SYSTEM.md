@@ -1,3 +1,5 @@
+> Legacy reference: [DESIGN.md](DESIGN.md) is the current design authority for the Broadcast Viewfinder redesign. The historical documentation below is retained for context.
+
 # NHL Fan League - Design System Documentation
 
 ## Overview

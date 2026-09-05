@@ -85,7 +85,7 @@ RSpec.describe 'HTML Rendering and Accessibility' do
       expect(static_scope_count + dynamic_scope_assignment_count).to be >= 1
 
       header_labels = template_content.scan(/\{ label: '([^']+)', align: '(?:left|right)' \}/).flatten
-      expect(header_labels).to include('Fan', 'P-offs', 'R2', 'R3', 'Finals', 'Cup')
+      expect(header_labels).to include('Fan', 'Playoffs', 'R2', 'R3', 'Finals', 'Cup')
     end
     
     it 'has proper button attributes for accessibility' do

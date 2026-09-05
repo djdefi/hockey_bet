@@ -14,9 +14,17 @@ _site/
 .claude/
 
 # Playwright
+/test-results/
+/playwright-report/
 e2e/test-results/
 e2e/report/
 e2e/screenshots/
+
+# Local RSpec run status
+/spec/examples.txt
+
+# Local design-detector cache
+/.impeccable/hook.cache.json
 
 # Local playwright-cli screenshot output (dev only)
 .playwright-cli/

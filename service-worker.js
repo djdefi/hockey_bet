@@ -1,6 +1,6 @@
-// Service Worker for Hockey Bet - installable shell + refresh-friendly caching
-const CACHE_NAME = 'hockey-bet-static-v11';
-const DATA_CACHE_NAME = 'hockey-bet-data-v11';
+// Service Worker for NHL Fan League - installable shell + refresh-friendly caching
+const CACHE_NAME = 'hockey-bet-static-v12';
+const DATA_CACHE_NAME = 'hockey-bet-data-v12';
 const APP_ASSET_MANIFEST_URL = './app-assets.json';
 const LOCAL_ORIGIN = self.location.origin;
 
@@ -9,21 +9,31 @@ const OFFLINE_HTML = `<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hockey Bet - Offline</title>
+  <meta name="theme-color" content="#101214">
+  <title>NHL Fan League - Offline</title>
   <style>
-    body { font-family: -apple-system, sans-serif; background: #0a0c10; color: #f3f6fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
-    .offline { max-width: 400px; padding: 2rem; }
-    h1 { font-size: 1.5rem; margin-bottom: 1rem; }
-    p { color: #9aa5b3; line-height: 1.6; }
-    button { background: #1f9dff; color: #0a0c10; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+    :root { color-scheme: dark; --color-bg-primary: #101214; --color-bg-depth: #090b0c; --color-text-primary: #f4f5f6; --color-text-secondary: #b2b8bf; --color-focus: #ffbc52; --color-border-default: #363c42; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--color-bg-primary); color: var(--color-text-primary); display: grid; place-items: center; min-height: 100vh; min-height: 100svh; margin: 0; padding: 20px; line-height: 1.5; }
+    .offline { position: relative; width: 100%; max-width: 480px; padding: 40px 32px; border: 1px solid var(--color-border-default); background: var(--color-bg-depth); }
+    .offline::before, .offline::after { content: ''; position: absolute; width: 22px; height: 22px; border-style: solid; border-color: var(--color-text-secondary); pointer-events: none; }
+    .offline::before { top: 9px; left: 9px; border-width: 2px 0 0 2px; }
+    .offline::after { right: 9px; bottom: 9px; border-width: 0 2px 2px 0; }
+    h1 { font-size: 1.75rem; font-weight: 650; line-height: 1.25; letter-spacing: -0.025em; margin: 0 0 12px; }
+    p { color: var(--color-text-secondary); margin: 0; font-size: 0.9375rem; }
+    button { background: var(--color-focus); color: var(--color-bg-primary); border: 0; padding: 10px 16px; min-height: 44px; border-radius: 2px; font: inherit; font-weight: 600; cursor: pointer; margin-top: 24px; }
+    button:hover { filter: brightness(1.08); }
+    button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+    footer { margin-top: 32px; color: var(--color-text-secondary); font-size: 0.75rem; }
   </style>
 </head>
 <body>
-  <div class="offline">
-    <h1>You're Offline</h1>
-    <p>It looks like you've lost your internet connection. The standings will be back when you reconnect.</p>
-    <button onclick="window.location.reload()">Try Again</button>
-  </div>
+  <main class="offline" aria-labelledby="offline-title">
+    <h1 id="offline-title">You're offline</h1>
+    <p>This page isn't available offline. Reconnect and try again.</p>
+    <button onclick="window.location.reload()">Try again</button>
+    <footer>NHL Fan League</footer>
+  </main>
 </body>
 </html>`;
 

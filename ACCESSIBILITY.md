@@ -1,10 +1,15 @@
 # Accessibility Audit & Component Standards
 
-## Accessibility Compliance Checklist
+## Accessibility Review Checklist
 
 ### Current Status
 
-✅ = Compliant | ⚠️ = Needs Improvement | ❌ = Not Compliant
+This checklist is not a whole-app WCAG conformance report. Previously checked
+items have not all been re-audited after the season refresh. The current visual
+contract is [DESIGN.md](DESIGN.md), backed by [design tokens](lib/design-tokens.css)
+and the rendered controls.
+
+✅ = Previously recorded | ⚠️ = Needs review | ❌ = Known issue
 
 ### WCAG 2.1 Level AA Requirements
 
@@ -23,10 +28,12 @@
   - Tab navigation follows visual order
   - Mobile bottom nav at end of DOM
   
-- [✅] **1.4.3 Contrast (Minimum)** - 4.5:1 ratio for normal text
-  - Primary text (#ffffff) on dark bg (#0b162a): 15.35:1 ✅
-  - Secondary text (#8da1b9) on dark bg: 7.18:1 ✅
-  - Accent green (#21d19f) on dark bg: 8.94:1 ✅
+- [⚠️] **1.4.3 Contrast (Minimum)** - Verify 4.5:1 for normal text
+  - Default backgrounds: `#101214` (page), `#171a1d` (panel)
+  - Text: `#f4f5f6` (primary), `#b2b8bf` (secondary), `#949ca5` (muted)
+  - Focus: `#ffbc52`; dark text on amber uses `#101214`
+  - Re-measure rendered text/background pairs, including team themes. The old
+    navy/green ratios do not apply to this palette.
   
 - [⚠️] **1.4.4 Resize Text** - Text can be resized up to 200%
   - Works but some components could be improved
@@ -39,13 +46,13 @@
   - Mobile-first design handles narrow viewports
   - Bottom navigation adapts appropriately
   
-- [✅] **1.4.11 Non-text Contrast** - 3:1 for UI components
-  - Buttons and interactive elements have sufficient contrast
-  - Borders visible against backgrounds
+- [⚠️] **1.4.11 Non-text Contrast** - Verify 3:1 for required UI boundaries and states
+  - Focus uses the independent `--color-focus` token, not the team accent
+  - Re-check control edges and focus states on default and team-theme surfaces
   
 - [✅] **1.4.12 Text Spacing** - Adjustable line height and spacing
   - CSS uses relative units (em, rem)
-  - Line height set appropriately (1.6 for body)
+  - Main body line height is 1.5 in [styles.css](lib/styles.css)
 
 #### Operable
 
@@ -55,16 +62,17 @@
   - Team cards have tabindex="0"
   
 - [✅] **2.1.2 No Keyboard Trap** - Users can navigate away
-  - No modal traps
-  - Focus management proper
+  - [Team picker](lib/team-picker.js) contains focus while open
+  - Escape dismisses the picker and restores the previous focus
   
-- [⚠️] **2.1.4 Character Key Shortcuts** - No single-key shortcuts
-  - Currently none implemented
-  - Recommendation: If added, provide option to disable
+- [⚠️] **2.1.4 Character Key Shortcuts** - Single-key shortcuts need review
+  - [accessibility.js](lib/accessibility.js) implements L, M, S, T, H, and ?
+  - Shortcuts ignore input, textarea, select, and modifier-key events
+  - An option to disable or remap single-character shortcuts is still needed
   
 - [✅] **2.4.1 Bypass Blocks** - Skip navigation provided
-  - Main content clearly delineated
-  - Navigation structure clear
+  - `accessibility.js` creates the skip link
+  - [standings.html.erb](lib/standings.html.erb) supplies `<main id="main-content">`
   
 - [✅] **2.4.2 Page Titled** - Page has descriptive title
   - Title: "NHL Standings"
@@ -407,17 +415,20 @@ All interactive elements must be at least 44x44 CSS pixels:
 All interactive elements must have visible focus:
 
 ```css
-/* Default focus (for mouse users) */
-button:focus {
-  outline: none; /* Remove only if custom style provided */
+/* Hide the keyboard outline only when focus-visible does not apply. */
+button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Keyboard focus (for keyboard users) */
 button:focus-visible {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 ```
+
+Keep focus independent of team-theme accents. Outline width and offset vary by
+component; see [DESIGN.md](DESIGN.md#components) and the component's own styles.
 
 #### Skip Links
 
@@ -563,18 +574,23 @@ pa11y --standard WCAG2AA http://localhost:3000
 ### Current Limitations
 
 1. **Search Functionality** - Not yet implemented (2.4.5)
-2. **Skip Links** - Should be added for keyboard users
+2. **Character Shortcuts** - No user-facing disable/remap control (2.1.4)
 3. **High Contrast Mode** - Not explicitly tested
-4. **Reduced Motion** - Animations don't respect `prefers-reduced-motion`
+4. **Season Refresh Audit** - Rendered contrast, zoom/reflow, and assistive-technology behavior still need a full review
+
+### Implemented Patterns to Preserve
+
+- Skip link and screen-reader status region in [accessibility.js](lib/accessibility.js)
+- `prefers-reduced-motion` handling in [styles.css](lib/styles.css) and `accessibility.js`
+- Theme-picker focus containment, Escape dismissal, and focus restoration in [team-picker.js](lib/team-picker.js)
+- The masthead help control and five League/Matchups/Standings/Playoff Odds/Trends navigation buttons
 
 ### Planned Improvements
 
-- [ ] Add skip navigation link
-- [ ] Implement `prefers-reduced-motion` support
+- [ ] Re-measure contrast for default and team-theme controls
+- [ ] Provide a way to disable or remap character shortcuts
 - [ ] Add high contrast mode testing
-- [ ] Create automated accessibility CI checks
-- [ ] Add focus trap for future modals
-- [ ] Implement aria-live regions for updates
+- [ ] Re-run keyboard, zoom/reflow, and screen-reader checks on the rendered pages
 
 ---
 
@@ -588,5 +604,6 @@ pa11y --standard WCAG2AA http://localhost:3000
 
 ---
 
-**Last Updated:** December 2025  
-**Next Review:** March 2026
+**Palette and component references updated:** September 2026
+
+**Full conformance review:** Not completed by this cleanup

@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T00:47:56.597Z",
+  "title": "Design System: NHL Fan League",
+  "extensions": {
+    "colorMeta": {
+      "accent-primary": {
+        "role": "primary",
+        "displayName": "Team Accent",
+        "tonalRamp": ["oklch(15.00% 0.14264 75.83)", "oklch(26.43% 0.14264 75.83)", "oklch(37.86% 0.14264 75.83)", "oklch(49.29% 0.14264 75.83)", "oklch(60.71% 0.14264 75.83)", "oklch(72.14% 0.14264 75.83)", "oklch(83.57% 0.14264 75.83)", "oklch(95.00% 0.14264 75.83)"]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Amber",
+        "tonalRamp": ["oklch(15.00% 0.14264 75.83)", "oklch(26.43% 0.14264 75.83)", "oklch(37.86% 0.14264 75.83)", "oklch(49.29% 0.14264 75.83)", "oklch(60.71% 0.14264 75.83)", "oklch(72.14% 0.14264 75.83)", "oklch(83.57% 0.14264 75.83)", "oklch(95.00% 0.14264 75.83)"]
+      },
+      "accent-positive": {
+        "role": "secondary",
+        "displayName": "Positive Green",
+        "tonalRamp": ["oklch(15.00% 0.17184 154.99)", "oklch(26.43% 0.17184 154.99)", "oklch(37.86% 0.17184 154.99)", "oklch(49.29% 0.17184 154.99)", "oklch(60.71% 0.17184 154.99)", "oklch(72.14% 0.17184 154.99)", "oklch(83.57% 0.17184 154.99)", "oklch(95.00% 0.17184 154.99)"]
+      },
+      "accent-danger": {
+        "role": "secondary",
+        "displayName": "Loss Red",
+        "tonalRamp": ["oklch(15.00% 0.21008 28.02)", "oklch(26.43% 0.21008 28.02)", "oklch(37.86% 0.21008 28.02)", "oklch(49.29% 0.21008 28.02)", "oklch(60.71% 0.21008 28.02)", "oklch(72.14% 0.21008 28.02)", "oklch(83.57% 0.21008 28.02)", "oklch(95.00% 0.21008 28.02)"]
+      },
+      "accent-warning": {
+        "role": "secondary",
+        "displayName": "Caution Amber",
+        "tonalRamp": ["oklch(15.00% 0.16500 75.04)", "oklch(26.43% 0.16500 75.04)", "oklch(37.86% 0.16500 75.04)", "oklch(49.29% 0.16500 75.04)", "oklch(60.71% 0.16500 75.04)", "oklch(72.14% 0.16500 75.04)", "oklch(83.57% 0.16500 75.04)", "oklch(95.00% 0.16500 75.04)"]
+      },
+      "accent-info": {
+        "role": "secondary",
+        "displayName": "Comparison Blue",
+        "tonalRamp": ["oklch(15.00% 0.08444 248.99)", "oklch(26.43% 0.08444 248.99)", "oklch(37.86% 0.08444 248.99)", "oklch(49.29% 0.08444 248.99)", "oklch(60.71% 0.08444 248.99)", "oklch(72.14% 0.08444 248.99)", "oklch(83.57% 0.08444 248.99)", "oklch(95.00% 0.08444 248.99)"]
+      },
+      "accent-orange": {
+        "role": "secondary",
+        "displayName": "Hot Orange",
+        "tonalRamp": ["oklch(15.00% 0.18218 46.04)", "oklch(26.43% 0.18218 46.04)", "oklch(37.86% 0.18218 46.04)", "oklch(49.29% 0.18218 46.04)", "oklch(60.71% 0.18218 46.04)", "oklch(72.14% 0.18218 46.04)", "oklch(83.57% 0.18218 46.04)", "oklch(95.00% 0.18218 46.04)"]
+      },
+      "bg-primary": {
+        "role": "neutral",
+        "displayName": "Viewing Field",
+        "tonalRamp": ["oklch(15.00% 0.00521 248.12)", "oklch(26.43% 0.00521 248.12)", "oklch(37.86% 0.00521 248.12)", "oklch(49.29% 0.00521 248.12)", "oklch(60.71% 0.00521 248.12)", "oklch(72.14% 0.00521 248.12)", "oklch(83.57% 0.00521 248.12)", "oklch(95.00% 0.00521 248.12)"]
+      },
+      "bg-depth": {
+        "role": "neutral",
+        "displayName": "Inset Black",
+        "tonalRamp": ["oklch(15.00% 0.00403 228.76)", "oklch(26.43% 0.00403 228.76)", "oklch(37.86% 0.00403 228.76)", "oklch(49.29% 0.00403 228.76)", "oklch(60.71% 0.00403 228.76)", "oklch(72.14% 0.00403 228.76)", "oklch(83.57% 0.00403 228.76)", "oklch(95.00% 0.00403 228.76)"]
+      },
+      "bg-secondary": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "tonalRamp": ["oklch(15.00% 0.00747 248.17)", "oklch(26.43% 0.00747 248.17)", "oklch(37.86% 0.00747 248.17)", "oklch(49.29% 0.00747 248.17)", "oklch(60.71% 0.00747 248.17)", "oklch(72.14% 0.00747 248.17)", "oklch(83.57% 0.00747 248.17)", "oklch(95.00% 0.00747 248.17)"]
+      },
+      "bg-tertiary": {
+        "role": "neutral",
+        "displayName": "Inset Control",
+        "tonalRamp": ["oklch(15.00% 0.00946 248.18)", "oklch(26.43% 0.00946 248.18)", "oklch(37.86% 0.00946 248.18)", "oklch(49.29% 0.00946 248.18)", "oklch(60.71% 0.00946 248.18)", "oklch(72.14% 0.00946 248.18)", "oklch(83.57% 0.00946 248.18)", "oklch(95.00% 0.00946 248.18)"]
+      },
+      "bg-hover": {
+        "role": "neutral",
+        "displayName": "Hover",
+        "tonalRamp": ["oklch(15.00% 0.01149 248.21)", "oklch(26.43% 0.01149 248.21)", "oklch(37.86% 0.01149 248.21)", "oklch(49.29% 0.01149 248.21)", "oklch(60.71% 0.01149 248.21)", "oklch(72.14% 0.01149 248.21)", "oklch(83.57% 0.01149 248.21)", "oklch(95.00% 0.01149 248.21)"]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Readout White",
+        "tonalRamp": ["oklch(15.00% 0.00171 247.84)", "oklch(26.43% 0.00171 247.84)", "oklch(37.86% 0.00171 247.84)", "oklch(49.29% 0.00171 247.84)", "oklch(60.71% 0.00171 247.84)", "oklch(72.14% 0.00171 247.84)", "oklch(83.57% 0.00171 247.84)", "oklch(95.00% 0.00171 247.84)"]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Supporting Gray",
+        "tonalRamp": ["oklch(15.00% 0.01199 252.11)", "oklch(26.43% 0.01199 252.11)", "oklch(37.86% 0.01199 252.11)", "oklch(49.29% 0.01199 252.11)", "oklch(60.71% 0.01199 252.11)", "oklch(72.14% 0.01199 252.11)", "oklch(83.57% 0.01199 252.11)", "oklch(95.00% 0.01199 252.11)"]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Quiet Gray",
+        "tonalRamp": ["oklch(15.00% 0.01610 251.22)", "oklch(26.43% 0.01610 251.22)", "oklch(37.86% 0.01610 251.22)", "oklch(49.29% 0.01610 251.22)", "oklch(60.71% 0.01610 251.22)", "oklch(72.14% 0.01610 251.22)", "oklch(83.57% 0.01610 251.22)", "oklch(95.00% 0.01610 251.22)"]
+      },
+      "text-inverse": {
+        "role": "neutral",
+        "displayName": "Inverse Readout",
+        "tonalRamp": ["oklch(15.00% 0.00521 248.12)", "oklch(26.43% 0.00521 248.12)", "oklch(37.86% 0.00521 248.12)", "oklch(49.29% 0.00521 248.12)", "oklch(60.71% 0.00521 248.12)", "oklch(72.14% 0.00521 248.12)", "oklch(83.57% 0.00521 248.12)", "oklch(95.00% 0.00521 248.12)"]
+      },
+      "border-default": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": ["oklch(15.00% 0.01322 248.20)", "oklch(26.43% 0.01322 248.20)", "oklch(37.86% 0.01322 248.20)", "oklch(49.29% 0.01322 248.20)", "oklch(60.71% 0.01322 248.20)", "oklch(72.14% 0.01322 248.20)", "oklch(83.57% 0.01322 248.20)", "oklch(95.00% 0.01322 248.20)"]
+      },
+      "border-subtle": {
+        "role": "neutral",
+        "displayName": "Quiet Rule",
+        "tonalRamp": ["oklch(15.00% 0.01153 248.22)", "oklch(26.43% 0.01153 248.22)", "oklch(37.86% 0.01153 248.22)", "oklch(49.29% 0.01153 248.22)", "oklch(60.71% 0.01153 248.22)", "oklch(72.14% 0.01153 248.22)", "oklch(83.57% 0.01153 248.22)", "oklch(95.00% 0.01153 248.22)"]
+      },
+      "border-strong": {
+        "role": "neutral",
+        "displayName": "Control Edge",
+        "tonalRamp": ["oklch(15.00% 0.01942 248.16)", "oklch(26.43% 0.01942 248.16)", "oklch(37.86% 0.01942 248.16)", "oklch(49.29% 0.01942 248.16)", "oklch(60.71% 0.01942 248.16)", "oklch(72.14% 0.01942 248.16)", "oklch(83.57% 0.01942 248.16)", "oklch(95.00% 0.01942 248.16)"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Main view headings; the mobile size remains component CSS." },
+      "title": { "displayName": "Title", "purpose": "Compact section and chart headings." },
+      "body": { "displayName": "Body", "purpose": "The main shell's system sans baseline." },
+      "label": { "displayName": "Label", "purpose": "Supporting captions and interface metadata." },
+      "readout": { "displayName": "Readout", "purpose": "Dedicated tabular score and rank measurements." }
+    },
+    "shadows": [
+      { "name": "team-picker-dialog", "value": "0 24px 48px rgba(0,0,0,0.4)", "purpose": "Separates the team picker from its scrim; not a general card elevation." },
+      { "name": "keyboard-help-dialog", "value": "0 20px 60px rgba(0,0,0,0.5)", "purpose": "Separates the shortcuts dialog from its scrim." }
+    ],
+    "motion": [
+      { "name": "duration-fast", "value": "0.15s", "purpose": "Control and playoff return-link state transitions." },
+      { "name": "duration-base", "value": "0.2s", "purpose": "Team-trigger and help-control color transitions." },
+      { "name": "focus-transition", "value": "180ms ease-out", "purpose": "Navigation and expanded-row bracket movement and row backgrounds." },
+      { "name": "ease-out", "value": "cubic-bezier(0, 0, 0.2, 1)", "purpose": "The token used by playoff return-link transitions." },
+      { "name": "chart-entry", "value": "300ms", "purpose": "Both chart animations; disabled when reduced motion is requested." }
+    ],
+    "breakpoints": [
+      { "name": "main-narrow-max", "value": "359px" },
+      { "name": "team-picker-wide-min", "value": "520px" },
+      { "name": "playoff-mobile-max", "value": "720px" },
+      { "name": "main-mobile-max", "value": "767px" },
+      { "name": "compact-desktop-max", "value": "1100px" }
+    ],
+    "tonalRampProvenance": "Eight-step OKLCH preview ramps synthesized from each canonical hex at constant hue and chroma. They are panel metadata, not additional shipped palette tokens.",
+    "sourceFingerprints": {
+      "algorithm": "sha256",
+      "files": {
+        "DESIGN.md": "23bafd432c5faa51c171dc80c792e1fa9c3037c39b3ea478bde9e2c854a75110",
+        "PRODUCT.md": "676b70b27e7902f0ad3a40c8a661d78680e62c84553e770b1c170bca4c511919",
+        "lib/design-tokens.css": "2dab23d4368640f6c56e625e14a80a9d391ee2fb023b30a36f2521c7c20a1c3a",
+        "lib/styles.css": "63e6923d1cf118adde00881363b823c47c787fe38d6b7cf64a2155f0e93c1da8",
+        "lib/playoff_styles.css": "a2757b6a0dc05a6b7673814c9085dd13f18cd5e073cd1ebf10e705e3b1926a82",
+        "lib/standings.html.erb": "e554f2b0a017f68c9e41b22fea80b067ed919f64274e1cd31ba4149ccb59bc8f",
+        "lib/playoffs.html.erb": "59468a63ced7e20e1171feaa31598a90f2d89d710c11aca7000819c7c5ea015e",
+        "lib/team-picker.js": "eb01d39f013650321dc8b74b4c70d2943bc24d023217655c78cb89ba142bdc26",
+        "lib/accessibility.js": "d294a60a08bd8689db5dd587736250156e6b1f8f25d89f00ae2798617f99a4f2",
+        "lib/team-themes.js": "480da40442587b0d85ff9131cb84e80aff6c879b292e2ec30dd4475a8d9b4c66"
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Return Link",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The amber-filled return action at the end of the playoff page.",
+      "html": "<a class=\"ds-primary\" href=\"index.html\">Back to league</a>",
+      "css": ".ds-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--touch-target-min); padding: 10px 16px; border: 1px solid var(--color-focus); border-radius: 2px; background: var(--color-focus); color: var(--color-text-inverse); font: 0.875rem/1.3 var(--font-family-primary); text-decoration: none; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out); } .ds-primary:hover { background: color-mix(in srgb, var(--color-focus) 85%, white); border-color: color-mix(in srgb, var(--color-accent-primary) 72%, white); color: var(--color-text-inverse); } .ds-primary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; } .ds-primary[aria-disabled='true'] { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-primary { transition: none; } }"
+    },
+    {
+      "name": "Secondary Return Link",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The tonal back link above the playoff title.",
+      "html": "<a class=\"ds-secondary\" href=\"index.html\">← Back to league</a>",
+      "css": ".ds-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--touch-target-min); padding: 10px 16px; border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); background: var(--color-bg-tertiary); color: var(--color-text-primary); font: 0.875rem/1.3 var(--font-family-primary); text-decoration: none; cursor: pointer; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); } .ds-secondary:hover { background: var(--color-bg-hover); color: var(--color-text-primary); } .ds-secondary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; } .ds-secondary[aria-disabled='true'] { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-secondary { transition: none; } }"
+    },
+    {
+      "name": "Team Theme Trigger",
+      "kind": "button",
+      "refersTo": "button-team-theme",
+      "description": "The masthead theme chooser, with its existing inline slider icon.",
+      "html": "<button class=\"ds-theme\" type=\"button\" aria-label=\"Choose your team\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M3 6h5m5 0h8M3 18h8m5 0h5\"/><circle cx=\"10.5\" cy=\"6\" r=\"2.5\"/><circle cx=\"13.5\" cy=\"18\" r=\"2.5\"/></svg><span class=\"ds-theme-label\">Team theme</span></button>",
+      "css": ".ds-theme { position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 10px 12px; border: 1px solid var(--color-border-strong); border-radius: 2px; background: transparent; color: var(--color-text-secondary); font: 0.8125rem/1.5 var(--font-family-primary); cursor: pointer; transition: color 0.2s, background 0.2s, border-color 0.2s; } .ds-theme:hover, .ds-theme:focus-visible { color: var(--color-focus); background: var(--color-bg-hover); border-color: var(--color-focus); } .ds-theme:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; } .ds-theme:disabled { opacity: 0.55; cursor: default; } @media (max-width: 767px) { .ds-theme-label { display: none; } } @media (prefers-reduced-motion: reduce) { .ds-theme { transition: none; } }"
+    },
+    {
+      "name": "Theme Reset",
+      "kind": "button",
+      "refersTo": "button-reset",
+      "description": "Label-only specimen of the theme reset control; its decorative refresh icon is omitted.",
+      "html": "<button class=\"ds-reset\" type=\"button\">Reset to Default</button>",
+      "css": ".ds-reset { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 12px; border: 1px solid var(--color-border-default); border-radius: 2px; background: var(--color-bg-tertiary); color: var(--color-text-secondary); font: 0.8rem/1.5 var(--font-family-primary); cursor: pointer; transition: color 0.15s, border-color 0.15s, background 0.15s; } .ds-reset:hover, .ds-reset:focus-visible { color: var(--color-focus); border-color: var(--color-focus); background: var(--color-bg-hover); } .ds-reset:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; } .ds-reset:disabled { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-reset { transition: none; } }"
+    },
+    {
+      "name": "Dialog Close",
+      "kind": "button",
+      "refersTo": "button-close",
+      "description": "The transparent team-picker close control.",
+      "html": "<button class=\"ds-close\" type=\"button\" aria-label=\"Close team picker\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"m6 6 12 12M18 6 6 18\"/></svg></button>",
+      "css": ".ds-close { display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 44px; min-height: 44px; padding: 4px; border: none; border-radius: var(--radius-sm); background: transparent; color: var(--color-text-secondary); cursor: pointer; transition: color 0.15s, background 0.15s; } .ds-close:hover, .ds-close:focus-visible { color: var(--color-text-primary); background: var(--color-bg-hover); } .ds-close:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; } .ds-close:disabled { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-close { transition: none; } }"
+    },
+    {
+      "name": "Masthead Help",
+      "kind": "button",
+      "refersTo": "button-help",
+      "description": "The desktop masthead help button; the specimen omits its runtime visibility gate, not its placement.",
+      "html": "<button class=\"ds-help\" type=\"button\" aria-label=\"Show keyboard shortcuts (Press ? or H)\"><span aria-hidden=\"true\">?</span></button>",
+      "css": ".ds-help { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-bg-secondary); color: var(--color-text-secondary); font: 20px/1.5 var(--font-family-primary); cursor: pointer; transition: color 0.2s ease; } .ds-help:hover { color: var(--color-focus); } .ds-help:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; } .ds-help:disabled { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-help { transition: none; } }"
+    },
+    {
+      "name": "Season Selector",
+      "kind": "input",
+      "refersTo": "input-season",
+      "description": "A labeled native select; its initial loading option is copied from the template.",
+      "html": "<div class=\"ds-season\"><label class=\"ds-season-label\" for=\"ds-season-select\">Season</label><select class=\"ds-season-select\" id=\"ds-season-select\"><option value=\"\">Loading...</option></select></div>",
+      "css": ".ds-season { display: flex; align-items: center; gap: 10px; font-family: var(--font-family-primary); } .ds-season-label { color: var(--color-text-secondary); font-size: 0.8125rem; } .ds-season-select { min-height: var(--touch-target-min); padding: 8px 32px 8px 12px; border: 1px solid var(--color-border-strong); border-radius: 2px; background: var(--color-bg-secondary); color: var(--color-text-primary); color-scheme: dark; font: 1rem/1.5 var(--font-family-primary); } .ds-season-select:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }"
+    },
+    {
+      "name": "Bracketed View Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-tab",
+      "description": "A two-item excerpt of the desktop view rail; amber corner pairs mark the current view.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><button class=\"ds-tab ds-tab-active\" type=\"button\" aria-label=\"View League tab\" aria-current=\"page\">League</button><button class=\"ds-tab\" type=\"button\" aria-label=\"View Standings tab\">Standings</button></nav>",
+      "css": ".ds-nav { display: flex; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--color-border-default); } .ds-tab { position: relative; min-width: 100px; min-height: var(--touch-target-min); padding: 10px 20px; border: 0; border-radius: 0; background: transparent; color: var(--color-text-secondary); font: 550 0.875rem/1.5 var(--font-family-primary); cursor: pointer; transition: color 150ms ease, background-color 150ms ease; } .ds-tab:hover { background: var(--color-bg-secondary); color: var(--color-text-primary); } .ds-tab-active { background: var(--color-bg-secondary); color: var(--color-focus); } .ds-tab-active:hover { color: var(--color-focus); } .ds-tab::before, .ds-tab::after { content: ''; position: absolute; width: 8px; height: 8px; pointer-events: none; border-color: transparent; border-style: solid; transition: inset 180ms ease-out, border-color 180ms ease-out; } .ds-tab::before { top: 0; left: 0; border-width: 1px 0 0 1px; } .ds-tab::after { right: 0; bottom: 0; border-width: 0 1px 1px 0; } .ds-tab-active::before, .ds-tab-active::after { border-color: var(--color-focus); } .ds-tab:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; } .ds-tab:disabled { opacity: 0.55; cursor: default; } @media (prefers-reduced-motion: reduce) { .ds-tab, .ds-tab::before, .ds-tab::after { transition: none; } }"
+    },
+    {
+      "name": "Playoff Status Tag",
+      "kind": "chip",
+      "refersTo": "status-tag-eliminated",
+      "description": "A labeled, non-interactive elimination state rather than a color-only cue.",
+      "html": "<span class=\"ds-status ds-status-eliminated\">Eliminated</span>",
+      "css": ".ds-status { display: inline-flex; align-items: center; gap: 4px; padding: 2px 5px; border: 1px solid var(--color-border-default); border-radius: 0; background: transparent; color: var(--color-text-primary); font: 0.6875rem/1.4 var(--font-family-primary); } .ds-status-eliminated { color: var(--color-accent-danger); }"
+    },
+    {
+      "name": "Chart Field",
+      "kind": "card",
+      "refersTo": "card-field",
+      "description": "A square, flat chart container with the implemented empty-history message; no invented series.",
+      "html": "<section class=\"ds-field\" aria-labelledby=\"ds-field-title\"><div class=\"ds-field-heading\"><h3 class=\"ds-field-title\" id=\"ds-field-title\">Fan league standings trend</h3></div><div class=\"ds-field-status\" role=\"status\">No trend data for this season yet. Choose another season to explore previous standings.</div></section>",
+      "css": ".ds-field { min-width: 0; padding: 24px; border: 1px solid var(--color-border-default); border-radius: 0; background: var(--color-bg-depth); color: var(--color-text-primary); font: 0.9375rem/1.5 var(--font-family-primary); } .ds-field-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; } .ds-field-title { margin: 0 0 5px; font: 650 1.0625rem/1.25 var(--font-family-primary); text-wrap: balance; } .ds-field-status { display: grid; align-content: center; padding: 48px 24px; border: 0; text-align: center; } @media (max-width: 767px) { .ds-field { padding: 20px 14px; } .ds-field-heading { align-items: flex-start; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Broadcast Viewfinder",
+    "overview": "A quiet, dark viewing field gives names and white readouts the foreground. Fine rules and corner brackets organize attention without decorative glow or a wall of elevated cards. The character is precise, compact, and clean.\n\nThe neutral palette is the default, not a replacement for team identity. Existing team themes remain available; independent amber focus cues keep controls recognizable. This records the built [tokens](lib/design-tokens.css), [main interface](lib/styles.css), [playoff interface](lib/playoff_styles.css), and their ERB/JavaScript controls. [PRODUCT.md](PRODUCT.md) owns product constraints; route strategy lives in the surface brief.",
+    "keyCharacteristics": [
+      "Dark tonal fields with white and gray readouts.",
+      "Independent amber focus; team identity remains customizable.",
+      "System sans names paired with tabular monospaced measurements.",
+      "Hairline structure, corner brackets, and restrained state transitions."
+    ],
+    "rules": [
+      { "name": "The Stable Focus Rule", "body": "Team themes may recolor surfaces and accents; selection brackets and keyboard focus retain the independent `--color-focus` token.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Use system sans for names and controls, and tabular monospace for dedicated score, rank, and odds readouts.", "section": "typography" },
+      { "name": "The Flat Field Rule", "body": "Structural panels stay flat and hairline-bordered; shadows separate dialogs, not ranked teams or ordinary cards.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** preserve independent amber focus when applying team themes.",
+      "**Do** pair status color with readable labels and tabular numeric readouts.",
+      "**Do** keep mobile content clear of the bottom rail and masthead controls clear of the data field.",
+      "**Do** retain native controls, keyboard access, reduced-motion support, and honest empty/error states."
+    ],
+    "donts": [
+      "**Don't** add decorative glow or turn ordinary data rows into elevated cards.",
+      "**Don't** replace missing records with zeroes, fabricated results, or unlabeled probabilities.",
+      "**Don't** turn retained chart-only fonts, legacy aliases, or one-off dimensions into global defaults."
+    ]
+  }
+}
