@@ -13,47 +13,48 @@
      COLOR SYSTEM
      ======================================== */
   
-  /* Primary Colors — broadcast near-black, cool neutral (not navy) */
-  --color-bg-primary: #0a0c10;          /* page: near-black */
-  --color-bg-depth: #06080b;            /* deepest inset */
-  --color-bg-secondary: #14171d;        /* panel / card surface */
-  --color-bg-tertiary: #1e232b;         /* elevated surface */
-  --color-bg-hover: #232932;            /* hover surface */
+  /* Viewfinder: a neutral viewing field, white readouts, amber focus. */
+  --color-bg-primary: #101214;
+  --color-bg-depth: #090b0c;
+  --color-bg-secondary: #171a1d;
+  --color-bg-tertiary: #22262a;
+  --color-bg-hover: #292e33;
   
   /* Text Colors */
-  --color-text-primary: #f3f6fa;        /* near-white */
-  --color-text-secondary: #9aa5b3;      /* muted */
-  --color-text-muted: #6b7686;          /* tertiary */
-  --color-text-inverse: #0a0c10;        /* text on accent fills */
-  
-  /* Accent Colors — signature electric azure + semantic pops (broadcast) */
-  --color-accent-primary: #1f9dff;      /* Electric azure - brand / primary accent */
+  --color-text-primary: #f4f5f6;
+  --color-text-secondary: #b2b8bf;
+  --color-text-muted: #949ca5;
+  --color-text-inverse: #101214;
+
+  /* Team themes may override the primary accent; focus remains readable. */
+  --color-accent-primary: #ffbc52;
+  --color-focus: #ffbc52;
   --color-accent-primary-wash: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
   --color-accent-primary-subtle: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
   --color-accent-primary-selected: color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
   --color-accent-primary-border: color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
   --color-accent-danger: #ff5347;       /* Red - Errors, Losses */
   --color-accent-warning: #ffb020;      /* Amber - Warnings */
-  --color-accent-info: #1f9dff;         /* Blue - Info, Links (= brand) */
+  --color-accent-info: #87b6e5;
   --color-accent-purple: #a06bff;       /* Purple - Special Actions */
   --color-accent-orange: #ff7a2f;       /* Orange - Hot/Active States */
   --color-accent-hot: #ff4436;          /* Broadcast red - live / emphasis */
   --color-accent-positive: #35d07f;     /* Green - gains / positive deltas */
-  --color-accent-gold: #f5c451;         /* Rank #1 / champion */
+  --color-accent-gold: #ffbc52;         /* Rank #1 / champion */
   --color-accent-silver: #cbd3dd;       /* Rank #2 */
   --color-accent-bronze: #dd9159;       /* Rank #3 */
   
   /* Border & Divider Colors — hairline */
-  --color-border-default: #262c36;
-  --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-strong: rgba(255, 255, 255, 0.13);
+  --color-border-default: #363c42;
+  --color-border-subtle: #282d32;
+  --color-border-strong: #737d87;
 
   /* Surface Colors — solid near-black panels (flat, no gradient) */
-  --color-surface-raised: #14171d;
-  --color-surface-raised-muted: #12151b;
-  --color-surface-raised-soft: #101318;
-  --color-surface-soft: #1a1f27;
-  --color-surface-inset: #0c0e13;
+  --color-surface-raised: var(--color-bg-secondary);
+  --color-surface-raised-muted: var(--color-bg-secondary);
+  --color-surface-raised-soft: var(--color-bg-primary);
+  --color-surface-soft: var(--color-bg-tertiary);
+  --color-surface-inset: var(--color-bg-depth);
   
   /* Overlay & Shadow Colors */
   --color-overlay-dark: rgba(0, 0, 0, 0.5);
@@ -106,12 +107,12 @@
      ======================================== */
   
   /* Font Families */
-  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Barlow Condensed', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-display: var(--font-family-primary);
   --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   
   /* Font Sizes */
-  --font-size-xs: 0.65rem;      /* 10.4px */
+  --font-size-xs: 0.75rem;      /* 12px */
   --font-size-sm: 0.75rem;      /* 12px */
   --font-size-base: 0.875rem;   /* 14px */
   --font-size-md: 0.95rem;      /* 15.2px */
@@ -170,7 +171,7 @@
   --width-7xl: 80rem;     /* 1280px */
   
   /* Container Max Width */
-  --container-max-width: 1200px;
+  --container-max-width: 1360px;
   
   /* Touch Targets */
   --touch-target-min: 44px;
@@ -185,7 +186,7 @@
   --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 18px 40px rgba(0, 0, 0, 0.55);
   --shadow-2xl: 0 28px 56px rgba(0, 0, 0, 0.6);
-  --shadow-focus: 0 0 0 3px color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+  --shadow-focus: none;
   
   /* Glow Effects — disabled for broadcast (flat, crisp; no neon glow) */
   --glow-green: none;
@@ -207,7 +208,7 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-bounce: cubic-bezier(0.22, 1, 0.36, 1);
   
   /* ========================================
      Z-INDEX SCALE

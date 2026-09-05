@@ -154,8 +154,9 @@ test.describe('Accessibility Features', () => {
   });
 
   test('main content has an ID target for skip link', async ({ page }) => {
-    const mainContent = page.locator('#main-content');
+    const mainContent = page.locator('main#main-content');
     await expect(mainContent).toHaveCount(1);
+    await expect(page.locator('.skip-link')).toHaveAttribute('href', '#main-content');
   });
 });
 
@@ -295,25 +296,6 @@ test.describe('Mobile Viewport', () => {
 test.describe('Cross-Feature Integration', () => {
   test.beforeEach(async ({ page }) => {
     await loadFixture(page);
-  });
-
-  test('social reactions announce to screen reader', async ({ page }) => {
-    // Click a reaction
-    const reactionBtn = page.locator('.reaction-btn').first();
-    await reactionBtn.click();
-    await page.waitForTimeout(200);
-
-    const emojiBtn = page.locator('.emoji-btn').first();
-    await emojiBtn.click();
-    await page.waitForTimeout(200);
-
-    // Check screen reader announcement happened
-    // (it may have cleared by now, so check localStorage reaction was saved instead)
-    const hasReaction = await page.evaluate(() => {
-      const stored = localStorage.getItem('hockey_reactions');
-      return stored && stored !== '{}';
-    });
-    expect(hasReaction).toBe(true);
   });
 
   test('team picker modal has proper keyboard trap', async ({ page }) => {

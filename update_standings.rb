@@ -34,10 +34,10 @@ begin
   puts "Processing NHL standings data..."
   processor.process('fan_team.csv', index_path)
 
-  # If index.html exists but standings.html doesn't, create a copy for compatibility
-  if File.exist?(index_path) && !File.exist?(standings_path)
+  # Keep the compatibility entry point in sync with every build.
+  if File.exist?(index_path)
     FileUtils.cp(index_path, standings_path)
-    puts "Created standings.html copy for compatibility"
+    puts "Updated standings.html copy for compatibility"
   end
 
   # Generate playoffs page

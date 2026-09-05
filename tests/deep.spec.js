@@ -62,19 +62,6 @@ test.describe('Console Error Audit', () => {
     expect(errors).toEqual([]);
   });
 
-  test('no JS errors when using social reactions', async ({ page }) => {
-    const errors = [];
-    page.on('pageerror', err => errors.push(err.message));
-    await loadFixture(page);
-
-    // Click reaction, pick emoji
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await page.click('.emoji-btn');
-    await page.waitForTimeout(300);
-
-    expect(errors).toEqual([]);
-  });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -152,12 +139,14 @@ test.describe('Theme Switching Integration', () => {
   });
 
   test('meta theme-color updates with team theme', async ({ page }) => {
-    await page.evaluate(() => window.TeamThemes.applyTheme('kraken'));
-    const metaContent = await page.evaluate(() =>
-      document.querySelector('meta[name="theme-color"]')?.getAttribute('content')
-    );
-    expect(metaContent).toBeTruthy();
-    expect(metaContent).not.toBe('#0b162a'); // Should be kraken's dark bg, not default
+    const background = await page.evaluate(() => {
+      window.TeamThemes.applyTheme('kraken');
+      return window.TeamThemes.getTeamTheme('kraken').theme['--color-bg-primary'];
+    });
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', background);
+
+    await page.evaluate(() => window.TeamThemes.applyTheme('default'));
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#101214');
   });
 
   test('data-team attribute set on html element', async ({ page }) => {
@@ -247,78 +236,7 @@ test.describe('Team Picker Edge Cases', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 4. SOCIAL FEATURES EDGE CASES
-// ═══════════════════════════════════════════════════════════════════════════
-
-test.describe('Social Features Edge Cases', () => {
-  test.beforeEach(async ({ page }) => {
-    await loadFixture(page);
-  });
-
-  test('multiple reactions on same card accumulate', async ({ page }) => {
-    // First reaction
-    const btn = page.locator('.reaction-btn').first();
-    await btn.click();
-    await page.waitForTimeout(200);
-    await page.locator('.emoji-btn').first().click();
-    await page.waitForTimeout(300);
-
-    // Second reaction (same emoji)
-    await btn.click();
-    await page.waitForTimeout(200);
-    await page.locator('.emoji-btn').first().click();
-    await page.waitForTimeout(300);
-
-    // Count should be 2
-    const countText = await page.locator('.reaction-count').first().textContent();
-    expect(countText).toContain('2');
-  });
-
-  test('emoji picker repositions at viewport edge', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
-    await loadFixture(page);
-
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-
-    const picker = page.locator('.emoji-picker');
-    await expect(picker).toBeVisible();
-
-    const box = await picker.boundingBox();
-    // Picker should be within viewport
-    expect(box.x).toBeGreaterThanOrEqual(0);
-    expect(box.x + box.width).toBeLessThanOrEqual(375 + 10); // small tolerance
-  });
-
-  test('reaction float animation respects reduced motion', async ({ page }) => {
-    // Emulate reduced motion preference
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await loadFixture(page);
-
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await page.click('.emoji-btn');
-    await page.waitForTimeout(300);
-
-    // No floating element should be in DOM (skipped for reduced motion)
-    const floaters = page.locator('.reaction-float');
-    await expect(floaters).toHaveCount(0);
-  });
-
-  test('confetti respects reduced motion', async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await loadFixture(page);
-
-    await page.evaluate(() => window.socialFeatures.celebrate());
-    await page.waitForTimeout(500);
-
-    const confetti = page.locator('.confetti-piece');
-    await expect(confetti).toHaveCount(0);
-  });
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// 5. MOBILE GESTURES EDGE CASES
+// 4. MOBILE GESTURES EDGE CASES
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Mobile Gestures Edge Cases', () => {
@@ -356,10 +274,19 @@ test.describe('Mobile Gestures Edge Cases', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 6. CROSS-FILE STATIC ANALYSIS
+// 5. CROSS-FILE STATIC ANALYSIS
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Cross-File Consistency', () => {
+  test('test fixture references existing local assets', () => {
+    const fixture = fs.readFileSync(path.resolve(__dirname, 'test-fixture.html'), 'utf-8');
+    const assets = Array.from(fixture.matchAll(/(?:src|href)="(\.\.\/[^"]+)"/g), match => match[1]);
+    expect(assets.length).toBeGreaterThan(0);
+    for (const asset of assets) {
+      expect(fs.existsSync(path.resolve(__dirname, asset)), asset).toBe(true);
+    }
+  });
+
   test('all local scripts declared in app_assets are in precache_paths', async () => {
     const assetManifest = JSON.parse(
       fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
@@ -369,6 +296,7 @@ test.describe('Cross-File Consistency', () => {
       .map(script => script.src)
       .filter(src => !src.startsWith('http'));
 
+    expect(localScripts.length).toBeGreaterThan(0);
     for (const script of localScripts) {
       expect(assetManifest.precache_paths).toContain('./' + script);
     }

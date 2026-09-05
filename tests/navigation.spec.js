@@ -86,12 +86,13 @@ test.describe('Desktop Tab Navigation', () => {
 
 test.describe('Bottom Nav Navigation', () => {
   test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
     await loadFixture(page);
   });
 
   test('bottom nav has correct items', async ({ page }) => {
-    const navItems = page.locator('.bottom-nav .nav-item');
-    await expect(navItems).toHaveCount(4);
+    const navItems = page.locator('.bottom-nav button.nav-item');
+    await expect(navItems).toHaveText(['League', 'Matchups', 'Standings', 'Playoff Odds', 'Trends']);
   });
 
   test('clicking bottom nav item switches tab', async ({ page }) => {
@@ -114,7 +115,8 @@ test.describe('Bottom Nav Navigation', () => {
     const navItem = page.locator('.bottom-nav .nav-item[data-tab="standings"]');
     await expect(navItem).toHaveClass(/active/);
 
-    // Now click desktop tab "league" — bottom nav should sync
+    // Resize to desktop before using its navigation.
+    await page.setViewportSize({ width: 1280, height: 720 });
     await page.locator('.desktop-tab[data-tab="league"]').click();
 
     const leagueNav = page.locator('.bottom-nav .nav-item[data-tab="league"]');
@@ -125,12 +127,13 @@ test.describe('Bottom Nav Navigation', () => {
   });
 
   test('only one bottom nav item is active at a time', async ({ page }) => {
-    const tabs = ['league', 'matchups', 'standings', 'trends'];
+    const tabs = ['league', 'matchups', 'standings', 'playoff-odds', 'trends'];
 
     for (const tab of tabs) {
       await page.locator(`.bottom-nav .nav-item[data-tab="${tab}"]`).click();
       const activeItems = page.locator('.bottom-nav .nav-item.active');
       await expect(activeItems).toHaveCount(1);
+      await expect(activeItems).toHaveAttribute('aria-current', 'page');
     }
   });
 });
@@ -225,7 +228,7 @@ test.describe('Service Worker Cache', () => {
   test('service worker has offline fallback HTML', () => {
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
     expect(sw).toContain('OFFLINE_HTML');
-    expect(sw).toContain("You're Offline");
+    expect(sw).toContain('<h1 id="offline-title">You\'re offline</h1>');
   });
 });
 
@@ -267,14 +270,16 @@ test.describe('Accessibility Structure', () => {
     }
   });
 
-  test('header has role=banner', async ({ page }) => {
-    const header = page.locator('header[role="banner"]');
+  test('masthead has role=banner', async ({ page }) => {
+    const header = page.locator('header.site-masthead[role="banner"]');
     await expect(header).toHaveCount(1);
   });
 
-  test('navigation has role=navigation', async ({ page }) => {
+  test('desktop and mobile navigation are named landmarks', async ({ page }) => {
     const nav = page.locator('nav[role="navigation"]');
-    await expect(nav).toHaveCount(1);
+    await expect(nav).toHaveCount(2);
+    await expect(page.locator('.desktop-tabs')).toHaveAttribute('aria-label', 'Main navigation');
+    await expect(page.locator('.bottom-nav')).toHaveAttribute('aria-label', 'Mobile navigation');
   });
 
   test('accent bar is aria-hidden', async ({ page }) => {
@@ -338,28 +343,6 @@ test.describe('Theme and Tab Interaction', () => {
     await expect(modal).toBeVisible();
   });
 
-  test('social reactions persist after tab switches', async ({ page }) => {
-    // Add a reaction
-    const reactionBtn = page.locator('.reaction-btn').first();
-    await reactionBtn.click();
-    await page.waitForTimeout(200);
-
-    const emojiBtn = page.locator('.emoji-btn').first();
-    await emojiBtn.click();
-    await page.waitForTimeout(200);
-
-    // Check reaction count exists
-    const countBefore = await page.locator('.reaction-count').count();
-    expect(countBefore).toBeGreaterThan(0);
-
-    // Switch tabs and come back
-    await page.locator('.desktop-tab[data-tab="standings"]').click();
-    await page.locator('.desktop-tab[data-tab="league"]').click();
-
-    // Reaction counts should still be there
-    const countAfter = await page.locator('.reaction-count').count();
-    expect(countAfter).toBe(countBefore);
-  });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -407,19 +390,6 @@ test.describe('LocalStorage Resilience', () => {
     expect(errors).toHaveLength(0);
   });
 
-  test('social reactions handle corrupt localStorage', async ({ page }) => {
-    const errors = [];
-    page.on('pageerror', e => errors.push(e.message));
-
-    await page.addInitScript(() => {
-      try {
-        localStorage.setItem('hockey_reactions', 'corrupted-data!!!');
-      } catch(e) {}
-    });
-
-    await loadFixture(page);
-    expect(errors).toHaveLength(0);
-  });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -438,8 +408,11 @@ test.describe('PWA Manifest Deep Validation', () => {
     const manifest = JSON.parse(
       fs.readFileSync(path.resolve(__dirname, '..', 'site.webmanifest'), 'utf-8')
     );
-    expect(manifest.theme_color).toBeTruthy();
-    expect(manifest.background_color).toBeTruthy();
+    const tokens = fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'design-tokens.css'), 'utf-8');
+    const background = tokens.match(/--color-bg-primary:\s*(#[0-9a-f]{6})/i)?.[1];
+    expect(background).toBeTruthy();
+    expect(manifest.theme_color).toBe(background);
+    expect(manifest.background_color).toBe(background);
   });
 
   test('manifest start_url is set', () => {
@@ -477,30 +450,19 @@ test.describe('Visual Regression Guards', () => {
     await loadFixture(page);
   });
 
-  test('matchup cards have consistent border-radius', async ({ page }) => {
-    const cards = page.locator('.matchup-card');
-    const count = await cards.count();
-
-    for (let i = 0; i < count; i++) {
-      const radius = await cards.nth(i).evaluate(el =>
-        getComputedStyle(el).borderRadius
-      );
-      expect(radius).toBeTruthy();
-      expect(radius).not.toBe('0px');
+  test('matchup cards use square, flat fields', async ({ page }) => {
+    await page.evaluate(() => switchTab('matchups'));
+    const cards = page.locator('#matchups-tab .matchup-card');
+    await expect(cards).toHaveCount(2);
+    for (const card of await cards.all()) {
+      await expect(card).toHaveCSS('border-radius', '0px');
+      await expect(card).toHaveCSS('box-shadow', 'none');
+      await expect(card).toHaveCSS('border-top-style', 'solid');
     }
   });
 
-  test('body has dark background', async ({ page }) => {
-    const bg = await page.evaluate(() =>
-      getComputedStyle(document.body).backgroundColor
-    );
-    // Should be a dark color (r, g, b values low)
-    const match = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-    if (match) {
-      const [, r, g, b] = match.map(Number);
-      // Dark theme: average < 80
-      expect((r + g + b) / 3).toBeLessThan(80);
-    }
+  test('body has the neutral dark background', async ({ page }) => {
+    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(16, 18, 20)');
   });
 
   test('accent bar spans full width', async ({ page }) => {

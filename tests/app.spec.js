@@ -193,8 +193,8 @@ test.describe('Team Picker', () => {
     await loadFixture(page);
   });
 
-  test('trigger button is created in header', async ({ page }) => {
-    const trigger = page.locator('.team-picker-trigger');
+  test('trigger button is created in masthead', async ({ page }) => {
+    const trigger = page.locator('.site-masthead .team-picker-trigger');
     await expect(trigger).toBeVisible();
   });
 
@@ -299,92 +299,7 @@ test.describe('Team Picker', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 4. SOCIAL FEATURES
-// ═══════════════════════════════════════════════════════════════════════════
-
-test.describe('Social Features', () => {
-  test.beforeEach(async ({ page }) => {
-    await loadFixture(page);
-  });
-
-  test('reaction buttons are added to matchup/team cards', async ({ page }) => {
-    const bars = page.locator('.reaction-bar');
-    const count = await bars.count();
-    expect(count).toBeGreaterThanOrEqual(2); // At least the matchup-card and team-card
-  });
-
-  test('clicking reaction button shows emoji picker', async ({ page }) => {
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    const picker = page.locator('.emoji-picker');
-    await expect(picker).toBeVisible();
-  });
-
-  test('clicking an emoji adds a reaction', async ({ page }) => {
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await page.click('.emoji-btn');
-    await page.waitForTimeout(300);
-
-    // Reaction count should appear
-    const counts = page.locator('.reaction-count');
-    const count = await counts.count();
-    expect(count).toBeGreaterThanOrEqual(1);
-  });
-
-  test('reaction shows toast notification', async ({ page }) => {
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await page.click('.emoji-btn');
-
-    const toast = page.locator('.reaction-toast');
-    await expect(toast).toBeVisible();
-  });
-
-  test('reactions persist in localStorage', async ({ page }) => {
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await page.click('.emoji-btn');
-    await page.waitForTimeout(200);
-
-    const stored = await page.evaluate(() => localStorage.getItem('hockey_reactions'));
-    expect(stored).toBeTruthy();
-    const parsed = JSON.parse(stored);
-    expect(Object.keys(parsed).length).toBeGreaterThanOrEqual(1);
-  });
-
-  test('clicking outside picker closes it', async ({ page }) => {
-    await page.click('.reaction-btn');
-    await page.waitForTimeout(200);
-    await expect(page.locator('.emoji-picker')).toBeVisible();
-
-    // Click on body (outside picker)
-    await page.click('body', { position: { x: 10, y: 10 } });
-    await page.waitForTimeout(200);
-    await expect(page.locator('.emoji-picker')).toHaveCount(0);
-  });
-
-  test('card IDs are stable (content-based, not index-based)', async ({ page }) => {
-    const ids = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('[data-card-id]'))
-        .map(el => el.dataset.cardId);
-    });
-    // IDs should contain fan name or team name, not just "card-0"
-    ids.forEach(id => {
-      expect(id).not.toMatch(/^card-\d+$/);
-    });
-  });
-
-  test('window.socialFeatures API is exposed', async ({ page }) => {
-    const hasReact = await page.evaluate(() => typeof window.socialFeatures.react === 'function');
-    const hasCelebrate = await page.evaluate(() => typeof window.socialFeatures.celebrate === 'function');
-    expect(hasReact).toBe(true);
-    expect(hasCelebrate).toBe(true);
-  });
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// 5. MOBILE GESTURES
+// 4. MOBILE GESTURES
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Mobile Gestures', () => {
@@ -408,10 +323,7 @@ test.describe('Mobile Gestures', () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await loadFixture(page);
     const tabs = await page.evaluate(() => window.mobileGestures.tabs);
-    expect(tabs).toContain('league');
-    expect(tabs).toContain('matchups');
-    expect(tabs).toContain('standings');
-    expect(tabs.length).toBeGreaterThanOrEqual(4);
+    expect(tabs).toEqual(['league', 'matchups', 'standings', 'playoff-odds', 'trends']);
   });
 
   test('swipe threshold is adaptive for small screens', async ({ page }) => {
@@ -433,7 +345,7 @@ test.describe('Mobile Gestures', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 6. PWA MANIFEST & SERVICE WORKER
+// 5. PWA MANIFEST & SERVICE WORKER
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('PWA Assets', () => {
@@ -459,11 +371,12 @@ test.describe('PWA Assets', () => {
 
     expect(svg).toContain('<svg');
     expect(svg).toContain('viewBox="0 0 512 512"');
-    expect(svg).toContain('#21d19f'); // Accent green
-    expect(svg).toContain('#0b162a'); // Dark background
+    expect(svg).toContain('fill="#ffbc52"');
+    expect(svg).toContain('fill="#101214"');
+    expect(svg).toContain('stroke="#f4f5f6"');
   });
 
-  test('service-worker.js caches all JS files', async ({ page }) => {
+  test('service-worker.js precaches all declared copied assets', async () => {
     const fs = require('fs');
     const path = require('path');
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
@@ -471,16 +384,19 @@ test.describe('PWA Assets', () => {
       fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'app-assets.json'), 'utf-8')
     );
 
-    const expectedAssets = [
-      './team-themes.js', './team-picker.js', './social-features.js',
-      './mobile-gestures.js', './pwa-install.js', './accessibility.js',
-      './performance-utils.js', './standings-app.js', './vendor/chart.umd.js'
-    ];
-    expectedAssets.forEach(asset => {
-      expect(assetManifest.precache_paths).toContain(asset);
-    });
+    expect(Object.keys(assetManifest.copy).sort()).toEqual(['css', 'js', 'root', 'vendor']);
+    for (const [kind, files] of Object.entries(assetManifest.copy)) {
+      expect(files.length).toBeGreaterThan(0);
+      for (const file of files) {
+        const asset = kind === 'vendor' ? './vendor/' + file : './' + file;
+        const sourceDir = kind === 'root' ? '.' : kind === 'vendor' ? 'vendor' : 'lib';
+        expect(assetManifest.precache_paths).toContain(asset);
+        expect(fs.existsSync(path.resolve(__dirname, '..', sourceDir, file)), asset).toBe(true);
+      }
+    }
 
     expect(sw).toContain('APP_ASSET_MANIFEST_URL');
+    expect(sw).toContain('manifest.precache_paths');
   });
 
   test('service-worker has offline fallback', async ({ page }) => {
@@ -489,13 +405,13 @@ test.describe('PWA Assets', () => {
     const sw = fs.readFileSync(path.resolve(__dirname, '..', 'service-worker.js'), 'utf-8');
 
     expect(sw).toContain('OFFLINE_HTML');
-    expect(sw).toContain("You're Offline");
+    expect(sw).toContain('<h1 id="offline-title">You\'re offline</h1>');
     expect(sw).toContain("request.mode === 'navigate'");
   });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 7. CSS & VISUAL INTEGRATION
+// 6. CSS & VISUAL INTEGRATION
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Visual Integration', () => {
@@ -511,48 +427,44 @@ test.describe('Visual Integration', () => {
     expect(box.y).toBeLessThanOrEqual(5);
   });
 
-  test('skeleton class creates animation on images', async ({ page }) => {
+  test('skeleton images use a neutral placeholder without shimmer', async ({ page }) => {
     const img = page.locator('.skeleton').first();
-    const animation = await img.evaluate(el => getComputedStyle(el).animationName);
-    expect(animation).toBe('skeleton-pulse');
+    await expect(img).toHaveCSS('background-color', 'rgb(34, 38, 42)');
+    await expect(img).toHaveCSS('animation-name', 'none');
   });
 
   test('image onerror hides img and shows fallback', async ({ page }) => {
-    // The test fixture has a broken image URL
-    await page.waitForTimeout(1000); // Wait for image error
+    await page.evaluate(() => switchTab('matchups'));
     const fallback = page.locator('.team-logo-fallback').first();
-    // The fallback should become visible when img errors
-    const display = await fallback.evaluate(el => getComputedStyle(el).display);
-    expect(display).not.toBe('none');
+    await expect(fallback).toBeVisible();
   });
 
   test('team theme changes accent bar color', async ({ page }) => {
-    // Get initial accent bar gradient
     await page.evaluate(() => window.TeamThemes.applyTheme('bruins'));
-    // The accent bar uses --color-accent-primary which should now be #FFB81C
-    const accent = await page.evaluate(() =>
-      getComputedStyle(document.documentElement).getPropertyValue('--color-accent-primary').trim()
-    );
-    expect(accent).toBe('#FFB81C');
+    await expect(page.locator('.app-accent-bar')).toHaveCSS('background-color', 'rgb(255, 184, 28)');
   });
 
-  test('design tokens CSS variables are defined', async ({ page }) => {
+  test('default design tokens use the viewfinder palette', async ({ page }) => {
     const vars = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
       return {
         bgPrimary: style.getPropertyValue('--color-bg-primary').trim(),
         textPrimary: style.getPropertyValue('--color-text-primary').trim(),
         accentPrimary: style.getPropertyValue('--color-accent-primary').trim(),
+        focus: style.getPropertyValue('--color-focus').trim(),
       };
     });
-    expect(vars.bgPrimary).toBeTruthy();
-    expect(vars.textPrimary).toBeTruthy();
-    expect(vars.accentPrimary).toBeTruthy();
+    expect(vars).toEqual({
+      bgPrimary: '#101214',
+      textPrimary: '#f4f5f6',
+      accentPrimary: '#ffbc52',
+      focus: '#ffbc52',
+    });
   });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 8. PLAYOFF STYLES
+// 7. PLAYOFF STYLES
 // ═══════════════════════════════════════════════════════════════════════════
 
 test.describe('Playoff Styles', () => {
@@ -569,13 +481,15 @@ test.describe('Playoff Styles', () => {
     expect(matches.length).toBe(0);
   });
 
-  test('playoff_styles.css has hover states on series cards', async ({ page }) => {
+  test('playoff_styles.css uses flat series surfaces', async () => {
     const fs = require('fs');
     const path = require('path');
     const css = fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'playoff_styles.css'), 'utf-8');
 
-    expect(css).toContain('.series:hover');
-    expect(css).toContain('translateY');
+    const series = css.match(/\.series\s*\{([^}]+)\}/)?.[1];
+    expect(series).toContain('border: 1px solid var(--color-border-default)');
+    expect(series).toContain('background: var(--color-bg-depth)');
+    expect(series).not.toContain('transform');
   });
 
   test('playoff_styles.css has team-seed styling', async ({ page }) => {
@@ -583,7 +497,8 @@ test.describe('Playoff Styles', () => {
     const path = require('path');
     const css = fs.readFileSync(path.resolve(__dirname, '..', 'lib', 'playoff_styles.css'), 'utf-8');
 
-    expect(css).toContain('.team-seed');
-    expect(css).toContain('--color-accent-warning');
+    const seed = css.match(/\.team-seed\s*\{([^}]+)\}/)?.[1];
+    expect(seed).toContain('--color-text-muted');
+    expect(seed).toContain('--font-family-mono');
   });
 });
