@@ -129,9 +129,9 @@
     "sourceFingerprints": {
       "algorithm": "sha256",
       "files": {
-        "DESIGN.md": "23bafd432c5faa51c171dc80c792e1fa9c3037c39b3ea478bde9e2c854a75110",
+        "DESIGN.md": "bb7bab91b641774b55845c2e5113df2bd3c80544592c38cbcfb608dba7b902f1",
         "PRODUCT.md": "676b70b27e7902f0ad3a40c8a661d78680e62c84553e770b1c170bca4c511919",
-        "lib/design-tokens.css": "2dab23d4368640f6c56e625e14a80a9d391ee2fb023b30a36f2521c7c20a1c3a",
+        "lib/design-tokens.css": "88b03cc92b715a398d75932fc99b3e75b01adaeb33055cf7e351eaa19a23cefc",
         "lib/styles.css": "63e6923d1cf118adde00881363b823c47c787fe38d6b7cf64a2155f0e93c1da8",
         "lib/playoff_styles.css": "a2757b6a0dc05a6b7673814c9085dd13f18cd5e073cd1ebf10e705e3b1926a82",
         "lib/standings.html.erb": "e554f2b0a017f68c9e41b22fea80b067ed919f64274e1cd31ba4149ccb59bc8f",
