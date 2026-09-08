@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const previewPort = Number(process.env.PREVIEW_PORT || 8765);
+
 export default defineConfig({
   testDir: './e2e',
   outputDir: './e2e/test-results',
@@ -12,7 +14,7 @@ export default defineConfig({
     ['list'],
   ],
   use: {
-    baseURL: 'http://localhost:8765',
+    baseURL: `http://localhost:${previewPort}`,
     screenshot: 'on',
     trace: 'on-first-retry',
   },
@@ -27,8 +29,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'bundle exec ruby update_standings.rb && npx serve _site -l 8765 --no-clipboard',
-    port: 8765,
+    command: `bundle exec ruby update_standings.rb && npx serve _site -l ${previewPort} --no-clipboard`,
+    port: previewPort,
     reuseExistingServer: !process.env.CI,
     timeout: 45000,
   },

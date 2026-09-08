@@ -23,6 +23,13 @@ leading, compare teams, and follow the games that affect the pool.
   A separate playoff page provides the bracket and fan playoff status.
 - NHL API data supplies standings and schedules. Existing processors calculate
   pool statistics and predictions.
+- During the offseason, lead with per-team news, roster reports, and short
+  publisher briefs for the fan pool. Preserve official-source links and dates.
+  Historical standings and model estimates must not look like current rankings
+  or preseason forecasts.
+- Offseason fetching runs within the existing site-refresh workflow. Automatic
+  rather than curated briefs are a provisional implementation choice; the user
+  requested the content but was unavailable to choose the maintenance model.
 - Preserve team assignments, calculations, predictions, voting, and existing
   navigation behavior. The season refresh is a visual revamp, not a rules or
   data reset.

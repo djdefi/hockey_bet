@@ -7,6 +7,14 @@
     {
       "href": "playoff_styles.css",
       "rel": "stylesheet"
+    },
+    {
+      "href": "broadcast-graphics.css",
+      "rel": "stylesheet"
+    },
+    {
+      "href": "offseason.css",
+      "rel": "stylesheet"
     }
   ],
   "external_scripts": [
@@ -57,6 +65,8 @@
       "styles.css",
       "design-tokens.css",
       "utilities.css",
+      "broadcast-graphics.css",
+      "offseason.css",
       "playoff_styles.css"
     ],
     "js": [
@@ -83,6 +93,8 @@
     "./design-tokens.css",
     "./utilities.css",
     "./playoff_styles.css",
+    "./broadcast-graphics.css",
+    "./offseason.css",
     "./favicon.ico",
     "./icon.svg",
     "./site.webmanifest",

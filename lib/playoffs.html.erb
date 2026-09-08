@@ -16,7 +16,8 @@
     out = +%(<div class="#{classes.join(' ')}" data-abbrev="#{team[:abbrev]}">)
     out << %(<div class="team-identity">)
     if team[:logo] && team[:abbrev] != 'TBD'
-      out << %(<img class="team-logo" src="#{team[:logo]}" alt="#{team[:abbrev]} logo" loading="lazy" width="36" height="36">)
+      out << %(<img class="team-logo" src="#{team[:logo]}" alt="#{team[:abbrev]} logo" loading="lazy" width="48" height="48" onerror="this.style.display='none';this.nextElementSibling.hidden=false">)
+      out << %(<span class="team-logo team-logo--placeholder" hidden aria-hidden="true">#{team[:abbrev]}</span>)
     else
       out << %(<span class="team-logo team-logo--placeholder" aria-hidden="true">?</span>)
     end
@@ -103,6 +104,7 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
         <% if File.exist?("lib/playoff_styles.css") %>
         <%= AppAssets.minify_css(File.read("lib/playoff_styles.css", encoding: 'UTF-8')) %>
         <% end %>
+        <%= AppAssets.minify_css(File.read("lib/broadcast-graphics.css", encoding: 'UTF-8')) %>
         
         .back-link {
             margin-bottom: var(--space-4);
@@ -138,7 +140,7 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
             position: absolute;
             width: 20px;
             height: 20px;
-            border-color: var(--color-text-secondary);
+            border-color: var(--color-focus);
             border-style: solid;
             pointer-events: none;
         }
@@ -232,6 +234,7 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
     </style>
 </head>
 <body class="playoffs-page">
+    <%= File.read("lib/broadcast-symbols.svg", encoding: 'UTF-8') %>
     <div class="container-lg clearfix">
         <div class="col-12">
             <!-- Navigation -->
@@ -252,14 +255,18 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
                     <img class="bracket-hero" src="<%= @bracket_logo %>" alt="NHL Stanley Cup Playoffs banner" loading="lazy" onerror="this.style.display='none'">
                 <% end %>
 
-                <h1 class="bracket-title">Stanley Cup playoffs <span class="bracket-year"><%= Date.today.year %></span></h1>
-
-                <% if @last_updated %>
-                    <div class="last-updated">
-                        <iconify-icon icon="solar:clock-circle-bold" width="14" height="14"></iconify-icon>
-                        Last updated: <%= @last_updated %>
+                <div class="playoff-title-field">
+                    <svg class="broadcast-art" aria-hidden="true" viewBox="0 0 120 160"><use href="#broadcast-cup"/></svg>
+                    <div>
+                        <h1 class="bracket-title">Stanley Cup playoffs <span class="bracket-year"><%= Date.today.year %></span></h1>
+                        <% if @last_updated %>
+                            <div class="last-updated">
+                                <iconify-icon icon="solar:clock-circle-bold" width="14" height="14"></iconify-icon>
+                                Last updated: <%= @last_updated %>
+                            </div>
+                        <% end %>
                     </div>
-                <% end %>
+                </div>
             </div>
 
             <!-- Content -->
@@ -278,18 +285,18 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
                         <% if podium.any? %>
                             <div class="fan-podium" role="list" aria-label="Top 3 fans by cup odds">
                                 <%
-                                  medals = ['🥇', '🥈', '🥉']
                                   ordered = podium.length >= 3 ? [podium[1], podium[0], podium[2]] : podium
                                   ordered.each do |fan, info|
                                     rank = podium.index([fan, info]) + 1
                                 %>
                                     <div class="fan-podium__step fan-podium__step--<%= rank %>" role="listitem">
-                                        <div class="fan-podium__medal" aria-label="Rank <%= rank %>"><%= medals[rank - 1] %></div>
+                                        <div class="fan-podium__medal" aria-label="Rank <%= rank %>">#<%= rank %></div>
                                         <div class="fan-podium__name"><%= fan %></div>
                                         <% pteam = info[:primary_team] %>
                                         <% if pteam && pteam[:logo] %>
                                             <span class="fan-podium__team">
-                                                <img src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %> logo" width="18" height="18" loading="lazy">
+                                                <img src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %> logo" width="88" height="88" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+                                                <span class="crest-fallback" hidden aria-hidden="true"><%= pteam[:abbrev] %></span>
                                                 <%= pteam[:name] %>
                                             </span>
                                         <% end %>
@@ -303,7 +310,8 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
                                 <% pteam = info[:primary_team] %>
                                 <div class="fan-roll-call__item fan-roll-call__item--<%= info[:status] %>" role="listitem">
                                     <% if pteam && pteam[:logo] %>
-                                        <img class="fan-roll-call__logo" src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %>" width="32" height="32" loading="lazy">
+                                        <img class="fan-roll-call__logo" src="<%= pteam[:logo] %>" alt="<%= pteam[:abbrev] %>" width="48" height="48" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+                                        <span class="fan-roll-call__logo crest-fallback" hidden aria-hidden="true"><%= pteam[:abbrev] %></span>
                                     <% else %>
                                         <span class="fan-roll-call__logo" aria-hidden="true">🏒</span>
                                     <% end %>
@@ -357,12 +365,7 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
                         <% @playoff_rounds.each do |round| %>
                             <section class="round" data-round-key="<%= round[:round_key] %>">
                                 <h4>
-                                    <% case round[:round_key]
-                                       when 'R1' %><iconify-icon icon="solar:bolt-bold" width="14" height="14"></iconify-icon><% 
-                                       when 'R2' %><iconify-icon icon="solar:fire-bold" width="14" height="14"></iconify-icon><% 
-                                       when 'CF' %><iconify-icon icon="solar:cup-bold" width="14" height="14"></iconify-icon><% 
-                                       when 'SCF' %><iconify-icon icon="solar:cup-star-bold" width="14" height="14"></iconify-icon><% 
-                                       end %>
+                                    <span class="round-readout" aria-hidden="true"><%= round[:round_key] %></span>
                                     <%= round[:name] %>
                                 </h4>
 
@@ -415,13 +418,13 @@ FORM: Broadcast Viewfinder; user-selected direction, seed 5e1fc3ac.
                 </div>
             <% elsif @is_playoff_time %>
                 <div class="no-playoffs">
-                    <iconify-icon icon="solar:calendar-bold" width="48" height="48"></iconify-icon>
+                    <svg class="broadcast-art playoff-empty-art" aria-hidden="true" viewBox="0 0 320 160"><use href="#broadcast-rink"/></svg>
                     <h2>Playoffs Starting Soon</h2>
                     <p>The NHL playoffs are approaching. Bracket information will be available once the matchups are set.</p>
                 </div>
             <% else %>
                 <div class="no-playoffs">
-                    <iconify-icon icon="solar:calendar-bold" width="48" height="48"></iconify-icon>
+                    <svg class="broadcast-art playoff-empty-art" aria-hidden="true" viewBox="0 0 320 160"><use href="#broadcast-rink"/></svg>
                     <h2>No Active Playoffs</h2>
                     <p>The NHL playoffs typically run from April through June. Check back during playoff season!</p>
                 </div>

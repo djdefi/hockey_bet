@@ -50,6 +50,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           if [ -f "data/standings_history.json" ] && [ -f "data/fan_team_colors.json" ]; then
             git add data/standings_history.json data/fan_team_colors.json
+            if [ -f "data/offseason_news.json" ]; then
+              git add data/offseason_news.json
+            fi
             git diff --cached --quiet || git commit -m "Update standings history [skip ci]" || echo "No changes to commit"
             git push || echo "Failed to push changes, continuing deployment"
           else

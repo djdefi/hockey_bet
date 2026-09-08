@@ -12,6 +12,8 @@ require_relative 'bet_stats_calculator'
 require_relative 'standings_history_tracker'
 require_relative 'team_colors'
 require_relative 'app_assets'
+require_relative 'season_context'
+require_relative 'offseason_news'
 
 # Playoff Status Helper Structure
 # Enhanced with specific seed and position information
@@ -34,6 +36,7 @@ DATA_DIR = 'data'
 # and renders the final HTML output with current standings and bet statistics
 class StandingsProcessor
   attr_reader :teams, :schedule, :next_games, :manager_team_map, :last_updated, :playoff_processor, :bet_stats
+  attr_reader :season_context, :offseason_report
 
   # Initializes the processor with optional fallback data path for testing
   # @param fallback_path [String] Path to fallback data directory (default: 'spec/fixtures')
@@ -47,6 +50,9 @@ class StandingsProcessor
     @manager_team_map = {}
     @last_updated = nil
     @bet_stats = nil
+    @schedule_metadata = {}
+    @season_context = nil
+    @offseason_report = []
   end
 
   # Main process method - orchestrates the complete data pipeline
@@ -55,6 +61,11 @@ class StandingsProcessor
   def process(input_csv = 'fan_team.csv', output_path = '_site/index.html')
     fetch_data
     process_data(input_csv)
+    @season_context = SeasonContext.new(teams: @teams, schedule_metadata: @schedule_metadata)
+    if @season_context.offseason?
+      @offseason_report = OffseasonNews.new(cache_path: "#{DATA_DIR}/offseason_news.json")
+                                      .fetch(@teams, @manager_team_map, since: @season_context.news_since)
+    end
     render_output(output_path)
   end
 
@@ -110,7 +121,7 @@ class StandingsProcessor
     history_tracker.backfill_seasons
     
     # Record current standings
-    history_tracker.record_current_standings(@manager_team_map, @teams)
+    history_tracker.record_current_standings(@manager_team_map, @teams) unless @season_context&.offseason?
     
     # Export available seasons to JSON
     seasons_data = {
@@ -234,6 +245,7 @@ class StandingsProcessor
     if response.code == 200
       data = JSON.parse(response.body)
       if @validator.validate_schedule_response(data)
+        @schedule_metadata = data.slice('regularSeasonStartDate', 'playoffEndDate')
         return data["gameWeek"]
       else
         fallback = @validator.handle_api_failure('schedule', "#{@fallback_path}/schedule.json")

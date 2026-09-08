@@ -52,9 +52,9 @@ test('offline worker update failure is reported without an unhandled rejection',
 test('new worker replaces previous-season asset and data caches', async ({ page, request }) => {
   await page.evaluate(async () => {
     localStorage.setItem('nhl_fan_team', 'bruins');
-    const assets = await caches.open('hockey-bet-static-v11');
+    const assets = await caches.open('hockey-bet-static-v12');
     await assets.put('./styles.css', new Response('obsolete stylesheet'));
-    const data = await caches.open('hockey-bet-data-v11');
+    const data = await caches.open('hockey-bet-data-v12');
     await data.put('./available_seasons.json', new Response('{"seasons":["obsolete"]}'));
   });
 
@@ -62,9 +62,19 @@ test('new worker replaces previous-season asset and data caches', async ({ page,
 
   const styles = await request.get('/styles.css');
   expect(await page.evaluate(async () => {
-    const cache = await caches.open('hockey-bet-static-v12');
+    const cache = await caches.open('hockey-bet-static-v14');
     return (await cache.match('./styles.css'))?.text();
   })).toBe(await styles.text());
+  const graphics = await request.get('/broadcast-graphics.css');
+  expect(await page.evaluate(async () => {
+    const cache = await caches.open('hockey-bet-static-v14');
+    return (await cache.match('./broadcast-graphics.css'))?.text();
+  })).toBe(await graphics.text());
+  const offseasonStyles = await request.get('/offseason.css');
+  expect(await page.evaluate(async () => {
+    const cache = await caches.open('hockey-bet-static-v14');
+    return (await cache.match('./offseason.css'))?.text();
+  })).toBe(await offseasonStyles.text());
 
   const seasons = await request.get('/available_seasons.json');
   expect(await page.evaluate(async () =>
@@ -72,9 +82,9 @@ test('new worker replaces previous-season asset and data caches', async ({ page,
   )).toEqual(await seasons.json());
 
   const keys = await page.evaluate(() => caches.keys());
-  expect(keys).toEqual(expect.arrayContaining(['hockey-bet-static-v12', 'hockey-bet-data-v12']));
-  expect(keys).not.toContain('hockey-bet-static-v11');
-  expect(keys).not.toContain('hockey-bet-data-v11');
+  expect(keys).toEqual(expect.arrayContaining(['hockey-bet-static-v14', 'hockey-bet-data-v14']));
+  expect(keys).not.toContain('hockey-bet-static-v12');
+  expect(keys).not.toContain('hockey-bet-data-v12');
   expect(await page.evaluate(() => localStorage.getItem('nhl_fan_team'))).toBe('bruins');
 });
 
@@ -113,6 +123,12 @@ test('cached league and offline fallback recover after reconnecting', async ({ p
     connected = false;
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('heading', { name: 'NHL Fan League', exact: true })).toBeVisible();
+    if (await page.locator('#offseason-briefs').count()) {
+      await expect(page.locator('#offseason-briefs')).toBeVisible();
+      await expect(page.locator('.offseason-grid')).toHaveCSS('display', 'grid');
+    }
+    await expect(page.locator('.crest-stage')).toHaveCSS('position', 'relative');
+    await expect(page.locator('.crest-stage use')).toHaveAttribute('href', '#broadcast-focus');
     await page.locator('.desktop-tab[data-tab="standings"], .nav-item[data-tab="standings"]')
       .filter({ visible: true }).click();
     await expect(page.locator('#standings-tab')).toBeVisible();

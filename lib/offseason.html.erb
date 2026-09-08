@@ -1,0 +1,66 @@
+<section id="offseason-briefs" aria-labelledby="offseason-title">
+    <div class="view-heading">
+        <div>
+            <h2 id="offseason-title">Offseason team briefs</h2>
+            <p>News and roster moves for your fan teams.</p>
+        </div>
+        <svg class="broadcast-art" aria-hidden="true" viewBox="0 0 200 100"><use href="#broadcast-trail"/></svg>
+    </div>
+    <div class="brief-toolbar">
+        <p>Official reports since <time datetime="<%= season.news_since.iso8601 %>"><%= season.news_since.strftime('%b %-d, %Y') %></time>.</p>
+        <div class="season-control">
+            <label for="brief-team">Team</label>
+            <select id="brief-team">
+                <option value="">All fan teams</option>
+                <% news_teams.each do |club| %>
+                <option value="<%= ERB::Util.html_escape(club['abbrev']) %>"><%= ERB::Util.html_escape(club['team']) %></option>
+                <% end %>
+            </select>
+        </div>
+    </div>
+    <% if news_teams.empty? %>
+    <p class="news-status" role="status">Team briefings are unavailable in this build. Last season's results remain below.</p>
+    <% end %>
+    <div class="offseason-grid">
+        <% news_teams.each do |club| %>
+        <article class="team-brief" data-brief-team="<%= ERB::Util.html_escape(club['abbrev']) %>" aria-labelledby="brief-<%= ERB::Util.html_escape(club['abbrev']) %>">
+            <header class="team-brief__header">
+                <div class="brief-crest">
+                    <img src="<%= get_team_logo_url(club['abbrev']) %>" alt="" width="88" height="88" decoding="async"
+                         onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+                    <span class="crest-fallback" hidden aria-hidden="true"><%= ERB::Util.html_escape(club['abbrev']) %></span>
+                </div>
+                <div>
+                    <h3 id="brief-<%= ERB::Util.html_escape(club['abbrev']) %>"><%= ERB::Util.html_escape(club['team']) %></h3>
+                    <p><%= ERB::Util.html_escape(club['fan']) %></p>
+                </div>
+            </header>
+            <% if club['status'] != 'fresh' %>
+            <p class="news-status" role="status"><%= club['status'] == 'cached' ? 'Source refresh failed. Showing previously fetched reports.' : "Unable to load this team's news. Read the official team feed below." %></p>
+            <% end %>
+            <% if club['articles'].empty? && club['status'] == 'fresh' %>
+            <p class="news-status">No reports in this news window. No roster changes are inferred.</p>
+            <% end %>
+            <ul class="brief-stories">
+                <% club['articles'].each do |story| %>
+                <li class="brief-story">
+                    <div class="brief-story__meta">
+                        <span><%= story['roster_news'] ? 'Roster news' : 'Team report' %></span>
+                        <time datetime="<%= story['published_at'] %>"><%= Time.iso8601(story['published_at']).utc.strftime('%b %-d, %Y') %></time>
+                    </div>
+                    <h4><a href="<%= ERB::Util.html_escape(story['url']) %>"><%= ERB::Util.html_escape(story['title']) %></a></h4>
+                    <% unless story['summary'].to_s.empty? %>
+                    <p class="brief-story__summary"><%= ERB::Util.html_escape(story['summary']) %></p>
+                    <% end %>
+                </li>
+                <% end %>
+            </ul>
+            <% if club['updated_at'] %>
+            <p class="brief-fetched">Source checked <time datetime="<%= club['updated_at'] %>"><%= Time.iso8601(club['updated_at']).utc.strftime('%b %-d, %Y at %H:%M UTC') %></time></p>
+            <% end %>
+            <a class="brief-source" href="<%= ERB::Util.html_escape(club['news_url']) %>">Official <%= club['news_url'] == 'https://www.nhl.com/news' ? 'NHL' : ERB::Util.html_escape(club['team']) %> news <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <% end %>
+    </div>
+    <p class="brief-disclosure">Headlines and short publisher briefs from official club feeds. Roster news is not a complete transaction log; missing coverage does not imply no moves.</p>
+</section>

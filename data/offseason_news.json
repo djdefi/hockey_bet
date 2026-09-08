@@ -1,0 +1,431 @@
+{
+  "COL": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Avalanche Announce Rookie Faceoff Roster",
+        "published_at": "2026-09-04T18:00:15Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-announce-rookie-faceoff-roster",
+        "summary": "Colorado To Send Prospects To San Jose For This Season’s Tournament",
+        "roster_news": true
+      },
+      {
+        "title": "Cale Makar Signs Up to Continue Avalanche Legacy",
+        "published_at": "2026-08-28T21:25:04Z",
+        "url": "https://www.nhl.com/avalanche/news/cale-makar-signs-up-to-continue-avalanche-legacy",
+        "summary": "Defenseman Signed Eight-Year Contract Extension Through 2034-35 Season",
+        "roster_news": true
+      },
+      {
+        "title": "Avalanche Signs Makar To Eight-Year Extension",
+        "published_at": "2026-08-28T21:25:04Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-signs-makar-to-eight-year-extension",
+        "summary": "Two-Time Norris Trophy Winner Under Contract Through 2034-35",
+        "roster_news": true
+      },
+      {
+        "title": "Avalanche Alumni Help Grow the Game at 3v3 Youth Hockey Tournament",
+        "published_at": "2026-08-31T18:30:22Z",
+        "url": "https://www.nhl.com/avalanche/news/3v3-youth-hockey-tournament-recap",
+        "summary": "",
+        "roster_news": false
+      }
+    ]
+  },
+  "BUF": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Sabres sign Metsa to 1-year contract extension",
+        "published_at": "2026-09-04T19:00:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-zach-metsa-to-contract-extension",
+        "summary": "The defenseman played 43 games for Buffalo last season.",
+        "roster_news": true
+      },
+      {
+        "title": "Sabres trade Sardarian to Hurricanes",
+        "published_at": "2026-08-17T16:59:07Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-trade-stiven-sardarian",
+        "summary": "Buffalo to receive future considerations from Carolina.",
+        "roster_news": true
+      },
+      {
+        "title": "Preseason in the Sabrehood | Player appearances, hockey activities and more",
+        "published_at": "2026-09-03T15:57:28Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-bisons-preseason-autographs-schedule",
+        "summary": "Upcoming schedule for preseason events in and around KeyBank Center.",
+        "roster_news": false
+      },
+      {
+        "title": "Sabres announce multi-year partnership with Audacy, WGR returns as flagship station",
+        "published_at": "2026-09-03T12:35:15Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-wgr-flagship-radio-station",
+        "summary": "Sabres Live will now stream on YouTube and the Sabres App.",
+        "roster_news": false
+      }
+    ]
+  },
+  "MIN": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "When can I sign up for Wild+ on Prime?",
+        "published_at": "2026-09-01T19:57:41Z",
+        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime-q3",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "When can I sign up for Wild+ on Prime?",
+        "published_at": "2026-09-01T19:29:43Z",
+        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Minnesota Wild Announces Partnership With Solventum",
+        "published_at": "2026-09-03T17:58:02Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-announces-partnership-with-solventum-090326",
+        "summary": "",
+        "roster_news": false
+      },
+      {
+        "title": "Minnesota Wild Games to Be Available With a Subscription on Prime Video",
+        "published_at": "2026-09-02T14:59:15Z",
+        "url": "https://www.nhl.com/wild/news/wild-games-to-be-available-with-a-subscription-on-prime-video-090226",
+        "summary": "Minnesota Wild Games Will Stream In-Market on Prime Video This Season",
+        "roster_news": false
+      }
+    ]
+  },
+  "WSH": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Capitals Sign Oliver Suvanto",
+        "published_at": "2026-07-14T16:05:43Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-sign-oliver-suvanto",
+        "summary": "2026 first-round draft pick signs three-year entry-level contract",
+        "roster_news": true
+      },
+      {
+        "title": "Capitals Acquire Tyler Kopff from Buffalo for Zac Funk",
+        "published_at": "2026-07-13T19:49:44Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-acquire-tyler-kopff-from-buffalo-for-zac-funk",
+        "summary": "Kopff, a 6’4”, 220-pound forward, appeared in 30 games with AHL Rochester last season",
+        "roster_news": true
+      },
+      {
+        "title": "Capitals to Hold Rookie Camp Sept. 13-15 at the McMullen Hockey Arena in Annapolis, Md.",
+        "published_at": "2026-09-02T17:08:19Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-to-hold-rookie-camp-sept-13-15-at-the-mcmullen-hockey-arena-in-annapolis-md",
+        "summary": "Team will hold on-ice sessions in Annapolis Sept. 13, 14 and 15; Media Day will take place Sept. 17 at MedStar Capitals Iceplex",
+        "roster_news": false
+      },
+      {
+        "title": "Washington Capitals Announce 2026-27 Promotional Schedule",
+        "published_at": "2026-09-02T13:55:00Z",
+        "url": "https://www.nhl.com/capitals/news/washington-capitals-announce-2026-27-promotional-schedule",
+        "summary": "The schedule features 15 fan giveaways, nearly 30 theme nights and 19 special ticket offers",
+        "roster_news": false
+      }
+    ]
+  },
+  "VGK": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
+        "published_at": "2026-09-01T19:00:06Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-roster-schedule-for-2026-rookie-camp",
+        "summary": "Vegas prospects will take on Utah & Colorado on September 12 & 13 at the Rookie Faceoff in San Jose",
+        "roster_news": true
+      },
+      {
+        "title": "Golden Knights Sign Juho Piiparinen to Entry-Level Contract",
+        "published_at": "2026-07-15T18:13:18Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-sign-juho-piiparinen-to-entry-level-contract",
+        "summary": "Vegas inks the 2026 first-round draft pick defenseman to a three-year deal",
+        "roster_news": true
+      },
+      {
+        "title": "Single Game Tickets for 2026-27 Season On Sale Now",
+        "published_at": "2026-09-01T16:53:27Z",
+        "url": "https://www.nhl.com/goldenknights/news/single-game-tickets-for-2026-27-season-on-sale-now",
+        "summary": "Season X for the Vegas Golden Knights officially starts on Tuesday, Sept. 29 against the Chicago Blackhawks at T-Mobile Arena",
+        "roster_news": false
+      },
+      {
+        "title": "Lawless: Q&A with Coach Craig Before Camp",
+        "published_at": "2026-08-28T21:07:25Z",
+        "url": "https://www.nhl.com/goldenknights/news/lawless-q-a-with-coach-craig-before-camp",
+        "summary": "Check in with the new Vegas Golden Knights bench boss with training camp set to start Sept. 16",
+        "roster_news": false
+      }
+    ]
+  },
+  "UTA": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
+        "published_at": "2026-09-01T17:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-mammoth-announce-2026-rookie-camp-roster-and-schedule-release-9-1-26",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Utah Signs Max Pšenička to Three-Year, Entry-Level Contract",
+        "published_at": "2026-07-23T16:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-signs-max-psenicka-to-three-year-entry-level-contract-release-7-23-26",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Get to Know: Artem Prima",
+        "published_at": "2026-09-03T19:50:00Z",
+        "url": "https://www.nhl.com/utah/news/get-to-know-artem-prima-feature-9-3-26",
+        "summary": "Learn more about Utah’s seventh round draft pick from the 2026 draft",
+        "roster_news": false
+      },
+      {
+        "title": "Year in Review: Mikhail Sergachev",
+        "published_at": "2026-09-02T15:05:00Z",
+        "url": "https://www.nhl.com/utah/news/year-in-review-mikhail-sergachev-feature-9-2-26",
+        "summary": "Sergachev was a leader on and off the ice for the Mammoth during the 2025-26 season",
+        "roster_news": false
+      }
+    ]
+  },
+  "ANA": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
+        "published_at": "2026-09-01T23:32:32Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-announce-2026-rookie-faceoff-roster-and-rookie-camp-details",
+        "summary": "Rookie Faceoff will be hosted by the San Jose Sharks at Tech CU Arena and Sharks Ice at San Jose from Sept. 12-15",
+        "roster_news": true
+      },
+      {
+        "title": "Ducks Sign Lucius to Two-Year Entry-Level Contract",
+        "published_at": "2026-08-20T18:52:25Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-sign-lucius-to-two-year-entry-level-contract",
+        "summary": "Lucius was acquired from the Pittsburgh Penguins for future considerations Aug. 19",
+        "roster_news": true
+      },
+      {
+        "title": "Ducks Name Cooney Play-By-Play Announcer for Ducks Stream",
+        "published_at": "2026-09-04T17:57:00Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-announce-aaron-cooney-to-join-ducks-stream",
+        "summary": "",
+        "roster_news": false
+      },
+      {
+        "title": "Ducks to Host Golf Classic Presented by Honda Thursday, Sept. 10 at Monarch Beach Golf Links",
+        "published_at": "2026-09-03T20:13:31Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-to-host-golf-classic-presented-by-honda-thursday-sept-10-at-monarch-beach-golf-links",
+        "summary": "Golf Classic foursomes will include Anaheim Ducks players, coaches, broadcasters and alumni",
+        "roster_news": false
+      }
+    ]
+  },
+  "LAK": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
+        "published_at": "2026-09-01T18:04:52Z",
+        "url": "https://www.nhl.com/kings/news/kings-announce-2026-rookie-faceoff-roster-camp-schedule",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Kings Sign Forward Elton Hermansson To Entry-Level Contract",
+        "published_at": "2026-07-15T16:56:08Z",
+        "url": "https://www.nhl.com/kings/news/kings-sign-forward-elton-hermansson-to-entry-level-contract",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "LA Kings Training Camp Fan Rally",
+        "published_at": "2026-09-04T21:36:34Z",
+        "url": "https://www.nhl.com/kings/news/2026-training-camp-fan-rally",
+        "summary": "",
+        "roster_news": false
+      },
+      {
+        "title": "2026 Training Camp Preview: Right-Shot Defensemen",
+        "published_at": "2026-08-31T15:00:00Z",
+        "url": "https://www.nhl.com/kings/news/2026-training-camp-preview-right-defensemen",
+        "summary": "",
+        "roster_news": false
+      }
+    ]
+  },
+  "NJD": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
+        "published_at": "2026-09-02T13:44:00Z",
+        "url": "https://www.nhl.com/devils/news/free-agency-notebook-7-1-26",
+        "summary": "We have news, notes, signings, interviews and much more from the 2026 Devils offseason",
+        "roster_news": true
+      },
+      {
+        "title": "Evangelista Acquired from Predators | RELEASE",
+        "published_at": "2026-09-02T00:45:00Z",
+        "url": "https://www.nhl.com/devils/news/evangelista-acquired-from-predators-release-9-1-26",
+        "summary": "New Jersey sends two 2028 draft picks to Nashville in exchange for the forward.",
+        "roster_news": true
+      },
+      {
+        "title": "Part 5: Training | SUMMER IN HERISAU",
+        "published_at": "2026-09-07T13:18:12Z",
+        "url": "https://www.nhl.com/devils/news/part-5-training-summer-in-herisau-9-7-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
+        "title": "Part 4: Camp Meier | SUMMER IN HERISAU",
+        "published_at": "2026-09-06T19:56:37Z",
+        "url": "https://www.nhl.com/devils/news/part-4-camp-meier-summer-in-herisau-9-6-26",
+        "summary": "",
+        "roster_news": false
+      }
+    ]
+  },
+  "NSH": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
+        "published_at": "2026-09-02T02:30:00Z",
+        "url": "https://www.nhl.com/predators/news/macfarland-discusses-evangelista-trade-looks-ahead-to-future-with-new-season-approaching-2026-09-01",
+        "summary": "Nashville's President of Hockey Operations/General Manager Excited for What Trade Return Could Soon Deliver",
+        "roster_news": true
+      },
+      {
+        "title": "Predators Acquire First-Round and Second-Round Picks in 2028 NHL Draft From New Jersey",
+        "published_at": "2026-09-02T00:45:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-acquire-first-round-and-second-round-picks-in-2028-nhl-draft-from-new-jersey-2026-09-01",
+        "summary": "Nashville Now Owns Seven Picks in First Two Rounds of Next Two Drafts, Including Three First-Rounders",
+        "roster_news": true
+      },
+      {
+        "title": "Preds Announce New Player Jersey Numbers Ahead of 2026-27 Season",
+        "published_at": "2026-09-03T18:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-announce-new-player-jersey-numbers-ahead-of-2026-27-season-2026-09-03",
+        "summary": "Eleven Predators Players Set to Sport New Numbers This Season",
+        "roster_news": false
+      },
+      {
+        "title": "Preds Install New Ice Sheet Inside Bridgestone Arena as 2026-27 Season Nears",
+        "published_at": "2026-09-01T00:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-install-new-ice-sheet-inside-bridgestone-arena-as-2026-27-season-nears-2026-08-31",
+        "summary": "Nashville's Ice Expert Talks Installation Process With New Season One Month Away",
+        "roster_news": false
+      }
+    ]
+  },
+  "SJS": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Sharks announce 2026 Rookie Faceoff roster",
+        "published_at": "2026-09-01T17:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-announce-2026-rookie-faceoff-roster",
+        "summary": "2026 Rookie Faceoff will take place on Sept. 12-15 at Sharks Ice San Jose",
+        "roster_news": true
+      },
+      {
+        "title": "San Jose Sharks re-sign affiliation agreement with Wichita Thunder",
+        "published_at": "2026-08-19T17:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-re-sign-affiliation-agreement-with-wichita-thunder",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "San Jose Sharks to hit the road for 4th annual \"Sharks Around the Bay\" tour",
+        "published_at": "2026-09-04T00:05:00Z",
+        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-to-hit-the-road-for-4th-annual-sharks-around-the-bay-tour",
+        "summary": "",
+        "roster_news": false
+      },
+      {
+        "title": "Celebrini generational player with 'mighty engine' for emerging Sharks",
+        "published_at": "2026-09-02T04:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/macklin-celebrini-has-engine-that-makes-him-generational-player-for-san-jose-sharks-x7702",
+        "summary": "'Sky is the limit' for 20-year-old helping San Jose build into contender",
+        "roster_news": false
+      }
+    ]
+  },
+  "WPG": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Jets sign Cole Kehler as their Emergency Backup Goalie",
+        "published_at": "2026-09-01T20:00:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-sign-cole-kehler-as-their-emergency-backup-goalie",
+        "summary": "Each team must designate an EBUG who travels with the club for all home and away games this season.",
+        "roster_news": true
+      },
+      {
+        "title": "Statement in response to Connor Hellebuyck’s request for a trade",
+        "published_at": "2026-08-27T20:36:00Z",
+        "url": "https://www.nhl.com/jets/news/statement-in-response-to-connor-hellebuyck-s-request-for-a-trade",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Jets and Moose announce coaching and hockey staff updates",
+        "published_at": "2026-09-02T20:00:15Z",
+        "url": "https://www.nhl.com/jets/news/jets-and-moose-announce-coaching-and-hockey-staff-updates",
+        "summary": "The Jets have made coaching and hockey staff updates in advance of the 2026-27 season.",
+        "roster_news": false
+      },
+      {
+        "title": "Congratulations to the Pionk family!",
+        "published_at": "2026-08-31T20:00:00Z",
+        "url": "https://www.nhl.com/jets/news/congratulations-to-the-pionk-family",
+        "summary": "Briggs Pionk was born in Winnipeg on August 18",
+        "roster_news": false
+      }
+    ]
+  },
+  "SEA": {
+    "updated_at": "2026-09-07T20:34:25Z",
+    "articles": [
+      {
+        "title": "Melanson Signs Three-Year Deal",
+        "published_at": "2026-09-04T15:00:00Z",
+        "url": "https://www.nhl.com/kraken/news/jacob-melanson-signs-three-year-deal",
+        "summary": "The 23-year-old power forward quickly became a fan favorite for the Kraken last season, notching 188 hits in just 36 games. His NHL dream just got real with a contract valued at $1.45 million per...",
+        "roster_news": true
+      },
+      {
+        "title": "Seattle Kraken Sign Goaltender Victor Östman and Defenseman Ville Ottavainen to One-Year Deals",
+        "published_at": "2026-07-10T18:03:40Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-sign-goaltender-victor-ostman-and-defenseman-ville-ottavainen-to-one-year-deals",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Staffing Up, Stacking Up for New Season",
+        "published_at": "2026-09-02T21:59:25Z",
+        "url": "https://www.nhl.com/kraken/news/kraken-offseason-hires-pascal-vincent-patrik-allvin",
+        "summary": "While the 2026-27 roster was being reshaped this offseason, GM Jason Botterill added new personnel and promoted key staffers with a clear mission to lift Kraken players to full potential",
+        "roster_news": false
+      },
+      {
+        "title": "Kraken, KJR Extend Radio Broadcast Partnership",
+        "published_at": "2026-08-27T19:30:00Z",
+        "url": "https://www.nhl.com/kraken/news/kraken-radio-broadcast-partnership-extended-iheart-media-seattle-sports-radio-kjr-fm",
+        "summary": "The multi-year deal keeps iHeart Media Seattle’s Sports Radio 93.3 KJR FM as the team’s flagship station, continuing a partnership that began months before the Kraken’s inaugural 2021-22 season",
+        "roster_news": false
+      }
+    ]
+  }
+}

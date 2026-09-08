@@ -116,7 +116,8 @@
       { "name": "duration-base", "value": "0.2s", "purpose": "Team-trigger and help-control color transitions." },
       { "name": "focus-transition", "value": "180ms ease-out", "purpose": "Navigation and expanded-row bracket movement and row backgrounds." },
       { "name": "ease-out", "value": "cubic-bezier(0, 0, 0.2, 1)", "purpose": "The token used by playoff return-link transitions." },
-      { "name": "chart-entry", "value": "300ms", "purpose": "Both chart animations; disabled when reduced motion is requested." }
+      { "name": "chart-entry", "value": "300ms", "purpose": "Both chart animations; disabled when reduced motion is requested." },
+      { "name": "broadcast-lock", "value": "500ms / 300ms cubic-bezier(0, 0, 0.2, 1)", "purpose": "One finite scale and clip-path focus lock on leader and playoff art (500ms) or the face-off marker (300ms); only enabled with no reduced-motion preference." }
     ],
     "breakpoints": [
       { "name": "main-narrow-max", "value": "359px" },
@@ -129,13 +130,20 @@
     "sourceFingerprints": {
       "algorithm": "sha256",
       "files": {
-        "DESIGN.md": "bb7bab91b641774b55845c2e5113df2bd3c80544592c38cbcfb608dba7b902f1",
-        "PRODUCT.md": "676b70b27e7902f0ad3a40c8a661d78680e62c84553e770b1c170bca4c511919",
+        "DESIGN.md": "7945310cd6031e8044075ae25820fbffa2e8af3b7aa91461708046f0080ae285",
+        "PRODUCT.md": "988e0a9a8706fb4ec0be1f7ccba3e47337d4b3e8b6bf1d09cb08c0155832ccb1",
         "lib/design-tokens.css": "88b03cc92b715a398d75932fc99b3e75b01adaeb33055cf7e351eaa19a23cefc",
-        "lib/styles.css": "63e6923d1cf118adde00881363b823c47c787fe38d6b7cf64a2155f0e93c1da8",
-        "lib/playoff_styles.css": "a2757b6a0dc05a6b7673814c9085dd13f18cd5e073cd1ebf10e705e3b1926a82",
-        "lib/standings.html.erb": "e554f2b0a017f68c9e41b22fea80b067ed919f64274e1cd31ba4149ccb59bc8f",
-        "lib/playoffs.html.erb": "59468a63ced7e20e1171feaa31598a90f2d89d710c11aca7000819c7c5ea015e",
+        "lib/styles.css": "24fefbf705bf299e3eaedb0b1673d850b94882190788d9c5014c7796a40c0405",
+        "lib/playoff_styles.css": "9723bc38d974d98111c49575ed406fa489bfad21d2ee51f053ade3ba27a88093",
+        "lib/standings.html.erb": "1109905fdb9d98f2453a28d3ee0708bdbfa9ab9577e3fd241efad259a7b1dbf2",
+        "lib/standings-app.js": "2db42cbfd5680e3284c5a7e3eece7be5b523762e4ffbc38f7f49cf1f3d1c853c",
+        "lib/offseason.css": "b931a5ea1a9be54441664d0f372dd7d692e1172b769b7f598c99616f262e6640",
+        "lib/offseason.html.erb": "4ef6f0aeb3a2a9b27f6169a7ea5c5804bb5c12669c01673ddf60a6e9529b9d7e",
+        "lib/offseason_news.rb": "e4fe9e0bbbdc1e15f14144c65afefdb9213606f6fb629c7393812a905a9736b8",
+        "lib/season_context.rb": "ed32b9c78beb2dbe5db99062a02c77add2e54faba62db4142ebb22e894dd2dd3",
+        "lib/playoffs.html.erb": "6bf87bfd4a8c76ef4ee153ef04b78e141fcf0654ae58a9f420d2bfee7f94da9c",
+        "lib/broadcast-graphics.css": "75bb9d963a41cf9dbe9e94e85cdb470d360a32c4d4fb0e07fc3473274e8cc596",
+        "lib/broadcast-symbols.svg": "2a9c4a9c216a46b40a44b85b173bdf1728ba27d507f6c866cdbdb1282a7d2e63",
         "lib/team-picker.js": "eb01d39f013650321dc8b74b4c70d2943bc24d023217655c78cb89ba142bdc26",
         "lib/accessibility.js": "d294a60a08bd8689db5dd587736250156e6b1f8f25d89f00ae2798617f99a4f2",
         "lib/team-themes.js": "480da40442587b0d85ff9131cb84e80aff6c879b292e2ec30dd4475a8d9b4c66"

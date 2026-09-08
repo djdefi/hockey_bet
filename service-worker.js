@@ -1,6 +1,6 @@
 // Service Worker for NHL Fan League - installable shell + refresh-friendly caching
-const CACHE_NAME = 'hockey-bet-static-v12';
-const DATA_CACHE_NAME = 'hockey-bet-data-v12';
+const CACHE_NAME = 'hockey-bet-static-v14';
+const DATA_CACHE_NAME = 'hockey-bet-data-v14';
 const APP_ASSET_MANIFEST_URL = './app-assets.json';
 const LOCAL_ORIGIN = self.location.origin;
 

@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function selectView(page: Page, name: string) {
   await page.locator(`.desktop-tab[data-tab="${name}"], .nav-item[data-tab="${name}"]`)
@@ -14,9 +14,18 @@ test('viewfinder navigation, team details, and responsive layout', async ({ page
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'NHL Fan League', exact: true })).toBeVisible();
   await expect(page.locator('.masthead-updated')).toContainText('Updated');
+  if (await page.locator('#offseason-briefs').count()) {
+    await expect(page.locator('#offseason-briefs')).toBeVisible();
+    await expect(page.locator('.season-history')).not.toHaveAttribute('open');
+    await page.screenshot({ path: testInfo.outputPath('offseason-viewport.png') });
+    await page.locator('.season-history > summary').click();
+  }
   await expect(page.locator('.viewfinder-frame')).toBeVisible();
   await expect(page.locator('#main-content')).toHaveCount(1);
   await expect(page.locator('main#main-content')).toBeVisible();
+  await expect(page.locator('.crest-stage')).toBeVisible();
+  expect((await page.locator('.hero-champ__logo').boundingBox())?.width).toBeGreaterThanOrEqual(92);
+  await expect(page.locator('.crest-stage > svg')).toHaveCSS('animation-name', 'none');
   await page.screenshot({ path: testInfo.outputPath('league-viewport.png') });
   await page.screenshot({ path: testInfo.outputPath('league.png'), fullPage: true });
 
@@ -35,6 +44,9 @@ test('viewfinder navigation, team details, and responsive layout', async ({ page
       await expect(page.locator('.odds-table')).toBeVisible();
       await expect(page.locator('#playoffOddsChart')).toBeVisible();
       await expect(page.getByText('Outer ring: make playoffs. Inner ring: win the Cup.')).toBeVisible();
+      await expect(page.locator('.odds-table .odds-crest')).toHaveCount(
+        await page.locator('.odds-table tbody tr').count()
+      );
     }
     if (view === 'trends') {
       await expect(page.locator('#seasonSelector option').first()).not.toHaveText('Loading...');
@@ -44,6 +56,8 @@ test('viewfinder navigation, team details, and responsive layout', async ({ page
         const homeFan = await matchup.locator('.matchup-fan-name').last().innerText();
         await expect(matchup.locator('.win-prob-label')).toHaveText(`${homeFan} win chance`);
         await expect(matchup.locator('.matchup-time')).toContainText(/PT|Time TBD/);
+        await expect(matchup.locator('.faceoff-mark')).toHaveText('VS');
+        await expect(matchup.locator('.faceoff-field > svg use')).toHaveAttribute('href', '#broadcast-rink');
       }
     }
     const fits = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
@@ -118,6 +132,8 @@ test('empty and single-day seasons keep older trends accessible', async ({ page 
 test('playoff page keeps the viewfinder identity and relative return navigation', async ({ page }, testInfo) => {
   await page.goto('/playoffs.html');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Stanley Cup playoffs');
+  await expect(page.locator('.playoff-title-field > svg')).toBeVisible();
+  await expect(page.locator('.playoff-title-field > svg')).toHaveCSS('animation-name', 'none');
   await page.screenshot({ path: testInfo.outputPath('playoffs.png'), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   const back = page.getByRole('link', { name: 'Back to league' }).first();
