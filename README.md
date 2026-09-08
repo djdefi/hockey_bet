@@ -11,6 +11,29 @@ A live NHL standings tracker with playoff status indicators, fan ownership track
 - **Home Screen App**: Can be added to iOS/Android home screens with proper icons
 - **Responsive Design**: Works well on both desktop and mobile devices
 - **API Validation**: Automatically detects NHL API changes to prevent breaking
+- **Offseason Team Briefs**: Official club headlines, roster reports, and short publisher descriptions for each fan team, with dates and source links
+
+### Offseason coverage
+
+During the offseason, League leads with team briefings; the previous season's
+results remain in a closed disclosure. Other statistical views explicitly label
+historical data. NHL schedule boundaries determine the phase when available;
+summer and prior-season standings provide a conservative fallback.
+
+Each existing site refresh fetches the latest 100 stories per configured club
+from NHL's public [Forge content feed](https://forge-dapi.d3.nhle.com/v2/content/en-us/stories?context.slug=teamid-21&$limit=25&$sort=contentDate:desc).
+The four-story brief combines current reports and roster coverage since June 1,
+leading with roster news. Descriptions are publisher metadata, not AI-generated
+summaries. Transaction tags and headline keywords label **roster news**, not a
+complete list of confirmed moves. Publication dates are kept separate from fetch
+times; future-dated and out-of-window stories are excluded.
+
+`lib/offseason_news.rb` configures the 13 pool teams, including Utah's context
+`teamid-68` and `/utah/news/` URL. Forge is a public NHL-hosted endpoint, not a
+documented stability guarantee. `data/offseason_news.json` retains the last good
+snapshot per team; failures show an explicit cached/unavailable state and never
+infer a move. The existing three-hour Pages workflow refreshes and persists this
+cache alongside its existing data. No separate scheduled service is needed.
 
 ## Setup and Usage
 

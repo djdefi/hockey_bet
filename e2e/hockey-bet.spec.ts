@@ -244,11 +244,19 @@ test.describe('League tab content', () => {
     const leagueTab = page.locator('#league-tab');
     await expect(leagueTab).toHaveClass(/active/);
 
-    await expect(leagueTab.getByRole('heading', { name: 'League overview' })).toBeVisible();
+    if (await page.locator('#offseason-briefs').count()) {
+      await expect(leagueTab.getByRole('heading', { name: 'Offseason team briefs' })).toBeVisible();
+      await expect(page.locator('.season-history')).not.toHaveAttribute('open');
+    } else {
+      await expect(leagueTab.getByRole('heading', { name: 'League overview' })).toBeVisible();
+    }
   });
 
   test('shows league leaders or the season-ready state', async ({ page }) => {
     await page.goto('/');
+    if (await page.locator('.season-history').count()) {
+      await page.locator('.season-history > summary').click();
+    }
     const leagueTab = page.locator('#league-tab');
     const leaders = leagueTab.getByRole('region', { name: 'League leaders', exact: true });
     if (await leaders.count()) {
@@ -267,6 +275,9 @@ test.describe('League tab content', () => {
 
   test('league standings link opens team rows', async ({ page }) => {
     await page.goto('/');
+    if (await page.locator('.season-history').count()) {
+      await page.locator('.season-history > summary').click();
+    }
     await page.getByRole('button', { name: 'View team standings', exact: true }).click();
     await expect(page.locator('#standings-tab')).toHaveClass(/active/);
     await expect(page.locator('#standings-tab .team-card').first()).toBeVisible();

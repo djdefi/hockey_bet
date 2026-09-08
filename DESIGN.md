@@ -24,7 +24,7 @@ colors:
 typography:
   headline:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-    fontSize: "1.75rem"
+    fontSize: "2.25rem"
     fontWeight: 650
     lineHeight: 1.25
     letterSpacing: "-0.025em"
@@ -178,7 +178,7 @@ The palette is neutral charcoal with warm focus, not an amber wash over every su
 **Character:** Familiar, compact text carries the interface; monospaced figures make comparisons easy. Feature names can grow without turning every heading into display typography.
 
 ### Hierarchy
-- **Headline:** the frontmatter role describes main view headings; these reduce to (1.5rem) below the main mobile breakpoint.
+- **Headline:** the frontmatter role describes main view headings; these reduce to (1.75rem) below the main mobile breakpoint.
 - **Title:** compact section/chart headings; repeated name labels commonly use (600) weight.
 - **Body:** the main shell baseline; supporting interface copy commonly steps down to (0.875rem) or (0.8125rem).
 - **Label:** metadata and captions; smaller route-local mobile chart/navigation labels are not a system-wide minimum.
@@ -214,6 +214,42 @@ Square fields and diagonal corner pairs are the signature. Small control roundin
 Active navigation brackets and expanded rows share the focus vocabulary. Row brackets move inward on expansion (180ms ease-out); ordinary color/background transitions stay around (150–200ms). Reduced-motion preferences suppress CSS motion, and both charts disable their animation.
 
 ## Components
+
+### Broadcast graphics
+The same viewfinder world now carries local rink, focus-ring, Cup, and puck-trail
+artwork from `lib/broadcast-symbols.svg`. Both templates inline the symbols;
+`lib/broadcast-graphics.css` shares their presentation. No external icon service
+is needed for this graphic layer.
+
+The leader crest sits in a (180px) focus stage, reducing to (116px) on mobile and
+(92px) on narrow phones. Face-off plates keep two opposing identities around
+center ice; featured crests use (128px), ordinary matchups (96px), reducing to
+(76px) and (80px) on mobile. Standings use quieter (56px / 46px) crests, while the
+odds table adds (42px / 30px) crests without altering its measurements. Team names
+remain visible independently of images; featured, leader, odds, and playoff
+graphics expose abbreviation fallbacks when images fail.
+
+Playoffs carries the authored Cup in the title field, (88px) podium crests, a
+raised first-place position in the otherwise flat podium, and (48px) series
+crests. Existing round keys and won-game ticks make progression readable; TBD
+stays explicitly unassigned. The rink also anchors honest empty states. Trail
+artwork is decorative, never a substitute for trend data.
+
+One finite focus-lock motion uses scale and clip-path on the leader graphic,
+face-off marker, and playoff Cup: (500ms), or (300ms) for the marker, with the
+existing ease-out token. Only the `no-preference` media query enables it.
+The graphics never hide readouts, loop, or introduce new colors or fonts.
+
+### Offseason briefings
+In the offseason, team news replaces the leader as the default League story.
+Open, rule-separated team briefs use two columns on desktop and one on mobile;
+a native team selector narrows the view. Crests use (88px / 72px), team headings
+(1.5rem / 1.25rem), lead story headings (1.25rem), and supporting headings the
+existing title role. Publication dates stay next to each source-linked headline.
+Publisher summaries remain short; fetched dates and unavailable/cached messages
+are visually separate from publication dates. Completed-season results live in
+a native disclosure, not a second current leaderboard. Other data views carry
+explicit historical-context notes without changing their comparisons.
 
 ### Buttons
 Quiet, bounded controls rather than oversized calls to action. The playoff return actions show both amber-filled primary and tonal secondary variants. Team-theme controls have a strong hairline edge and small corners; hover/focus changes their edge and text to amber. Reset uses a tonal fill; the dialog close control is transparent. Touch targets are at least (44px) in the sampled button/select controls; disabled buttons fade to (0.55) opacity.

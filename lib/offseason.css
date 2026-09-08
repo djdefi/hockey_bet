@@ -1,0 +1,44 @@
+.brief-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 18px; margin-bottom: 12px; border-block: 1px solid var(--color-border-default); }
+.brief-toolbar > p { max-width: 65ch; color: var(--color-text-secondary); font-size: 0.8125rem; }
+.brief-toolbar .season-control { flex-shrink: 0; }
+.brief-toolbar select { max-width: 260px; }
+.offseason-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+.team-brief { min-width: 0; padding-block: 28px; border-bottom: 1px solid var(--color-border-default); }
+.team-brief[hidden], .brief-crest [hidden] { display: none !important; }
+.team-brief__header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.team-brief__header > div:last-child { min-width: 0; }
+.team-brief__header h3 { font-size: 1.5rem; overflow-wrap: anywhere; }
+.team-brief__header p { color: var(--color-focus); margin-top: 4px; font-size: 0.875rem; }
+.brief-crest { width: 88px; height: 88px; display: grid; place-items: center; flex-shrink: 0; background: var(--color-bg-depth); }
+.brief-crest img { width: 88px; height: 88px; object-fit: contain; }
+.brief-fetched { color: var(--color-text-muted); font-size: 0.75rem; margin-bottom: 12px; }
+.brief-disclosure { max-width: 70ch; margin-top: 24px; color: var(--color-text-muted); font-size: 0.8125rem; }
+.brief-stories { list-style: none; padding: 0; margin: 0; }
+.brief-story { padding-block: 18px; border-top: 1px solid var(--color-border-subtle); }
+.brief-story__meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; color: var(--color-text-muted); font-size: 0.75rem; margin-bottom: 8px; }
+.brief-story__meta span { color: var(--color-text-secondary); }
+.brief-story h4 { font-size: 1.0625rem; line-height: 1.4; text-wrap: pretty; }
+.brief-story:first-child h4 { font-size: 1.25rem; }
+.brief-story a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.brief-story__summary { color: var(--color-text-secondary); font-size: 0.875rem; line-height: 1.6; margin-top: 8px; max-width: 65ch; }
+.brief-source { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 0.8125rem; color: var(--color-text-secondary); }
+.news-status, .season-note { padding: 16px; margin-bottom: 20px; border: 1px solid var(--color-border-default); color: var(--color-text-secondary); font-size: 0.875rem; }
+#matchups-tab > .season-note { grid-column: 1 / -1; }
+.season-note strong { color: var(--color-focus); font-weight: 600; }
+.season-history { margin-top: 36px; border-top: 1px solid var(--color-border-strong); }
+.season-history > summary { padding: 20px 0; min-height: 44px; cursor: pointer; color: var(--color-text-secondary); font-size: 1rem; }
+.season-history > summary:hover { color: var(--color-focus); }
+.season-history > summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+.season-history[open] > summary { margin-bottom: 20px; }
+@media (max-width: 767px) {
+  #offseason-briefs .view-heading > .broadcast-art { display: none; }
+  #offseason-briefs .view-heading p { max-width: none; }
+  .brief-toolbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 14px; }
+  .brief-toolbar .season-control { width: 100%; }
+  .brief-toolbar select { min-width: 0; max-width: 100%; flex: 1; }
+  .offseason-grid { grid-template-columns: minmax(0, 1fr); }
+  .team-brief__header h3 { font-size: 1.25rem; }
+  .team-brief { padding-block: 20px; }
+  .team-brief__header { margin-bottom: 16px; }
+  .brief-crest, .brief-crest img { width: 72px; height: 72px; }
+}
