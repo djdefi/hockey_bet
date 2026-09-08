@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Capitals Sign Oliver Suvanto",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Get to Know: Andrew Peeke",
+        "published_at": "2026-09-08T16:49:38Z",
+        "url": "https://www.nhl.com/utah/news/get-to-know-andrew-peeke-feature-9-8-26",
+        "summary": "Learn more about one of the newest Mammoth defensemen",
+        "roster_news": false
+      },
+      {
         "title": "Year in Review: Lawson Crouse",
         "published_at": "2026-09-07T20:50:54Z",
         "url": "https://www.nhl.com/utah/news/year-in-review-lawson-crouse-feature-9-7-26",
         "summary": "Take a look back at the associate captain’s second season in Utah",
         "roster_news": false
-      },
-      {
-        "title": "Get to Know: Artem Prima",
-        "published_at": "2026-09-03T19:50:00Z",
-        "url": "https://www.nhl.com/utah/news/get-to-know-artem-prima-feature-9-3-26",
-        "summary": "Learn more about Utah’s seventh round draft pick from the 2026 draft",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "LA Kings Training Camp Fan Rally",
-        "published_at": "2026-09-04T21:36:34Z",
-        "url": "https://www.nhl.com/kings/news/2026-training-camp-fan-rally",
+        "title": "2026 Training Camp Preview: Wingers",
+        "published_at": "2026-09-06T15:00:00Z",
+        "url": "https://www.nhl.com/kings/news/2026-training-camp-preview-wingers",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "2026 Training Camp Preview: Right-Shot Defensemen",
-        "published_at": "2026-08-31T15:00:00Z",
-        "url": "https://www.nhl.com/kings/news/2026-training-camp-preview-right-defensemen",
+        "title": "LA Kings Training Camp Fan Rally",
+        "published_at": "2026-09-04T21:36:34Z",
+        "url": "https://www.nhl.com/kings/news/2026-training-camp-fan-rally",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Predators Rookie Camp Begins Friday, Sept. 11",
+        "published_at": "2026-09-08T15:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-rookie-camp-begins-friday-sept-11-2026-09-08",
+        "summary": "2026 Prospect Showcase Precedes the Opening of Nashville’s Training Camp, Which Begins Sept. 16.",
+        "roster_news": false
+      },
+      {
         "title": "Preds Announce New Player Jersey Numbers Ahead of 2026-27 Season",
         "published_at": "2026-09-03T18:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-announce-new-player-jersey-numbers-ahead-of-2026-27-season-2026-09-03",
         "summary": "Eleven Predators Players Set to Sport New Numbers This Season",
         "roster_news": false
-      },
-      {
-        "title": "Preds Install New Ice Sheet Inside Bridgestone Arena as 2026-27 Season Nears",
-        "published_at": "2026-09-01T00:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-install-new-ice-sheet-inside-bridgestone-arena-as-2026-27-season-nears-2026-08-31",
-        "summary": "Nashville's Ice Expert Talks Installation Process With New Season One Month Away",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Sharks announce 2026 Rookie Faceoff roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Jets sign Cole Kehler as their Emergency Backup Goalie",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-08T15:00:48Z",
+    "updated_at": "2026-09-08T18:00:52Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
