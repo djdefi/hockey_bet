@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Capitals Sign Oliver Suvanto",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Year in Review: Lawson Crouse",
+        "published_at": "2026-09-07T20:50:54Z",
+        "url": "https://www.nhl.com/utah/news/year-in-review-lawson-crouse-feature-9-7-26",
+        "summary": "Take a look back at the associate captain’s second season in Utah",
+        "roster_news": false
+      },
+      {
         "title": "Get to Know: Artem Prima",
         "published_at": "2026-09-03T19:50:00Z",
         "url": "https://www.nhl.com/utah/news/get-to-know-artem-prima-feature-9-3-26",
         "summary": "Learn more about Utah’s seventh round draft pick from the 2026 draft",
         "roster_news": false
-      },
-      {
-        "title": "Year in Review: Mikhail Sergachev",
-        "published_at": "2026-09-02T15:05:00Z",
-        "url": "https://www.nhl.com/utah/news/year-in-review-mikhail-sergachev-feature-9-2-26",
-        "summary": "Sergachev was a leader on and off the ice for the Mammoth during the 2025-26 season",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Sharks announce 2026 Rookie Faceoff roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Jets sign Cole Kehler as their Emergency Backup Goalie",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-07T20:34:25Z",
+    "updated_at": "2026-09-08T03:00:22Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
