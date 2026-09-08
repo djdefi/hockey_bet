@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -17,11 +17,11 @@
         "roster_news": true
       },
       {
-        "title": "Avalanche Signs Makar To Eight-Year Extension",
-        "published_at": "2026-08-28T21:25:04Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-signs-makar-to-eight-year-extension",
-        "summary": "Two-Time Norris Trophy Winner Under Contract Through 2034-35",
-        "roster_news": true
+        "title": "Avalanche Players Give Back During Youth Hockey Development Camp",
+        "published_at": "2026-09-08T18:45:00Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-players-give-back-during-youth-hockey-development-camp",
+        "summary": "Brock Nelson, Logan O’Connor, Josh Manson and Sean Behrens Among Guest Coaches During Second Annual Camp",
+        "roster_news": false
       },
       {
         "title": "Avalanche Alumni Help Grow the Game at 3v3 Youth Hockey Tournament",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Capitals Sign Oliver Suvanto",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,36 +314,36 @@
         "roster_news": true
       },
       {
+        "title": "Scripps Sports Expands Nashville Predators Television Coverage to Seven Additional Markets Across Tennessee, Kentucky and Alabama",
+        "published_at": "2026-09-08T19:00:00Z",
+        "url": "https://www.nhl.com/predators/news/scripps-sports-expands-nashville-predators-television-coverage-to-seven-additional-markets-across-tennessee-kentucky-and-alabama-2026-09-08",
+        "summary": "Multi-Year Media Rights Agreement Brings Predators Hockey to Broader Regional Audience With Comprehensive Broadcast Package",
+        "roster_news": false
+      },
+      {
         "title": "Predators Rookie Camp Begins Friday, Sept. 11",
         "published_at": "2026-09-08T15:00:00Z",
         "url": "https://www.nhl.com/predators/news/predators-rookie-camp-begins-friday-sept-11-2026-09-08",
         "summary": "2026 Prospect Showcase Precedes the Opening of Nashville’s Training Camp, Which Begins Sept. 16.",
         "roster_news": false
-      },
-      {
-        "title": "Preds Announce New Player Jersey Numbers Ahead of 2026-27 Season",
-        "published_at": "2026-09-03T18:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-announce-new-player-jersey-numbers-ahead-of-2026-27-season-2026-09-03",
-        "summary": "Eleven Predators Players Set to Sport New Numbers This Season",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
+      {
+        "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
+        "published_at": "2026-09-08T20:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-sign-goaltender-ilya-samsonov-to-one-year-two-way-contract",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Sharks announce 2026 Rookie Faceoff roster",
         "published_at": "2026-09-01T17:00:00Z",
         "url": "https://www.nhl.com/sharks/news/sharks-announce-2026-rookie-faceoff-roster",
         "summary": "2026 Rookie Faceoff will take place on Sept. 12-15 at Sharks Ice San Jose",
-        "roster_news": true
-      },
-      {
-        "title": "San Jose Sharks re-sign affiliation agreement with Wichita Thunder",
-        "published_at": "2026-08-19T17:00:00Z",
-        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-re-sign-affiliation-agreement-with-wichita-thunder",
-        "summary": "",
         "roster_news": true
       },
       {
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Jets sign Cole Kehler as their Emergency Backup Goalie",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Lowry ready to lead Jets into new season",
+        "published_at": "2026-09-08T19:42:00Z",
+        "url": "https://www.nhl.com/jets/news/lowry-ready-to-lead-jets-into-new-season",
+        "summary": "After a challenging year, Winnipeg's captain embraces fresh opportunity, renewed purpose.",
+        "roster_news": false
+      },
+      {
         "title": "Jets and Moose announce coaching and hockey staff updates",
         "published_at": "2026-09-02T20:00:15Z",
         "url": "https://www.nhl.com/jets/news/jets-and-moose-announce-coaching-and-hockey-staff-updates",
         "summary": "The Jets have made coaching and hockey staff updates in advance of the 2026-27 season.",
         "roster_news": false
-      },
-      {
-        "title": "Congratulations to the Pionk family!",
-        "published_at": "2026-08-31T20:00:00Z",
-        "url": "https://www.nhl.com/jets/news/congratulations-to-the-pionk-family",
-        "summary": "Briggs Pionk was born in Winnipeg on August 18",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-08T18:00:52Z",
+    "updated_at": "2026-09-08T21:00:20Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "From 3-Rink Dream Idea To Seattle Hockey Reality",
+        "published_at": "2026-09-08T19:10:00Z",
+        "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-1",
+        "summary": "Five years after opening its doors, Kraken Community Iceplex gave Seattle a pioneering three-ice-sheet venue and the city’s first permanent indoor rink with public access in more than 40 years",
+        "roster_news": false
+      },
+      {
         "title": "Staffing Up, Stacking Up for New Season",
         "published_at": "2026-09-02T21:59:25Z",
         "url": "https://www.nhl.com/kraken/news/kraken-offseason-hires-pascal-vincent-patrik-allvin",
         "summary": "While the 2026-27 roster was being reshaped this offseason, GM Jason Botterill added new personnel and promoted key staffers with a clear mission to lift Kraken players to full potential",
-        "roster_news": false
-      },
-      {
-        "title": "Kraken, KJR Extend Radio Broadcast Partnership",
-        "published_at": "2026-08-27T19:30:00Z",
-        "url": "https://www.nhl.com/kraken/news/kraken-radio-broadcast-partnership-extended-iheart-media-seattle-sports-radio-kjr-fm",
-        "summary": "The multi-year deal keeps iHeart Media Seattle’s Sports Radio 93.3 KJR FM as the team’s flagship station, continuing a partnership that began months before the Kraken’s inaugural 2021-22 season",
         "roster_news": false
       }
     ]
