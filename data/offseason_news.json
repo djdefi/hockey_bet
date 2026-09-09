@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "Biggest storylines at forward for 2026-27 Sabres",
-        "published_at": "2026-09-08T13:38:19Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-forwards-lines-roster-kulich",
-        "summary": "Possible looks for Tage Thompson’s line, the power play and improvement on faceoffs.",
+        "title": "Buffalo Museum of Science unveils $3 million Science Stadium permanent exhibit in partnership with the Bills, Sabres, and Bandits",
+        "published_at": "2026-09-09T13:59:40Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-buffalo-bills-buffalo-museum-of-science-exhibit",
+        "summary": "Transformative, interactive exhibit merges Western New York’s deep passion for sports with STEM learning; Ribbon-cutting ceremony set for Sept. 24 before Sept. 26 public opening.",
         "roster_news": false
       },
       {
-        "title": "Preseason in the Sabrehood | Player appearances, hockey activities and more",
-        "published_at": "2026-09-03T15:57:28Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-bisons-preseason-autographs-schedule",
-        "summary": "Upcoming schedule for preseason events in and around KeyBank Center.",
+        "title": "Sabres and SprintAI announce multi-year partnership to build AI-native hockey operations",
+        "published_at": "2026-09-09T12:58:48Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sprint-ai-partnership",
+        "summary": "Agentic AI platform will connect performance data, organizational workflows and front-office intelligence to support faster, better-informed decisions.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Capitals Sign Oliver Suvanto",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Capitals Unveil Specialty Jersey Celebrating the 250th Anniversary of America to Benefit Our Military Kids",
+        "published_at": "2026-09-09T13:55:14Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-unveil-specialty-jersey-celebrating-the-250th-anniversary-of-america-to-benefit-our-military-kids",
+        "summary": "Jersey Co-Designed by U.S. Military Veterans Patrick Sargent and Fidel GomezTorres",
+        "roster_news": false
+      },
+      {
         "title": "Capitals to Hold Rookie Camp Sept. 13-15 at the McMullen Hockey Arena in Annapolis, Md.",
         "published_at": "2026-09-02T17:08:19Z",
         "url": "https://www.nhl.com/capitals/news/capitals-to-hold-rookie-camp-sept-13-15-at-the-mcmullen-hockey-arena-in-annapolis-md",
         "summary": "Team will hold on-ice sessions in Annapolis Sept. 13, 14 and 15; Media Day will take place Sept. 17 at MedStar Capitals Iceplex",
         "roster_news": false
-      },
-      {
-        "title": "Washington Capitals Announce 2026-27 Promotional Schedule",
-        "published_at": "2026-09-02T13:55:00Z",
-        "url": "https://www.nhl.com/capitals/news/washington-capitals-announce-2026-27-promotional-schedule",
-        "summary": "The schedule features 15 fan giveaways, nearly 30 theme nights and 19 special ticket offers",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Jets sign Cole Kehler as their Emergency Backup Goalie",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-09T12:00:35Z",
+    "updated_at": "2026-09-09T15:00:18Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
