@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "How do Zellweger, Crevier fit on Sabres’ blue line?",
+        "published_at": "2026-09-09T18:14:07Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-roster-camp-defensemen-crevier-zellweger",
+        "summary": "Projecting Buffalo’s defense pairs after offseason roster turnover.",
+        "roster_news": false
+      },
+      {
         "title": "Buffalo Museum of Science unveils $3 million Science Stadium permanent exhibit in partnership with the Bills, Sabres, and Bandits",
         "published_at": "2026-09-09T13:59:40Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-buffalo-bills-buffalo-museum-of-science-exhibit",
         "summary": "Transformative, interactive exhibit merges Western New York’s deep passion for sports with STEM learning; Ribbon-cutting ceremony set for Sept. 24 before Sept. 26 public opening.",
         "roster_news": false
-      },
-      {
-        "title": "Sabres and SprintAI announce multi-year partnership to build AI-native hockey operations",
-        "published_at": "2026-09-09T12:58:48Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sprint-ai-partnership",
-        "summary": "Agentic AI platform will connect performance data, organizational workflows and front-office intelligence to support faster, better-informed decisions.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,20 +99,20 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
+      {
+        "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
+        "published_at": "2026-09-09T20:08:29Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-announce-2026-rookie-camp-roster-and-schedule",
+        "summary": "Rookie Camp will begin Sunday, Sept. 13 at McMullen Hockey Arena in Annapolis 21 players, including 17 Capitals draft picks, will participate",
+        "roster_news": true
+      },
       {
         "title": "Capitals Sign Oliver Suvanto",
         "published_at": "2026-07-14T16:05:43Z",
         "url": "https://www.nhl.com/capitals/news/capitals-sign-oliver-suvanto",
         "summary": "2026 first-round draft pick signs three-year entry-level contract",
-        "roster_news": true
-      },
-      {
-        "title": "Capitals Acquire Tyler Kopff from Buffalo for Zac Funk",
-        "published_at": "2026-07-13T19:49:44Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-acquire-tyler-kopff-from-buffalo-for-zac-funk",
-        "summary": "Kopff, a 6’4”, 220-pound forward, appeared in 30 games with AHL Rochester last season",
         "roster_news": true
       },
       {
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Belchetz is Thankful and Determined",
+        "published_at": "2026-09-09T15:55:00Z",
+        "url": "https://www.nhl.com/utah/news/belchetz-is-thankful-and-determined-feature-9-9-26",
+        "summary": "Utah’s 17th overall pick from the 2026 Draft is grateful for his family’s sacrifice and determined to make the NHL",
+        "roster_news": false
+      },
+      {
         "title": "Get to Know: Andrew Peeke",
         "published_at": "2026-09-08T16:49:38Z",
         "url": "https://www.nhl.com/utah/news/get-to-know-andrew-peeke-feature-9-8-26",
         "summary": "Learn more about one of the newest Mammoth defensemen",
         "roster_news": false
-      },
-      {
-        "title": "Year in Review: Lawson Crouse",
-        "published_at": "2026-09-07T20:50:54Z",
-        "url": "https://www.nhl.com/utah/news/year-in-review-lawson-crouse-feature-9-7-26",
-        "summary": "Take a look back at the associate captain’s second season in Utah",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Offseason Recap: Look Back at Nashville's Summer of 2026 Before the Start of a New Preds Campaign",
+        "published_at": "2026-09-09T20:00:00Z",
+        "url": "https://www.nhl.com/predators/news/offseason-recap-look-back-at-nashville-s-summer-of-2026-before-the-start-of-a-new-preds-campaign-2026-09-09",
+        "summary": "Trades, Signings, a New General Manager and Plenty More Highlighted a Busy Offseason for the Predators",
+        "roster_news": false
+      },
+      {
         "title": "Scripps Sports Expands Nashville Predators Television Coverage to Seven Additional Markets Across Tennessee, Kentucky and Alabama",
         "published_at": "2026-09-08T19:00:00Z",
         "url": "https://www.nhl.com/predators/news/scripps-sports-expands-nashville-predators-television-coverage-to-seven-additional-markets-across-tennessee-kentucky-and-alabama-2026-09-08",
         "summary": "Multi-Year Media Rights Agreement Brings Predators Hockey to Broader Regional Audience With Comprehensive Broadcast Package",
         "roster_news": false
-      },
-      {
-        "title": "Predators Rookie Camp Begins Friday, Sept. 11",
-        "published_at": "2026-09-08T15:00:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-rookie-camp-begins-friday-sept-11-2026-09-08",
-        "summary": "2026 Prospect Showcase Precedes the Opening of Nashville’s Training Camp, Which Begins Sept. 16.",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
-        "title": "DeMelo returns to Winnipeg with perspective and belief",
-        "published_at": "2026-09-08T21:58:00Z",
-        "url": "https://www.nhl.com/jets/news/demelo-returns-to-winnipeg-with-perspective-and-belief",
-        "summary": "Veteran defenceman reflects on disappointment, international experience and new teammates.",
+        "title": "Pick Six: Building Your Ultimate Jets Package",
+        "published_at": "2026-09-09T20:35:00Z",
+        "url": "https://www.nhl.com/jets/news/pick-six-building-your-ultimate-jets-package",
+        "summary": "Jamie Thomas and Sara Orlesky debate their six must-see Jets games.",
         "roster_news": false
       },
       {
-        "title": "Lowry ready to lead Jets into new season",
-        "published_at": "2026-09-08T19:42:00Z",
-        "url": "https://www.nhl.com/jets/news/lowry-ready-to-lead-jets-into-new-season",
-        "summary": "After a challenging year, Winnipeg's captain embraces fresh opportunity, renewed purpose.",
+        "title": "Skinner brings experience to Jets",
+        "published_at": "2026-09-09T20:05:00Z",
+        "url": "https://www.nhl.com/jets/news/skinner-brings-experience-to-jets",
+        "summary": "Skinner: \"I think this team has what it takes to win.\"",
         "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-09T18:00:25Z",
+    "updated_at": "2026-09-09T21:00:34Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
