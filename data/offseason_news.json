@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Sabres to host Blue & Gold Scrimmage at KeyBank Center on Saturday, Sept. 19",
+        "published_at": "2026-09-10T17:40:32Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-2026-blue-and-gold-scrimmage-tickets",
+        "summary": "Fans can claim their free tickets to the event on Friday, Sept. 11 with Season Ticket Members receiving priority access.",
+        "roster_news": false
+      },
+      {
         "title": "Evaluating Sabres' goalie depth entering training camp",
         "published_at": "2026-09-10T14:20:28Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-goalies-upl-luukkonen-lyon-ellis-training-camp",
         "summary": "Luukkonen, Lyon, Ellis combined for NHL’s 3rd-best save percentage last season.",
         "roster_news": false
-      },
-      {
-        "title": "Sabres announce Reimer as team’s Official Home Services Partner",
-        "published_at": "2026-09-10T13:59:23Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-announce-reimer-official-home-services-partner",
-        "summary": "The company provides heating, cooling, plumbing and electrical solutions across Western and Upstate New York.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
-        "title": "Ducks Name Cooney Play-By-Play Announcer for Ducks Stream",
-        "published_at": "2026-09-04T17:57:00Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-announce-aaron-cooney-to-join-ducks-stream",
-        "summary": "",
+        "title": "Ducks Announce Disneyland Resort as Official Helmet Logo Sponsor",
+        "published_at": "2026-09-10T16:59:46Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-announce-disneyland-resort-as-official-helmet-logo-sponsor",
+        "summary": "Disneyland Resort iconic logo will appear on Ducks player helmets beginning with the 2026-27 NHL season",
         "roster_news": false
       },
       {
-        "title": "Ducks to Host Golf Classic Presented by Honda Thursday, Sept. 10 at Monarch Beach Golf Links",
-        "published_at": "2026-09-03T20:13:31Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-to-host-golf-classic-presented-by-honda-thursday-sept-10-at-monarch-beach-golf-links",
-        "summary": "Golf Classic foursomes will include Anaheim Ducks players, coaches, broadcasters and alumni",
+        "title": "Carlsson Ready to Deliver on Expectations",
+        "published_at": "2026-09-09T23:29:29Z",
+        "url": "https://www.nhl.com/ducks/news/leo-carlsson-ready-to-deliver-after-new-deal-with-anaheim-ducks-x4523",
+        "summary": "21-year-old center says pressure of 5-year, $90 million contract is 'nothing I can't handle'",
         "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Debut New Docuseries Titled 'On The Record'",
+        "published_at": "2026-09-10T16:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-debut-new-docuseries-titled-on-the-record-2026-09-10",
+        "summary": "Program Goes Behind the Scenes Across Predators Organization Like Never Before",
+        "roster_news": false
+      },
+      {
         "title": "Offseason Recap: Look Back at Nashville's Summer of 2026 Before the Start of a New Preds Campaign",
         "published_at": "2026-09-09T20:00:00Z",
         "url": "https://www.nhl.com/predators/news/offseason-recap-look-back-at-nashville-s-summer-of-2026-before-the-start-of-a-new-preds-campaign-2026-09-09",
         "summary": "Trades, Signings, a New General Manager and Plenty More Highlighted a Busy Offseason for the Predators",
         "roster_news": false
-      },
-      {
-        "title": "Scripps Sports Expands Nashville Predators Television Coverage to Seven Additional Markets Across Tennessee, Kentucky and Alabama",
-        "published_at": "2026-09-08T19:00:00Z",
-        "url": "https://www.nhl.com/predators/news/scripps-sports-expands-nashville-predators-television-coverage-to-seven-additional-markets-across-tennessee-kentucky-and-alabama-2026-09-08",
-        "summary": "Multi-Year Media Rights Agreement Brings Predators Hockey to Broader Regional Audience With Comprehensive Broadcast Package",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-10T15:00:40Z",
+    "updated_at": "2026-09-10T18:00:51Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Putting the ‘Community’ in KCI",
+        "published_at": "2026-09-10T15:42:09Z",
+        "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-3",
+        "summary": "Beyond its impressive growth of youth and adult hockey, Kraken Community Iceplex offers a wide breadth of activities on the ice and in its spaces for visitors who live in the neighborhood, city...",
+        "roster_news": false
+      },
+      {
         "title": "Mapping The Hockey Journey Through KCI Access",
         "published_at": "2026-09-09T15:11:57Z",
         "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-2",
         "summary": "Five years into its existence, the three-rink, $90 million Kraken Community Iceplex has expanded access to hockey for youth and adults both locally and globally",
-        "roster_news": false
-      },
-      {
-        "title": "From 3-Rink Dream Idea To Seattle Hockey Reality",
-        "published_at": "2026-09-08T19:10:00Z",
-        "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-1",
-        "summary": "Five years after opening its doors, Kraken Community Iceplex gave Seattle a pioneering three-ice-sheet venue and the city’s first permanent indoor rink with public access in more than 40 years",
         "roster_news": false
       }
     ]
