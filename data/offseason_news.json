@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,20 +33,20 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
+      {
+        "title": "Sabres announce 2026 Prospects Showcase roster",
+        "published_at": "2026-09-10T18:57:39Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-2026-prospects-showcase-roster-how-to-watch",
+        "summary": "Radim Mrtka headlines Buffalo's roster for the 2-game set.",
+        "roster_news": true
+      },
       {
         "title": "Sabres sign Metsa to 1-year contract extension",
         "published_at": "2026-09-04T19:00:00Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-zach-metsa-to-contract-extension",
         "summary": "The defenseman played 43 games for Buffalo last season.",
-        "roster_news": true
-      },
-      {
-        "title": "Sabres trade Sardarian to Hurricanes",
-        "published_at": "2026-08-17T16:59:07Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-trade-stiven-sardarian",
-        "summary": "Buffalo to receive future considerations from Carolina.",
         "roster_news": true
       },
       {
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,20 +132,20 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
+      {
+        "title": "Vegas Golden Knights Sign Forward Braeden Bowman to Six-Year Contract Extension",
+        "published_at": "2026-09-10T20:55:53Z",
+        "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-sign-forward-braeden-bowman-to-six-year-contract-extension",
+        "summary": "Bowman inks deal that will keep him in Vegas through the 2032-33 season",
+        "roster_news": true
+      },
       {
         "title": "Golden Knights Announce Roster & Schedule for 2026 Rookie Camp",
         "published_at": "2026-09-01T19:00:06Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-roster-schedule-for-2026-rookie-camp",
         "summary": "Vegas prospects will take on Utah & Colorado on September 12 & 13 at the Rookie Faceoff in San Jose",
-        "roster_news": true
-      },
-      {
-        "title": "Golden Knights Sign Juho Piiparinen to Entry-Level Contract",
-        "published_at": "2026-07-15T18:13:18Z",
-        "url": "https://www.nhl.com/goldenknights/news/golden-knights-sign-juho-piiparinen-to-entry-level-contract",
-        "summary": "Vegas inks the 2026 first-round draft pick defenseman to a three-year deal",
         "roster_news": true
       },
       {
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Year in Review: Clayton Keller",
+        "published_at": "2026-09-10T20:15:00Z",
+        "url": "https://www.nhl.com/utah/news/year-in-review-clayton-keller-feature-9-10-26",
+        "summary": "Take a look back at how Utah’s captain impacted the team on and off the ice",
+        "roster_news": false
+      },
+      {
         "title": "Belchetz is Thankful and Determined",
         "published_at": "2026-09-09T15:55:00Z",
         "url": "https://www.nhl.com/utah/news/belchetz-is-thankful-and-determined-feature-9-9-26",
         "summary": "Utah’s 17th overall pick from the 2026 Draft is grateful for his family’s sacrifice and determined to make the NHL",
         "roster_news": false
-      },
-      {
-        "title": "Get to Know: Andrew Peeke",
-        "published_at": "2026-09-08T16:49:38Z",
-        "url": "https://www.nhl.com/utah/news/get-to-know-andrew-peeke-feature-9-8-26",
-        "summary": "Learn more about one of the newest Mammoth defensemen",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-10T18:00:51Z",
+    "updated_at": "2026-09-10T21:00:36Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Season Fast Approaching For Kraken Players – And Fans",
+        "published_at": "2026-09-10T20:00:00Z",
+        "url": "https://www.nhl.com/kraken/news/train-like-a-fan-seattle-kraken-training-camp-opening-night",
+        "summary": "With a shortened preseason of only four games ahead of the 2026-27 opener, the Kraken are inviting supporters to “Train Like a Fan” through a series of upcoming events to help reacquaint them with...",
+        "roster_news": false
+      },
+      {
         "title": "Putting the ‘Community’ in KCI",
         "published_at": "2026-09-10T15:42:09Z",
         "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-3",
         "summary": "Beyond its impressive growth of youth and adult hockey, Kraken Community Iceplex offers a wide breadth of activities on the ice and in its spaces for visitors who live in the neighborhood, city...",
-        "roster_news": false
-      },
-      {
-        "title": "Mapping The Hockey Journey Through KCI Access",
-        "published_at": "2026-09-09T15:11:57Z",
-        "url": "https://www.nhl.com/kraken/news/kraken-community-iceplex-fifth-anniversary-2",
-        "summary": "Five years into its existence, the three-rink, $90 million Kraken Community Iceplex has expanded access to hockey for youth and adults both locally and globally",
         "roster_news": false
       }
     ]
