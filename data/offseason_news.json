@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "First-year Amerks to watch in Sabres training camp",
+        "published_at": "2026-09-11T13:02:16Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-rochester-americans-amerks-radim-mrtka-strbak",
+        "summary": "Radim Mrtka headlines new wave of right-shot defensemen in Rochester.",
+        "roster_news": false
+      },
+      {
         "title": "Sabres to host Blue & Gold Scrimmage at KeyBank Center on Saturday, Sept. 19",
         "published_at": "2026-09-10T17:40:32Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-2026-blue-and-gold-scrimmage-tickets",
         "summary": "Fans can claim their free tickets to the event on Friday, Sept. 11 with Season Ticket Members receiving priority access.",
         "roster_news": false
-      },
-      {
-        "title": "Evaluating Sabres' goalie depth entering training camp",
-        "published_at": "2026-09-10T14:20:28Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-goalies-upl-luukkonen-lyon-ellis-training-camp",
-        "summary": "Luukkonen, Lyon, Ellis combined for NHL’s 3rd-best save percentage last season.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Golden Knights Sign Braeden Bowman to Six-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -347,23 +347,23 @@
         "roster_news": true
       },
       {
+        "title": "Celebrini goes Hollywood in cover shoot with 'Off Campus' star Cameli",
+        "published_at": "2026-09-10T13:00:59Z",
+        "url": "https://www.nhl.com/sharks/news/macklin-celebrini-takes-hollywood-turn-with-cover-shoot-x0198",
+        "summary": "Sharks forward connects with actor in magazine photo spread",
+        "roster_news": false
+      },
+      {
         "title": "San Jose Sharks announce broadcast schedule for 2026-27 season",
         "published_at": "2026-09-09T18:00:00Z",
         "url": "https://www.nhl.com/sharks/news/san-jose-sharks-announce-broadcast-schedule-for-2026-27-season",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Stenberg among youth eager to show worth before 2026-27 season begins",
-        "published_at": "2026-09-08T04:00:00Z",
-        "url": "https://www.nhl.com/sharks/news/gavin-mckenna-ivar-stenberg-among-elite-youth-set-for-training-camp-x5002",
-        "summary": "Several top prospects will compete in rookie tournaments prior to start of training camp",
-        "roster_news": false
       }
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-11T12:00:27Z",
+    "updated_at": "2026-09-11T15:00:32Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
