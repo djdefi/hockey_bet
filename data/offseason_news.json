@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,13 +132,13 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
-        "title": "Vegas Golden Knights Sign Forward Braeden Bowman to Six-Year Contract Extension",
+        "title": "Golden Knights Sign Braeden Bowman to Six-Year Contract Extension",
         "published_at": "2026-09-10T20:55:53Z",
         "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-sign-forward-braeden-bowman-to-six-year-contract-extension",
-        "summary": "Bowman inks deal that will keep him in Vegas through the 2032-33 season",
+        "summary": "The forward inks a new deal that will keep him in Vegas through the 2032-33 season",
         "roster_news": true
       },
       {
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Golden Knights Rookies Set to Compete in San Jose at 2026 Rookie Showcase",
+        "published_at": "2026-09-10T23:45:35Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-rookies-set-to-compete-in-san-jose-at-2026-rookie-showcase",
+        "summary": "Vegas prospects to face Utah and Colorado with several players to watch in the lineup",
+        "roster_news": false
+      },
+      {
         "title": "Single Game Tickets for 2026-27 Season On Sale Now",
         "published_at": "2026-09-01T16:53:27Z",
         "url": "https://www.nhl.com/goldenknights/news/single-game-tickets-for-2026-27-season-on-sale-now",
         "summary": "Season X for the Vegas Golden Knights officially starts on Tuesday, Sept. 29 against the Chicago Blackhawks at T-Mobile Arena",
         "roster_news": false
-      },
-      {
-        "title": "Lawless: Q&A with Coach Craig Before Camp",
-        "published_at": "2026-08-28T21:07:25Z",
-        "url": "https://www.nhl.com/goldenknights/news/lawless-q-a-with-coach-craig-before-camp",
-        "summary": "Check in with the new Vegas Golden Knights bench boss with training camp set to start Sept. 16",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Stay Informed on Devils Offseason Moves | NOTEBOOK",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-10T21:00:36Z",
+    "updated_at": "2026-09-11T00:00:47Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
