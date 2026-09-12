@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Golden Knights Sign Braeden Bowman to Six-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Rookie Camp 2026: Five Players to Watch",
+        "published_at": "2026-09-12T14:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-rookie-camp-2026-five-players-to-watch-2026-09-12",
+        "summary": "Talented Forwards Highlight Nashville's Prospect Pool Ahead of Upcoming Tournament",
+        "roster_news": false
+      },
+      {
         "title": "Remembering 'Petey' - Celebrating the Life and Legacy of Brent Peterson",
         "published_at": "2026-09-11T20:00:00Z",
         "url": "https://www.nhl.com/predators/news/remembering-petey-celebrating-the-life-and-legacy-of-brent-peterson-2026-09-11",
         "summary": "Former Predators Coach, Broadcaster Helped Raise Millions for Parkinson's Research Over Two Decades",
         "roster_news": false
-      },
-      {
-        "title": "Preds Debut New Docuseries Titled 'On The Record'",
-        "published_at": "2026-09-10T16:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-debut-new-docuseries-titled-on-the-record-2026-09-10",
-        "summary": "Program Goes Behind the Scenes Across Predators Organization Like Never Before",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-12T12:00:58Z",
+    "updated_at": "2026-09-12T15:00:22Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
