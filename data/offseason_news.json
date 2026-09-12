@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Avalanche Prospects Prepare for Rookie Faceoff",
+        "published_at": "2026-09-11T21:45:52Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-prospects-prepare-for-rookie-faceoff",
+        "summary": "Avalanche to Face Ducks and Golden Knights in San Jose",
+        "roster_news": false
+      },
+      {
         "title": "Avalanche Players Give Back During Youth Hockey Development Camp",
         "published_at": "2026-09-08T18:45:00Z",
         "url": "https://www.nhl.com/avalanche/news/avalanche-players-give-back-during-youth-hockey-development-camp",
         "summary": "Brock Nelson, Logan O’Connor, Josh Manson and Sean Behrens Among Guest Coaches During Second Annual Camp",
         "roster_news": false
-      },
-      {
-        "title": "Avalanche Alumni Help Grow the Game at 3v3 Youth Hockey Tournament",
-        "published_at": "2026-08-31T18:30:22Z",
-        "url": "https://www.nhl.com/avalanche/news/3v3-youth-hockey-tournament-recap",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Golden Knights Sign Braeden Bowman to Six-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-11T21:00:40Z",
+    "updated_at": "2026-09-12T00:00:35Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
