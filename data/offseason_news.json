@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Nashville Predators to Host Predsfest Presented by Ticketmaster On Saturday, Sept. 26",
+        "published_at": "2026-09-14T19:00:00Z",
+        "url": "https://www.nhl.com/predators/news/nashville-predators-to-host-predsfest-presented-by-ticketmaster-on-saturday-sept-26-2026-09-14",
+        "summary": "PredsFest, a Free Festival to Kick Off the 2026-27 Season, Will Take Place on Broadway Surrounding Bridgestone Arena From 11 a.m. to 2 p.m. CT",
+        "roster_news": false
+      },
+      {
         "title": "Preds Defeat Hurricanes to Begin Prospect Showcase",
         "published_at": "2026-09-13T21:46:52Z",
         "url": "https://www.nhl.com/predators/news/preds-defeat-hurricanes-to-begin-prospect-showcase-2026-09-13",
         "summary": "O'Hara, Fink, Pinchuk Among Nashville Goal Scorers in 4-1 Victory Over Carolina",
         "roster_news": false
-      },
-      {
-        "title": "Prospect Showcase Preview: Preds Rookies Ready to Impress In Carolina",
-        "published_at": "2026-09-12T18:00:00Z",
-        "url": "https://www.nhl.com/predators/news/prospect-showcase-preview-preds-rookies-ready-to-impress-in-carolina-2026-09-12",
-        "summary": "Nashville's Top Prospects Eager for Games Against Hurricanes, Lightning",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-14T18:00:23Z",
+    "updated_at": "2026-09-14T21:00:23Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
