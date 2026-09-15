@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -66,19 +66,19 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
-        "title": "When can I sign up for Wild+ on Prime?",
-        "published_at": "2026-09-01T19:57:41Z",
-        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime-q3",
+        "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
+        "published_at": "2026-09-15T14:58:29Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-signs-head-coach-john-hynes-to-multi-year-contract-extension-091526",
         "summary": "",
         "roster_news": true
       },
       {
         "title": "When can I sign up for Wild+ on Prime?",
-        "published_at": "2026-09-01T19:29:43Z",
-        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime",
+        "published_at": "2026-09-01T19:57:41Z",
+        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime-q3",
         "summary": "",
         "roster_news": true
       },
@@ -99,8 +99,15 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
+      {
+        "title": "Capitals Re-Sign Ryan Leonard",
+        "published_at": "2026-09-15T13:13:05Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-re-sign-ryan-leonard",
+        "summary": "Eight-year extension keeps 21-year-old forward in Washington through 2034-35 season",
+        "roster_news": true
+      },
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
         "published_at": "2026-09-09T20:08:29Z",
@@ -109,11 +116,11 @@
         "roster_news": true
       },
       {
-        "title": "Capitals Sign Oliver Suvanto",
-        "published_at": "2026-07-14T16:05:43Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-sign-oliver-suvanto",
-        "summary": "2026 first-round draft pick signs three-year entry-level contract",
-        "roster_news": true
+        "title": "Caps Go Long with Leno",
+        "published_at": "2026-09-15T14:26:38Z",
+        "url": "https://www.nhl.com/capitals/news/caps-go-long-with-leno",
+        "summary": "Three years after he was eighth overall pick in NHL Draft, Caps sign Ryan Leonard to eight-year extension",
+        "roster_news": false
       },
       {
         "title": "Caps Willing to Play Long Game for Long Player",
@@ -121,18 +128,11 @@
         "url": "https://www.nhl.com/capitals/news/caps-willing-to-play-long-game-for-long-player",
         "summary": "Caps believe their Big Mac will be worth the wait",
         "roster_news": false
-      },
-      {
-        "title": "Caps Kids Take to Ice Sunday in Annapolis",
-        "published_at": "2026-09-13T20:48:18Z",
-        "url": "https://www.nhl.com/capitals/news/caps-kids-take-to-ice-sunday-in-annapolis",
-        "summary": "Caps conduct first of three on-ice sessions in annual rookie camp at McMullen Arena",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "Prospects Practice Ahead of Showcase Finale | NOTEBOOK",
-        "published_at": "2026-09-14T17:32:03Z",
-        "url": "https://www.nhl.com/devils/news/devils-notebook-9-14-26",
+        "title": "Devils, Isles Rookie Grudge Match | PREVIEW",
+        "published_at": "2026-09-15T12:05:59Z",
+        "url": "https://www.nhl.com/devils/news/game-preview-vs-islanders-9-15-26",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "MB30 More than a Golf Tournament for Brodeur, Alumni | FEATURE",
-        "published_at": "2026-09-14T16:11:00Z",
-        "url": "https://www.nhl.com/devils/news/7th-annual-mb30-invitational-feature-9-14-26",
+        "title": "Prospects Practice Ahead of Showcase Finale | NOTEBOOK",
+        "published_at": "2026-09-14T17:32:03Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-14-26",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -354,16 +354,16 @@
         "roster_news": false
       },
       {
-        "title": "Celebrini goes Hollywood in cover shoot with 'Off Campus' star Cameli",
-        "published_at": "2026-09-10T13:00:59Z",
-        "url": "https://www.nhl.com/sharks/news/macklin-celebrini-takes-hollywood-turn-with-cover-shoot-x0198",
-        "summary": "Sharks forward connects with actor in magazine photo spread",
+        "title": "Stenberg scores twice in 25 seconds in 1st game with Sharks",
+        "published_at": "2026-09-13T13:57:44Z",
+        "url": "https://www.nhl.com/sharks/news/ivar-stenberg-scores-twice-in-25-seconds-in-first-game-with-san-jose-sharks-x6871",
+        "summary": "No. 2 pick from this year’s NHL Draft enjoys ‘super fun’ debut against Kings at 2026 Rookie Faceoff",
         "roster_news": false
       }
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-15T12:00:35Z",
+    "updated_at": "2026-09-15T15:00:33Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
