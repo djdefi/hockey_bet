@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Injuries and transactions | 4 players returned to junior teams",
+        "published_at": "2026-09-15T15:35:06Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
+        "roster_news": false
+      },
+      {
         "title": "Sabres prospects head into training camp with ‘an edge’ after Prospects Showcase ",
         "published_at": "2026-09-14T21:10:16Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-prospects-showcase-maxim-strbak-samuel-meloche",
         "summary": "Buffalo fell to Boston, 4-3 in overtime, to wrap up the second and final game of the series. ",
         "roster_news": false
-      },
-      {
-        "title": "Buffalo Sabres announce internal promotions",
-        "published_at": "2026-09-14T14:02:06Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-announce-2026-promotions-business-hockey-staff",
-        "summary": "The Sabres have announced promotions within their hockey and business staffs.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,8 +99,15 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
+      {
+        "title": "Capitals Announce 2026-27 Training Camp Schedule and Roster",
+        "published_at": "2026-09-15T16:00:00Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-announce-2026-27-training-camp-schedule-and-roster",
+        "summary": "Caps will hold Media Day on Sept. 17 at MedStar Capitals Iceplex; Alex Ovechkin will be available to the media at approximately 11 a.m. On-ice practices at MedStar Capitals Iceplex are open to the...",
+        "roster_news": true
+      },
       {
         "title": "Capitals Re-Sign Ryan Leonard",
         "published_at": "2026-09-15T13:13:05Z",
@@ -109,30 +116,23 @@
         "roster_news": true
       },
       {
-        "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
-        "published_at": "2026-09-09T20:08:29Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-announce-2026-rookie-camp-roster-and-schedule",
-        "summary": "Rookie Camp will begin Sunday, Sept. 13 at McMullen Hockey Arena in Annapolis 21 players, including 17 Capitals draft picks, will participate",
-        "roster_news": true
-      },
-      {
-        "title": "Caps Go Long with Leno",
-        "published_at": "2026-09-15T14:26:38Z",
-        "url": "https://www.nhl.com/capitals/news/caps-go-long-with-leno",
-        "summary": "Three years after he was eighth overall pick in NHL Draft, Caps sign Ryan Leonard to eight-year extension",
+        "title": "Los Capitals celebrarán el Mes de la Herencia Hispana con una serie de iniciativas",
+        "published_at": "2026-09-15T17:45:00Z",
+        "url": "https://www.nhl.com/capitals/news/los-capitals-celebraran-el-mes-de-la-herencia-hispana-con-una-serie-de-iniciativas",
+        "summary": "La Noche de la Herencia Hispana se celebrará el Miércoles, 14 de octubre en Capital One Arena durante el partido contra MTL",
         "roster_news": false
       },
       {
-        "title": "Caps Willing to Play Long Game for Long Player",
-        "published_at": "2026-09-14T21:55:51Z",
-        "url": "https://www.nhl.com/capitals/news/caps-willing-to-play-long-game-for-long-player",
-        "summary": "Caps believe their Big Mac will be worth the wait",
+        "title": "Capitals To Celebrate Hispanic Heritage Month with Series of Activations",
+        "published_at": "2026-09-15T17:45:00Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-to-celebrate-hispanic-heritage-month-with-series-of-activations",
+        "summary": "Hispanic Heritage Night to take place at Capital One Arena on Oct. 14 vs. MTL",
         "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
-        "title": "Watch Live: Golden Knights Rookies vs. Avalanche",
-        "published_at": "2026-09-13T15:18:54Z",
-        "url": "https://www.nhl.com/goldenknights/news/watch-live-golden-knights-rookies-vs-avalanche",
-        "summary": "Tune in here as Vegas takes on the Avalanche at the 2026 Rookie Showcase in San Jose",
+        "title": "Golden Knights & ViewLift Mark Fourth Season Together with Record Platform Growth",
+        "published_at": "2026-09-15T17:56:28Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-viewlift-mark-fourth-season-together-with-record-platform-growth",
+        "summary": "KnightTime+ posts 76% growth in registered users, 57% growth in views entering fourth season with ViewLift",
         "roster_news": false
       },
       {
-        "title": "Watch Live: Golden Knights Rookies vs. Utah",
-        "published_at": "2026-09-12T19:34:20Z",
-        "url": "https://www.nhl.com/goldenknights/news/watch-live-golden-knights-rookies-vs-utah",
-        "summary": "Tune in here as Vegas takes on the Mammoth at the 2026 Rookie Showcase in San Jose",
+        "title": "Ryan Craig talks Vegas Golden Knights mindset entering season",
+        "published_at": "2026-09-15T04:00:00Z",
+        "url": "https://www.nhl.com/goldenknights/news/ryan-craig-talks-vegas-golden-knights-mindset-entering-season-x0541",
+        "summary": "New coach expects internal competition during shortened camp in order to figure out 'who we are'",
         "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
-        "title": "Day 2 of Rookie Showcase",
-        "published_at": "2026-09-14T00:04:27Z",
-        "url": "https://www.nhl.com/utah/news/day-2-of-rookie-showcase-feature-9-13-26",
-        "summary": "Watch Utah's prospects play the San Jose Sharks",
+        "title": "Lewis Returns Home with the Mammoth",
+        "published_at": "2026-09-15T17:02:00Z",
+        "url": "https://www.nhl.com/utah/news/lewis-returns-home-with-the-mammoth-feature-9-15-26",
+        "summary": "The two-time Stanley Cup Champion and Salt Lake City native joins the Utah Mammoth",
         "roster_news": false
       },
       {
-        "title": "Year in Review: Clayton Keller",
-        "published_at": "2026-09-10T20:15:00Z",
-        "url": "https://www.nhl.com/utah/news/year-in-review-clayton-keller-feature-9-10-26",
-        "summary": "Take a look back at how Utah’s captain impacted the team on and off the ice",
+        "title": "Utah Native Trevor Lewis Joins Mammoth Organization",
+        "published_at": "2026-09-15T17:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-native-trevor-lewis-joins-mammoth-organization-release-9-15-26",
+        "summary": "The two-time Stanley Cup Champion is will be a Video Scout and Youth and Amateur Hockey Ambassador for Utah",
         "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "Carter George & Hampton Slukynsky Gearing Up For Season Ahead",
-        "published_at": "2026-09-15T00:18:22Z",
-        "url": "https://www.nhl.com/kings/news/carter-george-hampton-slukynsky-gearing-up-for-first-professional-season-x1644",
+        "title": "2026 Rookie Faceoff Preview - Game 3, LAK vs. UTA",
+        "published_at": "2026-09-15T15:00:00Z",
+        "url": "https://www.nhl.com/kings/news/tune-in-rookie-faceoff-game-3",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "2026 Rookie Faceoff Game 2 - LAK 4, ANA 1",
-        "published_at": "2026-09-14T01:01:06Z",
-        "url": "https://www.nhl.com/kings/news/rookie-faceoff-game-2-kings-4-ducks-1",
+        "title": "Carter George & Hampton Slukynsky Gearing Up For Season Ahead",
+        "published_at": "2026-09-15T00:18:22Z",
+        "url": "https://www.nhl.com/kings/news/carter-george-hampton-slukynsky-gearing-up-for-first-professional-season-x1644",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Predators 2026 Training Camp Presented by Ticketmaster Opens Wednesday, Sept. 16",
+        "published_at": "2026-09-15T17:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-2026-training-camp-presented-by-ticketmaster-opens-wednesday-sept-16-2026-09-15",
+        "summary": "Nashville's Training Camp Schedule is Highlighted by Four Preseason Games, Including Two at Bridgestone Arena",
+        "roster_news": false
+      },
+      {
         "title": "Preds Rookies Complete Two-Game Sweep at Prospect Showcase With Victory Over Lightning",
         "published_at": "2026-09-14T22:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-rookies-complete-two-game-sweep-at-prospect-showcase-with-victory-over-lightning-09-14-26",
         "summary": "Wiesblatt Records Gordie Howe Hat Trick as Nashville Prospects Head Home for Main Training Camp",
         "roster_news": false
-      },
-      {
-        "title": "Nashville Predators to Host Predsfest Presented by Ticketmaster On Saturday, Sept. 26",
-        "published_at": "2026-09-14T19:00:00Z",
-        "url": "https://www.nhl.com/predators/news/nashville-predators-to-host-predsfest-presented-by-ticketmaster-on-saturday-sept-26-2026-09-14",
-        "summary": "PredsFest, a Free Festival to Kick Off the 2026-27 Season, Will Take Place on Broadway Surrounding Bridgestone Arena From 11 a.m. to 2 p.m. CT",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Larke ready to make his mark with Jets",
+        "published_at": "2026-09-15T16:21:00Z",
+        "url": "https://www.nhl.com/jets/news/larke-ready-to-make-his-mark-with-jets",
+        "summary": "Larke is settling into a new role with the Winnipeg Jets as the club’s first full-time skills coach.",
+        "roster_news": false
+      },
+      {
         "title": "Jets prospects show compete, skill and chemistry in Quebec",
         "published_at": "2026-09-13T20:45:00Z",
         "url": "https://www.nhl.com/jets/news/jets-prospects-show-compete-skill-and-chemistry-in-quebec",
         "summary": "Jacob Julien scored one of the Jets three power play goals in 6-4 loss to Leafs.",
         "roster_news": false
-      },
-      {
-        "title": "Yager confident, focused on earning NHL spot",
-        "published_at": "2026-09-13T12:55:00Z",
-        "url": "https://www.nhl.com/jets/news/yager-confident-focused-on-earning-nhl-spot",
-        "summary": "Yager: \"I feel ready to play in the NHL.\"",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-15T15:00:33Z",
+    "updated_at": "2026-09-15T18:00:24Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
