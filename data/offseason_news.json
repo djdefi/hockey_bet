@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Avalanche Announce Rookie Faceoff Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Sabres announce 2026 Prospects Showcase roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Sabres prospects head into training camp with ‘an edge’ after Prospects Showcase ",
+        "published_at": "2026-09-14T21:10:16Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-prospects-showcase-maxim-strbak-samuel-meloche",
+        "summary": "Buffalo fell to Boston, 4-3 in overtime, to wrap up the second and final game of the series. ",
+        "roster_news": false
+      },
+      {
         "title": "Buffalo Sabres announce internal promotions",
         "published_at": "2026-09-14T14:02:06Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-announce-2026-promotions-business-hockey-staff",
         "summary": "The Sabres have announced promotions within their hockey and business staffs.",
         "roster_news": false
-      },
-      {
-        "title": "Prospects Showcase | How to watch Sabres vs. Bruins",
-        "published_at": "2026-09-14T13:36:36Z",
-        "url": "https://www.nhl.com/sabres/news/how-to-watch-sabrse-bruins-prospects-showcase",
-        "summary": "The Sabres and Bruins conclude the Prospects Showcase on Monday afternoon.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "When can I sign up for Wild+ on Prime?",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Capitals Announce 2026 Rookie Camp Roster and Schedule",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Willing to Play Long Game for Long Player",
+        "published_at": "2026-09-14T21:55:51Z",
+        "url": "https://www.nhl.com/capitals/news/caps-willing-to-play-long-game-for-long-player",
+        "summary": "Caps believe their Big Mac will be worth the wait",
+        "roster_news": false
+      },
+      {
         "title": "Caps Kids Take to Ice Sunday in Annapolis",
         "published_at": "2026-09-13T20:48:18Z",
         "url": "https://www.nhl.com/capitals/news/caps-kids-take-to-ice-sunday-in-annapolis",
         "summary": "Caps conduct first of three on-ice sessions in annual rookie camp at McMullen Arena",
         "roster_news": false
-      },
-      {
-        "title": "Capitals Unveil Specialty Jersey Celebrating the 250th Anniversary of America to Benefit Our Military Kids",
-        "published_at": "2026-09-09T13:55:14Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-unveil-specialty-jersey-celebrating-the-250th-anniversary-of-america-to-benefit-our-military-kids",
-        "summary": "Jersey Co-Designed by U.S. Military Veterans Patrick Sargent and Fidel GomezTorres",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Rookies Complete Two-Game Sweep at Prospect Showcase With Victory Over Lightning",
+        "published_at": "2026-09-14T22:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-rookies-complete-two-game-sweep-at-prospect-showcase-with-victory-over-lightning-09-14-26",
+        "summary": "Wiesblatt Records Gordie Howe Hat Trick as Nashville Prospects Head Home for Main Training Camp",
+        "roster_news": false
+      },
+      {
         "title": "Nashville Predators to Host Predsfest Presented by Ticketmaster On Saturday, Sept. 26",
         "published_at": "2026-09-14T19:00:00Z",
         "url": "https://www.nhl.com/predators/news/nashville-predators-to-host-predsfest-presented-by-ticketmaster-on-saturday-sept-26-2026-09-14",
         "summary": "PredsFest, a Free Festival to Kick Off the 2026-27 Season, Will Take Place on Broadway Surrounding Bridgestone Arena From 11 a.m. to 2 p.m. CT",
         "roster_news": false
-      },
-      {
-        "title": "Preds Defeat Hurricanes to Begin Prospect Showcase",
-        "published_at": "2026-09-13T21:46:52Z",
-        "url": "https://www.nhl.com/predators/news/preds-defeat-hurricanes-to-begin-prospect-showcase-2026-09-13",
-        "summary": "O'Hara, Fink, Pinchuk Among Nashville Goal Scorers in 4-1 Victory Over Carolina",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Jets announce 2026 Prospect Challenge roster",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-14T21:00:23Z",
+    "updated_at": "2026-09-15T00:00:25Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
