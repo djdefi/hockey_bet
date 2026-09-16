@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Injuries and transactions | Zucker to miss start of regular season",
+        "published_at": "2026-09-16T17:07:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
+        "roster_news": false
+      },
+      {
         "title": "What's new at KeyBank Center in 2026-27",
         "published_at": "2026-09-16T14:58:15Z",
         "url": "https://www.nhl.com/sabres/news/keybank-center-concession-updates-2026",
         "summary": "Upgrades include the introduction of the Michelob Ultra Lounge, a new grab-and-go market, and more.",
         "roster_news": false
-      },
-      {
-        "title": "‘I felt like a ghost’ | Inside Jiri Kulich’s road to recovery",
-        "published_at": "2026-09-16T12:57:15Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-jiri-kulich-blood-clot-health-training-camp",
-        "summary": "An exclusive look at the people, places and thoughts that saved the young forward’s career.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -123,16 +123,16 @@
         "roster_news": false
       },
       {
-        "title": "Los Capitals celebrarán el Mes de la Herencia Hispana con una serie de iniciativas",
+        "title": "Capitals To Celebrate Hispanic Heritage Month with Series of Activations",
         "published_at": "2026-09-15T17:45:00Z",
-        "url": "https://www.nhl.com/capitals/news/los-capitals-celebraran-el-mes-de-la-herencia-hispana-con-una-serie-de-iniciativas",
-        "summary": "La Noche de la Herencia Hispana se celebrará el Miércoles, 14 de octubre en Capital One Arena durante el partido contra MTL",
+        "url": "https://www.nhl.com/capitals/news/capitals-to-celebrate-hispanic-heritage-month-with-series-of-activations",
+        "summary": "Hispanic Heritage Night to take place at Capital One Arena on Oct. 14 vs. MTL",
         "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,20 +198,20 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
+      {
+        "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
+        "published_at": "2026-09-16T17:34:06Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-announce-roster-and-details-for-2026-training-camp-presented-by-splitero",
+        "summary": "#FlyTogether Fan camp to be held Saturday, Sept. 19 at Great Park Ice featuring Orange and Black scrimmage, fan and player interactions, entertainment and more",
+        "roster_news": true
+      },
       {
         "title": "Ducks Sign Gauthier to Six-Year Contract",
         "published_at": "2026-09-16T01:58:35Z",
         "url": "https://www.nhl.com/ducks/news/ducks-sign-gauthier-to-six-year-contract",
         "summary": "Anaheim locks up the 22-year-old coming off a 41-goal season where he led club in points during the regular season and playoffs",
-        "roster_news": true
-      },
-      {
-        "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
-        "published_at": "2026-09-01T23:32:32Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-announce-2026-rookie-faceoff-roster-and-rookie-camp-details",
-        "summary": "Rookie Faceoff will be hosted by the San Jose Sharks at Tech CU Arena and Sharks Ice at San Jose from Sept. 12-15",
         "roster_news": true
       },
       {
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Evangelista Inks 5-Year Extension | RELEASE",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
+        "title": "5 Questions for Camp | FEATURE",
+        "published_at": "2026-09-16T16:37:01Z",
+        "url": "https://www.nhl.com/devils/news/5-questions-for-2026-training-camp-feature-9-16-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "McCabe, Campbell Join Devils Development Staff | RELEASE",
         "published_at": "2026-09-16T14:01:58Z",
         "url": "https://www.nhl.com/devils/news/mccabe-campbell-release-9-16-26",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Change of Plans | FEATURE",
-        "published_at": "2026-09-16T03:00:00Z",
-        "url": "https://www.nhl.com/devils/news/evagenlista-change-of-plans-feature-9-3-26",
-        "summary": "Evangelista had his bags packed to head to Nashville before Tuesday's change in plans.",
-        "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-16T15:00:24Z",
+    "updated_at": "2026-09-16T18:00:27Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Dunn, Montour Added As Kraken Alternate Captains",
+        "published_at": "2026-09-16T16:00:00Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-captains-2026-27-vince-dunn-brandon-montour",
+        "summary": "The veteran Kraken defensemen join captain Jordan Eberle and incumbent alternates Matty Beniers and Adam Larsson on the team’s leadership group with training camp set to open this week",
+        "roster_news": false
+      },
+      {
         "title": "Expanding Young Core, Veterans Guide Kraken",
         "published_at": "2026-09-15T15:30:00Z",
         "url": "https://www.nhl.com/kraken/news/seattle-kraken-training-camp-preview-2026",
         "summary": "The Kraken open training camp Thursday leaning increasingly on a growing core of players aged 25 and younger, paired with a significant veteran group, to create the competitive environment they...",
-        "roster_news": false
-      },
-      {
-        "title": "Kraken Prospects Split Weekend ‘Showcase’",
-        "published_at": "2026-09-14T03:13:49Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-vancouver-canucks-prospects-showcase-game-2-recap",
-        "summary": "After a tight first period in B.C., the teams light up scoreboard with five goals in six-plus minutes in middle frame. End result is win-one, lose-one, but Seattle heads home with plenty of positives",
         "roster_news": false
       }
     ]
