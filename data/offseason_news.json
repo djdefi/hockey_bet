@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,8 +99,15 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
+      {
+        "title": "Capitals Re-Sign Justin Sourdif",
+        "published_at": "2026-09-16T01:27:23Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-re-sign-justin-sourdif",
+        "summary": "24-year-old forward inks eight-year deal with Washington",
+        "roster_news": true
+      },
       {
         "title": "Capitals Announce 2026-27 Training Camp Schedule and Roster",
         "published_at": "2026-09-15T16:00:00Z",
@@ -109,11 +116,11 @@
         "roster_news": true
       },
       {
-        "title": "Capitals Re-Sign Ryan Leonard",
-        "published_at": "2026-09-15T13:13:05Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-re-sign-ryan-leonard",
-        "summary": "Eight-year extension keeps 21-year-old forward in Washington through 2034-35 season",
-        "roster_news": true
+        "title": "Caps Ink Sourdif to Eight-Year Extension",
+        "published_at": "2026-09-16T01:37:57Z",
+        "url": "https://www.nhl.com/capitals/news/caps-ink-sourdif-to-eight-year-extension",
+        "summary": "Caps cap off an active summer and an active day with a long-term deal for Justin Sourdif",
+        "roster_news": false
       },
       {
         "title": "Los Capitals celebrarán el Mes de la Herencia Hispana con una serie de iniciativas",
@@ -121,18 +128,11 @@
         "url": "https://www.nhl.com/capitals/news/los-capitals-celebraran-el-mes-de-la-herencia-hispana-con-una-serie-de-iniciativas",
         "summary": "La Noche de la Herencia Hispana se celebrará el Miércoles, 14 de octubre en Capital One Arena durante el partido contra MTL",
         "roster_news": false
-      },
-      {
-        "title": "Capitals To Celebrate Hispanic Heritage Month with Series of Activations",
-        "published_at": "2026-09-15T17:45:00Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-to-celebrate-hispanic-heritage-month-with-series-of-activations",
-        "summary": "Hispanic Heritage Night to take place at Capital One Arena on Oct. 14 vs. MTL",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
@@ -198,20 +198,20 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
+      {
+        "title": "Ducks Sign Gauthier to Six-Year Contract",
+        "published_at": "2026-09-16T01:58:35Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-sign-gauthier-to-six-year-contract",
+        "summary": "Anaheim locks up the 22-year-old coming off a 41-goal season where he led club in points during the regular season and playoffs",
+        "roster_news": true
+      },
       {
         "title": "Ducks Announce 2026 Rookie Faceoff Roster and Rookie Camp Details",
         "published_at": "2026-09-01T23:32:32Z",
         "url": "https://www.nhl.com/ducks/news/ducks-announce-2026-rookie-faceoff-roster-and-rookie-camp-details",
         "summary": "Rookie Faceoff will be hosted by the San Jose Sharks at Tech CU Arena and Sharks Ice at San Jose from Sept. 12-15",
-        "roster_news": true
-      },
-      {
-        "title": "Ducks Sign Lucius to Two-Year Entry-Level Contract",
-        "published_at": "2026-08-20T18:52:25Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-sign-lucius-to-two-year-entry-level-contract",
-        "summary": "Lucius was acquired from the Pittsburgh Penguins for future considerations Aug. 19",
         "roster_news": true
       },
       {
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Devils to Stream Prospects Games | BLOG",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "WATCH LIVE & SCORE UPDATES: Devils 3, Islanders 3",
-        "published_at": "2026-09-15T15:49:38Z",
-        "url": "https://www.nhl.com/devils/news/devils-at-islanders-9-15-26-live-updates",
-        "summary": "Watch the game live plus get regular updates, highlights and more as the Devils take on the Islanders at the Rookie Showcase",
+        "title": "Hämeenaho, Wilmer Score in Shootout Win | GAME STORY",
+        "published_at": "2026-09-16T00:21:52Z",
+        "url": "https://www.nhl.com/devils/news/devils-at-islanders-9-15-26-game-story",
+        "summary": "",
         "roster_news": false
       },
       {
-        "title": "Prospects Practice Ahead of Showcase Finale | NOTEBOOK",
-        "published_at": "2026-09-14T17:32:03Z",
-        "url": "https://www.nhl.com/devils/news/devils-notebook-9-14-26",
-        "summary": "",
+        "title": "QUICK RECAP: Devils 4, Islanders 3 SO",
+        "published_at": "2026-09-15T15:49:38Z",
+        "url": "https://www.nhl.com/devils/news/devils-at-islanders-9-15-26-live-updates",
+        "summary": "Watch the game live plus get regular updates, highlights and more as the Devils take on the Islanders at the Rookie Showcase",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-16T00:00:39Z",
+    "updated_at": "2026-09-16T03:00:29Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
