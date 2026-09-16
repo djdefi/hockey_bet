@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -43,11 +43,18 @@
         "roster_news": true
       },
       {
-        "title": "Sabres announce 2026 Prospects Showcase roster",
-        "published_at": "2026-09-10T18:57:39Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-2026-prospects-showcase-roster-how-to-watch",
-        "summary": "Radim Mrtka headlines Buffalo's roster for the 2-game set.",
+        "title": "Sabres sign Ostlund to 8-year contract extension",
+        "published_at": "2026-09-14T15:26:01Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-noah-ostlund-contract-extension",
+        "summary": "The forward had 27 points in 60 games as a rookie last season.",
         "roster_news": true
+      },
+      {
+        "title": "‘Pretty good's not good enough’ | Kekäläinen, Ruff set standard for 2026-27 Sabres",
+        "published_at": "2026-09-16T20:07:04Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-jarmo-kekalainen-lindy-ruff",
+        "summary": "Training camp begins in Buffalo with new players and new expectations.",
+        "roster_news": false
       },
       {
         "title": "Injuries and transactions | Zucker to miss start of regular season",
@@ -55,18 +62,11 @@
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
         "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
-      },
-      {
-        "title": "What's new at KeyBank Center in 2026-27",
-        "published_at": "2026-09-16T14:58:15Z",
-        "url": "https://www.nhl.com/sabres/news/keybank-center-concession-updates-2026",
-        "summary": "Upgrades include the introduction of the Michelob Ultra Lounge, a new grab-and-go market, and more.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
@@ -264,20 +264,20 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
+      {
+        "title": "Devils Announce 2026 Training Camp Roster | RELEASE",
+        "published_at": "2026-09-16T18:39:07Z",
+        "url": "https://www.nhl.com/devils/news/devils-announce-2026-training-camp-roster-release-9-16-26",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Evangelista Inks 5-Year Extension | RELEASE",
         "published_at": "2026-09-16T03:20:00Z",
         "url": "https://www.nhl.com/devils/news/evangelista-extension-release-9-15-26",
         "summary": "Evangelista was acquired from Nashville on Sept. 1 .",
-        "roster_news": true
-      },
-      {
-        "title": "Devils to Stream Prospects Games | BLOG",
-        "published_at": "2026-09-11T17:46:33Z",
-        "url": "https://www.nhl.com/devils/news/devils-to-stream-prospects-games-blog-9-11-26",
-        "summary": "",
         "roster_news": true
       },
       {
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Training Camp 2026: Four Things to Watch",
+        "published_at": "2026-09-16T20:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-training-camp-2026-four-things-to-watch-2026-09-16",
+        "summary": "New Additions, Tighter Schedule Among Highlights as Predators Begin Training Camp",
+        "roster_news": false
+      },
+      {
         "title": "Predators 2026 Training Camp Presented by Ticketmaster Opens Wednesday, Sept. 16",
         "published_at": "2026-09-15T17:00:00Z",
         "url": "https://www.nhl.com/predators/news/predators-2026-training-camp-presented-by-ticketmaster-opens-wednesday-sept-16-2026-09-15",
         "summary": "Nashville's Training Camp Schedule is Highlighted by Four Preseason Games, Including Two at Bridgestone Arena",
         "roster_news": false
-      },
-      {
-        "title": "Preds Rookies Complete Two-Game Sweep at Prospect Showcase With Victory Over Lightning",
-        "published_at": "2026-09-14T22:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-rookies-complete-two-game-sweep-at-prospect-showcase-with-victory-over-lightning-09-14-26",
-        "summary": "Wiesblatt Records Gordie Howe Hat Trick as Nashville Prospects Head Home for Main Training Camp",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-16T18:00:27Z",
+    "updated_at": "2026-09-16T21:00:21Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
