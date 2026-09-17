@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Devils Announce 2026 Training Camp Roster | RELEASE",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-17T03:00:28Z",
+    "updated_at": "2026-09-17T06:00:25Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "New Kraken Assistant Coach Has Mastered Adaptation",
+        "published_at": "2026-09-17T03:35:52Z",
+        "url": "https://www.nhl.com/kraken/news/pascal-vincent-kraken-assistant-coach",
+        "summary": "Pascal Vincent spent decades learning to adapt on-the-fly in various coaching assignments, some of which afforded him less of a learning curve than others",
+        "roster_news": false
+      },
+      {
         "title": "Dunn, Montour Added As Kraken Alternate Captains",
         "published_at": "2026-09-16T16:00:00Z",
         "url": "https://www.nhl.com/kraken/news/seattle-kraken-captains-2026-27-vince-dunn-brandon-montour",
         "summary": "The veteran Kraken defensemen join captain Jordan Eberle and incumbent alternates Matty Beniers and Adam Larsson on the team’s leadership group with training camp set to open this week",
-        "roster_news": false
-      },
-      {
-        "title": "Expanding Young Core, Veterans Guide Kraken",
-        "published_at": "2026-09-15T15:30:00Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-training-camp-preview-2026",
-        "summary": "The Kraken open training camp Thursday leaning increasingly on a growing core of players aged 25 and younger, paired with a significant veteran group, to create the competitive environment they...",
         "roster_news": false
       }
     ]
