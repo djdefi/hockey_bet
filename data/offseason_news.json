@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -123,29 +123,29 @@
         "roster_news": false
       },
       {
-        "title": "Capitals To Celebrate Hispanic Heritage Month with Series of Activations",
+        "title": "Los Capitals celebrarán el Mes de la Herencia Hispana con una serie de iniciativas",
         "published_at": "2026-09-15T17:45:00Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-to-celebrate-hispanic-heritage-month-with-series-of-activations",
-        "summary": "Hispanic Heritage Night to take place at Capital One Arena on Oct. 14 vs. MTL",
+        "url": "https://www.nhl.com/capitals/news/los-capitals-celebraran-el-mes-de-la-herencia-hispana-con-una-serie-de-iniciativas",
+        "summary": "La Noche de la Herencia Hispana se celebrará el Miércoles, 14 de octubre en Capital One Arena durante el partido contra MTL",
         "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
+      {
+        "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
+        "published_at": "2026-09-16T23:48:08Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-2026-training-camp-roster-schedule",
+        "summary": "Vegas opens camp with 66 players and all on-ice sessions at City National Arena are open to the public starting on Thursday",
+        "roster_news": true
+      },
       {
         "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
         "published_at": "2026-09-12T15:54:28Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-sign-mark-stone-to-two-year-contract-extension",
         "summary": "Vegas secures their team captain for two more years through the 2028-29 season",
-        "roster_news": true
-      },
-      {
-        "title": "Golden Knights Sign Braeden Bowman to Six-Year Contract Extension",
-        "published_at": "2026-09-10T20:55:53Z",
-        "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-sign-forward-braeden-bowman-to-six-year-contract-extension",
-        "summary": "The forward inks a new deal that will keep him in Vegas through the 2032-33 season",
         "roster_news": true
       },
       {
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,8 +231,15 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
+      {
+        "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
+        "published_at": "2026-09-16T22:05:43Z",
+        "url": "https://www.nhl.com/kings/news/kings-announce-2026-training-camp-roster-and-schedule",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
         "published_at": "2026-09-01T18:04:52Z",
@@ -241,11 +248,11 @@
         "roster_news": true
       },
       {
-        "title": "Kings Sign Forward Elton Hermansson To Entry-Level Contract",
-        "published_at": "2026-07-15T16:56:08Z",
-        "url": "https://www.nhl.com/kings/news/kings-sign-forward-elton-hermansson-to-entry-level-contract",
+        "title": "Drew Doughty Named 15th Captain In LA Kings History",
+        "published_at": "2026-09-16T23:59:16Z",
+        "url": "https://www.nhl.com/kings/news/drew-doughty-named-15th-captain-in-la-kings-history",
         "summary": "",
-        "roster_news": true
+        "roster_news": false
       },
       {
         "title": "INSIDER: 5 Takeaways From The 2026 Rookie Faceoff",
@@ -253,18 +260,11 @@
         "url": "https://www.nhl.com/kings/news/insider-five-takeaways-from-2026-rookie-faceoff",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "2026 Rookie Faceoff Game 3 - LAK 4, UTA 0",
-        "published_at": "2026-09-15T23:00:00Z",
-        "url": "https://www.nhl.com/kings/news/rookie-faceoff-game-3-kings-4-mammoth-0",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Devils Announce 2026 Training Camp Roster | RELEASE",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "5 Questions for Camp | FEATURE",
-        "published_at": "2026-09-16T16:37:01Z",
-        "url": "https://www.nhl.com/devils/news/5-questions-for-2026-training-camp-feature-9-16-26",
+        "title": "Bratt Named Devils Alternate Captain | BLOG",
+        "published_at": "2026-09-16T22:17:02Z",
+        "url": "https://www.nhl.com/devils/news/bratt-named-assistant-captain-blog-9-16-26",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "McCabe, Campbell Join Devils Development Staff | RELEASE",
-        "published_at": "2026-09-16T14:01:58Z",
-        "url": "https://www.nhl.com/devils/news/mccabe-campbell-release-9-16-26",
+        "title": "5 Questions for Camp | FEATURE",
+        "published_at": "2026-09-16T16:37:01Z",
+        "url": "https://www.nhl.com/devils/news/5-questions-for-2026-training-camp-feature-9-16-26",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-16T21:00:21Z",
+    "updated_at": "2026-09-17T00:00:26Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
