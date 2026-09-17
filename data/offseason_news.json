@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Cale Makar Surprises Avalanche Youth Hockey Players",
+        "published_at": "2026-09-17T19:00:43Z",
+        "url": "https://www.nhl.com/avalanche/news/cale-makar-surprises-avalanche-youth-hockey-players",
+        "summary": "Avalanche Defenseman Made Guest Appearance at Learn to Play Event",
+        "roster_news": false
+      },
+      {
         "title": "Avalanche Posts Solid Showing at Rookie Faceoff",
         "published_at": "2026-09-14T00:35:22Z",
         "url": "https://www.nhl.com/avalanche/news/avalanche-posts-solid-showing-at-rookie-faceoff",
         "summary": "Team Went 1-0-1 Over Pair of Weekend Games",
         "roster_news": false
-      },
-      {
-        "title": "Avalanche Prospects Prepare for Rookie Faceoff",
-        "published_at": "2026-09-11T21:45:52Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-prospects-prepare-for-rookie-faceoff",
-        "summary": "Avalanche to Face Ducks and Golden Knights in San Jose",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "‘Pretty good's not good enough’ | Kekäläinen, Ruff set standard for 2026-27 Sabres",
-        "published_at": "2026-09-16T20:07:04Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-jarmo-kekalainen-lindy-ruff",
-        "summary": "Training camp begins in Buffalo with new players and new expectations.",
+        "title": "‘I wanted to be here for a long time’ | Benson discusses contract, winning in Buffalo",
+        "published_at": "2026-09-17T18:52:54Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-zach-benson-training-camp",
+        "summary": "Long-term contracts affirm Sabres' commitment to young core.",
         "roster_news": false
       },
       {
-        "title": "Injuries and transactions | Zucker to miss start of regular season",
-        "published_at": "2026-09-16T17:07:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
-        "summary": "Keep up with the latest Sabres roster news.",
+        "title": "Camp notebook | Practice lines, Thompson’s position, Dahlin’s normal summer",
+        "published_at": "2026-09-17T18:11:56Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-tage-thompson-rasmus-dahlin-lines-camp",
+        "summary": "News and notes from the Sabres’ first training camp practice.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
-        "title": "Caps Ink Sourdif to Eight-Year Extension",
-        "published_at": "2026-09-16T01:37:57Z",
-        "url": "https://www.nhl.com/capitals/news/caps-ink-sourdif-to-eight-year-extension",
-        "summary": "Caps cap off an active summer and an active day with a long-term deal for Justin Sourdif",
+        "title": "Caps Open Quick Camp Looking for Chemistry",
+        "published_at": "2026-09-17T20:48:50Z",
+        "url": "https://www.nhl.com/capitals/news/caps-open-quick-camp-looking-for-chemistry",
+        "summary": "Carbery and Caps begin process of navigating shorter training camp on day one",
         "roster_news": false
       },
       {
-        "title": "Capitals To Celebrate Hispanic Heritage Month with Series of Activations",
-        "published_at": "2026-09-15T17:45:00Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-to-celebrate-hispanic-heritage-month-with-series-of-activations",
-        "summary": "Hispanic Heritage Night to take place at Capital One Arena on Oct. 14 vs. MTL",
+        "title": "2026 Washington Capitals Media Day",
+        "published_at": "2026-09-17T18:12:21Z",
+        "url": "https://www.nhl.com/capitals/news/2026-washington-capitals-media-day",
+        "summary": "The Washington Capitals began their 2026-27 Training Camp, in partnership with MedStar Health, at MedStar Capitals Iceplex with Caps Media Day on Thursday, Sept. 17.",
         "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "Devils Open 2026 Training Camp | NOTEBOOK",
-        "published_at": "2026-09-17T14:26:58Z",
-        "url": "https://www.nhl.com/devils/news/devils-notebook-9-17-26",
-        "summary": "",
+        "title": "Mehta, Keefe Discuss Opening Day of Training Camp | TRANSCRIPT",
+        "published_at": "2026-09-17T20:03:17Z",
+        "url": "https://www.nhl.com/devils/news/mehta-keefe-discuss-opening-day-of-training-camp-transcript-9-17-26",
+        "summary": "Sunny Mehta and Sheldon Keefe discuss the roster, lineup options and expectations following the first day of Devils training camp.",
         "roster_news": false
       },
       {
-        "title": "Bratt Named Devils Alternate Captain | BLOG",
-        "published_at": "2026-09-16T22:17:02Z",
-        "url": "https://www.nhl.com/devils/news/bratt-named-assistant-captain-blog-9-16-26",
+        "title": "Devils Open 2026 Training Camp | NOTEBOOK",
+        "published_at": "2026-09-17T14:26:58Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-17-26",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,20 +330,20 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
+      {
+        "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
+        "published_at": "2026-09-17T19:30:00Z",
+        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
         "published_at": "2026-09-08T20:00:00Z",
         "url": "https://www.nhl.com/sharks/news/sharks-sign-goaltender-ilya-samsonov-to-one-year-two-way-contract",
         "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "Sharks announce 2026 Rookie Faceoff roster",
-        "published_at": "2026-09-01T17:00:00Z",
-        "url": "https://www.nhl.com/sharks/news/sharks-announce-2026-rookie-faceoff-roster",
-        "summary": "2026 Rookie Faceoff will take place on Sept. 12-15 at Sharks Ice San Jose",
         "roster_news": true
       },
       {
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Jets still seeking right resolution in Hellebuyck situation",
+        "published_at": "2026-09-17T18:04:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-still-seeking-right-resolution-in-hellebuyck-situation",
+        "summary": "Cheveldayoff: \"Connor Hellebuyck’s part of our family until he’s not part of our family.”",
+        "roster_news": false
+      },
+      {
         "title": "Larke ready to make his mark with Jets",
         "published_at": "2026-09-15T16:21:00Z",
         "url": "https://www.nhl.com/jets/news/larke-ready-to-make-his-mark-with-jets",
         "summary": "Larke is settling into a new role with the Winnipeg Jets as the club’s first full-time skills coach.",
         "roster_news": false
-      },
-      {
-        "title": "Jets prospects show compete, skill and chemistry in Quebec",
-        "published_at": "2026-09-13T20:45:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-prospects-show-compete-skill-and-chemistry-in-quebec",
-        "summary": "Jacob Julien scored one of the Jets three power play goals in 6-4 loss to Leafs.",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-17T18:00:28Z",
+    "updated_at": "2026-09-17T21:00:23Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
