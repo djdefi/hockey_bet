@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "Injuries and transactions | Crevier (shoulder) a full participant in practice",
-        "published_at": "2026-09-18T16:34:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
-        "summary": "Keep up with the latest Sabres roster news.",
+        "title": "Sabres announce rosters for Blue and Gold Scrimmage",
+        "published_at": "2026-09-18T19:57:41Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-2026-blue-and-gold-scrimmage-rosters",
+        "summary": "Free tickets are still available for the scrimmage, which will be held this Saturday at 11:30 a.m.",
         "roster_news": false
       },
       {
-        "title": "‘I wanted to be here for a long time’ | Benson discusses contract, winning in Buffalo",
-        "published_at": "2026-09-17T18:52:54Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-zach-benson-training-camp",
-        "summary": "Long-term contracts affirm Sabres' commitment to young core.",
+        "title": "Camp notebook | Crevier gets acclimated, UPL stays in the moment",
+        "published_at": "2026-09-18T18:16:44Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-louis-crevier-luukkonen-upl-lines-camp",
+        "summary": "Also: Sabres practice power play, look back on night at Highmark Stadium.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Vegas Golden Knights Launch All-New Mobile App",
+        "published_at": "2026-09-18T18:30:04Z",
+        "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-launch-all-new-mobile-app",
+        "summary": "Full-service AXS ticket manager, Henderson Silver Knights mode & more features now available",
+        "roster_news": false
+      },
+      {
         "title": "Lawless: Hope Heading into Training Camp",
         "published_at": "2026-09-17T15:52:24Z",
         "url": "https://www.nhl.com/goldenknights/news/lawless-hope-heading-into-training-camp",
         "summary": "Seven reasons to be bullish on the Vegas Golden Knights heading into the 2026-27 season",
         "roster_news": false
-      },
-      {
-        "title": "Special DElivery: Thoughts from Training Camp",
-        "published_at": "2026-09-16T16:18:00Z",
-        "url": "https://www.nhl.com/goldenknights/news/special-delivery-the-evolution-of-training-camp",
-        "summary": "The Olympian Darren Eliot shares his perspective on how NHL training camps have changed over the years as the Golden Knights head into their new season",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Utah Holds Second Day of Practice",
+        "published_at": "2026-09-18T20:45:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-holds-second-day-of-practice-notebook-9-18-26",
+        "summary": "The Mammoth had several changes to the groups on Friday",
+        "roster_news": false
+      },
+      {
         "title": "Utah Holds First Practices at 2026 Training Camp",
         "published_at": "2026-09-17T21:48:18Z",
         "url": "https://www.nhl.com/utah/news/utah-holds-first-practices-at-2026-training-camp-notebook-9-17-26",
         "summary": "The Mammoth split into two groups for the first day of practices at training camp",
         "roster_news": false
-      },
-      {
-        "title": "Utah’s Training Camp Brings Competition, Focus Ahead of 2026-27 Season",
-        "published_at": "2026-09-17T16:50:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-s-training-camp-brings-competition-focus-ahead-of-2026-27-season-feature-9-17-26",
-        "summary": "In a shortened training camp, the Mammoth will focus on getting ready for the upcoming season with a talented pool of players battling for roster spots",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Marchessault Enters Preds Camp Revitalized Following Summer Refresh, Opportunity to Mentor Bourque",
+        "published_at": "2026-09-18T20:00:00Z",
+        "url": "https://www.nhl.com/predators/news/marchessault-enters-preds-camp-revitalized-following-summer-refresh-opportunity-to-mentor-bourque-2026-09-18",
+        "summary": "Veteran Forward Talks Nashville's Offseason, Mentoring Bourque and Excitement to Bounce Back",
+        "roster_news": false
+      },
+      {
         "title": "Preds to Host Celebration of Life for Brent Peterson at Bridgestone Arena on Sept. 21",
         "published_at": "2026-09-18T17:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-to-host-celebration-of-life-for-brent-peterson-at-bridgestone-arena-on-sept-21-09-19-26",
         "summary": "Predators Fans Invited to Remember Influential Figure in Franchise History",
         "roster_news": false
-      },
-      {
-        "title": "Preds Enter Training Camp Feeling Rejuvenated, Excited for What's to Come",
-        "published_at": "2026-09-17T21:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-enter-training-camp-feeling-rejuvenated-excited-for-what-s-to-come-2026-09-17",
-        "summary": "Stamkos, Josi, Brunette Talk New Season, Building Trust With MacFarland as Camp Begins",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Start time updates for 12 Winnipeg Jets home games",
+        "published_at": "2026-09-18T20:00:00Z",
+        "url": "https://www.nhl.com/jets/news/start-time-updates-for-12-winnipeg-jets-home-games",
+        "summary": "The changes were made following Manitoba's decision to remain on daylight saving time permanently",
+        "roster_news": false
+      },
+      {
         "title": "Samberg ranked among NHL's best golfers",
         "published_at": "2026-09-18T15:24:00Z",
         "url": "https://www.nhl.com/jets/news/samberg-ranked-among-nhl-s-best-golfers",
         "summary": "The Jets defenceman ranks sixth on USGA's list of best golfers in the NHL.",
         "roster_news": false
-      },
-      {
-        "title": "Jets announce 2026 pre-season broadcast schedule",
-        "published_at": "2026-09-18T15:05:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-announce-2026-pre-season-broadcast-schedule",
-        "summary": "The Jets will open the preseason Saturday in Edmonton.",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-18T18:00:42Z",
+    "updated_at": "2026-09-18T21:00:49Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Zoning In: Firkus Growing His Game",
+        "published_at": "2026-09-18T20:22:49Z",
+        "url": "https://www.nhl.com/kraken/news/jagger-firkus-seattle-kraken-prospect-2026-training-camp",
+        "summary": "Jagger Firkus began his AHL career two years ago after tallying 158 points in 83 games to earn 2024 CHL Player of the Year honors. He’s since kept on scoring while blossoming into a hard-nosed...",
+        "roster_news": false
+      },
+      {
         "title": "Matty Beniers On Wanting To Win In Seattle",
         "published_at": "2026-09-17T22:36:39Z",
         "url": "https://www.nhl.com/kraken/news/matty-beniers-on-representing-seattle",
         "summary": "The Kraken alternate captain and youngest member of its five-man leadership group spoke about the responsibility of playing for your teammates and the city you represent",
-        "roster_news": false
-      },
-      {
-        "title": "New Kraken Assistant Coach Has Mastered Adaptation",
-        "published_at": "2026-09-17T03:35:52Z",
-        "url": "https://www.nhl.com/kraken/news/pascal-vincent-kraken-assistant-coach",
-        "summary": "Pascal Vincent spent decades learning to adapt on-the-fly in various coaching assignments, some of which afforded him less of a learning curve than others",
         "roster_news": false
       }
     ]
