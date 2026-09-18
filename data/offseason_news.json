@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "5 Takeaways from Mehta, Keefe | FEATURE",
-        "published_at": "2026-09-17T21:03:55Z",
-        "url": "https://www.nhl.com/devils/news/5-takeaways-from-mehta-keefe-feature-9-17-26",
+        "title": "Camp Day 2 | NOTEBOOK",
+        "published_at": "2026-09-18T14:15:32Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-18-26",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Mehta, Keefe Discuss Opening Day of Training Camp | TRANSCRIPT",
-        "published_at": "2026-09-17T20:03:17Z",
-        "url": "https://www.nhl.com/devils/news/mehta-keefe-discuss-opening-day-of-training-camp-transcript-9-17-26",
-        "summary": "Sunny Mehta and Sheldon Keefe discuss the roster, lineup options and expectations following the first day of Devils training camp.",
+        "title": "Hockey, Heritage and Home | FEATURE",
+        "published_at": "2026-09-18T12:47:21Z",
+        "url": "https://www.nhl.com/devils/news/hockey-heritage-and-home-feature-9-18-26",
+        "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-18T12:00:20Z",
+    "updated_at": "2026-09-18T15:00:20Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
