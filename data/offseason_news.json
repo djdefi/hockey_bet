@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Ball Arena to Undergo Massive Renovation",
+        "published_at": "2026-09-18T17:00:14Z",
+        "url": "https://www.nhl.com/avalanche/news/ball-arena-to-undergo-massive-renovation",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Cale Makar Surprises Avalanche Youth Hockey Players",
         "published_at": "2026-09-17T19:00:43Z",
         "url": "https://www.nhl.com/avalanche/news/cale-makar-surprises-avalanche-youth-hockey-players",
         "summary": "Avalanche Defenseman Made Guest Appearance at Learn to Play Event",
         "roster_news": false
-      },
-      {
-        "title": "Avalanche Posts Solid Showing at Rookie Faceoff",
-        "published_at": "2026-09-14T00:35:22Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-posts-solid-showing-at-rookie-faceoff",
-        "summary": "Team Went 1-0-1 Over Pair of Weekend Games",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Injuries and transactions | Crevier (shoulder) a full participant in practice",
+        "published_at": "2026-09-18T16:34:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
+        "roster_news": false
+      },
+      {
         "title": "‘I wanted to be here for a long time’ | Benson discusses contract, winning in Buffalo",
         "published_at": "2026-09-17T18:52:54Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-zach-benson-training-camp",
         "summary": "Long-term contracts affirm Sabres' commitment to young core.",
         "roster_news": false
-      },
-      {
-        "title": "Camp notebook | Practice lines, Thompson’s position, Dahlin’s normal summer",
-        "published_at": "2026-09-17T18:11:56Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-tage-thompson-rasmus-dahlin-lines-camp",
-        "summary": "News and notes from the Sabres’ first training camp practice.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "Day 1 Notes – Injury Updates on Fiala, Dumoulin, Zuccarello + Day 1 Lineup, Holland’s Preseason Availability",
-        "published_at": "2026-09-18T00:18:00Z",
-        "url": "https://www.nhl.com/kings/news/insider-day-1-training-camp-notes-ken-holland-injuries-fiala-dumoulin-zuccarello",
+        "title": "Angels Broadcast Television Announces Multiple Ways to Watch The Los Angeles Kings This Season",
+        "published_at": "2026-09-18T17:00:00Z",
+        "url": "https://www.nhl.com/kings/news/abtv-broadcast-announcement",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "LA Kings Announce 2026 Preseason Broadcast Schedule",
-        "published_at": "2026-09-17T23:40:39Z",
-        "url": "https://www.nhl.com/kings/news/la-kings-announce-2026-preseason-broadcast-schedule",
+        "title": "Day 1 Notes – Injury Updates on Fiala, Dumoulin, Zuccarello + Day 1 Lineup, Holland’s Preseason Availability",
+        "published_at": "2026-09-18T00:18:00Z",
+        "url": "https://www.nhl.com/kings/news/insider-day-1-training-camp-notes-ken-holland-injuries-fiala-dumoulin-zuccarello",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,35 +314,35 @@
         "roster_news": true
       },
       {
+        "title": "Preds to Host Celebration of Life for Brent Peterson at Bridgestone Arena on Sept. 21",
+        "published_at": "2026-09-18T17:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-to-host-celebration-of-life-for-brent-peterson-at-bridgestone-arena-on-sept-21-09-19-26",
+        "summary": "Predators Fans Invited to Remember Influential Figure in Franchise History",
+        "roster_news": false
+      },
+      {
         "title": "Preds Enter Training Camp Feeling Rejuvenated, Excited for What's to Come",
         "published_at": "2026-09-17T21:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-enter-training-camp-feeling-rejuvenated-excited-for-what-s-to-come-2026-09-17",
         "summary": "Stamkos, Josi, Brunette Talk New Season, Building Trust With MacFarland as Camp Begins",
         "roster_news": false
-      },
-      {
-        "title": "\"Don't Tiptoe Into the Water\" - MacFarland Talks Foundation, Evaluating as First Training Camp With Preds Begins",
-        "published_at": "2026-09-17T20:00:00Z",
-        "url": "https://www.nhl.com/predators/news/don-t-tiptoe-into-the-water-macfarland-talks-foundation-evaluating-as-first-training-camp-with-preds-begins",
-        "summary": "Nashville's General Manager Estimates Four to Five Spots Available to Be Won During Next Two Weeks of Camp",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
+      {
+        "title": "Sharks coach Warsofsky signs multiyear contract",
+        "published_at": "2026-09-17T21:58:00Z",
+        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-sign-coach-ryan-warsofsky-to-multiyear-contract-x7858",
+        "summary": "Guided San Jose to 19 win, 34-point improvement last season",
+        "roster_news": true
+      },
       {
         "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
         "published_at": "2026-09-17T19:30:00Z",
         "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
-        "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
-        "published_at": "2026-09-08T20:00:00Z",
-        "url": "https://www.nhl.com/sharks/news/sharks-sign-goaltender-ilya-samsonov-to-one-year-two-way-contract",
         "summary": "",
         "roster_news": true
       },
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
-        "title": "3 Things: Jets open camp with Hellebuyck situation looming",
-        "published_at": "2026-09-17T23:10:00Z",
-        "url": "https://www.nhl.com/jets/news/3-things-jets-open-camp-with-hellebuyck-situation-looming",
-        "summary": "Scheifele: \"We're just focused on getting ready for the year.\"",
+        "title": "Samberg ranked among NHL's best golfers",
+        "published_at": "2026-09-18T15:24:00Z",
+        "url": "https://www.nhl.com/jets/news/samberg-ranked-among-nhl-s-best-golfers",
+        "summary": "The Jets defenceman ranks sixth on USGA's list of best golfers in the NHL.",
         "roster_news": false
       },
       {
-        "title": "Jets still seeking right resolution in Hellebuyck situation",
-        "published_at": "2026-09-17T18:04:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-still-seeking-right-resolution-in-hellebuyck-situation",
-        "summary": "Cheveldayoff: \"Connor Hellebuyck’s part of our family until he’s not part of our family.”",
+        "title": "Jets announce 2026 pre-season broadcast schedule",
+        "published_at": "2026-09-18T15:05:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-announce-2026-pre-season-broadcast-schedule",
+        "summary": "The Jets will open the preseason Saturday in Edmonton.",
         "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-18T15:00:20Z",
+    "updated_at": "2026-09-18T18:00:42Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
