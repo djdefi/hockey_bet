@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Aim to put \"Power\" Back in Power Play",
+        "published_at": "2026-09-19T17:21:51Z",
+        "url": "https://www.nhl.com/capitals/news/caps-aim-to-put-power-back-in-power-play",
+        "summary": "Veteran power play coach Ray Bennett takes reins as Caps unveil extra-man units",
+        "roster_news": false
+      },
+      {
         "title": "Let's Make A Deal",
         "published_at": "2026-09-18T23:44:05Z",
         "url": "https://www.nhl.com/capitals/news/lets-make-a-deal",
         "summary": "Eight-year deals for Leonard, Sourdif are in line with recent Caps contracts",
         "roster_news": false
-      },
-      {
-        "title": "Caps Open Quick Camp Looking for Chemistry",
-        "published_at": "2026-09-17T20:48:50Z",
-        "url": "https://www.nhl.com/capitals/news/caps-open-quick-camp-looking-for-chemistry",
-        "summary": "Carbery and Caps begin process of navigating shorter training camp on day one",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Morning Skate Report: Sept. 19, 2026",
+        "published_at": "2026-09-19T16:02:25Z",
+        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-19-2026",
+        "summary": "The Golden Knights battle the Kings in Ontario in their first game of the 2026-27 preseason",
+        "roster_news": false
+      },
+      {
         "title": "Vegas Golden Knights Launch All-New Mobile App",
         "published_at": "2026-09-18T18:30:04Z",
         "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-launch-all-new-mobile-app",
         "summary": "Full-service AXS ticket manager, Henderson Silver Knights mode & more features now available",
         "roster_news": false
-      },
-      {
-        "title": "LosVGK: Growing the Game in Mexico",
-        "published_at": "2026-09-17T21:58:00Z",
-        "url": "https://www.nhl.com/goldenknights/news/losvgk-growing-the-game-in-mexico",
-        "summary": "The Golden Knights organization made their second trip to Mexico to expand the game beyond Vegas",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,8 +281,8 @@
         "roster_news": true
       },
       {
-        "title": "Camp Day 3 | NOTEBOOK",
-        "published_at": "2026-09-19T14:19:52Z",
+        "title": "Special Teams a Focus on Camp Day 3 | NOTEBOOK",
+        "published_at": "2026-09-19T16:49:00Z",
         "url": "https://www.nhl.com/devils/news/devils-notebook-9-19-26",
         "summary": "Devils on the ice for two group sessions again on Saturday",
         "roster_news": false
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Game Information: September 19 at Edmonton Oilers",
+        "published_at": "2026-09-19T16:36:27Z",
+        "url": "https://www.nhl.com/jets/news/game-information-september-19-winnipeg-jets-at-edmonton-oilers",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "GAMEDAY: Jets at Oilers",
         "published_at": "2026-09-19T14:24:00Z",
         "url": "https://www.nhl.com/jets/news/gameday-jets-at-oilers-x0528",
         "summary": "7 CT - TV: nhl.com/jets Radio: 680 CJOB/Power 97",
         "roster_news": false
-      },
-      {
-        "title": "3 Things: Chemistry, consistency and a healthy Niederreiter",
-        "published_at": "2026-09-18T21:10:00Z",
-        "url": "https://www.nhl.com/jets/news/3-things-chemistry-consistency-and-a-healthy-niederreiter",
-        "summary": "Perfetti: \"It's been a lot of fun playing with Scheif and KC, and just trying to build off them.”",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-19T15:00:26Z",
+    "updated_at": "2026-09-19T18:00:25Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
