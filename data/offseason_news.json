@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Golden Knights Earn 4-2 Win Against Kings in Ontario to Open 2026-27 Preseason",
+        "published_at": "2026-09-20T03:51:58Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-earn-4-2-win-against-kings-in-ontario-to-open-2026-27-preseason",
+        "summary": "Vegas earns Empire Classic win against Los Angeles on Saturday night as Hallum scores twice",
+        "roster_news": false
+      },
+      {
         "title": "Morning Skate Report: Sept. 19, 2026",
         "published_at": "2026-09-19T16:02:25Z",
         "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-19-2026",
         "summary": "The Golden Knights battle the Kings in Ontario in their first game of the 2026-27 preseason",
         "roster_news": false
-      },
-      {
-        "title": "Vegas Golden Knights Launch All-New Mobile App",
-        "published_at": "2026-09-18T18:30:04Z",
-        "url": "https://www.nhl.com/goldenknights/news/vegas-golden-knights-launch-all-new-mobile-app",
-        "summary": "Full-service AXS ticket manager, Henderson Silver Knights mode & more features now available",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-20T03:00:20Z",
+    "updated_at": "2026-09-20T06:00:25Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Kraken Ride Next Wave To Preseason Victory",
+        "published_at": "2026-09-20T03:47:21Z",
+        "url": "https://www.nhl.com/kraken/news/final-buzzer-seattle-kraken-vancouver-canucks-preseason-game-recap",
+        "summary": "A shortened preseason means immediate pressure on Oscar Fisker Molgaard and other Kraken prospects knocking on the team’s door to prove how they fit the NHL team’s system.",
+        "roster_news": false
+      },
+      {
         "title": "Canucks vs. Kraken | 6:00 p.m.",
         "published_at": "2026-09-19T19:39:05Z",
         "url": "https://www.nhl.com/kraken/news/vancouver-canucks-seattle-kraken-game-preview-projected-lines-0919-gd",
         "summary": "",
-        "roster_news": false
-      },
-      {
-        "title": "Zoning In: Firkus Growing His Game",
-        "published_at": "2026-09-18T20:22:49Z",
-        "url": "https://www.nhl.com/kraken/news/jagger-firkus-seattle-kraken-prospect-2026-training-camp",
-        "summary": "Jagger Firkus began his AHL career two years ago after tallying 158 points in 83 games to earn 2024 CHL Player of the Year honors. He’s since kept on scoring while blossoming into a hard-nosed...",
         "roster_news": false
       }
     ]
