@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "MSG+ on DAZN launches as Sabres' streaming home",
+        "published_at": "2026-09-20T14:57:49Z",
+        "url": "https://www.nhl.com/sabres/news/how-to-watch-buffalo-sabres-on-dazn",
+        "summary": "Fans can sign up for DAZN today.",
+        "roster_news": false
+      },
+      {
         "title": "Observations from Sabres’ Blue & Gold Scrimmage",
         "published_at": "2026-09-19T18:59:53Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-scrimmage-training-camp-zellweger-kulich",
         "summary": "Notes on Zellweger, Kulich, Quinn, others from Saturday’s intrasquad action.",
         "roster_news": false
-      },
-      {
-        "title": "Sabres announce rosters for Blue and Gold Scrimmage",
-        "published_at": "2026-09-18T19:57:41Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-2026-blue-and-gold-scrimmage-rosters",
-        "summary": "Free tickets are still available for the scrimmage, which will be held this Saturday at 11:30 a.m.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
-        "title": "Preds Tune Up, Give Back During Gold Star Showcase in Clarksville",
-        "published_at": "2026-09-19T22:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-tune-up-give-back-during-gold-star-showcase-in-clarksville-09-19-26",
-        "summary": "Team White Defeats Team Gold in Annual Showcase to Benefit Gold Star Families",
+        "title": "Stream All Four 2026 Predators Preseason Games for Free Via Nashville Predators App",
+        "published_at": "2026-09-20T14:00:00Z",
+        "url": "https://www.nhl.com/predators/news/stream-all-four-2026-predators-preseason-games-for-free-via-nashville-predators-app-2026-09-20",
+        "summary": "Nashville Begins Preseason Action Today at 4 p.m. CT in Tampa Bay",
         "roster_news": false
       },
       {
-        "title": "On The Record, Episode Two: Chris MacFarland Arrives in Smashville",
-        "published_at": "2026-09-18T23:00:00Z",
-        "url": "https://www.nhl.com/predators/news/on-the-record-episode-two-chris-macfarland-arrives-in-smashville-2026-09-18",
-        "summary": "Program Goes Behind the Scenes Across Predators Organization Like Never Before",
+        "title": "Preseason Game Day: Preds at Lightning, Sept. 20",
+        "published_at": "2026-09-20T13:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preseason-game-day-preds-at-lightning-sept-20-09-20-26",
+        "summary": "Nashville Visits Tampa Bay to Begin Preseason Schedule",
         "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-20T12:00:27Z",
+    "updated_at": "2026-09-20T15:00:25Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
