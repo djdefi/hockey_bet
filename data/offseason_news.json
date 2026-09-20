@@ -1,19 +1,19 @@
 {
   "COL": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
+      {
+        "title": "Avalanche Reduce Roster by 11",
+        "published_at": "2026-09-19T22:00:48Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-11",
+        "summary": "Preseason Roster Now Sits at 45",
+        "roster_news": true
+      },
       {
         "title": "Avalanche Announce 2026 Training Camp Roster",
         "published_at": "2026-09-15T21:00:39Z",
         "url": "https://www.nhl.com/avalanche/news/avalanche-announce-2026-training-camp-roster",
         "summary": "Colorado To Hold Its First On-Ice Practices Sept. 17",
-        "roster_news": true
-      },
-      {
-        "title": "Avalanche Announce Rookie Faceoff Roster",
-        "published_at": "2026-09-04T18:00:15Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-announce-rookie-faceoff-roster",
-        "summary": "Colorado To Send Prospects To San Jose For This Season’s Tournament",
         "roster_news": true
       },
       {
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Game Preview: Blackhawks vs. Wild",
-        "published_at": "2026-09-19T12:57:41Z",
-        "url": "https://www.nhl.com/wild/news/game-preview-vs-chicago-blackhawks-091926",
+        "title": "Projected Lineup: Blackhawks vs. Wild",
+        "published_at": "2026-09-19T21:00:54Z",
+        "url": "https://www.nhl.com/wild/news/projected-lineup-vs-chicago-blackhawks-091926",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Minnesota Wild and Bonfe Cares to Host Winter Gear Drive on Friday, September 25",
-        "published_at": "2026-09-18T21:12:36Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-and-bonfe-cares-to-host-winter-gear-drive-on-friday-september-25-091826",
+        "title": "Game Preview: Blackhawks vs. Wild",
+        "published_at": "2026-09-19T12:57:41Z",
+        "url": "https://www.nhl.com/wild/news/game-preview-vs-chicago-blackhawks-091926",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Open Exhibition Season Sunday in Boston",
+        "published_at": "2026-09-19T22:54:08Z",
+        "url": "https://www.nhl.com/capitals/news/caps-open-exhibition-season-sunday-in-boston",
+        "summary": "Caps bring many vets to Beantown for first of four exhibition games",
+        "roster_news": false
+      },
+      {
         "title": "Caps Aim to put \"Power\" Back in Power Play",
         "published_at": "2026-09-19T17:21:51Z",
         "url": "https://www.nhl.com/capitals/news/caps-aim-to-put-power-back-in-power-play",
         "summary": "Veteran power play coach Ray Bennett takes reins as Caps unveil extra-man units",
         "roster_news": false
-      },
-      {
-        "title": "Let's Make A Deal",
-        "published_at": "2026-09-18T23:44:05Z",
-        "url": "https://www.nhl.com/capitals/news/lets-make-a-deal",
-        "summary": "Eight-year deals for Leonard, Sourdif are in line with recent Caps contracts",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,8 +198,15 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
+      {
+        "title": "Ducks Sign Washe to Four-Year Extension",
+        "published_at": "2026-09-19T20:48:51Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-sign-washe-to-four-year-extension",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
         "published_at": "2026-09-16T17:34:06Z",
@@ -220,18 +227,11 @@
         "url": "https://www.nhl.com/ducks/news/angels-to-host-ducks-night-at-angel-stadium-tomorrow",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Ducks Drop Final Game of Rookie Faceoff, 4-1",
-        "published_at": "2026-09-14T03:53:44Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-drop-final-game-of-rookie-faceoff-4-1",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
+        "title": "Devils Get Preseason Going vs. Islanders | PREVIEW",
+        "published_at": "2026-09-19T23:21:26Z",
+        "url": "https://www.nhl.com/devils/news/game-preview-vs-islanders-9-20-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Special Teams a Focus on Camp Day 3 | NOTEBOOK",
         "published_at": "2026-09-19T18:33:00Z",
         "url": "https://www.nhl.com/devils/news/devils-notebook-9-19-26",
         "summary": "Chisholm and Dillon reunite on defense, Dillon discusses a fresh start and competition takes shape throughout the lineup",
         "roster_news": false
-      },
-      {
-        "title": "Moment Meets Opportunity for Daws | FEATURE",
-        "published_at": "2026-09-18T21:08:35Z",
-        "url": "https://www.nhl.com/devils/news/moment-meets-opportunity-for-daws-feature-9-18-26",
-        "summary": "Nico Daws feels prepared and ready to seize the opportunity in front of him.",
-        "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Tune Up, Give Back During Gold Star Showcase in Clarksville",
+        "published_at": "2026-09-19T22:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-tune-up-give-back-during-gold-star-showcase-in-clarksville-09-19-26",
+        "summary": "Team White Defeats Team Gold in Annual Showcase to Benefit Gold Star Families",
+        "roster_news": false
+      },
+      {
         "title": "On The Record, Episode Two: Chris MacFarland Arrives in Smashville",
         "published_at": "2026-09-18T23:00:00Z",
         "url": "https://www.nhl.com/predators/news/on-the-record-episode-two-chris-macfarland-arrives-in-smashville-2026-09-18",
         "summary": "Program Goes Behind the Scenes Across Predators Organization Like Never Before",
         "roster_news": false
-      },
-      {
-        "title": "Marchessault Enters Preds Camp Revitalized Following Summer Refresh, Opportunity to Mentor Bourque",
-        "published_at": "2026-09-18T20:00:00Z",
-        "url": "https://www.nhl.com/predators/news/marchessault-enters-preds-camp-revitalized-following-summer-refresh-opportunity-to-mentor-bourque-2026-09-18",
-        "summary": "Veteran Forward Talks Nashville's Offseason, Mentoring Bourque and Excitement to Bounce Back",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-19T21:00:35Z",
+    "updated_at": "2026-09-20T00:00:20Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
