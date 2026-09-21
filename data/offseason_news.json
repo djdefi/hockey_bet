@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Hamilton and Makar Score in Preseason NHL Debuts as Avalanche Defeats Mammoth 4-1 in Opener",
+        "published_at": "2026-09-21T01:54:16Z",
+        "url": "https://www.nhl.com/avalanche/news/game-recap-09-20-26",
+        "summary": "Hamilton, Brindley, Nelson and Makar Score for Colorado",
+        "roster_news": false
+      },
+      {
         "title": "Ball Arena to Undergo Massive Renovation",
         "published_at": "2026-09-18T17:00:14Z",
         "url": "https://www.nhl.com/avalanche/news/ball-arena-to-undergo-massive-renovation",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Cale Makar Surprises Avalanche Youth Hockey Players",
-        "published_at": "2026-09-17T19:00:43Z",
-        "url": "https://www.nhl.com/avalanche/news/cale-makar-surprises-avalanche-youth-hockey-players",
-        "summary": "Avalanche Defenseman Made Guest Appearance at Learn to Play Event",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Drop Exhibtion Opener to B's in Shootout, 3-2",
+        "published_at": "2026-09-21T00:46:23Z",
+        "url": "https://www.nhl.com/capitals/news/caps-drop-exhibtion-opener-to-b-s-in-shootout-3-2",
+        "summary": "Brodzinski and Miroshnichenko score, Thompson shines in loss",
+        "roster_news": false
+      },
+      {
         "title": "Desharnais' Crooked Road Can Help Hutson",
         "published_at": "2026-09-20T19:27:29Z",
         "url": "https://www.nhl.com/capitals/news/desharnais-hutson-take-ice-together-in-boston",
         "summary": "\"Fun uncle\" Desharnais discusses career hurdles, role as Hutson's partner",
         "roster_news": false
-      },
-      {
-        "title": "Caps Open Exhibition Season Sunday in Boston",
-        "published_at": "2026-09-19T22:54:08Z",
-        "url": "https://www.nhl.com/capitals/news/caps-open-exhibition-season-sunday-in-boston",
-        "summary": "Caps bring many vets to Beantown for first of four exhibition games",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
-        "title": "FOLLOW LIVE: Utah vs Colorado, Preseason Game #1",
-        "published_at": "2026-09-20T23:05:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-vs-colorado-preseason-game-1-live-blog-9-20-26",
-        "summary": "",
+        "title": "Utah Falls to Colorado in First Preseason Game",
+        "published_at": "2026-09-21T02:40:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-falls-to-colorado-in-first-preseason-game-game-story-9-20-26",
+        "summary": "The Mammoth progressed throughout the contest and will learn from Sunday’s game",
         "roster_news": false
       },
       {
-        "title": "Utah Opens Preseason Slate in Colorado",
-        "published_at": "2026-09-20T15:45:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-opens-preseason-slate-in-colorado-game-preview-9-20-26",
-        "summary": "The Mammoth play the first of four preseason games on Sunday",
+        "title": "RECAP: Utah Falls to Colorado, 4-1",
+        "published_at": "2026-09-20T23:05:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-vs-colorado-preseason-game-1-live-blog-9-20-26",
+        "summary": "",
         "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Martin Scores Impressive Goal as Preds Begin Preseason With Loss to Lightning",
+        "published_at": "2026-09-21T00:15:00Z",
+        "url": "https://www.nhl.com/predators/news/martin-scores-impressive-goal-as-preds-begin-preseason-with-loss-to-lightning-2026-09-20",
+        "summary": "Saros Makes 20 Saves in Nashville's First of Four Preseason Games",
+        "roster_news": false
+      },
+      {
         "title": "Stream All Four 2026 Predators Preseason Games for Free Via Nashville Predators App",
         "published_at": "2026-09-20T14:00:00Z",
         "url": "https://www.nhl.com/predators/news/stream-all-four-2026-predators-preseason-games-for-free-via-nashville-predators-app-2026-09-20",
         "summary": "Nashville Begins Preseason Action Today at 4 p.m. CT in Tampa Bay",
         "roster_news": false
-      },
-      {
-        "title": "Preseason Game Day: Preds at Lightning, Sept. 20",
-        "published_at": "2026-09-20T13:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preseason-game-day-preds-at-lightning-sept-20-09-20-26",
-        "summary": "Nashville Visits Tampa Bay to Begin Preseason Schedule",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-21T00:00:27Z",
+    "updated_at": "2026-09-21T03:00:20Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
-        "title": "Kraken at Flames | 5:00 p.m.",
-        "published_at": "2026-09-20T16:50:50Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-calgary-flames-game-preview-projected-lines-0920",
+        "title": "Youth Movement: Kraken Sweep Weekend",
+        "published_at": "2026-09-21T02:48:50Z",
+        "url": "https://www.nhl.com/kraken/news/final-buzzer-calgary-flames-seattle-kraken-preseason-game-recap",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Kraken Ride Next Wave To Preseason Victory",
-        "published_at": "2026-09-20T03:47:21Z",
-        "url": "https://www.nhl.com/kraken/news/final-buzzer-seattle-kraken-vancouver-canucks-preseason-game-recap",
-        "summary": "A shortened preseason means immediate pressure on Oscar Fisker Molgaard and other Kraken prospects knocking on the team’s door to prove how they fit the NHL team’s system.",
+        "title": "Kraken at Flames | 5:00 p.m.",
+        "published_at": "2026-09-20T16:50:50Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-calgary-flames-game-preview-projected-lines-0920",
+        "summary": "",
         "roster_news": false
       }
     ]
