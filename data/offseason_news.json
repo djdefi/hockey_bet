@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Avalanche Hosts 2026 Charity Golf Classic, presented by Kiewit",
+        "published_at": "2026-09-21T19:25:01Z",
+        "url": "https://www.nhl.com/avalanche/news/2026-colorado-avalanche-charity-golf-classic",
+        "summary": "Event Helps Raise Money for Avalanche Community Programs for Families and Children",
+        "roster_news": false
+      },
+      {
         "title": "Hamilton and Makar Score in Preseason NHL Debuts as Avalanche Defeats Mammoth 4-1 in Opener",
         "published_at": "2026-09-21T01:54:16Z",
         "url": "https://www.nhl.com/avalanche/news/game-recap-09-20-26",
         "summary": "Hamilton, Brindley, Nelson and Makar Score for Colorado",
         "roster_news": false
-      },
-      {
-        "title": "Ball Arena to Undergo Massive Renovation",
-        "published_at": "2026-09-18T17:00:14Z",
-        "url": "https://www.nhl.com/avalanche/news/ball-arena-to-undergo-massive-renovation",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Camp notebook | Power-play notes, Danforth’s debut and more",
+        "published_at": "2026-09-21T19:03:44Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-training-camp-notebook-power-play-jack-quinn",
+        "summary": "Notes from Monday's session at KeyBank Center.",
+        "roster_news": false
+      },
+      {
         "title": "Sabres at Penguins | How to watch, lineup notes, and storylines",
         "published_at": "2026-09-21T13:28:10Z",
         "url": "https://www.nhl.com/sabres/news/sabres-penguins-preseason-rosters-how-to-watch",
         "summary": "Jiri Kulich and Justin Danforth will be among those in the lineup for Buffalo's preseason opener.",
         "roster_news": false
-      },
-      {
-        "title": "How to watch and listen to Sabres’ 2026 preseason games",
-        "published_at": "2026-09-20T20:01:36Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-how-to-watch-2026-preseason-broadcast-schedule",
-        "summary": "All 4 preseason games will be available to watch in the Buffalo broadcast market.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Minnesota Wild to Host Pregame Party on October 3",
-        "published_at": "2026-09-21T15:55:53Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-to-host-pregame-party-on-october-3-092126",
+        "title": "Minnesota Wild and Bonfe Cares to Host Winter Gear Drive on Friday, Sept. 25",
+        "published_at": "2026-09-21T19:25:31Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-and-bonfe-cares-to-host-winter-gear-drive-on-friday-september-25-092126",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Game Preview: Wild at Blackhawks",
-        "published_at": "2026-09-21T12:57:49Z",
-        "url": "https://www.nhl.com/wild/news/game-preview-at-chicago-blackhawks-092126",
+        "title": "Minnesota Wild to Host Pregame Party on October 3",
+        "published_at": "2026-09-21T15:55:53Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-to-host-pregame-party-on-october-3-092126",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-21T18:00:46Z",
+    "updated_at": "2026-09-21T21:00:37Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
