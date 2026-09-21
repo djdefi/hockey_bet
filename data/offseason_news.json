@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Game Preview: Wild at Blackhawks",
-        "published_at": "2026-09-21T12:57:49Z",
-        "url": "https://www.nhl.com/wild/news/game-preview-at-chicago-blackhawks-092126",
+        "title": "Minnesota Wild to Host Pregame Party on October 3",
+        "published_at": "2026-09-21T15:55:53Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-to-host-pregame-party-on-october-3-092126",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Projected Lineup: Blackhawks vs. Wild",
-        "published_at": "2026-09-19T21:00:54Z",
-        "url": "https://www.nhl.com/wild/news/projected-lineup-vs-chicago-blackhawks-091926",
+        "title": "Game Preview: Wild at Blackhawks",
+        "published_at": "2026-09-21T12:57:49Z",
+        "url": "https://www.nhl.com/wild/news/game-preview-at-chicago-blackhawks-092126",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,20 +132,20 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
+      {
+        "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
+        "published_at": "2026-09-21T16:26:43Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-reduce-training-camp-roster-by-15-players",
+        "summary": "Vegas assigns 12 players to AHL Henderson & returns four more to their respective junior teams",
+        "roster_news": true
+      },
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
         "published_at": "2026-09-16T23:48:08Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-2026-training-camp-roster-schedule",
         "summary": "Vegas opens camp with 66 players and all on-ice sessions at City National Arena are open to the public starting on Thursday",
-        "roster_news": true
-      },
-      {
-        "title": "Golden Knights Sign Mark Stone to Two-Year Contract Extension",
-        "published_at": "2026-09-12T15:54:28Z",
-        "url": "https://www.nhl.com/goldenknights/news/golden-knights-sign-mark-stone-to-two-year-contract-extension",
-        "summary": "Vegas secures their team captain for two more years through the 2028-29 season",
         "roster_news": true
       },
       {
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,24 +281,31 @@
         "roster_news": true
       },
       {
-        "title": "Familiar Faces Expected as Devils Host Rangers | PREVIEW",
-        "published_at": "2026-09-21T14:37:07Z",
+        "title": "Jack Hughes, Devils Stars Take on Rangers | PREVIEW",
+        "published_at": "2026-09-21T16:10:00Z",
         "url": "https://www.nhl.com/devils/news/preview-2026010019",
-        "summary": "Jack and Luke Hughes, Nico Hischier, Jesper Bratt and Timo Meier are among the Devils expcected to make their preseason debuts Monday",
+        "summary": "Luke Evangelista and Anthony Mantha make their Devils preseason debuts alongside New Jersey's top forwards tonight at Prudential Center",
         "roster_news": false
       },
       {
-        "title": "Devils new GM Mehta fired up to deliver Cup title for hometown team",
-        "published_at": "2026-09-21T04:00:00Z",
-        "url": "https://www.nhl.com/devils/news/new-jersey-devils-sunny-mehta-wants-to-deliver-stanley-cup-title-x7920",
-        "summary": "Tells NHL.com building depth around Jack Hughes, Hischier key to taking next step",
+        "title": "JCsArtDesigns® Name Winner of Enrich Program for 2026-27 Season | RELEASE",
+        "published_at": "2026-09-21T14:00:00Z",
+        "url": "https://www.nhl.com/devils/news/jcsartdesigns-enrich-program-release-9-21-26",
+        "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
+      {
+        "title": "Predators Reduce Training Camp Roster to 54 Players",
+        "published_at": "2026-09-21T16:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-54-players-2026-09-21",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
         "published_at": "2026-09-02T02:30:00Z",
@@ -307,11 +314,11 @@
         "roster_news": true
       },
       {
-        "title": "Predators Acquire First-Round and Second-Round Picks in 2028 NHL Draft From New Jersey",
-        "published_at": "2026-09-02T00:45:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-acquire-first-round-and-second-round-picks-in-2028-nhl-draft-from-new-jersey-2026-09-01",
-        "summary": "Nashville Now Owns Seven Picks in First Two Rounds of Next Two Drafts, Including Three First-Rounders",
-        "roster_news": true
+        "title": "Preds Official Podcast: Remembering Petey - A Tribute to Brent Peterson",
+        "published_at": "2026-09-21T15:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-official-podcast-remembering-petey-a-tribute-to-brent-peterson-2026-09-19",
+        "summary": "One of the Most Influential Figures in Franchise History is Remembered in a Special Edition of the Podcast",
+        "roster_news": false
       },
       {
         "title": "Martin Scores Impressive Goal as Preds Begin Preseason With Loss to Lightning",
@@ -319,30 +326,23 @@
         "url": "https://www.nhl.com/predators/news/martin-scores-impressive-goal-as-preds-begin-preseason-with-loss-to-lightning-2026-09-20",
         "summary": "Saros Makes 20 Saves in Nashville's First of Four Preseason Games",
         "roster_news": false
-      },
-      {
-        "title": "Stream All Four 2026 Predators Preseason Games for Free Via Nashville Predators App",
-        "published_at": "2026-09-20T14:00:00Z",
-        "url": "https://www.nhl.com/predators/news/stream-all-four-2026-predators-preseason-games-for-free-via-nashville-predators-app-2026-09-20",
-        "summary": "Nashville Begins Preseason Action Today at 4 p.m. CT in Tampa Bay",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
-      {
-        "title": "Sharks coach Warsofsky signs multiyear contract",
-        "published_at": "2026-09-17T21:58:00Z",
-        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-sign-coach-ryan-warsofsky-to-multiyear-contract-x7858",
-        "summary": "Guided San Jose to 19 win, 34-point improvement last season",
-        "roster_news": true
-      },
       {
         "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
         "published_at": "2026-09-17T19:30:00Z",
         "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
+        "summary": "",
+        "roster_news": true
+      },
+      {
+        "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
+        "published_at": "2026-09-08T20:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-sign-goaltender-ilya-samsonov-to-one-year-two-way-contract",
         "summary": "",
         "roster_news": true
       },
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "How to watch Jets vs. Avalanche",
+        "published_at": "2026-09-21T17:30:00Z",
+        "url": "https://www.nhl.com/jets/news/how-to-watch-pre-season-winnipeg-jets-vs-colorado-avalanche",
+        "summary": "Watch the Jets' first home game of the pre-season!",
+        "roster_news": false
+      },
+      {
         "title": "GAMEDAY: Avalanche at Jets",
         "published_at": "2026-09-21T11:45:00Z",
         "url": "https://www.nhl.com/jets/news/gameday-avalanche-at-jets-x9349",
         "summary": "7:00 CT - TV: nhl.com/jets; Radio: 680 CJOB/Power 97",
         "roster_news": false
-      },
-      {
-        "title": "3 Things: Samberg wants to provide more offence",
-        "published_at": "2026-09-20T19:41:00Z",
-        "url": "https://www.nhl.com/jets/news/3-things-samberg-wants-to-provide-more-offence",
-        "summary": "Samberg: \"I want to take another step in the offensive role of things.”",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-21T15:00:32Z",
+    "updated_at": "2026-09-21T18:00:46Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
