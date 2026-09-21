@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Golden Knights Announce 2026 Training Camp Roster & Schedule",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "FOLLOW LIVE: Utah vs Colorado, Preseason Game #1",
+        "published_at": "2026-09-20T23:05:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-vs-colorado-preseason-game-1-live-blog-9-20-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Utah Opens Preseason Slate in Colorado",
         "published_at": "2026-09-20T15:45:00Z",
         "url": "https://www.nhl.com/utah/news/utah-opens-preseason-slate-in-colorado-game-preview-9-20-26",
         "summary": "The Mammoth play the first of four preseason games on Sunday",
         "roster_news": false
-      },
-      {
-        "title": "Utah Prepares for First Preseason Game with Saturday Practice",
-        "published_at": "2026-09-19T19:45:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-prepares-for-first-preseason-game-with-saturday-practice-notebook-9-19-26",
-        "summary": "The Mammoth will play the first of four preseason games on Sunday in Colorado",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
-        "title": "LIVE STREAM: Ducks vs. Sharks (Preseason)",
-        "published_at": "2026-09-20T20:11:00Z",
-        "url": "https://www.nhl.com/ducks/news/live-stream-ducks-in-rookie-faceoff-tournament-345734464",
-        "summary": "",
-        "roster_news": false
-      },
-      {
         "title": "Ducks Make 2026 Training Camp Moves",
         "published_at": "2026-09-20T18:33:43Z",
         "url": "https://www.nhl.com/ducks/news/ducks-make-2026-training-camp-moves",
         "summary": "Roster now features 47 players (27 forwards, 15 defensemen and five goaltenders)",
         "roster_news": false
+      },
+      {
+        "title": "PREVIEW: Ducks Open Preseason vs. Sharks at Honda Center",
+        "published_at": "2026-09-20T16:26:39Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-open-preseason-vs-sharks-today-at-honda-center",
+        "summary": "Puck drop is set for 1 p.m. PT and will be live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
+        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "MacFarland Discusses Evangelista Trade, Looks Ahead to Future With New Season Approaching",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Sharks coach Warsofsky signs multiyear contract",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-20T21:00:32Z",
+    "updated_at": "2026-09-21T00:00:27Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
