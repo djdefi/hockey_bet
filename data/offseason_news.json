@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Kulich and Danforth return, Metsa shines in featured role",
+        "published_at": "2026-09-22T03:27:52Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-pittsburgh-penguins-recap-kulich-metsa",
+        "summary": "Takeaways from Sabres’ preseason-opening loss to Penguins.",
+        "roster_news": false
+      },
+      {
         "title": "At the Horn | Penguins 4 - Sabres 1",
         "published_at": "2026-09-22T01:37:14Z",
         "url": "https://www.nhl.com/sabres/news/sabres-penguins-recap-highlights",
         "summary": "Jiri Kulich returned to the lineup in Buffalo's preseason opener.",
         "roster_news": false
-      },
-      {
-        "title": "Camp notebook | Power-play notes, Danforth’s debut and more",
-        "published_at": "2026-09-21T19:03:44Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-training-camp-notebook-power-play-jack-quinn",
-        "summary": "Notes from Monday's session at KeyBank Center.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Wear Down Flyers, 5-2",
+        "published_at": "2026-09-22T03:00:51Z",
+        "url": "https://www.nhl.com/capitals/news/caps-wear-down-flyers-5-2",
+        "summary": "Penalty kill, Brodzinski's two goals, Chesley's three assists key Caps win",
+        "roster_news": false
+      },
+      {
         "title": "A Fine Line",
         "published_at": "2026-09-21T21:19:08Z",
         "url": "https://www.nhl.com/capitals/news/a-fine-line",
         "summary": "Protas brothers to skate same line for first time tonight in Hershey, with Kyrou",
         "roster_news": false
-      },
-      {
-        "title": "Caps Head to Hershey to Tangle with Flyers",
-        "published_at": "2026-09-21T12:32:31Z",
-        "url": "https://www.nhl.com/capitals/news/caps-head-to-hershey-to-tangle-with-flyers",
-        "summary": "Caps face Philly and finish set of back-to-back exhibition games",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Skinner makes 31 saves in Jets debut",
+        "published_at": "2026-09-22T03:13:00Z",
+        "url": "https://www.nhl.com/jets/news/skinner-makes-31-saves-in-jets-debut",
+        "summary": "The Jets win their first preseason game with a 3-1 decision over the Avalanche",
+        "roster_news": false
+      },
+      {
         "title": "How to watch Jets vs. Avalanche",
         "published_at": "2026-09-21T17:30:00Z",
         "url": "https://www.nhl.com/jets/news/how-to-watch-pre-season-winnipeg-jets-vs-colorado-avalanche",
         "summary": "Watch the Jets' first home game of the pre-season!",
         "roster_news": false
-      },
-      {
-        "title": "GAMEDAY: Avalanche at Jets",
-        "published_at": "2026-09-21T11:45:00Z",
-        "url": "https://www.nhl.com/jets/news/gameday-avalanche-at-jets-x9349",
-        "summary": "7:00 CT - TV: nhl.com/jets; Radio: 680 CJOB/Power 97",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-22T03:00:23Z",
+    "updated_at": "2026-09-22T06:00:38Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
