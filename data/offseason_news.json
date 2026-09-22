@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Morning Skate Report: Sept. 22, 2026",
+        "published_at": "2026-09-22T16:40:41Z",
+        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-22-2026",
+        "summary": "The Golden Knights look for a second straight win to open the preseason tonight in San Jose",
+        "roster_news": false
+      },
+      {
         "title": "Golden Knights Announce Plans for Gold Carpet & Opening Knight",
         "published_at": "2026-09-21T21:56:25Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-plans-for-gold-carpet-opening-knight",
         "summary": "Vegas to kick off Season X on Tuesday, Sept. 29 vs. Chicago Blackhawks with Gold Carpet festivities in Paramount+ Plaza beginning at 4pm",
         "roster_news": false
-      },
-      {
-        "title": "Golden Knights Earn 4-2 Win Against Kings in Ontario to Open 2026-27 Preseason",
-        "published_at": "2026-09-20T05:51:00Z",
-        "url": "https://www.nhl.com/goldenknights/news/golden-knights-earn-4-2-win-against-kings-in-ontario-to-open-2026-27-preseason",
-        "summary": "Vegas earns Empire Classic win against Los Angeles on Saturday night as Hallum scores twice",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Utah Visits Los Angeles for Second Preseason Game",
+        "published_at": "2026-09-22T16:30:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-visits-los-angeles-for-second-preseason-game-game-preview-9-22-26",
+        "summary": "The Mammoth look to bounce back and get the team’s first preseason win this year",
+        "roster_news": false
+      },
+      {
         "title": "Utah Falls to Colorado in First Preseason Game",
         "published_at": "2026-09-21T02:40:00Z",
         "url": "https://www.nhl.com/utah/news/utah-falls-to-colorado-in-first-preseason-game-game-story-9-20-26",
         "summary": "The Mammoth progressed throughout the contest and will learn from Sunday’s game",
         "roster_news": false
-      },
-      {
-        "title": "RECAP: Utah Falls to Colorado, 4-1",
-        "published_at": "2026-09-20T23:05:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-vs-colorado-preseason-game-1-live-blog-9-20-26",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
+        "title": "Ducks Name Granlund Team Captain",
+        "published_at": "2026-09-22T17:44:47Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-name-granlund-team-captain",
+        "summary": "Center becomes the 10th captain in club history; four players named alternate captains as part of leadership group",
+        "roster_news": false
+      },
+      {
         "title": "Ducks Make 2026 Training Camp Moves",
         "published_at": "2026-09-20T18:33:43Z",
         "url": "https://www.nhl.com/ducks/news/ducks-make-2026-training-camp-moves",
         "summary": "Roster now features 47 players (27 forwards, 15 defensemen and five goaltenders)",
         "roster_news": false
-      },
-      {
-        "title": "PREVIEW: Ducks Open Preseason vs. Sharks at Honda Center",
-        "published_at": "2026-09-20T16:26:39Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-open-preseason-vs-sharks-today-at-honda-center",
-        "summary": "Puck drop is set for 1 p.m. PT and will be live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
-        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "INSIDER: Offense The Name Of The Game at LA Kings Camp",
-        "published_at": "2026-09-21T23:16:13Z",
-        "url": "https://www.nhl.com/kings/news/insider-offense-the-name-of-the-game-at-kings-training-camp",
+        "title": "2026 Preseason Preview - Game 2, LAK vs. UTA",
+        "published_at": "2026-09-22T16:56:00Z",
+        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-2-kings-versus-mammoth",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "2026 Preseason Final - LAK 2, VGK 4",
-        "published_at": "2026-09-20T06:47:00Z",
-        "url": "https://www.nhl.com/kings/news/2026-preseason-final-kings-2-vegas-4",
+        "title": "INSIDER: Offense The Name Of The Game at LA Kings Camp",
+        "published_at": "2026-09-21T23:16:13Z",
+        "url": "https://www.nhl.com/kings/news/insider-offense-the-name-of-the-game-at-kings-training-camp",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
+        "title": "Luke Hughes Happy to Get a Healthy Start | NOTEBOOK",
+        "published_at": "2026-09-22T17:54:00Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-22-26",
+        "summary": "Devils return to practice after back-to-back preseason wins.",
+        "roster_news": false
+      },
+      {
         "title": "All Hands on Deck | FEATURE",
         "published_at": "2026-09-22T13:30:06Z",
         "url": "https://www.nhl.com/devils/news/all-hands-on-deck-connor-brown-feataure-9-22-26",
         "summary": "Connor Brown knows that a team's direction isn't dictated by one player. It comes from everyone pulling together.",
         "roster_news": false
-      },
-      {
-        "title": "Devils, NJM Insurance Announce Partnership, 'New Jersey, New Jersey' Launch | RELEASE",
-        "published_at": "2026-09-22T12:54:00Z",
-        "url": "https://www.nhl.com/devils/news/devils-njm-insurance-release-9-22-26",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "How to watch Jets vs. Oilers",
+        "published_at": "2026-09-22T16:05:39Z",
+        "url": "https://www.nhl.com/jets/news/how-to-watch-pre-season-winnipeg-jets-vs-edmonton-oilers-x0534",
+        "summary": "Watch the Jets' second home game of the pre-season on TSN3!",
+        "roster_news": false
+      },
+      {
         "title": "GAMEDAY: Oilers at Jets",
         "published_at": "2026-09-22T11:28:00Z",
         "url": "https://www.nhl.com/jets/news/gameday-oilers-at-jets-x8177",
         "summary": "7:00 CT - TV: TSN3, Radio: 680 CJOB / Power 97",
         "roster_news": false
-      },
-      {
-        "title": "Skinner makes 31 saves in Jets debut",
-        "published_at": "2026-09-22T03:13:00Z",
-        "url": "https://www.nhl.com/jets/news/skinner-makes-31-saves-in-jets-debut",
-        "summary": "The Jets win their first preseason game with a 3-1 decision over the Avalanche",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-22T15:00:26Z",
+    "updated_at": "2026-09-22T18:00:38Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
