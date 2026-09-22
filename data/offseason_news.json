@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Sabres vs. Blue Jackets | How to watch, lineup notes, and storylines",
+        "published_at": "2026-09-22T13:27:36Z",
+        "url": "https://www.nhl.com/sabres/news/how-to-watch-sabres-blue-jackets-lineup",
+        "summary": "Rasmus Dahlin, Tage Thompson and the rest of Buffalo's regulars will make their preseason debuts.",
+        "roster_news": false
+      },
+      {
         "title": "Kulich and Danforth return, Metsa shines in featured role",
         "published_at": "2026-09-22T03:27:52Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-pittsburgh-penguins-recap-kulich-metsa",
         "summary": "Takeaways from Sabres’ preseason-opening loss to Penguins.",
         "roster_news": false
-      },
-      {
-        "title": "At the Horn | Penguins 4 - Sabres 1",
-        "published_at": "2026-09-22T01:37:14Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-penguins-recap-highlights",
-        "summary": "Jiri Kulich returned to the lineup in Buffalo's preseason opener.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "Nico’s Trio Helps Lift Devils Past Rangers | GAME STORY",
-        "published_at": "2026-09-22T01:25:22Z",
-        "url": "https://www.nhl.com/devils/news/devils-vs-rangers-9-21-26-game-story",
-        "summary": "Devils top the Rangers 3-2 in their second game of the preseason.",
+        "title": "All Hands on Deck | FEATURE",
+        "published_at": "2026-09-22T13:30:06Z",
+        "url": "https://www.nhl.com/devils/news/all-hands-on-deck-connor-brown-feataure-9-22-26",
+        "summary": "Connor Brown knows that a team's direction isn't dictated by one player. It comes from everyone pulling together.",
         "roster_news": false
       },
       {
-        "title": "QUICK RECAP: Devils 3, Rangers 2",
-        "published_at": "2026-09-21T23:00:00Z",
-        "url": "https://www.nhl.com/devils/news/devils-vs-rangers-9-21-26-live-updates",
-        "summary": "Highlights, lineups and more as the Devils take on the New York Rangers.",
+        "title": "Devils, NJM Insurance Announce Partnership, 'New Jersey, New Jersey' Launch | RELEASE",
+        "published_at": "2026-09-22T12:54:00Z",
+        "url": "https://www.nhl.com/devils/news/devils-njm-insurance-release-9-22-26",
+        "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-22T12:00:35Z",
+    "updated_at": "2026-09-22T15:00:26Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
