@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preseason Game Day: Lightning vs. Preds, Sept. 22",
+        "published_at": "2026-09-22T11:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preseason-game-day-lightning-vs-preds-sept-22-2026-09-22",
+        "summary": "Nashville Hosts Tampa Bay in First Home Preseason Game",
+        "roster_news": false
+      },
+      {
         "title": "Preds Official Podcast: Remembering Petey - A Tribute to Brent Peterson",
         "published_at": "2026-09-21T15:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-official-podcast-remembering-petey-a-tribute-to-brent-peterson-2026-09-19",
         "summary": "One of the Most Influential Figures in Franchise History is Remembered in a Special Edition of the Podcast",
         "roster_news": false
-      },
-      {
-        "title": "Martin Scores Impressive Goal as Preds Begin Preseason With Loss to Lightning",
-        "published_at": "2026-09-21T00:15:00Z",
-        "url": "https://www.nhl.com/predators/news/martin-scores-impressive-goal-as-preds-begin-preseason-with-loss-to-lightning-2026-09-20",
-        "summary": "Saros Makes 20 Saves in Nashville's First of Four Preseason Games",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "GAMEDAY: Oilers at Jets",
+        "published_at": "2026-09-22T11:28:00Z",
+        "url": "https://www.nhl.com/jets/news/gameday-oilers-at-jets-x8177",
+        "summary": "7:00 CT - TV: TSN3, Radio: 680 CJOB / Power 97",
+        "roster_news": false
+      },
+      {
         "title": "Skinner makes 31 saves in Jets debut",
         "published_at": "2026-09-22T03:13:00Z",
         "url": "https://www.nhl.com/jets/news/skinner-makes-31-saves-in-jets-debut",
         "summary": "The Jets win their first preseason game with a 3-1 decision over the Avalanche",
         "roster_news": false
-      },
-      {
-        "title": "How to watch Jets vs. Avalanche",
-        "published_at": "2026-09-21T17:30:00Z",
-        "url": "https://www.nhl.com/jets/news/how-to-watch-pre-season-winnipeg-jets-vs-colorado-avalanche",
-        "summary": "Watch the Jets' first home game of the pre-season!",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-22T09:00:24Z",
+    "updated_at": "2026-09-22T12:00:35Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
