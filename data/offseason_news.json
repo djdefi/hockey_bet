@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Minnesota Wild and Bonfe Cares to Host Winter Gear Drive on Friday, Sept. 25",
-        "published_at": "2026-09-21T19:25:31Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-and-bonfe-cares-to-host-winter-gear-drive-on-friday-september-25-092126",
+        "title": "Projected Lineup: Blackhawks vs. Wild",
+        "published_at": "2026-09-21T22:15:03Z",
+        "url": "https://www.nhl.com/wild/news/projected-lineup-vs-chicago-blackhawks-092126",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Minnesota Wild to Host Pregame Party on October 3",
-        "published_at": "2026-09-21T15:55:53Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-to-host-pregame-party-on-october-3-092126",
-        "summary": "",
+        "title": "Wild CEO Matt Majka Named to Minnesota Hockey Coaches Association Hall of Fame",
+        "published_at": "2026-09-21T21:30:02Z",
+        "url": "https://www.nhl.com/wild/news/wild-ceo-matt-majka-named-to-minnesota-hockey-coaches-association-hall-of-fame-092126",
+        "summary": "Longtime supporter of high school hockey to be recognized Sept. 25 at Grand Casino Arena, where every Minnesota program’s jersey hangs",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "A Fine Line",
+        "published_at": "2026-09-21T21:19:08Z",
+        "url": "https://www.nhl.com/capitals/news/a-fine-line",
+        "summary": "Protas brothers to skate same line for first time tonight in Hershey, with Kyrou",
+        "roster_news": false
+      },
+      {
         "title": "Caps Head to Hershey to Tangle with Flyers",
         "published_at": "2026-09-21T12:32:31Z",
         "url": "https://www.nhl.com/capitals/news/caps-head-to-hershey-to-tangle-with-flyers",
         "summary": "Caps face Philly and finish set of back-to-back exhibition games",
         "roster_news": false
-      },
-      {
-        "title": "Caps Drop Exhibtion Opener to B's in Shootout, 3-2",
-        "published_at": "2026-09-21T00:46:23Z",
-        "url": "https://www.nhl.com/capitals/news/caps-drop-exhibtion-opener-to-b-s-in-shootout-3-2",
-        "summary": "Brodzinski and Miroshnichenko score, Thompson shines in loss",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Golden Knights Announce Plans for Gold Carpet & Opening Knight",
+        "published_at": "2026-09-21T21:56:25Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-plans-for-gold-carpet-opening-knight",
+        "summary": "Vegas to kick off Season X on Tuesday, Sept. 29 vs. Chicago Blackhawks with Gold Carpet festivities in Paramount+ Plaza beginning at 4pm",
+        "roster_news": false
+      },
+      {
         "title": "Golden Knights Earn 4-2 Win Against Kings in Ontario to Open 2026-27 Preseason",
         "published_at": "2026-09-20T05:51:00Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-earn-4-2-win-against-kings-in-ontario-to-open-2026-27-preseason",
         "summary": "Vegas earns Empire Classic win against Los Angeles on Saturday night as Hallum scores twice",
         "roster_news": false
-      },
-      {
-        "title": "Morning Skate Report: Sept. 19, 2026",
-        "published_at": "2026-09-19T16:02:25Z",
-        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-19-2026",
-        "summary": "The Golden Knights battle the Kings in Ontario in their first game of the 2026-27 preseason",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,8 +231,15 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
+      {
+        "title": "LA Kings Announce Training Camp Roster Moves",
+        "published_at": "2026-09-21T22:33:00Z",
+        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-21",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "LA Kings Announce 2026 Training Camp Roster and Schedule",
         "published_at": "2026-09-16T22:05:43Z",
@@ -241,30 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "LA Kings Announce 2026 Rookie Faceoff Roster and Camp Schedule",
-        "published_at": "2026-09-01T18:04:52Z",
-        "url": "https://www.nhl.com/kings/news/kings-announce-2026-rookie-faceoff-roster-camp-schedule",
-        "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "2026 Preseason Preview - Game 1, LAK vs. VGK",
-        "published_at": "2026-09-19T19:02:57Z",
-        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-1-kings-versus-vegas",
+        "title": "INSIDER: Offense The Name Of The Game at LA Kings Camp",
+        "published_at": "2026-09-21T23:16:13Z",
+        "url": "https://www.nhl.com/kings/news/insider-offense-the-name-of-the-game-at-kings-training-camp",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Day 2 Notes – Dumoulin Back At Practice, Kempe Plays Center + Laviolette on Defense, Panarin Notes",
-        "published_at": "2026-09-19T00:30:00Z",
-        "url": "https://www.nhl.com/kings/news/insider-day-2-training-camp-notes-dumoulin-skates-kempe-at-center-panarin-laviolette-connection",
+        "title": "2026 Preseason Final - LAK 2, VGK 4",
+        "published_at": "2026-09-20T06:47:00Z",
+        "url": "https://www.nhl.com/kings/news/2026-preseason-final-kings-2-vegas-4",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
+        "title": "LIVE UPDATES: Devils 0, Rangers 0",
+        "published_at": "2026-09-21T23:00:00Z",
+        "url": "https://www.nhl.com/devils/news/devils-vs-rangers-9-21-26-live-updates",
+        "summary": "Highlights and more as the Devils take on the New York Rangers",
+        "roster_news": false
+      },
+      {
         "title": "Jack Hughes, Devils Stars Take on Rangers | PREVIEW",
         "published_at": "2026-09-21T16:10:00Z",
         "url": "https://www.nhl.com/devils/news/preview-2026010019",
         "summary": "Luke Evangelista and Anthony Mantha make their Devils preseason debuts alongside New Jersey's top forwards tonight at Prudential Center",
         "roster_news": false
-      },
-      {
-        "title": "JCsArtDesigns® Name Winner of Enrich Program for 2026-27 Season | RELEASE",
-        "published_at": "2026-09-21T14:00:00Z",
-        "url": "https://www.nhl.com/devils/news/jcsartdesigns-enrich-program-release-9-21-26",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 54 Players",
@@ -330,19 +330,19 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
-        "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
-        "published_at": "2026-09-17T19:30:00Z",
-        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
+        "title": "Sharks reduce training camp roster",
+        "published_at": "2026-09-21T22:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-reduce-training-camp-roster-2026-27",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "Sharks sign goaltender Ilya Samsonov to one-year, two-way contract",
-        "published_at": "2026-09-08T20:00:00Z",
-        "url": "https://www.nhl.com/sharks/news/sharks-sign-goaltender-ilya-samsonov-to-one-year-two-way-contract",
+        "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
+        "published_at": "2026-09-17T19:30:00Z",
+        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
         "summary": "",
         "roster_news": true
       },
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-21T21:00:37Z",
+    "updated_at": "2026-09-22T00:00:42Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
