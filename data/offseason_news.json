@@ -1,19 +1,19 @@
 {
   "COL": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
+      {
+        "title": "Avalanche Reduce Roster by Five",
+        "published_at": "2026-09-23T20:32:10Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-five-x9895",
+        "summary": "Preseason Roster Now Sits at 39",
+        "roster_news": true
+      },
       {
         "title": "Avalanche Reduce Roster by One",
         "published_at": "2026-09-22T14:49:21Z",
         "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-one",
         "summary": "Preseason Roster Now Sits at 44",
-        "roster_news": true
-      },
-      {
-        "title": "Avalanche Reduce Roster by 11",
-        "published_at": "2026-09-19T22:00:48Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-11",
-        "summary": "Preseason Roster Now Sits at 45",
         "roster_news": true
       },
       {
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "Sabres announce 2026-27 alternate jersey schedule",
-        "published_at": "2026-09-23T16:57:43Z",
-        "url": "https://www.nhl.com/sabres/news/2026-27-buffalo-sabres-alternate-jersey-schedule",
-        "summary": "The team will wear its red-and-black alternate plus a new Hometown Remix jersey.",
+        "title": "Camp notebook | Injuries test blue-line depth; catching up with Josh Doan",
+        "published_at": "2026-09-23T19:39:44Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-samuelsson-zellweger-josh-doan",
+        "summary": "Samuelsson and Zellweger news; Doan discusses offseason, PP and more.",
         "roster_news": false
       },
       {
-        "title": "Sabretooth’s Preseason Bash to feature mascot games, photo opportunities and more",
-        "published_at": "2026-09-23T15:55:10Z",
-        "url": "https://www.nhl.com/sabres/news/sabretooths-preseason-bash-details-september-26",
-        "summary": "The party begins this Saturday, Sept. 26 at 12 p.m. in Ticketmaster Alumni Plaza.",
+        "title": "Injuries and transactions | Updates on Samuelsson, Zellweger",
+        "published_at": "2026-09-23T18:16:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,29 +116,29 @@
         "roster_news": true
       },
       {
+        "title": "Miroshnichenko is Wednesday Office Temp for Ovechkin",
+        "published_at": "2026-09-23T19:56:47Z",
+        "url": "https://www.nhl.com/capitals/news/miroshnichenko-is-wednesday-office-temp-for-ovechkin",
+        "summary": "Depth players aim to make their mark as Caps camp reaches halfway mark",
+        "roster_news": false
+      },
+      {
         "title": "Caps Wear Down Flyers, 5-2",
         "published_at": "2026-09-22T03:00:51Z",
         "url": "https://www.nhl.com/capitals/news/caps-wear-down-flyers-5-2",
         "summary": "Penalty kill, Brodzinski's two goals, Chesley's three assists key Caps win",
         "roster_news": false
-      },
-      {
-        "title": "A Fine Line",
-        "published_at": "2026-09-21T21:19:08Z",
-        "url": "https://www.nhl.com/capitals/news/a-fine-line",
-        "summary": "Protas brothers to skate same line for first time tonight in Hershey, with Kyrou",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
         "published_at": "2026-09-23T17:57:50Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-roster-transactions",
-        "summary": "Vegas now has 16 forwards, 10 defensemen & two goaltenders remaining in camp",
+        "summary": "Vegas now has 16 forwards, 10 defensemen & two goaltenders ahead of their final two preseason games",
         "roster_news": true
       },
       {
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
+        "title": "PREVIEW: Ducks and Kings Face Off in First of Two Preseason Meetings",
+        "published_at": "2026-09-23T18:58:39Z",
+        "url": "https://www.nhl.com/ducks/news/preview-ducks-and-kings-face-off-in-first-of-two-preseason-meetings",
+        "summary": "Puck drop set for 7 p.m. PT at Honda Center and will be aired on FOXLA+ (KCOP-13) and live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
+        "roster_news": false
+      },
+      {
         "title": "Ducks Name Granlund Team Captain",
         "published_at": "2026-09-22T17:44:47Z",
         "url": "https://www.nhl.com/ducks/news/ducks-name-granlund-team-captain",
         "summary": "Center becomes the 10th captain in club history; four players named alternate captains as part of leadership group",
         "roster_news": false
-      },
-      {
-        "title": "Ducks Make 2026 Training Camp Moves",
-        "published_at": "2026-09-20T18:33:43Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-make-2026-training-camp-moves",
-        "summary": "Roster now features 47 players (27 forwards, 15 defensemen and five goaltenders)",
-        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "2026 Preseason Final - LAK 3, UTA 6",
-        "published_at": "2026-09-23T06:19:00Z",
-        "url": "https://www.nhl.com/kings/news/2026-preseason-final-kings-3-mammoth-6",
+        "title": "2026 Preseason Preview - Game 3, LAK vs. ANA",
+        "published_at": "2026-09-23T19:19:46Z",
+        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-3-kings-versus-ducks",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "2026 Preseason Preview - Game 2, LAK vs. UTA",
-        "published_at": "2026-09-22T16:56:00Z",
-        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-2-kings-versus-mammoth",
+        "title": "2026 Preseason Final - LAK 3, UTA 6",
+        "published_at": "2026-09-23T06:19:00Z",
+        "url": "https://www.nhl.com/kings/news/2026-preseason-final-kings-3-mammoth-6",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,8 +297,15 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
+      {
+        "title": "Predators Reduce Training Camp Roster to 33 Players",
+        "published_at": "2026-09-23T20:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-33-players-2026-09-23",
+        "summary": "Nashville Closes Out Preseason With Home-and-Home Against Carolina Beginning on Road Tomorrow at 6 p.m. CT",
+        "roster_news": true
+      },
       {
         "title": "Predators Reduce Training Camp Roster to 40 Players",
         "published_at": "2026-09-22T21:00:00Z",
@@ -307,11 +314,11 @@
         "roster_news": true
       },
       {
-        "title": "Predators Reduce Training Camp Roster to 54 Players",
-        "published_at": "2026-09-21T16:00:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-54-players-2026-09-21",
-        "summary": "",
-        "roster_news": true
+        "title": "Preds Newcomers Building Chemistry, Camaraderie With Teammates as Training Camp Continues",
+        "published_at": "2026-09-23T20:45:57Z",
+        "url": "https://www.nhl.com/predators/news/preds-newcomers-building-chemistry-camaraderie-with-teammates-as-training-camp-continues-2026-09-23",
+        "summary": "Nashville's Newcomers Building Chemistry, Camaraderie With Teammates",
+        "roster_news": false
       },
       {
         "title": "Preds Introduce New Food, Drink Items Ahead of 2026-27 Season; Latest Bridgestone Arena Renderings Also Unveiled",
@@ -319,18 +326,11 @@
         "url": "https://www.nhl.com/predators/news/preds-introduce-new-food-drink-items-ahead-of-2026-27-season-latest-bridgestone-arena-renderings-also-unveiled-2026-09-24",
         "summary": "'The Fang' Drink Holder, Soft Serve Additions Highlight New Menus at Bridgestone Arena",
         "roster_news": false
-      },
-      {
-        "title": "Wood, Nilsson Lead Preds to Overtime Victory Against Lightning",
-        "published_at": "2026-09-23T03:30:00Z",
-        "url": "https://www.nhl.com/predators/news/wood-nilsson-lead-preds-to-overtime-victory-against-lightning-2026-09-22",
-        "summary": "Nashville Scores Three Unanswered to Beat Tampa Bay for First Preseason Win",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,20 +363,20 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
+      {
+        "title": "Jets reduce training camp roster by 12 players",
+        "published_at": "2026-09-23T18:30:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-reduce-training-camp-roster-by-12-players-x0785",
+        "summary": "Eight players were loaned to the Manitoba Moose, four players were released from PTOs",
+        "roster_news": true
+      },
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
         "published_at": "2026-09-15T22:30:00Z",
         "url": "https://www.nhl.com/jets/news/jets-announce-2026-training-camp-roster-and-schedule",
         "summary": "Training camp begins Thursday, Sept. 17 at hockey for all centre",
-        "roster_news": true
-      },
-      {
-        "title": "Jets announce 2026 Prospect Challenge roster",
-        "published_at": "2026-09-09T15:00:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-announce-2026-prospect-challenge-roster",
-        "summary": "The Jets play their first game at the Prospect Challenge on Saturday against the Canadiens rookies.",
         "roster_news": true
       },
       {
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-23T18:00:25Z",
+    "updated_at": "2026-09-23T21:00:40Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
