@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
+        "title": "How do I watch if I don’t have Spectrum?",
+        "published_at": "2026-09-22T21:56:54Z",
+        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime-q2-actual",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Projected Lineup: Blackhawks vs. Wild",
         "published_at": "2026-09-21T22:15:03Z",
         "url": "https://www.nhl.com/wild/news/projected-lineup-vs-chicago-blackhawks-092126",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Wild CEO Matt Majka Named to Minnesota Hockey Coaches Association Hall of Fame",
-        "published_at": "2026-09-21T21:30:02Z",
-        "url": "https://www.nhl.com/wild/news/wild-ceo-matt-majka-named-to-minnesota-hockey-coaches-association-hall-of-fame-092126",
-        "summary": "Longtime supporter of high school hockey to be recognized Sept. 25 at Grand Casino Arena, where every Minnesota program’s jersey hangs",
-        "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 40 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-22T21:00:21Z",
+    "updated_at": "2026-09-23T00:00:32Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Command (Hockey) Performance",
+        "published_at": "2026-09-22T23:54:29Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-sports-performance-group",
+        "summary": "The Kraken’s newly created sports performance group has added a third strength and conditioning coach plus a full-time dietitian for wider, deeper scope aimed at more wins on the ice",
+        "roster_news": false
+      },
+      {
         "title": "Bobby McMann Returns To Kraken ‘As Hungry As Ever’",
         "published_at": "2026-09-22T02:51:31Z",
         "url": "https://www.nhl.com/kraken/news/bobby-mcmann-brings-hard-work-ethic-to-seattle",
         "summary": "After years fighting for every hockey roster spot ever given, Kraken winger Bobby McMann says the security garnered from his six-year, $34.5 million deal signed last June has allowed him to focus...",
-        "roster_news": false
-      },
-      {
-        "title": "Youth Movement: Kraken Sweep Weekend",
-        "published_at": "2026-09-21T02:48:50Z",
-        "url": "https://www.nhl.com/kraken/news/final-buzzer-calgary-flames-seattle-kraken-preseason-game-recap",
-        "summary": "Ahead of Monday’s expected roster trimming, Logan Morrison and Ty Nelson, among others, fuel two preseason victories while Ryan Winterton praised in his preseason debut",
         "roster_news": false
       }
     ]
