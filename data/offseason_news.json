@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "Sabres vs. Blue Jackets | How to watch, lineup notes, and storylines",
-        "published_at": "2026-09-22T13:27:36Z",
-        "url": "https://www.nhl.com/sabres/news/how-to-watch-sabres-blue-jackets-lineup",
-        "summary": "Rasmus Dahlin, Tage Thompson and the rest of Buffalo's regulars will make their preseason debuts.",
+        "title": "Injuries and transactions | Samuelsson, Zellweger exit win",
+        "published_at": "2026-09-23T02:09:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
       },
       {
-        "title": "Kulich and Danforth return, Metsa shines in featured role",
-        "published_at": "2026-09-22T03:27:52Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-pittsburgh-penguins-recap-kulich-metsa",
-        "summary": "Takeaways from Sabres’ preseason-opening loss to Penguins.",
+        "title": "At the Horn | Sabres 5 – Blue Jackets 1",
+        "published_at": "2026-09-23T01:45:26Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-columbus-blue-jackets-preseason-recap-stats",
+        "summary": "Stats and highlights as Buffalo's NHL regulars make their preseason debuts.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "FOLLOW LIVE: Utah vs Los Angeles, Preseason Game #2",
+        "published_at": "2026-09-23T02:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-vs-los-angeles-preseason-game-2-live-blog-9-22-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Utah Visits Los Angeles for Second Preseason Game",
         "published_at": "2026-09-22T16:30:00Z",
         "url": "https://www.nhl.com/utah/news/utah-visits-los-angeles-for-second-preseason-game-game-preview-9-22-26",
         "summary": "The Mammoth look to bounce back and get the team’s first preseason win this year",
         "roster_news": false
-      },
-      {
-        "title": "Utah Falls to Colorado in First Preseason Game",
-        "published_at": "2026-09-21T02:40:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-falls-to-colorado-in-first-preseason-game-game-story-9-20-26",
-        "summary": "The Mammoth progressed throughout the contest and will learn from Sunday’s game",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 40 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-23T00:00:32Z",
+    "updated_at": "2026-09-23T03:00:22Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
