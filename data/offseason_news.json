@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 11",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Samuelsson, Zellweger exit early in preseason win over Blue Jackets",
+        "published_at": "2026-09-23T04:36:17Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-blue-jackets-recap-highlights-norris-ostlund",
+        "summary": "Josh Norris opened the scoring in the 5-1 win.",
+        "roster_news": false
+      },
+      {
         "title": "Injuries and transactions | Samuelsson, Zellweger exit win",
         "published_at": "2026-09-23T02:09:00Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
         "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
-      },
-      {
-        "title": "At the Horn | Sabres 5 – Blue Jackets 1",
-        "published_at": "2026-09-23T01:45:26Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-columbus-blue-jackets-preseason-recap-stats",
-        "summary": "Stats and highlights as Buffalo's NHL regulars make their preseason debuts.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Golden Knights Reduce Training Camp Roster By 16 Players",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Vegas Outlasts San Jose 2-1 in Preseason Shootout",
+        "published_at": "2026-09-23T05:09:24Z",
+        "url": "https://www.nhl.com/goldenknights/news/vegas-outlasts-san-jose-2-1-in-preseason-shootout",
+        "summary": "Golden Knights return home to battle the Utah Mammoth on Thursday at T-Mobile Arena",
+        "roster_news": false
+      },
+      {
         "title": "Morning Skate Report: Sept. 22, 2026",
         "published_at": "2026-09-22T16:40:41Z",
         "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-22-2026",
         "summary": "The Golden Knights look for a second straight win to open the preseason tonight in San Jose",
         "roster_news": false
-      },
-      {
-        "title": "Golden Knights Announce Plans for Gold Carpet & Opening Knight",
-        "published_at": "2026-09-21T21:56:25Z",
-        "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-plans-for-gold-carpet-opening-knight",
-        "summary": "Vegas to kick off Season X on Tuesday, Sept. 29 vs. Chicago Blackhawks with Gold Carpet festivities in Paramount+ Plaza beginning at 4pm",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,7 +182,7 @@
         "roster_news": true
       },
       {
-        "title": "FOLLOW LIVE: Utah vs Los Angeles, Preseason Game #2",
+        "title": "RECAP: Utah Picks Up a 6-3 Win in Los Angeles",
         "published_at": "2026-09-23T02:00:00Z",
         "url": "https://www.nhl.com/utah/news/utah-vs-los-angeles-preseason-game-2-live-blog-9-22-26",
         "summary": "",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 40 Players",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Wood, Nilsson Lead Preds to Overtime Victory Against Lightning",
+        "published_at": "2026-09-23T03:30:00Z",
+        "url": "https://www.nhl.com/predators/news/wood-nilsson-lead-preds-to-overtime-victory-against-lightning-2026-09-22",
+        "summary": "Nashville Scores Three Unanswered to Beat Tampa Bay for First Preseason Win",
+        "roster_news": false
+      },
+      {
         "title": "Preseason Game Day: Lightning vs. Preds, Sept. 22",
         "published_at": "2026-09-22T11:00:00Z",
         "url": "https://www.nhl.com/predators/news/preseason-game-day-lightning-vs-preds-sept-22-2026-09-22",
         "summary": "Nashville Hosts Tampa Bay in First Home Preseason Game",
         "roster_news": false
-      },
-      {
-        "title": "Preds Official Podcast: Remembering Petey - A Tribute to Brent Peterson",
-        "published_at": "2026-09-21T15:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-official-podcast-remembering-petey-a-tribute-to-brent-peterson-2026-09-19",
-        "summary": "One of the Most Influential Figures in Franchise History is Remembered in a Special Edition of the Podcast",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Jets announce 2026 Training Camp roster and schedule",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Jets fall 2-1 in overtime to Oilers",
+        "published_at": "2026-09-23T02:32:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-fall-2-1-in-overtime-to-oilers",
+        "summary": "Alex Iafallo scored the lone goal for the Jets who wrap up their preseason schedule on Friday.",
+        "roster_news": false
+      },
+      {
         "title": "How to watch Jets vs. Oilers",
         "published_at": "2026-09-22T16:05:39Z",
         "url": "https://www.nhl.com/jets/news/how-to-watch-pre-season-winnipeg-jets-vs-edmonton-oilers-x0534",
         "summary": "Watch the Jets' second home game of the pre-season on TSN3!",
         "roster_news": false
-      },
-      {
-        "title": "GAMEDAY: Oilers at Jets",
-        "published_at": "2026-09-22T11:28:00Z",
-        "url": "https://www.nhl.com/jets/news/gameday-oilers-at-jets-x8177",
-        "summary": "7:00 CT - TV: TSN3, Radio: 680 CJOB / Power 97",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-23T03:00:22Z",
+    "updated_at": "2026-09-23T06:00:23Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "A Childhood Dream Of Ball Hockey Revisited",
+        "published_at": "2026-09-23T03:15:46Z",
+        "url": "https://www.nhl.com/kraken/news/hubbard-homestead-sport-court-northgate-one-roof-foundation",
+        "summary": "Several top Kraken prospects participated with local youth in the opening of the Hubbard Homestead Sport Court, a venture spearheaded by the One Roof Foundation with additional funding from King...",
+        "roster_news": false
+      },
+      {
         "title": "Command (Hockey) Performance",
         "published_at": "2026-09-22T23:54:29Z",
         "url": "https://www.nhl.com/kraken/news/seattle-kraken-sports-performance-group",
         "summary": "The Kraken’s newly created sports performance group has added a third strength and conditioning coach plus a full-time dietitian for wider, deeper scope aimed at more wins on the ice",
-        "roster_news": false
-      },
-      {
-        "title": "Bobby McMann Returns To Kraken ‘As Hungry As Ever’",
-        "published_at": "2026-09-22T02:51:31Z",
-        "url": "https://www.nhl.com/kraken/news/bobby-mcmann-brings-hard-work-ethic-to-seattle",
-        "summary": "After years fighting for every hockey roster spot ever given, Kraken winger Bobby McMann says the security garnered from his six-year, $34.5 million deal signed last June has allowed him to focus...",
         "roster_news": false
       }
     ]
