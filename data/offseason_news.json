@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by Five",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,8 +66,15 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
+      {
+        "title": "Minnesota Wild Reduces Training Camp Roster to 43 Players",
+        "published_at": "2026-09-23T21:13:08Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-reduces-training-camp-roster-to-43-players-092326",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
         "published_at": "2026-09-15T14:58:29Z",
@@ -76,11 +83,11 @@
         "roster_news": true
       },
       {
-        "title": "When can I sign up for Wild+ on Prime?",
-        "published_at": "2026-09-01T19:57:41Z",
-        "url": "https://www.nhl.com/wild/news/wild-broadcast-sign-up-on-prime-q3",
+        "title": "Projected Lineup: Stars vs. Wild",
+        "published_at": "2026-09-23T18:57:10Z",
+        "url": "https://www.nhl.com/wild/news/projected-lineup-vs-dallas-stars-092326",
         "summary": "",
-        "roster_news": true
+        "roster_news": false
       },
       {
         "title": "Game Preview: Wild at Stars",
@@ -88,18 +95,11 @@
         "url": "https://www.nhl.com/wild/news/game-preview-at-dallas-stars-092226",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Minnesota Wild Games Available to Spectrum Customers",
-        "published_at": "2026-09-23T12:25:24Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-games-available-to-spectrum-customers-092326",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Utah Holds Practice, Makes Cuts on Wednesday",
+        "published_at": "2026-09-23T23:07:42Z",
+        "url": "https://www.nhl.com/utah/news/utah-holds-practice-makes-cuts-on-wednesday-notebook-9-23-26",
+        "summary": "The Mammoth were back to work ahead of the final two preseason games of the year",
+        "roster_news": false
+      },
+      {
         "title": "Utah Mammoth to Host Home Opener Celebration on Oct 1",
         "published_at": "2026-09-23T16:00:00Z",
         "url": "https://www.nhl.com/utah/news/utah-mammoth-to-host-home-opener-celebration-on-oct-1-release-9-23-26",
         "summary": "Fan experience to include live entertainment, Mountain Blue carpet walk, giveaways and other captivating pregame moments",
         "roster_news": false
-      },
-      {
-        "title": "Stronger Team Effort Earns Utah a Preseason Win in LA",
-        "published_at": "2026-09-23T14:32:58Z",
-        "url": "https://www.nhl.com/utah/news/stronger-team-effort-earns-utah-a-preseason-win-in-la-game-story-9-22-26",
-        "summary": "The Mammoth beat the Kings 6-3 and had 11 different players on the scoresheet",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 33 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-23T21:00:40Z",
+    "updated_at": "2026-09-24T00:00:21Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
