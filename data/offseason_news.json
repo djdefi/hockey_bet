@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by Five",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 43 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 33 Players",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preseason Game Day: Preds at Hurricanes, Sept. 24",
+        "published_at": "2026-09-24T11:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preseason-game-day-preds-at-hurricanes-sept-24-2026-09-24",
+        "summary": "Nashville Travels to Carolina for Penultimate Preseason Game",
+        "roster_news": false
+      },
+      {
         "title": "Preds Newcomers Building Chemistry, Camaraderie With Teammates as Training Camp Continues",
         "published_at": "2026-09-23T20:45:57Z",
         "url": "https://www.nhl.com/predators/news/preds-newcomers-building-chemistry-camaraderie-with-teammates-as-training-camp-continues-2026-09-23",
         "summary": "Nashville's Newcomers Building Chemistry, Camaraderie With Teammates",
         "roster_news": false
-      },
-      {
-        "title": "Preds Introduce New Food, Drink Items Ahead of 2026-27 Season; Latest Bridgestone Arena Renderings Also Unveiled",
-        "published_at": "2026-09-23T16:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-introduce-new-food-drink-items-ahead-of-2026-27-season-latest-bridgestone-arena-renderings-also-unveiled-2026-09-24",
-        "summary": "'The Fang' Drink Holder, Soft Serve Additions Highlight New Menus at Bridgestone Arena",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-24T09:00:24Z",
+    "updated_at": "2026-09-24T12:00:35Z",
     "articles": [
       {
         "title": "Melanson Signs Three-Year Deal",
