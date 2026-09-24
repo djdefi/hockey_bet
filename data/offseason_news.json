@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by Five",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,35 +50,35 @@
         "roster_news": true
       },
       {
+        "title": "Beer Sabres presented by Labatt to be available at every home game in 2026-27",
+        "published_at": "2026-09-24T15:59:12Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-where-to-purchase-beer-sabres-2026-27-keybank-center",
+        "summary": "Beer Sabres cost $29 and include a pour of Labatt Blue or Labatt Blue Light.",
+        "roster_news": false
+      },
+      {
         "title": "Sabres at Red Wings | How to watch, lineup notes, and storylines",
         "published_at": "2026-09-24T13:27:05Z",
         "url": "https://www.nhl.com/sabres/news/sabres-red-wings-preseason-how-to-watch-lineup",
         "summary": "Konsta Helenius and Noah Ostlund will be in the Sabres' lineup against the Red Wings.",
         "roster_news": false
-      },
-      {
-        "title": "Camp notebook | Injuries test blue-line depth; catching up with Josh Doan",
-        "published_at": "2026-09-23T19:39:44Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-samuelsson-zellweger-josh-doan",
-        "summary": "Samuelsson and Zellweger news; Doan discusses offseason, PP and more.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
-        "title": "Minnesota Wild Reduces Training Camp Roster to 43 Players",
-        "published_at": "2026-09-23T21:13:08Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-reduces-training-camp-roster-to-43-players-092326",
+        "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
+        "published_at": "2026-09-24T17:55:03Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-reduces-training-camp-roster-to-27-players-092426",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "Minnesota Wild Signs Head Coach John Hynes to Multi-Year Contract Extension",
-        "published_at": "2026-09-15T14:58:29Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-signs-head-coach-john-hynes-to-multi-year-contract-extension-091526",
+        "title": "Minnesota Wild Reduces Training Camp Roster to 43 Players",
+        "published_at": "2026-09-23T21:13:08Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-reduces-training-camp-roster-to-43-players-092326",
         "summary": "",
         "roster_news": true
       },
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Morning Skate Report: Sept. 24, 2026",
+        "published_at": "2026-09-24T16:15:54Z",
+        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-24-2026",
+        "summary": "The Golden Knights open their home preseason slate against Utah on Thursday at T-Mobile Arena",
+        "roster_news": false
+      },
+      {
         "title": "Vegas Outlasts San Jose 2-1 in Preseason Shootout",
         "published_at": "2026-09-23T05:09:24Z",
         "url": "https://www.nhl.com/goldenknights/news/vegas-outlasts-san-jose-2-1-in-preseason-shootout",
         "summary": "Golden Knights return home to battle the Utah Mammoth on Thursday at T-Mobile Arena",
         "roster_news": false
-      },
-      {
-        "title": "Morning Skate Report: Sept. 22, 2026",
-        "published_at": "2026-09-22T16:40:41Z",
-        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-22-2026",
-        "summary": "The Golden Knights look for a second straight win to open the preseason tonight in San Jose",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,36 +182,36 @@
         "roster_news": true
       },
       {
+        "title": "Utah Travels to to Vegas for Third Preseason Game",
+        "published_at": "2026-09-24T16:47:20Z",
+        "url": "https://www.nhl.com/utah/news/utah-travels-to-to-vegas-for-third-preseason-game-game-preview-9-24-26",
+        "summary": "The Mammoth look to bounce back and get the team’s first preseason win this year",
+        "roster_news": false
+      },
+      {
         "title": "Utah Holds Practice, Makes Cuts on Wednesday",
         "published_at": "2026-09-23T23:07:42Z",
         "url": "https://www.nhl.com/utah/news/utah-holds-practice-makes-cuts-on-wednesday-notebook-9-23-26",
         "summary": "The Mammoth were back to work ahead of the final two preseason games of the year",
         "roster_news": false
-      },
-      {
-        "title": "Utah Mammoth to Host Home Opener Celebration on Oct 1",
-        "published_at": "2026-09-23T16:00:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-mammoth-to-host-home-opener-celebration-on-oct-1-release-9-23-26",
-        "summary": "Fan experience to include live entertainment, Mountain Blue carpet walk, giveaways and other captivating pregame moments",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
+      {
+        "title": "Ducks Make More Training Camp Roster Moves",
+        "published_at": "2026-09-24T17:30:41Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-make-more-training-camp-roster-moves-x9638",
+        "summary": "Ducks Training Camp roster reduced to 38 players (23 forwards, 12 defensemen and three goaltenders)",
+        "roster_news": true
+      },
       {
         "title": "Ducks Sign Washe to Four-Year Extension",
         "published_at": "2026-09-19T20:48:51Z",
         "url": "https://www.nhl.com/ducks/news/ducks-sign-washe-to-four-year-extension",
         "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "Ducks Announce Roster and Details for 2026 Training Camp Presented by Splitero",
-        "published_at": "2026-09-16T17:34:06Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-announce-roster-and-details-for-2026-training-camp-presented-by-splitero",
-        "summary": "#FlyTogether Fan camp to be held Saturday, Sept. 19 at Great Park Ice featuring Orange and Black scrimmage, fan and player interactions, entertainment and more",
         "roster_news": true
       },
       {
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "Devils Cross Hudson to Play Rangers | PREVIEW",
-        "published_at": "2026-09-24T00:33:48Z",
+        "title": "Devils Lineup, Lines, More vs. Rangers | PREVIEW",
+        "published_at": "2026-09-24T16:27:00Z",
         "url": "https://www.nhl.com/devils/news/preview-2026010045",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Camp Continues | NOTEBOOK",
-        "published_at": "2026-09-23T14:47:02Z",
-        "url": "https://www.nhl.com/devils/news/devils-notebook-9-23-26",
-        "summary": "",
+        "title": "New Concessions Coming for 2026-27 Season | RELEASE",
+        "published_at": "2026-09-24T16:00:00Z",
+        "url": "https://www.nhl.com/devils/news/new-concessions-2026-27-release-9-24-26",
+        "summary": "Devils, Prudential Center, Eastback Kitchen Present New Concessions for 2026-27 Season!",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 33 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -347,23 +347,23 @@
         "roster_news": true
       },
       {
+        "title": "Sharks announce Opening Weekend celebration and Opening Night street festival",
+        "published_at": "2026-09-24T18:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-announce-opening-weekend-celebration-and-opening-night-street-festival",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Sharks Foundation announces 2026-27 Goals for Kids beneficiaries",
         "published_at": "2026-09-23T17:11:03Z",
         "url": "https://www.nhl.com/sharks/news/sharks-foundation-announces-2026-27-goals-for-kids-beneficiaries",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "NHL Status Report: Stenberg makes preseason debut for Sharks",
-        "published_at": "2026-09-23T04:53:00Z",
-        "url": "https://www.nhl.com/sharks/news/nhl-status-report-news-and-notes-september-22-2026-x2600",
-        "summary": "Ovechkin may not play until season opener; Varlamov makes 1st NHL appearance since 2024",
-        "roster_news": false
       }
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -380,36 +380,36 @@
         "roster_news": true
       },
       {
+        "title": "\"It's time to just talk about us as the Winnipeg Jets\"",
+        "published_at": "2026-09-24T15:00:00Z",
+        "url": "https://www.nhl.com/jets/news/it-s-time-to-just-talk-about-us-as-the-winnipeg-jets",
+        "summary": "Mark Scheifele is now chasing Dale Hawerchuk for most goals and points in franchise history.",
+        "roster_news": false
+      },
+      {
         "title": "Jets and NHL announce consolidation of Winnipeg Jets’ history",
         "published_at": "2026-09-24T15:00:00Z",
         "url": "https://www.nhl.com/jets/news/jets-and-nhl-announce-consolidation-of-winnipeg-jets-history",
         "summary": "The Jets have united both franchise eras into one official statistical history.",
         "roster_news": false
-      },
-      {
-        "title": "Jets fall 2-1 in overtime to Oilers",
-        "published_at": "2026-09-23T02:32:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-fall-2-1-in-overtime-to-oilers",
-        "summary": "Alex Iafallo scored the lone goal for the Jets who wrap up their preseason schedule on Friday.",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-24T15:00:26Z",
+    "updated_at": "2026-09-24T18:00:26Z",
     "articles": [
+      {
+        "title": "Forslund Signs New Multi-Year Deal",
+        "published_at": "2026-09-24T16:10:00Z",
+        "url": "https://www.nhl.com/kraken/news/kraken-broadcaster-john-forslund-signs-new-multi-year-deal",
+        "summary": "The Kraken Hockey Network will continue to feature the best-in-the-business game announcer much to his delight, the franchise’s thrill and ongoing pleasure of faithful Seattle viewers",
+        "roster_news": true
+      },
       {
         "title": "Melanson Signs Three-Year Deal",
         "published_at": "2026-09-04T15:00:00Z",
         "url": "https://www.nhl.com/kraken/news/jacob-melanson-signs-three-year-deal",
         "summary": "The 23-year-old power forward quickly became a fan favorite for the Kraken last season, notching 188 hits in just 36 games. His NHL dream just got real with a contract valued at $1.45 million per...",
-        "roster_news": true
-      },
-      {
-        "title": "Seattle Kraken Sign Goaltender Victor Östman and Defenseman Ville Ottavainen to One-Year Deals",
-        "published_at": "2026-07-10T18:03:40Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-sign-goaltender-victor-ostman-and-defenseman-ville-ottavainen-to-one-year-deals",
-        "summary": "",
         "roster_news": true
       },
       {
