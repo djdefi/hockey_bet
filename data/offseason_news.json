@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
+        "title": "Lyon, Kulich exit Sabres' preseason game in Detroit",
+        "published_at": "2026-09-25T03:57:52Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-preseason-alex-lyon-jiri-kulich-trevor-kuntar",
+        "summary": "Lindy Ruff had encouraging updates on both players postgame.",
+        "roster_news": false
+      },
+      {
         "title": "Injuries and transactions | Lyon, Kulich exit game in DET",
         "published_at": "2026-09-25T02:16:00Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
         "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
-      },
-      {
-        "title": "At the Horn | Red Wings 3 - Sabres 2 (OT)",
-        "published_at": "2026-09-25T01:59:42Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-red-wings-recap-highlights",
-        "summary": "Trevor Kuntar scored in the OT loss.",
-        "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Eichel Lifts Golden Knights to 5-4 Preseason OT Win Over Mammoth",
+        "published_at": "2026-09-25T05:36:48Z",
+        "url": "https://www.nhl.com/goldenknights/news/eichel-lifts-golden-knights-to-5-4-preseason-ot-win-over-mammoth",
+        "summary": "Vegas wins its third straight preseason game on Thursday at T-Mobile Arena",
+        "roster_news": false
+      },
+      {
         "title": "Morning Skate Report: Sept. 24, 2026",
         "published_at": "2026-09-24T16:15:54Z",
         "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-24-2026",
         "summary": "The Golden Knights open their home preseason slate against Utah on Thursday at T-Mobile Arena",
         "roster_news": false
-      },
-      {
-        "title": "Vegas Outlasts San Jose 2-1 in Preseason Shootout",
-        "published_at": "2026-09-23T05:09:24Z",
-        "url": "https://www.nhl.com/goldenknights/news/vegas-outlasts-san-jose-2-1-in-preseason-shootout",
-        "summary": "Golden Knights return home to battle the Utah Mammoth on Thursday at T-Mobile Arena",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,7 +182,7 @@
         "roster_news": true
       },
       {
-        "title": "LIVE BLOG: Utah vs Vegas, Preseason Game #3",
+        "title": "RECAP: Vegas 5, Utah 4 OT",
         "published_at": "2026-09-25T02:00:00Z",
         "url": "https://www.nhl.com/utah/news/utah-vs-vegas-preseason-game-3-live-blog-9-24-26",
         "summary": "",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
-        "title": "LIVE STREAM: Ducks at Sharks (Preseason)",
-        "published_at": "2026-09-25T01:08:00Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-live-stream-6336966277112",
-        "summary": "Watch the live stream as the Ducks take on the Kings in preseason action at Honda Center",
-        "roster_news": false
-      },
-      {
         "title": "PREVIEW: Ducks Make Their Way to San Jose",
         "published_at": "2026-09-24T19:20:43Z",
         "url": "https://www.nhl.com/ducks/news/preview-ducks-make-their-way-to-san-jose",
         "summary": "Anaheim makes it way up the coast to take on the Sharks. Puck drop is set for 7 p.m. PT and will be live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
         "roster_news": false
+      },
+      {
+        "title": "PREVIEW: Ducks and Kings Face Off in First of Two Preseason Meetings",
+        "published_at": "2026-09-23T18:58:39Z",
+        "url": "https://www.nhl.com/ducks/news/preview-ducks-and-kings-face-off-in-first-of-two-preseason-meetings",
+        "summary": "Puck drop set for 7 p.m. PT at Honda Center and will be aired on FOXLA+ (KCOP-13) and live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
+        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Predators Assign Ozzy Wiesblatt to Milwaukee (AHL)",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-25T03:00:28Z",
+    "updated_at": "2026-09-25T06:00:34Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "When Defense is the Best Offense",
+        "published_at": "2026-09-25T04:53:20Z",
+        "url": "https://www.nhl.com/kraken/news/final-buzzer-calgary-flames-seattle-kraken-preseason-game-recap-924",
+        "summary": "Kraken come back from 3-1 deficit on sticks and slick moves of defense partners Brandon Montour and Ryker Evans. Matty Beniers, Berkly Catton, Philipp Grubauer pull off shootout win",
+        "roster_news": false
+      },
+      {
         "title": "Flames vs. Kraken | 6:40 p.m.",
         "published_at": "2026-09-24T04:16:38Z",
         "url": "https://www.nhl.com/kraken/news/calgary-flames-seattle-kraken-game-preview-projected-lines-0924",
         "summary": "",
-        "roster_news": false
-      },
-      {
-        "title": "A Childhood Dream Of Ball Hockey Revisited",
-        "published_at": "2026-09-23T03:15:46Z",
-        "url": "https://www.nhl.com/kraken/news/hubbard-homestead-sport-court-northgate-one-roof-foundation",
-        "summary": "Several top Kraken prospects participated with local youth in the opening of the Hubbard Homestead Sport Court, a venture spearheaded by the One Roof Foundation with additional funding from King...",
         "roster_news": false
       }
     ]
