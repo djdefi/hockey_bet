@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,11 +33,11 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
-        "title": "Injuries and transactions | Sabres sign Grzelcyk to 1-year deal",
-        "published_at": "2026-09-25T02:16:00Z",
+        "title": "Injuries and transactions | Sabres trim camp roster to 29",
+        "published_at": "2026-09-25T16:39:00Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
         "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": true
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Caps Continue to Seek Chemistry",
+        "published_at": "2026-09-25T17:43:53Z",
+        "url": "https://www.nhl.com/capitals/news/caps-continue-to-seek-chemistry",
+        "summary": "Ovechkin won't play in preseason, but otherwise Caps will ice varsity roster vs. B's",
+        "roster_news": false
+      },
+      {
         "title": "Caps Host Bruins in Lone Cap One Exhibition",
         "published_at": "2026-09-24T20:10:07Z",
         "url": "https://www.nhl.com/capitals/news/caps-host-bruins-in-lone-cap-one-exhibition",
         "summary": "Most Caps regulars expected to play Friday in DC",
         "roster_news": false
-      },
-      {
-        "title": "Washington Capitals and CACI Launch Good Dogs for Great Americans in Support of America’s VetDogs",
-        "published_at": "2026-09-24T12:28:32Z",
-        "url": "https://www.nhl.com/capitals/news/washington-capitals-and-caci-launch-good-dogs-for-great-americans-in-support-of-america-s-vetdogs",
-        "summary": "CACI to donate funds to America’s VetDogs for every Capitals blocked shot starting this season, helping veterans regain independence through specially trained service dogs",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
+        "title": "Devils 'NHL Group' Back to Work | NOTEBOOK",
+        "published_at": "2026-09-25T15:46:37Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-25-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Devils Rally Late, but Rangers Win in Shootout | GAME STORY",
         "published_at": "2026-09-25T01:51:00Z",
         "url": "https://www.nhl.com/devils/news/game-story-2026010045",
         "summary": "Amadeus Lombardi scored a late goal to tie it, but Devils fell in a shootout at MSG.",
         "roster_news": false
-      },
-      {
-        "title": "QUICK RECAP: Rangers 4, Devils 3 (SO)",
-        "published_at": "2026-09-24T22:31:00Z",
-        "url": "https://www.nhl.com/devils/news/live-updates-2026010045",
-        "summary": "",
-        "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Predators Assign Ozzy Wiesblatt to Milwaukee (AHL)",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-25T15:00:28Z",
+    "updated_at": "2026-09-25T18:00:34Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Old Pal Helps Samoskevich Make Speedy Kraken Transition",
+        "published_at": "2026-09-25T15:05:00Z",
+        "url": "https://www.nhl.com/kraken/news/mackie-samoskevich-matty-beniers-kraken-transition",
+        "summary": "For new Kraken forward Mackie Samoskevich, one of the league’s faster skaters, a reunion with old college teammate and current training camp linemate Matty Beniers has helped ease the way toward...",
+        "roster_news": false
+      },
+      {
         "title": "When Defense is the Best Offense",
         "published_at": "2026-09-25T04:53:20Z",
         "url": "https://www.nhl.com/kraken/news/final-buzzer-calgary-flames-seattle-kraken-preseason-game-recap-924",
         "summary": "Kraken come back from 3-1 deficit on sticks and slick moves of defense partners Brandon Montour and Ryker Evans. Matty Beniers, Berkly Catton, Philipp Grubauer pull off shootout win",
-        "roster_news": false
-      },
-      {
-        "title": "Flames vs. Kraken | 6:40 p.m.",
-        "published_at": "2026-09-24T04:16:38Z",
-        "url": "https://www.nhl.com/kraken/news/calgary-flames-seattle-kraken-game-preview-projected-lines-0924",
-        "summary": "",
         "roster_news": false
       }
     ]
