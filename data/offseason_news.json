@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -50,23 +50,23 @@
         "roster_news": true
       },
       {
-        "title": "Benson and Doan signature items headline new concessions for 2026-27",
-        "published_at": "2026-09-24T21:21:49Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-new-concession-items-2026-27",
-        "summary": "Find \"The Dough-ner\" and \"The Benson BarnBurger\" at KeyBank Center in 2026-27.",
+        "title": "Injuries and transactions | Lyon, Kulich exit game in DET",
+        "published_at": "2026-09-25T02:16:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
       },
       {
-        "title": "‘It’s been transformational’ | Buffalo Museum of Science cuts ribbon on Science Stadium",
-        "published_at": "2026-09-24T20:23:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-bills-bandits-museum-of-science-stadium",
-        "summary": "New exhibit, a collaboration with Sabres, Bills, Bandits, celebrates Buffalo sports and explores career options in the field.",
+        "title": "At the Horn | Red Wings 3 - Sabres 2 (OT)",
+        "published_at": "2026-09-25T01:59:42Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-red-wings-recap-highlights",
+        "summary": "Trevor Kuntar scored in the OT loss.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "LIVE BLOG: Utah vs Vegas, Preseason Game #3",
+        "published_at": "2026-09-25T02:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-vs-vegas-preseason-game-3-live-blog-9-24-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Utah Travels to Vegas for Third Preseason Game",
         "published_at": "2026-09-24T16:47:20Z",
         "url": "https://www.nhl.com/utah/news/utah-travels-to-to-vegas-for-third-preseason-game-game-preview-9-24-26",
         "summary": "The Mammoth face the Golden Knights in Utah’s final road preseason game",
         "roster_news": false
-      },
-      {
-        "title": "Utah Holds Practice, Makes Cuts on Wednesday",
-        "published_at": "2026-09-23T23:07:42Z",
-        "url": "https://www.nhl.com/utah/news/utah-holds-practice-makes-cuts-on-wednesday-notebook-9-23-26",
-        "summary": "The Mammoth were back to work ahead of the final two preseason games of the year",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -215,23 +215,23 @@
         "roster_news": true
       },
       {
+        "title": "LIVE STREAM: Ducks at Sharks (Preseason)",
+        "published_at": "2026-09-25T01:08:00Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-live-stream-6336966277112",
+        "summary": "Watch the live stream as the Ducks take on the Kings in preseason action at Honda Center",
+        "roster_news": false
+      },
+      {
         "title": "PREVIEW: Ducks Make Their Way to San Jose",
         "published_at": "2026-09-24T19:20:43Z",
         "url": "https://www.nhl.com/ducks/news/preview-ducks-make-their-way-to-san-jose",
         "summary": "Anaheim makes it way up the coast to take on the Sharks. Puck drop is set for 7 p.m. PT and will be live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
         "roster_news": false
-      },
-      {
-        "title": "PREVIEW: Ducks and Kings Face Off in First of Two Preseason Meetings",
-        "published_at": "2026-09-23T18:58:39Z",
-        "url": "https://www.nhl.com/ducks/news/preview-ducks-and-kings-face-off-in-first-of-two-preseason-meetings",
-        "summary": "Puck drop set for 7 p.m. PT at Honda Center and will be aired on FOXLA+ (KCOP-13) and live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
-        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -281,23 +281,23 @@
         "roster_news": true
       },
       {
-        "title": "LIVE UPDATES: Devils 1, Rangers 0",
-        "published_at": "2026-09-24T22:31:00Z",
-        "url": "https://www.nhl.com/devils/news/live-updates-2026010045",
-        "summary": "",
+        "title": "Devils Rally Late, but Rangers Win in Shootout | GAME STORY",
+        "published_at": "2026-09-25T01:51:00Z",
+        "url": "https://www.nhl.com/devils/news/game-story-2026010045",
+        "summary": "Amadeus Lombardi scored a late goal to tie it, but Devils fell in a shootout at MSG.",
         "roster_news": false
       },
       {
-        "title": "Devils Lineup, Lines, More vs. Rangers | PREVIEW",
-        "published_at": "2026-09-24T16:27:00Z",
-        "url": "https://www.nhl.com/devils/news/preview-2026010045",
+        "title": "QUICK RECAP: Rangers 4, Devils 3 (SO)",
+        "published_at": "2026-09-24T22:31:00Z",
+        "url": "https://www.nhl.com/devils/news/live-updates-2026010045",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Predators Assign Ozzy Wiesblatt to Milwaukee (AHL)",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preds Score Five in Loss to Hurricanes",
+        "published_at": "2026-09-25T02:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-score-five-in-loss-to-hurricanes-2026-09-24",
+        "summary": "Nashville Allows Carolina Comeback as Preseason Continues",
+        "roster_news": false
+      },
+      {
         "title": "Preseason Game Day: Preds at Hurricanes, Sept. 24",
         "published_at": "2026-09-24T11:00:00Z",
         "url": "https://www.nhl.com/predators/news/preseason-game-day-preds-at-hurricanes-sept-24-2026-09-24",
         "summary": "Nashville Travels to Carolina for Penultimate Preseason Game",
         "roster_news": false
-      },
-      {
-        "title": "Preds Newcomers Building Chemistry, Camaraderie With Teammates as Training Camp Continues",
-        "published_at": "2026-09-23T20:45:57Z",
-        "url": "https://www.nhl.com/predators/news/preds-newcomers-building-chemistry-camaraderie-with-teammates-as-training-camp-continues-2026-09-23",
-        "summary": "Nashville's Newcomers Building Chemistry, Camaraderie With Teammates",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-25T00:00:48Z",
+    "updated_at": "2026-09-25T03:00:28Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
