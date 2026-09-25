@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,20 +33,20 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
+      {
+        "title": "Injuries and transactions | Sabres sign Grzelcyk to 1-year deal",
+        "published_at": "2026-09-25T02:16:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
+        "roster_news": true
+      },
       {
         "title": "Sabres announce 2026 training camp roster",
         "published_at": "2026-09-15T19:56:34Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-roster-2026",
         "summary": "Roster will be cut down from 53 to 23 before season opener.",
-        "roster_news": true
-      },
-      {
-        "title": "Sabres sign Ostlund to 8-year contract extension",
-        "published_at": "2026-09-14T15:26:01Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-noah-ostlund-contract-extension",
-        "summary": "The forward had 27 points in 60 games as a rookie last season.",
         "roster_news": true
       },
       {
@@ -57,16 +57,16 @@
         "roster_news": false
       },
       {
-        "title": "Injuries and transactions | Lyon, Kulich exit game in DET",
-        "published_at": "2026-09-25T02:16:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
-        "summary": "Keep up with the latest Sabres roster news.",
+        "title": "At the Horn | Red Wings 3 - Sabres 2 (OT)",
+        "published_at": "2026-09-25T01:59:42Z",
+        "url": "https://www.nhl.com/sabres/news/sabres-red-wings-recap-highlights",
+        "summary": "Trevor Kuntar scored in the OT loss.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Game Preview: Wild at Stars",
-        "published_at": "2026-09-23T13:00:25Z",
-        "url": "https://www.nhl.com/wild/news/game-preview-at-dallas-stars-092226",
+        "title": "Game Preview: Stars vs. Wild",
+        "published_at": "2026-09-25T13:00:10Z",
+        "url": "https://www.nhl.com/wild/news/game-preview-vs-dallas-stars-092426",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Minnesota Wild Games Available to Spectrum Customers",
-        "published_at": "2026-09-23T12:25:24Z",
-        "url": "https://www.nhl.com/wild/news/minnesota-wild-games-available-to-spectrum-customers-092326",
+        "title": "Game Preview: Wild at Stars",
+        "published_at": "2026-09-23T13:00:25Z",
+        "url": "https://www.nhl.com/wild/news/game-preview-at-dallas-stars-092226",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Utah Falls in Overtime to Vegas",
+        "published_at": "2026-09-25T14:39:20Z",
+        "url": "https://www.nhl.com/utah/news/utah-falls-in-overtime-to-vegas-game-story-9-24-26",
+        "summary": "The Mammoth fought hard against a veteran Golden Knights team; Utah had three defensemen score in the loss",
+        "roster_news": false
+      },
+      {
         "title": "RECAP: Vegas 5, Utah 4 OT",
         "published_at": "2026-09-25T02:00:00Z",
         "url": "https://www.nhl.com/utah/news/utah-vs-vegas-preseason-game-3-live-blog-9-24-26",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Utah Travels to Vegas for Third Preseason Game",
-        "published_at": "2026-09-24T16:47:20Z",
-        "url": "https://www.nhl.com/utah/news/utah-travels-to-to-vegas-for-third-preseason-game-game-preview-9-24-26",
-        "summary": "The Mammoth face the Golden Knights in Utah’s final road preseason game",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Bjugstad, Kovacevic Updates | INJURY REPORT",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Predators Assign Ozzy Wiesblatt to Milwaukee (AHL)",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Nashville Predators to Wear Hometown Remix Jerseys 10 Times in 2026-27 Season; Will Also Honor Dolly Parton",
+        "published_at": "2026-09-25T13:30:00Z",
+        "url": "https://www.nhl.com/predators/news/nashville-predators-to-wear-hometown-remix-jerseys-10-times-in-2026-27-season-will-also-honor-dolly-parton-2026-09-25",
+        "summary": "Predators’ Hometown Remix Jerseys Will Pay Homage to Music City’s Roots",
+        "roster_news": false
+      },
+      {
         "title": "Preds Score Five in Loss to Hurricanes",
         "published_at": "2026-09-25T02:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-score-five-in-loss-to-hurricanes-2026-09-24",
         "summary": "Nashville Allows Carolina Comeback as Preseason Continues",
         "roster_news": false
-      },
-      {
-        "title": "Preseason Game Day: Preds at Hurricanes, Sept. 24",
-        "published_at": "2026-09-24T11:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preseason-game-day-preds-at-hurricanes-sept-24-2026-09-24",
-        "summary": "Nashville Travels to Carolina for Penultimate Preseason Game",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
-        "title": "Jets look to reignite special teams",
-        "published_at": "2026-09-24T20:16:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-look-to-reignite-special-teams",
-        "summary": "Morrissey: \"I think a goal would be a top 10 team in both categories.\"",
+        "title": "Jets announce 2026-27 broadcast schedule",
+        "published_at": "2026-09-25T13:48:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-announce-2026-27-broadcast-schedule",
+        "summary": "Jets games will air across TSN, Sportsnet, Amazon Prime, with every game available on CJOB and Power 97 radio.",
         "roster_news": false
       },
       {
-        "title": "Jets and NHL announce consolidation of Winnipeg Jets’ history",
-        "published_at": "2026-09-24T15:00:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-and-nhl-announce-consolidation-of-winnipeg-jets-history",
-        "summary": "The Jets have united both franchise eras into one official statistical history.",
+        "title": "GAMEDAY: Jets at Avalanche",
+        "published_at": "2026-09-25T13:41:00Z",
+        "url": "https://www.nhl.com/jets/news/gameday-jets-at-avalanche-x6209",
+        "summary": "7 CT - TV: nhl.com/jets; Radio: 680 CJOB / Power 97",
         "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-25T12:00:41Z",
+    "updated_at": "2026-09-25T15:00:28Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
