@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Injuries and transactions | Sabres trim camp roster to 29",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Devils Make Roster Cuts | TRANSACTION",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 28 Players",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Preseason Game Day: Hurricanes vs. Preds, Sept. 26",
+        "published_at": "2026-09-26T11:00:00Z",
+        "url": "https://www.nhl.com/predators/news/preseason-game-day-hurricanes-vs-preds-sept-26-2026-09-26",
+        "summary": "Nashville Hosts Carolina to Conclude Preseason Schedule",
+        "roster_news": false
+      },
+      {
         "title": "Preds Broadcaster Completes Preds Adult Learn to Play Hockey Program at Ford Ice Center",
         "published_at": "2026-09-25T19:00:00Z",
         "url": "https://www.nhl.com/predators/news/preds-broadcaster-completes-preds-adult-learn-to-play-hockey-program-at-ford-ice-center-2026-09-25",
         "summary": "Max Herz Blogs on His Summer Experience On the Ice",
         "roster_news": false
-      },
-      {
-        "title": "Bridgestone Arena's 30th Anniversary: PredsFest Set to Celebrate Three Decades of Music in Nashville",
-        "published_at": "2026-09-25T18:00:00Z",
-        "url": "https://www.nhl.com/predators/news/bridgestone-arena-s-30th-anniversary-predsfest-set-to-celebrate-three-decades-of-music-in-nashville-2026-09-25",
-        "summary": "Celebrate the Music, People and Memories That Make Bridgestone Arena One of the World's Top Venues",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-26T09:00:24Z",
+    "updated_at": "2026-09-26T12:00:27Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
