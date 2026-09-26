@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -17,11 +17,11 @@
         "roster_news": true
       },
       {
-        "title": "Avalanche Reduce Roster by One",
-        "published_at": "2026-09-22T14:49:21Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-one",
-        "summary": "Preseason Roster Now Sits at 44",
-        "roster_news": true
+        "title": "T.J. Hughes Scores Hat Trick, Leads Avalanche Past Jets 5-2 in Preseason Action",
+        "published_at": "2026-09-26T03:26:00Z",
+        "url": "https://www.nhl.com/avalanche/news/game-recap-09-25-26",
+        "summary": "Schwartz and Cale Makar Add Tallies for Colorado",
+        "roster_news": false
       },
       {
         "title": "Jaden Schwartz Excited to Join Avalanche: “It’s a Great Opportunity”",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Injuries and transactions | Sabres trim camp roster to 29",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Kyrou Lifts Caps Over B's in OT",
+        "published_at": "2026-09-26T03:48:00Z",
+        "url": "https://www.nhl.com/capitals/news/kyrou-lifts-caps-over-b-s-in-ot",
+        "summary": "Kyrou cashes in and wins it for Washington on Caps' third PPG in as many tries",
+        "roster_news": false
+      },
+      {
         "title": "Caps Continue to Seek Chemistry",
         "published_at": "2026-09-25T17:43:53Z",
         "url": "https://www.nhl.com/capitals/news/caps-continue-to-seek-chemistry",
         "summary": "Ovechkin won't play in preseason, but otherwise Caps will ice varsity roster vs. B's",
         "roster_news": false
-      },
-      {
-        "title": "Caps Host Bruins in Lone Cap One Exhibition",
-        "published_at": "2026-09-24T20:10:07Z",
-        "url": "https://www.nhl.com/capitals/news/caps-host-bruins-in-lone-cap-one-exhibition",
-        "summary": "Most Caps regulars expected to play Friday in DC",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Roster Moves",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Devils Make Roster Cuts | TRANSACTION",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 28 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -380,23 +380,23 @@
         "roster_news": true
       },
       {
+        "title": "Avs knock off Jets in Winnipeg's preseason finale 5-2",
+        "published_at": "2026-09-26T03:05:00Z",
+        "url": "https://www.nhl.com/jets/news/avs-knock-off-jets-in-winnipeg-s-preseason-finale-5-2",
+        "summary": "Vlad Namestnikov and Nino Niederreiter each had a goal and an assist.",
+        "roster_news": false
+      },
+      {
         "title": "Jets announce 2026-27 broadcast schedule",
         "published_at": "2026-09-25T13:48:00Z",
         "url": "https://www.nhl.com/jets/news/jets-announce-2026-27-broadcast-schedule",
         "summary": "Jets games will air across TSN, Sportsnet, Amazon Prime, with every game available on CJOB and Power 97 radio.",
         "roster_news": false
-      },
-      {
-        "title": "GAMEDAY: Jets at Avalanche",
-        "published_at": "2026-09-25T13:41:00Z",
-        "url": "https://www.nhl.com/jets/news/gameday-jets-at-avalanche-x6209",
-        "summary": "7:30 CT - TV: nhl.com/jets; Radio: 680 CJOB / Power 97",
-        "roster_news": false
       }
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-26T03:00:25Z",
+    "updated_at": "2026-09-26T06:00:28Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Kraken at Canucks | 4:00 p.m.",
+        "published_at": "2026-09-26T04:55:27Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-at-vancouver-canucks-game-preview-projected-lines-0926",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Old Pal Helps Samoskevich Make Speedy Kraken Transition",
         "published_at": "2026-09-25T15:05:00Z",
         "url": "https://www.nhl.com/kraken/news/mackie-samoskevich-matty-beniers-kraken-transition",
         "summary": "For new Kraken forward Mackie Samoskevich, one of the league’s faster skaters, a reunion with old college teammate and current training camp linemate Matty Beniers has helped ease the way toward...",
-        "roster_news": false
-      },
-      {
-        "title": "When Defense is the Best Offense",
-        "published_at": "2026-09-25T04:53:20Z",
-        "url": "https://www.nhl.com/kraken/news/final-buzzer-calgary-flames-seattle-kraken-preseason-game-recap-924",
-        "summary": "Kraken come back from 3-1 deficit on sticks and slick moves of defense partners Brandon Montour and Ryker Evans. Matty Beniers, Berkly Catton, Philipp Grubauer pull off shootout win",
         "roster_news": false
       }
     ]
