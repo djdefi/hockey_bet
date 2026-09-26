@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Injuries and transactions | Sabres trim camp roster to 29",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -116,23 +116,23 @@
         "roster_news": true
       },
       {
+        "title": "Lindgren Faces Flyers in Philly",
+        "published_at": "2026-09-26T19:05:50Z",
+        "url": "https://www.nhl.com/capitals/news/lindgren-faces-flyers-in-philly",
+        "summary": "In front of Lindgren, Caps kids take on a formidable Philly lineup",
+        "roster_news": false
+      },
+      {
         "title": "Caps Close Out Exhibition Slate in Philly",
         "published_at": "2026-09-26T13:15:51Z",
         "url": "https://www.nhl.com/capitals/news/caps-close-out-exhibition-slate-in-philly",
         "summary": "Caps expected to ice youthful lineup in preseason finale",
         "roster_news": false
-      },
-      {
-        "title": "Kyrou Lifts Caps Over B's in OT",
-        "published_at": "2026-09-26T03:48:00Z",
-        "url": "https://www.nhl.com/capitals/news/kyrou-lifts-caps-over-b-s-in-ot",
-        "summary": "Kyrou cashes in and wins it for Washington on Caps' third PPG in as many tries",
-        "roster_news": false
       }
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,8 +198,15 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
+      {
+        "title": "Ducks Make More Training Camp Moves to Reduce Roster",
+        "published_at": "2026-09-26T19:52:13Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-make-more-training-camp-moves-to-reduce-roster",
+        "summary": "Ducks Training Camp roster reduced to 30 players (17 forwards, 10 defensemen and three goaltenders)",
+        "roster_news": true
+      },
       {
         "title": "Ducks Make More Training Camp Roster Moves",
         "published_at": "2026-09-24T17:30:41Z",
@@ -208,11 +215,11 @@
         "roster_news": true
       },
       {
-        "title": "Ducks Sign Washe to Four-Year Extension",
-        "published_at": "2026-09-19T20:48:51Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-sign-washe-to-four-year-extension",
-        "summary": "",
-        "roster_news": true
+        "title": "LIVE STREAM: Ducks at Kings (Preseason)",
+        "published_at": "2026-09-26T19:55:03Z",
+        "url": "https://www.nhl.com/ducks/news/live-stream-ducks-at-kings-preseason",
+        "summary": "Watch the live stream as the Ducks take on the Kings in preseason action at Crypto.com Arena in LA",
+        "roster_news": false
       },
       {
         "title": "PREVIEW: Ducks Close Out Preseason with Visit to Kings",
@@ -220,30 +227,23 @@
         "url": "https://www.nhl.com/ducks/news/ducks-close-out-preseason-with-visit-to-kings",
         "summary": "Puck drop is set for 1 p.m. PT and will be aired on Fox 11 Plus (KCOP 13) and live streamed on AnaheimDucks.com and the Honda Center + Ducks app",
         "roster_news": false
-      },
-      {
-        "title": "Ducks Make Additional Training Camp Moves",
-        "published_at": "2026-09-25T18:26:39Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-make-training-camp-moves-to-reduce-roster",
-        "summary": "Ducks Training Camp roster reduced to 35 players (20 forwards, 12 defensemen and three goaltenders)",
-        "roster_news": false
       }
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
-        "published_at": "2026-09-24T19:00:00Z",
-        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-24-2026",
+        "published_at": "2026-09-26T18:16:02Z",
+        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-26-2026",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "Day 5 Notes – Day 5 Camp Update – Zuccarello Latest, Perry Update, Lines/Pairs Change + Kings Reduce Camp Roster",
-        "published_at": "2026-09-22T00:30:00Z",
-        "url": "https://www.nhl.com/kings/news/insider-day-5-training-camp-notes-zuccarello-latest-perry-update-lines-pairs-roster-moves",
+        "title": "LA Kings Announce Training Camp Roster Moves",
+        "published_at": "2026-09-24T19:00:00Z",
+        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-24-2026",
         "summary": "",
         "roster_news": true
       },
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
@@ -297,20 +297,20 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
+      {
+        "title": "Predators Claim William Trudeau on Waivers From NY Rangers",
+        "published_at": "2026-09-26T19:15:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-claim-william-trudeau-on-waivers-from-ny-rangers-2026-09-26",
+        "summary": "Defenseman Owns 260 Games of AHL Experience Since Turning Pro in 2022-23",
+        "roster_news": true
+      },
       {
         "title": "Predators Reduce Training Camp Roster to 28 Players",
         "published_at": "2026-09-25T20:00:00Z",
         "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-28-players-2026-09-25",
         "summary": "Predators Conclude Preseason Tomorrow at Home vs. Carolina; PredsFest Presented by Ticketmaster Begins at 11 a.m. CT",
-        "roster_news": true
-      },
-      {
-        "title": "Predators Assign Ozzy Wiesblatt to Milwaukee (AHL)",
-        "published_at": "2026-09-24T19:00:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-assign-ozzy-wiesblatt-to-milwaukee-ahl-2026-09-24",
-        "summary": "Nashville Takes on Carolina in Greensboro Tonight for its Third of Four Preseason Games",
         "roster_news": true
       },
       {
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-26T18:00:24Z",
+    "updated_at": "2026-09-26T21:00:25Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
