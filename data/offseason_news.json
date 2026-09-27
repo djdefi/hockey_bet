@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Vegas Falls 4-2 to San Jose in Final Preseason Game",
+        "published_at": "2026-09-27T05:12:12Z",
+        "url": "https://www.nhl.com/goldenknights/news/vegas-falls-4-2-to-san-jose-in-final-preseason-game",
+        "summary": "Golden Knights to open 2026-27 regular season on Tuesday vs. Blackhawks at T-Mobile Arena",
+        "roster_news": false
+      },
+      {
         "title": "Morning Skate Report: Sept. 26, 2026",
         "published_at": "2026-09-26T15:27:15Z",
         "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-26-2026",
         "summary": "The Golden Knights close out the preseason against the Sharks at T-Mobile Arena on Saturday",
         "roster_news": false
-      },
-      {
-        "title": "Golden Knights Announce Plans for Ninth Remembrance of 1 October",
-        "published_at": "2026-09-25T18:25:53Z",
-        "url": "https://www.nhl.com/goldenknights/news/golden-knights-announce-plans-for-ninth-remembrance-of-1-october",
-        "summary": "VGK Foundation partnering with Vitalant & Downtown Summerlin to host annual 1 October Memorial Blood Drive outside City National Arena plus private practice event for special guests",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Moves to Reduce Roster",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 26 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-27T03:00:24Z",
+    "updated_at": "2026-09-27T06:00:28Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -416,7 +416,7 @@
         "title": "Montour, Kraken Look To Build Off Solid Preseason",
         "published_at": "2026-09-27T01:46:40Z",
         "url": "https://www.nhl.com/kraken/news/final-buzzer-seattle-kraken-vancouver-canucks-preseason-game-recap-0926",
-        "summary": "The Kraken defenseman had a first period goal and an assist ahead of Berkly Catton notching a third period marker but they still lost their fourth and final preseason affair ahead of Thursday...",
+        "summary": "Kraken defenseman Brandon Montour had a first period goal and an assist ahead of Berkly Catton notching a third period marker but their team still lost their fourth and final preseason affair...",
         "roster_news": false
       },
       {
