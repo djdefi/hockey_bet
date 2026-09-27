@@ -1,19 +1,19 @@
 {
   "COL": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
+      {
+        "title": "Avalanche Reduce Roster by 12",
+        "published_at": "2026-09-27T16:30:25Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-12",
+        "summary": "Preseason Roster Now Sits at 25",
+        "roster_news": true
+      },
       {
         "title": "Avalanche Reduce Roster to 38 Players",
         "published_at": "2026-09-24T21:11:39Z",
         "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-to-38-players",
         "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "Avalanche Reduce Roster by Five",
-        "published_at": "2026-09-23T20:32:10Z",
-        "url": "https://www.nhl.com/avalanche/news/avalanche-reduce-roster-by-five-x9895",
-        "summary": "Preseason Roster Now Sits at 39",
         "roster_news": true
       },
       {
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -149,23 +149,23 @@
         "roster_news": true
       },
       {
+        "title": "Golden Knights Enter 10th Season Having Made Massive Impact",
+        "published_at": "2026-09-27T13:00:00Z",
+        "url": "https://www.nhl.com/goldenknights/news/golden-knights-entering-10th-season-having-made-massive-impact-on-vegas-and-nhl-x9148",
+        "summary": "Las Vegas' first major league pro sports team has been a spectacular success",
+        "roster_news": false
+      },
+      {
         "title": "Vegas Falls 4-2 to San Jose in Final Preseason Game",
         "published_at": "2026-09-27T05:12:12Z",
         "url": "https://www.nhl.com/goldenknights/news/vegas-falls-4-2-to-san-jose-in-final-preseason-game",
         "summary": "Golden Knights to open 2026-27 regular season on Tuesday vs. Blackhawks at T-Mobile Arena",
         "roster_news": false
-      },
-      {
-        "title": "Morning Skate Report: Sept. 26, 2026",
-        "published_at": "2026-09-26T15:27:15Z",
-        "url": "https://www.nhl.com/goldenknights/news/morning-skate-report-sept-26-2026",
-        "summary": "The Golden Knights close out the preseason against the Sharks at T-Mobile Arena on Saturday",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "Utah Blanks Colorado to Wrap Preseason",
+        "published_at": "2026-09-27T15:20:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-blanks-colorado-to-wrap-preseason-game-story-9-26-26",
+        "summary": "Jack McBain and Logan Cooley scored for the Mammoth, Karel Vejmelka had a 25 save shutout",
+        "roster_news": false
+      },
+      {
         "title": "RECAP: Utah 2, Colorado 0",
         "published_at": "2026-09-26T21:00:00Z",
         "url": "https://www.nhl.com/utah/news/colorado-vs-utah-preseason-game-4-live-blog-9-26-26",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "Utah Wraps Preseason Slate at Home",
-        "published_at": "2026-09-26T15:50:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-wraps-preseason-slate-at-home-game-preview-9-26-26",
-        "summary": "The Mammoth will host the Colorado Avalanche at the Delta Center",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Moves to Reduce Roster",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 26 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-27T15:00:38Z",
+    "updated_at": "2026-09-27T18:00:19Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
