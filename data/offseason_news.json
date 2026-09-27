@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 12",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Moves to Reduce Roster",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,19 +264,19 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
-        "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
-        "published_at": "2026-09-25T23:34:57Z",
-        "url": "https://www.nhl.com/devils/news/preview-2026010062",
+        "title": "Devils Place 6 on Waivers, Claim G Poirier | TRANSACTIONS",
+        "published_at": "2026-09-27T18:05:00Z",
+        "url": "https://www.nhl.com/devils/news/six-placed-on-waivers-transactions-9-27-26",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "Devils Make Roster Cuts | TRANSACTION",
-        "published_at": "2026-09-25T18:57:03Z",
-        "url": "https://www.nhl.com/devils/news/devils-make-roster-cuts-transaction-9-25-26",
+        "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
+        "published_at": "2026-09-25T23:34:57Z",
+        "url": "https://www.nhl.com/devils/news/preview-2026010062",
         "summary": "",
         "roster_news": true
       },
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 26 Players",
@@ -314,23 +314,23 @@
         "roster_news": true
       },
       {
+        "title": "Brunette Addresses Martin Assignment, Preds Practice Refresh",
+        "published_at": "2026-09-27T20:00:00Z",
+        "url": "https://www.nhl.com/predators/news/brunette-addresses-martin-assignment-preds-practice-refresh-2026-09-27",
+        "summary": "Nashville's Head Coach Talks Brady Martin's Development After Assignment to Milwaukee",
+        "roster_news": false
+      },
+      {
         "title": "Preds Conclude Preseason With Loss to Hurricanes",
         "published_at": "2026-09-26T22:30:00Z",
         "url": "https://www.nhl.com/predators/news/preds-conclude-preseason-with-loss-to-hurricanes-2026-09-26",
         "summary": "Nashville Left Disappointed With Effort in Final Exhibition Outing",
         "roster_news": false
-      },
-      {
-        "title": "Preseason Game Day: Hurricanes vs. Preds, Sept. 26",
-        "published_at": "2026-09-26T11:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preseason-game-day-hurricanes-vs-preds-sept-26-2026-09-26",
-        "summary": "Nashville Hosts Carolina to Conclude Preseason Schedule",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-27T18:00:19Z",
+    "updated_at": "2026-09-27T21:00:37Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
+        "title": "Center and Roommate of Attention",
+        "published_at": "2026-09-27T19:00:00Z",
+        "url": "https://www.nhl.com/kraken/news/berkly-catton-housemates-matty-beniers-mackie-samoskevich",
+        "summary": "When Seattle acquired Mackie Samoskevich, it was natural to room with former NCAA Michigan teammate Matty Beniers. Including Berkly Catton in the house harkens big seasons for all three",
+        "roster_news": false
+      },
+      {
         "title": "Montour, Kraken Look To Build Off Solid Preseason",
         "published_at": "2026-09-27T01:46:40Z",
         "url": "https://www.nhl.com/kraken/news/final-buzzer-seattle-kraken-vancouver-canucks-preseason-game-recap-0926",
         "summary": "Kraken defenseman Brandon Montour had a first period goal and an assist ahead of Berkly Catton notching a third period marker but their team still lost their fourth and final preseason affair...",
-        "roster_news": false
-      },
-      {
-        "title": "Kraken at Canucks | 4:00 p.m.",
-        "published_at": "2026-09-26T04:55:27Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-at-vancouver-canucks-game-preview-projected-lines-0926",
-        "summary": "",
         "roster_news": false
       }
     ]
