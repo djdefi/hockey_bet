@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster to 38 Players",
@@ -17,31 +17,24 @@
         "roster_news": true
       },
       {
+        "title": "Avalanche Falls 2-0 to Mammoth in Preseason Finale",
+        "published_at": "2026-09-26T23:51:37Z",
+        "url": "https://www.nhl.com/avalanche/news/game-recap-09-26-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "T.J. Hughes Scores Hat Trick, Leads Avalanche Past Jets 5-2 in Preseason Action",
         "published_at": "2026-09-26T03:26:00Z",
         "url": "https://www.nhl.com/avalanche/news/game-recap-09-25-26",
         "summary": "Jaden Schwartz and Cale Makar Add Tallies for Colorado",
         "roster_news": false
-      },
-      {
-        "title": "Jaden Schwartz Excited to Join Avalanche: “It’s a Great Opportunity”",
-        "published_at": "2026-09-23T16:15:00Z",
-        "url": "https://www.nhl.com/avalanche/news/jaden-schwartz-excited-to-join-avalanche",
-        "summary": "Veteran Forward Signed Three-Year Contract with Colorado in Offseason",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
-      {
-        "title": "Injuries and transactions | Sabres trim camp roster to 29",
-        "published_at": "2026-09-25T16:39:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
-        "summary": "Keep up with the latest Sabres roster news.",
-        "roster_news": true
-      },
       {
         "title": "Sabres announce 2026 training camp roster",
         "published_at": "2026-09-15T19:56:34Z",
@@ -50,23 +43,30 @@
         "roster_news": true
       },
       {
-        "title": "Sabres vs. Penguins | How to watch, lineup notes, and storylines",
-        "published_at": "2026-09-26T13:25:16Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-penguins-how-to-watch-lineup",
-        "summary": "The Sabres play their preseason finale at KeyBank Center.",
+        "title": "Sabres sign Ostlund to 8-year contract extension",
+        "published_at": "2026-09-14T15:26:01Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-noah-ostlund-contract-extension",
+        "summary": "The forward had 27 points in 60 games as a rookie last season.",
+        "roster_news": true
+      },
+      {
+        "title": "Luukkonen exits and Grzelcyk makes debut as Sabres drop final preseason contest to Penguins ",
+        "published_at": "2026-09-26T23:41:16Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-preseason-luukkonen-upl-grzelcyk-colten-ellis",
+        "summary": "Colten Ellis gets ready for potential opening-night start.",
         "roster_news": false
       },
       {
-        "title": "‘It’s such a special feeling’ | Sabres participate in 2nd-annual Community Day",
-        "published_at": "2026-09-25T20:25:51Z",
-        "url": "https://www.nhl.com/sabres/news/sabres-community-day-visits-st-mary-s-school-for-the-deaf",
-        "summary": "St. Mary’s School for the Deaf was one of the locations players visited Friday.",
+        "title": "Injuries and transactions | Updates on UPL, Lyon, Kulich",
+        "published_at": "2026-09-26T22:02:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -182,23 +182,23 @@
         "roster_news": true
       },
       {
+        "title": "LIVE BLOG: Colorado vs Utah, Preseason Game #4",
+        "published_at": "2026-09-26T21:00:00Z",
+        "url": "https://www.nhl.com/utah/news/colorado-vs-utah-preseason-game-4-live-blog-9-26-26",
+        "summary": "",
+        "roster_news": false
+      },
+      {
         "title": "Utah Wraps Preseason Slate at Home",
         "published_at": "2026-09-26T15:50:00Z",
         "url": "https://www.nhl.com/utah/news/utah-wraps-preseason-slate-at-home-game-preview-9-26-26",
         "summary": "The Mammoth will host the Colorado Avalanche at the Delta Center",
         "roster_news": false
-      },
-      {
-        "title": "Utah Holds Practice at Delta Center on Friday",
-        "published_at": "2026-09-26T00:00:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-holds-practice-at-delta-center-on-friday-notebook-9-25-26",
-        "summary": "The Mammoth will host its final preseason game tomorrow; Utah made more cuts on Friday",
-        "roster_news": false
       }
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Ducks Make More Training Camp Moves to Reduce Roster",
@@ -218,7 +218,7 @@
         "title": "LIVE STREAM: Ducks at Kings (Preseason)",
         "published_at": "2026-09-26T19:55:03Z",
         "url": "https://www.nhl.com/ducks/news/live-stream-ducks-at-kings-preseason",
-        "summary": "Watch the live stream as the Ducks take on the Kings in preseason action at Crypto.com Arena in LA",
+        "summary": "Watch live as the Ducks take on the Kings in preseason action at Crypto.com Arena in LA",
         "roster_news": false
       },
       {
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -248,23 +248,23 @@
         "roster_news": true
       },
       {
-        "title": "2026 Preseason Preview - Game 4, LAK vs. ANA",
-        "published_at": "2026-09-26T16:09:17Z",
-        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-4-kings-versus-ducks",
+        "title": "2026 Preseason Final - LAK 6, ANA 2",
+        "published_at": "2026-09-26T23:43:46Z",
+        "url": "https://www.nhl.com/kings/news/2026-preseason-final-kings-6-ducks-2",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "LA Kings & ABTV Announce 2026-27 Broadcast Team",
-        "published_at": "2026-09-25T19:42:04Z",
-        "url": "https://www.nhl.com/kings/news/la-kings-and-abtv-announce-2026-27-broadcast-team",
+        "title": "2026 Preseason Preview - Game 4, LAK vs. ANA",
+        "published_at": "2026-09-26T16:09:17Z",
+        "url": "https://www.nhl.com/kings/news/tune-in-2026-preseason-game-4-kings-versus-ducks",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
@@ -281,24 +281,31 @@
         "roster_news": true
       },
       {
-        "title": "The Original New Jersey Devils Hero - Dr. John McMullen | STAN'S STORIES",
-        "published_at": "2026-09-25T19:14:15Z",
-        "url": "https://www.nhl.com/devils/news/mcmullen-stans-stories-9-25-26",
+        "title": "FOLLOW LIVE: Devils 1, Islanders 0",
+        "published_at": "2026-09-26T23:25:00Z",
+        "url": "https://www.nhl.com/devils/news/live-updates-2026010062",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Devils 'NHL Group' Back to Work | NOTEBOOK",
-        "published_at": "2026-09-25T15:46:37Z",
-        "url": "https://www.nhl.com/devils/news/devils-notebook-9-25-26",
+        "title": "The Original New Jersey Devils Hero - Dr. John McMullen | STAN'S STORIES",
+        "published_at": "2026-09-25T19:14:15Z",
+        "url": "https://www.nhl.com/devils/news/mcmullen-stans-stories-9-25-26",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
+      {
+        "title": "Predators Reduce Training Camp Roster to 26 Players",
+        "published_at": "2026-09-26T23:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-26-players-2026-09-26",
+        "summary": "Nashville Opens Regular Season on Thursday at Bridgestone Arena Against Minnesota",
+        "roster_news": true
+      },
       {
         "title": "Predators Claim William Trudeau on Waivers From NY Rangers",
         "published_at": "2026-09-26T19:15:00Z",
@@ -307,11 +314,11 @@
         "roster_news": true
       },
       {
-        "title": "Predators Reduce Training Camp Roster to 28 Players",
-        "published_at": "2026-09-25T20:00:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-28-players-2026-09-25",
-        "summary": "Predators Conclude Preseason Tomorrow at Home vs. Carolina; PredsFest Presented by Ticketmaster Begins at 11 a.m. CT",
-        "roster_news": true
+        "title": "Preds Conclude Preseason With Loss to Hurricanes",
+        "published_at": "2026-09-26T22:30:00Z",
+        "url": "https://www.nhl.com/predators/news/preds-conclude-preseason-with-loss-to-hurricanes-2026-09-26",
+        "summary": "Nashville Left Disappointed With Effort in Final Exhibition Outing",
+        "roster_news": false
       },
       {
         "title": "Preseason Game Day: Hurricanes vs. Preds, Sept. 26",
@@ -319,18 +326,11 @@
         "url": "https://www.nhl.com/predators/news/preseason-game-day-hurricanes-vs-preds-sept-26-2026-09-26",
         "summary": "Nashville Hosts Carolina to Conclude Preseason Schedule",
         "roster_news": false
-      },
-      {
-        "title": "Preds Broadcaster Completes Preds Adult Learn to Play Hockey Program at Ford Ice Center",
-        "published_at": "2026-09-25T19:00:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-broadcaster-completes-preds-adult-learn-to-play-hockey-program-at-ford-ice-center-2026-09-25",
-        "summary": "Max Herz Blogs on His Summer Experience On the Ice",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-26T21:00:25Z",
+    "updated_at": "2026-09-27T00:00:54Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
