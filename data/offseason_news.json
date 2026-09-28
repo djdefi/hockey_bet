@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 12",
@@ -17,23 +17,23 @@
         "roster_news": true
       },
       {
+        "title": "Avalanche Hosts 2026 Battle of the Badges",
+        "published_at": "2026-09-28T16:45:10Z",
+        "url": "https://www.nhl.com/avalanche/news/avalanche-hosts-2026-battle-of-the-badges",
+        "summary": "Denver Fire Department and Denver Police Department Faced Off on Ball Arena Ice",
+        "roster_news": false
+      },
+      {
         "title": "Avalanche Falls 2-0 to Mammoth in Preseason Finale",
         "published_at": "2026-09-26T23:51:37Z",
         "url": "https://www.nhl.com/avalanche/news/game-recap-09-26-26",
         "summary": "",
         "roster_news": false
-      },
-      {
-        "title": "T.J. Hughes Scores Hat Trick, Leads Avalanche Past Jets 5-2 in Preseason Action",
-        "published_at": "2026-09-26T03:26:00Z",
-        "url": "https://www.nhl.com/avalanche/news/game-recap-09-25-26",
-        "summary": "Jaden Schwartz and Cale Makar Add Tallies for Colorado",
-        "roster_news": false
       }
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -83,23 +83,23 @@
         "roster_news": true
       },
       {
-        "title": "Projected Lineup: Stars vs. Wild",
-        "published_at": "2026-09-25T22:15:25Z",
-        "url": "https://www.nhl.com/wild/news/projected-lineup-vs-dallas-stars-092526",
+        "title": "Minnesota Wild Season Preview Special to air on KSTP-TV",
+        "published_at": "2026-09-28T16:55:10Z",
+        "url": "https://www.nhl.com/wild/news/kstp-minnesota-wild-season-preview-special-092826",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "Game Preview: Stars vs. Wild",
-        "published_at": "2026-09-25T13:00:10Z",
-        "url": "https://www.nhl.com/wild/news/game-preview-vs-dallas-stars-092426",
+        "title": "Minnesota Wild and Local Team Reporters Announce Jessi Pierce Media Beauty Award",
+        "published_at": "2026-09-28T15:55:08Z",
+        "url": "https://www.nhl.com/wild/news/minnesota-wild-and-local-team-reporters-announce-jessi-pierce-media-beauty-award-092826",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,13 +198,13 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Ducks Trim Training Camp Roster",
         "published_at": "2026-09-27T21:05:31Z",
         "url": "https://www.nhl.com/ducks/news/ducks-trim-training-camp-roster",
-        "summary": "",
+        "summary": "Roster down to 27 players (16 forwards, eight defensemen and three goaltenders)",
         "roster_news": true
       },
       {
@@ -231,19 +231,19 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
-        "published_at": "2026-09-26T18:16:02Z",
-        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-26-2026",
+        "published_at": "2026-09-28T16:07:22Z",
+        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-27-2026",
         "summary": "",
         "roster_news": true
       },
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
-        "published_at": "2026-09-24T19:00:00Z",
-        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-24-2026",
+        "published_at": "2026-09-26T18:16:02Z",
+        "url": "https://www.nhl.com/kings/news/la-kings-announce-training-camp-roster-moves-september-26-2026",
         "summary": "",
         "roster_news": true
       },
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Devils Place 6 on Waivers, Claim G Poirier | TRANSACTIONS",
@@ -281,24 +281,31 @@
         "roster_news": true
       },
       {
-        "title": "Devils Win Preseason Finale Against Islanders | GAME STORY",
-        "published_at": "2026-09-27T02:30:00Z",
-        "url": "https://www.nhl.com/devils/news/game-story-2026010062",
+        "title": "Devils Shift to Regular Season | NOTEBOOK",
+        "published_at": "2026-09-28T15:05:52Z",
+        "url": "https://www.nhl.com/devils/news/devils-notebook-9-28-26",
         "summary": "",
         "roster_news": false
       },
       {
-        "title": "QUICK RECAP: Devils 4, Islanders 1",
-        "published_at": "2026-09-26T23:25:00Z",
-        "url": "https://www.nhl.com/devils/news/live-updates-2026010062",
+        "title": "Devils Win Preseason Finale Against Islanders | GAME STORY",
+        "published_at": "2026-09-27T02:30:00Z",
+        "url": "https://www.nhl.com/devils/news/game-story-2026010062",
         "summary": "",
         "roster_news": false
       }
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
+      {
+        "title": "Predators Sign Tyson Jost to One-Year, Two-Way Contract",
+        "published_at": "2026-09-28T17:30:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-sign-tyson-jost-to-one-year-two-way-contract-2026-09-28",
+        "summary": "Nashville Opens Regular Season on Thursday at Bridgestone Arena vs. Minnesota",
+        "roster_news": true
+      },
       {
         "title": "Predators Reduce Training Camp Roster to 26 Players",
         "published_at": "2026-09-26T23:00:00Z",
@@ -307,11 +314,11 @@
         "roster_news": true
       },
       {
-        "title": "Predators Claim William Trudeau on Waivers From NY Rangers",
-        "published_at": "2026-09-26T19:15:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-claim-william-trudeau-on-waivers-from-ny-rangers-2026-09-26",
-        "summary": "Defenseman Owns 260 Games of AHL Experience Since Turning Pro in 2022-23",
-        "roster_news": true
+        "title": "Barry Trotz to Become Sixth Preds Golden Hall Member",
+        "published_at": "2026-09-28T16:00:00Z",
+        "url": "https://www.nhl.com/predators/news/barry-trotz-to-become-sixth-preds-golden-hall-member-2026-09-28",
+        "summary": "Induction Scheduled for October 29 as Predators Host Washington Capitals",
+        "roster_news": false
       },
       {
         "title": "Brunette Addresses Martin Assignment, Preds Practice Refresh",
@@ -319,18 +326,11 @@
         "url": "https://www.nhl.com/predators/news/brunette-addresses-martin-assignment-preds-practice-refresh-2026-09-27",
         "summary": "Nashville's Head Coach Talks Brady Martin's Development After Assignment to Milwaukee",
         "roster_news": false
-      },
-      {
-        "title": "Preds Conclude Preseason With Loss to Hurricanes",
-        "published_at": "2026-09-26T22:30:00Z",
-        "url": "https://www.nhl.com/predators/news/preds-conclude-preseason-with-loss-to-hurricanes-2026-09-26",
-        "summary": "Nashville Left Disappointed With Effort in Final Exhibition Outing",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-28T15:00:28Z",
+    "updated_at": "2026-09-28T18:00:28Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
@@ -413,17 +413,17 @@
         "roster_news": true
       },
       {
-        "title": "Seattle Kraken Announce 77-Game Regional Broadcast Schedule",
-        "published_at": "2026-09-28T12:00:00Z",
-        "url": "https://www.nhl.com/kraken/news/seattle-kraken-announce-2026-27-regional-broadcast-schedule",
-        "summary": "Games will be carried over-the-air on TEGNA stations, including KING 5 and KONG, and Streamed live on Prime Video",
+        "title": "No Pain, Lots of Potential for Gain",
+        "published_at": "2026-09-28T17:37:01Z",
+        "url": "https://www.nhl.com/kraken/news/jared-mccann-overcoming-injuries-new-season",
+        "summary": "Forward Jared McCann, who scored 20 goals in 53 games last season despite taxing injuries, starts new season without lower-body issues and with high hopes to ‘create offense every night’",
         "roster_news": false
       },
       {
-        "title": "Center and Roommate of Attention",
-        "published_at": "2026-09-27T19:00:00Z",
-        "url": "https://www.nhl.com/kraken/news/berkly-catton-housemates-matty-beniers-mackie-samoskevich",
-        "summary": "When Seattle acquired Mackie Samoskevich, it was natural to room with former NCAA Michigan teammate Matty Beniers. Including Berkly Catton in the house harkens big seasons for all three",
+        "title": "Seattle Kraken Announce 77-Game Regional Broadcast Schedule",
+        "published_at": "2026-09-28T16:56:00Z",
+        "url": "https://www.nhl.com/kraken/news/seattle-kraken-announce-2026-27-regional-broadcast-schedule",
+        "summary": "Games will be carried over-the-air on TEGNA stations, including KING 5 and KONG, and Streamed live on Prime Video",
         "roster_news": false
       }
     ]
