@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 12",
@@ -33,7 +33,7 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Sabres announce 2026 training camp roster",
@@ -66,7 +66,7 @@
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,7 +99,7 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Capitals Re-Sign Justin Sourdif",
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -165,7 +165,7 @@
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
@@ -198,20 +198,20 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
+      {
+        "title": "Ducks Trim Training Camp Roster",
+        "published_at": "2026-09-27T21:05:31Z",
+        "url": "https://www.nhl.com/ducks/news/ducks-trim-training-camp-roster",
+        "summary": "",
+        "roster_news": true
+      },
       {
         "title": "Ducks Make More Training Camp Moves to Reduce Roster",
         "published_at": "2026-09-26T19:52:13Z",
         "url": "https://www.nhl.com/ducks/news/ducks-make-more-training-camp-moves-to-reduce-roster",
         "summary": "Ducks Training Camp roster reduced to 30 players (17 forwards, 10 defensemen and three goaltenders)",
-        "roster_news": true
-      },
-      {
-        "title": "Ducks Make More Training Camp Roster Moves",
-        "published_at": "2026-09-24T17:30:41Z",
-        "url": "https://www.nhl.com/ducks/news/ducks-make-more-training-camp-roster-moves-x9638",
-        "summary": "Ducks Training Camp roster reduced to 38 players (23 forwards, 12 defensemen and three goaltenders)",
         "roster_news": true
       },
       {
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,7 +264,7 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Devils Place 6 on Waivers, Claim G Poirier | TRANSACTIONS",
@@ -297,7 +297,7 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Predators Reduce Training Camp Roster to 26 Players",
@@ -330,7 +330,7 @@
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Sharks reduce training camp roster",
@@ -363,7 +363,7 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Jets reduce training camp roster by 12 players",
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-27T21:00:37Z",
+    "updated_at": "2026-09-28T00:00:35Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
