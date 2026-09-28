@@ -1,6 +1,6 @@
 {
   "COL": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "Avalanche Reduce Roster by 12",
@@ -33,20 +33,20 @@
     ]
   },
   "BUF": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
+      {
+        "title": "Injuries and transactions | Sabres set initial 23-man roster",
+        "published_at": "2026-09-28T20:30:00Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
+        "summary": "Keep up with the latest Sabres roster news.",
+        "roster_news": true
+      },
       {
         "title": "Sabres announce 2026 training camp roster",
         "published_at": "2026-09-15T19:56:34Z",
         "url": "https://www.nhl.com/sabres/news/buffalo-sabres-training-camp-roster-2026",
         "summary": "Roster will be cut down from 53 to 23 before season opener.",
-        "roster_news": true
-      },
-      {
-        "title": "Sabres sign Ostlund to 8-year contract extension",
-        "published_at": "2026-09-14T15:26:01Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-sign-noah-ostlund-contract-extension",
-        "summary": "The forward had 27 points in 60 games as a rookie last season.",
         "roster_news": true
       },
       {
@@ -57,16 +57,16 @@
         "roster_news": false
       },
       {
-        "title": "Injuries and transactions | Updates on UPL, Lyon, Kulich",
-        "published_at": "2026-09-26T22:02:00Z",
-        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-injuries-transactions-roster-news-contracts",
-        "summary": "Keep up with the latest Sabres roster news.",
+        "title": "At the Horn | PIT 3 – BUF 1",
+        "published_at": "2026-09-26T21:43:42Z",
+        "url": "https://www.nhl.com/sabres/news/buffalo-sabres-pittsburgh-penguins-preseason-recap-highlights",
+        "summary": "Stats and highlights from the Sabres' preseason finale.",
         "roster_news": false
       }
     ]
   },
   "MIN": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "Minnesota Wild Reduces Training Camp Roster to 27 Players",
@@ -99,20 +99,20 @@
     ]
   },
   "WSH": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
+      {
+        "title": "Capitals Announce 2026-27 Opening Night Roster",
+        "published_at": "2026-09-28T21:00:00Z",
+        "url": "https://www.nhl.com/capitals/news/capitals-announce-2026-27-opening-night-roster",
+        "summary": "Washington opens season on Oct. 2 at Carolina and visits Tampa Bay on Oct. 3 before hosting Pittsburgh in home opener on Oct. 7",
+        "roster_news": true
+      },
       {
         "title": "Capitals Re-Sign Justin Sourdif",
         "published_at": "2026-09-16T01:27:23Z",
         "url": "https://www.nhl.com/capitals/news/capitals-re-sign-justin-sourdif",
         "summary": "24-year-old forward inks eight-year deal with Washington",
-        "roster_news": true
-      },
-      {
-        "title": "Capitals Announce 2026-27 Training Camp Schedule and Roster",
-        "published_at": "2026-09-15T16:00:00Z",
-        "url": "https://www.nhl.com/capitals/news/capitals-announce-2026-27-training-camp-schedule-and-roster",
-        "summary": "Caps will hold Media Day on Sept. 17 at MedStar Capitals Iceplex; Alex Ovechkin will be available to the media at approximately 11 a.m. On-ice practices at MedStar Capitals Iceplex are open to the...",
         "roster_news": true
       },
       {
@@ -132,7 +132,7 @@
     ]
   },
   "VGK": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "Golden Knights Announce Roster Transactions",
@@ -149,35 +149,35 @@
         "roster_news": true
       },
       {
+        "title": "Beasley Media Group Named Official Audio Partner of Vegas Golden Knights",
+        "published_at": "2026-09-28T18:09:03Z",
+        "url": "https://www.nhl.com/goldenknights/news/beasley-media-group-named-official-audio-partner-of-vegas-golden-knights",
+        "summary": "Multiyear agreement will deliver English (X 107.9) & Spanish (105.7 Maxima) game broadcasts plus expanded VGK programming across Beasley's audio & digital platforms",
+        "roster_news": false
+      },
+      {
         "title": "Golden Knights Enter 10th Season Having Made Massive Impact",
         "published_at": "2026-09-27T13:00:00Z",
         "url": "https://www.nhl.com/goldenknights/news/golden-knights-entering-10th-season-having-made-massive-impact-on-vegas-and-nhl-x9148",
         "summary": "Las Vegas' first major league pro sports team has been a spectacular success",
         "roster_news": false
-      },
-      {
-        "title": "Vegas Falls 4-2 to San Jose in Final Preseason Game",
-        "published_at": "2026-09-27T05:12:12Z",
-        "url": "https://www.nhl.com/goldenknights/news/vegas-falls-4-2-to-san-jose-in-final-preseason-game",
-        "summary": "Golden Knights to open 2026-27 regular season on Tuesday vs. Blackhawks at T-Mobile Arena",
-        "roster_news": false
       }
     ]
   },
   "UTA": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
+      {
+        "title": "Utah Mammoth Announce 2026-27 Opening Night Roster",
+        "published_at": "2026-09-28T21:00:00Z",
+        "url": "https://www.nhl.com/utah/news/utah-mammoth-announce-2026-27-opening-night-roster-release-9-28-26",
+        "summary": "The Mammoth announced the 23-man roster for Opening night on Oct. 1",
+        "roster_news": true
+      },
       {
         "title": "Utah Mammoth Announce 2026 Training Camp Roster",
         "published_at": "2026-09-16T14:00:00Z",
         "url": "https://www.nhl.com/utah/news/utah-mammoth-announce-2026-training-camp-roster-release-9-16-26",
-        "summary": "",
-        "roster_news": true
-      },
-      {
-        "title": "Utah Mammoth Announce 2026 Rookie Camp Roster and Schedule",
-        "published_at": "2026-09-01T17:00:00Z",
-        "url": "https://www.nhl.com/utah/news/utah-mammoth-announce-2026-rookie-camp-roster-and-schedule-release-9-1-26",
         "summary": "",
         "roster_news": true
       },
@@ -198,7 +198,7 @@
     ]
   },
   "ANA": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "Ducks Trim Training Camp Roster",
@@ -231,7 +231,7 @@
     ]
   },
   "LAK": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "LA Kings Announce Training Camp Roster Moves",
@@ -264,19 +264,19 @@
     ]
   },
   "NJD": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
-        "title": "Devils Place 6 on Waivers, Claim G Poirier | TRANSACTIONS",
-        "published_at": "2026-09-27T18:05:00Z",
-        "url": "https://www.nhl.com/devils/news/six-placed-on-waivers-transactions-9-27-26",
+        "title": "6 Cleared, Assigned to Utica | TRANSACTIONS",
+        "published_at": "2026-09-28T20:30:00Z",
+        "url": "https://www.nhl.com/devils/news/six-cleared-assigned-to-utica-transactions-9-28-26",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "Devils' Regular-Season Roster Dress Rehearsal | PREVIEW",
-        "published_at": "2026-09-25T23:34:57Z",
-        "url": "https://www.nhl.com/devils/news/preview-2026010062",
+        "title": "Devils Place 6 on Waivers, Claim G Poirier | TRANSACTIONS",
+        "published_at": "2026-09-27T18:05:00Z",
+        "url": "https://www.nhl.com/devils/news/six-placed-on-waivers-transactions-9-27-26",
         "summary": "",
         "roster_news": true
       },
@@ -297,8 +297,15 @@
     ]
   },
   "NSH": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
+      {
+        "title": "Predators Announce 2026-27 Opening Night Roster; Nashville Begins Season at Bridgestone Arena Against Minnesota on Thursday",
+        "published_at": "2026-09-28T21:00:00Z",
+        "url": "https://www.nhl.com/predators/news/predators-announce-2026-27-opening-night-roster-nashville-begins-season-at-bridgestone-arena-against-minnesota-on-thursday-2026-09-28",
+        "summary": "Tickets for Nashville's Regular-Season Opener on Thursday Are Available at Ticketmaster.com",
+        "roster_news": true
+      },
       {
         "title": "Predators Sign Tyson Jost to One-Year, Two-Way Contract",
         "published_at": "2026-09-28T17:30:00Z",
@@ -307,11 +314,11 @@
         "roster_news": true
       },
       {
-        "title": "Predators Reduce Training Camp Roster to 26 Players",
-        "published_at": "2026-09-26T23:00:00Z",
-        "url": "https://www.nhl.com/predators/news/predators-reduce-training-camp-roster-to-26-players-2026-09-26",
-        "summary": "Nashville Opens Regular Season on Thursday at Bridgestone Arena Against Minnesota",
-        "roster_news": true
+        "title": "On The Record, Episode Three: Chris MacFarland's First NHL Draft in Nashville",
+        "published_at": "2026-09-28T19:30:00Z",
+        "url": "https://www.nhl.com/predators/news/on-the-record-episode-three-chris-macfarland-s-first-nhl-draft-in-nashville-2026-09-28",
+        "summary": "Program Goes Behind the Scenes Across Predators Organization Like Never Before",
+        "roster_news": false
       },
       {
         "title": "Barry Trotz to Become Sixth Preds Golden Hall Member",
@@ -319,30 +326,23 @@
         "url": "https://www.nhl.com/predators/news/barry-trotz-to-become-sixth-preds-golden-hall-member-2026-09-28",
         "summary": "Induction Scheduled for October 29 as Predators Host Washington Capitals",
         "roster_news": false
-      },
-      {
-        "title": "Brunette Addresses Martin Assignment, Preds Practice Refresh",
-        "published_at": "2026-09-27T20:00:00Z",
-        "url": "https://www.nhl.com/predators/news/brunette-addresses-martin-assignment-preds-practice-refresh-2026-09-27",
-        "summary": "Nashville's Head Coach Talks Brady Martin's Development After Assignment to Milwaukee",
-        "roster_news": false
       }
     ]
   },
   "SJS": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
-        "title": "Sharks reduce training camp roster",
-        "published_at": "2026-09-23T17:30:00Z",
-        "url": "https://www.nhl.com/sharks/news/sharks-reduce-training-camp-roster-2026-27",
+        "title": "Sharks announce 2026-27 season opening roster",
+        "published_at": "2026-09-28T21:00:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-announce-2026-27-season-opening-roster",
         "summary": "",
         "roster_news": true
       },
       {
-        "title": "San Jose Sharks Head Coach Ryan Warsofsky signed to a multi-year extension",
-        "published_at": "2026-09-17T19:30:00Z",
-        "url": "https://www.nhl.com/sharks/news/san-jose-sharks-head-coach-ryan-warsofsky-signed-to-a-multi-year-extension",
+        "title": "Sharks reduce training camp roster",
+        "published_at": "2026-09-23T17:30:00Z",
+        "url": "https://www.nhl.com/sharks/news/sharks-reduce-training-camp-roster-2026-27",
         "summary": "",
         "roster_news": true
       },
@@ -363,20 +363,20 @@
     ]
   },
   "WPG": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
+      {
+        "title": "Jets claim goaltender Clay Stevenson off waivers",
+        "published_at": "2026-09-28T18:15:00Z",
+        "url": "https://www.nhl.com/jets/news/jets-claim-goaltender-clay-stevenson-off-waivers",
+        "summary": "Stevenson, 27, played four games for the Capitals in 2025-26 and had a 3-1-0 record.",
+        "roster_news": true
+      },
       {
         "title": "Jets reduce training camp roster by 12 players",
         "published_at": "2026-09-23T18:30:00Z",
         "url": "https://www.nhl.com/jets/news/jets-reduce-training-camp-roster-by-12-players-x0785",
         "summary": "Eight players were loaned to the Manitoba Moose, four players were released from PTOs",
-        "roster_news": true
-      },
-      {
-        "title": "Jets announce 2026 Training Camp roster and schedule",
-        "published_at": "2026-09-15T22:30:00Z",
-        "url": "https://www.nhl.com/jets/news/jets-announce-2026-training-camp-roster-and-schedule",
-        "summary": "Training camp begins Thursday, Sept. 17 at hockey for all centre",
         "roster_news": true
       },
       {
@@ -396,7 +396,7 @@
     ]
   },
   "SEA": {
-    "updated_at": "2026-09-28T18:00:28Z",
+    "updated_at": "2026-09-28T21:00:25Z",
     "articles": [
       {
         "title": "Forslund Signs New Multi-Year Deal",
