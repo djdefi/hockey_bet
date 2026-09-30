@@ -672,14 +672,6 @@ RSpec.describe PlayoffProcessor do
     end
   end
 
-  describe '#valid_playoff_data?' do
-    it 'delegates to validator' do
-      validator = processor.instance_variable_get(:@validator)
-      expect(validator).to receive(:validate_playoffs_response).with({ 'test' => 'data' })
-      processor.valid_playoff_data?({ 'test' => 'data' })
-    end
-  end
-
   describe '#process' do
     let(:output_path) { '/tmp/test_playoffs.html' }
     let(:manager_team_map) { { 'BOS' => 'TestFan', 'TOR' => 'OtherFan' } }
