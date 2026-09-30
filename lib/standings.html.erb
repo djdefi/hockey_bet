@@ -716,7 +716,7 @@ overview narrows to in-place team details; mobile stacks the same reading order.
             <!-- Legend for playoff status indicators -->
             <div class="playoff-status-legend" role="region" aria-label="Playoff status legend">
                 <span class="status-item">
-                    <iconify-icon icon="<%= PLAYOFF_STATUS[:div_leader_1][:icon] %>" width="16" height="16" style="color: <%= PLAYOFF_STATUS[:div_leader_1][:icon_color] %>" aria-label="Division leader - playoff berth secured"></iconify-icon>
+                    <iconify-icon icon="<%= PLAYOFF_STATUS[:div_leader_1][:icon] %>" width="16" height="16" style="color: <%= PLAYOFF_STATUS[:div_leader_1][:icon_color] %>" aria-label="<%= PLAYOFF_STATUS[:div_leader_1][:aria_label] %>"></iconify-icon>
                     Division Leader
                 </span>
                 <span class="status-item">

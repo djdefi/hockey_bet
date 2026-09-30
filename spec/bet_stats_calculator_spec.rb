@@ -525,6 +525,7 @@ RSpec.describe BetStatsCalculator do
           {
             'teamName' => { 'default' => 'Test Team' },
             'teamAbbrev' => { 'default' => 'TST' },
+            'seasonId' => 20242025,
             'wins' => nil,
             'losses' => nil,
             'otLosses' => nil,
@@ -662,6 +663,41 @@ RSpec.describe BetStatsCalculator do
       
       expect(matrix).to be_a(Hash)
       expect(matrix.keys).to include('BOS', 'FLA', 'TOR', 'DET')
+    end
+
+    it 'uses the standings season for September head-to-head and goal-difference requests' do
+      allow(Time).to receive(:now).and_return(Time.utc(2026, 9, 30))
+      teams.each { |team| team['seasonId'] = 20262027 }
+
+      calculator.send(:fetch_head_to_head_records)
+      expect(calculator.send(:calculate_goal_differential_vs_team, 'BOS', 'FLA')).to eq(1)
+
+      expect(Net::HTTP).to have_received(:get_response).with(
+        URI('https://api-web.nhle.com/v1/club-schedule-season/BOS/20262027')
+      ).twice
+      expect(Net::HTTP).not_to have_received(:get_response).with(
+        URI('https://api-web.nhle.com/v1/club-schedule-season/BOS/20252026')
+      )
+    end
+
+    it 'keeps historical standings and schedule data in the same season' do
+      allow(Time).to receive(:now).and_return(Time.utc(2026, 10, 1))
+      calculator.send(:fetch_head_to_head_records)
+
+      expect(Net::HTTP).to have_received(:get_response).with(
+        URI('https://api-web.nhle.com/v1/club-schedule-season/BOS/20242025')
+      )
+    end
+
+    it 'rejects missing or mixed seasons instead of guessing from the calendar' do
+      teams.first.delete('seasonId')
+      expect { calculator.send(:fetch_head_to_head_records) }
+        .to raise_error(ArgumentError, /seasonId/)
+
+      teams.first['seasonId'] = 20262027
+      expect { calculator.send(:calculate_goal_differential_vs_team, 'BOS', 'FLA') }
+        .to raise_error(ArgumentError, /seasonId/)
+      expect(Net::HTTP).not_to have_received(:get_response)
     end
 
     it 'handles API errors gracefully' do
