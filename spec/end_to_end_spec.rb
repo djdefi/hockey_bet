@@ -340,11 +340,12 @@ RSpec.describe 'End-to-End Generation and Rendering' do
     it 'handles malformed team data gracefully' do
       processor = StandingsProcessor.new('spec/fixtures')
       
-      # Create team data with missing fields
+      # Keep the season identity while omitting statistical fields.
       teams_data = [
         {
           'teamName' => { 'default' => 'Test Team' },
           'teamAbbrev' => { 'default' => 'TST' },
+          'seasonId' => 20242025,
           'points' => nil,  # Missing points
           'divisionSequence' => 1,
           'wildcardSequence' => 0

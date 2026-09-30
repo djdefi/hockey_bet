@@ -81,6 +81,18 @@ The simplest way to deploy is using GitHub Pages:
 
 ## Configuration
 
+### Season data and playoff status
+
+Head-to-head records and matchup goal differences use the NHL standings
+`seasonId`, including seasons that open in September. Division and wildcard
+labels describe current positions, not clinched berths. Teams are marked
+eliminated only when the NHL reports `clinchIndicator: "e"`; other teams outside
+playoff positions remain in the hunt.
+
+The daily API monitor uses the repository's `.ruby-version` and checks the same
+current playoff-bracket endpoint as the site. Dependency setup failures remain
+workflow failures; only an executed API check failure opens an alert issue.
+
 ### Fan Team Mapping
 
 The `fan_team.csv` file maps fan names to teams. The format is simple:

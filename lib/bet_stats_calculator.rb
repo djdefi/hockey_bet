@@ -1060,13 +1060,9 @@ class BetStatsCalculator
     @head_to_head_matrix = {}
     fan_abbrevs = fan_teams.map { |t| t['teamAbbrev']['default'] }
     
-    # Determine current season based on date
-    current_year = Time.now.year
-    current_month = Time.now.month
-    # NHL season runs from October to June
-    # If we're in October-December, use current year as start (e.g., Oct 2024 = 20242025 season)
-    # If we're in January-September, use previous year as start (e.g., Mar 2025 = 20242025 season)
-    season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
+    return if fan_abbrevs.empty?
+
+    season = schedule_season
     
     puts "Fetching head-to-head records for #{season} season (#{fan_abbrevs.length} teams)..."
     puts "Current date: #{Time.now.strftime('%Y-%m-%d')}"
@@ -1388,10 +1384,7 @@ class BetStatsCalculator
     require 'json'
     require 'uri'
     
-    # Determine current season
-    current_year = Time.now.year
-    current_month = Time.now.month
-    season = current_month >= 10 ? "#{current_year}#{current_year + 1}" : "#{current_year - 1}#{current_year}"
+    season = schedule_season
     
     total_goals_for = 0
     total_goals_against = 0
@@ -1453,6 +1446,15 @@ class BetStatsCalculator
     end
     
     total_goals_for - total_goals_against
+  end
+
+  def schedule_season
+    seasons = @teams.map { |team| team['seasonId'].to_s }.uniq
+    unless seasons.length == 1 && seasons.first.match?(/\A\d{8}\z/)
+      raise ArgumentError, "Expected one NHL standings seasonId, got #{seasons.inspect}"
+    end
+
+    seasons.first
   end
 
   # Helper method to convert a number to ordinal (1st, 2nd, 3rd, etc.)

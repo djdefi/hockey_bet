@@ -16,8 +16,7 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  deployments: write
   pull-requests: read
 
 jobs:
@@ -27,23 +26,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: '18'
-
-      - name: Install needed packages
-        run: npm install @octokit/rest @actions/github @actions/core
-
       - name: Get current deployments and mark for deletion
         id: get-deployments
         uses: actions/github-script@v9
         with:
           script: |
-            const { Octokit } = require('@octokit/rest');
-            const core = require('@actions/core');
-
-            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
@@ -57,7 +44,7 @@ jobs:
 
             try {
               // Get all deployments
-              const deployments = await octokit.repos.listDeployments({
+              const deployments = await github.paginate(github.rest.repos.listDeployments, {
                 owner,
                 repo,
                 per_page: 100 // Max allowed
@@ -66,7 +53,7 @@ jobs:
               // Filter preview deployments that are older than cutoff and closed PRs
               const deploymentsToDelete = [];
 
-              for (const deployment of deployments.data) {
+              for (const deployment of deployments) {
                 // Only process preview environments
                 if (deployment.environment.startsWith('preview-')) {
                   console.log(`Found preview deployment: ${deployment.environment}, created at ${deployment.created_at}`);
@@ -79,7 +66,7 @@ jobs:
 
                   try {
                     // Check if the PR is closed or merged
-                    const { data: pr } = await octokit.pulls.get({
+                    const { data: pr } = await github.rest.pulls.get({
                       owner,
                       repo,
                       pull_number: prNumber
@@ -109,6 +96,8 @@ jobs:
                         pr: prNumber,
                         reason: 'PR not found'
                       });
+                    } else {
+                      throw error;
                     }
                   }
                 }
@@ -131,17 +120,15 @@ jobs:
       - name: Delete old deployments
         if: ${{ steps.get-deployments.outputs.deployments_to_delete != '[]' && steps.get-deployments.outputs.deployments_to_delete != '' }}
         uses: actions/github-script@v9
+        env:
+          DEPLOYMENTS_TO_DELETE: ${{ steps.get-deployments.outputs.deployments_to_delete }}
         with:
           script: |
-            const { Octokit } = require('@octokit/rest');
-            const core = require('@actions/core');
-
-            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
             // Get deployments to delete from previous step
-            const deploymentsToDelete = JSON.parse('${{ steps.get-deployments.outputs.deployments_to_delete }}');
+            const deploymentsToDelete = JSON.parse(process.env.DEPLOYMENTS_TO_DELETE);
 
             console.log(`Deleting ${deploymentsToDelete.length} deployments`);
 
@@ -153,7 +140,7 @@ jobs:
                 console.log(`Deleting deployment ${deployment.environment} (ID: ${deployment.id}) - ${deployment.reason}`);
 
                 // Set deployment to inactive first
-                await octokit.repos.createDeploymentStatus({
+                await github.rest.repos.createDeploymentStatus({
                   owner,
                   repo,
                   deployment_id: deployment.id,
@@ -161,7 +148,7 @@ jobs:
                 });
 
                 // Delete the deployment
-                await octokit.repos.deleteDeployment({
+                await github.rest.repos.deleteDeployment({
                   owner,
                   repo,
                   deployment_id: deployment.id
@@ -176,8 +163,9 @@ jobs:
             }
 
             console.log(`\nSummary: ${deletedCount} deployments deleted, ${errorCount} errors`);
+            if (errorCount > 0) core.setFailed(`${errorCount} deployments could not be deleted`);
 
       - name: Report results
         if: always()
         run: |
-          echo "::notice title=Deployment Cleanup::Completed deployment pruning process. Check logs for details."
+          echo "::notice title=Deployment Cleanup::Check the job status and logs for deployment pruning results."

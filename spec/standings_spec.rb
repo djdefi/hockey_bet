@@ -55,15 +55,27 @@ RSpec.describe 'NHL Standings Table' do
       expect(playoff_status_for(@teams[4])).to eq(:in_hunt)
     end
 
-    it 'returns :fading_fast for teams with wildcardSequence 6-8' do
-      # Buffalo and Ottawa have wildcardSequence 6-8
-      expect(playoff_status_for(@teams[5])).to eq(:fading_fast) # Buffalo (WC: 6)
-      expect(playoff_status_for(@teams[6])).to eq(:fading_fast) # Ottawa (WC: 8)
+    it 'keeps lower-ranked teams in the hunt without an NHL elimination indicator' do
+      expect(playoff_status_for(@teams[5])).to eq(:in_hunt)
+      expect(playoff_status_for(@teams[6])).to eq(:in_hunt)
     end
 
-    it 'returns :eliminated for teams with wildcardSequence > 8' do
-      # Montreal has wildcardSequence 9
-      expect(playoff_status_for(@teams[7])).to eq(:eliminated) # Montreal (WC: 9)
+    it 'returns :eliminated only when the NHL reports elimination' do
+      expect(playoff_status_for(@teams[7])).to eq(:eliminated)
+      @teams[7].delete('clinchIndicator')
+      expect(playoff_status_for(@teams[7])).to eq(:in_hunt)
+    end
+
+    it 'does not eliminate a zero-game team based on its wildcard rank' do
+      team = { 'divisionSequence' => 7, 'wildcardSequence' => 9, 'gamesPlayed' => 0 }
+      expect(playoff_status_for(team)).to eq(:in_hunt)
+    end
+
+    it 'does not mistake a clinched berth for elimination' do
+      %w[x y z p].each do |indicator|
+        expect(playoff_status_for(@teams[0].merge('clinchIndicator' => indicator)))
+          .to eq(:div_leader_1)
+      end
     end
   end
 
@@ -210,14 +222,17 @@ RSpec.describe 'NHL Standings Table' do
       expect(PLAYOFF_STATUS).to have_key(:wildcard_1)
       expect(PLAYOFF_STATUS).to have_key(:wildcard_2)
       expect(PLAYOFF_STATUS).to have_key(:in_hunt)
-      expect(PLAYOFF_STATUS).to have_key(:fading_fast)
       expect(PLAYOFF_STATUS).to have_key(:eliminated)
 
       expect(PLAYOFF_STATUS[:div_leader_1]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:wildcard_1]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:in_hunt]).to include(:class, :icon, :label_prefix, :aria_label)
-      expect(PLAYOFF_STATUS[:fading_fast]).to include(:class, :icon, :label_prefix, :aria_label)
       expect(PLAYOFF_STATUS[:eliminated]).to include(:class, :icon, :label_prefix, :aria_label)
+    end
+
+    it 'does not describe a ranking as a secured playoff berth' do
+      expect(PLAYOFF_STATUS.values.map { |status| status[:aria_label] }.join(' '))
+        .not_to match(/secured|clinched/)
     end
   end
 
@@ -246,11 +261,11 @@ RSpec.describe 'NHL Standings Table' do
       expect(label).to include('1 out')
     end
 
-    it 'returns label with spots out for fading fast teams' do
+    it 'returns an in-hunt label with spots out for lower-ranked teams' do
       # Buffalo is wildcard 6 (4 spots out from WC2)
       status = playoff_status_for(@teams[5])
       label = get_playoff_status_label(@teams[5], status)
-      expect(label).to include('Fading Fast')
+      expect(label).to include('In The Hunt')
       expect(label).to include('4 out')
     end
 

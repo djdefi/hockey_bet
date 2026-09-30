@@ -18,13 +18,12 @@ require_relative 'offseason_news'
 # Playoff Status Helper Structure
 # Enhanced with specific seed and position information
 PLAYOFF_STATUS = {
-  div_leader_1: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#FFD700', label_prefix: 'Division Leader', aria_label: 'First place in division, secured playoff berth' },
-  div_leader_2: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#C0C0C0', label_prefix: 'Division 2nd', aria_label: 'Second place in division, secured playoff berth' },
-  div_leader_3: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#CD7F32', label_prefix: 'Division 3rd', aria_label: 'Third place in division, secured playoff berth' },
-  wildcard_1: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#35d07f', label_prefix: 'Wildcard #1', aria_label: 'First wildcard position, secured playoff berth' },
-  wildcard_2: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#35d07f', label_prefix: 'Wildcard #2', aria_label: 'Second wildcard position, secured playoff berth' },
+  div_leader_1: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#FFD700', label_prefix: 'Division Leader', aria_label: 'First place in division, currently in a playoff position' },
+  div_leader_2: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#C0C0C0', label_prefix: 'Division 2nd', aria_label: 'Second place in division, currently in a playoff position' },
+  div_leader_3: { class: 'color-bg-success-emphasis', icon: 'solar:medal-ribbons-star-bold', icon_color: '#CD7F32', label_prefix: 'Division 3rd', aria_label: 'Third place in division, currently in a playoff position' },
+  wildcard_1: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#35d07f', label_prefix: 'Wildcard #1', aria_label: 'Currently in the first wildcard position' },
+  wildcard_2: { class: 'color-bg-success-emphasis', icon: 'solar:ticket-bold', icon_color: '#35d07f', label_prefix: 'Wildcard #2', aria_label: 'Currently in the second wildcard position' },
   in_hunt: { class: 'color-bg-attention-emphasis', icon: 'solar:danger-triangle-bold', icon_color: '#ffb020', label_prefix: 'In The Hunt', aria_label: 'Team is in contention for wildcard position' },
-  fading_fast: { class: 'color-bg-attention-emphasis', icon: 'solar:sad-square-bold', icon_color: '#ff7a2f', label_prefix: 'Fading Fast', aria_label: 'Team is fading from playoff contention' },
   eliminated: { class: 'color-bg-danger-emphasis', icon: 'solar:close-circle-bold', icon_color: '#ff5347', label_prefix: 'Eliminated', aria_label: 'Team is mathematically eliminated from playoffs' }
 }
 
@@ -191,6 +190,8 @@ class StandingsProcessor
   # Class method to calculate playoff status (shared between instance and global methods)
   # Returns a symbol representing the team's playoff position
   def self.calculate_playoff_status(team)
+    return :eliminated if team['clinchIndicator'] == 'e'
+
     div_seq = team['divisionSequence'].to_i
     wc_seq = team['wildcardSequence'].to_i
     
@@ -206,15 +207,8 @@ class StandingsProcessor
       :wildcard_1
     elsif wc_seq == 2
       :wildcard_2
-    # In the hunt (positions 3-5 behind wildcard cutoff, still realistically viable)
-    elsif wc_seq > 2 && wc_seq <= 5
-      :in_hunt
-    # Fading fast (6-8 spots out, highly unlikely but not mathematically eliminated)
-    elsif wc_seq > 5 && wc_seq <= 8
-      :fading_fast
-    # Mathematically eliminated (9+ spots behind wildcard cutoff)
     else
-      :eliminated
+      :in_hunt
     end
   end
 
@@ -408,7 +402,7 @@ def get_playoff_status_label(team, status)
   when :wildcard_1, :wildcard_2
     # Show wildcard position
     "#{status_info[:label_prefix]} (#{conf_seq} seed)"
-  when :in_hunt, :fading_fast
+  when :in_hunt
     # Show how many spots back from wildcard
     spots_back = wc_seq - 2
     "#{status_info[:label_prefix]} (#{spots_back} out)"
