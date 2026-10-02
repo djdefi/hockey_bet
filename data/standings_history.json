@@ -43184,6 +43184,30 @@
         "division_rank": 1,
         "conference_rank": 2
       },
+      "Ryan T.": {
+        "points": 2,
+        "wins": 1,
+        "losses": 0,
+        "ot_losses": 0,
+        "games_played": 1,
+        "goals_for": 3,
+        "goals_against": 1,
+        "goal_diff": 2,
+        "division_rank": 2,
+        "conference_rank": 3
+      },
+      "Travis R.": {
+        "points": 2,
+        "wins": 1,
+        "losses": 0,
+        "ot_losses": 0,
+        "games_played": 1,
+        "goals_for": 3,
+        "goals_against": 2,
+        "goal_diff": 1,
+        "division_rank": 3,
+        "conference_rank": 5
+      },
       "Keith R.": {
         "points": 0,
         "wins": 0,
@@ -43194,55 +43218,7 @@
         "goals_against": 0,
         "goal_diff": 0,
         "division_rank": 4,
-        "conference_rank": 5
-      },
-      "Ryan B.": {
-        "points": 0,
-        "wins": 0,
-        "losses": 0,
-        "ot_losses": 0,
-        "games_played": 0,
-        "goals_for": 0,
-        "goals_against": 0,
-        "goal_diff": 0,
-        "division_rank": 5,
-        "conference_rank": 7
-      },
-      "Ryan T.": {
-        "points": 0,
-        "wins": 0,
-        "losses": 0,
-        "ot_losses": 0,
-        "games_played": 0,
-        "goals_for": 0,
-        "goals_against": 0,
-        "goal_diff": 0,
-        "division_rank": 3,
-        "conference_rank": 8
-      },
-      "David K.": {
-        "points": 0,
-        "wins": 0,
-        "losses": 0,
-        "ot_losses": 0,
-        "games_played": 0,
-        "goals_for": 0,
-        "goals_against": 0,
-        "goal_diff": 0,
-        "division_rank": 4,
-        "conference_rank": 9
-      },
-      "Travis R.": {
-        "points": 0,
-        "wins": 0,
-        "losses": 0,
-        "ot_losses": 0,
-        "games_played": 0,
-        "goals_for": 0,
-        "goals_against": 0,
-        "goal_diff": 0,
-        "division_rank": 4,
-        "conference_rank": 10
+        "conference_rank": 6
       },
       "Brian D.": {
         "points": 0,
@@ -43254,7 +43230,7 @@
         "goals_against": 0,
         "goal_diff": 0,
         "division_rank": 6,
-        "conference_rank": 10
+        "conference_rank": 9
       },
       "Trevor R.": {
         "points": 0,
@@ -43266,7 +43242,7 @@
         "goals_against": 0,
         "goal_diff": 0,
         "division_rank": 7,
-        "conference_rank": 11
+        "conference_rank": 10
       },
       "Tyler F.": {
         "points": 0,
@@ -43277,8 +43253,8 @@
         "goals_for": 0,
         "goals_against": 0,
         "goal_diff": 0,
-        "division_rank": 6,
-        "conference_rank": 13
+        "division_rank": 5,
+        "conference_rank": 12
       },
       "Mike M.": {
         "points": 0,
@@ -43289,7 +43265,7 @@
         "goals_for": 0,
         "goals_against": 0,
         "goal_diff": 0,
-        "division_rank": 5,
+        "division_rank": 7,
         "conference_rank": 13
       },
       "Dan R.": {
@@ -43301,8 +43277,32 @@
         "goals_for": 0,
         "goals_against": 0,
         "goal_diff": 0,
+        "division_rank": 6,
+        "conference_rank": 13
+      },
+      "David K.": {
+        "points": 0,
+        "wins": 0,
+        "losses": 1,
+        "ot_losses": 0,
+        "games_played": 1,
+        "goals_for": 1,
+        "goals_against": 3,
+        "goal_diff": -2,
         "division_rank": 7,
         "conference_rank": 14
+      },
+      "Ryan B.": {
+        "points": 0,
+        "wins": 0,
+        "losses": 1,
+        "ot_losses": 0,
+        "games_played": 1,
+        "goals_for": 3,
+        "goals_against": 6,
+        "goal_diff": -3,
+        "division_rank": 7,
+        "conference_rank": 15
       },
       "Sean R.": {
         "points": 0,
