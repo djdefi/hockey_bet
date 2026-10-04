@@ -43520,6 +43520,18 @@
         "division_rank": 3,
         "conference_rank": 4
       },
+      "Brian D.": {
+        "points": 4,
+        "wins": 2,
+        "losses": 0,
+        "ot_losses": 0,
+        "games_played": 2,
+        "goals_for": 9,
+        "goals_against": 7,
+        "goal_diff": 2,
+        "division_rank": 2,
+        "conference_rank": 5
+      },
       "Keith R.": {
         "points": 2,
         "wins": 1,
@@ -43529,20 +43541,8 @@
         "goals_for": 4,
         "goals_against": 3,
         "goal_diff": 1,
-        "division_rank": 2,
-        "conference_rank": 5
-      },
-      "Brian D.": {
-        "points": 2,
-        "wins": 1,
-        "losses": 0,
-        "ot_losses": 0,
-        "games_played": 1,
-        "goals_for": 4,
-        "goals_against": 3,
-        "goal_diff": 1,
-        "division_rank": 3,
-        "conference_rank": 6
+        "division_rank": 4,
+        "conference_rank": 7
       },
       "Trevor R.": {
         "points": 2,
@@ -43553,8 +43553,8 @@
         "goals_for": 7,
         "goals_against": 4,
         "goal_diff": 3,
-        "division_rank": 4,
-        "conference_rank": 7
+        "division_rank": 5,
+        "conference_rank": 8
       },
       "Zak S.": {
         "points": 2,
@@ -43565,8 +43565,8 @@
         "goals_for": 8,
         "goals_against": 6,
         "goal_diff": 2,
-        "division_rank": 5,
-        "conference_rank": 8
+        "division_rank": 6,
+        "conference_rank": 9
       },
       "Mike M.": {
         "points": 2,
@@ -43590,7 +43590,7 @@
         "goals_against": 4,
         "goal_diff": -1,
         "division_rank": 5,
-        "conference_rank": 10
+        "conference_rank": 11
       },
       "Ryan B.": {
         "points": 2,
@@ -43629,14 +43629,14 @@
         "conference_rank": 12
       },
       "Sean R.": {
-        "points": 0,
+        "points": 1,
         "wins": 0,
         "losses": 1,
-        "ot_losses": 0,
-        "games_played": 1,
-        "goals_for": 4,
-        "goals_against": 8,
-        "goal_diff": -4,
+        "ot_losses": 1,
+        "games_played": 2,
+        "goals_for": 8,
+        "goals_against": 13,
+        "goal_diff": -5,
         "division_rank": 7,
         "conference_rank": 13
       }
