@@ -44900,6 +44900,18 @@
         "division_rank": 5,
         "conference_rank": 10
       },
+      "Ryan B.": {
+        "points": 6,
+        "wins": 3,
+        "losses": 3,
+        "ot_losses": 0,
+        "games_played": 6,
+        "goals_for": 16,
+        "goals_against": 22,
+        "goal_diff": -6,
+        "division_rank": 5,
+        "conference_rank": 9
+      },
       "Travis R.": {
         "points": 4,
         "wins": 2,
@@ -44910,19 +44922,7 @@
         "goals_against": 14,
         "goal_diff": -4,
         "division_rank": 5,
-        "conference_rank": 11
-      },
-      "Ryan B.": {
-        "points": 4,
-        "wins": 2,
-        "losses": 3,
-        "ot_losses": 0,
-        "games_played": 5,
-        "goals_for": 11,
-        "goals_against": 19,
-        "goal_diff": -8,
-        "division_rank": 7,
-        "conference_rank": 14
+        "conference_rank": 12
       },
       "Sean R.": {
         "points": 2,
