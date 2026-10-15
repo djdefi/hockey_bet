@@ -45350,6 +45350,18 @@
         "division_rank": 4,
         "conference_rank": 8
       },
+      "Mike M.": {
+        "points": 8,
+        "wins": 4,
+        "losses": 3,
+        "ot_losses": 0,
+        "games_played": 7,
+        "goals_for": 24,
+        "goals_against": 22,
+        "goal_diff": 2,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Ryan B.": {
         "points": 7,
         "wins": 3,
@@ -45359,20 +45371,8 @@
         "goals_for": 19,
         "goals_against": 26,
         "goal_diff": -7,
-        "division_rank": 7,
+        "division_rank": 6,
         "conference_rank": 9
-      },
-      "Mike M.": {
-        "points": 6,
-        "wins": 3,
-        "losses": 3,
-        "ot_losses": 0,
-        "games_played": 6,
-        "goals_for": 19,
-        "goals_against": 18,
-        "goal_diff": 1,
-        "division_rank": 5,
-        "conference_rank": 12
       },
       "David K.": {
         "points": 6,
