@@ -45314,6 +45314,18 @@
         "division_rank": 2,
         "conference_rank": 5
       },
+      "Jeff C.": {
+        "points": 9,
+        "wins": 4,
+        "losses": 2,
+        "ot_losses": 1,
+        "games_played": 7,
+        "goals_for": 31,
+        "goals_against": 22,
+        "goal_diff": 9,
+        "division_rank": 3,
+        "conference_rank": 6
+      },
       "Ryan T.": {
         "points": 9,
         "wins": 4,
@@ -45323,18 +45335,6 @@
         "goals_for": 21,
         "goals_against": 16,
         "goal_diff": 5,
-        "division_rank": 3,
-        "conference_rank": 6
-      },
-      "Jeff C.": {
-        "points": 8,
-        "wins": 4,
-        "losses": 2,
-        "ot_losses": 0,
-        "games_played": 6,
-        "goals_for": 29,
-        "goals_against": 19,
-        "goal_diff": 10,
         "division_rank": 4,
         "conference_rank": 7
       },
@@ -45383,8 +45383,8 @@
         "goals_for": 16,
         "goals_against": 19,
         "goal_diff": -3,
-        "division_rank": 6,
-        "conference_rank": 10
+        "division_rank": 7,
+        "conference_rank": 11
       },
       "Travis R.": {
         "points": 6,
@@ -45408,7 +45408,7 @@
         "goals_against": 23,
         "goal_diff": -7,
         "division_rank": 5,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Sean R.": {
         "points": 2,
