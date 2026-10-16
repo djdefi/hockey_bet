@@ -45429,16 +45429,28 @@
     "season": "2026-2027",
     "standings": {
       "Zak S.": {
+        "points": 14,
+        "wins": 7,
+        "losses": 2,
+        "ot_losses": 0,
+        "games_played": 9,
+        "goals_for": 36,
+        "goals_against": 22,
+        "goal_diff": 14,
+        "division_rank": 1,
+        "conference_rank": 1
+      },
+      "Tyler F.": {
         "points": 12,
         "wins": 6,
         "losses": 2,
         "ot_losses": 0,
         "games_played": 8,
-        "goals_for": 30,
-        "goals_against": 20,
+        "goals_for": 31,
+        "goals_against": 21,
         "goal_diff": 10,
         "division_rank": 1,
-        "conference_rank": 1
+        "conference_rank": 2
       },
       "Ryan T.": {
         "points": 11,
@@ -45449,8 +45461,8 @@
         "goals_for": 26,
         "goals_against": 20,
         "goal_diff": 6,
-        "division_rank": 1,
-        "conference_rank": 3
+        "division_rank": 2,
+        "conference_rank": 4
       },
       "Trevor R.": {
         "points": 11,
@@ -45462,18 +45474,6 @@
         "goals_against": 23,
         "goal_diff": 9,
         "division_rank": 3,
-        "conference_rank": 4
-      },
-      "Tyler F.": {
-        "points": 10,
-        "wins": 5,
-        "losses": 2,
-        "ot_losses": 0,
-        "games_played": 7,
-        "goals_for": 27,
-        "goals_against": 19,
-        "goal_diff": 8,
-        "division_rank": 2,
         "conference_rank": 5
       },
       "Dan R.": {
