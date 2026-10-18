@@ -45753,28 +45753,28 @@
     "season": "2026-2027",
     "standings": {
       "Zak S.": {
-        "points": 14,
-        "wins": 7,
+        "points": 16,
+        "wins": 8,
         "losses": 2,
         "ot_losses": 0,
-        "games_played": 9,
-        "goals_for": 36,
-        "goals_against": 22,
-        "goal_diff": 14,
+        "games_played": 10,
+        "goals_for": 42,
+        "goals_against": 24,
+        "goal_diff": 18,
         "division_rank": 1,
         "conference_rank": 1
       },
       "Tyler F.": {
         "points": 12,
         "wins": 6,
-        "losses": 2,
+        "losses": 3,
         "ot_losses": 0,
-        "games_played": 8,
-        "goals_for": 31,
-        "goals_against": 21,
-        "goal_diff": 10,
+        "games_played": 9,
+        "goals_for": 33,
+        "goals_against": 27,
+        "goal_diff": 6,
         "division_rank": 1,
-        "conference_rank": 2
+        "conference_rank": 3
       },
       "Jeff C.": {
         "points": 11,
@@ -45899,12 +45899,12 @@
       "Sean R.": {
         "points": 2,
         "wins": 0,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 2,
-        "games_played": 5,
-        "goals_for": 11,
-        "goals_against": 21,
-        "goal_diff": -10,
+        "games_played": 6,
+        "goals_for": 12,
+        "goals_against": 25,
+        "goal_diff": -13,
         "division_rank": 7,
         "conference_rank": 15
       }
