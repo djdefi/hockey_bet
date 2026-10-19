@@ -45926,6 +45926,18 @@
         "division_rank": 1,
         "conference_rank": 1
       },
+      "Ryan T.": {
+        "points": 13,
+        "wins": 6,
+        "losses": 2,
+        "ot_losses": 1,
+        "games_played": 9,
+        "goals_for": 28,
+        "goals_against": 21,
+        "goal_diff": 7,
+        "division_rank": 1,
+        "conference_rank": 3
+      },
       "Tyler F.": {
         "points": 12,
         "wins": 6,
@@ -45935,8 +45947,8 @@
         "goals_for": 33,
         "goals_against": 27,
         "goal_diff": 6,
-        "division_rank": 1,
-        "conference_rank": 3
+        "division_rank": 2,
+        "conference_rank": 4
       },
       "Jeff C.": {
         "points": 11,
@@ -45947,18 +45959,6 @@
         "goals_for": 36,
         "goals_against": 24,
         "goal_diff": 12,
-        "division_rank": 2,
-        "conference_rank": 4
-      },
-      "Ryan T.": {
-        "points": 11,
-        "wins": 5,
-        "losses": 2,
-        "ot_losses": 1,
-        "games_played": 8,
-        "goals_for": 26,
-        "goals_against": 20,
-        "goal_diff": 6,
         "division_rank": 3,
         "conference_rank": 5
       },
@@ -46067,8 +46067,8 @@
         "goals_for": 12,
         "goals_against": 25,
         "goal_diff": -13,
-        "division_rank": 7,
-        "conference_rank": 15
+        "division_rank": 8,
+        "conference_rank": 16
       }
     }
   }
