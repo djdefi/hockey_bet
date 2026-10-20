@@ -46088,6 +46088,18 @@
         "division_rank": 1,
         "conference_rank": 1
       },
+      "Tyler F.": {
+        "points": 14,
+        "wins": 7,
+        "losses": 3,
+        "ot_losses": 0,
+        "games_played": 10,
+        "goals_for": 38,
+        "goals_against": 31,
+        "goal_diff": 7,
+        "division_rank": 1,
+        "conference_rank": 2
+      },
       "Ryan T.": {
         "points": 13,
         "wins": 6,
@@ -46097,18 +46109,6 @@
         "goals_for": 28,
         "goals_against": 21,
         "goal_diff": 7,
-        "division_rank": 1,
-        "conference_rank": 3
-      },
-      "Tyler F.": {
-        "points": 12,
-        "wins": 6,
-        "losses": 3,
-        "ot_losses": 0,
-        "games_played": 9,
-        "goals_for": 33,
-        "goals_against": 27,
-        "goal_diff": 6,
         "division_rank": 2,
         "conference_rank": 4
       },
