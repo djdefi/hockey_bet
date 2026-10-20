@@ -46115,12 +46115,12 @@
       "Jeff C.": {
         "points": 11,
         "wins": 5,
-        "losses": 2,
+        "losses": 3,
         "ot_losses": 1,
-        "games_played": 8,
-        "goals_for": 36,
-        "goals_against": 24,
-        "goal_diff": 12,
+        "games_played": 9,
+        "goals_for": 38,
+        "goals_against": 27,
+        "goal_diff": 11,
         "division_rank": 3,
         "conference_rank": 5
       },
@@ -46187,24 +46187,24 @@
       "Brian D.": {
         "points": 9,
         "wins": 4,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 1,
-        "games_played": 8,
-        "goals_for": 22,
-        "goals_against": 29,
-        "goal_diff": -7,
+        "games_played": 9,
+        "goals_for": 23,
+        "goals_against": 32,
+        "goal_diff": -9,
         "division_rank": 4,
         "conference_rank": 10
       },
       "Keith R.": {
         "points": 8,
         "wins": 4,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 0,
-        "games_played": 7,
-        "goals_for": 22,
-        "goals_against": 21,
-        "goal_diff": 1,
+        "games_played": 8,
+        "goals_for": 24,
+        "goals_against": 26,
+        "goal_diff": -2,
         "division_rank": 5,
         "conference_rank": 11
       },
@@ -46218,7 +46218,7 @@
         "goals_against": 27,
         "goal_diff": -2,
         "division_rank": 5,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Sean R.": {
         "points": 2,
