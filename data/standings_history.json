@@ -46565,12 +46565,12 @@
       "Zak S.": {
         "points": 16,
         "wins": 8,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 0,
-        "games_played": 11,
-        "goals_for": 44,
-        "goals_against": 30,
-        "goal_diff": 14,
+        "games_played": 12,
+        "goals_for": 46,
+        "goals_against": 36,
+        "goal_diff": 10,
         "division_rank": 1,
         "conference_rank": 1
       },
@@ -46610,6 +46610,30 @@
         "division_rank": 3,
         "conference_rank": 5
       },
+      "Brian D.": {
+        "points": 13,
+        "wins": 6,
+        "losses": 4,
+        "ot_losses": 1,
+        "games_played": 11,
+        "goals_for": 33,
+        "goals_against": 37,
+        "goal_diff": -4,
+        "division_rank": 4,
+        "conference_rank": 7
+      },
+      "Travis R.": {
+        "points": 12,
+        "wins": 6,
+        "losses": 4,
+        "ot_losses": 0,
+        "games_played": 10,
+        "goals_for": 33,
+        "goals_against": 31,
+        "goal_diff": 2,
+        "division_rank": 4,
+        "conference_rank": 8
+      },
       "Jeff C.": {
         "points": 11,
         "wins": 5,
@@ -46620,19 +46644,19 @@
         "goals_against": 31,
         "goal_diff": 10,
         "division_rank": 4,
-        "conference_rank": 7
-      },
-      "Brian D.": {
-        "points": 11,
-        "wins": 5,
-        "losses": 4,
-        "ot_losses": 1,
-        "games_played": 10,
-        "goals_for": 27,
-        "goals_against": 35,
-        "goal_diff": -8,
-        "division_rank": 4,
         "conference_rank": 8
+      },
+      "Dan R.": {
+        "points": 11,
+        "wins": 4,
+        "losses": 3,
+        "ot_losses": 3,
+        "games_played": 10,
+        "goals_for": 26,
+        "goals_against": 29,
+        "goal_diff": -3,
+        "division_rank": 6,
+        "conference_rank": 10
       },
       "Mike M.": {
         "points": 10,
@@ -46643,30 +46667,6 @@
         "goals_for": 30,
         "goals_against": 29,
         "goal_diff": 1,
-        "division_rank": 4,
-        "conference_rank": 9
-      },
-      "Dan R.": {
-        "points": 10,
-        "wins": 4,
-        "losses": 3,
-        "ot_losses": 2,
-        "games_played": 9,
-        "goals_for": 24,
-        "goals_against": 26,
-        "goal_diff": -2,
-        "division_rank": 5,
-        "conference_rank": 9
-      },
-      "Travis R.": {
-        "points": 10,
-        "wins": 5,
-        "losses": 4,
-        "ot_losses": 0,
-        "games_played": 9,
-        "goals_for": 29,
-        "goals_against": 30,
-        "goal_diff": -1,
         "division_rank": 5,
         "conference_rank": 10
       },
@@ -46685,38 +46685,38 @@
       "David K.": {
         "points": 9,
         "wins": 3,
-        "losses": 2,
+        "losses": 3,
         "ot_losses": 3,
-        "games_played": 8,
+        "games_played": 9,
         "goals_for": 23,
-        "goals_against": 24,
-        "goal_diff": -1,
-        "division_rank": 6,
-        "conference_rank": 10
+        "goals_against": 30,
+        "goal_diff": -7,
+        "division_rank": 7,
+        "conference_rank": 11
       },
       "Keith R.": {
         "points": 8,
         "wins": 4,
-        "losses": 5,
+        "losses": 6,
         "ot_losses": 0,
-        "games_played": 9,
-        "goals_for": 26,
-        "goals_against": 29,
-        "goal_diff": -3,
+        "games_played": 10,
+        "goals_for": 27,
+        "goals_against": 33,
+        "goal_diff": -6,
         "division_rank": 5,
         "conference_rank": 12
       },
       "Sean R.": {
-        "points": 4,
-        "wins": 1,
+        "points": 6,
+        "wins": 2,
         "losses": 4,
         "ot_losses": 2,
-        "games_played": 7,
-        "goals_for": 17,
-        "goals_against": 27,
-        "goal_diff": -10,
-        "division_rank": 7,
-        "conference_rank": 15
+        "games_played": 8,
+        "goals_for": 20,
+        "goals_against": 29,
+        "goal_diff": -9,
+        "division_rank": 6,
+        "conference_rank": 13
       }
     }
   }
