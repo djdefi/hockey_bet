@@ -46844,6 +46844,18 @@
         "division_rank": 8,
         "conference_rank": 13
       },
+      "Keith R.": {
+        "points": 10,
+        "wins": 5,
+        "losses": 6,
+        "ot_losses": 0,
+        "games_played": 11,
+        "goals_for": 32,
+        "goals_against": 37,
+        "goal_diff": -5,
+        "division_rank": 5,
+        "conference_rank": 11
+      },
       "David K.": {
         "points": 9,
         "wins": 3,
@@ -46854,18 +46866,6 @@
         "goals_against": 30,
         "goal_diff": -7,
         "division_rank": 7,
-        "conference_rank": 11
-      },
-      "Keith R.": {
-        "points": 8,
-        "wins": 4,
-        "losses": 6,
-        "ot_losses": 0,
-        "games_played": 10,
-        "goals_for": 27,
-        "goals_against": 33,
-        "goal_diff": -6,
-        "division_rank": 5,
         "conference_rank": 12
       },
       "Sean R.": {
