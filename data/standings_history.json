@@ -47048,6 +47048,18 @@
     "date": "2026-10-26",
     "season": "2026-2027",
     "standings": {
+      "Ryan T.": {
+        "points": 18,
+        "wins": 8,
+        "losses": 3,
+        "ot_losses": 2,
+        "games_played": 13,
+        "goals_for": 41,
+        "goals_against": 30,
+        "goal_diff": 11,
+        "division_rank": 1,
+        "conference_rank": 1
+      },
       "Zak S.": {
         "points": 17,
         "wins": 8,
@@ -47058,7 +47070,7 @@
         "goals_against": 38,
         "goal_diff": 9,
         "division_rank": 2,
-        "conference_rank": 2
+        "conference_rank": 3
       },
       "Tyler F.": {
         "points": 16,
@@ -47069,18 +47081,6 @@
         "goals_for": 46,
         "goals_against": 40,
         "goal_diff": 6,
-        "division_rank": 1,
-        "conference_rank": 3
-      },
-      "Ryan T.": {
-        "points": 16,
-        "wins": 7,
-        "losses": 3,
-        "ot_losses": 2,
-        "games_played": 12,
-        "goals_for": 37,
-        "goals_against": 28,
-        "goal_diff": 9,
         "division_rank": 2,
         "conference_rank": 4
       },
