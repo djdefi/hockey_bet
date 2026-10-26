@@ -47094,7 +47094,7 @@
         "goals_against": 42,
         "goal_diff": 3,
         "division_rank": 3,
-        "conference_rank": 5
+        "conference_rank": 6
       },
       "Travis R.": {
         "points": 14,
@@ -47111,12 +47111,12 @@
       "Jeff C.": {
         "points": 13,
         "wins": 6,
-        "losses": 4,
+        "losses": 5,
         "ot_losses": 1,
-        "games_played": 11,
-        "goals_for": 47,
-        "goals_against": 34,
-        "goal_diff": 13,
+        "games_played": 12,
+        "goals_for": 49,
+        "goals_against": 40,
+        "goal_diff": 9,
         "division_rank": 4,
         "conference_rank": 7
       },
@@ -47142,19 +47142,31 @@
         "goals_against": 32,
         "goal_diff": 2,
         "division_rank": 4,
+        "conference_rank": 10
+      },
+      "David K.": {
+        "points": 12,
+        "wins": 4,
+        "losses": 3,
+        "ot_losses": 4,
+        "games_played": 11,
+        "goals_for": 31,
+        "goals_against": 35,
+        "goal_diff": -4,
+        "division_rank": 5,
         "conference_rank": 9
       },
       "Dan R.": {
         "points": 11,
         "wins": 4,
-        "losses": 3,
+        "losses": 4,
         "ot_losses": 3,
-        "games_played": 10,
-        "goals_for": 26,
-        "goals_against": 29,
-        "goal_diff": -3,
-        "division_rank": 5,
-        "conference_rank": 9
+        "games_played": 11,
+        "goals_for": 27,
+        "goals_against": 31,
+        "goal_diff": -4,
+        "division_rank": 7,
+        "conference_rank": 11
       },
       "Ryan B.": {
         "points": 11,
@@ -47167,18 +47179,6 @@
         "goal_diff": -10,
         "division_rank": 8,
         "conference_rank": 13
-      },
-      "David K.": {
-        "points": 10,
-        "wins": 3,
-        "losses": 3,
-        "ot_losses": 4,
-        "games_played": 10,
-        "goals_for": 25,
-        "goals_against": 33,
-        "goal_diff": -8,
-        "division_rank": 7,
-        "conference_rank": 11
       },
       "Keith R.": {
         "points": 10,
