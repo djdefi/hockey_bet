@@ -47220,7 +47220,7 @@
         "goals_against": 30,
         "goal_diff": 11,
         "division_rank": 1,
-        "conference_rank": 1
+        "conference_rank": 2
       },
       "Zak S.": {
         "points": 17,
@@ -47304,7 +47304,7 @@
         "goals_against": 32,
         "goal_diff": 2,
         "division_rank": 4,
-        "conference_rank": 10
+        "conference_rank": 11
       },
       "David K.": {
         "points": 12,
@@ -47351,8 +47351,8 @@
         "goals_for": 32,
         "goals_against": 37,
         "goal_diff": -5,
-        "division_rank": 5,
-        "conference_rank": 12
+        "division_rank": 6,
+        "conference_rank": 13
       },
       "Sean R.": {
         "points": 8,
