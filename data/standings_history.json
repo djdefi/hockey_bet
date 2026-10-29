@@ -47594,6 +47594,18 @@
         "division_rank": 3,
         "conference_rank": 5
       },
+      "Mike M.": {
+        "points": 14,
+        "wins": 7,
+        "losses": 4,
+        "ot_losses": 0,
+        "games_played": 11,
+        "goals_for": 39,
+        "goals_against": 34,
+        "goal_diff": 5,
+        "division_rank": 4,
+        "conference_rank": 10
+      },
       "Jeff C.": {
         "points": 13,
         "wins": 6,
@@ -47628,7 +47640,7 @@
         "goals_against": 41,
         "goal_diff": -8,
         "division_rank": 7,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Brian D.": {
         "points": 13,
@@ -47641,18 +47653,6 @@
         "goal_diff": -8,
         "division_rank": 4,
         "conference_rank": 9
-      },
-      "Mike M.": {
-        "points": 12,
-        "wins": 6,
-        "losses": 4,
-        "ot_losses": 0,
-        "games_played": 10,
-        "goals_for": 34,
-        "goals_against": 32,
-        "goal_diff": 2,
-        "division_rank": 5,
-        "conference_rank": 13
       },
       "Keith R.": {
         "points": 11,
