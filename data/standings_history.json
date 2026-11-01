@@ -48068,6 +48068,18 @@
         "division_rank": 2,
         "conference_rank": 4
       },
+      "Jeff C.": {
+        "points": 17,
+        "wins": 8,
+        "losses": 5,
+        "ot_losses": 1,
+        "games_played": 14,
+        "goals_for": 59,
+        "goals_against": 44,
+        "goal_diff": 15,
+        "division_rank": 3,
+        "conference_rank": 5
+      },
       "Trevor R.": {
         "points": 17,
         "wins": 8,
@@ -48078,7 +48090,7 @@
         "goals_against": 52,
         "goal_diff": 0,
         "division_rank": 3,
-        "conference_rank": 5
+        "conference_rank": 6
       },
       "Ryan B.": {
         "points": 17,
@@ -48103,18 +48115,6 @@
         "goal_diff": 6,
         "division_rank": 3,
         "conference_rank": 10
-      },
-      "Jeff C.": {
-        "points": 15,
-        "wins": 7,
-        "losses": 5,
-        "ot_losses": 1,
-        "games_played": 13,
-        "goals_for": 54,
-        "goals_against": 42,
-        "goal_diff": 12,
-        "division_rank": 4,
-        "conference_rank": 7
       },
       "David K.": {
         "points": 15,
