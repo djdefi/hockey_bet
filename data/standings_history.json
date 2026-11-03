@@ -48368,6 +48368,18 @@
         "division_rank": 2,
         "conference_rank": 3
       },
+      "Jeff C.": {
+        "points": 19,
+        "wins": 9,
+        "losses": 5,
+        "ot_losses": 1,
+        "games_played": 15,
+        "goals_for": 64,
+        "goals_against": 46,
+        "goal_diff": 18,
+        "division_rank": 2,
+        "conference_rank": 4
+      },
       "Travis R.": {
         "points": 18,
         "wins": 9,
@@ -48389,18 +48401,6 @@
         "goals_for": 54,
         "goals_against": 52,
         "goal_diff": 2,
-        "division_rank": 2,
-        "conference_rank": 4
-      },
-      "Jeff C.": {
-        "points": 17,
-        "wins": 8,
-        "losses": 5,
-        "ot_losses": 1,
-        "games_played": 14,
-        "goals_for": 59,
-        "goals_against": 44,
-        "goal_diff": 15,
         "division_rank": 3,
         "conference_rank": 5
       },
@@ -48455,12 +48455,12 @@
       "Brian D.": {
         "points": 15,
         "wins": 7,
-        "losses": 7,
+        "losses": 8,
         "ot_losses": 1,
-        "games_played": 15,
-        "goals_for": 41,
-        "goals_against": 52,
-        "goal_diff": -11,
+        "games_played": 16,
+        "goals_for": 42,
+        "goals_against": 54,
+        "goal_diff": -12,
         "division_rank": 4,
         "conference_rank": 10
       },
@@ -48473,8 +48473,8 @@
         "goals_for": 49,
         "goals_against": 53,
         "goal_diff": -4,
-        "division_rank": 5,
-        "conference_rank": 11
+        "division_rank": 6,
+        "conference_rank": 12
       },
       "Dan R.": {
         "points": 11,
