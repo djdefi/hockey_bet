@@ -48843,28 +48843,28 @@
         "conference_rank": 2
       },
       "Zak S.": {
-        "points": 22,
-        "wins": 10,
+        "points": 24,
+        "wins": 11,
         "losses": 5,
         "ot_losses": 2,
-        "games_played": 17,
-        "goals_for": 58,
-        "goals_against": 49,
-        "goal_diff": 9,
+        "games_played": 18,
+        "goals_for": 60,
+        "goals_against": 50,
+        "goal_diff": 10,
         "division_rank": 2,
         "conference_rank": 3
       },
       "Travis R.": {
-        "points": 20,
-        "wins": 10,
+        "points": 22,
+        "wins": 11,
         "losses": 5,
         "ot_losses": 0,
-        "games_played": 15,
-        "goals_for": 52,
-        "goals_against": 43,
-        "goal_diff": 9,
+        "games_played": 16,
+        "goals_for": 57,
+        "goals_against": 47,
+        "goal_diff": 10,
         "division_rank": 2,
-        "conference_rank": 6
+        "conference_rank": 4
       },
       "Tyler F.": {
         "points": 20,
@@ -48912,7 +48912,7 @@
         "goals_against": 51,
         "goal_diff": -7,
         "division_rank": 7,
-        "conference_rank": 9
+        "conference_rank": 10
       },
       "David K.": {
         "points": 17,
@@ -48950,6 +48950,18 @@
         "division_rank": 4,
         "conference_rank": 10
       },
+      "Dan R.": {
+        "points": 15,
+        "wins": 6,
+        "losses": 8,
+        "ot_losses": 3,
+        "games_played": 17,
+        "goals_for": 45,
+        "goals_against": 60,
+        "goal_diff": -15,
+        "division_rank": 7,
+        "conference_rank": 12
+      },
       "Brian D.": {
         "points": 15,
         "wins": 7,
@@ -48960,18 +48972,6 @@
         "goals_against": 61,
         "goal_diff": -17,
         "division_rank": 6,
-        "conference_rank": 12
-      },
-      "Dan R.": {
-        "points": 13,
-        "wins": 5,
-        "losses": 8,
-        "ot_losses": 3,
-        "games_played": 16,
-        "goals_for": 39,
-        "goals_against": 58,
-        "goal_diff": -19,
-        "division_rank": 7,
         "conference_rank": 13
       },
       "Sean R.": {
