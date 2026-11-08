@@ -49155,16 +49155,28 @@
     "season": "2026-2027",
     "standings": {
       "Ryan T.": {
-        "points": 27,
+        "points": 28,
         "wins": 12,
         "losses": 3,
-        "ot_losses": 3,
-        "games_played": 18,
-        "goals_for": 60,
-        "goals_against": 39,
-        "goal_diff": 21,
+        "ot_losses": 4,
+        "games_played": 19,
+        "goals_for": 63,
+        "goals_against": 43,
+        "goal_diff": 20,
         "division_rank": 1,
         "conference_rank": 1
+      },
+      "Travis R.": {
+        "points": 24,
+        "wins": 12,
+        "losses": 5,
+        "ot_losses": 0,
+        "games_played": 17,
+        "goals_for": 62,
+        "goals_against": 51,
+        "goal_diff": 11,
+        "division_rank": 2,
+        "conference_rank": 5
       },
       "Zak S.": {
         "points": 24,
@@ -49178,17 +49190,17 @@
         "division_rank": 2,
         "conference_rank": 3
       },
-      "Travis R.": {
+      "Jeff C.": {
         "points": 22,
-        "wins": 11,
-        "losses": 5,
-        "ot_losses": 0,
-        "games_played": 16,
-        "goals_for": 57,
-        "goals_against": 47,
-        "goal_diff": 10,
-        "division_rank": 2,
-        "conference_rank": 6
+        "wins": 10,
+        "losses": 6,
+        "ot_losses": 2,
+        "games_played": 18,
+        "goals_for": 72,
+        "goals_against": 56,
+        "goal_diff": 16,
+        "division_rank": 3,
+        "conference_rank": 5
       },
       "David K.": {
         "points": 21,
@@ -49199,8 +49211,8 @@
         "goals_for": 52,
         "goals_against": 51,
         "goal_diff": 1,
-        "division_rank": 2,
-        "conference_rank": 4
+        "division_rank": 4,
+        "conference_rank": 6
       },
       "Tyler F.": {
         "points": 21,
@@ -49211,18 +49223,6 @@
         "goals_for": 63,
         "goals_against": 63,
         "goal_diff": 0,
-        "division_rank": 3,
-        "conference_rank": 5
-      },
-      "Jeff C.": {
-        "points": 20,
-        "wins": 9,
-        "losses": 6,
-        "ot_losses": 2,
-        "games_played": 17,
-        "goals_for": 68,
-        "goals_against": 56,
-        "goal_diff": 12,
         "division_rank": 5,
         "conference_rank": 7
       },
@@ -49289,24 +49289,24 @@
       "Brian D.": {
         "points": 15,
         "wins": 7,
-        "losses": 10,
+        "losses": 11,
         "ot_losses": 1,
-        "games_played": 18,
-        "goals_for": 45,
-        "goals_against": 65,
-        "goal_diff": -20,
+        "games_played": 19,
+        "goals_for": 48,
+        "goals_against": 69,
+        "goal_diff": -21,
         "division_rank": 6,
         "conference_rank": 13
       },
       "Sean R.": {
         "points": 12,
         "wins": 5,
-        "losses": 7,
+        "losses": 8,
         "ot_losses": 2,
-        "games_played": 14,
-        "goals_for": 43,
-        "goals_against": 47,
-        "goal_diff": -4,
+        "games_played": 15,
+        "goals_for": 45,
+        "goals_against": 52,
+        "goal_diff": -7,
         "division_rank": 7,
         "conference_rank": 14
       }
