@@ -49328,6 +49328,18 @@
         "division_rank": 1,
         "conference_rank": 1
       },
+      "Travis R.": {
+        "points": 26,
+        "wins": 13,
+        "losses": 5,
+        "ot_losses": 0,
+        "games_played": 18,
+        "goals_for": 66,
+        "goals_against": 51,
+        "goal_diff": 15,
+        "division_rank": 2,
+        "conference_rank": 3
+      },
       "Zak S.": {
         "points": 26,
         "wins": 12,
@@ -49339,18 +49351,6 @@
         "goal_diff": 13,
         "division_rank": 2,
         "conference_rank": 3
-      },
-      "Travis R.": {
-        "points": 24,
-        "wins": 12,
-        "losses": 5,
-        "ot_losses": 0,
-        "games_played": 17,
-        "goals_for": 62,
-        "goals_against": 51,
-        "goal_diff": 11,
-        "division_rank": 2,
-        "conference_rank": 5
       },
       "Jeff C.": {
         "points": 22,
@@ -49437,16 +49437,16 @@
         "conference_rank": 10
       },
       "Dan R.": {
-        "points": 15,
-        "wins": 6,
+        "points": 17,
+        "wins": 7,
         "losses": 8,
         "ot_losses": 3,
-        "games_played": 17,
-        "goals_for": 45,
-        "goals_against": 60,
-        "goal_diff": -15,
-        "division_rank": 7,
-        "conference_rank": 12
+        "games_played": 18,
+        "goals_for": 49,
+        "goals_against": 63,
+        "goal_diff": -14,
+        "division_rank": 6,
+        "conference_rank": 11
       },
       "Brian D.": {
         "points": 15,
