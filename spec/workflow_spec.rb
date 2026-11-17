@@ -2,7 +2,7 @@ require 'yaml'
 require 'json'
 require 'open3'
 
-RSpec.describe 'Scheduled workflows' do
+RSpec.describe 'GitHub workflows' do
   it 'uses the pinned Ruby and grants API failure notifications issue access' do
     workflow = YAML.load_file('.github/workflows/check_api.yml')
     steps = workflow.fetch('jobs').fetch('check-api').fetch('steps')
@@ -12,6 +12,16 @@ RSpec.describe 'Scheduled workflows' do
     expect(setup.fetch('with')).not_to have_key('ruby-version')
     expect(workflow.fetch('permissions').fetch('issues')).to eq('write')
     expect(notification.fetch('if')).to include("steps.check-api.outcome == 'failure'")
+  end
+
+  it 'uses the shared Ruby version for coverage and previews' do
+    %w[coverage pr-preview].each do |name|
+      workflow = YAML.load_file(".github/workflows/#{name}.yml")
+      steps = workflow.fetch('jobs').values.flat_map { |job| job.fetch('steps') }
+      setup = steps.find { |step| step['uses']&.start_with?('ruby/setup-ruby@') }
+
+      expect(setup.fetch('with', {})).not_to have_key('ruby-version')
+    end
   end
 
   it 'prunes only eligible previews using the injected client and reports deletion failures' do
