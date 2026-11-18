@@ -91,16 +91,18 @@ test('team picker stays above mobile navigation and preserves the chosen theme',
 
 test('empty and single-day seasons keep older trends accessible', async ({ page }, testInfo) => {
   await page.route('**/available_seasons.json', route => route.fulfill({
-    json: { seasons: ['2026-2027', '2025-2026', '2024-2025', '2023-2024', '2022-2023'], current_season: '2026-2027' }
+    json: { seasons: ['2026-2027', '2025-2026', '2024-2025', '2023-2024', '2022-2023', '2021-2022'], current_season: '2026-2027' }
   }));
   await page.route('**/standings_history.json', route => route.fulfill({
     json: [
+      { date: '2021-10-08', season: '2021-2022', standings: { Alice: 1 } },
+      { date: '2021-10-09', season: '2021-2022', standings: { Alice: { points: 3 } } },
       { date: '2022-10-08', season: '2022-2023', standings: { Alice: null } },
       { date: '2022-10-09', season: '2022-2023', standings: { Alice: null } },
       { date: '2023-10-08', season: '2023-2024', standings: {} },
       { date: '2023-10-09', season: '2023-2024', standings: {} },
-      { date: '2024-10-08', season: '2024-2025', standings: { Alice: 0 } },
-      { date: '2024-10-09', season: '2024-2025', standings: { Alice: 4 } },
+      { date: '2024-10-08', season: '2024-2025', standings: { Alice: { points: 0 } } },
+      { date: '2024-10-09', season: '2024-2025', standings: { Alice: { points: 4 } } },
       { date: '2025-10-08', season: '2025-2026', standings: { Alice: 2 } }
     ]
   }));
@@ -118,6 +120,9 @@ test('empty and single-day seasons keep older trends accessible', async ({ page 
   await expect(page.locator('#trend-status')).toBeHidden();
   expect(await page.evaluate('Chart.getChart("leagueTrendChart").data.datasets[0].data')).toEqual([0, 4]);
   await page.screenshot({ path: testInfo.outputPath('trends-zero.png'), fullPage: true });
+  await selector.selectOption('2021-2022');
+  await expect(page.locator('#leagueTrendChart')).toBeVisible();
+  expect(await page.evaluate('Chart.getChart("leagueTrendChart").data.datasets[0].data')).toEqual([1, 3]);
   for (const season of ['2023-2024', '2022-2023']) {
     await selector.selectOption(season);
     await expect(page.locator('#leagueTrendChart')).toBeHidden();

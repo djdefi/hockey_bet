@@ -1098,8 +1098,12 @@ overview narrows to in-place team details; mobile stacks the same reading order.
             const canvas = document.getElementById('leagueTrendChart');
             const status = document.getElementById('trend-status');
             const fanNames = Object.keys(history[history.length - 1]?.standings ?? {}).sort();
+            const pointsFor = (entry, fan) => {
+                const standing = entry.standings?.[fan];
+                return typeof standing === 'number' ? standing : standing?.points;
+            };
             const hasTrend = history.length > 1 && fanNames.some(fan =>
-                history.some(entry => Number.isFinite(entry.standings?.[fan]))
+                history.some(entry => Number.isFinite(pointsFor(entry, fan)))
             );
             canvas.classList.toggle('hidden', !hasTrend);
             status.classList.toggle('hidden', hasTrend);
@@ -1121,7 +1125,7 @@ overview narrows to in-place team details; mobile stacks the same reading order.
             
             // Create datasets for each fan
             const datasets = fanNames.map(fanName => {
-                const data = history.map(entry => entry.standings?.[fanName] ?? null);
+                const data = history.map(entry => pointsFor(entry, fanName) ?? null);
                 const color = fanColorsData[fanName] || '#888888';
                 
                 return {

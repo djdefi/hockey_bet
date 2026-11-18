@@ -88,27 +88,24 @@ async function precacheStaticAssets(cache) {
 
 async function handleDataRequest(event) {
   const cache = await caches.open(DATA_CACHE_NAME);
-  const cachedResponse = await cache.match(event.request);
-  const networkFetch = fetch(event.request).then((networkResponse) => {
-    if (networkResponse && networkResponse.ok) {
-      cache.put(event.request, networkResponse.clone());
-    }
-    return networkResponse;
-  });
-
-  if (cachedResponse) {
-    event.waitUntil(networkFetch.catch(() => undefined));
-    return cachedResponse;
-  }
-
+  let networkResponse;
   try {
-    return await networkFetch;
+    networkResponse = await fetch(event.request, { cache: 'no-cache' });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'offline' }), {
+    return (await cache.match(event.request)) || new Response(JSON.stringify({ error: 'offline' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }
     });
   }
+
+  if (networkResponse.ok) {
+    try {
+      await cache.put(event.request, networkResponse.clone());
+    } catch (error) {
+      console.warn('ServiceWorker data cache update failed:', error);
+    }
+  }
+  return networkResponse;
 }
 
 async function handleNavigationRequest(event) {

@@ -92,9 +92,18 @@ test('cached league and offline fallback recover after reconnecting', async ({ p
   if (!baseURL) throw new Error('PWA recovery requires the configured site server');
   const target = new URL(baseURL);
   let connected = true;
+  let historyVersion = 1;
+  const history = (points: number) => [
+    { date: '2026-11-18', season: '2026-2027', standings: { Fan: { points } } }
+  ];
   const server = createServer((request, response) => {
     if (!connected) {
       request.socket.destroy();
+      return;
+    }
+    if (request.url === '/standings_history.json') {
+      response.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'max-age=600' });
+      response.end(JSON.stringify(history(historyVersion)));
       return;
     }
     const upstream = get({
@@ -118,9 +127,14 @@ test('cached league and offline fallback recover after reconnecting', async ({ p
     const origin = `http://127.0.0.1:${address.port}`;
     await page.goto(origin, { waitUntil: 'domcontentloaded' });
     await activateWorker(page);
+    const fetchHistory = () => page.evaluate(async () => (await fetch('./standings_history.json')).json());
+    expect(await fetchHistory()).toEqual(history(1));
+    historyVersion = 2;
+    expect(await fetchHistory()).toEqual(history(2));
 
     // Drop only this origin's connections; leave service-worker networking enabled.
     connected = false;
+    expect(await fetchHistory()).toEqual(history(2));
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('heading', { name: 'NHL Fan League', exact: true })).toBeVisible();
     if (await page.locator('#offseason-briefs').count()) {
