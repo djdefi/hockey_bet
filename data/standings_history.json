@@ -50165,12 +50165,12 @@
       "Jeff C.": {
         "points": 27,
         "wins": 12,
-        "losses": 6,
+        "losses": 7,
         "ot_losses": 3,
-        "games_played": 21,
-        "goals_for": 85,
-        "goals_against": 64,
-        "goal_diff": 21,
+        "games_played": 22,
+        "goals_for": 86,
+        "goals_against": 68,
+        "goal_diff": 18,
         "division_rank": 3,
         "conference_rank": 5
       },
@@ -50186,6 +50186,18 @@
         "division_rank": 4,
         "conference_rank": 6
       },
+      "Tyler F.": {
+        "points": 25,
+        "wins": 11,
+        "losses": 9,
+        "ot_losses": 3,
+        "games_played": 23,
+        "goals_for": 77,
+        "goals_against": 79,
+        "goal_diff": -2,
+        "division_rank": 5,
+        "conference_rank": 7
+      },
       "Keith R.": {
         "points": 23,
         "wins": 11,
@@ -50196,18 +50208,6 @@
         "goals_against": 85,
         "goal_diff": 0,
         "division_rank": 3,
-        "conference_rank": 7
-      },
-      "Tyler F.": {
-        "points": 23,
-        "wins": 10,
-        "losses": 9,
-        "ot_losses": 3,
-        "games_played": 22,
-        "goals_for": 73,
-        "goals_against": 78,
-        "goal_diff": -5,
-        "division_rank": 5,
         "conference_rank": 8
       },
       "Dan R.": {
