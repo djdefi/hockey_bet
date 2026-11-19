@@ -121,6 +121,7 @@
                                 end
                     %>
                     <li><button type="button" data-cup-team="<%= h.call(abbrev) %>" aria-pressed="false"
+                        aria-label="Trace <%= h.call(team.dig('teamName', 'default')) %>, <%= h.call(label) %>, <%= team['points'] %> points"
                         data-route="<%= h.call(qualified ? "Select #{abbrev} in the field above to follow each round." : "#{team.dig('teamName', 'default')}: #{label.downcase}. No route in today's bracket; a division top-three or conference wild-card place is needed.") %>">
                         <span><%= h.call(abbrev) %> <small><%= h.call(label) %></small></span><strong><%= team['points'] %> pts</strong>
                     </button></li>
