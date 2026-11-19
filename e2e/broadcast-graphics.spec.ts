@@ -81,6 +81,7 @@ test('league, odds and standings keep team identity when crests and icons fail',
   await team.click();
   await expect(team).toHaveAttribute('aria-expanded', 'true');
   await page.locator('[data-tab="playoff-odds"]').filter({ visible: true }).click();
+  await page.locator('.cup-model-odds > summary').click();
   await expect(page.locator('.odds-crest').first()).toContainText(/^[A-Z]{3}$/);
   await expect(page.locator('.odds-fan').first()).not.toBeEmpty();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

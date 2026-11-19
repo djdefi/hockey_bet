@@ -1,6 +1,10 @@
 {
   "stylesheets": [
     {
+      "href": "cup-path.css",
+      "rel": "stylesheet"
+    },
+    {
       "href": "styles.css",
       "rel": "stylesheet"
     },
@@ -62,6 +66,7 @@
       "chart.umd.js"
     ],
     "css": [
+      "cup-path.css",
       "styles.css",
       "design-tokens.css",
       "utilities.css",
@@ -85,6 +90,7 @@
     ]
   },
   "precache_paths": [
+    "./cup-path.css",
     "./",
     "./index.html",
     "./standings.html",

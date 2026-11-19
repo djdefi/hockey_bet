@@ -52,7 +52,7 @@ test('offline worker update failure is reported without an unhandled rejection',
 test('new worker replaces previous-season asset and data caches', async ({ page, request }) => {
   await page.evaluate(async () => {
     localStorage.setItem('nhl_fan_team', 'bruins');
-    const assets = await caches.open('hockey-bet-static-v12');
+    const assets = await caches.open('hockey-bet-static-v14');
     await assets.put('./styles.css', new Response('obsolete stylesheet'));
     const data = await caches.open('hockey-bet-data-v12');
     await data.put('./available_seasons.json', new Response('{"seasons":["obsolete"]}'));
@@ -62,17 +62,22 @@ test('new worker replaces previous-season asset and data caches', async ({ page,
 
   const styles = await request.get('/styles.css');
   expect(await page.evaluate(async () => {
-    const cache = await caches.open('hockey-bet-static-v14');
+    const cache = await caches.open('hockey-bet-static-v15');
     return (await cache.match('./styles.css'))?.text();
   })).toBe(await styles.text());
   const graphics = await request.get('/broadcast-graphics.css');
   expect(await page.evaluate(async () => {
-    const cache = await caches.open('hockey-bet-static-v14');
+    const cache = await caches.open('hockey-bet-static-v15');
     return (await cache.match('./broadcast-graphics.css'))?.text();
   })).toBe(await graphics.text());
+  const cupStyles = await request.get('/cup-path.css');
+  expect(await page.evaluate(async () => {
+    const cache = await caches.open('hockey-bet-static-v15');
+    return (await cache.match('./cup-path.css'))?.text();
+  })).toBe(await cupStyles.text());
   const offseasonStyles = await request.get('/offseason.css');
   expect(await page.evaluate(async () => {
-    const cache = await caches.open('hockey-bet-static-v14');
+    const cache = await caches.open('hockey-bet-static-v15');
     return (await cache.match('./offseason.css'))?.text();
   })).toBe(await offseasonStyles.text());
 
@@ -82,8 +87,8 @@ test('new worker replaces previous-season asset and data caches', async ({ page,
   )).toEqual(await seasons.json());
 
   const keys = await page.evaluate(() => caches.keys());
-  expect(keys).toEqual(expect.arrayContaining(['hockey-bet-static-v14', 'hockey-bet-data-v14']));
-  expect(keys).not.toContain('hockey-bet-static-v12');
+  expect(keys).toEqual(expect.arrayContaining(['hockey-bet-static-v15', 'hockey-bet-data-v14']));
+  expect(keys).not.toContain('hockey-bet-static-v14');
   expect(keys).not.toContain('hockey-bet-data-v12');
   expect(await page.evaluate(() => localStorage.getItem('nhl_fan_team'))).toBe('bruins');
 });

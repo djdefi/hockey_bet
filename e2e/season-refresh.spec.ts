@@ -41,6 +41,7 @@ test('viewfinder navigation, team details, and responsive layout', async ({ page
   for (const view of ['standings', 'matchups', 'playoff-odds', 'trends']) {
     await selectView(page, view);
     if (view === 'playoff-odds') {
+      await page.locator('.cup-model-odds > summary').click();
       await expect(page.locator('.odds-table')).toBeVisible();
       await expect(page.locator('#playoffOddsChart')).toBeVisible();
       await expect(page.getByText('Outer ring: make playoffs. Inner ring: win the Cup.')).toBeVisible();

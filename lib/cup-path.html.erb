@@ -1,0 +1,133 @@
+<!-- Road to the Cup extends the broadcast field: division lanes merge into a
+     fixed conference bracket, then one Cup. Paths are possibilities, not picks. -->
+<%
+  conferences = CupPath.conferences(teams)
+  h = ->(value) { ERB::Util.html_escape(value.to_s) }
+%>
+<section class="cup-path" aria-labelledby="cup-path-title">
+    <div class="view-heading">
+        <div>
+            <h2 id="cup-path-title">Every road ends at the Cup.</h2>
+            <p><%= offseason ? "#{season.standings_label} final standings snapshot." : 'If the playoffs started today.' %> Follow a team through the field.</p>
+        </div>
+        <svg class="broadcast-art broadcast-art--cup" aria-hidden="true" viewBox="0 0 120 160"><use href="#broadcast-cup"/></svg>
+    </div>
+    <div class="cup-controls">
+        <label for="cup-team">Trace a team</label>
+        <select id="cup-team">
+            <option value="">All paths</option>
+            <% teams.sort_by { |team| team.dig('teamName', 'default').to_s }.each do |team| %>
+            <option value="<%= h.call(team.dig('teamAbbrev', 'default')) %>"><%= h.call(team.dig('teamName', 'default')) %></option>
+            <% end %>
+        </select>
+        <span>16 teams. Four best-of-seven rounds. One champion.</span>
+    </div>
+    <p id="cup-route" class="cup-route" role="status">Choose a team or select its crest to light up its route. Later rounds show possible opponents, not predicted winners.</p>
+    <p class="cup-scroll-hint">Explore the field left to right &rarr;</p>
+    <div class="cup-scroll" tabindex="0" role="region" aria-label="Road to the Cup flow diagram, scroll horizontally to follow rounds">
+        <div class="cup-field">
+            <div class="cup-stage-labels" aria-hidden="true">
+                <span>Division / wild card</span><span>First round</span><span>Second round</span><span>Conference final</span>
+            </div>
+            <% if conferences.empty? %>
+            <p class="cup-unavailable">Standings are unavailable. A road to the Cup will appear when NHL division and conference positions are available.</p>
+            <% end %>
+            <% conferences.each do |conference| %>
+            <section class="cup-conference" data-conference="<%= h.call(conference[:name]) %>" aria-label="<%= h.call(conference[:name]) %> Conference paths">
+                <h3><%= h.call(conference[:name]) %> Conference</h3>
+                <% if conference[:ready] %>
+                <svg class="cup-streams" viewBox="0 0 1000 500" aria-hidden="true">
+                    <% conference[:branches].each_with_index do |branch, bi| %>
+                        <% branch[:teams].each_with_index do |team, ti|
+                            y = 62 + bi * 240 + ti * 52
+                            match_y = 88 + bi * 240 + (ti / 2) * 104
+                            branch_y = 140 + bi * 240
+                        %>
+                        <path data-route-team="<%= h.call(team.dig('teamAbbrev', 'default')) %>" d="M225 <%= y %> C270 <%= y %> 265 <%= match_y %> 310 <%= match_y %> H455 C505 <%= match_y %> 500 <%= branch_y %> 550 <%= branch_y %> H695 C745 <%= branch_y %> 740 260 790 260 H1000"/>
+                        <% end %>
+                    <% end %>
+                </svg>
+                <% conference[:branches].each_with_index do |branch, bi| %>
+                    <p class="cup-division-label" style="top:<%= 16 + bi * 240 %>px"><%= h.call(branch[:name]) %> branch</p>
+                    <% branch[:teams].each_with_index do |team, ti|
+                        abbrev = team.dig('teamAbbrev', 'default')
+                        seed = team['wildcardSequence'].to_i.between?(1, 2) ? "WC#{team['wildcardSequence']}" : "#{team['divisionAbbrev']}#{team['divisionSequence']}"
+                        opponent = branch[:teams][ti.even? ? ti + 1 : ti - 1]
+                        next_pair = ti < 2 ? branch[:teams].last(2) : branch[:teams].first(2)
+                        owner = manager_team_map[abbrev]
+                        route = "First round: #{opponent.dig('teamName', 'default')}. Second round: #{next_pair.map { |t| t.dig('teamAbbrev', 'default') }.join(' or ')}. Then the #{conference[:name]} Conference final and the Stanley Cup Final."
+                    %>
+                    <button class="cup-team" type="button" style="top:<%= 38 + bi * 240 + ti * 52 %>px"
+                            data-cup-team="<%= h.call(abbrev) %>" data-route="<%= h.call(route) %>"
+                            aria-pressed="false" aria-label="Trace <%= h.call(team.dig('teamName', 'default')) %>">
+                        <span class="cup-seed"><%= h.call(seed) %></span>
+                        <img src="<%= get_team_logo_url(abbrev) %>" alt="" width="34" height="34" loading="lazy">
+                        <span class="cup-team-name"><strong><%= h.call(abbrev) %></strong><small><%= h.call(owner && owner != 'N/A' ? owner : team.dig('teamCommonName', 'default') || team.dig('teamName', 'default')) %></small></span>
+                        <span class="cup-points"><%= team['points'] %><small>PTS</small></span>
+                    </button>
+                    <% end %>
+                    <% 2.times do |mi|
+                        pair = branch[:teams].slice(mi * 2, 2)
+                    %>
+                    <div class="cup-round-node" style="left:310px;top:<%= 64 + bi * 240 + mi * 104 %>px">
+                        <strong><%= pair.map { |team| h.call(team.dig('teamAbbrev', 'default')) }.join(' / ') %></strong>
+                        <small>Winner advances</small>
+                    </div>
+                    <% end %>
+                    <div class="cup-round-node" style="left:550px;top:<%= 116 + bi * 240 %>px">
+                        <strong><%= h.call(branch[:name]) %> branch</strong><small>Two series winners meet</small>
+                    </div>
+                <% end %>
+                <div class="cup-round-node cup-conference-node" style="left:790px;top:236px">
+                    <strong><%= h.call(conference[:name]) %> champion</strong><small>One place in the Final</small>
+                </div>
+                <% else %>
+                <p class="cup-unavailable">A complete playoff field isn't available from these standings yet. Division positions are listed below.</p>
+                <% end %>
+            </section>
+            <% end %>
+            <div class="cup-finish">
+                <svg class="cup-final-streams" viewBox="0 0 180 1000" preserveAspectRatio="none" aria-hidden="true">
+                    <% conferences.each_with_index do |conference, ci| %>
+                    <path data-final-conference="<%= h.call(conference[:name]) %>" d="M0 <%= 260 + ci * 500 %> C75 <%= 260 + ci * 500 %> 20 500 90 500"/>
+                    <% end %>
+                </svg>
+                <div class="cup-trophy">
+                    <svg aria-hidden="true" viewBox="0 0 120 160"><use href="#broadcast-cup"/></svg>
+                    <h3>Stanley<br>Cup Final</h3>
+                    <p>East meets West.</p>
+                    <small>Win four games.<br>Lift the Cup.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="cup-rules">Top three in each division qualify. The two remaining places per conference are wild cards. The better division winner faces WC2; the other faces WC1. Division #2 plays #3. No reseeding; wild cards can cross division branches. <a href="https://www.nhl.com/info/standings-info/playoff-format">NHL format &rarr;</a></p>
+    <details class="cup-standings">
+        <summary>Division standings &amp; teams outside the field</summary>
+        <div class="cup-divisions">
+            <% teams.group_by { |team| team['divisionName'] }.sort_by { |name, _| name.to_s }.each do |division, members| %>
+            <section>
+                <h3><%= h.call(division || 'Division unavailable') %></h3>
+                <ol>
+                    <% members.sort_by { |team| team['divisionSequence'].to_i }.each do |team|
+                        abbrev = team.dig('teamAbbrev', 'default')
+                        qualified = conferences.any? { |c| c[:ready] && c[:branches].any? { |b| b[:teams].include?(team) } }
+                        label = if team['clinchIndicator'] == 'e'
+                                  'Eliminated'
+                                elsif qualified
+                                  team['divisionSequence'].to_i <= 3 ? "Division ##{team['divisionSequence']}" : "WC#{team['wildcardSequence']}"
+                                else
+                                  'Outside field'
+                                end
+                    %>
+                    <li><button type="button" data-cup-team="<%= h.call(abbrev) %>" aria-pressed="false"
+                        data-route="<%= h.call(qualified ? "Select #{abbrev} in the field above to follow each round." : "#{team.dig('teamName', 'default')}: #{label.downcase}. No route in today's bracket; a division top-three or conference wild-card place is needed.") %>">
+                        <span><%= h.call(abbrev) %> <small><%= h.call(label) %></small></span><strong><%= team['points'] %> pts</strong>
+                    </button></li>
+                    <% end %>
+                </ol>
+            </section>
+            <% end %>
+        </div>
+    </details>
+</section>

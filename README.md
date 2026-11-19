@@ -5,6 +5,7 @@ A live NHL standings tracker with playoff status indicators, fan ownership track
 ## Features
 
 - **Live NHL Standings**: Up-to-date standings directly from the NHL API
+- **Road to the Cup**: Trace today's division and wild-card positions through a fixed conference bracket to the Stanley Cup Final, with no predicted winners. Model odds remain available separately.
 - **Playoff Status Indicators**: Visual indicators showing which teams have clinched, are contending, or are eliminated
 - **Fan Ownership Tracking**: Highlight teams owned by fans in your league
 - **Upcoming Games**: Shows each team's next opponent with game time in Pacific timezone

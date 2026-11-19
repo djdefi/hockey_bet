@@ -14,6 +14,7 @@ require_relative 'team_colors'
 require_relative 'app_assets'
 require_relative 'season_context'
 require_relative 'offseason_news'
+require_relative 'cup_path'
 
 # Playoff Status Helper Structure
 # Enhanced with specific seed and position information

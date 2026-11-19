@@ -107,7 +107,7 @@ overview narrows to in-place team details; mobile stacks the same reading order.
                 <button class="desktop-tab active" data-tab="league" aria-label="View League tab" aria-current="page">League</button>
                 <button class="desktop-tab" data-tab="matchups" aria-label="View Matchups tab">Matchups</button>
                 <button class="desktop-tab" data-tab="standings" aria-label="View Standings tab">Standings</button>
-                <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Playoff Odds tab">Playoff Odds</button>
+                <button class="desktop-tab" data-tab="playoff-odds" aria-label="View Cup Paths tab">Cup Paths</button>
                 <button class="desktop-tab" data-tab="trends" aria-label="View Trends tab">Trends</button>
         </nav>
 
@@ -941,8 +941,11 @@ overview narrows to in-place team details; mobile stacks the same reading order.
             <% end %>
         </div>
 
-        <!-- Tab: Playoff Odds (Sunburst Chart) -->
-        <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Playoff progression odds">
+        <!-- Tab: Cup paths and model odds -->
+        <div id="playoff-odds-tab" class="tab-section" role="tabpanel" aria-label="Road to the Cup and playoff odds">
+            <%= ERB.new(File.read('lib/cup-path.html.erb', encoding: 'UTF-8'), eoutvar: '_cup_path_out').result(binding) %>
+            <details class="cup-model-odds">
+            <summary>Model estimates &amp; progression odds</summary>
             <div class="view-heading">
                 <div><h2>Playoff progression odds</h2><p>From a playoff berth to the Stanley Cup.</p></div>
                 <svg class="broadcast-art broadcast-art--cup" aria-hidden="true" viewBox="0 0 120 160"><use href="#broadcast-cup"/></svg>
@@ -961,6 +964,7 @@ overview narrows to in-place team details; mobile stacks the same reading order.
                     </div>
                 </div>
             </div>
+            </details>
         </div>
 
         <!-- Tab: Trends (Chart) -->
@@ -1009,9 +1013,9 @@ overview narrows to in-place team details; mobile stacks the same reading order.
             <div class="nav-item-icon" aria-hidden="true"><iconify-icon icon="solar:chart-bold" width="24" height="24"></iconify-icon></div>
             <div class="nav-item-label">Standings</div>
         </button>
-        <button class="nav-item" data-tab="playoff-odds" aria-label="View Playoff Odds tab">
+        <button class="nav-item" data-tab="playoff-odds" aria-label="View Cup Paths tab">
             <div class="nav-item-icon" aria-hidden="true"><iconify-icon icon="solar:cup-star-bold" width="24" height="24"></iconify-icon></div>
-            <div class="nav-item-label">Playoff Odds</div>
+            <div class="nav-item-label">Cup Paths</div>
         </button>
         <button class="nav-item" data-tab="trends" aria-label="View Trends tab">
             <div class="nav-item-icon" aria-hidden="true"><iconify-icon icon="solar:graph-up-bold" width="24" height="24"></iconify-icon></div>

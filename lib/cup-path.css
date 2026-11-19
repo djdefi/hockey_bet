@@ -1,0 +1,99 @@
+.cup-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.cup-controls label { font-weight: var(--font-weight-semibold); }
+.cup-controls select {
+  max-width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  font: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-strong);
+}
+.cup-controls > span { margin-left: auto; color: var(--color-text-secondary); font-size: var(--font-size-base); }
+.cup-route { max-width: 80ch; min-height: 3em; margin: var(--space-5) 0; color: var(--color-text-secondary); }
+.cup-scroll-hint { color: var(--color-text-muted); font-size: var(--font-size-base); margin: 0 0 var(--space-2); }
+.cup-scroll { overflow-x: auto; border-block: 1px solid var(--color-border-default); background: var(--color-bg-depth); }
+.cup-field { width: 1180px; position: relative; padding-top: 40px; }
+.cup-stage-labels { position: absolute; inset: 0 180px auto 0; height: 40px; color: var(--color-text-muted); font-size: var(--font-size-base); border-bottom: 1px solid var(--color-border-subtle); }
+.cup-stage-labels span { position: absolute; top: 10px; }
+.cup-stage-labels span:nth-child(1) { left: 12px; }
+.cup-stage-labels span:nth-child(2) { left: 310px; }
+.cup-stage-labels span:nth-child(3) { left: 550px; }
+.cup-stage-labels span:nth-child(4) { left: 790px; }
+.cup-conference { position: relative; width: 1000px; height: 500px; }
+.cup-conference + .cup-conference { border-top: 1px solid var(--color-border-subtle); }
+.cup-conference > h3 { position: absolute; top: 172px; left: 790px; margin: 0; font-size: var(--font-size-lg); color: var(--color-text-secondary); }
+.cup-streams { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cup-streams path { fill: none; stroke: var(--color-accent-info); stroke-opacity: .12; stroke-width: 10; transition: stroke-opacity var(--duration-normal), stroke var(--duration-normal); }
+.cup-division-label { position: absolute; left: 12px; margin: 0; font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-text-secondary); }
+.cup-team {
+  position: absolute;
+  left: 12px;
+  width: 213px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px 8px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 2px;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.cup-team:hover { background: var(--color-bg-hover); border-color: var(--color-border-strong); }
+.cup-team img { flex: 0 0 34px; object-fit: contain; }
+.cup-seed { width: 26px; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+.cup-team-name { flex: 1; min-width: 0; }
+.cup-team-name strong { font-size: var(--font-size-lg); }
+.cup-team-name small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+.cup-points { font-variant-numeric: tabular-nums; font-weight: var(--font-weight-semibold); font-size: var(--font-size-lg); text-align: right; }
+.cup-points small { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-normal); color: var(--color-text-muted); }
+.cup-round-node { position: absolute; width: 145px; min-height: 48px; display: flex; flex-direction: column; justify-content: center; padding: 6px 10px; background: var(--color-bg-depth); border-block: 1px solid var(--color-border-default); }
+.cup-round-node strong { font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); }
+.cup-round-node small { color: var(--color-text-muted); font-size: var(--font-size-xs); }
+.cup-conference-node { width: 180px; }
+.cup-finish { position: absolute; left: 1000px; top: 40px; bottom: 0; width: 180px; }
+.cup-final-streams { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cup-final-streams path { fill: none; stroke: var(--color-accent-info); stroke-width: 8; stroke-opacity: .22; }
+.cup-trophy { position: absolute; top: 50%; left: 32px; right: 12px; transform: translateY(-50%); text-align: center; background: var(--color-bg-depth); padding: var(--space-4) 0; }
+.cup-trophy svg { width: 78px; height: 104px; color: var(--color-focus); }
+.cup-trophy h3 { font-size: var(--font-size-3xl); line-height: var(--line-height-tight); margin: var(--space-3) 0; }
+.cup-trophy p { font-size: var(--font-size-base); margin: var(--space-3) 0; }
+.cup-trophy small { color: var(--color-text-secondary); }
+.cup-field.has-selection .cup-streams path { stroke-opacity: .04; }
+.cup-field.has-selection .cup-streams path.is-route { stroke: var(--color-focus); stroke-opacity: .85; stroke-width: 4; }
+.cup-field.has-selection .cup-team:not([aria-pressed="true"]) { opacity: .75; }
+.cup-team[aria-pressed="true"] { border-color: var(--color-focus); background: var(--color-accent-primary-selected); }
+.cup-field.has-selection .cup-final-streams path.is-route { stroke: var(--color-focus); stroke-opacity: .85; }
+.cup-rules { max-width: 85ch; font-size: var(--font-size-base); color: var(--color-text-secondary); margin: var(--space-5) 0 var(--space-8); }
+.cup-rules a { color: var(--color-focus); white-space: nowrap; }
+.cup-unavailable { position: absolute; top: 100px; left: 20px; max-width: 50ch; color: var(--color-text-secondary); }
+.cup-standings, .cup-model-odds { border-top: 1px solid var(--color-border-default); padding: var(--space-5) 0; }
+.cup-standings summary, .cup-model-odds > summary { cursor: pointer; min-height: 44px; font-weight: var(--font-weight-semibold); }
+.cup-model-odds[open] > summary { margin-bottom: var(--space-6); }
+.cup-divisions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); }
+.cup-divisions h3 { font-size: var(--font-size-lg); }
+.cup-divisions ol { list-style-position: inside; padding: 0; margin: 0; }
+.cup-divisions li { border-bottom: 1px solid var(--color-border-subtle); display: flex; }
+.cup-divisions button { width: 100%; min-height: 44px; display: flex; justify-content: space-between; gap: var(--space-2); align-items: center; padding: var(--space-2) 0; font: inherit; text-align: left; color: var(--color-text-primary); background: transparent; border: 0; cursor: pointer; }
+.cup-divisions button small { display: block; color: var(--color-text-muted); }
+.cup-divisions button[aria-pressed="true"] { color: var(--color-focus); }
+.cup-divisions button:hover { background: var(--color-bg-hover); }
+.cup-path :is(button, select, summary, [tabindex]):focus-visible, .cup-model-odds > summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .cup-controls > span { margin-left: 0; flex-basis: 100%; }
+  .cup-controls select { flex: 1; min-width: 0; }
+  .cup-route { min-height: 0; }
+  .cup-divisions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cup-streams path { transition: none; }
+}

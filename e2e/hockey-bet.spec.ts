@@ -93,7 +93,7 @@ test.describe('Desktop tab navigation', () => {
     await expect(tabs).toHaveCount(5);
 
     const labels = await tabs.allTextContents();
-    expect(labels).toEqual(['League', 'Matchups', 'Standings', 'Playoff Odds', 'Trends']);
+    expect(labels).toEqual(['League', 'Matchups', 'Standings', 'Cup Paths', 'Trends']);
   });
 
   test('League tab is active by default', async ({ page }) => {
@@ -189,7 +189,7 @@ test.describe('Mobile bottom navigation', () => {
     const navItems = page.locator('.bottom-nav button.nav-item');
     await expect(navItems).toHaveCount(5);
     await expect(navItems.locator('.nav-item-label')).toHaveText([
-      'League', 'Matchups', 'Standings', 'Playoff Odds', 'Trends',
+      'League', 'Matchups', 'Standings', 'Cup Paths', 'Trends',
     ]);
     await snap(page, '07-mobile-initial');
   });
@@ -640,7 +640,7 @@ test.describe('Playoff odds tab', () => {
     await expect(section).toHaveClass(/active/);
 
     // Should have heading
-    const heading = section.locator('h2');
+    const heading = section.getByRole('heading', { name: 'Every road ends at the Cup.' });
     await expect(heading).toBeVisible();
 
     await snap(page, '16-playoff-odds');
@@ -649,6 +649,7 @@ test.describe('Playoff odds tab', () => {
   test('has chart canvas element', async ({ page }) => {
     await page.goto('/');
     await clickTab(page, 'playoff-odds');
+    await page.locator('.cup-model-odds > summary').click();
 
     const canvas = page.locator('#playoffOddsChart');
     await expect(canvas).toBeVisible();
@@ -657,6 +658,7 @@ test.describe('Playoff odds tab', () => {
   test('has odds summary section', async ({ page }) => {
     await page.goto('/');
     await clickTab(page, 'playoff-odds');
+    await page.locator('.cup-model-odds > summary').click();
 
     const summary = page.locator('#playoffOddsSummary');
     await expect(summary.locator('.odds-table')).toBeVisible();
@@ -843,7 +845,7 @@ test.describe('Visual snapshots (all tabs)', () => {
     { name: 'league', label: 'League' },
     { name: 'matchups', label: 'Matchups' },
     { name: 'standings', label: 'Standings' },
-    { name: 'playoff-odds', label: 'Playoff Odds' },
+    { name: 'playoff-odds', label: 'Cup Paths' },
     { name: 'trends', label: 'Trends' },
   ];
 
