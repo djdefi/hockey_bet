@@ -50310,7 +50310,7 @@
         "goals_against": 64,
         "goal_diff": 18,
         "division_rank": 2,
-        "conference_rank": 4
+        "conference_rank": 5
       },
       "Zak S.": {
         "points": 30,
@@ -50360,6 +50360,18 @@
         "division_rank": 5,
         "conference_rank": 7
       },
+      "Dan R.": {
+        "points": 25,
+        "wins": 11,
+        "losses": 9,
+        "ot_losses": 3,
+        "games_played": 23,
+        "goals_for": 71,
+        "goals_against": 77,
+        "goal_diff": -6,
+        "division_rank": 6,
+        "conference_rank": 8
+      },
       "Keith R.": {
         "points": 23,
         "wins": 11,
@@ -50370,19 +50382,19 @@
         "goals_against": 85,
         "goal_diff": 0,
         "division_rank": 3,
-        "conference_rank": 8
+        "conference_rank": 10
       },
-      "Dan R.": {
-        "points": 23,
-        "wins": 10,
+      "Ryan B.": {
+        "points": 22,
+        "wins": 9,
         "losses": 9,
-        "ot_losses": 3,
+        "ot_losses": 4,
         "games_played": 22,
-        "goals_for": 67,
-        "goals_against": 74,
-        "goal_diff": -7,
+        "goals_for": 64,
+        "goals_against": 77,
+        "goal_diff": -13,
         "division_rank": 6,
-        "conference_rank": 9
+        "conference_rank": 10
       },
       "Brian D.": {
         "points": 22,
@@ -50399,26 +50411,14 @@
       "Mike M.": {
         "points": 20,
         "wins": 10,
-        "losses": 9,
+        "losses": 10,
         "ot_losses": 0,
-        "games_played": 19,
-        "goals_for": 64,
-        "goals_against": 70,
-        "goal_diff": -6,
-        "division_rank": 5,
-        "conference_rank": 10
-      },
-      "Ryan B.": {
-        "points": 20,
-        "wins": 8,
-        "losses": 9,
-        "ot_losses": 4,
-        "games_played": 21,
-        "goals_for": 58,
-        "goals_against": 74,
-        "goal_diff": -16,
+        "games_played": 20,
+        "goals_for": 67,
+        "goals_against": 76,
+        "goal_diff": -9,
         "division_rank": 6,
-        "conference_rank": 11
+        "conference_rank": 12
       },
       "Trevor R.": {
         "points": 19,
