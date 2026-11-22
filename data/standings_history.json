@@ -50613,14 +50613,14 @@
     "season": "2026-2027",
     "standings": {
       "Ryan T.": {
-        "points": 38,
+        "points": 39,
         "wins": 17,
         "losses": 3,
-        "ot_losses": 4,
-        "games_played": 24,
-        "goals_for": 87,
-        "goals_against": 52,
-        "goal_diff": 35,
+        "ot_losses": 5,
+        "games_played": 25,
+        "goals_for": 90,
+        "goals_against": 56,
+        "goal_diff": 34,
         "division_rank": 1,
         "conference_rank": 1
       },
