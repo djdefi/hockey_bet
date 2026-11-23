@@ -50843,8 +50843,8 @@
         "goals_for": 80,
         "goals_against": 81,
         "goal_diff": -1,
-        "division_rank": 5,
-        "conference_rank": 7
+        "division_rank": 6,
+        "conference_rank": 8
       },
       "Dan R.": {
         "points": 26,
@@ -50928,7 +50928,7 @@
         "goals_against": 70,
         "goal_diff": -12,
         "division_rank": 7,
-        "conference_rank": 14
+        "conference_rank": 15
       }
     }
   }
