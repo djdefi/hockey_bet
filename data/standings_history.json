@@ -50858,6 +50858,18 @@
         "division_rank": 7,
         "conference_rank": 9
       },
+      "Ryan B.": {
+        "points": 24,
+        "wins": 10,
+        "losses": 10,
+        "ot_losses": 4,
+        "games_played": 24,
+        "goals_for": 73,
+        "goals_against": 83,
+        "goal_diff": -10,
+        "division_rank": 6,
+        "conference_rank": 10
+      },
       "Brian D.": {
         "points": 24,
         "wins": 11,
@@ -50880,18 +50892,6 @@
         "goals_against": 92,
         "goal_diff": -5,
         "division_rank": 4,
-        "conference_rank": 11
-      },
-      "Ryan B.": {
-        "points": 22,
-        "wins": 9,
-        "losses": 10,
-        "ot_losses": 4,
-        "games_played": 23,
-        "goals_for": 67,
-        "goals_against": 81,
-        "goal_diff": -14,
-        "division_rank": 6,
         "conference_rank": 11
       },
       "Trevor R.": {
