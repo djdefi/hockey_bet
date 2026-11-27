@@ -51377,6 +51377,18 @@
         "division_rank": 1,
         "conference_rank": 1
       },
+      "Travis R.": {
+        "points": 36,
+        "wins": 18,
+        "losses": 8,
+        "ot_losses": 0,
+        "games_played": 26,
+        "goals_for": 99,
+        "goals_against": 80,
+        "goal_diff": 19,
+        "division_rank": 2,
+        "conference_rank": 2
+      },
       "Zak S.": {
         "points": 35,
         "wins": 15,
@@ -51386,18 +51398,6 @@
         "goals_for": 90,
         "goals_against": 78,
         "goal_diff": 12,
-        "division_rank": 2,
-        "conference_rank": 3
-      },
-      "Travis R.": {
-        "points": 34,
-        "wins": 17,
-        "losses": 8,
-        "ot_losses": 0,
-        "games_played": 25,
-        "goals_for": 94,
-        "goals_against": 77,
-        "goal_diff": 17,
         "division_rank": 2,
         "conference_rank": 3
       },
@@ -51507,7 +51507,7 @@
         "goals_against": 86,
         "goal_diff": -7,
         "division_rank": 6,
-        "conference_rank": 12
+        "conference_rank": 13
       },
       "Sean R.": {
         "points": 18,
