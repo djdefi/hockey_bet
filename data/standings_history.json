@@ -51568,6 +51568,18 @@
         "division_rank": 3,
         "conference_rank": 5
       },
+      "Dan R.": {
+        "points": 32,
+        "wins": 14,
+        "losses": 9,
+        "ot_losses": 4,
+        "games_played": 27,
+        "goals_for": 86,
+        "goals_against": 87,
+        "goal_diff": -1,
+        "division_rank": 5,
+        "conference_rank": 7
+      },
       "Tyler F.": {
         "points": 31,
         "wins": 14,
@@ -51577,30 +51589,18 @@
         "goals_for": 92,
         "goals_against": 93,
         "goal_diff": -1,
-        "division_rank": 6,
-        "conference_rank": 8
-      },
-      "Dan R.": {
-        "points": 30,
-        "wins": 13,
-        "losses": 9,
-        "ot_losses": 4,
-        "games_played": 26,
-        "goals_for": 83,
-        "goals_against": 86,
-        "goal_diff": -3,
         "division_rank": 7,
         "conference_rank": 9
       },
       "Ryan B.": {
         "points": 26,
         "wins": 11,
-        "losses": 10,
+        "losses": 11,
         "ot_losses": 4,
-        "games_played": 25,
-        "goals_for": 78,
-        "goals_against": 84,
-        "goal_diff": -6,
+        "games_played": 26,
+        "goals_for": 81,
+        "goals_against": 90,
+        "goal_diff": -9,
         "division_rank": 6,
         "conference_rank": 10
       },
@@ -51616,6 +51616,18 @@
         "division_rank": 3,
         "conference_rank": 10
       },
+      "Trevor R.": {
+        "points": 25,
+        "wins": 12,
+        "losses": 10,
+        "ot_losses": 1,
+        "games_played": 23,
+        "goals_for": 75,
+        "goals_against": 78,
+        "goal_diff": -3,
+        "division_rank": 4,
+        "conference_rank": 11
+      },
       "Keith R.": {
         "points": 25,
         "wins": 12,
@@ -51625,20 +51637,8 @@
         "goals_for": 99,
         "goals_against": 100,
         "goal_diff": -1,
-        "division_rank": 4,
-        "conference_rank": 11
-      },
-      "Trevor R.": {
-        "points": 23,
-        "wins": 11,
-        "losses": 10,
-        "ot_losses": 1,
-        "games_played": 22,
-        "goals_for": 71,
-        "goals_against": 76,
-        "goal_diff": -5,
-        "division_rank": 6,
-        "conference_rank": 13
+        "division_rank": 5,
+        "conference_rank": 12
       },
       "Mike M.": {
         "points": 22,
